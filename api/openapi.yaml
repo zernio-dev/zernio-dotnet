@@ -24094,6 +24094,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Meta only: Facebook Page ID. Returns only ads whose creative\
+          \ is backed by this Page (a Meta ad account serves ads for every Page in\
+          \ the Business Manager). Matches each ad's `creative.pageId`; ads with no\
+          \ page signal (rare IG-only creatives) never match. Mirrors the same filter\
+          \ on /v1/ads/campaigns and /v1/ads/tree."
+        explode: true
+        in: query
+        name: pageId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Profile ID
         explode: true
         in: query
@@ -24382,6 +24394,17 @@ paths:
         explode: true
         in: query
         name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Meta only: Facebook Page ID. Campaigns have no Page of their\
+          \ own, so this keeps campaigns having at least one ad backed by this Page,\
+          \ with adCount and metrics computed over those ads only. Mirrors the same\
+          \ filter on /v1/ads and /v1/ads/tree."
+        explode: true
+        in: query
+        name: pageId
         required: false
         schema:
           type: string
@@ -25072,6 +25095,17 @@ paths:
         explode: true
         in: query
         name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Meta only: Facebook Page ID. Prunes the tree to ads whose creative\
+          \ is backed by this Page — campaigns and ad sets with no ad on the Page\
+          \ drop out, and rolled-up metrics cover only the Page's ads. Mirrors the\
+          \ same filter on /v1/ads and /v1/ads/campaigns."
+        explode: true
+        in: query
+        name: pageId
         required: false
         schema:
           type: string
@@ -40085,6 +40119,7 @@ components:
           instagramUserId: instagramUserId
           videoId: videoId
           pinterestTitle: pinterestTitle
+          pageId: pageId
           body: body
           effectiveObjectStoryId: effectiveObjectStoryId
           objectType: objectType
@@ -40329,6 +40364,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -40389,6 +40425,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -40706,6 +40743,7 @@ components:
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
+              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               objectType: objectType
@@ -40766,6 +40804,7 @@ components:
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
+              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               objectType: objectType
@@ -40936,6 +40975,7 @@ components:
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
+              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               objectType: objectType
@@ -40996,6 +41036,7 @@ components:
               instagramUserId: instagramUserId
               videoId: videoId
               pinterestTitle: pinterestTitle
+              pageId: pageId
               body: body
               effectiveObjectStoryId: effectiveObjectStoryId
               objectType: objectType
@@ -66054,6 +66095,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -66114,6 +66156,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -67199,6 +67242,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -67259,6 +67303,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -67429,6 +67474,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -67489,6 +67535,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -67785,6 +67832,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -67845,6 +67893,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -68015,6 +68064,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -68075,6 +68125,7 @@ components:
                 instagramUserId: instagramUserId
                 videoId: videoId
                 pinterestTitle: pinterestTitle
+                pageId: pageId
                 body: body
                 effectiveObjectStoryId: effectiveObjectStoryId
                 objectType: objectType
@@ -68401,6 +68452,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -68561,6 +68613,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -71877,6 +71930,7 @@ components:
             instagramUserId: instagramUserId
             videoId: videoId
             pinterestTitle: pinterestTitle
+            pageId: pageId
             body: body
             effectiveObjectStoryId: effectiveObjectStoryId
             objectType: objectType
@@ -79105,6 +79159,7 @@ components:
         instagramUserId: instagramUserId
         videoId: videoId
         pinterestTitle: pinterestTitle
+        pageId: pageId
         body: body
         effectiveObjectStoryId: effectiveObjectStoryId
         objectType: objectType
@@ -79155,6 +79210,12 @@ components:
             \ /v1/ads?effectiveObjectStoryId= to map a Business-Manager-visible post\
             \ back to this ad; GET /v1/ads/{adId}/comments resolves comments against\
             \ it."
+          nullable: true
+          type: string
+        pageId:
+          description: "Facebook Page backing the creative (Meta only). What the `pageId`\
+            \ filter on /v1/ads, /v1/ads/campaigns and /v1/ads/tree matches against.\
+            \ Absent for non-Meta ads and rare Meta creatives with no page signal."
           nullable: true
           type: string
         effectiveInstagramMediaId:

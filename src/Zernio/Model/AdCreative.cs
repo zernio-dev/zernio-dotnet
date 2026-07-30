@@ -43,6 +43,7 @@ namespace Zernio.Model
         /// <param name="objectType">Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews — when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available..</param>
         /// <param name="objectStoryId">Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead..</param>
         /// <param name="effectiveObjectStoryId">Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it..</param>
+        /// <param name="pageId">Facebook Page backing the creative (Meta only). What the &#x60;pageId&#x60; filter on /v1/ads, /v1/ads/campaigns and /v1/ads/tree matches against. Absent for non-Meta ads and rare Meta creatives with no page signal..</param>
         /// <param name="effectiveInstagramMediaId">Meta &#x60;effective_instagram_media_id&#x60; — the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad..</param>
         /// <param name="instagramUserId">Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media..</param>
         /// <param name="instagramPermalinkUrl">Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media..</param>
@@ -54,7 +55,7 @@ namespace Zernio.Model
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
             this.ThumbnailUrl = thumbnailUrl;
             this.ImageUrl = imageUrl;
@@ -63,6 +64,7 @@ namespace Zernio.Model
             this.ObjectType = objectType;
             this.ObjectStoryId = objectStoryId;
             this.EffectiveObjectStoryId = effectiveObjectStoryId;
+            this.PageId = pageId;
             this.EffectiveInstagramMediaId = effectiveInstagramMediaId;
             this.InstagramUserId = instagramUserId;
             this.InstagramPermalinkUrl = instagramPermalinkUrl;
@@ -124,6 +126,13 @@ namespace Zernio.Model
         /// <value>Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it.</value>
         [DataMember(Name = "effectiveObjectStoryId", EmitDefaultValue = true)]
         public string EffectiveObjectStoryId { get; set; }
+
+        /// <summary>
+        /// Facebook Page backing the creative (Meta only). What the &#x60;pageId&#x60; filter on /v1/ads, /v1/ads/campaigns and /v1/ads/tree matches against. Absent for non-Meta ads and rare Meta creatives with no page signal.
+        /// </summary>
+        /// <value>Facebook Page backing the creative (Meta only). What the &#x60;pageId&#x60; filter on /v1/ads, /v1/ads/campaigns and /v1/ads/tree matches against. Absent for non-Meta ads and rare Meta creatives with no page signal.</value>
+        [DataMember(Name = "pageId", EmitDefaultValue = true)]
+        public string PageId { get; set; }
 
         /// <summary>
         /// Meta &#x60;effective_instagram_media_id&#x60; — the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad.
@@ -214,6 +223,7 @@ namespace Zernio.Model
             sb.Append("  ObjectType: ").Append(ObjectType).Append("\n");
             sb.Append("  ObjectStoryId: ").Append(ObjectStoryId).Append("\n");
             sb.Append("  EffectiveObjectStoryId: ").Append(EffectiveObjectStoryId).Append("\n");
+            sb.Append("  PageId: ").Append(PageId).Append("\n");
             sb.Append("  EffectiveInstagramMediaId: ").Append(EffectiveInstagramMediaId).Append("\n");
             sb.Append("  InstagramUserId: ").Append(InstagramUserId).Append("\n");
             sb.Append("  InstagramPermalinkUrl: ").Append(InstagramPermalinkUrl).Append("\n");

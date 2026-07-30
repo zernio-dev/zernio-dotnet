@@ -206,6 +206,7 @@ namespace Zernio.Test.Api
             //string? platform = null;
             //AdStatus? status = null;
             //string? adAccountId = null;
+            //string? pageId = null;
             //string? accountId = null;
             //string? profileId = null;
             //string? campaignId = null;
@@ -214,7 +215,7 @@ namespace Zernio.Test.Api
             //string? sort = null;
             //int? timeIncrement = null;
             //string? dailyLevel = null;
-            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
+            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
             //Assert.IsType<GetAdTree200Response>(response);
         }
 
@@ -247,11 +248,12 @@ namespace Zernio.Test.Api
             //string? platform = null;
             //AdStatus? status = null;
             //string? adAccountId = null;
+            //string? pageId = null;
             //string? accountId = null;
             //string? profileId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
-            //var response = instance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
+            //var response = instance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
             //Assert.IsType<ListAdCampaigns200Response>(response);
         }
 
@@ -291,6 +293,7 @@ namespace Zernio.Test.Api
             //string? platform = null;
             //string? accountId = null;
             //string? adAccountId = null;
+            //string? pageId = null;
             //string? profileId = null;
             //string? campaignId = null;
             //string? platformAdId = null;
@@ -298,7 +301,7 @@ namespace Zernio.Test.Api
             //string? effectiveInstagramMediaId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
-            //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+            //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             //Assert.IsType<ListAds200Response>(response);
         }
 

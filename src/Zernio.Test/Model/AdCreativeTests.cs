@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PageId'
+        /// </summary>
+        [Fact]
+        public void PageIdTest()
+        {
+            // TODO unit test for the property 'PageId'
+        }
+
+        /// <summary>
         /// Test the property 'EffectiveInstagramMediaId'
         /// </summary>
         [Fact]

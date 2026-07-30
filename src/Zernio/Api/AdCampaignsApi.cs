@@ -286,6 +286,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -295,7 +296,7 @@ namespace Zernio.Api
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <returns>GetAdTree200Response</returns>
-        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
+        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
 
         /// <summary>
         /// Get campaign tree
@@ -310,6 +311,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -319,7 +321,7 @@ namespace Zernio.Api
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
-        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
+        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
         /// <summary>
         /// Get daily account metrics
         /// </summary>
@@ -362,12 +364,13 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List campaigns
@@ -382,12 +385,13 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -443,6 +447,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -451,7 +456,7 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAds200Response</returns>
-        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List ads
@@ -467,6 +472,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -475,7 +481,7 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAds200Response</returns>
-        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -903,6 +909,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -913,7 +920,7 @@ namespace Zernio.Api
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
-        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get campaign tree
@@ -928,6 +935,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -938,7 +946,7 @@ namespace Zernio.Api
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get daily account metrics
         /// </summary>
@@ -983,13 +991,14 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaigns
@@ -1004,13 +1013,14 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -1068,6 +1078,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -1077,7 +1088,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAds200Response</returns>
-        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List ads
@@ -1093,6 +1104,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -1102,7 +1114,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -2975,6 +2987,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -2984,9 +2997,9 @@ namespace Zernio.Api
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <returns>GetAdTree200Response</returns>
-        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
+        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
         {
-            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
+            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
             return localVarResponse.Data;
         }
 
@@ -3000,6 +3013,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -3009,7 +3023,7 @@ namespace Zernio.Api
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
+        public Zernio.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3050,6 +3064,10 @@ namespace Zernio.Api
             if (adAccountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (pageId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageId", pageId));
             }
             if (accountId != null)
             {
@@ -3113,6 +3131,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -3123,9 +3142,9 @@ namespace Zernio.Api
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3139,6 +3158,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Prunes the tree to ads whose creative is backed by this Page — campaigns and ad sets with no ad on the Page drop out, and rolled-up metrics cover only the Page&#39;s ads. Mirrors the same filter on /v1/ads and /v1/ads/campaigns. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
@@ -3149,7 +3169,7 @@ namespace Zernio.Api
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3192,6 +3212,10 @@ namespace Zernio.Api
             if (adAccountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (pageId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageId", pageId));
             }
             if (accountId != null)
             {
@@ -3431,14 +3455,15 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        public ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -3452,12 +3477,13 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3498,6 +3524,10 @@ namespace Zernio.Api
             if (adAccountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (pageId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageId", pageId));
             }
             if (accountId != null)
             {
@@ -3545,15 +3575,16 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3567,13 +3598,14 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3616,6 +3648,10 @@ namespace Zernio.Api
             if (adAccountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (pageId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageId", pageId));
             }
             if (accountId != null)
             {
@@ -3910,6 +3946,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -3918,9 +3955,9 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAds200Response</returns>
-        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+            Zernio.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -3935,6 +3972,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -3943,7 +3981,7 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAds200Response</returns>
-        public Zernio.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Zernio.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3988,6 +4026,10 @@ namespace Zernio.Api
             if (adAccountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (pageId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageId", pageId));
             }
             if (profileId != null)
             {
@@ -4048,6 +4090,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -4057,9 +4100,9 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAds200Response</returns>
-        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4074,6 +4117,7 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
+        /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
@@ -4083,7 +4127,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -4130,6 +4174,10 @@ namespace Zernio.Api
             if (adAccountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (pageId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageId", pageId));
             }
             if (profileId != null)
             {
