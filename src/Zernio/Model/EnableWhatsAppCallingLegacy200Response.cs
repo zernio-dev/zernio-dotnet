@@ -34,18 +34,47 @@ namespace Zernio.Model
     public partial class EnableWhatsAppCallingLegacy200Response : IValidatableObject
     {
         /// <summary>
+        /// Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID).
+        /// </summary>
+        /// <value>Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CallerIdModeEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Platform for value: platform
+            /// </summary>
+            [EnumMember(Value = "platform")]
+            Platform = 2
+        }
+
+
+        /// <summary>
+        /// Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID).
+        /// </summary>
+        /// <value>Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID).</value>
+        [DataMember(Name = "callerIdMode", EmitDefaultValue = false)]
+        public CallerIdModeEnum? CallerIdMode { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="EnableWhatsAppCallingLegacy200Response" /> class.
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="callingEnabled">callingEnabled.</param>
         /// <param name="sipHostname">sipHostname.</param>
         /// <param name="forwardTo">forwardTo.</param>
-        public EnableWhatsAppCallingLegacy200Response(bool success = default, bool callingEnabled = default, string sipHostname = default, string forwardTo = default)
+        /// <param name="callerIdMode">Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID)..</param>
+        public EnableWhatsAppCallingLegacy200Response(bool success = default, bool callingEnabled = default, string sipHostname = default, string forwardTo = default, CallerIdModeEnum? callerIdMode = default)
         {
             this.Success = success;
             this.CallingEnabled = callingEnabled;
             this.SipHostname = sipHostname;
             this.ForwardTo = forwardTo;
+            this.CallerIdMode = callerIdMode;
         }
 
         /// <summary>
@@ -84,6 +113,7 @@ namespace Zernio.Model
             sb.Append("  CallingEnabled: ").Append(CallingEnabled).Append("\n");
             sb.Append("  SipHostname: ").Append(SipHostname).Append("\n");
             sb.Append("  ForwardTo: ").Append(ForwardTo).Append("\n");
+            sb.Append("  CallerIdMode: ").Append(CallerIdMode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

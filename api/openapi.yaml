@@ -16742,7 +16742,7 @@ paths:
                 $ref: "#/components/schemas/enableWhatsAppCallingLegacy_200_response"
           description: Calling enabled
         "400":
-          description: Invalid request
+          description: Invalid request (including forwardTo set to the number itself)
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21050,7 +21050,7 @@ paths:
                 $ref: "#/components/schemas/enableWhatsAppCallingLegacy_200_response"
           description: Calling enabled
         "400":
-          description: Invalid request
+          description: Invalid request (including forwardTo set to the number itself)
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -56191,6 +56191,7 @@ components:
       - forwardTo
     enableWhatsAppCallingLegacy_200_response:
       example:
+        callerIdMode: business
         callingEnabled: true
         sipHostname: sipHostname
         success: true
@@ -56203,6 +56204,14 @@ components:
         sipHostname:
           type: string
         forwardTo:
+          type: string
+        callerIdMode:
+          description: "Caller ID the forward-leg callee sees on tel: forwards. business\
+            \ = this WhatsApp number; platform = a Zernio number (customer-brought\
+            \ number without verified caller ID)."
+          enum:
+          - business
+          - platform
           type: string
     updateWhatsAppCallingLegacy_request:
       properties:
@@ -61425,11 +61434,13 @@ components:
           type: string
     getWhatsAppCalling_200_response:
       example:
+        callerIdMode: business
         callingEnabled: true
         phoneNumber: phoneNumber
         sipAuthPasswordConfigured: true
         recordingEnabled: true
         callDeepLink: callDeepLink
+        callerIdVerified: true
         outboundDisabled: true
         forwardTo: forwardTo
         sipAuthUsername: sipAuthUsername
@@ -61469,6 +61480,19 @@ components:
         outboundDisabled:
           description: True when the number's country blocks business-initiated (outbound)
             WhatsApp calling; inbound still works.
+          type: boolean
+        callerIdMode:
+          description: "Caller ID the forward-leg callee sees on tel: forwards. business\
+            \ = this WhatsApp number; platform = a Zernio number (used when the number\
+            \ was brought by the customer and its caller ID is not verified for PSTN\
+            \ origination)."
+          enum:
+          - business
+          - platform
+          type: string
+        callerIdVerified:
+          description: "True once the number completed caller-ID verification, making\
+            \ tel: forwards display the business number itself."
           type: boolean
     listWhatsAppSandboxSessions_200_response:
       example:

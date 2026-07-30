@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class GetWhatsAppCalling200Response : IValidatableObject
     {
         /// <summary>
+        /// Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination).
+        /// </summary>
+        /// <value>Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CallerIdModeEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Platform for value: platform
+            /// </summary>
+            [EnumMember(Value = "platform")]
+            Platform = 2
+        }
+
+
+        /// <summary>
+        /// Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination).
+        /// </summary>
+        /// <value>Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination).</value>
+        [DataMember(Name = "callerIdMode", EmitDefaultValue = false)]
+        public CallerIdModeEnum? CallerIdMode { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetWhatsAppCalling200Response" /> class.
         /// </summary>
         /// <param name="phoneNumber">phoneNumber.</param>
@@ -45,7 +72,9 @@ namespace Zernio.Model
         /// <param name="sipAuthPasswordConfigured">True when a SIP digest password is stored. The plaintext is never returned..</param>
         /// <param name="callIconCountries">callIconCountries.</param>
         /// <param name="outboundDisabled">True when the number&#39;s country blocks business-initiated (outbound) WhatsApp calling; inbound still works..</param>
-        public GetWhatsAppCalling200Response(string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default, bool outboundDisabled = default)
+        /// <param name="callerIdMode">Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination)..</param>
+        /// <param name="callerIdVerified">True once the number completed caller-ID verification, making tel: forwards display the business number itself..</param>
+        public GetWhatsAppCalling200Response(string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default, bool outboundDisabled = default, CallerIdModeEnum? callerIdMode = default, bool callerIdVerified = default)
         {
             this.PhoneNumber = phoneNumber;
             this.CallingEnabled = callingEnabled;
@@ -56,6 +85,8 @@ namespace Zernio.Model
             this.SipAuthPasswordConfigured = sipAuthPasswordConfigured;
             this.CallIconCountries = callIconCountries;
             this.OutboundDisabled = outboundDisabled;
+            this.CallerIdMode = callerIdMode;
+            this.CallerIdVerified = callerIdVerified;
         }
 
         /// <summary>
@@ -117,6 +148,13 @@ namespace Zernio.Model
         public bool OutboundDisabled { get; set; }
 
         /// <summary>
+        /// True once the number completed caller-ID verification, making tel: forwards display the business number itself.
+        /// </summary>
+        /// <value>True once the number completed caller-ID verification, making tel: forwards display the business number itself.</value>
+        [DataMember(Name = "callerIdVerified", EmitDefaultValue = true)]
+        public bool CallerIdVerified { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -133,6 +171,8 @@ namespace Zernio.Model
             sb.Append("  SipAuthPasswordConfigured: ").Append(SipAuthPasswordConfigured).Append("\n");
             sb.Append("  CallIconCountries: ").Append(CallIconCountries).Append("\n");
             sb.Append("  OutboundDisabled: ").Append(OutboundDisabled).Append("\n");
+            sb.Append("  CallerIdMode: ").Append(CallerIdMode).Append("\n");
+            sb.Append("  CallerIdVerified: ").Append(CallerIdVerified).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

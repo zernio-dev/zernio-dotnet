@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ForwardTo'
         }
+
+        /// <summary>
+        /// Test the property 'CallerIdMode'
+        /// </summary>
+        [Fact]
+        public void CallerIdModeTest()
+        {
+            // TODO unit test for the property 'CallerIdMode'
+        }
     }
 }
