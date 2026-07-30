@@ -397,6 +397,9 @@ docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
+docs/FacebookPostEarningsResponse.md
+docs/FacebookPostEarningsResponseMetricsValue.md
+docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
 docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
@@ -774,6 +777,7 @@ docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
 docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md
 docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md
+docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md
 docs/InstagramApi.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
@@ -2041,6 +2045,9 @@ src/Zernio.Test/Model/ExternalPostSummaryTests.cs
 src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
+src/Zernio.Test/Model/FacebookPostEarningsResponseMetricsValueTests.cs
+src/Zernio.Test/Model/FacebookPostEarningsResponseTests.cs
+src/Zernio.Test/Model/FacebookPostEarningsResponseUnavailableMetricsInnerTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInnerTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptionsRequestTests.cs
@@ -2409,6 +2416,7 @@ src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueBreakdownsInne
 src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueValuesInnerTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseTests.cs
+src/Zernio.Test/Model/InstagramAccountInsightsResponseUnavailableMetricsInnerTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseDemographicsValueInnerTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
@@ -3660,6 +3668,9 @@ src/Zernio/Model/ExternalPostSummaryAnalytics.cs
 src/Zernio/Model/ExternalPostWebhookPost.cs
 src/Zernio/Model/FacebookPlatformData.cs
 src/Zernio/Model/FacebookPlatformDataCarouselCardsInner.cs
+src/Zernio/Model/FacebookPostEarningsResponse.cs
+src/Zernio/Model/FacebookPostEarningsResponseMetricsValue.cs
+src/Zernio/Model/FacebookPostEarningsResponseUnavailableMetricsInner.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200Response.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptionsRequest.cs
@@ -4028,6 +4039,7 @@ src/Zernio/Model/InstagramAccountInsightsResponseDateRange.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValue.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValueValuesInner.cs
+src/Zernio/Model/InstagramAccountInsightsResponseUnavailableMetricsInner.cs
 src/Zernio/Model/InstagramDemographicsResponse.cs
 src/Zernio/Model/InstagramDemographicsResponseDemographicsValueInner.cs
 src/Zernio/Model/InstagramPlatformData.cs

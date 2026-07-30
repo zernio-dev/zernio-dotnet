@@ -112,9 +112,10 @@ namespace Zernio.Model
         /// <param name="dateRange">dateRange.</param>
         /// <param name="metricType">metricType.</param>
         /// <param name="breakdown">Breakdown dimension used (only present when breakdown was requested).</param>
-        /// <param name="metrics">Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}). .</param>
+        /// <param name="metrics">Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}).  Monetary metrics additionally carry \&quot;unit\&quot; and \&quot;currency\&quot;. Zernio never rescales money: \&quot;total\&quot; and every \&quot;values[].value\&quot; are the platform&#39;s raw numbers in the stated unit. Monetary metrics also keep \&quot;values\&quot; on metricType&#x3D;total_value, because their \&quot;total\&quot; is the sum of the daily buckets the platform returned over the range: keep the series so you can reconcile that sum against the platform&#39;s own reporting before invoicing on it. A metric that could not be served is absent from this object and listed in \&quot;unavailableMetrics\&quot; instead, so an unavailable metric is never reported as a zero. .</param>
+        /// <param name="unavailableMetrics">Requested metrics that could not be served. Present only when at least one metric is unavailable, and absent otherwise. Each listed metric is OMITTED from \&quot;metrics\&quot; rather than reported as 0, which is how an unavailable metric is distinguished from a genuine zero. The request itself still succeeds with HTTP 200. .</param>
         /// <param name="dataDelay">dataDelay.</param>
-        public InstagramAccountInsightsResponse(bool success = default, string accountId = default, PlatformEnum? platform = default, InstagramAccountInsightsResponseDateRange dateRange = default, MetricTypeEnum? metricType = default, string breakdown = default, Dictionary<string, InstagramAccountInsightsResponseMetricsValue> metrics = default, string dataDelay = default)
+        public InstagramAccountInsightsResponse(bool success = default, string accountId = default, PlatformEnum? platform = default, InstagramAccountInsightsResponseDateRange dateRange = default, MetricTypeEnum? metricType = default, string breakdown = default, Dictionary<string, InstagramAccountInsightsResponseMetricsValue> metrics = default, List<InstagramAccountInsightsResponseUnavailableMetricsInner> unavailableMetrics = default, string dataDelay = default)
         {
             this.Success = success;
             this.AccountId = accountId;
@@ -123,6 +124,7 @@ namespace Zernio.Model
             this.MetricType = metricType;
             this.Breakdown = breakdown;
             this.Metrics = metrics;
+            this.UnavailableMetrics = unavailableMetrics;
             this.DataDelay = dataDelay;
         }
 
@@ -156,11 +158,18 @@ namespace Zernio.Model
         public string Breakdown { get; set; }
 
         /// <summary>
-        /// Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}). 
+        /// Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}).  Monetary metrics additionally carry \&quot;unit\&quot; and \&quot;currency\&quot;. Zernio never rescales money: \&quot;total\&quot; and every \&quot;values[].value\&quot; are the platform&#39;s raw numbers in the stated unit. Monetary metrics also keep \&quot;values\&quot; on metricType&#x3D;total_value, because their \&quot;total\&quot; is the sum of the daily buckets the platform returned over the range: keep the series so you can reconcile that sum against the platform&#39;s own reporting before invoicing on it. A metric that could not be served is absent from this object and listed in \&quot;unavailableMetrics\&quot; instead, so an unavailable metric is never reported as a zero. 
         /// </summary>
-        /// <value>Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}). </value>
+        /// <value>Object keyed by metric name. For time_series: each metric has \&quot;total\&quot; (number) and \&quot;values\&quot; (array of {date, value}). For total_value: each metric has \&quot;total\&quot; (number) and optionally \&quot;breakdowns\&quot; (array of {dimension, value}).  Monetary metrics additionally carry \&quot;unit\&quot; and \&quot;currency\&quot;. Zernio never rescales money: \&quot;total\&quot; and every \&quot;values[].value\&quot; are the platform&#39;s raw numbers in the stated unit. Monetary metrics also keep \&quot;values\&quot; on metricType&#x3D;total_value, because their \&quot;total\&quot; is the sum of the daily buckets the platform returned over the range: keep the series so you can reconcile that sum against the platform&#39;s own reporting before invoicing on it. A metric that could not be served is absent from this object and listed in \&quot;unavailableMetrics\&quot; instead, so an unavailable metric is never reported as a zero. </value>
         [DataMember(Name = "metrics", EmitDefaultValue = false)]
         public Dictionary<string, InstagramAccountInsightsResponseMetricsValue> Metrics { get; set; }
+
+        /// <summary>
+        /// Requested metrics that could not be served. Present only when at least one metric is unavailable, and absent otherwise. Each listed metric is OMITTED from \&quot;metrics\&quot; rather than reported as 0, which is how an unavailable metric is distinguished from a genuine zero. The request itself still succeeds with HTTP 200. 
+        /// </summary>
+        /// <value>Requested metrics that could not be served. Present only when at least one metric is unavailable, and absent otherwise. Each listed metric is OMITTED from \&quot;metrics\&quot; rather than reported as 0, which is how an unavailable metric is distinguished from a genuine zero. The request itself still succeeds with HTTP 200. </value>
+        [DataMember(Name = "unavailableMetrics", EmitDefaultValue = false)]
+        public List<InstagramAccountInsightsResponseUnavailableMetricsInner> UnavailableMetrics { get; set; }
 
         /// <summary>
         /// Gets or Sets DataDelay
@@ -186,6 +195,7 @@ namespace Zernio.Model
             sb.Append("  MetricType: ").Append(MetricType).Append("\n");
             sb.Append("  Breakdown: ").Append(Breakdown).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
+            sb.Append("  UnavailableMetrics: ").Append(UnavailableMetrics).Append("\n");
             sb.Append("  DataDelay: ").Append(DataDelay).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

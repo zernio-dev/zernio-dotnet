@@ -34,16 +34,47 @@ namespace Zernio.Model
     public partial class InstagramAccountInsightsResponseMetricsValue : IValidatableObject
     {
         /// <summary>
+        /// Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. 
+        /// </summary>
+        /// <value>Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum UnitEnum
+        {
+            /// <summary>
+            /// Enum MicroAmount for value: micro_amount
+            /// </summary>
+            [EnumMember(Value = "micro_amount")]
+            MicroAmount = 1,
+
+            /// <summary>
+            /// Enum Unspecified for value: unspecified
+            /// </summary>
+            [EnumMember(Value = "unspecified")]
+            Unspecified = 2
+        }
+
+
+        /// <summary>
+        /// Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. 
+        /// </summary>
+        /// <value>Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. </value>
+        [DataMember(Name = "unit", EmitDefaultValue = false)]
+        public UnitEnum? Unit { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="InstagramAccountInsightsResponseMetricsValue" /> class.
         /// </summary>
         /// <param name="total">Sum or aggregate value for the metric.</param>
-        /// <param name="values">Daily values (only for time_series).</param>
+        /// <param name="values">Daily values (for time_series, and always on monetary metrics).</param>
         /// <param name="breakdowns">Breakdown values (only for total_value with breakdown).</param>
-        public InstagramAccountInsightsResponseMetricsValue(decimal total = default, List<InstagramAccountInsightsResponseMetricsValueValuesInner> values = default, List<InstagramAccountInsightsResponseMetricsValueBreakdownsInner> breakdowns = default)
+        /// <param name="unit">Present on monetary metrics only. The scale of \&quot;total\&quot; and of every \&quot;values[].value\&quot;, exactly as the platform returned them.  \&quot;micro_amount\&quot;: the platform returned an object shape carrying a micro amount, and the values are that integer, summed, unconverted. Zernio does not publish a divisor because Meta does not document one; divide by the scale you have verified against the Page&#39;s own Meta Business Suite export. On Facebook Page insights this is always content_monetization_earnings.  \&quot;unspecified\&quot;: the platform returned a bare number with no unit metadata. It is passed through as-is; the platform does not state whether it is major or minor currency units. On Facebook Page insights this is always monetization_approximate_earnings. .</param>
+        /// <param name="currency">ISO 4217 currency of a monetary metric, or null when the platform omitted it. Always null on monetization_approximate_earnings, which Meta returns as a bare number with no currency; always present on content_monetization_earnings. .</param>
+        public InstagramAccountInsightsResponseMetricsValue(decimal total = default, List<InstagramAccountInsightsResponseMetricsValueValuesInner> values = default, List<InstagramAccountInsightsResponseMetricsValueBreakdownsInner> breakdowns = default, UnitEnum? unit = default, string currency = default)
         {
             this.Total = total;
             this.Values = values;
             this.Breakdowns = breakdowns;
+            this.Unit = unit;
+            this.Currency = currency;
         }
 
         /// <summary>
@@ -54,9 +85,9 @@ namespace Zernio.Model
         public decimal Total { get; set; }
 
         /// <summary>
-        /// Daily values (only for time_series)
+        /// Daily values (for time_series, and always on monetary metrics)
         /// </summary>
-        /// <value>Daily values (only for time_series)</value>
+        /// <value>Daily values (for time_series, and always on monetary metrics)</value>
         [DataMember(Name = "values", EmitDefaultValue = false)]
         public List<InstagramAccountInsightsResponseMetricsValueValuesInner> Values { get; set; }
 
@@ -66,6 +97,16 @@ namespace Zernio.Model
         /// <value>Breakdown values (only for total_value with breakdown)</value>
         [DataMember(Name = "breakdowns", EmitDefaultValue = false)]
         public List<InstagramAccountInsightsResponseMetricsValueBreakdownsInner> Breakdowns { get; set; }
+
+        /// <summary>
+        /// ISO 4217 currency of a monetary metric, or null when the platform omitted it. Always null on monetization_approximate_earnings, which Meta returns as a bare number with no currency; always present on content_monetization_earnings. 
+        /// </summary>
+        /// <value>ISO 4217 currency of a monetary metric, or null when the platform omitted it. Always null on monetization_approximate_earnings, which Meta returns as a bare number with no currency; always present on content_monetization_earnings. </value>
+        /*
+        <example>USD</example>
+        */
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
+        public string Currency { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,6 +119,8 @@ namespace Zernio.Model
             sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("  Breakdowns: ").Append(Breakdowns).Append("\n");
+            sb.Append("  Unit: ").Append(Unit).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
