@@ -321,6 +321,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**UpdateRedditSubreddits**](docs/ConnectApi.md#updateredditsubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
 *ConnectApi* | [**UpdateYoutubeDefaultPlaylist**](docs/ConnectApi.md#updateyoutubedefaultplaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
 *ConnectApi* | [**VoteRedditThing**](docs/ConnectApi.md#voteredditthing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment
+*ConnectedAppsApi* | [**ListConnectedApps**](docs/ConnectedAppsApi.md#listconnectedapps) | **GET** /v1/me/connected-apps | List connected apps
+*ConnectedAppsApi* | [**RevokeConnectedApp**](docs/ConnectedAppsApi.md#revokeconnectedapp) | **DELETE** /v1/me/connected-apps/{clientId} | Revoke connected app
 *ContactsApi* | [**BulkCreateContacts**](docs/ContactsApi.md#bulkcreatecontacts) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**CreateContact**](docs/ContactsApi.md#createcontact) | **POST** /v1/contacts | Create contact
 *ContactsApi* | [**DeleteContact**](docs/ContactsApi.md#deletecontact) | **DELETE** /v1/contacts/{contactId} | Delete contact
@@ -803,6 +805,7 @@ Class | Method | HTTP request | Description
  - [Model.ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)
  - [Model.Connected](docs/Connected.md)
  - [Model.ConnectedAccount](docs/ConnectedAccount.md)
+ - [Model.ConnectedApp](docs/ConnectedApp.md)
  - [Model.ConversionDestination](docs/ConversionDestination.md)
  - [Model.ConversionEvent](docs/ConversionEvent.md)
  - [Model.ConversionEventItemsInner](docs/ConversionEventItemsInner.md)
@@ -1485,6 +1488,7 @@ Class | Method | HTTP request | Description
  - [Model.ListCommentAutomations200Response](docs/ListCommentAutomations200Response.md)
  - [Model.ListCommentAutomations200ResponseAutomationsInner](docs/ListCommentAutomations200ResponseAutomationsInner.md)
  - [Model.ListCommentAutomations200ResponseAutomationsInnerStats](docs/ListCommentAutomations200ResponseAutomationsInnerStats.md)
+ - [Model.ListConnectedApps200Response](docs/ListConnectedApps200Response.md)
  - [Model.ListContacts200Response](docs/ListContacts200Response.md)
  - [Model.ListContacts200ResponseContactsInner](docs/ListContacts200ResponseContactsInner.md)
  - [Model.ListContacts200ResponseFilters](docs/ListContacts200ResponseFilters.md)
@@ -1736,6 +1740,7 @@ Class | Method | HTTP request | Description
  - [Model.ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [Model.ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [Model.ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [Model.RevokeConnectedApp200Response](docs/RevokeConnectedApp200Response.md)
  - [Model.RfPrediction](docs/RfPrediction.md)
  - [Model.SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [Model.ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)

@@ -150,6 +150,8 @@ docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
+docs/ConnectedApp.md
+docs/ConnectedAppsApi.md
 docs/ContactsApi.md
 docs/ConversionDestination.md
 docs/ConversionEvent.md
@@ -849,6 +851,7 @@ docs/ListCommentAutomationLogs200Response.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
+docs/ListConnectedApps200Response.md
 docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
@@ -1112,6 +1115,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/RevokeConnectedApp200Response.md
 docs/RfPrediction.md
 docs/SMSApi.md
 docs/SavedTargetingAudience.md
@@ -1629,6 +1633,7 @@ src/Zernio.Test/Api/CallsApiTests.cs
 src/Zernio.Test/Api/CommentAutomationsApiTests.cs
 src/Zernio.Test/Api/CommentsApiTests.cs
 src/Zernio.Test/Api/ConnectApiTests.cs
+src/Zernio.Test/Api/ConnectedAppsApiTests.cs
 src/Zernio.Test/Api/ContactsApiTests.cs
 src/Zernio.Test/Api/ConversionsApiTests.cs
 src/Zernio.Test/Api/CustomFieldsApiTests.cs
@@ -1806,6 +1811,7 @@ src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
+src/Zernio.Test/Model/ConnectedAppTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
 src/Zernio.Test/Model/ConversionDestinationTests.cs
 src/Zernio.Test/Model/ConversionEventItemsInnerTests.cs
@@ -2489,6 +2495,7 @@ src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseAutomationsInnerStatsTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseAutomationsInnerTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseTests.cs
+src/Zernio.Test/Model/ListConnectedApps200ResponseTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseContactsInnerTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseFiltersTests.cs
 src/Zernio.Test/Model/ListContacts200ResponsePaginationTests.cs
@@ -2740,6 +2747,7 @@ src/Zernio.Test/Model/ReviewPhoneNumberKycPacketRequestTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReplyTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReviewerTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewTests.cs
+src/Zernio.Test/Model/RevokeConnectedApp200ResponseTests.cs
 src/Zernio.Test/Model/RfPredictionTests.cs
 src/Zernio.Test/Model/SavedTargetingAudienceTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseBroadcastTests.cs
@@ -3239,6 +3247,7 @@ src/Zernio/Api/CallsApi.cs
 src/Zernio/Api/CommentAutomationsApi.cs
 src/Zernio/Api/CommentsApi.cs
 src/Zernio/Api/ConnectApi.cs
+src/Zernio/Api/ConnectedAppsApi.cs
 src/Zernio/Api/ContactsApi.cs
 src/Zernio/Api/ConversionsApi.cs
 src/Zernio/Api/CustomFieldsApi.cs
@@ -3435,6 +3444,7 @@ src/Zernio/Model/ConnectWhatsAppCredentials200ResponseAccount.cs
 src/Zernio/Model/ConnectWhatsAppCredentialsRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
+src/Zernio/Model/ConnectedApp.cs
 src/Zernio/Model/ConversionDestination.cs
 src/Zernio/Model/ConversionEvent.cs
 src/Zernio/Model/ConversionEventItemsInner.cs
@@ -4117,6 +4127,7 @@ src/Zernio/Model/ListCommentAutomationLogs200Response.cs
 src/Zernio/Model/ListCommentAutomations200Response.cs
 src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInner.cs
 src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInnerStats.cs
+src/Zernio/Model/ListConnectedApps200Response.cs
 src/Zernio/Model/ListContacts200Response.cs
 src/Zernio/Model/ListContacts200ResponseContactsInner.cs
 src/Zernio/Model/ListContacts200ResponseFilters.cs
@@ -4368,6 +4379,7 @@ src/Zernio/Model/ReviewPhoneNumberKycPacketRequest.cs
 src/Zernio/Model/ReviewWebhookReview.cs
 src/Zernio/Model/ReviewWebhookReviewReply.cs
 src/Zernio/Model/ReviewWebhookReviewReviewer.cs
+src/Zernio/Model/RevokeConnectedApp200Response.cs
 src/Zernio/Model/RfPrediction.cs
 src/Zernio/Model/SavedTargetingAudience.cs
 src/Zernio/Model/ScheduleBroadcast200Response.cs
