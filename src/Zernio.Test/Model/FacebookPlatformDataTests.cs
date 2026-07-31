@@ -56,15 +56,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Draft'
-        /// </summary>
-        [Fact]
-        public void DraftTest()
-        {
-            // TODO unit test for the property 'Draft'
-        }
-
-        /// <summary>
         /// Test the property 'ContentType'
         /// </summary>
         [Fact]
@@ -110,30 +101,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CarouselCards'
+        /// Test the property 'FacebookSettings'
         /// </summary>
         [Fact]
-        public void CarouselCardsTest()
+        public void FacebookSettingsTest()
         {
-            // TODO unit test for the property 'CarouselCards'
-        }
-
-        /// <summary>
-        /// Test the property 'CarouselLink'
-        /// </summary>
-        [Fact]
-        public void CarouselLinkTest()
-        {
-            // TODO unit test for the property 'CarouselLink'
-        }
-
-        /// <summary>
-        /// Test the property 'TextFormatPresetId'
-        /// </summary>
-        [Fact]
-        public void TextFormatPresetIdTest()
-        {
-            // TODO unit test for the property 'TextFormatPresetId'
+            // TODO unit test for the property 'FacebookSettings'
         }
     }
 }

@@ -1,4 +1,4 @@
-# Zernio.Model.FacebookPlatformDataCarouselCardsInner
+# Zernio.Model.FacebookSettingsCarouselCardsInner
 
 ## Properties
 

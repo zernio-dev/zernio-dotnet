@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Carousel posts (carouselCards) render a 2-5 card multi-link post, images only, mutually exclusive with story/reel. Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. 
+    /// Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. Draft, carousel, and colored-background text options live under facebookSettings, see FacebookSettings. 
     /// </summary>
     [DataContract(Name = "FacebookPlatformData")]
     public partial class FacebookPlatformData : IValidatableObject
@@ -63,34 +63,21 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FacebookPlatformData" /> class.
         /// </summary>
-        /// <param name="draft">When true, creates the post as a draft in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days. (default to false).</param>
         /// <param name="contentType">Set to &#39;story&#39; for Page Stories (24h ephemeral) or &#39;reel&#39; for Reels (short vertical video). Defaults to feed post if omitted..</param>
         /// <param name="title">Reel title (only for contentType&#x3D;reel). Separate from the caption/content field..</param>
-        /// <param name="firstComment">Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when draft is true..</param>
+        /// <param name="firstComment">Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when facebookSettings.draft is true..</param>
         /// <param name="pageId">Target Facebook Page ID for multi-page posting. If omitted, uses the default page. Use GET /v1/accounts/{id}/facebook-page to list pages..</param>
         /// <param name="geoRestriction">geoRestriction.</param>
-        /// <param name="carouselCards">Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType&#x3D;story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render. .</param>
-        /// <param name="carouselLink">Optional top-level \&quot;See more\&quot; destination shown on the carousel end card. Defaults to the first card&#39;s link when omitted. Only used together with carouselCards. .</param>
-        /// <param name="textFormatPresetId">Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, or when content is empty. An attachment makes Facebook drop the background silently, so those are rejected up front. Length is NOT rejected: Facebook&#39;s composer stops offering a background at around 130 characters, but Meta documents no API limit, so longer content publishes and returns a warning instead. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. .</param>
-        public FacebookPlatformData(bool draft = false, ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default, GeoRestriction geoRestriction = default, List<FacebookPlatformDataCarouselCardsInner> carouselCards = default, string carouselLink = default, string textFormatPresetId = default)
+        /// <param name="facebookSettings">facebookSettings.</param>
+        public FacebookPlatformData(ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default, GeoRestriction geoRestriction = default, FacebookSettings facebookSettings = default)
         {
-            this.Draft = draft;
             this.ContentType = contentType;
             this.Title = title;
             this.FirstComment = firstComment;
             this.PageId = pageId;
             this.GeoRestriction = geoRestriction;
-            this.CarouselCards = carouselCards;
-            this.CarouselLink = carouselLink;
-            this.TextFormatPresetId = textFormatPresetId;
+            this.FacebookSettings = facebookSettings;
         }
-
-        /// <summary>
-        /// When true, creates the post as a draft in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days.
-        /// </summary>
-        /// <value>When true, creates the post as a draft in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days.</value>
-        [DataMember(Name = "draft", EmitDefaultValue = true)]
-        public bool Draft { get; set; }
 
         /// <summary>
         /// Reel title (only for contentType&#x3D;reel). Separate from the caption/content field.
@@ -100,9 +87,9 @@ namespace Zernio.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when draft is true.
+        /// Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when facebookSettings.draft is true.
         /// </summary>
-        /// <value>Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when draft is true.</value>
+        /// <value>Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when facebookSettings.draft is true.</value>
         [DataMember(Name = "firstComment", EmitDefaultValue = false)]
         public string FirstComment { get; set; }
 
@@ -120,25 +107,10 @@ namespace Zernio.Model
         public GeoRestriction GeoRestriction { get; set; }
 
         /// <summary>
-        /// Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType&#x3D;story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render. 
+        /// Gets or Sets FacebookSettings
         /// </summary>
-        /// <value>Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType&#x3D;story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render. </value>
-        [DataMember(Name = "carouselCards", EmitDefaultValue = false)]
-        public List<FacebookPlatformDataCarouselCardsInner> CarouselCards { get; set; }
-
-        /// <summary>
-        /// Optional top-level \&quot;See more\&quot; destination shown on the carousel end card. Defaults to the first card&#39;s link when omitted. Only used together with carouselCards. 
-        /// </summary>
-        /// <value>Optional top-level \&quot;See more\&quot; destination shown on the carousel end card. Defaults to the first card&#39;s link when omitted. Only used together with carouselCards. </value>
-        [DataMember(Name = "carouselLink", EmitDefaultValue = false)]
-        public string CarouselLink { get; set; }
-
-        /// <summary>
-        /// Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, or when content is empty. An attachment makes Facebook drop the background silently, so those are rejected up front. Length is NOT rejected: Facebook&#39;s composer stops offering a background at around 130 characters, but Meta documents no API limit, so longer content publishes and returns a warning instead. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. 
-        /// </summary>
-        /// <value>Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, or when content is empty. An attachment makes Facebook drop the background silently, so those are rejected up front. Length is NOT rejected: Facebook&#39;s composer stops offering a background at around 130 characters, but Meta documents no API limit, so longer content publishes and returns a warning instead. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. </value>
-        [DataMember(Name = "textFormatPresetId", EmitDefaultValue = false)]
-        public string TextFormatPresetId { get; set; }
+        [DataMember(Name = "facebookSettings", EmitDefaultValue = false)]
+        public FacebookSettings FacebookSettings { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,15 +120,12 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class FacebookPlatformData {\n");
-            sb.Append("  Draft: ").Append(Draft).Append("\n");
             sb.Append("  ContentType: ").Append(ContentType).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  FirstComment: ").Append(FirstComment).Append("\n");
             sb.Append("  PageId: ").Append(PageId).Append("\n");
             sb.Append("  GeoRestriction: ").Append(GeoRestriction).Append("\n");
-            sb.Append("  CarouselCards: ").Append(CarouselCards).Append("\n");
-            sb.Append("  CarouselLink: ").Append(CarouselLink).Append("\n");
-            sb.Append("  TextFormatPresetId: ").Append(TextFormatPresetId).Append("\n");
+            sb.Append("  FacebookSettings: ").Append(FacebookSettings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -177,15 +146,6 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.TextFormatPresetId != null) {
-                // TextFormatPresetId (string) pattern
-                Regex regexTextFormatPresetId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
-                if (!regexTextFormatPresetId.Match(this.TextFormatPresetId).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TextFormatPresetId, must match a pattern of " + regexTextFormatPresetId, new [] { "TextFormatPresetId" });
-                }
-            }
-
             yield break;
         }
     }

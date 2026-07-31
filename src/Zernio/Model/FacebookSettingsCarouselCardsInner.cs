@@ -28,28 +28,28 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// FacebookPlatformDataCarouselCardsInner
+    /// FacebookSettingsCarouselCardsInner
     /// </summary>
-    [DataContract(Name = "FacebookPlatformData_carouselCards_inner")]
-    public partial class FacebookPlatformDataCarouselCardsInner : IValidatableObject
+    [DataContract(Name = "FacebookSettings_carouselCards_inner")]
+    public partial class FacebookSettingsCarouselCardsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FacebookPlatformDataCarouselCardsInner" /> class.
+        /// Initializes a new instance of the <see cref="FacebookSettingsCarouselCardsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected FacebookPlatformDataCarouselCardsInner() { }
+        protected FacebookSettingsCarouselCardsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="FacebookPlatformDataCarouselCardsInner" /> class.
+        /// Initializes a new instance of the <see cref="FacebookSettingsCarouselCardsInner" /> class.
         /// </summary>
         /// <param name="link">Per-card click destination (required). (required).</param>
         /// <param name="name">Per-card headline (optional, ~35-char display)..</param>
         /// <param name="description">Per-card subhead (optional, ~30-char display)..</param>
-        public FacebookPlatformDataCarouselCardsInner(string link = default, string name = default, string description = default)
+        public FacebookSettingsCarouselCardsInner(string link = default, string name = default, string description = default)
         {
             // to ensure "link" is required (not null)
             if (link == null)
             {
-                throw new ArgumentNullException("link is a required property for FacebookPlatformDataCarouselCardsInner and cannot be null");
+                throw new ArgumentNullException("link is a required property for FacebookSettingsCarouselCardsInner and cannot be null");
             }
             this.Link = link;
             this.Name = name;
@@ -84,7 +84,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class FacebookPlatformDataCarouselCardsInner {\n");
+            sb.Append("class FacebookSettingsCarouselCardsInner {\n");
             sb.Append("  Link: ").Append(Link).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
