@@ -42,9 +42,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestTranslationsInner" /> class.
         /// </summary>
         /// <param name="locale">Language code, resolved to Meta&#39;s numeric locale id. Bare codes target the &#39;(All)&#39; umbrella (&#x60;es&#x60; &#x3D; every Spanish variant); region-qualified codes target the variant (&#x60;pt_BR&#x60;, &#x60;en_GB&#x60;). (required).</param>
-        /// <param name="headline">Headline for this language. Inherits the top-level &#x60;headline&#x60; when omitted..</param>
-        /// <param name="body">Primary text for this language. Inherits the top-level &#x60;body&#x60; when omitted..</param>
-        /// <param name="description">Link description for this language. Inherits the top-level &#x60;description&#x60; when omitted..</param>
+        /// <param name="headline">Headline for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level headline. (required).</param>
+        /// <param name="body">Primary text for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level body. (required).</param>
+        /// <param name="description">Link description for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level description. (required).</param>
         /// <param name="imageUrl">Image for this language. Inherits the ad&#39;s &#x60;imageUrl&#x60; when omitted. The feed is all-image OR all-video..</param>
         /// <param name="videoUrl">Video for this language. Inherits the ad&#39;s &#x60;video.url&#x60; when omitted. The feed is all-image OR all-video..</param>
         /// <param name="thumbnailUrl">Poster frame for this language&#39;s video..</param>
@@ -56,8 +56,23 @@ namespace Zernio.Model
                 throw new ArgumentNullException("locale is a required property for CreateStandaloneAdRequestTranslationsInner and cannot be null");
             }
             this.Locale = locale;
+            // to ensure "headline" is required (not null)
+            if (headline == null)
+            {
+                throw new ArgumentNullException("headline is a required property for CreateStandaloneAdRequestTranslationsInner and cannot be null");
+            }
             this.Headline = headline;
+            // to ensure "body" is required (not null)
+            if (body == null)
+            {
+                throw new ArgumentNullException("body is a required property for CreateStandaloneAdRequestTranslationsInner and cannot be null");
+            }
             this.Body = body;
+            // to ensure "description" is required (not null)
+            if (description == null)
+            {
+                throw new ArgumentNullException("description is a required property for CreateStandaloneAdRequestTranslationsInner and cannot be null");
+            }
             this.Description = description;
             this.ImageUrl = imageUrl;
             this.VideoUrl = videoUrl;
@@ -72,24 +87,24 @@ namespace Zernio.Model
         public string Locale { get; set; }
 
         /// <summary>
-        /// Headline for this language. Inherits the top-level &#x60;headline&#x60; when omitted.
+        /// Headline for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level headline.
         /// </summary>
-        /// <value>Headline for this language. Inherits the top-level &#x60;headline&#x60; when omitted.</value>
-        [DataMember(Name = "headline", EmitDefaultValue = false)]
+        /// <value>Headline for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level headline.</value>
+        [DataMember(Name = "headline", IsRequired = true, EmitDefaultValue = true)]
         public string Headline { get; set; }
 
         /// <summary>
-        /// Primary text for this language. Inherits the top-level &#x60;body&#x60; when omitted.
+        /// Primary text for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level body.
         /// </summary>
-        /// <value>Primary text for this language. Inherits the top-level &#x60;body&#x60; when omitted.</value>
-        [DataMember(Name = "body", EmitDefaultValue = false)]
+        /// <value>Primary text for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level body.</value>
+        [DataMember(Name = "body", IsRequired = true, EmitDefaultValue = true)]
         public string Body { get; set; }
 
         /// <summary>
-        /// Link description for this language. Inherits the top-level &#x60;description&#x60; when omitted.
+        /// Link description for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level description.
         /// </summary>
-        /// <value>Link description for this language. Inherits the top-level &#x60;description&#x60; when omitted.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        /// <value>Link description for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level description.</value>
+        [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>

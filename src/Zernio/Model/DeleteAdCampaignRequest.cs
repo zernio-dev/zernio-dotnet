@@ -67,10 +67,19 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="DeleteAdCampaignRequest" /> class.
         /// </summary>
         /// <param name="platform">platform (required).</param>
-        public DeleteAdCampaignRequest(PlatformEnum platform = default)
+        /// <param name="accountId">Zernio SocialAccount id owning the ad account. Required only to delete an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from..</param>
+        public DeleteAdCampaignRequest(PlatformEnum platform = default, string accountId = default)
         {
             this.Platform = platform;
+            this.AccountId = accountId;
         }
+
+        /// <summary>
+        /// Zernio SocialAccount id owning the ad account. Required only to delete an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.
+        /// </summary>
+        /// <value>Zernio SocialAccount id owning the ad account. Required only to delete an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -81,6 +90,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class DeleteAdCampaignRequest {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
