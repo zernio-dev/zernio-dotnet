@@ -932,6 +932,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [Model.CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [Model.CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
+ - [Model.CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [Model.CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
  - [Model.CreateTestLead200Response](docs/CreateTestLead200Response.md)
  - [Model.CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)

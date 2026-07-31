@@ -86,7 +86,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //CreateAdCampaignRequest createAdCampaignRequest = null;
-            //var response = instance.CreateAdCampaign(createAdCampaignRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.CreateAdCampaign(createAdCampaignRequest, idempotencyKey);
             //Assert.IsType<CreateAdCampaign201Response>(response);
         }
 
@@ -136,8 +137,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string adId = null;
+            //string? idempotencyKey = null;
             //DuplicateAdRequest? duplicateAdRequest = null;
-            //var response = instance.DuplicateAd(adId, duplicateAdRequest);
+            //var response = instance.DuplicateAd(adId, idempotencyKey, duplicateAdRequest);
             //Assert.IsType<DuplicateAd200Response>(response);
         }
 
@@ -150,7 +152,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string campaignId = null;
             //DuplicateAdCampaignRequest duplicateAdCampaignRequest = null;
-            //var response = instance.DuplicateAdCampaign(campaignId, duplicateAdCampaignRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.DuplicateAdCampaign(campaignId, duplicateAdCampaignRequest, idempotencyKey);
             //Assert.IsType<DuplicateAdCampaign200Response>(response);
         }
 
@@ -163,7 +166,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string adSetId = null;
             //DuplicateAdSetRequest duplicateAdSetRequest = null;
-            //var response = instance.DuplicateAdSet(adSetId, duplicateAdSetRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.DuplicateAdSet(adSetId, duplicateAdSetRequest, idempotencyKey);
             //Assert.IsType<DuplicateAdSet200Response>(response);
         }
 

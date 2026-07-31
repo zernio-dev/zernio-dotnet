@@ -74,23 +74,25 @@ namespace Zernio.Api
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>CreateAdCampaign201Response</returns>
-        CreateAdCampaign201Response CreateAdCampaign(CreateAdCampaignRequest createAdCampaignRequest);
+        CreateAdCampaign201Response CreateAdCampaign(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of CreateAdCampaign201Response</returns>
-        ApiResponse<CreateAdCampaign201Response> CreateAdCampaignWithHttpInfo(CreateAdCampaignRequest createAdCampaignRequest);
+        ApiResponse<CreateAdCampaign201Response> CreateAdCampaignWithHttpInfo(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -166,9 +168,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <returns>DuplicateAd200Response</returns>
-        DuplicateAd200Response DuplicateAd(string adId, DuplicateAdRequest? duplicateAdRequest = default);
+        DuplicateAd200Response DuplicateAd(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default);
 
         /// <summary>
         /// Duplicate an ad
@@ -178,9 +181,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <returns>ApiResponse of DuplicateAd200Response</returns>
-        ApiResponse<DuplicateAd200Response> DuplicateAdWithHttpInfo(string adId, DuplicateAdRequest? duplicateAdRequest = default);
+        ApiResponse<DuplicateAd200Response> DuplicateAdWithHttpInfo(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default);
         /// <summary>
         /// Duplicate a campaign
         /// </summary>
@@ -190,8 +194,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>DuplicateAdCampaign200Response</returns>
-        DuplicateAdCampaign200Response DuplicateAdCampaign(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest);
+        DuplicateAdCampaign200Response DuplicateAdCampaign(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Duplicate a campaign
@@ -202,8 +207,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of DuplicateAdCampaign200Response</returns>
-        ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest);
+        ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default);
         /// <summary>
         /// Duplicate an ad set
         /// </summary>
@@ -213,8 +219,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>DuplicateAdSet200Response</returns>
-        DuplicateAdSet200Response DuplicateAdSet(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest);
+        DuplicateAdSet200Response DuplicateAdSet(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Duplicate an ad set
@@ -225,8 +232,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of DuplicateAdSet200Response</returns>
-        ApiResponse<DuplicateAdSet200Response> DuplicateAdSetWithHttpInfo(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest);
+        ApiResponse<DuplicateAdSet200Response> DuplicateAdSetWithHttpInfo(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default);
         /// <summary>
         /// Get ad details
         /// </summary>
@@ -679,25 +687,27 @@ namespace Zernio.Api
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateAdCampaign201Response</returns>
-        System.Threading.Tasks.Task<CreateAdCampaign201Response> CreateAdCampaignAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<CreateAdCampaign201Response> CreateAdCampaignAsync(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateAdCampaign201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateAdCampaign201Response>> CreateAdCampaignWithHttpInfoAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<CreateAdCampaign201Response>> CreateAdCampaignWithHttpInfoAsync(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -779,10 +789,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DuplicateAd200Response</returns>
-        System.Threading.Tasks.Task<DuplicateAd200Response> DuplicateAdAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<DuplicateAd200Response> DuplicateAdAsync(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Duplicate an ad
@@ -792,10 +803,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAd200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DuplicateAd200Response>> DuplicateAdWithHttpInfoAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<DuplicateAd200Response>> DuplicateAdWithHttpInfoAsync(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Duplicate a campaign
         /// </summary>
@@ -805,9 +817,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DuplicateAdCampaign200Response</returns>
-        System.Threading.Tasks.Task<DuplicateAdCampaign200Response> DuplicateAdCampaignAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<DuplicateAdCampaign200Response> DuplicateAdCampaignAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Duplicate a campaign
@@ -818,9 +831,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAdCampaign200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Duplicate an ad set
         /// </summary>
@@ -830,9 +844,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DuplicateAdSet200Response</returns>
-        System.Threading.Tasks.Task<DuplicateAdSet200Response> DuplicateAdSetAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<DuplicateAdSet200Response> DuplicateAdSetAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Duplicate an ad set
@@ -843,9 +858,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAdSet200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DuplicateAdSet200Response>> DuplicateAdSetWithHttpInfoAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<DuplicateAdSet200Response>> DuplicateAdSetWithHttpInfoAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get ad details
         /// </summary>
@@ -1737,24 +1753,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>CreateAdCampaign201Response</returns>
-        public CreateAdCampaign201Response CreateAdCampaign(CreateAdCampaignRequest createAdCampaignRequest)
+        public CreateAdCampaign201Response CreateAdCampaign(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<CreateAdCampaign201Response> localVarResponse = CreateAdCampaignWithHttpInfo(createAdCampaignRequest);
+            Zernio.Client.ApiResponse<CreateAdCampaign201Response> localVarResponse = CreateAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of CreateAdCampaign201Response</returns>
-        public Zernio.Client.ApiResponse<CreateAdCampaign201Response> CreateAdCampaignWithHttpInfo(CreateAdCampaignRequest createAdCampaignRequest)
+        public Zernio.Client.ApiResponse<CreateAdCampaign201Response> CreateAdCampaignWithHttpInfo(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'createAdCampaignRequest' is set
             if (createAdCampaignRequest == null)
@@ -1777,6 +1795,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = createAdCampaignRequest;
 
             // authentication (bearerAuth) required
@@ -1799,26 +1821,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateAdCampaign201Response</returns>
-        public async System.Threading.Tasks.Task<CreateAdCampaign201Response> CreateAdCampaignAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<CreateAdCampaign201Response> CreateAdCampaignAsync(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateAdCampaign201Response> localVarResponse = await CreateAdCampaignWithHttpInfoAsync(createAdCampaignRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CreateAdCampaign201Response> localVarResponse = await CreateAdCampaignWithHttpInfoAsync(createAdCampaignRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateAdCampaign201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdCampaign201Response>> CreateAdCampaignWithHttpInfoAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdCampaign201Response>> CreateAdCampaignWithHttpInfoAsync(CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createAdCampaignRequest' is set
             if (createAdCampaignRequest == null)
@@ -1843,6 +1867,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = createAdCampaignRequest;
 
             // authentication (bearerAuth) required
@@ -2281,11 +2309,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <returns>DuplicateAd200Response</returns>
-        public DuplicateAd200Response DuplicateAd(string adId, DuplicateAdRequest? duplicateAdRequest = default)
+        public DuplicateAd200Response DuplicateAd(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default)
         {
-            Zernio.Client.ApiResponse<DuplicateAd200Response> localVarResponse = DuplicateAdWithHttpInfo(adId, duplicateAdRequest);
+            Zernio.Client.ApiResponse<DuplicateAd200Response> localVarResponse = DuplicateAdWithHttpInfo(adId, idempotencyKey, duplicateAdRequest);
             return localVarResponse.Data;
         }
 
@@ -2294,9 +2323,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <returns>ApiResponse of DuplicateAd200Response</returns>
-        public Zernio.Client.ApiResponse<DuplicateAd200Response> DuplicateAdWithHttpInfo(string adId, DuplicateAdRequest? duplicateAdRequest = default)
+        public Zernio.Client.ApiResponse<DuplicateAd200Response> DuplicateAdWithHttpInfo(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2320,6 +2350,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = duplicateAdRequest;
 
             // authentication (bearerAuth) required
@@ -2346,12 +2380,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DuplicateAd200Response</returns>
-        public async System.Threading.Tasks.Task<DuplicateAd200Response> DuplicateAdAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<DuplicateAd200Response> DuplicateAdAsync(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DuplicateAd200Response> localVarResponse = await DuplicateAdWithHttpInfoAsync(adId, duplicateAdRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<DuplicateAd200Response> localVarResponse = await DuplicateAdWithHttpInfoAsync(adId, idempotencyKey, duplicateAdRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2360,10 +2395,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="duplicateAdRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAd200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAd200Response>> DuplicateAdWithHttpInfoAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAd200Response>> DuplicateAdWithHttpInfoAsync(string adId, string? idempotencyKey = default, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2389,6 +2425,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = duplicateAdRequest;
 
             // authentication (bearerAuth) required
@@ -2417,10 +2457,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>DuplicateAdCampaign200Response</returns>
-        public DuplicateAdCampaign200Response DuplicateAdCampaign(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest)
+        public DuplicateAdCampaign200Response DuplicateAdCampaign(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<DuplicateAdCampaign200Response> localVarResponse = DuplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest);
+            Zernio.Client.ApiResponse<DuplicateAdCampaign200Response> localVarResponse = DuplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
@@ -2430,8 +2471,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of DuplicateAdCampaign200Response</returns>
-        public Zernio.Client.ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest)
+        public Zernio.Client.ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -2459,6 +2501,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = duplicateAdCampaignRequest;
 
             // authentication (bearerAuth) required
@@ -2486,11 +2532,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DuplicateAdCampaign200Response</returns>
-        public async System.Threading.Tasks.Task<DuplicateAdCampaign200Response> DuplicateAdCampaignAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<DuplicateAdCampaign200Response> DuplicateAdCampaignAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DuplicateAdCampaign200Response> localVarResponse = await DuplicateAdCampaignWithHttpInfoAsync(campaignId, duplicateAdCampaignRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<DuplicateAdCampaign200Response> localVarResponse = await DuplicateAdCampaignWithHttpInfoAsync(campaignId, duplicateAdCampaignRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2500,9 +2547,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Source platform campaign ID</param>
         /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAdCampaign200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -2532,6 +2580,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = duplicateAdCampaignRequest;
 
             // authentication (bearerAuth) required
@@ -2560,10 +2612,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>DuplicateAdSet200Response</returns>
-        public DuplicateAdSet200Response DuplicateAdSet(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest)
+        public DuplicateAdSet200Response DuplicateAdSet(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<DuplicateAdSet200Response> localVarResponse = DuplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest);
+            Zernio.Client.ApiResponse<DuplicateAdSet200Response> localVarResponse = DuplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
@@ -2573,8 +2626,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of DuplicateAdSet200Response</returns>
-        public Zernio.Client.ApiResponse<DuplicateAdSet200Response> DuplicateAdSetWithHttpInfo(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest)
+        public Zernio.Client.ApiResponse<DuplicateAdSet200Response> DuplicateAdSetWithHttpInfo(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'adSetId' is set
             if (adSetId == null)
@@ -2602,6 +2656,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = duplicateAdSetRequest;
 
             // authentication (bearerAuth) required
@@ -2629,11 +2687,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DuplicateAdSet200Response</returns>
-        public async System.Threading.Tasks.Task<DuplicateAdSet200Response> DuplicateAdSetAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<DuplicateAdSet200Response> DuplicateAdSetAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DuplicateAdSet200Response> localVarResponse = await DuplicateAdSetWithHttpInfoAsync(adSetId, duplicateAdSetRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<DuplicateAdSet200Response> localVarResponse = await DuplicateAdSetWithHttpInfoAsync(adSetId, duplicateAdSetRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2643,9 +2702,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Source platform ad set ID</param>
         /// <param name="duplicateAdSetRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAdSet200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAdSet200Response>> DuplicateAdSetWithHttpInfoAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAdSet200Response>> DuplicateAdSetWithHttpInfoAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adSetId' is set
             if (adSetId == null)
@@ -2675,6 +2735,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = duplicateAdSetRequest;
 
             // authentication (bearerAuth) required

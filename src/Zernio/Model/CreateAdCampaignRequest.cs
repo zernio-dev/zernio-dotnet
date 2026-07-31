@@ -202,6 +202,45 @@ namespace Zernio.Model
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
+        /// Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;.
+        /// </summary>
+        /// <value>Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BidStrategyEnum
+        {
+            /// <summary>
+            /// Enum LOWESTCOSTWITHOUTCAP for value: LOWEST_COST_WITHOUT_CAP
+            /// </summary>
+            [EnumMember(Value = "LOWEST_COST_WITHOUT_CAP")]
+            LOWESTCOSTWITHOUTCAP = 1,
+
+            /// <summary>
+            /// Enum LOWESTCOSTWITHBIDCAP for value: LOWEST_COST_WITH_BID_CAP
+            /// </summary>
+            [EnumMember(Value = "LOWEST_COST_WITH_BID_CAP")]
+            LOWESTCOSTWITHBIDCAP = 2,
+
+            /// <summary>
+            /// Enum COSTCAP for value: COST_CAP
+            /// </summary>
+            [EnumMember(Value = "COST_CAP")]
+            COSTCAP = 3,
+
+            /// <summary>
+            /// Enum LOWESTCOSTWITHMINROAS for value: LOWEST_COST_WITH_MIN_ROAS
+            /// </summary>
+            [EnumMember(Value = "LOWEST_COST_WITH_MIN_ROAS")]
+            LOWESTCOSTWITHMINROAS = 4
+        }
+
+
+        /// <summary>
+        /// Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;.
+        /// </summary>
+        /// <value>Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;.</value>
+        [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
+        public BidStrategyEnum? BidStrategy { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateAdCampaignRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -217,7 +256,10 @@ namespace Zernio.Model
         /// <param name="budgetAmount">Campaign-level (CBO) budget in whole currency units. Requires budgetType..</param>
         /// <param name="budgetType">budgetType.</param>
         /// <param name="status">status (default to StatusEnum.PAUSED).</param>
-        public CreateAdCampaignRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = StatusEnum.PAUSED)
+        /// <param name="bidStrategy">Campaign bid strategy. Meta puts &#x60;bid_strategy&#x60; where the budget lives, so this applies only alongside a campaign budget (CBO). Previously settable only via &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60;..</param>
+        /// <param name="bidAmount">Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise..</param>
+        /// <param name="roasAverageFloor">Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS..</param>
+        public CreateAdCampaignRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = StatusEnum.PAUSED, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -242,6 +284,9 @@ namespace Zernio.Model
             this.BudgetAmount = budgetAmount;
             this.BudgetType = budgetType;
             this.Status = status;
+            this.BidStrategy = bidStrategy;
+            this.BidAmount = bidAmount;
+            this.RoasAverageFloor = roasAverageFloor;
         }
 
         /// <summary>
@@ -278,6 +323,20 @@ namespace Zernio.Model
         public decimal BudgetAmount { get; set; }
 
         /// <summary>
+        /// Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise.
+        /// </summary>
+        /// <value>Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise.</value>
+        [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
+        public decimal BidAmount { get; set; }
+
+        /// <summary>
+        /// Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS.
+        /// </summary>
+        /// <value>Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS.</value>
+        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
+        public decimal RoasAverageFloor { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -293,6 +352,9 @@ namespace Zernio.Model
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");
             sb.Append("  BudgetType: ").Append(BudgetType).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
+            sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

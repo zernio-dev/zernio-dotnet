@@ -231,11 +231,11 @@ catch (ApiException e)
 
 <a id="createadcampaign"></a>
 # **CreateAdCampaign**
-> CreateAdCampaign201Response CreateAdCampaign (CreateAdCampaignRequest createAdCampaignRequest)
+> CreateAdCampaign201Response CreateAdCampaign (CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = null)
 
 Create a standalone campaign
 
-Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via `existingCampaignId` on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the next sync discovery pass.
+Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via `existingCampaignId` on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the next sync discovery pass.  **Idempotency:** send an `Idempotency-Key` header to make retries safe.
 
 ### Example
 ```csharp
@@ -262,11 +262,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var createAdCampaignRequest = new CreateAdCampaignRequest(); // CreateAdCampaignRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional) 
 
             try
             {
                 // Create a standalone campaign
-                CreateAdCampaign201Response result = apiInstance.CreateAdCampaign(createAdCampaignRequest);
+                CreateAdCampaign201Response result = apiInstance.CreateAdCampaign(createAdCampaignRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -287,7 +288,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a standalone campaign
-    ApiResponse<CreateAdCampaign201Response> response = apiInstance.CreateAdCampaignWithHttpInfo(createAdCampaignRequest);
+    ApiResponse<CreateAdCampaign201Response> response = apiInstance.CreateAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -305,6 +306,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **createAdCampaignRequest** | [**CreateAdCampaignRequest**](CreateAdCampaignRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional]  |
 
 ### Return type
 
@@ -640,7 +642,7 @@ catch (ApiException e)
 
 <a id="duplicatead"></a>
 # **DuplicateAd**
-> DuplicateAd200Response DuplicateAd (string adId, DuplicateAdRequest? duplicateAdRequest = null)
+> DuplicateAd200Response DuplicateAd (string adId, string? idempotencyKey = null, DuplicateAdRequest? duplicateAdRequest = null)
 
 Duplicate an ad
 
@@ -671,12 +673,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Zernio ad ID or platform ad ID
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional) 
             var duplicateAdRequest = new DuplicateAdRequest?(); // DuplicateAdRequest? |  (optional) 
 
             try
             {
                 // Duplicate an ad
-                DuplicateAd200Response result = apiInstance.DuplicateAd(adId, duplicateAdRequest);
+                DuplicateAd200Response result = apiInstance.DuplicateAd(adId, idempotencyKey, duplicateAdRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -697,7 +700,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Duplicate an ad
-    ApiResponse<DuplicateAd200Response> response = apiInstance.DuplicateAdWithHttpInfo(adId, duplicateAdRequest);
+    ApiResponse<DuplicateAd200Response> response = apiInstance.DuplicateAdWithHttpInfo(adId, idempotencyKey, duplicateAdRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -715,6 +718,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Zernio ad ID or platform ad ID |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional]  |
 | **duplicateAdRequest** | [**DuplicateAdRequest?**](DuplicateAdRequest?.md) |  | [optional]  |
 
 ### Return type
@@ -744,7 +748,7 @@ catch (ApiException e)
 
 <a id="duplicateadcampaign"></a>
 # **DuplicateAdCampaign**
-> DuplicateAdCampaign200Response DuplicateAdCampaign (string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest)
+> DuplicateAdCampaign200Response DuplicateAdCampaign (string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, string? idempotencyKey = null)
 
 Duplicate a campaign
 
@@ -776,11 +780,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Source platform campaign ID
             var duplicateAdCampaignRequest = new DuplicateAdCampaignRequest(); // DuplicateAdCampaignRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional) 
 
             try
             {
                 // Duplicate a campaign
-                DuplicateAdCampaign200Response result = apiInstance.DuplicateAdCampaign(campaignId, duplicateAdCampaignRequest);
+                DuplicateAdCampaign200Response result = apiInstance.DuplicateAdCampaign(campaignId, duplicateAdCampaignRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -801,7 +806,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Duplicate a campaign
-    ApiResponse<DuplicateAdCampaign200Response> response = apiInstance.DuplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest);
+    ApiResponse<DuplicateAdCampaign200Response> response = apiInstance.DuplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -820,6 +825,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Source platform campaign ID |  |
 | **duplicateAdCampaignRequest** | [**DuplicateAdCampaignRequest**](DuplicateAdCampaignRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional]  |
 
 ### Return type
 
@@ -848,7 +854,7 @@ catch (ApiException e)
 
 <a id="duplicateadset"></a>
 # **DuplicateAdSet**
-> DuplicateAdSet200Response DuplicateAdSet (string adSetId, DuplicateAdSetRequest duplicateAdSetRequest)
+> DuplicateAdSet200Response DuplicateAdSet (string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, string? idempotencyKey = null)
 
 Duplicate an ad set
 
@@ -880,11 +886,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Source platform ad set ID
             var duplicateAdSetRequest = new DuplicateAdSetRequest(); // DuplicateAdSetRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional) 
 
             try
             {
                 // Duplicate an ad set
-                DuplicateAdSet200Response result = apiInstance.DuplicateAdSet(adSetId, duplicateAdSetRequest);
+                DuplicateAdSet200Response result = apiInstance.DuplicateAdSet(adSetId, duplicateAdSetRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -905,7 +912,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Duplicate an ad set
-    ApiResponse<DuplicateAdSet200Response> response = apiInstance.DuplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest);
+    ApiResponse<DuplicateAdSet200Response> response = apiInstance.DuplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -924,6 +931,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adSetId** | **string** | Source platform ad set ID |  |
 | **duplicateAdSetRequest** | [**DuplicateAdSetRequest**](DuplicateAdSetRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. | [optional]  |
 
 ### Return type
 

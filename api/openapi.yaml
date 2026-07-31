@@ -24820,7 +24820,23 @@ paths:
         (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created
         `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the
         next sync discovery pass.
+
+        **Idempotency:** send an `Idempotency-Key` header to make retries safe.
       operationId: createAdCampaign
+      parameters:
+      - description: "Optional client-generated unique key (e.g. a UUID) that makes\
+          \ retries safe. Same key + same body replays the original response; same\
+          \ key + different body → 422; key still processing → 409. Only 2xx responses\
+          \ are stored, so a request that failed with a 4xx can be retried with a\
+          \ corrected body under the SAME key."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -25071,6 +25087,19 @@ paths:
         Other platforms return 501 Not Implemented.
       operationId: duplicateAdCampaign
       parameters:
+      - description: "Optional client-generated unique key (e.g. a UUID) that makes\
+          \ retries safe. Same key + same body replays the original response; same\
+          \ key + different body → 422; key still processing → 409. Only 2xx responses\
+          \ are stored, so a request that failed with a 4xx can be retried with a\
+          \ corrected body under the SAME key."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       - description: Source platform campaign ID
         explode: false
         in: path
@@ -25119,6 +25148,19 @@ paths:
         discovery is triggered automatically (`syncAfter: false` to skip).
       operationId: duplicateAdSet
       parameters:
+      - description: "Optional client-generated unique key (e.g. a UUID) that makes\
+          \ retries safe. Same key + same body replays the original response; same\
+          \ key + different body → 422; key still processing → 409. Only 2xx responses\
+          \ are stored, so a request that failed with a 4xx can be retried with a\
+          \ corrected body under the SAME key."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       - description: Source platform ad set ID
         explode: false
         in: path
@@ -25164,6 +25206,19 @@ paths:
         automatically (`syncAfter: false` to skip).
       operationId: duplicateAd
       parameters:
+      - description: "Optional client-generated unique key (e.g. a UUID) that makes\
+          \ retries safe. Same key + same body replays the original response; same\
+          \ key + different body → 422; key still processing → 409. Only 2xx responses\
+          \ are stored, so a request that failed with a 4xx can be retried with a\
+          \ corrected body under the SAME key."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       - description: Zernio ad ID or platform ad ID
         explode: false
         in: path
@@ -40066,7 +40121,7 @@ components:
         ctr: 9.301444243932576
         purchaseValue: 1.0246457001441578
         cpm: 2.027123023002322
-        conversions: 7
+        conversions: 7.386281948385884
         videoAvgTimeWatchedActions: 8.762042012749001
         engagement: 4
         reach: 2
@@ -40114,11 +40169,13 @@ components:
           type: integer
         conversions:
           description: "Count of conversion events over the requested date range.\
-            \ Meta: events matching the campaign's promoted_object.custom_event_type\
+            \ FRACTIONAL: attribution splits one conversion across touchpoints and\
+            \ Google additionally reports modeled conversions, so values like 0.347\
+            \ are normal. Meta: events matching the campaign's promoted_object.custom_event_type\
             \ (PURCHASE, LEAD, etc.). Google: the account's tracked conversions. X\
             \ and LinkedIn: their reported website/lead conversions (added 2026-07).\
             \ 0 for non-conversion campaigns or when no events have fired."
-          type: integer
+          type: number
         costPerConversion:
           description: Derived spend / conversions in the same currency as spend.
             0 when conversions is 0.
@@ -40222,7 +40279,7 @@ components:
         play-weighted average of the daily values.
       example:
         date: 2000-01-23
-        conversions: 5
+        conversions: 5.025004791520295
         videoAvgTimeWatchedActions: 6.878052220127876
         engagement: 4
         reach: 1
@@ -40839,7 +40896,7 @@ components:
           type: daily
         daily:
         - date: 2000-01-23
-          conversions: 5
+          conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
@@ -40869,7 +40926,7 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         - date: 2000-01-23
-          conversions: 5
+          conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
@@ -40903,7 +40960,7 @@ components:
           ctr: 9.301444243932576
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
-          conversions: 7
+          conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
@@ -41018,7 +41075,7 @@ components:
         profileId: profileId
         daily:
         - date: 2000-01-23
-          conversions: 5
+          conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
@@ -41048,7 +41105,7 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         - date: 2000-01-23
-          conversions: 5
+          conversions: 5.025004791520295
           videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
@@ -41218,7 +41275,7 @@ components:
             type: daily
           daily:
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -41248,7 +41305,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -41282,7 +41339,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -41450,7 +41507,7 @@ components:
             type: daily
           daily:
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -41480,7 +41537,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -41514,7 +41571,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -41548,7 +41605,7 @@ components:
           ctr: 9.301444243932576
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
-          conversions: 7
+          conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
@@ -41742,7 +41799,7 @@ components:
           ctr: 9.301444243932576
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
-          conversions: 7
+          conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
@@ -66938,7 +66995,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -67003,7 +67060,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -67094,6 +67151,23 @@ components:
           - ACTIVE
           - PAUSED
           type: string
+        bidStrategy:
+          description: "Campaign bid strategy. Meta puts `bid_strategy` where the\
+            \ budget lives, so this applies only alongside a campaign budget (CBO).\
+            \ Previously settable only via `PUT /v1/ads/campaigns/{campaignId}`."
+          enum:
+          - LOWEST_COST_WITHOUT_CAP
+          - LOWEST_COST_WITH_BID_CAP
+          - COST_CAP
+          - LOWEST_COST_WITH_MIN_ROAS
+          type: string
+        bidAmount:
+          description: "Whole currency units (USD: 5 = $5.00). Required for LOWEST_COST_WITH_BID_CAP\
+            \ and COST_CAP; ignored otherwise."
+          type: number
+        roasAverageFloor:
+          description: Decimal ROAS multiplier (2.0 = 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS.
+          type: number
       required:
       - accountId
       - adAccountId
@@ -67713,7 +67787,7 @@ components:
           profileId: profileId
           daily:
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -67743,7 +67817,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -67913,7 +67987,7 @@ components:
               type: daily
             daily:
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -67943,7 +68017,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -67977,7 +68051,7 @@ components:
               ctr: 9.301444243932576
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
-              conversions: 7
+              conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
@@ -68145,7 +68219,7 @@ components:
               type: daily
             daily:
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -68175,7 +68249,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -68209,7 +68283,7 @@ components:
               ctr: 9.301444243932576
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
-              conversions: 7
+              conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
@@ -68243,7 +68317,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -68303,7 +68377,7 @@ components:
           profileId: profileId
           daily:
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -68333,7 +68407,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5
+            conversions: 5.025004791520295
             videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
@@ -68503,7 +68577,7 @@ components:
               type: daily
             daily:
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -68533,7 +68607,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -68567,7 +68641,7 @@ components:
               ctr: 9.301444243932576
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
-              conversions: 7
+              conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
@@ -68735,7 +68809,7 @@ components:
               type: daily
             daily:
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -68765,7 +68839,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5
+              conversions: 5.025004791520295
               videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
@@ -68799,7 +68873,7 @@ components:
               ctr: 9.301444243932576
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
-              conversions: 7
+              conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
@@ -68833,7 +68907,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -68885,7 +68959,7 @@ components:
         ctr: 2.3021358869347655
         purchaseValue: 1.2315135367772556
         cpm: 9.301444243932576
-        conversions: 3
+        conversions: 3.616076749251911
         engagement: 5
         reach: 1
         impressions: 6
@@ -68923,10 +68997,11 @@ components:
           description: Cost per 1000 impressions in native currency.
           type: number
         conversions:
-          description: "Sum of conversion events over the range. Meta: events matching\
-            \ the campaign optimization goal. Google: tracked conversions. X / LinkedIn:\
-            \ reported website/lead conversions (added 2026-07)."
-          type: integer
+          description: "Sum of conversion events over the range. Fractional values\
+            \ are normal (attribution splitting + Google modeled conversions). Meta:\
+            \ events matching the campaign optimization goal. Google: tracked conversions.\
+            \ X / LinkedIn: reported website/lead conversions (added 2026-07)."
+          type: number
         costPerConversion:
           type: number
         actions:
@@ -68952,7 +69027,7 @@ components:
           ctr: 2.3021358869347655
           purchaseValue: 1.2315135367772556
           cpm: 9.301444243932576
-          conversions: 3
+          conversions: 3.616076749251911
           engagement: 5
           reach: 1
           impressions: 6
@@ -68969,7 +69044,7 @@ components:
           ctr: 2.3021358869347655
           purchaseValue: 1.2315135367772556
           cpm: 9.301444243932576
-          conversions: 3
+          conversions: 3.616076749251911
           engagement: 5
           reach: 1
           impressions: 6
@@ -69282,7 +69357,7 @@ components:
             type: string
       example:
         date: 2000-01-23
-        conversions: 3
+        conversions: 3.616076749251911
         videoAvgTimeWatchedActions: 9.965781217890562
         engagement: 9
         reach: 1
@@ -69317,7 +69392,7 @@ components:
           ctr: 9.301444243932576
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
-          conversions: 7
+          conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
@@ -69345,7 +69420,7 @@ components:
             offsite_conversion.fb_pixel_purchase: 42
         daily:
         - date: 2000-01-23
-          conversions: 3
+          conversions: 3.616076749251911
           videoAvgTimeWatchedActions: 9.965781217890562
           engagement: 9
           reach: 1
@@ -69375,7 +69450,7 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         - date: 2000-01-23
-          conversions: 3
+          conversions: 3.616076749251911
           videoAvgTimeWatchedActions: 9.965781217890562
           engagement: 9
           reach: 1
@@ -69426,7 +69501,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -69454,7 +69529,7 @@ components:
               offsite_conversion.fb_pixel_purchase: 42
           daily:
           - date: 2000-01-23
-            conversions: 3
+            conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
@@ -69484,7 +69559,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 3
+            conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
@@ -69950,7 +70025,7 @@ components:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
-            conversions: 7
+            conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
@@ -69978,7 +70053,7 @@ components:
               offsite_conversion.fb_pixel_purchase: 42
           daily:
           - date: 2000-01-23
-            conversions: 3
+            conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
@@ -70008,7 +70083,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 3
+            conversions: 3.616076749251911
             videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
@@ -71160,8 +71235,16 @@ components:
             \ on /act_X/advideos, then the request blocks on Meta's transcoding until\
             \ status.video_status === 'ready'. LinkedIn: uploaded via the Videos API\
             \ (multipart), then the request blocks until LinkedIn finishes transcoding\
-            \ (status AVAILABLE) — short clips take ~10-30s."
+            \ (status AVAILABLE) — short clips take ~10-30s. Provide either `url`\
+            \ or `id`."
           format: uri
+          type: string
+        id:
+          description: "Meta only. Reuse a video ALREADY uploaded to this ad account\
+            \ instead of re-uploading the file: pass the `videoId` returned by a previous\
+            \ create. Wins over `url`, so N ads that differ only in copy share one\
+            \ upload (`existingCreativeId` only covers the identical-copy case). Provide\
+            \ either `url` or `id`."
           type: string
         thumbnailUrl:
           description: "Public URL of a still-image thumbnail for the video. OPTIONAL:\
@@ -71172,8 +71255,6 @@ components:
             \ Ignored by LinkedIn (auto-generated poster frame)."
           format: uri
           type: string
-      required:
-      - url
     createStandaloneAd_request_creatives_inner_video:
       description: "Video creative for this entry. Mutually exclusive with `imageUrl`.\
         \ thumbnailUrl is optional — when omitted, the poster is auto-generated from\
@@ -71526,6 +71607,43 @@ components:
           type: string
       required:
       - imageUrl
+    createStandaloneAd_request_translations_inner:
+      properties:
+        locale:
+          description: "Language code, resolved to Meta's numeric locale id. Bare\
+            \ codes target the '(All)' umbrella (`es` = every Spanish variant); region-qualified\
+            \ codes target the variant (`pt_BR`, `en_GB`)."
+          type: string
+        headline:
+          description: Headline for this language. Inherits the top-level `headline`
+            when omitted.
+          maxLength: 255
+          type: string
+        body:
+          description: Primary text for this language. Inherits the top-level `body`
+            when omitted.
+          type: string
+        description:
+          description: Link description for this language. Inherits the top-level
+            `description` when omitted.
+          maxLength: 255
+          type: string
+        imageUrl:
+          description: Image for this language. Inherits the ad's `imageUrl` when
+            omitted. The feed is all-image OR all-video.
+          format: uri
+          type: string
+        videoUrl:
+          description: Video for this language. Inherits the ad's `video.url` when
+            omitted. The feed is all-image OR all-video.
+          format: uri
+          type: string
+        thumbnailUrl:
+          description: Poster frame for this language's video.
+          format: uri
+          type: string
+      required:
+      - locale
     createStandaloneAd_request_placementAssets_rules_inner_placements:
       description: Placements this asset is pinned to. At least one field must be
         set (an empty rule is invalid — that role is served by the default asset).
@@ -72311,6 +72429,30 @@ components:
             $ref: "#/components/schemas/createStandaloneAd_request_carouselCards_inner"
           maxItems: 10
           minItems: 2
+          type: array
+        defaultLocale:
+          description: "Meta only. Language the top-level copy is written in (e.g.\
+            \ `en`, `pt_BR`), used by the `translations` default rule. Defaults to\
+            \ `en`. Meta rejects a language asset feed whose default rule carries\
+            \ no locales of its own."
+          type: string
+        translations:
+          description: |
+            Meta only. Multi-language ads (Dynamic Language Optimization): ONE ad carrying
+            per-locale copy and, optionally, per-locale media — the "Languages" toggle in Ads
+            Manager. Keeps social proof (likes/comments/shares) on a SINGLE post instead of
+            splitting it across one ad per language.
+
+            The ad's top-level copy and media are the DEFAULT every unlisted locale falls back
+            to, and a variant inherits any field it omits, so send only what differs per
+            language. Media shared across languages is uploaded once.
+
+            Mutually exclusive with `dynamicCreative`, `placementAssets`, `carouselCards` and
+            `existingCreativeId` — Meta allows one `asset_feed_spec` shape per creative.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_translations_inner"
+          maxItems: 10
+          minItems: 1
           type: array
         placementAssets:
           $ref: "#/components/schemas/createStandaloneAd_request_placementAssets"

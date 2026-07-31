@@ -45,13 +45,13 @@ namespace Zernio.Model
         /// <param name="ctr">Click-through rate as a percentage (0–100)..</param>
         /// <param name="cpc">Cost per click in native currency..</param>
         /// <param name="cpm">Cost per 1000 impressions in native currency..</param>
-        /// <param name="conversions">Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07)..</param>
+        /// <param name="conversions">Sum of conversion events over the range. Fractional values are normal (attribution splitting + Google modeled conversions). Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07)..</param>
         /// <param name="costPerConversion">costPerConversion.</param>
         /// <param name="actions">Per-action-type counts merged across all ads on this day. Keys are platform-native action types..</param>
         /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60; in native currency..</param>
         /// <param name="purchaseValue">Sum of purchase-type action values on this day, native currency..</param>
         /// <param name="roas">Derived purchaseValue / spend..</param>
-        public GetAdsTimeline200ResponseRowsInner(DateOnly date = default, decimal spend = default, int impressions = default, int reach = default, int clicks = default, int engagement = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, decimal> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default)
+        public GetAdsTimeline200ResponseRowsInner(DateOnly date = default, decimal spend = default, int impressions = default, int reach = default, int clicks = default, int engagement = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, decimal conversions = default, decimal costPerConversion = default, Dictionary<string, decimal> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default)
         {
             this.Date = date;
             this.Spend = spend;
@@ -129,11 +129,11 @@ namespace Zernio.Model
         public decimal Cpm { get; set; }
 
         /// <summary>
-        /// Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).
+        /// Sum of conversion events over the range. Fractional values are normal (attribution splitting + Google modeled conversions). Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).
         /// </summary>
-        /// <value>Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).</value>
+        /// <value>Sum of conversion events over the range. Fractional values are normal (attribution splitting + Google modeled conversions). Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).</value>
         [DataMember(Name = "conversions", EmitDefaultValue = false)]
-        public int Conversions { get; set; }
+        public decimal Conversions { get; set; }
 
         /// <summary>
         /// Gets or Sets CostPerConversion

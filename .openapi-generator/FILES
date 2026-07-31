@@ -280,6 +280,7 @@ docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
+docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
@@ -1939,6 +1940,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTrackingTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTests.cs
@@ -3571,6 +3573,7 @@ src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTracking.cs
+src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
 src/Zernio/Model/CreateTestLead200Response.cs
 src/Zernio/Model/CreateTestLead200ResponseTestLead.cs

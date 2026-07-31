@@ -587,6 +587,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'DefaultLocale'
+        /// </summary>
+        [Fact]
+        public void DefaultLocaleTest()
+        {
+            // TODO unit test for the property 'DefaultLocale'
+        }
+
+        /// <summary>
+        /// Test the property 'Translations'
+        /// </summary>
+        [Fact]
+        public void TranslationsTest()
+        {
+            // TODO unit test for the property 'Translations'
+        }
+
+        /// <summary>
         /// Test the property 'PlacementAssets'
         /// </summary>
         [Fact]
