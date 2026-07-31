@@ -107,6 +107,7 @@ catch (ApiException e)
 | **200** | URN resolved successfully |  -  |
 | **400** | Invalid request or no organization found (for person mentions) |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The account holds no organization role that can resolve person mentions |  -  |
 | **404** | Person or organization not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
