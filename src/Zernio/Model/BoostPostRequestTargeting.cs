@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class BoostPostRequestTargeting : IValidatableObject
     {
         /// <summary>
-        /// Meta only.
+        /// Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
         /// </summary>
-        /// <value>Meta only.</value>
+        /// <value>Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GenderEnum
         {
@@ -61,9 +61,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only.
+        /// Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
         /// </summary>
-        /// <value>Meta only.</value>
+        /// <value>Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.</value>
         [DataMember(Name = "gender", EmitDefaultValue = false)]
         public GenderEnum? Gender { get; set; }
         /// <summary>
@@ -95,7 +95,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
-        /// <param name="gender">Meta only..</param>
+        /// <param name="gender">Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X..</param>
         /// <param name="languages">Meta locale ids (numeric), passed through as given..</param>
         /// <param name="countries">ISO country codes. Required for TikTok boosts (TikTok&#39;s ad group requires location_ids); optional on other platforms..</param>
         /// <param name="regions">Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region..</param>

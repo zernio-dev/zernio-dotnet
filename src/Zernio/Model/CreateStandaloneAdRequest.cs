@@ -588,9 +588,9 @@ namespace Zernio.Model
         [DataMember(Name = "advantageAudience", EmitDefaultValue = false)]
         public AdvantageAudienceEnum? AdvantageAudience { get; set; }
         /// <summary>
-        /// Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.
+        /// Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
         /// </summary>
-        /// <value>Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.</value>
+        /// <value>Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GenderEnum
         {
@@ -615,9 +615,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.
+        /// Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
         /// </summary>
-        /// <value>Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.</value>
+        /// <value>Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.</value>
         [DataMember(Name = "gender", EmitDefaultValue = false)]
         public GenderEnum? Gender { get; set; }
 
@@ -729,7 +729,7 @@ namespace Zernio.Model
         /// <param name="additionalDescriptions">Google Search RSA only. Extra descriptions..</param>
         /// <param name="advantageAudience">Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests..</param>
         /// <param name="attributionSpec">Meta only. Conversion attribution window for the ad set — maps 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; .</param>
-        /// <param name="gender">Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms. (default to GenderEnum.All).</param>
+        /// <param name="gender">Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X. (default to GenderEnum.All).</param>
         /// <param name="bidStrategy">Meta bid strategy applied to the ad set..</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. .</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. .</param>
