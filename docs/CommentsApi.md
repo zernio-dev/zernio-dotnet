@@ -115,9 +115,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comment deleted |  -  |
-| **400** | Platform rejected the operation (e.g., comment already deleted, insufficient permissions on the video) |  -  |
+| **400** | Platform rejected the operation (e.g., comment already deleted) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or the connected account is not permitted to delete this comment on the platform (code platform_api_error, type platform_error) |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -335,7 +337,9 @@ catch (ApiException e)
 | **200** | Comments for the post |  -  |
 | **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT — response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or the connected account is not permitted to read this post on the platform (code platform_api_error, type platform_error) |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -764,7 +768,9 @@ catch (ApiException e)
 | **200** | Reply posted |  -  |
 | **400** | Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or the connected account is not permitted to comment on this post on the platform (code platform_api_error, type platform_error) |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
