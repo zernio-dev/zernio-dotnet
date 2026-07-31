@@ -42,8 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="BulkCreateContactsRequest" /> class.
         /// </summary>
         /// <param name="profileId">profileId (required).</param>
-        /// <param name="accountId">accountId (required).</param>
-        /// <param name="platform">platform (required).</param>
+        /// <param name="accountId">Required when contacts carry channel data (platformIdentifier or a row-level accountId). Omit for a plain CRM import with no channels..</param>
+        /// <param name="platform">Ignored when accountId is set: the platform is derived from the resolved account. Only relevant to disambiguate accountId lookup; a mismatch 404s..</param>
         /// <param name="contacts">contacts (required).</param>
         public BulkCreateContactsRequest(string profileId = default, string accountId = default, string platform = default, List<BulkCreateContactsRequestContactsInner> contacts = default)
         {
@@ -53,24 +53,14 @@ namespace Zernio.Model
                 throw new ArgumentNullException("profileId is a required property for BulkCreateContactsRequest and cannot be null");
             }
             this.ProfileId = profileId;
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for BulkCreateContactsRequest and cannot be null");
-            }
-            this.AccountId = accountId;
-            // to ensure "platform" is required (not null)
-            if (platform == null)
-            {
-                throw new ArgumentNullException("platform is a required property for BulkCreateContactsRequest and cannot be null");
-            }
-            this.Platform = platform;
             // to ensure "contacts" is required (not null)
             if (contacts == null)
             {
                 throw new ArgumentNullException("contacts is a required property for BulkCreateContactsRequest and cannot be null");
             }
             this.Contacts = contacts;
+            this.AccountId = accountId;
+            this.Platform = platform;
         }
 
         /// <summary>
@@ -80,15 +70,17 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountId
+        /// Required when contacts carry channel data (platformIdentifier or a row-level accountId). Omit for a plain CRM import with no channels.
         /// </summary>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Required when contacts carry channel data (platformIdentifier or a row-level accountId). Omit for a plain CRM import with no channels.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Platform
+        /// Ignored when accountId is set: the platform is derived from the resolved account. Only relevant to disambiguate accountId lookup; a mismatch 404s.
         /// </summary>
-        [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Ignored when accountId is set: the platform is derived from the resolved account. Only relevant to disambiguate accountId lookup; a mismatch 404s.</value>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
         public string Platform { get; set; }
 
         /// <summary>
