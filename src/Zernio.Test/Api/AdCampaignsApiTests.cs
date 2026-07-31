@@ -246,6 +246,7 @@ namespace Zernio.Test.Api
         public void ListAdCampaignsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
+            //bool? includeEmpty = null;
             //int? page = null;
             //int? limit = null;
             //string? source = null;
@@ -257,7 +258,7 @@ namespace Zernio.Test.Api
             //string? profileId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
-            //var response = instance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+            //var response = instance.ListAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
             //Assert.IsType<ListAdCampaigns200Response>(response);
         }
 

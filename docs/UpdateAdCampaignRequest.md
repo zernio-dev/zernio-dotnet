@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountId** | **string** | Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from. | [optional] 
 **Platform** | **string** |  | 
 **Budget** | [**UpdateAdCampaignRequestBudget**](UpdateAdCampaignRequestBudget.md) |  | [optional] 
 **BidStrategy** | **BidStrategy** | Campaign-level default. Ad sets inherit this unless they override. | [optional] 

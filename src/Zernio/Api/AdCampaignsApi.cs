@@ -366,6 +366,7 @@ namespace Zernio.Api
         /// Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -378,7 +379,7 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ListAdCampaigns200Response ListAdCampaigns(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List campaigns
@@ -387,6 +388,7 @@ namespace Zernio.Api
         /// Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -399,7 +401,7 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -517,7 +519,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -529,7 +531,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -1001,6 +1003,7 @@ namespace Zernio.Api
         /// Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -1014,7 +1017,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaigns
@@ -1023,6 +1026,7 @@ namespace Zernio.Api
         /// Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -1036,7 +1040,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -1160,7 +1164,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -1173,7 +1177,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -3513,6 +3517,7 @@ namespace Zernio.Api
         /// List campaigns Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -3525,9 +3530,9 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        public ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public ListAdCampaigns200Response ListAdCampaigns(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -3535,6 +3540,7 @@ namespace Zernio.Api
         /// List campaigns Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -3547,7 +3553,7 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3565,6 +3571,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (includeEmpty != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "includeEmpty", includeEmpty));
+            }
             if (page != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "page", page));
@@ -3633,6 +3643,7 @@ namespace Zernio.Api
         /// List campaigns Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -3646,9 +3657,9 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3656,6 +3667,7 @@ namespace Zernio.Api
         /// List campaigns Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeEmpty">Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. (optional)</param>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
         /// <param name="source">&#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)</param>
@@ -3669,7 +3681,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3689,6 +3701,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (includeEmpty != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "includeEmpty", includeEmpty));
+            }
             if (page != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "page", page));
@@ -4436,7 +4452,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4449,7 +4465,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4505,7 +4521,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4519,7 +4535,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// Update a campaign Campaign-level edits. At least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60; is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send &#x60;accountId&#x60; in the body to skip the local lookup and forward the update to Meta. The response then carries &#x60;updated: 0&#x60;, since there are no local rows to mirror onto. &#x60;accountId&#x60; is ignored when the campaign does have ads.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - &#x60;platformSpecificData.spendCap&#x60; (Meta only) sets the campaign&#39;s lifetime spend cap, in the ad   account&#39;s currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>

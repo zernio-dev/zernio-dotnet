@@ -73,19 +73,28 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdCampaignRequest" /> class.
         /// </summary>
+        /// <param name="accountId">Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="budget">budget.</param>
         /// <param name="bidStrategy">Campaign-level default. Ad sets inherit this unless they override..</param>
         /// <param name="name">Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaignRequest(PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
+        public UpdateAdCampaignRequest(string accountId = default, PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
         {
             this.Platform = platform;
+            this.AccountId = accountId;
             this.Budget = budget;
             this.BidStrategy = bidStrategy;
             this.Name = name;
             this.PlatformSpecificData = platformSpecificData;
         }
+
+        /// <summary>
+        /// Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.
+        /// </summary>
+        /// <value>Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets Budget
@@ -114,6 +123,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdCampaignRequest {\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");

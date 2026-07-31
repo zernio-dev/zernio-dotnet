@@ -1404,7 +1404,7 @@ catch (ApiException e)
 
 <a id="listadcampaigns"></a>
 # **ListAdCampaigns**
-> ListAdCampaigns200Response ListAdCampaigns (int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
+> ListAdCampaigns200Response ListAdCampaigns (bool? includeEmpty = null, int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
 
 List campaigns
 
@@ -1434,6 +1434,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var includeEmpty = true;  // bool? | Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via `existingCampaignId`) leaves behind whenever Meta rejects the ad step. Set true to list those too, with `adCount: 0` and zeroed metrics. Requires `accountId` and `adAccountId`, since an empty campaign has no ad row to resolve a token or ad account from. (optional) 
             var page = 1;  // int? | Page number (1-based) (optional)  (default to 1)
             var limit = 20;  // int? |  (optional)  (default to 20)
             var source = "zernio";  // string? | `all` (default) returns both Zernio-created ads and those discovered from the platform's ad manager — matches the web UI's default view. Pass `zernio` to restrict to isExternal=false only. Status is NOT filtered by default — use the `status` param for that. (optional)  (default to all)
@@ -1449,7 +1450,7 @@ namespace Example
             try
             {
                 // List campaigns
-                ListAdCampaigns200Response result = apiInstance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+                ListAdCampaigns200Response result = apiInstance.ListAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1470,7 +1471,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List campaigns
-    ApiResponse<ListAdCampaigns200Response> response = apiInstance.ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+    ApiResponse<ListAdCampaigns200Response> response = apiInstance.ListAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1487,6 +1488,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **includeEmpty** | **bool?** | Meta only. Campaign reads aggregate over ad documents, so a campaign with ZERO ads is normally invisible here — the state the two-step create (campaign, then ads via &#x60;existingCampaignId&#x60;) leaves behind whenever Meta rejects the ad step. Set true to list those too, with &#x60;adCount: 0&#x60; and zeroed metrics. Requires &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, since an empty campaign has no ad row to resolve a token or ad account from. | [optional]  |
 | **page** | **int?** | Page number (1-based) | [optional] [default to 1] |
 | **limit** | **int?** |  | [optional] [default to 20] |
 | **source** | **string?** | &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. | [optional] [default to all] |
@@ -1884,7 +1886,7 @@ catch (ApiException e)
 
 Update a campaign
 
-Campaign-level edits. At least one of `budget`, `bidStrategy`, `name` or `platformSpecificData` is required.  - `budget` updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - `bidStrategy` sets the campaign-level default bid strategy. Per Meta's spec, `bid_amount` and   `bid_constraints` do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - `platformSpecificData.spendCap` (Meta only) sets the campaign's lifetime spend cap, in the ad   account's currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
+Campaign-level edits. At least one of `budget`, `bidStrategy`, `name` or `platformSpecificData` is required.  **Empty campaigns.** A campaign with zero ads has no local Ad documents to resolve, so this would 404 even though it exists on Meta. Send `accountId` in the body to skip the local lookup and forward the update to Meta. The response then carries `updated: 0`, since there are no local rows to mirror onto. `accountId` is ignored when the campaign does have ads.  - `budget` updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - `bidStrategy` sets the campaign-level default bid strategy. Per Meta's spec, `bid_amount` and   `bid_constraints` do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}. - `platformSpecificData.spendCap` (Meta only) sets the campaign's lifetime spend cap, in the ad   account's currency.  Meta-only for now. Other platforms return 501 Not Implemented. 
 
 ### Example
 ```csharp
