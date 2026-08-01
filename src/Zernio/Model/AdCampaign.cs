@@ -163,9 +163,9 @@ namespace Zernio.Model
         /// <param name="profileId">profileId.</param>
         /// <param name="advertisingChannelType">Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType..</param>
         /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).</param>
-        /// <param name="optimizationGoal">Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION).</param>
+        /// <param name="optimizationGoal">Optimization goal shared across ad sets, or comma-separated values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); &#x60;NONE&#x60; with a manual costType is a campaign LinkedIn will not deliver..</param>
         /// <param name="bidStrategy">bidStrategy.</param>
-        /// <param name="bidAmount">Representative bid cap from the top-spending ad set (whole currency units). Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP..</param>
+        /// <param name="bidAmount">Representative bid from the top-spending ad set (whole currency units). Meta: populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, ungated, where 0 is a real delivery-stopping value..</param>
         /// <param name="roasAverageFloor">Representative ROAS floor from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x)..</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="earliestAd">earliestAd.</param>
@@ -305,16 +305,16 @@ namespace Zernio.Model
         public string PlatformObjective { get; set; }
 
         /// <summary>
-        /// Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)
+        /// Optimization goal shared across ad sets, or comma-separated values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); &#x60;NONE&#x60; with a manual costType is a campaign LinkedIn will not deliver.
         /// </summary>
-        /// <value>Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)</value>
+        /// <value>Optimization goal shared across ad sets, or comma-separated values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); &#x60;NONE&#x60; with a manual costType is a campaign LinkedIn will not deliver.</value>
         [DataMember(Name = "optimizationGoal", EmitDefaultValue = true)]
         public string OptimizationGoal { get; set; }
 
         /// <summary>
-        /// Representative bid cap from the top-spending ad set (whole currency units). Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
+        /// Representative bid from the top-spending ad set (whole currency units). Meta: populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, ungated, where 0 is a real delivery-stopping value.
         /// </summary>
-        /// <value>Representative bid cap from the top-spending ad set (whole currency units). Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.</value>
+        /// <value>Representative bid from the top-spending ad set (whole currency units). Meta: populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, ungated, where 0 is a real delivery-stopping value.</value>
         [DataMember(Name = "bidAmount", EmitDefaultValue = true)]
         public decimal? BidAmount { get; set; }
 

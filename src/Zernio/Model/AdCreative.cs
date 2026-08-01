@@ -48,6 +48,8 @@ namespace Zernio.Model
         /// <param name="instagramUserId">Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media..</param>
         /// <param name="instagramPermalinkUrl">Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media..</param>
         /// <param name="mediaUrls">All media URLs for this ad (carousel images, multiple assets). Populated for Meta (carousel child_attachments), Google Ads (responsive display marketing_images), and LinkedIn (multi-image posts)..</param>
+        /// <param name="isServing">LinkedIn only. Whether LinkedIn is currently serving this specific creative. Complements the ad-level &#x60;servingStatuses&#x60;, which describes the parent campaign..</param>
+        /// <param name="servingHoldReasons">LinkedIn only. Why this specific creative is not being served. Empty when it is serving. A superset of the ad-level &#x60;servingStatuses&#x60;: it repeats the inherited campaign, campaign group and account holds AND adds creative-only causes such as UNDER_REVIEW, REJECTED, PROCESSING, PROCESSING_FAILED, FORM_HOLD (lead-gen-form creatives), REFERRED_CONTENT_QUALITY_HOLD, JOB_POSTING_ON_HOLD and JOB_POSTING_INVALID (job ads). Some values are format-specific and will never appear on other ad formats. The list is open, so treat unrecognized values as holds rather than errors. .</param>
         /// <param name="body">Ad copy/text.</param>
         /// <param name="googleHeadline">Google Ads headline.</param>
         /// <param name="googleDescription">Google Ads description.</param>
@@ -55,7 +57,7 @@ namespace Zernio.Model
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
             this.ThumbnailUrl = thumbnailUrl;
             this.ImageUrl = imageUrl;
@@ -69,6 +71,8 @@ namespace Zernio.Model
             this.InstagramUserId = instagramUserId;
             this.InstagramPermalinkUrl = instagramPermalinkUrl;
             this.MediaUrls = mediaUrls;
+            this.IsServing = isServing;
+            this.ServingHoldReasons = servingHoldReasons;
             this.Body = body;
             this.GoogleHeadline = googleHeadline;
             this.GoogleDescription = googleDescription;
@@ -163,6 +167,23 @@ namespace Zernio.Model
         public List<string> MediaUrls { get; set; }
 
         /// <summary>
+        /// LinkedIn only. Whether LinkedIn is currently serving this specific creative. Complements the ad-level &#x60;servingStatuses&#x60;, which describes the parent campaign.
+        /// </summary>
+        /// <value>LinkedIn only. Whether LinkedIn is currently serving this specific creative. Complements the ad-level &#x60;servingStatuses&#x60;, which describes the parent campaign.</value>
+        [DataMember(Name = "isServing", EmitDefaultValue = true)]
+        public bool? IsServing { get; set; }
+
+        /// <summary>
+        /// LinkedIn only. Why this specific creative is not being served. Empty when it is serving. A superset of the ad-level &#x60;servingStatuses&#x60;: it repeats the inherited campaign, campaign group and account holds AND adds creative-only causes such as UNDER_REVIEW, REJECTED, PROCESSING, PROCESSING_FAILED, FORM_HOLD (lead-gen-form creatives), REFERRED_CONTENT_QUALITY_HOLD, JOB_POSTING_ON_HOLD and JOB_POSTING_INVALID (job ads). Some values are format-specific and will never appear on other ad formats. The list is open, so treat unrecognized values as holds rather than errors. 
+        /// </summary>
+        /// <value>LinkedIn only. Why this specific creative is not being served. Empty when it is serving. A superset of the ad-level &#x60;servingStatuses&#x60;: it repeats the inherited campaign, campaign group and account holds AND adds creative-only causes such as UNDER_REVIEW, REJECTED, PROCESSING, PROCESSING_FAILED, FORM_HOLD (lead-gen-form creatives), REFERRED_CONTENT_QUALITY_HOLD, JOB_POSTING_ON_HOLD and JOB_POSTING_INVALID (job ads). Some values are format-specific and will never appear on other ad formats. The list is open, so treat unrecognized values as holds rather than errors. </value>
+        /*
+        <example>[UNDER_REVIEW]</example>
+        */
+        [DataMember(Name = "servingHoldReasons", EmitDefaultValue = false)]
+        public List<string> ServingHoldReasons { get; set; }
+
+        /// <summary>
         /// Ad copy/text
         /// </summary>
         /// <value>Ad copy/text</value>
@@ -228,6 +249,8 @@ namespace Zernio.Model
             sb.Append("  InstagramUserId: ").Append(InstagramUserId).Append("\n");
             sb.Append("  InstagramPermalinkUrl: ").Append(InstagramPermalinkUrl).Append("\n");
             sb.Append("  MediaUrls: ").Append(MediaUrls).Append("\n");
+            sb.Append("  IsServing: ").Append(IsServing).Append("\n");
+            sb.Append("  ServingHoldReasons: ").Append(ServingHoldReasons).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  GoogleHeadline: ").Append(GoogleHeadline).Append("\n");
             sb.Append("  GoogleDescription: ").Append(GoogleDescription).Append("\n");

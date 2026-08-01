@@ -155,6 +155,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CostType'
+        /// </summary>
+        [Fact]
+        public void CostTypeTest()
+        {
+            // TODO unit test for the property 'CostType'
+        }
+
+        /// <summary>
+        /// Test the property 'ServingStatuses'
+        /// </summary>
+        [Fact]
+        public void ServingStatusesTest()
+        {
+            // TODO unit test for the property 'ServingStatuses'
+        }
+
+        /// <summary>
         /// Test the property 'PromotedObject'
         /// </summary>
         [Fact]

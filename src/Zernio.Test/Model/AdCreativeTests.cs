@@ -164,6 +164,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsServing'
+        /// </summary>
+        [Fact]
+        public void IsServingTest()
+        {
+            // TODO unit test for the property 'IsServing'
+        }
+
+        /// <summary>
+        /// Test the property 'ServingHoldReasons'
+        /// </summary>
+        [Fact]
+        public void ServingHoldReasonsTest()
+        {
+            // TODO unit test for the property 'ServingHoldReasons'
+        }
+
+        /// <summary>
         /// Test the property 'Body'
         /// </summary>
         [Fact]

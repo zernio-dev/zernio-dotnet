@@ -56,14 +56,16 @@ namespace Zernio.Model
         /// <param name="budget">budget.</param>
         /// <param name="adSetBudget">adSetBudget.</param>
         /// <param name="metrics">metrics.</param>
-        /// <param name="optimizationGoal">Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION).</param>
+        /// <param name="optimizationGoal">What the delivery system optimizes for. Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION), or on LinkedIn the campaign&#39;s effective optimizationTargetType (NONE means manual bidding). See the &#x60;optimizationGoal&#x60; field on &#x60;Ad&#x60; for the full value spaces..</param>
         /// <param name="bidStrategy">bidStrategy.</param>
-        /// <param name="bidAmount">Bid cap in whole currency units. Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP..</param>
+        /// <param name="bidAmount">Bid amount in whole currency units. On Meta/TikTok populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP; on LinkedIn it is the campaign&#39;s effective unitCost and pairs with &#x60;costType&#x60;, where 0 is a real, delivery-stopping value..</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (2.0 &#x3D; 2.0x). Populated when bidStrategy is LOWEST_COST_WITH_MIN_ROAS..</param>
+        /// <param name="costType">LinkedIn only. Effective cost model (billing event) of the LinkedIn campaign backing this ad set: CPM, CPC or CPV. Null for non-LinkedIn ad sets..</param>
+        /// <param name="servingStatuses">LinkedIn only. Why the LinkedIn campaign backing this ad set is (or is not) delivering. A LinkedIn Campaign maps to this ad-set node, so this is the level where LinkedIn&#39;s holds actually apply. Empty means no serving data, [\&quot;RUNNABLE\&quot;] means eligible to serve, anything else is a hold. See the &#x60;servingStatuses&#x60; field on &#x60;Ad&#x60; for the known values..</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="ads">Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent). When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;..</param>
         /// <param name="daily">Per-day metric series for this ad set. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; and &#x60;dailyLevel&#x60; is &#x60;adset&#x60; or &#x60;ad&#x60;..</param>
-        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default, List<AdDailyMetrics> daily = default)
+        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, string costType = default, List<string> servingStatuses = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default, List<AdDailyMetrics> daily = default)
         {
             this.PlatformAdSetId = platformAdSetId;
             this.AdSetName = adSetName;
@@ -76,6 +78,8 @@ namespace Zernio.Model
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.CostType = costType;
+            this.ServingStatuses = servingStatuses;
             this.PromotedObject = promotedObject;
             this.Ads = ads;
             this.Daily = daily;
@@ -118,16 +122,16 @@ namespace Zernio.Model
         public AdMetrics Metrics { get; set; }
 
         /// <summary>
-        /// Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)
+        /// What the delivery system optimizes for. Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION), or on LinkedIn the campaign&#39;s effective optimizationTargetType (NONE means manual bidding). See the &#x60;optimizationGoal&#x60; field on &#x60;Ad&#x60; for the full value spaces.
         /// </summary>
-        /// <value>Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)</value>
+        /// <value>What the delivery system optimizes for. Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION), or on LinkedIn the campaign&#39;s effective optimizationTargetType (NONE means manual bidding). See the &#x60;optimizationGoal&#x60; field on &#x60;Ad&#x60; for the full value spaces.</value>
         [DataMember(Name = "optimizationGoal", EmitDefaultValue = true)]
         public string OptimizationGoal { get; set; }
 
         /// <summary>
-        /// Bid cap in whole currency units. Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
+        /// Bid amount in whole currency units. On Meta/TikTok populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP; on LinkedIn it is the campaign&#39;s effective unitCost and pairs with &#x60;costType&#x60;, where 0 is a real, delivery-stopping value.
         /// </summary>
-        /// <value>Bid cap in whole currency units. Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.</value>
+        /// <value>Bid amount in whole currency units. On Meta/TikTok populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP; on LinkedIn it is the campaign&#39;s effective unitCost and pairs with &#x60;costType&#x60;, where 0 is a real, delivery-stopping value.</value>
         [DataMember(Name = "bidAmount", EmitDefaultValue = true)]
         public decimal? BidAmount { get; set; }
 
@@ -137,6 +141,23 @@ namespace Zernio.Model
         /// <value>Minimum ROAS as a decimal multiplier (2.0 &#x3D; 2.0x). Populated when bidStrategy is LOWEST_COST_WITH_MIN_ROAS.</value>
         [DataMember(Name = "roasAverageFloor", EmitDefaultValue = true)]
         public decimal? RoasAverageFloor { get; set; }
+
+        /// <summary>
+        /// LinkedIn only. Effective cost model (billing event) of the LinkedIn campaign backing this ad set: CPM, CPC or CPV. Null for non-LinkedIn ad sets.
+        /// </summary>
+        /// <value>LinkedIn only. Effective cost model (billing event) of the LinkedIn campaign backing this ad set: CPM, CPC or CPV. Null for non-LinkedIn ad sets.</value>
+        [DataMember(Name = "costType", EmitDefaultValue = true)]
+        public string CostType { get; set; }
+
+        /// <summary>
+        /// LinkedIn only. Why the LinkedIn campaign backing this ad set is (or is not) delivering. A LinkedIn Campaign maps to this ad-set node, so this is the level where LinkedIn&#39;s holds actually apply. Empty means no serving data, [\&quot;RUNNABLE\&quot;] means eligible to serve, anything else is a hold. See the &#x60;servingStatuses&#x60; field on &#x60;Ad&#x60; for the known values.
+        /// </summary>
+        /// <value>LinkedIn only. Why the LinkedIn campaign backing this ad set is (or is not) delivering. A LinkedIn Campaign maps to this ad-set node, so this is the level where LinkedIn&#39;s holds actually apply. Empty means no serving data, [\&quot;RUNNABLE\&quot;] means eligible to serve, anything else is a hold. See the &#x60;servingStatuses&#x60; field on &#x60;Ad&#x60; for the known values.</value>
+        /*
+        <example>[RUNNABLE]</example>
+        */
+        [DataMember(Name = "servingStatuses", EmitDefaultValue = false)]
+        public List<string> ServingStatuses { get; set; }
 
         /// <summary>
         /// Gets or Sets PromotedObject
@@ -177,6 +198,8 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  CostType: ").Append(CostType).Append("\n");
+            sb.Append("  ServingStatuses: ").Append(ServingStatuses).Append("\n");
             sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("  Ads: ").Append(Ads).Append("\n");
             sb.Append("  Daily: ").Append(Daily).Append("\n");
