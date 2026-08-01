@@ -92,6 +92,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AccountStatus'
+        /// </summary>
+        [Fact]
+        public void AccountStatusTest()
+        {
+            // TODO unit test for the property 'AccountStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'ApprovalStatus'
+        /// </summary>
+        [Fact]
+        public void ApprovalStatusTest()
+        {
+            // TODO unit test for the property 'ApprovalStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'DisableReason'
+        /// </summary>
+        [Fact]
+        public void DisableReasonTest()
+        {
+            // TODO unit test for the property 'DisableReason'
+        }
+
+        /// <summary>
         /// Test the property 'TimezoneName'
         /// </summary>
         [Fact]

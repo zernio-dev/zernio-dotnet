@@ -39,18 +39,24 @@ namespace Zernio.Model
         /// <param name="id">Platform ad account ID (e.g. act_123).</param>
         /// <param name="name">name.</param>
         /// <param name="currency">currency.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">LinkedIn only. LinkedIn&#39;s own ad account status. In practice always &#x60;ACTIVE&#x60;, because the LinkedIn query filters to active accounts. Meta, Google, TikTok and Pinterest report &#x60;accountStatus&#x60; instead; X reports &#x60;approvalStatus&#x60;..</param>
+        /// <param name="accountStatus">accountStatus.</param>
+        /// <param name="approvalStatus">X only. X&#39;s own ad account approval status. Observed values are &#x60;ACCEPTED&#x60;, &#x60;PENDING&#x60; and &#x60;REJECTED&#x60;, but X does not publish the full vocabulary, so treat an unrecognised value as not usable. Other platforms report &#x60;accountStatus&#x60; or &#x60;status&#x60; instead..</param>
+        /// <param name="disableReason">Meta only. Meta&#39;s &#x60;disable_reason&#x60; code, forwarded unchanged. Present when &#x60;accountStatus&#x60; is &#x60;2&#x60; (DISABLED) and Meta gives a reason, which is what separates a policy action from a payment problem. Meta does not publish a stable list of values for this field, so none are enumerated here: resolve the code against Meta&#39;s own ad account reference. Absent when Meta reports no reason, or when the connected token cannot read the field..</param>
         /// <param name="timezoneName">IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries..</param>
         /// <param name="timezoneOffsetHoursUtc">Signed UTC offset in hours, reflecting current DST (Meta only)..</param>
         /// <param name="minimumDailyBudget">Meta only. Minimum daily budget for the account, in the account currency&#39;s major units. This is the impressions-billed minimum; other billing events have higher minimums. Absent when the connected token cannot read it..</param>
         /// <param name="selectable">Meta and X only. Whether the account can create/run ads now. Absent (treat as true) on other platforms..</param>
         /// <param name="unusableReason">Meta and X only. Human-readable reason when selectable is false; null when selectable..</param>
-        public ListAdAccounts200ResponseAccountsInner(string id = default, string name = default, string currency = default, string status = default, string timezoneName = default, decimal timezoneOffsetHoursUtc = default, decimal minimumDailyBudget = default, bool selectable = default, string unusableReason = default)
+        public ListAdAccounts200ResponseAccountsInner(string id = default, string name = default, string currency = default, string status = default, Object accountStatus = default, string approvalStatus = default, int disableReason = default, string timezoneName = default, decimal timezoneOffsetHoursUtc = default, decimal minimumDailyBudget = default, bool selectable = default, string unusableReason = default)
         {
             this.Id = id;
             this.Name = name;
             this.Currency = currency;
             this.Status = status;
+            this.AccountStatus = accountStatus;
+            this.ApprovalStatus = approvalStatus;
+            this.DisableReason = disableReason;
             this.TimezoneName = timezoneName;
             this.TimezoneOffsetHoursUtc = timezoneOffsetHoursUtc;
             this.MinimumDailyBudget = minimumDailyBudget;
@@ -78,10 +84,31 @@ namespace Zernio.Model
         public string Currency { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// LinkedIn only. LinkedIn&#39;s own ad account status. In practice always &#x60;ACTIVE&#x60;, because the LinkedIn query filters to active accounts. Meta, Google, TikTok and Pinterest report &#x60;accountStatus&#x60; instead; X reports &#x60;approvalStatus&#x60;.
         /// </summary>
+        /// <value>LinkedIn only. LinkedIn&#39;s own ad account status. In practice always &#x60;ACTIVE&#x60;, because the LinkedIn query filters to active accounts. Meta, Google, TikTok and Pinterest report &#x60;accountStatus&#x60; instead; X reports &#x60;approvalStatus&#x60;.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AccountStatus
+        /// </summary>
+        [DataMember(Name = "accountStatus", EmitDefaultValue = true)]
+        public Object AccountStatus { get; set; }
+
+        /// <summary>
+        /// X only. X&#39;s own ad account approval status. Observed values are &#x60;ACCEPTED&#x60;, &#x60;PENDING&#x60; and &#x60;REJECTED&#x60;, but X does not publish the full vocabulary, so treat an unrecognised value as not usable. Other platforms report &#x60;accountStatus&#x60; or &#x60;status&#x60; instead.
+        /// </summary>
+        /// <value>X only. X&#39;s own ad account approval status. Observed values are &#x60;ACCEPTED&#x60;, &#x60;PENDING&#x60; and &#x60;REJECTED&#x60;, but X does not publish the full vocabulary, so treat an unrecognised value as not usable. Other platforms report &#x60;accountStatus&#x60; or &#x60;status&#x60; instead.</value>
+        [DataMember(Name = "approvalStatus", EmitDefaultValue = false)]
+        public string ApprovalStatus { get; set; }
+
+        /// <summary>
+        /// Meta only. Meta&#39;s &#x60;disable_reason&#x60; code, forwarded unchanged. Present when &#x60;accountStatus&#x60; is &#x60;2&#x60; (DISABLED) and Meta gives a reason, which is what separates a policy action from a payment problem. Meta does not publish a stable list of values for this field, so none are enumerated here: resolve the code against Meta&#39;s own ad account reference. Absent when Meta reports no reason, or when the connected token cannot read the field.
+        /// </summary>
+        /// <value>Meta only. Meta&#39;s &#x60;disable_reason&#x60; code, forwarded unchanged. Present when &#x60;accountStatus&#x60; is &#x60;2&#x60; (DISABLED) and Meta gives a reason, which is what separates a policy action from a payment problem. Meta does not publish a stable list of values for this field, so none are enumerated here: resolve the code against Meta&#39;s own ad account reference. Absent when Meta reports no reason, or when the connected token cannot read the field.</value>
+        [DataMember(Name = "disableReason", EmitDefaultValue = false)]
+        public int DisableReason { get; set; }
 
         /// <summary>
         /// IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries.
@@ -130,6 +157,9 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  AccountStatus: ").Append(AccountStatus).Append("\n");
+            sb.Append("  ApprovalStatus: ").Append(ApprovalStatus).Append("\n");
+            sb.Append("  DisableReason: ").Append(DisableReason).Append("\n");
             sb.Append("  TimezoneName: ").Append(TimezoneName).Append("\n");
             sb.Append("  TimezoneOffsetHoursUtc: ").Append(TimezoneOffsetHoursUtc).Append("\n");
             sb.Append("  MinimumDailyBudget: ").Append(MinimumDailyBudget).Append("\n");
