@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="BulkCreateContactsRequestContactsInner" /> class.
         /// </summary>
         /// <param name="name">name (required).</param>
-        /// <param name="platformIdentifier">platformIdentifier (required).</param>
+        /// <param name="platformIdentifier">Required when the top-level accountId is set (channel mode). A row missing it in that mode is rejected individually and reported in errors[], not a 400 for the whole import..</param>
         /// <param name="displayIdentifier">displayIdentifier.</param>
         /// <param name="email">email.</param>
         /// <param name="company">company.</param>
@@ -55,11 +55,6 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for BulkCreateContactsRequestContactsInner and cannot be null");
             }
             this.Name = name;
-            // to ensure "platformIdentifier" is required (not null)
-            if (platformIdentifier == null)
-            {
-                throw new ArgumentNullException("platformIdentifier is a required property for BulkCreateContactsRequestContactsInner and cannot be null");
-            }
             this.PlatformIdentifier = platformIdentifier;
             this.DisplayIdentifier = displayIdentifier;
             this.Email = email;
@@ -74,9 +69,10 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets PlatformIdentifier
+        /// Required when the top-level accountId is set (channel mode). A row missing it in that mode is rejected individually and reported in errors[], not a 400 for the whole import.
         /// </summary>
-        [DataMember(Name = "platformIdentifier", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Required when the top-level accountId is set (channel mode). A row missing it in that mode is rejected individually and reported in errors[], not a 400 for the whole import.</value>
+        [DataMember(Name = "platformIdentifier", EmitDefaultValue = false)]
         public string PlatformIdentifier { get; set; }
 
         /// <summary>
