@@ -514,7 +514,7 @@ catch (ApiException e)
 
 <a id="listcontacts"></a>
 # **ListContacts**
-> ListContacts200Response ListContacts (string? profileId = null, string? search = null, string? tag = null, string? platform = null, string? isSubscribed = null, int? limit = null, int? skip = null)
+> ListContacts200Response ListContacts (string? profileId = null, string? search = null, string? tag = null, string? tags = null, string? platform = null, string? isSubscribed = null, int? limit = null, int? skip = null)
 
 List contacts
 
@@ -547,6 +547,7 @@ namespace Example
             var profileId = "profileId_example";  // string? | Filter by profile. Omit to list across all profiles (optional) 
             var search = "search_example";  // string? |  (optional) 
             var tag = "tag_example";  // string? |  (optional) 
+            var tags = "tags_example";  // string? | Comma-separated tags, matches contacts carrying any of them (optional) 
             var platform = "instagram";  // string? |  (optional) 
             var isSubscribed = "true";  // string? |  (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
@@ -555,7 +556,7 @@ namespace Example
             try
             {
                 // List contacts
-                ListContacts200Response result = apiInstance.ListContacts(profileId, search, tag, platform, isSubscribed, limit, skip);
+                ListContacts200Response result = apiInstance.ListContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -576,7 +577,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List contacts
-    ApiResponse<ListContacts200Response> response = apiInstance.ListContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip);
+    ApiResponse<ListContacts200Response> response = apiInstance.ListContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -596,6 +597,7 @@ catch (ApiException e)
 | **profileId** | **string?** | Filter by profile. Omit to list across all profiles | [optional]  |
 | **search** | **string?** |  | [optional]  |
 | **tag** | **string?** |  | [optional]  |
+| **tags** | **string?** | Comma-separated tags, matches contacts carrying any of them | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 | **isSubscribed** | **string?** |  | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |

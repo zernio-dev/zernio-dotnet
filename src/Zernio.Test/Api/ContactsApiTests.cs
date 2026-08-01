@@ -123,11 +123,12 @@ namespace Zernio.Test.Api
             //string? profileId = null;
             //string? search = null;
             //string? tag = null;
+            //string? tags = null;
             //string? platform = null;
             //string? isSubscribed = null;
             //int? limit = null;
             //int? skip = null;
-            //var response = instance.ListContacts(profileId, search, tag, platform, isSubscribed, limit, skip);
+            //var response = instance.ListContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
             //Assert.IsType<ListContacts200Response>(response);
         }
 

@@ -143,12 +143,13 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <returns>ListContacts200Response</returns>
-        ListContacts200Response ListContacts(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default);
+        ListContacts200Response ListContacts(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default);
 
         /// <summary>
         /// List contacts
@@ -160,12 +161,13 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <returns>ApiResponse of ListContacts200Response</returns>
-        ApiResponse<ListContacts200Response> ListContactsWithHttpInfo(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default);
+        ApiResponse<ListContacts200Response> ListContactsWithHttpInfo(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default);
         /// <summary>
         /// Update contact
         /// </summary>
@@ -323,13 +325,14 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListContacts200Response</returns>
-        System.Threading.Tasks.Task<ListContacts200Response> ListContactsAsync(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListContacts200Response> ListContactsAsync(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List contacts
@@ -341,13 +344,14 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListContacts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListContacts200Response>> ListContactsWithHttpInfoAsync(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListContacts200Response>> ListContactsWithHttpInfoAsync(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update contact
         /// </summary>
@@ -1230,14 +1234,15 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <returns>ListContacts200Response</returns>
-        public ListContacts200Response ListContacts(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default)
+        public ListContacts200Response ListContacts(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default)
         {
-            Zernio.Client.ApiResponse<ListContacts200Response> localVarResponse = ListContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip);
+            Zernio.Client.ApiResponse<ListContacts200Response> localVarResponse = ListContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
             return localVarResponse.Data;
         }
 
@@ -1248,12 +1253,13 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <returns>ApiResponse of ListContacts200Response</returns>
-        public Zernio.Client.ApiResponse<ListContacts200Response> ListContactsWithHttpInfo(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default)
+        public Zernio.Client.ApiResponse<ListContacts200Response> ListContactsWithHttpInfo(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1282,6 +1288,10 @@ namespace Zernio.Api
             if (tag != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tag", tag));
+            }
+            if (tags != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tags", tags));
             }
             if (platform != null)
             {
@@ -1326,15 +1336,16 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListContacts200Response</returns>
-        public async System.Threading.Tasks.Task<ListContacts200Response> ListContactsAsync(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListContacts200Response> ListContactsAsync(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListContacts200Response> localVarResponse = await ListContactsWithHttpInfoAsync(profileId, search, tag, platform, isSubscribed, limit, skip, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListContacts200Response> localVarResponse = await ListContactsWithHttpInfoAsync(profileId, search, tag, tags, platform, isSubscribed, limit, skip, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1345,13 +1356,14 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="search"> (optional)</param>
         /// <param name="tag"> (optional)</param>
+        /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="isSubscribed"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListContacts200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListContacts200Response>> ListContactsWithHttpInfoAsync(string? profileId = default, string? search = default, string? tag = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListContacts200Response>> ListContactsWithHttpInfoAsync(string? profileId = default, string? search = default, string? tag = default, string? tags = default, string? platform = default, string? isSubscribed = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1382,6 +1394,10 @@ namespace Zernio.Api
             if (tag != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tag", tag));
+            }
+            if (tags != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tags", tags));
             }
             if (platform != null)
             {
