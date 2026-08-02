@@ -155,6 +155,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'VideoDurationSeconds'
+        /// </summary>
+        [Fact]
+        public void VideoDurationSecondsTest()
+        {
+            // TODO unit test for the property 'VideoDurationSeconds'
+        }
+
+        /// <summary>
         /// Test the property 'EngagementRate'
         /// </summary>
         [Fact]

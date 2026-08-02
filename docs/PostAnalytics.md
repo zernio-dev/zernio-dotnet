@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Follows** | **int** | Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms. | [optional] 
 **IgReelsAvgWatchTime** | **int** | Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms. | [optional] 
 **IgReelsVideoViewTotalTime** | **int** | Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms. | [optional] 
+**VideoDurationSeconds** | **int?** | Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio). | [optional] 
 **EngagementRate** | **decimal** |  | [optional] 
 **LastUpdated** | **DateTime** |  | [optional] 
 
