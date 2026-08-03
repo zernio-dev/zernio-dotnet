@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestPromotedObject" /> class.
         /// </summary>
-        /// <param name="pixelId">Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. .</param>
+        /// <param name="pixelId">Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. To discover the pixels an ad account can use, call &#x60;GET /v1/accounts/{accountId}/tracking-tags?adAccountId&#x3D;act_...&#x60; (each entry carries &#x60;kind&#x60; and &#x60;ownerAdAccountId&#x60;), or &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Note this is a different resource from &#x60;GET /v1/ads/{adId}/tracking-tags&#x60;, which reads an ad&#39;s click-URL params (&#x60;url_tags&#x60;), not pixels. .</param>
         /// <param name="customEventType">The event the campaign/ad group optimises against.  **Meta:** standard event like &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;.  **TikTok:** an &#x60;optimization_event&#x60; code (UPPER_SNAKE, not Meta&#39;s vocabulary and not PascalCase), OR the exact event name shown in TikTok Events Manager (auto-resolved to its code). Must be one of the event types your TikTok Pixel tracks; custom events are not optimizable. Current taxonomy: &#x60;SHOPPING&#x60; (Purchase), &#x60;ON_WEB_CART&#x60; (Add to Cart), &#x60;INITIATE_ORDER&#x60; (Initiate Checkout), &#x60;FORM&#x60; (Lead), &#x60;ON_WEB_REGISTER&#x60; (Complete Registration), &#x60;ON_WEB_DETAIL&#x60; (View Content). &#x60;ON_WEB_ORDER&#x60; is deprecated. On rejection the error lists the event types your pixel actually tracks. Optional for &#x60;goal: conversions&#x60;. .</param>
         /// <param name="pageId">Facebook Page ID. Used by &#x60;goal: lead_generation&#x60;. Auto-filled from the connected Page when omitted. .</param>
         /// <param name="applicationId">App ID. Required for &#x60;goal: app_promotion&#x60;..</param>
@@ -62,9 +62,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. 
+        /// Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. To discover the pixels an ad account can use, call &#x60;GET /v1/accounts/{accountId}/tracking-tags?adAccountId&#x3D;act_...&#x60; (each entry carries &#x60;kind&#x60; and &#x60;ownerAdAccountId&#x60;), or &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Note this is a different resource from &#x60;GET /v1/ads/{adId}/tracking-tags&#x60;, which reads an ad&#39;s click-URL params (&#x60;url_tags&#x60;), not pixels. 
         /// </summary>
-        /// <value>Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. </value>
+        /// <value>Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. To discover the pixels an ad account can use, call &#x60;GET /v1/accounts/{accountId}/tracking-tags?adAccountId&#x3D;act_...&#x60; (each entry carries &#x60;kind&#x60; and &#x60;ownerAdAccountId&#x60;), or &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Note this is a different resource from &#x60;GET /v1/ads/{adId}/tracking-tags&#x60;, which reads an ad&#39;s click-URL params (&#x60;url_tags&#x60;), not pixels. </value>
         [DataMember(Name = "pixelId", EmitDefaultValue = false)]
         public string PixelId { get; set; }
 
