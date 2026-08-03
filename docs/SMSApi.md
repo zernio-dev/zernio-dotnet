@@ -136,7 +136,7 @@ catch (ApiException e)
 
 Create an alphanumeric sender ID
 
-Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from` for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as `from` on `POST /v1/sms/messages`.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from` for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as `from` on `POST /v1/sms/messages`.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
 
 ### Example
 ```csharp
@@ -227,8 +227,7 @@ catch (ApiException e)
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Workspace is not on usage-based billing, or already holds the maximum of 5 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
-| **409** | Sender ID already registered by another workspace (code &#x60;sender_id_taken&#x60;). |  -  |
+| **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
