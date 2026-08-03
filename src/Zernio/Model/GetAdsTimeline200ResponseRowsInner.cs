@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="date">date.</param>
         /// <param name="spend">Native currency units (matches /ads/tree convention)..</param>
         /// <param name="impressions">impressions.</param>
-        /// <param name="reach">reach.</param>
+        /// <param name="reach">Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted)..</param>
         /// <param name="clicks">clicks.</param>
         /// <param name="engagement">engagement.</param>
         /// <param name="ctr">Click-through rate as a percentage (0–100)..</param>
@@ -90,8 +90,9 @@ namespace Zernio.Model
         public int Impressions { get; set; }
 
         /// <summary>
-        /// Gets or Sets Reach
+        /// Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted).
         /// </summary>
+        /// <value>Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted).</value>
         [DataMember(Name = "reach", EmitDefaultValue = false)]
         public int Reach { get; set; }
 

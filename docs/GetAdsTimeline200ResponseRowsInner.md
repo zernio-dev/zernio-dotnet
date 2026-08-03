@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Date** | **DateOnly** |  | [optional] 
 **Spend** | **decimal** | Native currency units (matches /ads/tree convention). | [optional] 
 **Impressions** | **int** |  | [optional] 
-**Reach** | **int** |  | [optional] 
+**Reach** | **int** | Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted). | [optional] 
 **Clicks** | **int** |  | [optional] 
 **Engagement** | **int** |  | [optional] 
 **Ctr** | **decimal** | Click-through rate as a percentage (0–100). | [optional] 
