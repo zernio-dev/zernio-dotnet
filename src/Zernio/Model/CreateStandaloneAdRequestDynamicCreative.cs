@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and optimises them into the best-performing variations within a single ad (mapped to the creative&#39;s &#x60;asset_feed_spec&#x60;). When set, the top-level single-creative fields (&#x60;imageUrl&#x60;, &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) are ignored. Mutually exclusive with the &#x60;creatives[]&#x60; multi-creative shape. Meta limits: ≤10 images, ≤5 bodies / titles / descriptions. 
+    /// Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and optimises them into the best-performing variations within a single ad (mapped to the creative&#39;s &#x60;asset_feed_spec&#x60;). When set, the top-level single-creative fields (&#x60;imageUrl&#x60;, &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) are ignored. Mutually exclusive with the &#x60;creatives[]&#x60; multi-creative shape. Exactly ONE of &#x60;imageUrls&#x60; / &#x60;videoUrls&#x60; is required (Meta allows one ad format per asset feed; sending both → 400). Meta limits: ≤10 images or ≤10 videos, ≤5 bodies / titles / descriptions. 
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_dynamicCreative")]
     public partial class CreateStandaloneAdRequestDynamicCreative : IValidatableObject
@@ -245,9 +245,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Asset-feed ad format. Defaults to SINGLE_IMAGE.
+        /// Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;.
         /// </summary>
-        /// <value>Asset-feed ad format. Defaults to SINGLE_IMAGE.</value>
+        /// <value>Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AdFormatEnum
         {
@@ -261,39 +261,37 @@ namespace Zernio.Model
             /// Enum CAROUSELIMAGE for value: CAROUSEL_IMAGE
             /// </summary>
             [EnumMember(Value = "CAROUSEL_IMAGE")]
-            CAROUSELIMAGE = 2
+            CAROUSELIMAGE = 2,
+
+            /// <summary>
+            /// Enum SINGLEVIDEO for value: SINGLE_VIDEO
+            /// </summary>
+            [EnumMember(Value = "SINGLE_VIDEO")]
+            SINGLEVIDEO = 3
         }
 
 
         /// <summary>
-        /// Asset-feed ad format. Defaults to SINGLE_IMAGE.
+        /// Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;.
         /// </summary>
-        /// <value>Asset-feed ad format. Defaults to SINGLE_IMAGE.</value>
+        /// <value>Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;.</value>
         [DataMember(Name = "adFormat", EmitDefaultValue = false)]
         public AdFormatEnum? AdFormat { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestDynamicCreative" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateStandaloneAdRequestDynamicCreative() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestDynamicCreative" /> class.
-        /// </summary>
-        /// <param name="imageUrls">Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed. (required).</param>
+        /// <param name="imageUrls">Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed. Mutually exclusive with &#x60;videoUrls&#x60;..</param>
+        /// <param name="videoUrls">Pool of video URLs (1-10). Uploaded to the ad account and referenced by video id in the asset feed. No thumbnails are needed: Meta auto-generates a poster per video. Mutually exclusive with &#x60;imageUrls&#x60;; &#x60;adFormat&#x60; defaults to SINGLE_VIDEO..</param>
         /// <param name="bodies">Primary-text variations (the body copy)..</param>
         /// <param name="titles">Headline variations..</param>
         /// <param name="descriptions">Description (link caption) variations..</param>
         /// <param name="linkUrls">Destination URL variations. At least one is required unless &#x60;goal&#x60; is &#x60;lead_generation&#x60;..</param>
         /// <param name="callToActionTypes">CTA-button variations. Required..</param>
-        /// <param name="adFormat">Asset-feed ad format. Defaults to SINGLE_IMAGE. (default to AdFormatEnum.SINGLEIMAGE).</param>
-        public CreateStandaloneAdRequestDynamicCreative(List<string> imageUrls = default, List<string> bodies = default, List<string> titles = default, List<string> descriptions = default, List<string> linkUrls = default, List<CallToActionTypesEnum> callToActionTypes = default, AdFormatEnum? adFormat = AdFormatEnum.SINGLEIMAGE)
+        /// <param name="adFormat">Asset-feed ad format. Must match the pool: SINGLE_IMAGE / CAROUSEL_IMAGE require &#x60;imageUrls&#x60;, SINGLE_VIDEO requires &#x60;videoUrls&#x60; (400 otherwise). Defaults to SINGLE_IMAGE with &#x60;imageUrls&#x60;, SINGLE_VIDEO with &#x60;videoUrls&#x60;..</param>
+        public CreateStandaloneAdRequestDynamicCreative(List<string> imageUrls = default, List<string> videoUrls = default, List<string> bodies = default, List<string> titles = default, List<string> descriptions = default, List<string> linkUrls = default, List<CallToActionTypesEnum> callToActionTypes = default, AdFormatEnum? adFormat = default)
         {
-            // to ensure "imageUrls" is required (not null)
-            if (imageUrls == null)
-            {
-                throw new ArgumentNullException("imageUrls is a required property for CreateStandaloneAdRequestDynamicCreative and cannot be null");
-            }
             this.ImageUrls = imageUrls;
+            this.VideoUrls = videoUrls;
             this.Bodies = bodies;
             this.Titles = titles;
             this.Descriptions = descriptions;
@@ -303,11 +301,18 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed.
+        /// Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed. Mutually exclusive with &#x60;videoUrls&#x60;.
         /// </summary>
-        /// <value>Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed.</value>
-        [DataMember(Name = "imageUrls", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Pool of image URLs (1-10). Uploaded to the ad account and referenced by hash in the asset feed. Mutually exclusive with &#x60;videoUrls&#x60;.</value>
+        [DataMember(Name = "imageUrls", EmitDefaultValue = false)]
         public List<string> ImageUrls { get; set; }
+
+        /// <summary>
+        /// Pool of video URLs (1-10). Uploaded to the ad account and referenced by video id in the asset feed. No thumbnails are needed: Meta auto-generates a poster per video. Mutually exclusive with &#x60;imageUrls&#x60;; &#x60;adFormat&#x60; defaults to SINGLE_VIDEO.
+        /// </summary>
+        /// <value>Pool of video URLs (1-10). Uploaded to the ad account and referenced by video id in the asset feed. No thumbnails are needed: Meta auto-generates a poster per video. Mutually exclusive with &#x60;imageUrls&#x60;; &#x60;adFormat&#x60; defaults to SINGLE_VIDEO.</value>
+        [DataMember(Name = "videoUrls", EmitDefaultValue = false)]
+        public List<string> VideoUrls { get; set; }
 
         /// <summary>
         /// Primary-text variations (the body copy).
@@ -353,6 +358,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateStandaloneAdRequestDynamicCreative {\n");
             sb.Append("  ImageUrls: ").Append(ImageUrls).Append("\n");
+            sb.Append("  VideoUrls: ").Append(VideoUrls).Append("\n");
             sb.Append("  Bodies: ").Append(Bodies).Append("\n");
             sb.Append("  Titles: ").Append(Titles).Append("\n");
             sb.Append("  Descriptions: ").Append(Descriptions).Append("\n");
