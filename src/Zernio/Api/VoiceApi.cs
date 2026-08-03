@@ -36,7 +36,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>CreateVoiceCall200Response</returns>
         CreateVoiceCall200Response CreateVoiceCall(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default);
 
@@ -48,7 +48,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of CreateVoiceCall200Response</returns>
         ApiResponse<CreateVoiceCall200Response> CreateVoiceCallWithHttpInfo(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default);
         /// <summary>
@@ -296,7 +296,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateVoiceCall200Response</returns>
         System.Threading.Tasks.Task<CreateVoiceCall200Response> CreateVoiceCallAsync(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -309,7 +309,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateVoiceCall200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateVoiceCall200Response>> CreateVoiceCallWithHttpInfoAsync(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -779,7 +779,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>CreateVoiceCall200Response</returns>
         public CreateVoiceCall200Response CreateVoiceCall(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default)
         {
@@ -792,7 +792,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of CreateVoiceCall200Response</returns>
         public Zernio.Client.ApiResponse<CreateVoiceCall200Response> CreateVoiceCallWithHttpInfo(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default)
         {
@@ -847,7 +847,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateVoiceCall200Response</returns>
         public async System.Threading.Tasks.Task<CreateVoiceCall200Response> CreateVoiceCallAsync(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
@@ -861,7 +861,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createVoiceCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateVoiceCall200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateVoiceCall200Response>> CreateVoiceCallWithHttpInfoAsync(CreateVoiceCallRequest createVoiceCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)

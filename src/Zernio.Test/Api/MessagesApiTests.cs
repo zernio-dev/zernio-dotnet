@@ -209,7 +209,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string conversationId = null;
             //SendInboxMessageRequest sendInboxMessageRequest = null;
-            //var response = instance.SendInboxMessage(conversationId, sendInboxMessageRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.SendInboxMessage(conversationId, sendInboxMessageRequest, idempotencyKey);
             //Assert.IsType<SendInboxMessage200Response>(response);
         }
 

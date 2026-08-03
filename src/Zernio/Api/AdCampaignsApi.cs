@@ -101,7 +101,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>CreateStandaloneAd200Response</returns>
         CreateStandaloneAd200Response CreateStandaloneAd(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default);
 
@@ -113,7 +113,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of CreateStandaloneAd200Response</returns>
         ApiResponse<CreateStandaloneAd200Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default);
         /// <summary>
@@ -718,7 +718,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateStandaloneAd200Response</returns>
         System.Threading.Tasks.Task<CreateStandaloneAd200Response> CreateStandaloneAdAsync(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -731,7 +731,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateStandaloneAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateStandaloneAd200Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1902,7 +1902,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>CreateStandaloneAd200Response</returns>
         public CreateStandaloneAd200Response CreateStandaloneAd(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default)
         {
@@ -1915,7 +1915,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of CreateStandaloneAd200Response</returns>
         public Zernio.Client.ApiResponse<CreateStandaloneAd200Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default)
         {
@@ -1970,7 +1970,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateStandaloneAd200Response</returns>
         public async System.Threading.Tasks.Task<CreateStandaloneAd200Response> CreateStandaloneAdAsync(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1984,7 +1984,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateStandaloneAd200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateStandaloneAd200Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)

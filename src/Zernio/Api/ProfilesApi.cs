@@ -36,7 +36,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ProfileCreateResponse</returns>
         ProfileCreateResponse CreateProfile(CreateProfileRequest createProfileRequest, string? idempotencyKey = default);
 
@@ -48,7 +48,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ProfileCreateResponse</returns>
         ApiResponse<ProfileCreateResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest, string? idempotencyKey = default);
         /// <summary>
@@ -160,7 +160,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileCreateResponse</returns>
         System.Threading.Tasks.Task<ProfileCreateResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -173,7 +173,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileCreateResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ProfileCreateResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -495,7 +495,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ProfileCreateResponse</returns>
         public ProfileCreateResponse CreateProfile(CreateProfileRequest createProfileRequest, string? idempotencyKey = default)
         {
@@ -508,7 +508,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ProfileCreateResponse</returns>
         public Zernio.Client.ApiResponse<ProfileCreateResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest, string? idempotencyKey = default)
         {
@@ -563,7 +563,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileCreateResponse</returns>
         public async System.Threading.Tasks.Task<ProfileCreateResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
@@ -577,7 +577,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileCreateResponse)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfileCreateResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)

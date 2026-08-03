@@ -370,7 +370,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>SendSms200Response</returns>
         SendSms200Response SendSms(SendSmsRequest sendSmsRequest, string? idempotencyKey = default);
 
@@ -382,7 +382,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of SendSms200Response</returns>
         ApiResponse<SendSms200Response> SendSmsWithHttpInfo(SendSmsRequest sendSmsRequest, string? idempotencyKey = default);
         /// <summary>
@@ -883,7 +883,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SendSms200Response</returns>
         System.Threading.Tasks.Task<SendSms200Response> SendSmsAsync(SendSmsRequest sendSmsRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -896,7 +896,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendSms200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SendSms200Response>> SendSmsWithHttpInfoAsync(SendSmsRequest sendSmsRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -3303,7 +3303,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>SendSms200Response</returns>
         public SendSms200Response SendSms(SendSmsRequest sendSmsRequest, string? idempotencyKey = default)
         {
@@ -3316,7 +3316,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of SendSms200Response</returns>
         public Zernio.Client.ApiResponse<SendSms200Response> SendSmsWithHttpInfo(SendSmsRequest sendSmsRequest, string? idempotencyKey = default)
         {
@@ -3371,7 +3371,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SendSms200Response</returns>
         public async System.Threading.Tasks.Task<SendSms200Response> SendSmsAsync(SendSmsRequest sendSmsRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
@@ -3385,7 +3385,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendSmsRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendSms200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SendSms200Response>> SendSmsWithHttpInfoAsync(SendSmsRequest sendSmsRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)

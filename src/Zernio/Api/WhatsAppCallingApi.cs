@@ -269,7 +269,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>InitiateWhatsAppCall200Response</returns>
         InitiateWhatsAppCall200Response InitiateWhatsAppCall(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default);
 
@@ -281,7 +281,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of InitiateWhatsAppCall200Response</returns>
         ApiResponse<InitiateWhatsAppCall200Response> InitiateWhatsAppCallWithHttpInfo(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default);
         /// <summary>
@@ -684,7 +684,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InitiateWhatsAppCall200Response</returns>
         System.Threading.Tasks.Task<InitiateWhatsAppCall200Response> InitiateWhatsAppCallAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -697,7 +697,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InitiateWhatsAppCall200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<InitiateWhatsAppCall200Response>> InitiateWhatsAppCallWithHttpInfoAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
@@ -2482,7 +2482,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>InitiateWhatsAppCall200Response</returns>
         public InitiateWhatsAppCall200Response InitiateWhatsAppCall(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default)
         {
@@ -2495,7 +2495,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of InitiateWhatsAppCall200Response</returns>
         public Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> InitiateWhatsAppCallWithHttpInfo(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default)
         {
@@ -2550,7 +2550,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InitiateWhatsAppCall200Response</returns>
         public async System.Threading.Tasks.Task<InitiateWhatsAppCall200Response> InitiateWhatsAppCallAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2564,7 +2564,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
-        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InitiateWhatsAppCall200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response>> InitiateWhatsAppCallWithHttpInfoAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
