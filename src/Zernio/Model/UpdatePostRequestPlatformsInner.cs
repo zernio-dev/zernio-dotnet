@@ -46,7 +46,7 @@ namespace Zernio.Model
         /// <param name="customContent">Platform-specific text override..</param>
         /// <param name="customMedia">customMedia.</param>
         /// <param name="scheduledFor">Optional per-platform scheduled time override..</param>
-        /// <param name="platformSpecificData">platformSpecificData.</param>
+        /// <param name="platformSpecificData">A &lt;platform&gt;Settings namespace (e.g. facebookSettings, tiktokSettings) omitted from the request is preserved from the stored post. Sending the key replaces the whole namespace; it is not deep-merged..</param>
         public UpdatePostRequestPlatformsInner(string platform = default, string accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, Dictionary<string, Object> platformSpecificData = default)
         {
             // to ensure "platform" is required (not null)
@@ -103,8 +103,9 @@ namespace Zernio.Model
         public DateTime ScheduledFor { get; set; }
 
         /// <summary>
-        /// Gets or Sets PlatformSpecificData
+        /// A &lt;platform&gt;Settings namespace (e.g. facebookSettings, tiktokSettings) omitted from the request is preserved from the stored post. Sending the key replaces the whole namespace; it is not deep-merged.
         /// </summary>
+        /// <value>A &lt;platform&gt;Settings namespace (e.g. facebookSettings, tiktokSettings) omitted from the request is preserved from the stored post. Sending the key replaces the whole namespace; it is not deep-merged.</value>
         [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
         public Dictionary<string, Object> PlatformSpecificData { get; set; }
 
