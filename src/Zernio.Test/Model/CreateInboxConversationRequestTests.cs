@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Category'
+        /// </summary>
+        [Fact]
+        public void CategoryTest()
+        {
+            // TODO unit test for the property 'Category'
+        }
+
+        /// <summary>
         /// Test the property 'TemplateLanguage'
         /// </summary>
         [Fact]

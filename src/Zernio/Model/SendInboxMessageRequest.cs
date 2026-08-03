@@ -34,6 +34,27 @@ namespace Zernio.Model
     public partial class SendInboxMessageRequest : IValidatableObject
     {
         /// <summary>
+        /// WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+        /// </summary>
+        /// <value>WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CategoryEnum
+        {
+            /// <summary>
+            /// Enum Utility for value: utility
+            /// </summary>
+            [EnumMember(Value = "utility")]
+            Utility = 1
+        }
+
+
+        /// <summary>
+        /// WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+        /// </summary>
+        /// <value>WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.</value>
+        [DataMember(Name = "category", EmitDefaultValue = false)]
+        public CategoryEnum? Category { get; set; }
+        /// <summary>
         /// Type of attachment. Defaults to file if not specified.
         /// </summary>
         /// <value>Type of attachment. Defaults to file if not specified.</value>
@@ -155,6 +176,7 @@ namespace Zernio.Model
         /// <param name="accountId">Social account ID (required).</param>
         /// <param name="message">Message text.</param>
         /// <param name="attachmentUrl">URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead..</param>
+        /// <param name="category">WhatsApp only (Meta Direct Send). Sends this message as a business-initiated UTILITY message without an approved template, for example outside the 24-hour customer service window; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Supported only for text messages (link preview ok) and interactive messages (reply buttons, CTA URL buttons, voice-call button, header of text/image/video/document). Cannot be combined with template, attachments, location, or contacts. Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests..</param>
         /// <param name="attachmentType">Type of attachment. Defaults to file if not specified..</param>
         /// <param name="attachmentName">WhatsApp only. Display name for a document sent via attachmentUrl with attachmentType: file (e.g. \&quot;Report.pdf\&quot;). Maps to the recipient&#39;s file name; without it WhatsApp derives the name from the URL and shows \&quot;Untitled\&quot;. Ignored for image/video/audio and for binary uploads (which use the uploaded file&#39;s name)..</param>
         /// <param name="voiceNote">WhatsApp only. When &#x60;true&#x60; on an audio attachment, the message is sent as a voice message (PTT) — the recipient sees the waveform + voice-note UI instead of a basic audio attachment. The audio file MUST be &#x60;.ogg&#x60; encoded with the OPUS codec (mono) per Meta&#39;s voice-message contract; other formats are rejected by WhatsApp. Ignored for non-audio attachments. .</param>
@@ -168,7 +190,7 @@ namespace Zernio.Model
         /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID..</param>
         /// <param name="location">location.</param>
         /// <param name="contacts">WhatsApp-only. Send one or more contact cards..</param>
-        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, string attachmentName = default, bool voiceNote = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default, SendInboxMessageRequestLocation location = default, List<SendInboxMessageRequestContactsInner> contacts = default)
+        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, CategoryEnum? category = default, AttachmentTypeEnum? attachmentType = default, string attachmentName = default, bool voiceNote = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default, SendInboxMessageRequestLocation location = default, List<SendInboxMessageRequestContactsInner> contacts = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -178,6 +200,7 @@ namespace Zernio.Model
             this.AccountId = accountId;
             this.Message = message;
             this.AttachmentUrl = attachmentUrl;
+            this.Category = category;
             this.AttachmentType = attachmentType;
             this.AttachmentName = attachmentName;
             this.VoiceNote = voiceNote;
@@ -291,6 +314,7 @@ namespace Zernio.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  AttachmentUrl: ").Append(AttachmentUrl).Append("\n");
+            sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  AttachmentType: ").Append(AttachmentType).Append("\n");
             sb.Append("  AttachmentName: ").Append(AttachmentName).Append("\n");
             sb.Append("  VoiceNote: ").Append(VoiceNote).Append("\n");

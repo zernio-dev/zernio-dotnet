@@ -34,6 +34,27 @@ namespace Zernio.Model
     public partial class CreateInboxConversationRequest : IValidatableObject
     {
         /// <summary>
+        /// WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+        /// </summary>
+        /// <value>WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CategoryEnum
+        {
+            /// <summary>
+            /// Enum Utility for value: utility
+            /// </summary>
+            [EnumMember(Value = "utility")]
+            Utility = 1
+        }
+
+
+        /// <summary>
+        /// WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.
+        /// </summary>
+        /// <value>WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests.</value>
+        [DataMember(Name = "category", EmitDefaultValue = false)]
+        public CategoryEnum? Category { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateInboxConversationRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -44,13 +65,14 @@ namespace Zernio.Model
         /// <param name="accountId">The social account ID to send from (required).</param>
         /// <param name="participantId">Recipient identifier. For X this is the numeric user ID; for WhatsApp, the recipient phone number in international format (digits, country code included). Provide either this or participantUsername..</param>
         /// <param name="participantUsername">Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId..</param>
-        /// <param name="message">Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required..</param>
+        /// <param name="message">Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required. Required when category is set (a Direct Send utility message is a text message)..</param>
         /// <param name="skipDmCheck">X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
-        /// <param name="templateName">WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp)..</param>
+        /// <param name="templateName">WhatsApp only. Name of the approved template to start the conversation with. Required for WhatsApp unless category is used instead (Direct Send). Cannot be combined with category..</param>
+        /// <param name="category">WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests..</param>
         /// <param name="templateLanguage">WhatsApp only. Template language code (e.g. en_US)..</param>
         /// <param name="templateParams">WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here (use headerMedia to override the header asset per send)..</param>
         /// <param name="headerMedia">headerMedia.</param>
-        public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false, string templateName = default, string templateLanguage = default, List<string> templateParams = default, CreateInboxConversationRequestHeaderMedia headerMedia = default)
+        public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false, string templateName = default, CategoryEnum? category = default, string templateLanguage = default, List<string> templateParams = default, CreateInboxConversationRequestHeaderMedia headerMedia = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -63,6 +85,7 @@ namespace Zernio.Model
             this.Message = message;
             this.SkipDmCheck = skipDmCheck;
             this.TemplateName = templateName;
+            this.Category = category;
             this.TemplateLanguage = templateLanguage;
             this.TemplateParams = templateParams;
             this.HeaderMedia = headerMedia;
@@ -90,9 +113,9 @@ namespace Zernio.Model
         public string ParticipantUsername { get; set; }
 
         /// <summary>
-        /// Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required.
+        /// Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required. Required when category is set (a Direct Send utility message is a text message).
         /// </summary>
-        /// <value>Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required.</value>
+        /// <value>Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required. Required when category is set (a Direct Send utility message is a text message).</value>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
@@ -104,9 +127,9 @@ namespace Zernio.Model
         public bool SkipDmCheck { get; set; }
 
         /// <summary>
-        /// WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp).
+        /// WhatsApp only. Name of the approved template to start the conversation with. Required for WhatsApp unless category is used instead (Direct Send). Cannot be combined with category.
         /// </summary>
-        /// <value>WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp).</value>
+        /// <value>WhatsApp only. Name of the approved template to start the conversation with. Required for WhatsApp unless category is used instead (Direct Send). Cannot be combined with category.</value>
         [DataMember(Name = "templateName", EmitDefaultValue = false)]
         public string TemplateName { get; set; }
 
@@ -144,6 +167,7 @@ namespace Zernio.Model
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  SkipDmCheck: ").Append(SkipDmCheck).Append("\n");
             sb.Append("  TemplateName: ").Append(TemplateName).Append("\n");
+            sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  TemplateLanguage: ").Append(TemplateLanguage).Append("\n");
             sb.Append("  TemplateParams: ").Append(TemplateParams).Append("\n");
             sb.Append("  HeaderMedia: ").Append(HeaderMedia).Append("\n");
