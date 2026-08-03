@@ -86,7 +86,13 @@ namespace Zernio.Model
             /// Enum AU for value: AU
             /// </summary>
             [EnumMember(Value = "AU")]
-            AU = 8
+            AU = 8,
+
+            /// <summary>
+            /// Enum BR for value: BR
+            /// </summary>
+            [EnumMember(Value = "BR")]
+            BR = 9
         }
 
 

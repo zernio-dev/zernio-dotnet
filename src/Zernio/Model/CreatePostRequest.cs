@@ -49,8 +49,8 @@ namespace Zernio.Model
         /// <param name="mentions">Stored for reference only. This field does NOT automatically create @mentions when publishing. For LinkedIn @mentions, use the /v1/accounts/{accountId}/linkedin-mentions endpoint to resolve profile URLs to URNs, then embed the returned mentionFormat directly in the post content field..</param>
         /// <param name="crosspostingEnabled">crosspostingEnabled (default to true).</param>
         /// <param name="metadata">metadata.</param>
-        /// <param name="tiktokSettings">Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
-        /// <param name="facebookSettings">Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence..</param>
+        /// <param name="tiktokSettings">Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
+        /// <param name="facebookSettings">Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence..</param>
         /// <param name="recycling">recycling.</param>
         /// <param name="queuedFromProfile">Profile ID to schedule via queue. When provided without scheduledFor, the post is auto-assigned to the next available slot. Do not call /v1/queue/next-slot and use that time in scheduledFor, as that bypasses queue locking..</param>
         /// <param name="queueId">Specific queue ID to use when scheduling via queue. Only used when queuedFromProfile is also provided. If omitted, uses the profile&#39;s default queue. .</param>
@@ -161,16 +161,16 @@ namespace Zernio.Model
         public Dictionary<string, Object> Metadata { get; set; }
 
         /// <summary>
-        /// Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+        /// Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
         /// </summary>
-        /// <value>Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.</value>
+        /// <value>Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.</value>
         [DataMember(Name = "tiktokSettings", EmitDefaultValue = false)]
         public TikTokPlatformData TiktokSettings { get; set; }
 
         /// <summary>
-        /// Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.
+        /// Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.
         /// </summary>
-        /// <value>Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.</value>
+        /// <value>Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.</value>
         [DataMember(Name = "facebookSettings", EmitDefaultValue = false)]
         public FacebookSettings FacebookSettings { get; set; }
 

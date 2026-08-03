@@ -83,8 +83,8 @@ namespace Zernio.Model
         /// <param name="metadata">metadata.</param>
         /// <param name="queuedFromProfile">Profile ID to schedule via queue..</param>
         /// <param name="queueId">Specific queue ID to use when scheduling via queue..</param>
-        /// <param name="tiktokSettings">Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
-        /// <param name="facebookSettings">Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence..</param>
+        /// <param name="tiktokSettings">Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array..</param>
+        /// <param name="facebookSettings">Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array..</param>
         /// <param name="recycling">recycling.</param>
         public UpdatePostRequest(string title = default, string content = default, List<MediaItem> mediaItems = default, List<UpdatePostRequestPlatformsInner> platforms = default, DateTime scheduledFor = default, bool publishNow = false, bool isDraft = default, string timezone = default, VisibilityEnum? visibility = default, List<string> tags = default, List<string> hashtags = default, List<string> mentions = default, bool crosspostingEnabled = default, Dictionary<string, Object> metadata = default, string queuedFromProfile = default, string queueId = default, TikTokPlatformData tiktokSettings = default, FacebookSettings facebookSettings = default, RecyclingConfig recycling = default)
         {
@@ -205,16 +205,16 @@ namespace Zernio.Model
         public string QueueId { get; set; }
 
         /// <summary>
-        /// Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+        /// Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array.
         /// </summary>
-        /// <value>Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.</value>
+        /// <value>Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array.</value>
         [DataMember(Name = "tiktokSettings", EmitDefaultValue = false)]
         public TikTokPlatformData TiktokSettings { get; set; }
 
         /// <summary>
-        /// Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.
+        /// Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array.
         /// </summary>
-        /// <value>Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence.</value>
+        /// <value>Root-level Facebook settings applied to the Facebook platforms sent in the same request. Merged into each platform&#39;s platformSpecificData.facebookSettings, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array.</value>
         [DataMember(Name = "facebookSettings", EmitDefaultValue = false)]
         public FacebookSettings FacebookSettings { get; set; }
 
