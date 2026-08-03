@@ -113,7 +113,8 @@ namespace Zernio.Model
         /// <param name="updatedTime">updatedTime.</param>
         /// <param name="participants">participants.</param>
         /// <param name="instagramProfile">instagramProfile.</param>
-        public GetInboxConversation200ResponseData(string id = default, string accountId = default, string accountUsername = default, string platform = default, StatusEnum? status = default, string participantName = default, string participantId = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime lastMessageAt = default, DateTime updatedTime = default, List<UpdateFacebookPage200ResponseSelectedPage> participants = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default)
+        /// <param name="metadata">metadata.</param>
+        public GetInboxConversation200ResponseData(string id = default, string accountId = default, string accountUsername = default, string platform = default, StatusEnum? status = default, string participantName = default, string participantId = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime lastMessageAt = default, DateTime updatedTime = default, List<UpdateFacebookPage200ResponseSelectedPage> participants = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default, GetInboxConversation200ResponseDataMetadata metadata = default)
         {
             this.Id = id;
             this.AccountId = accountId;
@@ -128,6 +129,7 @@ namespace Zernio.Model
             this.UpdatedTime = updatedTime;
             this.Participants = participants;
             this.InstagramProfile = instagramProfile;
+            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -197,6 +199,12 @@ namespace Zernio.Model
         public ListInboxConversations200ResponseDataInnerInstagramProfile InstagramProfile { get; set; }
 
         /// <summary>
+        /// Gets or Sets Metadata
+        /// </summary>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public GetInboxConversation200ResponseDataMetadata Metadata { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -217,6 +225,7 @@ namespace Zernio.Model
             sb.Append("  UpdatedTime: ").Append(UpdatedTime).Append("\n");
             sb.Append("  Participants: ").Append(Participants).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

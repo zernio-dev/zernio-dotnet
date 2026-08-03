@@ -114,7 +114,8 @@ namespace Zernio.Model
         /// <param name="unreadCount">Number of unread messages.</param>
         /// <param name="url">Direct link to open the conversation on the platform (if available).</param>
         /// <param name="instagramProfile">instagramProfile.</param>
-        public ListInboxConversations200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string participantId = default, string participantName = default, string participantPicture = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime updatedTime = default, StatusEnum? status = default, int? unreadCount = default, string url = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default)
+        /// <param name="metadata">metadata.</param>
+        public ListInboxConversations200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string participantId = default, string participantName = default, string participantPicture = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime updatedTime = default, StatusEnum? status = default, int? unreadCount = default, string url = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default, ListInboxConversations200ResponseDataInnerMetadata metadata = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -130,6 +131,7 @@ namespace Zernio.Model
             this.UnreadCount = unreadCount;
             this.Url = url;
             this.InstagramProfile = instagramProfile;
+            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -208,6 +210,12 @@ namespace Zernio.Model
         public ListInboxConversations200ResponseDataInnerInstagramProfile InstagramProfile { get; set; }
 
         /// <summary>
+        /// Gets or Sets Metadata
+        /// </summary>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public ListInboxConversations200ResponseDataInnerMetadata Metadata { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -229,6 +237,7 @@ namespace Zernio.Model
             sb.Append("  UnreadCount: ").Append(UnreadCount).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

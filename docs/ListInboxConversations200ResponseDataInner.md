@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **UnreadCount** | **int?** | Number of unread messages | [optional] 
 **Url** | **string** | Direct link to open the conversation on the platform (if available) | [optional] 
 **InstagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  | [optional] 
+**Metadata** | [**ListInboxConversations200ResponseDataInnerMetadata**](ListInboxConversations200ResponseDataInnerMetadata.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
