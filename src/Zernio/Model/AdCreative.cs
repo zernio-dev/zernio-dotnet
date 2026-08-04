@@ -86,7 +86,7 @@ namespace Zernio.Model
         /// Primary thumbnail/image URL
         /// </summary>
         /// <value>Primary thumbnail/image URL</value>
-        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = true)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
