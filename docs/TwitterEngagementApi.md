@@ -6,6 +6,7 @@ All URIs are relative to *https://zernio.com/api*
 |--------|--------------|-------------|
 | [**BookmarkPost**](TwitterEngagementApi.md#bookmarkpost) | **POST** /v1/twitter/bookmark | Bookmark a tweet |
 | [**FollowUser**](TwitterEngagementApi.md#followuser) | **POST** /v1/twitter/follow | Follow a user |
+| [**GetTweet**](TwitterEngagementApi.md#gettweet) | **GET** /v1/twitter/tweet | Look up a tweet |
 | [**RemoveBookmark**](TwitterEngagementApi.md#removebookmark) | **DELETE** /v1/twitter/bookmark | Remove bookmark |
 | [**RetweetPost**](TwitterEngagementApi.md#retweetpost) | **POST** /v1/twitter/retweet | Retweet a post |
 | [**SearchTweets**](TwitterEngagementApi.md#searchtweets) | **GET** /v1/twitter/search | Search recent tweets |
@@ -211,6 +212,112 @@ catch (ApiException e)
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettweet"></a>
+# **GetTweet**
+> GetTweet200Response GetTweet (string accountId, string id)
+
+Look up a tweet
+
+Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike `/v1/twitter/search` this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetTweetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TwitterEngagementApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The social account ID whose X token is used for the lookup
+            var id = "id_example";  // string | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+
+            try
+            {
+                // Look up a tweet
+                GetTweet200Response result = apiInstance.GetTweet(accountId, id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TwitterEngagementApi.GetTweet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTweetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Look up a tweet
+    ApiResponse<GetTweet200Response> response = apiInstance.GetTweetWithHttpInfo(accountId, id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TwitterEngagementApi.GetTweetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The social account ID whose X token is used for the lookup |  |
+| **id** | **string** | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) |  |
+
+### Return type
+
+[**GetTweet200Response**](GetTweet200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The resolved tweet |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | X API spend cap reached for this billing period |  -  |
+| **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
+| **404** | Account not found, or the tweet was deleted or never existed |  -  |
+| **429** | X rate limit exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

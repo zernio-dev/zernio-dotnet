@@ -79,6 +79,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetTweet
+        /// </summary>
+        [Fact]
+        public void GetTweetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string id = null;
+            //var response = instance.GetTweet(accountId, id);
+            //Assert.IsType<GetTweet200Response>(response);
+        }
+
+        /// <summary>
         /// Test RemoveBookmark
         /// </summary>
         [Fact]

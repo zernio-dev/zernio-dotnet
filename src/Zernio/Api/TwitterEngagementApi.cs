@@ -71,6 +71,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of FollowUser200Response</returns>
         ApiResponse<FollowUser200Response> FollowUserWithHttpInfo(FollowUserRequest followUserRequest);
         /// <summary>
+        /// Look up a tweet
+        /// </summary>
+        /// <remarks>
+        /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <returns>GetTweet200Response</returns>
+        GetTweet200Response GetTweet(string accountId, string id);
+
+        /// <summary>
+        /// Look up a tweet
+        /// </summary>
+        /// <remarks>
+        /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <returns>ApiResponse of GetTweet200Response</returns>
+        ApiResponse<GetTweet200Response> GetTweetWithHttpInfo(string accountId, string id);
+        /// <summary>
         /// Remove bookmark
         /// </summary>
         /// <remarks>
@@ -252,6 +275,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FollowUser200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<FollowUser200Response>> FollowUserWithHttpInfoAsync(FollowUserRequest followUserRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Look up a tweet
+        /// </summary>
+        /// <remarks>
+        /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetTweet200Response</returns>
+        System.Threading.Tasks.Task<GetTweet200Response> GetTweetAsync(string accountId, string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Look up a tweet
+        /// </summary>
+        /// <remarks>
+        /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetTweet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetTweet200Response>> GetTweetWithHttpInfoAsync(string accountId, string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Remove bookmark
         /// </summary>
@@ -854,6 +902,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("FollowUser", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <returns>GetTweet200Response</returns>
+        public GetTweet200Response GetTweet(string accountId, string id)
+        {
+            Zernio.Client.ApiResponse<GetTweet200Response> localVarResponse = GetTweetWithHttpInfo(accountId, id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <returns>ApiResponse of GetTweet200Response</returns>
+        public Zernio.Client.ApiResponse<GetTweet200Response> GetTweetWithHttpInfo(string accountId, string id)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TwitterEngagementApi->GetTweet");
+
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling TwitterEngagementApi->GetTweet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "id", id));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetTweet200Response>("/v1/twitter/tweet", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTweet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetTweet200Response</returns>
+        public async System.Threading.Tasks.Task<GetTweet200Response> GetTweetAsync(string accountId, string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetTweet200Response> localVarResponse = await GetTweetWithHttpInfoAsync(accountId, id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetTweet200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTweet200Response>> GetTweetWithHttpInfoAsync(string accountId, string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TwitterEngagementApi->GetTweet");
+
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling TwitterEngagementApi->GetTweet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "id", id));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTweet200Response>("/v1/twitter/tweet", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTweet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

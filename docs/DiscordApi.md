@@ -1098,7 +1098,7 @@ catch (ApiException e)
 
 Get a Discord guild member
 
-Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+Fetch a single guild member by Discord user id.  Cheaper than paginating the full member listing when you already know who you are looking for. 
 
 ### Example
 ```csharp
@@ -1406,7 +1406,7 @@ catch (ApiException e)
 
 List Discord guild members
 
-Cursor-paginated list of guild members. Returns Discord's raw member objects so callers can build community-ops automation (e.g. \"add role to all members joined in the last 7 days\") on the actual platform shape.  **Important:** this endpoint requires the privileged \"Server Members Intent\" on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass `after` = the last `user.id` from the previous page. Omit on the first call. Response includes a `nextCursor` and `hasMore` flag so callers don't need to know Discord's pagination shape. 
+Cursor-paginated list of guild members. Returns Discord's raw member objects so callers can build community-ops automation (e.g. \"add role to all members joined in the last 7 days\") on the actual platform shape.  Pagination: pass `after` = the last `user.id` from the previous page. Omit on the first call. Response includes a `nextCursor` and `hasMore` flag so callers don't need to know Discord's pagination shape. 
 
 ### Example
 ```csharp
@@ -1503,7 +1503,7 @@ catch (ApiException e)
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Server Members Intent is not enabled on the Discord application. |  -  |
+| **403** | Discord denied access to the guild members (the bot is no longer in the guild). |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2044,7 +2044,7 @@ catch (ApiException e)
 
 Search Discord guild members
 
-Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Cheaper than paginating the full member listing when you already know who you are looking for. 
 
 ### Example
 ```csharp

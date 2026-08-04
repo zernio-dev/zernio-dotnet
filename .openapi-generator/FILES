@@ -684,6 +684,8 @@ docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
+docs/GetTweet200Response.md
+docs/GetTweet200ResponseTweet.md
 docs/GetUsage200Response.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
@@ -2338,6 +2340,8 @@ src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTag200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseTests.cs
+src/Zernio.Test/Model/GetTweet200ResponseTests.cs
+src/Zernio.Test/Model/GetTweet200ResponseTweetTests.cs
 src/Zernio.Test/Model/GetUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
@@ -3975,6 +3979,8 @@ src/Zernio/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.cs
 src/Zernio/Model/GetTrackingTag200Response.cs
 src/Zernio/Model/GetTrackingTagStats200Response.cs
 src/Zernio/Model/GetTrackingTagStats200ResponseStats.cs
+src/Zernio/Model/GetTweet200Response.cs
+src/Zernio/Model/GetTweet200ResponseTweet.cs
 src/Zernio/Model/GetUsage200Response.cs
 src/Zernio/Model/GetUser200Response.cs
 src/Zernio/Model/GetUser200ResponseUser.cs

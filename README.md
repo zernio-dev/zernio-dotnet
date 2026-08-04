@@ -535,6 +535,7 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**UpdateTrackingTag**](docs/TrackingTagsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
 *TwitterEngagementApi* | [**BookmarkPost**](docs/TwitterEngagementApi.md#bookmarkpost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**FollowUser**](docs/TwitterEngagementApi.md#followuser) | **POST** /v1/twitter/follow | Follow a user
+*TwitterEngagementApi* | [**GetTweet**](docs/TwitterEngagementApi.md#gettweet) | **GET** /v1/twitter/tweet | Look up a tweet
 *TwitterEngagementApi* | [**RemoveBookmark**](docs/TwitterEngagementApi.md#removebookmark) | **DELETE** /v1/twitter/bookmark | Remove bookmark
 *TwitterEngagementApi* | [**RetweetPost**](docs/TwitterEngagementApi.md#retweetpost) | **POST** /v1/twitter/retweet | Retweet a post
 *TwitterEngagementApi* | [**SearchTweets**](docs/TwitterEngagementApi.md#searchtweets) | **GET** /v1/twitter/search | Search recent tweets
@@ -1326,6 +1327,8 @@ Class | Method | HTTP request | Description
  - [Model.GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [Model.GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [Model.GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
+ - [Model.GetTweet200Response](docs/GetTweet200Response.md)
+ - [Model.GetTweet200ResponseTweet](docs/GetTweet200ResponseTweet.md)
  - [Model.GetUsage200Response](docs/GetUsage200Response.md)
  - [Model.GetUser200Response](docs/GetUser200Response.md)
  - [Model.GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
