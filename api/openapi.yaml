@@ -7344,7 +7344,7 @@ paths:
             application/json:
               example:
                 message: Facebook page connected successfully
-                redirect_url: https://yourdomain.com/integrations/callback?connected=facebook&profileId=507f1f77bcf86cd799439011&username=My+Brand+Page
+                redirect_url: https://yourdomain.com/integrations/callback?connected=facebook&profileId=507f1f77bcf86cd799439011&accountId=64e1f0a9e2b5af0012ab34cd&username=My+Brand+Page
                 account:
                   accountId: 64e1f0a9e2b5af0012ab34cd
                   platform: facebook
@@ -7493,7 +7493,7 @@ paths:
             application/json:
               example:
                 message: Google Business location connected successfully
-                redirect_url: https://yourdomain.com/integrations/callback?connected=googlebusiness&profileId=507f1f77bcf86cd799439011&username=My+Coffee+Shop
+                redirect_url: https://yourdomain.com/integrations/callback?connected=googlebusiness&profileId=507f1f77bcf86cd799439011&accountId=64e1f0a9e2b5af0012ab34cd&username=My+Coffee+Shop
                 account:
                   accountId: 64e1f0a9e2b5af0012ab34cd
                   platform: googlebusiness
@@ -9576,7 +9576,7 @@ paths:
             application/json:
               example:
                 message: Pinterest connected successfully with default board
-                redirect_url: https://yourdomain.com/integrations/callback?connected=pinterest&profileId=507f1f77bcf86cd799439011&board=Marketing+Ideas
+                redirect_url: https://yourdomain.com/integrations/callback?connected=pinterest&profileId=507f1f77bcf86cd799439011&accountId=64e1f0a9e2b5af0012ab34cd&board=Marketing+Ideas
                 account:
                   accountId: 64e1f0a9e2b5af0012ab34cd
                   platform: pinterest
@@ -9715,7 +9715,7 @@ paths:
             application/json:
               example:
                 message: Snapchat connected successfully with public profile
-                redirect_url: https://yourdomain.com/integrations/callback?connected=snapchat&profileId=507f1f77bcf86cd799439011&publicProfile=My+Brand
+                redirect_url: https://yourdomain.com/integrations/callback?connected=snapchat&profileId=507f1f77bcf86cd799439011&accountId=64e1f0a9e2b5af0012ab34cd&publicProfile=My+Brand
                 account:
                   accountId: 64e1f0a9e2b5af0012ab34cd
                   platform: snapchat
