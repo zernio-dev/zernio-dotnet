@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ParameterFormat'
+        /// </summary>
+        [Fact]
+        public void ParameterFormatTest()
+        {
+            // TODO unit test for the property 'ParameterFormat'
+        }
+
+        /// <summary>
         /// Test the property 'Components'
         /// </summary>
         [Fact]

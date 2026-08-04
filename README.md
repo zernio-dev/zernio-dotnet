@@ -2204,6 +2204,7 @@ Class | Method | HTTP request | Description
  - [Model.WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
  - [Model.WhatsAppLimitedTimeOfferComponent](docs/WhatsAppLimitedTimeOfferComponent.md)
  - [Model.WhatsAppLimitedTimeOfferComponentLimitedTimeOffer](docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md)
+ - [Model.WhatsAppNamedParamExample](docs/WhatsAppNamedParamExample.md)
  - [Model.WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [Model.WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
  - [Model.WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)

@@ -37,9 +37,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WhatsAppBodyComponentExample" /> class.
         /// </summary>
         /// <param name="bodyText">Sample values for body variables (array of arrays).</param>
-        public WhatsAppBodyComponentExample(List<List<string>> bodyText = default)
+        /// <param name="bodyTextNamedParams">Sample values for NAMED body variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED)..</param>
+        public WhatsAppBodyComponentExample(List<List<string>> bodyText = default, List<WhatsAppNamedParamExample> bodyTextNamedParams = default)
         {
             this.BodyText = bodyText;
+            this.BodyTextNamedParams = bodyTextNamedParams;
         }
 
         /// <summary>
@@ -50,6 +52,13 @@ namespace Zernio.Model
         public List<List<string>> BodyText { get; set; }
 
         /// <summary>
+        /// Sample values for NAMED body variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED).
+        /// </summary>
+        /// <value>Sample values for NAMED body variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED).</value>
+        [DataMember(Name = "body_text_named_params", EmitDefaultValue = false)]
+        public List<WhatsAppNamedParamExample> BodyTextNamedParams { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -58,6 +67,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WhatsAppBodyComponentExample {\n");
             sb.Append("  BodyText: ").Append(BodyText).Append("\n");
+            sb.Append("  BodyTextNamedParams: ").Append(BodyTextNamedParams).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

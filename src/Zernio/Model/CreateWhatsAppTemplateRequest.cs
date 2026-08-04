@@ -67,6 +67,45 @@ namespace Zernio.Model
         [DataMember(Name = "category", IsRequired = true, EmitDefaultValue = true)]
         public CategoryEnum Category { get; set; }
         /// <summary>
+        /// Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present.
+        /// </summary>
+        /// <value>Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ParameterFormatEnum
+        {
+            /// <summary>
+            /// Enum POSITIONAL for value: POSITIONAL
+            /// </summary>
+            [EnumMember(Value = "POSITIONAL")]
+            POSITIONAL = 1,
+
+            /// <summary>
+            /// Enum NAMED for value: NAMED
+            /// </summary>
+            [EnumMember(Value = "NAMED")]
+            NAMED = 2,
+
+            /// <summary>
+            /// Enum Positional for value: positional
+            /// </summary>
+            [EnumMember(Value = "positional")]
+            Positional = 3,
+
+            /// <summary>
+            /// Enum Named for value: named
+            /// </summary>
+            [EnumMember(Value = "named")]
+            Named = 4
+        }
+
+
+        /// <summary>
+        /// Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present.
+        /// </summary>
+        /// <value>Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present.</value>
+        [DataMember(Name = "parameter_format", EmitDefaultValue = false)]
+        public ParameterFormatEnum? ParameterFormat { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateWhatsAppTemplateRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -78,11 +117,12 @@ namespace Zernio.Model
         /// <param name="name">Template name (lowercase, letters/numbers/underscores, must start with a letter) (required).</param>
         /// <param name="category">Template category (required).</param>
         /// <param name="language">Template language code (e.g., en_US) (required).</param>
+        /// <param name="parameterFormat">Variable style: POSITIONAL ({{1}}, the default) or NAMED ({{customer_name}}). Named templates provide examples via body_text_named_params / header_text_named_params. Inferred as NAMED when omitted but a named-params example is present..</param>
         /// <param name="components">Template components (header, body, footer, buttons, carousel, limited_time_offer). Required for custom templates, omit when using library_template_name..</param>
         /// <param name="libraryTemplateName">Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit components when using this field. .</param>
         /// <param name="libraryTemplateBodyInputs">Optional body customizations for library templates. Available options depend on the template (e.g., add_contact_number, add_learn_more_link, add_security_recommendation, add_track_package_link, code_expiration_minutes). .</param>
         /// <param name="libraryTemplateButtonInputs">Optional button customizations for library templates. Each item specifies button type and configuration (e.g., URL, phone number, quick reply). .</param>
-        public CreateWhatsAppTemplateRequest(string accountId = default, string name = default, CategoryEnum category = default, string language = default, List<WhatsAppTemplateComponent> components = default, string libraryTemplateName = default, Object libraryTemplateBodyInputs = default, List<CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner> libraryTemplateButtonInputs = default)
+        public CreateWhatsAppTemplateRequest(string accountId = default, string name = default, CategoryEnum category = default, string language = default, ParameterFormatEnum? parameterFormat = default, List<WhatsAppTemplateComponent> components = default, string libraryTemplateName = default, Object libraryTemplateBodyInputs = default, List<CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner> libraryTemplateButtonInputs = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -103,6 +143,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("language is a required property for CreateWhatsAppTemplateRequest and cannot be null");
             }
             this.Language = language;
+            this.ParameterFormat = parameterFormat;
             this.Components = components;
             this.LibraryTemplateName = libraryTemplateName;
             this.LibraryTemplateBodyInputs = libraryTemplateBodyInputs;
@@ -170,6 +211,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  ParameterFormat: ").Append(ParameterFormat).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
             sb.Append("  LibraryTemplateName: ").Append(LibraryTemplateName).Append("\n");
             sb.Append("  LibraryTemplateBodyInputs: ").Append(LibraryTemplateBodyInputs).Append("\n");

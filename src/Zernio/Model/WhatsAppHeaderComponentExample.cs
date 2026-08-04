@@ -37,10 +37,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WhatsAppHeaderComponentExample" /> class.
         /// </summary>
         /// <param name="headerText">Sample values for header text variables.</param>
+        /// <param name="headerTextNamedParams">Sample values for NAMED header variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED)..</param>
         /// <param name="headerHandle">When the header format is a media type (image, video, gif, document), provide a public URL here. Zernio will download and upload it to WhatsApp on your behalf, replacing it with the internal file handle before creating the template..</param>
-        public WhatsAppHeaderComponentExample(List<string> headerText = default, List<string> headerHandle = default)
+        public WhatsAppHeaderComponentExample(List<string> headerText = default, List<WhatsAppNamedParamExample> headerTextNamedParams = default, List<string> headerHandle = default)
         {
             this.HeaderText = headerText;
+            this.HeaderTextNamedParams = headerTextNamedParams;
             this.HeaderHandle = headerHandle;
         }
 
@@ -50,6 +52,13 @@ namespace Zernio.Model
         /// <value>Sample values for header text variables</value>
         [DataMember(Name = "header_text", EmitDefaultValue = false)]
         public List<string> HeaderText { get; set; }
+
+        /// <summary>
+        /// Sample values for NAMED header variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED).
+        /// </summary>
+        /// <value>Sample values for NAMED header variables (templates using {{customer_name}}-style tokens with parameter_format: NAMED).</value>
+        [DataMember(Name = "header_text_named_params", EmitDefaultValue = false)]
+        public List<WhatsAppNamedParamExample> HeaderTextNamedParams { get; set; }
 
         /// <summary>
         /// When the header format is a media type (image, video, gif, document), provide a public URL here. Zernio will download and upload it to WhatsApp on your behalf, replacing it with the internal file handle before creating the template.
@@ -67,6 +76,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WhatsAppHeaderComponentExample {\n");
             sb.Append("  HeaderText: ").Append(HeaderText).Append("\n");
+            sb.Append("  HeaderTextNamedParams: ").Append(HeaderTextNamedParams).Append("\n");
             sb.Append("  HeaderHandle: ").Append(HeaderHandle).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

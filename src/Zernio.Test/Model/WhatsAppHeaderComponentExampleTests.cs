@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'HeaderTextNamedParams'
+        /// </summary>
+        [Fact]
+        public void HeaderTextNamedParamsTest()
+        {
+            // TODO unit test for the property 'HeaderTextNamedParams'
+        }
+
+        /// <summary>
         /// Test the property 'HeaderHandle'
         /// </summary>
         [Fact]

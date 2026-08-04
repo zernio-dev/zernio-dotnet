@@ -1593,6 +1593,7 @@ docs/WhatsAppHeaderComponent.md
 docs/WhatsAppHeaderComponentExample.md
 docs/WhatsAppLimitedTimeOfferComponent.md
 docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md
+docs/WhatsAppNamedParamExample.md
 docs/WhatsAppPhoneNumbersApi.md
 docs/WhatsAppSandboxApi.md
 docs/WhatsAppSandboxSession.md
@@ -3215,6 +3216,7 @@ src/Zernio.Test/Model/WhatsAppHeaderComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentTests.cs
 src/Zernio.Test/Model/WhatsAppLimitedTimeOfferComponentLimitedTimeOfferTests.cs
 src/Zernio.Test/Model/WhatsAppLimitedTimeOfferComponentTests.cs
+src/Zernio.Test/Model/WhatsAppNamedParamExampleTests.cs
 src/Zernio.Test/Model/WhatsAppSandboxSessionTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateButtonTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateComponentTests.cs
@@ -4851,6 +4853,7 @@ src/Zernio/Model/WhatsAppHeaderComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponentExample.cs
 src/Zernio/Model/WhatsAppLimitedTimeOfferComponent.cs
 src/Zernio/Model/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.cs
+src/Zernio/Model/WhatsAppNamedParamExample.cs
 src/Zernio/Model/WhatsAppSandboxSession.cs
 src/Zernio/Model/WhatsAppTemplateButton.cs
 src/Zernio/Model/WhatsAppTemplateComponent.cs
