@@ -288,6 +288,8 @@ docs/CreateTestLeadRequest.md
 docs/CreateTestLeadRequestFieldDataInner.md
 docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
+docs/CreateValueRuleSet201Response.md
+docs/CreateValueRuleSetRequest.md
 docs/CreateVerificationRequest.md
 docs/CreateVoiceCall200Response.md
 docs/CreateVoiceCallRequest.md
@@ -336,6 +338,7 @@ docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
+docs/DeleteValueRuleSet200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
@@ -689,6 +692,7 @@ docs/GetTweet200ResponseTweet.md
 docs/GetUsage200Response.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
+docs/GetValueRuleSet200Response.md
 docs/GetVoiceCall200Response.md
 docs/GetVoiceCallEstimate200Response.md
 docs/GetVoiceCallEstimate200ResponseBreakdown.md
@@ -950,6 +954,8 @@ docs/ListTrackingTagSharedAccounts200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
+docs/ListValueRuleSets200Response.md
+docs/ListValueRuleSets200ResponsePaging.md
 docs/ListVoiceCalls200Response.md
 docs/ListWhatsAppCalls200Response.md
 docs/ListWhatsAppCalls200ResponseCallsInner.md
@@ -1421,6 +1427,8 @@ docs/UpdateSequenceRequestStepsInner.md
 docs/UpdateSequenceRequestStepsInnerTemplate.md
 docs/UpdateSlackSettingsRequest.md
 docs/UpdateTrackingTagRequest.md
+docs/UpdateValueRuleSet200Response.md
+docs/UpdateValueRuleSetRequest.md
 docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
 docs/UpdateWhatsAppBusinessProfileRequest.md
@@ -1498,6 +1506,9 @@ docs/ValidateSubreddit200Response.md
 docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
 docs/ValidateSubreddit200ResponseOneOfSubreddit.md
+docs/ValueRule.md
+docs/ValueRuleCriterion.md
+docs/ValueRuleSet.md
 docs/Verification.md
 docs/VerifyApi.md
 docs/VerifySmsRegistrationOtp200Response.md
@@ -1954,6 +1965,8 @@ src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestTests.cs
 src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
 src/Zernio.Test/Model/CreateTrackingTagRequestTests.cs
+src/Zernio.Test/Model/CreateValueRuleSet201ResponseTests.cs
+src/Zernio.Test/Model/CreateValueRuleSetRequestTests.cs
 src/Zernio.Test/Model/CreateVerificationRequestTests.cs
 src/Zernio.Test/Model/CreateVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/CreateVoiceCallRequestTests.cs
@@ -2001,6 +2014,7 @@ src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
+src/Zernio.Test/Model/DeleteValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/DialVoiceWebCall200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCallRequestTests.cs
@@ -2345,6 +2359,7 @@ src/Zernio.Test/Model/GetTweet200ResponseTweetTests.cs
 src/Zernio.Test/Model/GetUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
+src/Zernio.Test/Model/GetValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/GetVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseBreakdownTests.cs
 src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseTests.cs
@@ -2601,6 +2616,8 @@ src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseUsersInnerTests.cs
+src/Zernio.Test/Model/ListValueRuleSets200ResponsePagingTests.cs
+src/Zernio.Test/Model/ListValueRuleSets200ResponseTests.cs
 src/Zernio.Test/Model/ListVoiceCalls200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppCalls200ResponseCallsInnerBillingTests.cs
 src/Zernio.Test/Model/ListWhatsAppCalls200ResponseCallsInnerTests.cs
@@ -3056,6 +3073,8 @@ src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestTests.cs
 src/Zernio.Test/Model/UpdateSlackSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingTagRequestTests.cs
+src/Zernio.Test/Model/UpdateValueRuleSet200ResponseTests.cs
+src/Zernio.Test/Model/UpdateValueRuleSetRequestTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppBusinessProfileRequestTests.cs
@@ -3130,6 +3149,9 @@ src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfSubredditTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseTests.cs
+src/Zernio.Test/Model/ValueRuleCriterionTests.cs
+src/Zernio.Test/Model/ValueRuleSetTests.cs
+src/Zernio.Test/Model/ValueRuleTests.cs
 src/Zernio.Test/Model/VerificationTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
@@ -3593,6 +3615,8 @@ src/Zernio/Model/CreateTestLeadRequest.cs
 src/Zernio/Model/CreateTestLeadRequestFieldDataInner.cs
 src/Zernio/Model/CreateTrackingTag201Response.cs
 src/Zernio/Model/CreateTrackingTagRequest.cs
+src/Zernio/Model/CreateValueRuleSet201Response.cs
+src/Zernio/Model/CreateValueRuleSetRequest.cs
 src/Zernio/Model/CreateVerificationRequest.cs
 src/Zernio/Model/CreateVoiceCall200Response.cs
 src/Zernio/Model/CreateVoiceCallRequest.cs
@@ -3640,6 +3664,7 @@ src/Zernio/Model/DeleteInboxComment200Response.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
+src/Zernio/Model/DeleteValueRuleSet200Response.cs
 src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/DialVoiceWebCall200Response.cs
 src/Zernio/Model/DialVoiceWebCallRequest.cs
@@ -3984,6 +4009,7 @@ src/Zernio/Model/GetTweet200ResponseTweet.cs
 src/Zernio/Model/GetUsage200Response.cs
 src/Zernio/Model/GetUser200Response.cs
 src/Zernio/Model/GetUser200ResponseUser.cs
+src/Zernio/Model/GetValueRuleSet200Response.cs
 src/Zernio/Model/GetVoiceCall200Response.cs
 src/Zernio/Model/GetVoiceCallEstimate200Response.cs
 src/Zernio/Model/GetVoiceCallEstimate200ResponseBreakdown.cs
@@ -4240,6 +4266,8 @@ src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
 src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
 src/Zernio/Model/ListUsers200ResponseUsersInner.cs
+src/Zernio/Model/ListValueRuleSets200Response.cs
+src/Zernio/Model/ListValueRuleSets200ResponsePaging.cs
 src/Zernio/Model/ListVoiceCalls200Response.cs
 src/Zernio/Model/ListWhatsAppCalls200Response.cs
 src/Zernio/Model/ListWhatsAppCalls200ResponseCallsInner.cs
@@ -4695,6 +4723,8 @@ src/Zernio/Model/UpdateSequenceRequestStepsInner.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/UpdateSlackSettingsRequest.cs
 src/Zernio/Model/UpdateTrackingTagRequest.cs
+src/Zernio/Model/UpdateValueRuleSet200Response.cs
+src/Zernio/Model/UpdateValueRuleSetRequest.cs
 src/Zernio/Model/UpdateWebhookSettings200Response.cs
 src/Zernio/Model/UpdateWebhookSettingsRequest.cs
 src/Zernio/Model/UpdateWhatsAppBusinessProfileRequest.cs
@@ -4769,6 +4799,9 @@ src/Zernio/Model/ValidateSubreddit200Response.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf1.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOfSubreddit.cs
+src/Zernio/Model/ValueRule.cs
+src/Zernio/Model/ValueRuleCriterion.cs
+src/Zernio/Model/ValueRuleSet.cs
 src/Zernio/Model/Verification.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs

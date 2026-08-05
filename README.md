@@ -162,18 +162,23 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**MoveAccountToProfile**](docs/AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**UpdateSlackSettings**](docs/AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AdAccountsApi* | [**CreateValueRuleSet**](docs/AdAccountsApi.md#createvalueruleset) | **POST** /v1/ads/value-rule-sets | Create a value rule set
+*AdAccountsApi* | [**DeleteValueRuleSet**](docs/AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**GetAdAccountFinance**](docs/AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**GetAdComments**](docs/AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdAccountsApi* | [**GetAdsActivityLog**](docs/AdAccountsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log
 *AdAccountsApi* | [**GetDsaDefaults**](docs/AdAccountsApi.md#getdsadefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
 *AdAccountsApi* | [**GetDsaRecommendations**](docs/AdAccountsApi.md#getdsarecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdAccountsApi* | [**GetValueRuleSet**](docs/AdAccountsApi.md#getvalueruleset) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set
 *AdAccountsApi* | [**ListAdAccounts**](docs/AdAccountsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdAccountsApi* | [**ListAdLabels**](docs/AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels
 *AdAccountsApi* | [**ListAdStudies**](docs/AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies
 *AdAccountsApi* | [**ListAdsBusinessCenters**](docs/AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdAccountsApi* | [**ListHighDemandPeriods**](docs/AdAccountsApi.md#listhighdemandperiods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
 *AdAccountsApi* | [**ListMetaBusinesses**](docs/AdAccountsApi.md#listmetabusinesses) | **GET** /v1/ads/businesses | Businesses list
+*AdAccountsApi* | [**ListValueRuleSets**](docs/AdAccountsApi.md#listvaluerulesets) | **GET** /v1/ads/value-rule-sets | List value rule sets
 *AdAccountsApi* | [**UpdateAdAccount**](docs/AdAccountsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdAccountsApi* | [**UpdateValueRuleSet**](docs/AdAccountsApi.md#updatevalueruleset) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set
 *AdAudiencesApi* | [**AddUsersToAdAudience**](docs/AdAudiencesApi.md#adduserstoadaudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**CreateAdAudience**](docs/AdAudiencesApi.md#createadaudience) | **POST** /v1/ads/audiences | Create custom audience
 *AdAudiencesApi* | [**DeleteAdAudience**](docs/AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience
@@ -941,6 +946,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [Model.CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [Model.CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
+ - [Model.CreateValueRuleSet201Response](docs/CreateValueRuleSet201Response.md)
+ - [Model.CreateValueRuleSetRequest](docs/CreateValueRuleSetRequest.md)
  - [Model.CreateVerificationRequest](docs/CreateVerificationRequest.md)
  - [Model.CreateVoiceCall200Response](docs/CreateVoiceCall200Response.md)
  - [Model.CreateVoiceCallRequest](docs/CreateVoiceCallRequest.md)
@@ -988,6 +995,7 @@ Class | Method | HTTP request | Description
  - [Model.DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [Model.DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [Model.DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
+ - [Model.DeleteValueRuleSet200Response](docs/DeleteValueRuleSet200Response.md)
  - [Model.DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [Model.DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [Model.DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
@@ -1332,6 +1340,7 @@ Class | Method | HTTP request | Description
  - [Model.GetUsage200Response](docs/GetUsage200Response.md)
  - [Model.GetUser200Response](docs/GetUser200Response.md)
  - [Model.GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
+ - [Model.GetValueRuleSet200Response](docs/GetValueRuleSet200Response.md)
  - [Model.GetVoiceCall200Response](docs/GetVoiceCall200Response.md)
  - [Model.GetVoiceCallEstimate200Response](docs/GetVoiceCallEstimate200Response.md)
  - [Model.GetVoiceCallEstimate200ResponseBreakdown](docs/GetVoiceCallEstimate200ResponseBreakdown.md)
@@ -1588,6 +1597,8 @@ Class | Method | HTTP request | Description
  - [Model.ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [Model.ListUsers200Response](docs/ListUsers200Response.md)
  - [Model.ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [Model.ListValueRuleSets200Response](docs/ListValueRuleSets200Response.md)
+ - [Model.ListValueRuleSets200ResponsePaging](docs/ListValueRuleSets200ResponsePaging.md)
  - [Model.ListVoiceCalls200Response](docs/ListVoiceCalls200Response.md)
  - [Model.ListWhatsAppCalls200Response](docs/ListWhatsAppCalls200Response.md)
  - [Model.ListWhatsAppCalls200ResponseCallsInner](docs/ListWhatsAppCalls200ResponseCallsInner.md)
@@ -2043,6 +2054,8 @@ Class | Method | HTTP request | Description
  - [Model.UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
  - [Model.UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
  - [Model.UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
+ - [Model.UpdateValueRuleSet200Response](docs/UpdateValueRuleSet200Response.md)
+ - [Model.UpdateValueRuleSetRequest](docs/UpdateValueRuleSetRequest.md)
  - [Model.UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [Model.UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)
  - [Model.UpdateWhatsAppBusinessProfileRequest](docs/UpdateWhatsAppBusinessProfileRequest.md)
@@ -2117,6 +2130,9 @@ Class | Method | HTTP request | Description
  - [Model.ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [Model.ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [Model.ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
+ - [Model.ValueRule](docs/ValueRule.md)
+ - [Model.ValueRuleCriterion](docs/ValueRuleCriterion.md)
+ - [Model.ValueRuleSet](docs/ValueRuleSet.md)
  - [Model.Verification](docs/Verification.md)
  - [Model.VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [Model.VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)

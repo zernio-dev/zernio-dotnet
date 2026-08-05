@@ -55,6 +55,31 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateValueRuleSet
+        /// </summary>
+        [Fact]
+        public void CreateValueRuleSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateValueRuleSetRequest createValueRuleSetRequest = null;
+            //var response = instance.CreateValueRuleSet(createValueRuleSetRequest);
+            //Assert.IsType<CreateValueRuleSet201Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteValueRuleSet
+        /// </summary>
+        [Fact]
+        public void DeleteValueRuleSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string valueRuleSetId = null;
+            //string accountId = null;
+            //var response = instance.DeleteValueRuleSet(valueRuleSetId, accountId);
+            //Assert.IsType<DeleteValueRuleSet200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAdAccountFinance
         /// </summary>
         [Fact]
@@ -124,6 +149,19 @@ namespace Zernio.Test.Api
             //string adAccountId = null;
             //var response = instance.GetDsaRecommendations(accountId, adAccountId);
             //Assert.IsType<GetDsaRecommendations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetValueRuleSet
+        /// </summary>
+        [Fact]
+        public void GetValueRuleSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string valueRuleSetId = null;
+            //string accountId = null;
+            //var response = instance.GetValueRuleSet(valueRuleSetId, accountId);
+            //Assert.IsType<GetValueRuleSet200Response>(response);
         }
 
         /// <summary>
@@ -214,6 +252,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListValueRuleSets
+        /// </summary>
+        [Fact]
+        public void ListValueRuleSetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListValueRuleSets(accountId, adAccountId, limit, after);
+            //Assert.IsType<ListValueRuleSets200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdAccount
         /// </summary>
         [Fact]
@@ -223,6 +276,19 @@ namespace Zernio.Test.Api
             //UpdateAdAccountRequest updateAdAccountRequest = null;
             //var response = instance.UpdateAdAccount(updateAdAccountRequest);
             //Assert.IsType<UpdateAdAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateValueRuleSet
+        /// </summary>
+        [Fact]
+        public void UpdateValueRuleSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string valueRuleSetId = null;
+            //UpdateValueRuleSetRequest updateValueRuleSetRequest = null;
+            //var response = instance.UpdateValueRuleSet(valueRuleSetId, updateValueRuleSetRequest);
+            //Assert.IsType<UpdateValueRuleSet200Response>(response);
         }
     }
 }

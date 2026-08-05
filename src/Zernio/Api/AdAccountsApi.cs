@@ -29,6 +29,50 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Create a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <returns>CreateValueRuleSet201Response</returns>
+        CreateValueRuleSet201Response CreateValueRuleSet(CreateValueRuleSetRequest createValueRuleSetRequest);
+
+        /// <summary>
+        /// Create a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <returns>ApiResponse of CreateValueRuleSet201Response</returns>
+        ApiResponse<CreateValueRuleSet201Response> CreateValueRuleSetWithHttpInfo(CreateValueRuleSetRequest createValueRuleSetRequest);
+        /// <summary>
+        /// Delete a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>DeleteValueRuleSet200Response</returns>
+        DeleteValueRuleSet200Response DeleteValueRuleSet(string valueRuleSetId, string accountId);
+
+        /// <summary>
+        /// Delete a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>ApiResponse of DeleteValueRuleSet200Response</returns>
+        ApiResponse<DeleteValueRuleSet200Response> DeleteValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId);
+        /// <summary>
         /// Ad account finances
         /// </summary>
         /// <remarks>
@@ -157,6 +201,29 @@ namespace Zernio.Api
         /// <param name="adAccountId">Meta ad account ID (act_...)</param>
         /// <returns>ApiResponse of GetDsaRecommendations200Response</returns>
         ApiResponse<GetDsaRecommendations200Response> GetDsaRecommendationsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
+        /// Read a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>GetValueRuleSet200Response</returns>
+        GetValueRuleSet200Response GetValueRuleSet(string valueRuleSetId, string accountId);
+
+        /// <summary>
+        /// Read a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>ApiResponse of GetValueRuleSet200Response</returns>
+        ApiResponse<GetValueRuleSet200Response> GetValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -314,6 +381,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListMetaBusinesses200Response</returns>
         ApiResponse<ListMetaBusinesses200Response> ListMetaBusinessesWithHttpInfo(string accountId, int? limit = default, string? after = default);
         /// <summary>
+        /// List value rule sets
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <returns>ListValueRuleSets200Response</returns>
+        ListValueRuleSets200Response ListValueRuleSets(string accountId, string adAccountId, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// List value rule sets
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <returns>ApiResponse of ListValueRuleSets200Response</returns>
+        ApiResponse<ListValueRuleSets200Response> ListValueRuleSetsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default);
+        /// <summary>
         /// Update ad account settings
         /// </summary>
         /// <remarks>
@@ -334,6 +428,29 @@ namespace Zernio.Api
         /// <param name="updateAdAccountRequest"></param>
         /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
         ApiResponse<UpdateAdAccount200Response> UpdateAdAccountWithHttpInfo(UpdateAdAccountRequest updateAdAccountRequest);
+        /// <summary>
+        /// Replace a value rule set
+        /// </summary>
+        /// <remarks>
+        /// **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <returns>UpdateValueRuleSet200Response</returns>
+        UpdateValueRuleSet200Response UpdateValueRuleSet(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest);
+
+        /// <summary>
+        /// Replace a value rule set
+        /// </summary>
+        /// <remarks>
+        /// **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <returns>ApiResponse of UpdateValueRuleSet200Response</returns>
+        ApiResponse<UpdateValueRuleSet200Response> UpdateValueRuleSetWithHttpInfo(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest);
         #endregion Synchronous Operations
     }
 
@@ -343,6 +460,54 @@ namespace Zernio.Api
     public interface IAdAccountsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Create a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateValueRuleSet201Response</returns>
+        System.Threading.Tasks.Task<CreateValueRuleSet201Response> CreateValueRuleSetAsync(CreateValueRuleSetRequest createValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateValueRuleSet201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateValueRuleSet201Response>> CreateValueRuleSetWithHttpInfoAsync(CreateValueRuleSetRequest createValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteValueRuleSet200Response</returns>
+        System.Threading.Tasks.Task<DeleteValueRuleSet200Response> DeleteValueRuleSetAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteValueRuleSet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteValueRuleSet200Response>> DeleteValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Ad account finances
         /// </summary>
@@ -482,6 +647,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetDsaRecommendations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetDsaRecommendations200Response>> GetDsaRecommendationsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Read a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetValueRuleSet200Response</returns>
+        System.Threading.Tasks.Task<GetValueRuleSet200Response> GetValueRuleSetAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Read a value rule set
+        /// </summary>
+        /// <remarks>
+        /// Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetValueRuleSet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetValueRuleSet200Response>> GetValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -651,6 +841,35 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListMetaBusinesses200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListMetaBusinesses200Response>> ListMetaBusinessesWithHttpInfoAsync(string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List value rule sets
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListValueRuleSets200Response</returns>
+        System.Threading.Tasks.Task<ListValueRuleSets200Response> ListValueRuleSetsAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List value rule sets
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListValueRuleSets200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListValueRuleSets200Response>> ListValueRuleSetsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update ad account settings
         /// </summary>
         /// <remarks>
@@ -673,6 +892,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdAccount200Response>> UpdateAdAccountWithHttpInfoAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Replace a value rule set
+        /// </summary>
+        /// <remarks>
+        /// **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateValueRuleSet200Response</returns>
+        System.Threading.Tasks.Task<UpdateValueRuleSet200Response> UpdateValueRuleSetAsync(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Replace a value rule set
+        /// </summary>
+        /// <remarks>
+        /// **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateValueRuleSet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateValueRuleSet200Response>> UpdateValueRuleSetWithHttpInfoAsync(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -884,6 +1128,276 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Create a value rule set Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <returns>CreateValueRuleSet201Response</returns>
+        public CreateValueRuleSet201Response CreateValueRuleSet(CreateValueRuleSetRequest createValueRuleSetRequest)
+        {
+            Zernio.Client.ApiResponse<CreateValueRuleSet201Response> localVarResponse = CreateValueRuleSetWithHttpInfo(createValueRuleSetRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a value rule set Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <returns>ApiResponse of CreateValueRuleSet201Response</returns>
+        public Zernio.Client.ApiResponse<CreateValueRuleSet201Response> CreateValueRuleSetWithHttpInfo(CreateValueRuleSetRequest createValueRuleSetRequest)
+        {
+            // verify the required parameter 'createValueRuleSetRequest' is set
+            if (createValueRuleSetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createValueRuleSetRequest' when calling AdAccountsApi->CreateValueRuleSet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createValueRuleSetRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateValueRuleSet201Response>("/v1/ads/value-rule-sets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a value rule set Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateValueRuleSet201Response</returns>
+        public async System.Threading.Tasks.Task<CreateValueRuleSet201Response> CreateValueRuleSetAsync(CreateValueRuleSetRequest createValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateValueRuleSet201Response> localVarResponse = await CreateValueRuleSetWithHttpInfoAsync(createValueRuleSetRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a value rule set Creates a value rule set on the ad account (Meta&#39;s &#x60;POST /act_X/value_rule_set&#x60;). Attach the returned id to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  **Rule order is semantic**: rules are evaluated in array order and only the first matching rule adjusts the bid for an overlapping audience.  &#x60;adjustValue&#x60; is an unsigned magnitude in percent; the direction lives in &#x60;adjustSign&#x60;. &#x60;INCREASE&#x60; accepts 1-1000, &#x60;DECREASE&#x60; accepts 1-90. There is no signed field and 0 is out of range.  &#x60;criteriaValueTypes&#x60; is positionally paired with &#x60;criteriaValues&#x60; (same length, same order). Every type is the literal &#x60;\&quot;NONE\&quot;&#x60; except on &#x60;LOCATION&#x60;, which uses &#x60;LOCATION_COUNTRY&#x60; / &#x60;LOCATION_REGION&#x60; / &#x60;LOCATION_CITY&#x60; / &#x60;LOCATION_COMSCORE_MARKET&#x60; and may mix them within one criterion. Location values are Targeting-Search keys: a two-letter country code for &#x60;LOCATION_COUNTRY&#x60;, a numeric key for the rest.  &#x60;LOCATION_DMA&#x60; was replaced by &#x60;LOCATION_COMSCORE_MARKET&#x60; on 2026-06-22 and rules using DMAs are no longer active, so this API rejects it.  &#x60;AUDIENCE_LABEL&#x60; values (e.g. &#x60;HIGH_VALUE&#x60;) are applied to a Custom Audience in Ads Manager. There is no API to provision them, so label strings are passed through unvalidated and a typo produces a rule that never fires.  Ads Manager turns a rule set read-only (this API stays editable) when a rule uses more than 2 criteria, a custom age range, or the placements &#x60;FB_MARKETPLACE&#x60;, &#x60;FB_SEARCH&#x60;, &#x60;FB_VIDEO&#x60; or &#x60;IG_EXPLORE&#x60;.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule. The per-account cap is enforced by Meta, not here.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateValueRuleSet201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateValueRuleSet201Response>> CreateValueRuleSetWithHttpInfoAsync(CreateValueRuleSetRequest createValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createValueRuleSetRequest' is set
+            if (createValueRuleSetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createValueRuleSetRequest' when calling AdAccountsApi->CreateValueRuleSet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createValueRuleSetRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateValueRuleSet201Response>("/v1/ads/value-rule-sets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a value rule set Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>DeleteValueRuleSet200Response</returns>
+        public DeleteValueRuleSet200Response DeleteValueRuleSet(string valueRuleSetId, string accountId)
+        {
+            Zernio.Client.ApiResponse<DeleteValueRuleSet200Response> localVarResponse = DeleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a value rule set Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>ApiResponse of DeleteValueRuleSet200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteValueRuleSet200Response> DeleteValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId)
+        {
+            // verify the required parameter 'valueRuleSetId' is set
+            if (valueRuleSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'valueRuleSetId' when calling AdAccountsApi->DeleteValueRuleSet");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->DeleteValueRuleSet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("valueRuleSetId", Zernio.Client.ClientUtils.ParameterToString(valueRuleSetId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteValueRuleSet200Response>("/v1/ads/value-rule-sets/{valueRuleSetId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a value rule set Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteValueRuleSet200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteValueRuleSet200Response> DeleteValueRuleSetAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteValueRuleSet200Response> localVarResponse = await DeleteValueRuleSetWithHttpInfoAsync(valueRuleSetId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a value rule set Deletes the rule set (Meta&#39;s &#x60;POST /{value-rule-set-id}/delete_rule_set&#x60;, a custom action edge rather than an HTTP DELETE on its side). Ad sets pointing at it are not modified here; detach them first with &#x60;valueRulesApplied: false&#x60; on &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteValueRuleSet200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteValueRuleSet200Response>> DeleteValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'valueRuleSetId' is set
+            if (valueRuleSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'valueRuleSetId' when calling AdAccountsApi->DeleteValueRuleSet");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->DeleteValueRuleSet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("valueRuleSetId", Zernio.Client.ClientUtils.ParameterToString(valueRuleSetId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteValueRuleSet200Response>("/v1/ads/value-rule-sets/{valueRuleSetId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -1667,6 +2181,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetDsaRecommendations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read a value rule set Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>GetValueRuleSet200Response</returns>
+        public GetValueRuleSet200Response GetValueRuleSet(string valueRuleSetId, string accountId)
+        {
+            Zernio.Client.ApiResponse<GetValueRuleSet200Response> localVarResponse = GetValueRuleSetWithHttpInfo(valueRuleSetId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read a value rule set Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>ApiResponse of GetValueRuleSet200Response</returns>
+        public Zernio.Client.ApiResponse<GetValueRuleSet200Response> GetValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId)
+        {
+            // verify the required parameter 'valueRuleSetId' is set
+            if (valueRuleSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'valueRuleSetId' when calling AdAccountsApi->GetValueRuleSet");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetValueRuleSet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("valueRuleSetId", Zernio.Client.ClientUtils.ParameterToString(valueRuleSetId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetValueRuleSet200Response>("/v1/ads/value-rule-sets/{valueRuleSetId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read a value rule set Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetValueRuleSet200Response</returns>
+        public async System.Threading.Tasks.Task<GetValueRuleSet200Response> GetValueRuleSetAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetValueRuleSet200Response> localVarResponse = await GetValueRuleSetWithHttpInfoAsync(valueRuleSetId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read a value rule set Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetValueRuleSet200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetValueRuleSet200Response>> GetValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'valueRuleSetId' is set
+            if (valueRuleSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'valueRuleSetId' when calling AdAccountsApi->GetValueRuleSet");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetValueRuleSet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("valueRuleSetId", Zernio.Client.ClientUtils.ParameterToString(valueRuleSetId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetValueRuleSet200Response>("/v1/ads/value-rule-sets/{valueRuleSetId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetValueRuleSet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2620,6 +3275,171 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List value rule sets Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <returns>ListValueRuleSets200Response</returns>
+        public ListValueRuleSets200Response ListValueRuleSets(string accountId, string adAccountId, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListValueRuleSets200Response> localVarResponse = ListValueRuleSetsWithHttpInfo(accountId, adAccountId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List value rule sets Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <returns>ApiResponse of ListValueRuleSets200Response</returns>
+        public Zernio.Client.ApiResponse<ListValueRuleSets200Response> ListValueRuleSetsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListValueRuleSets");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListValueRuleSets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListValueRuleSets200Response>("/v1/ads/value-rule-sets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListValueRuleSets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List value rule sets Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListValueRuleSets200Response</returns>
+        public async System.Threading.Tasks.Task<ListValueRuleSets200Response> ListValueRuleSetsAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListValueRuleSets200Response> localVarResponse = await ListValueRuleSetsWithHttpInfoAsync(accountId, adAccountId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List value rule sets Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. Meta does not document paging on this edge; &#x60;after&#x60; comes back null when it omits cursors. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListValueRuleSets200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListValueRuleSets200Response>> ListValueRuleSetsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListValueRuleSets");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListValueRuleSets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListValueRuleSets200Response>("/v1/ads/value-rule-sets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListValueRuleSets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update ad account settings Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2742,6 +3562,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAdAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace a value rule set **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <returns>UpdateValueRuleSet200Response</returns>
+        public UpdateValueRuleSet200Response UpdateValueRuleSet(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateValueRuleSet200Response> localVarResponse = UpdateValueRuleSetWithHttpInfo(valueRuleSetId, updateValueRuleSetRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace a value rule set **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <returns>ApiResponse of UpdateValueRuleSet200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateValueRuleSet200Response> UpdateValueRuleSetWithHttpInfo(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest)
+        {
+            // verify the required parameter 'valueRuleSetId' is set
+            if (valueRuleSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'valueRuleSetId' when calling AdAccountsApi->UpdateValueRuleSet");
+
+            // verify the required parameter 'updateValueRuleSetRequest' is set
+            if (updateValueRuleSetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateValueRuleSetRequest' when calling AdAccountsApi->UpdateValueRuleSet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("valueRuleSetId", Zernio.Client.ClientUtils.ParameterToString(valueRuleSetId)); // path parameter
+            localVarRequestOptions.Data = updateValueRuleSetRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateValueRuleSet200Response>("/v1/ads/value-rule-sets/{valueRuleSetId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace a value rule set **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateValueRuleSet200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateValueRuleSet200Response> UpdateValueRuleSetAsync(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateValueRuleSet200Response> localVarResponse = await UpdateValueRuleSetWithHttpInfoAsync(valueRuleSetId, updateValueRuleSetRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace a value rule set **THIS IS A FULL REPLACE, NOT A PATCH.** Meta&#39;s update is declarative: the body you send becomes the rule set.  - &#x60;GET /v1/ads/value-rule-sets/{valueRuleSetId}&#x60; FIRST. - Keep a rule or criterion by echoing its &#x60;id&#x60;. - Create one by including the object WITHOUT an &#x60;id&#x60;. - Delete one by OMITTING it from the array. There is no warning and no undo.  &#x60;name&#x60; and &#x60;rules&#x60; are both required for exactly this reason: a partial body would silently destroy every rule left out.  **Rule order is semantic**: the array order you send is the evaluation order, and only the first matching rule adjusts the bid for an overlapping audience.  Existing rule sets created elsewhere may contain &#x60;LOCATION_DMA&#x60; criteria. Those went inert on 2026-06-22 and are rejected here; migrate them to &#x60;LOCATION_COMSCORE_MARKET&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="valueRuleSetId">Platform value rule set id.</param>
+        /// <param name="updateValueRuleSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateValueRuleSet200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateValueRuleSet200Response>> UpdateValueRuleSetWithHttpInfoAsync(string valueRuleSetId, UpdateValueRuleSetRequest updateValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'valueRuleSetId' is set
+            if (valueRuleSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'valueRuleSetId' when calling AdAccountsApi->UpdateValueRuleSet");
+
+            // verify the required parameter 'updateValueRuleSetRequest' is set
+            if (updateValueRuleSetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateValueRuleSetRequest' when calling AdAccountsApi->UpdateValueRuleSet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("valueRuleSetId", Zernio.Client.ClientUtils.ParameterToString(valueRuleSetId)); // path parameter
+            localVarRequestOptions.Data = updateValueRuleSetRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateValueRuleSet200Response>("/v1/ads/value-rule-sets/{valueRuleSetId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateValueRuleSet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

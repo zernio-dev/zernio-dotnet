@@ -119,6 +119,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ValueRuleSetId'
+        /// </summary>
+        [Fact]
+        public void ValueRuleSetIdTest()
+        {
+            // TODO unit test for the property 'ValueRuleSetId'
+        }
+
+        /// <summary>
+        /// Test the property 'ValueRulesApplied'
+        /// </summary>
+        [Fact]
+        public void ValueRulesAppliedTest()
+        {
+            // TODO unit test for the property 'ValueRulesApplied'
+        }
+
+        /// <summary>
         /// Test the property 'PlatformSpecificData'
         /// </summary>
         [Fact]
