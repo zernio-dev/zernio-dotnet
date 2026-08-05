@@ -574,8 +574,8 @@ namespace Example
             var platform = twitter;  // string? |  (optional) 
             var profileId = "profileId_example";  // string? | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send `all` or an empty value, to list posts across every profile. (optional) 
             var createdBy = "createdBy_example";  // string? | Filter posts to those created by a specific team user (24-char hex ObjectId). (optional) 
-            var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
-            var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
+            var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional) 
+            var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional) 
             var includeHidden = false;  // bool? |  (optional)  (default to false)
             var search = "search_example";  // string? | Search posts by text content. (optional) 
             var sortBy = "scheduled-desc";  // string? | Sort order for results. (optional)  (default to scheduled-desc)
@@ -629,8 +629,8 @@ catch (ApiException e)
 | **platform** | **string?** |  | [optional]  |
 | **profileId** | **string?** | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional]  |
 | **createdBy** | **string?** | Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional]  |
-| **dateFrom** | **DateOnly?** |  | [optional]  |
-| **dateTo** | **DateOnly?** |  | [optional]  |
+| **dateFrom** | **DateOnly?** | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional]  |
+| **dateTo** | **DateOnly?** | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional]  |
 | **includeHidden** | **bool?** |  | [optional] [default to false] |
 | **search** | **string?** | Search posts by text content. | [optional]  |
 | **sortBy** | **string?** | Sort order for results. | [optional] [default to scheduled-desc] |

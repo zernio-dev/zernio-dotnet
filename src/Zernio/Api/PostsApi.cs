@@ -153,8 +153,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -176,8 +176,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -418,8 +418,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -442,8 +442,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -1450,8 +1450,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -1474,8 +1474,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -1582,8 +1582,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
@@ -1607,8 +1607,8 @@ namespace Zernio.Api
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
-        /// <param name="dateFrom"> (optional)</param>
-        /// <param name="dateTo"> (optional)</param>
+        /// <param name="dateFrom">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
+        /// <param name="dateTo">Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional)</param>
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
