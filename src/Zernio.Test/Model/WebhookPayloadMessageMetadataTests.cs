@@ -155,6 +155,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Contacts'
+        /// </summary>
+        [Fact]
+        public void ContactsTest()
+        {
+            // TODO unit test for the property 'Contacts'
+        }
+
+        /// <summary>
+        /// Test the property 'ContactsOrigin'
+        /// </summary>
+        [Fact]
+        public void ContactsOriginTest()
+        {
+            // TODO unit test for the property 'ContactsOrigin'
+        }
+
+        /// <summary>
         /// Test the property 'StoryReply'
         /// </summary>
         [Fact]

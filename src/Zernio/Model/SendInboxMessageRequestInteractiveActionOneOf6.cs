@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Multi-product action. &#x60;type&#x60; on the parent must be &#x60;product_list&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+    /// Single-product action. &#x60;type&#x60; on the parent must be &#x60;product&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_6")]
     public partial class SendInboxMessageRequestInteractiveActionOneOf6 : IValidatableObject
@@ -42,8 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6" /> class.
         /// </summary>
         /// <param name="catalogId">Meta catalog ID connected to the WhatsApp Business Account. (required).</param>
-        /// <param name="sections">1-10 sections. Total products across all sections cannot exceed 30. (required).</param>
-        public SendInboxMessageRequestInteractiveActionOneOf6(string catalogId = default, List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInner> sections = default)
+        /// <param name="productRetailerId">Retailer ID (SKU) of the product inside the catalog. (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf6(string catalogId = default, string productRetailerId = default)
         {
             // to ensure "catalogId" is required (not null)
             if (catalogId == null)
@@ -51,12 +51,12 @@ namespace Zernio.Model
                 throw new ArgumentNullException("catalogId is a required property for SendInboxMessageRequestInteractiveActionOneOf6 and cannot be null");
             }
             this.CatalogId = catalogId;
-            // to ensure "sections" is required (not null)
-            if (sections == null)
+            // to ensure "productRetailerId" is required (not null)
+            if (productRetailerId == null)
             {
-                throw new ArgumentNullException("sections is a required property for SendInboxMessageRequestInteractiveActionOneOf6 and cannot be null");
+                throw new ArgumentNullException("productRetailerId is a required property for SendInboxMessageRequestInteractiveActionOneOf6 and cannot be null");
             }
-            this.Sections = sections;
+            this.ProductRetailerId = productRetailerId;
         }
 
         /// <summary>
@@ -67,11 +67,11 @@ namespace Zernio.Model
         public string CatalogId { get; set; }
 
         /// <summary>
-        /// 1-10 sections. Total products across all sections cannot exceed 30.
+        /// Retailer ID (SKU) of the product inside the catalog.
         /// </summary>
-        /// <value>1-10 sections. Total products across all sections cannot exceed 30.</value>
-        [DataMember(Name = "sections", IsRequired = true, EmitDefaultValue = true)]
-        public List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInner> Sections { get; set; }
+        /// <value>Retailer ID (SKU) of the product inside the catalog.</value>
+        [DataMember(Name = "product_retailer_id", IsRequired = true, EmitDefaultValue = true)]
+        public string ProductRetailerId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,7 +82,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessageRequestInteractiveActionOneOf6 {\n");
             sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
-            sb.Append("  Sections: ").Append(Sections).Append("\n");
+            sb.Append("  ProductRetailerId: ").Append(ProductRetailerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

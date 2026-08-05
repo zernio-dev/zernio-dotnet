@@ -65,12 +65,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Sections'
+        /// Test the property 'ProductRetailerId'
         /// </summary>
         [Fact]
-        public void SectionsTest()
+        public void ProductRetailerIdTest()
         {
-            // TODO unit test for the property 'Sections'
+            // TODO unit test for the property 'ProductRetailerId'
         }
     }
 }

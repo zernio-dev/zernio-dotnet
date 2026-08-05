@@ -28,20 +28,20 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendInboxMessageRequestInteractiveActionOneOf8CardsInner
+    /// SendInboxMessageRequestInteractiveActionOneOf9CardsInner
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_8_cards_inner")]
-    public partial class SendInboxMessageRequestInteractiveActionOneOf8CardsInner : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_9_cards_inner")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf9CardsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf8CardsInner" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf9CardsInner" /> class.
         /// </summary>
         /// <param name="cardIndex">Card position. Auto-filled sequentially when omitted..</param>
         /// <param name="type">&#x60;product&#x60; for a product card; media cards use &#x60;cta_url&#x60; or a quick-reply type..</param>
         /// <param name="header">Media cards only, required. Carries the card&#39;s image or video..</param>
         /// <param name="body">Optional card body text..</param>
         /// <param name="action">Product cards: &#x60;{ catalog_id, product_retailer_id }&#x60; (required). Media cards: the card&#39;s button action (e.g. &#x60;cta_url&#x60; with &#x60;parameters.display_text&#x60; and &#x60;parameters.url&#x60;)..</param>
-        public SendInboxMessageRequestInteractiveActionOneOf8CardsInner(int cardIndex = default, string type = default, Object header = default, Object body = default, Object action = default)
+        public SendInboxMessageRequestInteractiveActionOneOf9CardsInner(int cardIndex = default, string type = default, Object header = default, Object body = default, Object action = default)
         {
             this.CardIndex = cardIndex;
             this.Type = type;
@@ -99,7 +99,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf8CardsInner {\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf9CardsInner {\n");
             sb.Append("  CardIndex: ").Append(CardIndex).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Header: ").Append(Header).Append("\n");

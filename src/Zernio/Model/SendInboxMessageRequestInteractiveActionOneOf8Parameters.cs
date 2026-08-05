@@ -28,16 +28,16 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendInboxMessageRequestInteractiveActionOneOf7Parameters
+    /// SendInboxMessageRequestInteractiveActionOneOf8Parameters
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_7_parameters")]
-    public partial class SendInboxMessageRequestInteractiveActionOneOf7Parameters : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_8_parameters")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf8Parameters : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf7Parameters" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf8Parameters" /> class.
         /// </summary>
         /// <param name="thumbnailProductRetailerId">Optional product whose image is used as the message thumbnail. Falls back to the first catalog item when omitted..</param>
-        public SendInboxMessageRequestInteractiveActionOneOf7Parameters(string thumbnailProductRetailerId = default)
+        public SendInboxMessageRequestInteractiveActionOneOf8Parameters(string thumbnailProductRetailerId = default)
         {
             this.ThumbnailProductRetailerId = thumbnailProductRetailerId;
         }
@@ -56,7 +56,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf7Parameters {\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf8Parameters {\n");
             sb.Append("  ThumbnailProductRetailerId: ").Append(ThumbnailProductRetailerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

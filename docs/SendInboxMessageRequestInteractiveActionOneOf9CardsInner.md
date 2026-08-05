@@ -1,4 +1,4 @@
-# Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf8CardsInner
+# Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf9CardsInner
 
 ## Properties
 

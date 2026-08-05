@@ -1,4 +1,4 @@
-# Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner
+# Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner
 
 ## Properties
 

@@ -1,12 +1,12 @@
 # Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf6
-Multi-product action. `type` on the parent must be `product_list`. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+Single-product action. `type` on the parent must be `product`. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CatalogId** | **string** | Meta catalog ID connected to the WhatsApp Business Account. | 
-**Sections** | [**List&lt;SendInboxMessageRequestInteractiveActionOneOf6SectionsInner&gt;**](SendInboxMessageRequestInteractiveActionOneOf6SectionsInner.md) | 1-10 sections. Total products across all sections cannot exceed 30. | 
+**ProductRetailerId** | **string** | Retailer ID (SKU) of the product inside the catalog. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,11 +28,30 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Carousel action. &#x60;type&#x60; on the parent must be &#x60;carousel&#x60;. Carries 2-10 cards, either all product cards (&#x60;type: \&quot;product\&quot;&#x60;, all referencing the same &#x60;catalog_id&#x60;) or media cards (any other &#x60;type&#x60;, e.g. &#x60;cta_url&#x60;, with a required image/video &#x60;header&#x60; on each card). &#x60;card_index&#x60; (0-9, non-repeating) is auto-filled sequentially when omitted. Product carousels require a Meta catalog connected to the WhatsApp Business Account in Commerce Manager; media carousels do not. 
+    /// Catalog-message action. &#x60;type&#x60; on the parent must be &#x60;catalog_message&#x60;. May be omitted entirely; it is defaulted to &#x60;{ \&quot;name\&quot;: \&quot;catalog_message\&quot; }&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_8")]
     public partial class SendInboxMessageRequestInteractiveActionOneOf8 : IValidatableObject
     {
+        /// <summary>
+        /// Defines Name
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum NameEnum
+        {
+            /// <summary>
+            /// Enum CatalogMessage for value: catalog_message
+            /// </summary>
+            [EnumMember(Value = "catalog_message")]
+            CatalogMessage = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Name
+        /// </summary>
+        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        public NameEnum Name { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf8" /> class.
         /// </summary>
@@ -41,22 +60,19 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf8" /> class.
         /// </summary>
-        /// <param name="cards">cards (required).</param>
-        public SendInboxMessageRequestInteractiveActionOneOf8(List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> cards = default)
+        /// <param name="name">name (required).</param>
+        /// <param name="parameters">parameters.</param>
+        public SendInboxMessageRequestInteractiveActionOneOf8(NameEnum name = default, SendInboxMessageRequestInteractiveActionOneOf8Parameters parameters = default)
         {
-            // to ensure "cards" is required (not null)
-            if (cards == null)
-            {
-                throw new ArgumentNullException("cards is a required property for SendInboxMessageRequestInteractiveActionOneOf8 and cannot be null");
-            }
-            this.Cards = cards;
+            this.Name = name;
+            this.Parameters = parameters;
         }
 
         /// <summary>
-        /// Gets or Sets Cards
+        /// Gets or Sets Parameters
         /// </summary>
-        [DataMember(Name = "cards", IsRequired = true, EmitDefaultValue = true)]
-        public List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> Cards { get; set; }
+        [DataMember(Name = "parameters", EmitDefaultValue = false)]
+        public SendInboxMessageRequestInteractiveActionOneOf8Parameters Parameters { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,7 +82,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessageRequestInteractiveActionOneOf8 {\n");
-            sb.Append("  Cards: ").Append(Cards).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Parameters: ").Append(Parameters).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

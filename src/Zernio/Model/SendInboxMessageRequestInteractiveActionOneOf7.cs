@@ -28,30 +28,11 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Catalog-message action. &#x60;type&#x60; on the parent must be &#x60;catalog_message&#x60;. May be omitted entirely; it is defaulted to &#x60;{ \&quot;name\&quot;: \&quot;catalog_message\&quot; }&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+    /// Multi-product action. &#x60;type&#x60; on the parent must be &#x60;product_list&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_7")]
     public partial class SendInboxMessageRequestInteractiveActionOneOf7 : IValidatableObject
     {
-        /// <summary>
-        /// Defines Name
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum NameEnum
-        {
-            /// <summary>
-            /// Enum CatalogMessage for value: catalog_message
-            /// </summary>
-            [EnumMember(Value = "catalog_message")]
-            CatalogMessage = 1
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
-        public NameEnum Name { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf7" /> class.
         /// </summary>
@@ -60,19 +41,37 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf7" /> class.
         /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="parameters">parameters.</param>
-        public SendInboxMessageRequestInteractiveActionOneOf7(NameEnum name = default, SendInboxMessageRequestInteractiveActionOneOf7Parameters parameters = default)
+        /// <param name="catalogId">Meta catalog ID connected to the WhatsApp Business Account. (required).</param>
+        /// <param name="sections">1-10 sections. Total products across all sections cannot exceed 30. (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf7(string catalogId = default, List<SendInboxMessageRequestInteractiveActionOneOf7SectionsInner> sections = default)
         {
-            this.Name = name;
-            this.Parameters = parameters;
+            // to ensure "catalogId" is required (not null)
+            if (catalogId == null)
+            {
+                throw new ArgumentNullException("catalogId is a required property for SendInboxMessageRequestInteractiveActionOneOf7 and cannot be null");
+            }
+            this.CatalogId = catalogId;
+            // to ensure "sections" is required (not null)
+            if (sections == null)
+            {
+                throw new ArgumentNullException("sections is a required property for SendInboxMessageRequestInteractiveActionOneOf7 and cannot be null");
+            }
+            this.Sections = sections;
         }
 
         /// <summary>
-        /// Gets or Sets Parameters
+        /// Meta catalog ID connected to the WhatsApp Business Account.
         /// </summary>
-        [DataMember(Name = "parameters", EmitDefaultValue = false)]
-        public SendInboxMessageRequestInteractiveActionOneOf7Parameters Parameters { get; set; }
+        /// <value>Meta catalog ID connected to the WhatsApp Business Account.</value>
+        [DataMember(Name = "catalog_id", IsRequired = true, EmitDefaultValue = true)]
+        public string CatalogId { get; set; }
+
+        /// <summary>
+        /// 1-10 sections. Total products across all sections cannot exceed 30.
+        /// </summary>
+        /// <value>1-10 sections. Total products across all sections cannot exceed 30.</value>
+        [DataMember(Name = "sections", IsRequired = true, EmitDefaultValue = true)]
+        public List<SendInboxMessageRequestInteractiveActionOneOf7SectionsInner> Sections { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,8 +81,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessageRequestInteractiveActionOneOf7 {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Parameters: ").Append(Parameters).Append("\n");
+            sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
+            sb.Append("  Sections: ").Append(Sections).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

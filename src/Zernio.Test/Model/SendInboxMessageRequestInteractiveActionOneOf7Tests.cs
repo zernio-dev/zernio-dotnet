@@ -56,21 +56,21 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Name'
+        /// Test the property 'CatalogId'
         /// </summary>
         [Fact]
-        public void NameTest()
+        public void CatalogIdTest()
         {
-            // TODO unit test for the property 'Name'
+            // TODO unit test for the property 'CatalogId'
         }
 
         /// <summary>
-        /// Test the property 'Parameters'
+        /// Test the property 'Sections'
         /// </summary>
         [Fact]
-        public void ParametersTest()
+        public void SectionsTest()
         {
-            // TODO unit test for the property 'Parameters'
+            // TODO unit test for the property 'Sections'
         }
     }
 }

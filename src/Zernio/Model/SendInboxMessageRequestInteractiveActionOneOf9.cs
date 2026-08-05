@@ -28,44 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendInboxMessageRequestInteractiveActionOneOf6SectionsInner
+    /// Carousel action. &#x60;type&#x60; on the parent must be &#x60;carousel&#x60;. Carries 2-10 cards, either all product cards (&#x60;type: \&quot;product\&quot;&#x60;, all referencing the same &#x60;catalog_id&#x60;) or media cards (any other &#x60;type&#x60;, e.g. &#x60;cta_url&#x60;, with a required image/video &#x60;header&#x60; on each card). &#x60;card_index&#x60; (0-9, non-repeating) is auto-filled sequentially when omitted. Product carousels require a Meta catalog connected to the WhatsApp Business Account in Commerce Manager; media carousels do not. 
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_6_sections_inner")]
-    public partial class SendInboxMessageRequestInteractiveActionOneOf6SectionsInner : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_9")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf9 : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInner" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf9" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveActionOneOf6SectionsInner() { }
+        protected SendInboxMessageRequestInteractiveActionOneOf9() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInner" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf9" /> class.
         /// </summary>
-        /// <param name="title">Optional section header..</param>
-        /// <param name="productItems">productItems (required).</param>
-        public SendInboxMessageRequestInteractiveActionOneOf6SectionsInner(string title = default, List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner> productItems = default)
+        /// <param name="cards">cards (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf9(List<SendInboxMessageRequestInteractiveActionOneOf9CardsInner> cards = default)
         {
-            // to ensure "productItems" is required (not null)
-            if (productItems == null)
+            // to ensure "cards" is required (not null)
+            if (cards == null)
             {
-                throw new ArgumentNullException("productItems is a required property for SendInboxMessageRequestInteractiveActionOneOf6SectionsInner and cannot be null");
+                throw new ArgumentNullException("cards is a required property for SendInboxMessageRequestInteractiveActionOneOf9 and cannot be null");
             }
-            this.ProductItems = productItems;
-            this.Title = title;
+            this.Cards = cards;
         }
 
         /// <summary>
-        /// Optional section header.
+        /// Gets or Sets Cards
         /// </summary>
-        /// <value>Optional section header.</value>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ProductItems
-        /// </summary>
-        [DataMember(Name = "product_items", IsRequired = true, EmitDefaultValue = true)]
-        public List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner> ProductItems { get; set; }
+        [DataMember(Name = "cards", IsRequired = true, EmitDefaultValue = true)]
+        public List<SendInboxMessageRequestInteractiveActionOneOf9CardsInner> Cards { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,9 +65,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf6SectionsInner {\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  ProductItems: ").Append(ProductItems).Append("\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf9 {\n");
+            sb.Append("  Cards: ").Append(Cards).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,11 +28,30 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Single-product action. &#x60;type&#x60; on the parent must be &#x60;product&#x60;. Requires a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. 
+    /// Contact-info request action. &#x60;type&#x60; on the parent must be &#x60;request_contact_info&#x60;. May be omitted entirely; it is defaulted.
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_5")]
     public partial class SendInboxMessageRequestInteractiveActionOneOf5 : IValidatableObject
     {
+        /// <summary>
+        /// Defines Name
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum NameEnum
+        {
+            /// <summary>
+            /// Enum RequestContactInfo for value: request_contact_info
+            /// </summary>
+            [EnumMember(Value = "request_contact_info")]
+            RequestContactInfo = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Name
+        /// </summary>
+        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        public NameEnum Name { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf5" /> class.
         /// </summary>
@@ -41,37 +60,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf5" /> class.
         /// </summary>
-        /// <param name="catalogId">Meta catalog ID connected to the WhatsApp Business Account. (required).</param>
-        /// <param name="productRetailerId">Retailer ID (SKU) of the product inside the catalog. (required).</param>
-        public SendInboxMessageRequestInteractiveActionOneOf5(string catalogId = default, string productRetailerId = default)
+        /// <param name="name">name (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf5(NameEnum name = default)
         {
-            // to ensure "catalogId" is required (not null)
-            if (catalogId == null)
-            {
-                throw new ArgumentNullException("catalogId is a required property for SendInboxMessageRequestInteractiveActionOneOf5 and cannot be null");
-            }
-            this.CatalogId = catalogId;
-            // to ensure "productRetailerId" is required (not null)
-            if (productRetailerId == null)
-            {
-                throw new ArgumentNullException("productRetailerId is a required property for SendInboxMessageRequestInteractiveActionOneOf5 and cannot be null");
-            }
-            this.ProductRetailerId = productRetailerId;
+            this.Name = name;
         }
-
-        /// <summary>
-        /// Meta catalog ID connected to the WhatsApp Business Account.
-        /// </summary>
-        /// <value>Meta catalog ID connected to the WhatsApp Business Account.</value>
-        [DataMember(Name = "catalog_id", IsRequired = true, EmitDefaultValue = true)]
-        public string CatalogId { get; set; }
-
-        /// <summary>
-        /// Retailer ID (SKU) of the product inside the catalog.
-        /// </summary>
-        /// <value>Retailer ID (SKU) of the product inside the catalog.</value>
-        [DataMember(Name = "product_retailer_id", IsRequired = true, EmitDefaultValue = true)]
-        public string ProductRetailerId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -81,8 +74,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessageRequestInteractiveActionOneOf5 {\n");
-            sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
-            sb.Append("  ProductRetailerId: ").Append(ProductRetailerId).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

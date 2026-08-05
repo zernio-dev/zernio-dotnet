@@ -28,26 +28,26 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner
+    /// SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_6_sections_inner_product_items_inner")]
-    public partial class SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_7_sections_inner_product_items_inner")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner() { }
+        protected SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner" /> class.
         /// </summary>
         /// <param name="productRetailerId">Retailer ID (SKU) of the product inside the catalog. (required).</param>
-        public SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner(string productRetailerId = default)
+        public SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner(string productRetailerId = default)
         {
             // to ensure "productRetailerId" is required (not null)
             if (productRetailerId == null)
             {
-                throw new ArgumentNullException("productRetailerId is a required property for SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner and cannot be null");
+                throw new ArgumentNullException("productRetailerId is a required property for SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner and cannot be null");
             }
             this.ProductRetailerId = productRetailerId;
         }
@@ -66,7 +66,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner {\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf7SectionsInnerProductItemsInner {\n");
             sb.Append("  ProductRetailerId: ").Append(ProductRetailerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
