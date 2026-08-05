@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Filename** | **string** |  | [optional] 
 **Size** | **int** | Optional file size in bytes | [optional] 
 **MimeType** | **string** | Optional MIME type (e.g. image/jpeg, video/mp4) | [optional] 
-**Thumbnail** | **string** | Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended. | [optional] 
+**Thumbnail** | **string** | Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, regular video uploads, and LinkedIn video posts. Max 10MB, JPG/PNG recommended. | [optional] 
 **InstagramThumbnail** | **string** | Custom cover image URL for Instagram Reels. Can also be set via platformSpecificData.instagramThumbnail or platformSpecificData.reelCover. Resolution order: this field &gt; platformSpecificData.instagramThumbnail &gt; platformSpecificData.reelCover &gt; platformSpecificData.thumbnailUrl (legacy). | [optional] 
 **TiktokProcessed** | **bool** | Internal flag indicating the image was resized for TikTok | [optional] 
 

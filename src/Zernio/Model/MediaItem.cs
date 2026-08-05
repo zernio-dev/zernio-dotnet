@@ -80,7 +80,7 @@ namespace Zernio.Model
         /// <param name="filename">filename.</param>
         /// <param name="size">Optional file size in bytes.</param>
         /// <param name="mimeType">Optional MIME type (e.g. image/jpeg, video/mp4).</param>
-        /// <param name="thumbnail">Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended..</param>
+        /// <param name="thumbnail">Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, regular video uploads, and LinkedIn video posts. Max 10MB, JPG/PNG recommended..</param>
         /// <param name="instagramThumbnail">Custom cover image URL for Instagram Reels. Can also be set via platformSpecificData.instagramThumbnail or platformSpecificData.reelCover. Resolution order: this field &gt; platformSpecificData.instagramThumbnail &gt; platformSpecificData.reelCover &gt; platformSpecificData.thumbnailUrl (legacy)..</param>
         /// <param name="tiktokProcessed">Internal flag indicating the image was resized for TikTok.</param>
         public MediaItem(TypeEnum? type = default, string url = default, string title = default, string altText = default, string filename = default, int size = default, string mimeType = default, string thumbnail = default, string instagramThumbnail = default, bool tiktokProcessed = default)
@@ -138,9 +138,9 @@ namespace Zernio.Model
         public string MimeType { get; set; }
 
         /// <summary>
-        /// Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended.
+        /// Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, regular video uploads, and LinkedIn video posts. Max 10MB, JPG/PNG recommended.
         /// </summary>
-        /// <value>Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended.</value>
+        /// <value>Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, regular video uploads, and LinkedIn video posts. Max 10MB, JPG/PNG recommended.</value>
         [DataMember(Name = "thumbnail", EmitDefaultValue = false)]
         public string Thumbnail { get; set; }
 
