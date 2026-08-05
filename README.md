@@ -529,6 +529,7 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**PauseSequence**](docs/SequencesApi.md#pausesequence) | **POST** /v1/sequences/{sequenceId}/pause | Pause sequence
 *SequencesApi* | [**UnenrollContact**](docs/SequencesApi.md#unenrollcontact) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll contact
 *SequencesApi* | [**UpdateSequence**](docs/SequencesApi.md#updatesequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
+*SlackApi* | [**ListSlackMembers**](docs/SlackApi.md#listslackmembers) | **GET** /v1/accounts/{accountId}/slack-members | List Slack workspace members
 *TrackingTagsApi* | [**AddTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**CreateTrackingTag**](docs/TrackingTagsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
 *TrackingTagsApi* | [**GetAdTrackingTags**](docs/TrackingTagsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
@@ -1583,6 +1584,8 @@ Class | Method | HTTP request | Description
  - [Model.ListSequenceEnrollments200ResponseEnrollmentsInner](docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md)
  - [Model.ListSequences200Response](docs/ListSequences200Response.md)
  - [Model.ListSequences200ResponseSequencesInner](docs/ListSequences200ResponseSequencesInner.md)
+ - [Model.ListSlackMembers200Response](docs/ListSlackMembers200Response.md)
+ - [Model.ListSlackMembers200ResponseMembersInner](docs/ListSlackMembers200ResponseMembersInner.md)
  - [Model.ListSmsOptOuts200Response](docs/ListSmsOptOuts200Response.md)
  - [Model.ListSmsOptOuts200ResponseOptOutsInner](docs/ListSmsOptOuts200ResponseOptOutsInner.md)
  - [Model.ListSmsRegistrations200Response](docs/ListSmsRegistrations200Response.md)

@@ -939,6 +939,8 @@ docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
+docs/ListSlackMembers200Response.md
+docs/ListSlackMembers200ResponseMembersInner.md
 docs/ListSmsOptOuts200Response.md
 docs/ListSmsOptOuts200ResponseOptOutsInner.md
 docs/ListSmsRegistrations200Response.md
@@ -1260,6 +1262,7 @@ docs/SetWhatsappBusinessUsernameRequest.md
 docs/ShareSmsRegistration200Response.md
 docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
+docs/SlackApi.md
 docs/SlackPlatformData.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
@@ -1684,6 +1687,7 @@ src/Zernio.Test/Api/RedditSearchApiTests.cs
 src/Zernio.Test/Api/ReviewsApiTests.cs
 src/Zernio.Test/Api/SMSApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
+src/Zernio.Test/Api/SlackApiTests.cs
 src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
 src/Zernio.Test/Api/UsageApiTests.cs
@@ -2602,6 +2606,8 @@ src/Zernio.Test/Model/ListSequenceEnrollments200ResponseEnrollmentsInnerTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseSequencesInnerTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseTests.cs
+src/Zernio.Test/Model/ListSlackMembers200ResponseMembersInnerTests.cs
+src/Zernio.Test/Model/ListSlackMembers200ResponseTests.cs
 src/Zernio.Test/Model/ListSmsOptOuts200ResponseOptOutsInnerTests.cs
 src/Zernio.Test/Model/ListSmsOptOuts200ResponseTests.cs
 src/Zernio.Test/Model/ListSmsRegistrations200ResponseRegistrationsInnerTests.cs
@@ -3317,6 +3323,7 @@ src/Zernio/Api/RedditSearchApi.cs
 src/Zernio/Api/ReviewsApi.cs
 src/Zernio/Api/SMSApi.cs
 src/Zernio/Api/SequencesApi.cs
+src/Zernio/Api/SlackApi.cs
 src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
 src/Zernio/Api/UsageApi.cs
@@ -4253,6 +4260,8 @@ src/Zernio/Model/ListSequenceEnrollments200Response.cs
 src/Zernio/Model/ListSequenceEnrollments200ResponseEnrollmentsInner.cs
 src/Zernio/Model/ListSequences200Response.cs
 src/Zernio/Model/ListSequences200ResponseSequencesInner.cs
+src/Zernio/Model/ListSlackMembers200Response.cs
+src/Zernio/Model/ListSlackMembers200ResponseMembersInner.cs
 src/Zernio/Model/ListSmsOptOuts200Response.cs
 src/Zernio/Model/ListSmsOptOuts200ResponseOptOutsInner.cs
 src/Zernio/Model/ListSmsRegistrations200Response.cs
