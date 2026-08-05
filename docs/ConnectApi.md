@@ -2209,7 +2209,8 @@ void (empty response body)
 | **400** | Invalid params |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | BYOK required for AppSumo Twitter |  -  |
-| **500** | Failed to connect account |  -  |
+| **500** | Internal error while connecting the account |  -  |
+| **502** | The platform rejected the token exchange (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
