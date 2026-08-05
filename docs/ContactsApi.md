@@ -209,7 +209,7 @@ catch (ApiException e)
 | **200** | Contact created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | Duplicate contact |  -  |
+| **409** | Duplicate channel. The platformIdentifier is already bound to a channel on this accountId. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -514,7 +514,7 @@ catch (ApiException e)
 
 <a id="listcontacts"></a>
 # **ListContacts**
-> ListContacts200Response ListContacts (string? profileId = null, string? search = null, string? tag = null, string? tags = null, string? platform = null, string? isSubscribed = null, int? limit = null, int? skip = null)
+> ListContacts200Response ListContacts (string? profileId = null, string? accountId = null, string? search = null, string? tag = null, string? tags = null, string? platform = null, string? isSubscribed = null, int? limit = null, int? skip = null)
 
 List contacts
 
@@ -544,7 +544,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ContactsApi(httpClient, config, httpClientHandler);
-            var profileId = "profileId_example";  // string? | Filter by profile. Omit to list across all profiles (optional) 
+            var profileId = "profileId_example";  // string? | Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional) 
+            var accountId = "accountId_example";  // string? | Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional) 
             var search = "search_example";  // string? |  (optional) 
             var tag = "tag_example";  // string? |  (optional) 
             var tags = "tags_example";  // string? | Comma-separated tags, matches contacts carrying any of them (optional) 
@@ -556,7 +557,7 @@ namespace Example
             try
             {
                 // List contacts
-                ListContacts200Response result = apiInstance.ListContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
+                ListContacts200Response result = apiInstance.ListContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -577,7 +578,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List contacts
-    ApiResponse<ListContacts200Response> response = apiInstance.ListContactsWithHttpInfo(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
+    ApiResponse<ListContacts200Response> response = apiInstance.ListContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -594,7 +595,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **profileId** | **string?** | Filter by profile. Omit to list across all profiles | [optional]  |
+| **profileId** | **string?** | Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. | [optional]  |
+| **accountId** | **string?** | Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. | [optional]  |
 | **search** | **string?** |  | [optional]  |
 | **tag** | **string?** |  | [optional]  |
 | **tags** | **string?** | Comma-separated tags, matches contacts carrying any of them | [optional]  |

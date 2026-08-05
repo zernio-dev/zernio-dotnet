@@ -121,6 +121,7 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string? profileId = null;
+            //string? accountId = null;
             //string? search = null;
             //string? tag = null;
             //string? tags = null;
@@ -128,7 +129,7 @@ namespace Zernio.Test.Api
             //string? isSubscribed = null;
             //int? limit = null;
             //int? skip = null;
-            //var response = instance.ListContacts(profileId, search, tag, tags, platform, isSubscribed, limit, skip);
+            //var response = instance.ListContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
             //Assert.IsType<ListContacts200Response>(response);
         }
 
