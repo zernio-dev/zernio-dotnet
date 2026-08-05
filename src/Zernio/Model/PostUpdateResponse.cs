@@ -38,10 +38,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="message">message.</param>
         /// <param name="post">post.</param>
-        public PostUpdateResponse(string message = default, Post post = default)
+        /// <param name="warnings">warnings.</param>
+        public PostUpdateResponse(string message = default, Post post = default, List<string> warnings = default)
         {
             this.Message = message;
             this.Post = post;
+            this.Warnings = warnings;
         }
 
         /// <summary>
@@ -57,6 +59,12 @@ namespace Zernio.Model
         public Post Post { get; set; }
 
         /// <summary>
+        /// Gets or Sets Warnings
+        /// </summary>
+        [DataMember(Name = "warnings", EmitDefaultValue = false)]
+        public List<string> Warnings { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -66,6 +74,7 @@ namespace Zernio.Model
             sb.Append("class PostUpdateResponse {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Post: ").Append(Post).Append("\n");
+            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
