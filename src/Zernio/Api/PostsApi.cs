@@ -151,7 +151,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -174,7 +174,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -416,7 +416,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -440,7 +440,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -1448,7 +1448,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -1472,7 +1472,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -1580,7 +1580,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>
@@ -1605,7 +1605,7 @@ namespace Zernio.Api
         /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="profileId"> (optional)</param>
+        /// <param name="profileId">Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. (optional)</param>
         /// <param name="createdBy">Filter posts to those created by a specific team user (24-char hex ObjectId). (optional)</param>
         /// <param name="dateFrom"> (optional)</param>
         /// <param name="dateTo"> (optional)</param>

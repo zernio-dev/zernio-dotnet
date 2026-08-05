@@ -572,7 +572,7 @@ namespace Example
             var source = "zernio";  // string? | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account). (optional)  (default to zernio)
             var status = "draft";  // string? |  (optional) 
             var platform = twitter;  // string? |  (optional) 
-            var profileId = "profileId_example";  // string? |  (optional) 
+            var profileId = "profileId_example";  // string? | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send `all` or an empty value, to list posts across every profile. (optional) 
             var createdBy = "createdBy_example";  // string? | Filter posts to those created by a specific team user (24-char hex ObjectId). (optional) 
             var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
             var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
@@ -627,7 +627,7 @@ catch (ApiException e)
 | **source** | **string?** | Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] |
 | **status** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
-| **profileId** | **string?** |  | [optional]  |
+| **profileId** | **string?** | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional]  |
 | **createdBy** | **string?** | Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional]  |
 | **dateFrom** | **DateOnly?** |  | [optional]  |
 | **dateTo** | **DateOnly?** |  | [optional]  |
