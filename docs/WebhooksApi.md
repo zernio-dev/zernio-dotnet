@@ -512,6 +512,7 @@ catch (ApiException e)
 | **200** | Test webhook sent successfully |  -  |
 | **400** | Webhook ID required |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Webhook not found |  -  |
 | **500** | Test webhook failed to deliver |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
