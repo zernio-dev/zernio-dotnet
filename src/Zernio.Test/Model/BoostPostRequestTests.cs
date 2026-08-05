@@ -261,5 +261,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'DsaPayor'
         }
+
+        /// <summary>
+        /// Test the property 'OptimizationGoal'
+        /// </summary>
+        [Fact]
+        public void OptimizationGoalTest()
+        {
+            // TODO unit test for the property 'OptimizationGoal'
+        }
     }
 }
