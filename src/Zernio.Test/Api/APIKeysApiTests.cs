@@ -88,5 +88,16 @@ namespace Zernio.Test.Api
             //var response = instance.ListApiKeys();
             //Assert.IsType<ListApiKeys200Response>(response);
         }
+
+        /// <summary>
+        /// Test VerifyCredential
+        /// </summary>
+        [Fact]
+        public void VerifyCredentialTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.VerifyCredential();
+            //Assert.IsType<VerifyCredential200Response>(response);
+        }
     }
 }

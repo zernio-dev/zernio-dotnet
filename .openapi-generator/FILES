@@ -1511,6 +1511,7 @@ docs/ValueRuleCriterion.md
 docs/ValueRuleSet.md
 docs/Verification.md
 docs/VerifyApi.md
+docs/VerifyCredential200Response.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VerifyWhatsAppCallerIdRequest.md
@@ -3153,6 +3154,7 @@ src/Zernio.Test/Model/ValueRuleCriterionTests.cs
 src/Zernio.Test/Model/ValueRuleSetTests.cs
 src/Zernio.Test/Model/ValueRuleTests.cs
 src/Zernio.Test/Model/VerificationTests.cs
+src/Zernio.Test/Model/VerifyCredential200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppCallerIdRequestTests.cs
@@ -4803,6 +4805,7 @@ src/Zernio/Model/ValueRule.cs
 src/Zernio/Model/ValueRuleCriterion.cs
 src/Zernio/Model/ValueRuleSet.cs
 src/Zernio/Model/Verification.cs
+src/Zernio/Model/VerifyCredential200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
 src/Zernio/Model/VerifyWhatsAppCallerIdRequest.cs

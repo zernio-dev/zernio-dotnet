@@ -139,6 +139,7 @@ Class | Method | HTTP request | Description
 *APIKeysApi* | [**CreateApiKey**](docs/APIKeysApi.md#createapikey) | **POST** /v1/api-keys | Create key
 *APIKeysApi* | [**DeleteApiKey**](docs/APIKeysApi.md#deleteapikey) | **DELETE** /v1/api-keys/{keyId} | Delete key
 *APIKeysApi* | [**ListApiKeys**](docs/APIKeysApi.md#listapikeys) | **GET** /v1/api-keys | List keys
+*APIKeysApi* | [**VerifyCredential**](docs/APIKeysApi.md#verifycredential) | **GET** /v1/auth/verify | Verify credential
 *AccountGroupsApi* | [**CreateAccountGroup**](docs/AccountGroupsApi.md#createaccountgroup) | **POST** /v1/account-groups | Create group
 *AccountGroupsApi* | [**DeleteAccountGroup**](docs/AccountGroupsApi.md#deleteaccountgroup) | **DELETE** /v1/account-groups/{groupId} | Delete group
 *AccountGroupsApi* | [**ListAccountGroups**](docs/AccountGroupsApi.md#listaccountgroups) | **GET** /v1/account-groups | List groups
@@ -2134,6 +2135,7 @@ Class | Method | HTTP request | Description
  - [Model.ValueRuleCriterion](docs/ValueRuleCriterion.md)
  - [Model.ValueRuleSet](docs/ValueRuleSet.md)
  - [Model.Verification](docs/Verification.md)
+ - [Model.VerifyCredential200Response](docs/VerifyCredential200Response.md)
  - [Model.VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [Model.VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
  - [Model.VerifyWhatsAppCallerIdRequest](docs/VerifyWhatsAppCallerIdRequest.md)
