@@ -81,5 +81,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Pagination'
         }
+
+        /// <summary>
+        /// Test the property 'Misses'
+        /// </summary>
+        [Fact]
+        public void MissesTest()
+        {
+            // TODO unit test for the property 'Misses'
+        }
     }
 }

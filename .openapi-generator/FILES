@@ -860,6 +860,8 @@ docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCalls200Response.md
 docs/ListCalls200ResponseCallsInner.md
 docs/ListCommentAutomationLogs200Response.md
+docs/ListCommentAutomationLogs200ResponseMisses.md
+docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
@@ -2530,6 +2532,8 @@ src/Zernio.Test/Model/ListBroadcasts200ResponseBroadcastsInnerTests.cs
 src/Zernio.Test/Model/ListBroadcasts200ResponseTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseCallsInnerTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseTests.cs
+src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesSamplesInnerTests.cs
+src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseAutomationsInnerStatsTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseAutomationsInnerTests.cs
@@ -4189,6 +4193,8 @@ src/Zernio/Model/ListBroadcasts200ResponseBroadcastsInner.cs
 src/Zernio/Model/ListCalls200Response.cs
 src/Zernio/Model/ListCalls200ResponseCallsInner.cs
 src/Zernio/Model/ListCommentAutomationLogs200Response.cs
+src/Zernio/Model/ListCommentAutomationLogs200ResponseMisses.cs
+src/Zernio/Model/ListCommentAutomationLogs200ResponseMissesSamplesInner.cs
 src/Zernio/Model/ListCommentAutomations200Response.cs
 src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInner.cs
 src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInnerStats.cs

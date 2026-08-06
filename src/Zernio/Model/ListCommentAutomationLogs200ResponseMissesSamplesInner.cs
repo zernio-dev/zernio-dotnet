@@ -28,49 +28,50 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListCommentAutomationLogs200Response
+    /// ListCommentAutomationLogs200ResponseMissesSamplesInner
     /// </summary>
-    [DataContract(Name = "listCommentAutomationLogs_200_response")]
-    public partial class ListCommentAutomationLogs200Response : IValidatableObject
+    [DataContract(Name = "listCommentAutomationLogs_200_response_misses_samples_inner")]
+    public partial class ListCommentAutomationLogs200ResponseMissesSamplesInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListCommentAutomationLogs200Response" /> class.
+        /// Initializes a new instance of the <see cref="ListCommentAutomationLogs200ResponseMissesSamplesInner" /> class.
         /// </summary>
-        /// <param name="success">success.</param>
-        /// <param name="logs">logs.</param>
-        /// <param name="pagination">pagination.</param>
-        /// <param name="misses">misses.</param>
-        public ListCommentAutomationLogs200Response(bool success = default, List<GetCommentAutomation200ResponseLogsInner> logs = default, ListContacts200ResponsePagination pagination = default, ListCommentAutomationLogs200ResponseMisses misses = default)
+        /// <param name="commentText">commentText.</param>
+        /// <param name="commenterName">commenterName.</param>
+        /// <param name="excludedBy">Set when an exclusion keyword vetoed an otherwise matching comment.</param>
+        /// <param name="at">at.</param>
+        public ListCommentAutomationLogs200ResponseMissesSamplesInner(string commentText = default, string commenterName = default, string excludedBy = default, DateTime at = default)
         {
-            this.Success = success;
-            this.Logs = logs;
-            this.Pagination = pagination;
-            this.Misses = misses;
+            this.CommentText = commentText;
+            this.CommenterName = commenterName;
+            this.ExcludedBy = excludedBy;
+            this.At = at;
         }
 
         /// <summary>
-        /// Gets or Sets Success
+        /// Gets or Sets CommentText
         /// </summary>
-        [DataMember(Name = "success", EmitDefaultValue = true)]
-        public bool Success { get; set; }
+        [DataMember(Name = "commentText", EmitDefaultValue = false)]
+        public string CommentText { get; set; }
 
         /// <summary>
-        /// Gets or Sets Logs
+        /// Gets or Sets CommenterName
         /// </summary>
-        [DataMember(Name = "logs", EmitDefaultValue = false)]
-        public List<GetCommentAutomation200ResponseLogsInner> Logs { get; set; }
+        [DataMember(Name = "commenterName", EmitDefaultValue = false)]
+        public string CommenterName { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
+        /// Set when an exclusion keyword vetoed an otherwise matching comment
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public ListContacts200ResponsePagination Pagination { get; set; }
+        /// <value>Set when an exclusion keyword vetoed an otherwise matching comment</value>
+        [DataMember(Name = "excludedBy", EmitDefaultValue = false)]
+        public string ExcludedBy { get; set; }
 
         /// <summary>
-        /// Gets or Sets Misses
+        /// Gets or Sets At
         /// </summary>
-        [DataMember(Name = "misses", EmitDefaultValue = false)]
-        public ListCommentAutomationLogs200ResponseMisses Misses { get; set; }
+        [DataMember(Name = "at", EmitDefaultValue = false)]
+        public DateTime At { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,11 +80,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListCommentAutomationLogs200Response {\n");
-            sb.Append("  Success: ").Append(Success).Append("\n");
-            sb.Append("  Logs: ").Append(Logs).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
-            sb.Append("  Misses: ").Append(Misses).Append("\n");
+            sb.Append("class ListCommentAutomationLogs200ResponseMissesSamplesInner {\n");
+            sb.Append("  CommentText: ").Append(CommentText).Append("\n");
+            sb.Append("  CommenterName: ").Append(CommenterName).Append("\n");
+            sb.Append("  ExcludedBy: ").Append(ExcludedBy).Append("\n");
+            sb.Append("  At: ").Append(At).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
