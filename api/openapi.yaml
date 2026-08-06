@@ -370,6 +370,7 @@ paths:
       summary: Validate character count
       tags:
       - Validate
+      x-resource-group: publishing
   /v1/tools/validate/post:
     post:
       description: |
@@ -399,6 +400,7 @@ paths:
       summary: Validate post content
       tags:
       - Validate
+      x-resource-group: publishing
   /v1/tools/validate/media:
     post:
       description: |
@@ -428,6 +430,7 @@ paths:
       summary: Validate media URL
       tags:
       - Validate
+      x-resource-group: publishing
   /v1/tools/validate/subreddit:
     get:
       description: |
@@ -468,6 +471,7 @@ paths:
       summary: Check subreddit existence
       tags:
       - Validate
+      x-resource-group: publishing
   /v1/analytics:
     get:
       description: |
@@ -777,6 +781,7 @@ paths:
       summary: Get post analytics
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/youtube/channel-insights:
     get:
       description: |
@@ -885,6 +890,7 @@ paths:
       summary: Get YouTube channel insights
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/linkedin/org-aggregate-analytics:
     get:
       description: |
@@ -1015,6 +1021,7 @@ paths:
       summary: Get LinkedIn org analytics
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/tiktok/account-insights:
     get:
       description: |
@@ -1122,6 +1129,7 @@ paths:
       summary: Get TikTok account-level insights
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/youtube/daily-views:
     get:
       description: |
@@ -1267,6 +1275,7 @@ paths:
       summary: Get YouTube daily views
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/youtube/video-retention:
     get:
       description: |
@@ -1412,6 +1421,7 @@ paths:
       summary: Get YouTube video retention curve
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/facebook/page-insights:
     get:
       description: |
@@ -1630,6 +1640,7 @@ paths:
       summary: Get Facebook Page insights
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/facebook/post-earnings:
     get:
       description: |
@@ -1753,6 +1764,7 @@ paths:
       summary: Get Facebook post monetization earnings
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/instagram/account-insights:
     get:
       description: |
@@ -1931,6 +1943,7 @@ paths:
       summary: Get Instagram insights
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/instagram/follower-history:
     get:
       description: |
@@ -2015,6 +2028,7 @@ paths:
       summary: Get Instagram follower history
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/instagram/demographics:
     get:
       description: |
@@ -2150,6 +2164,7 @@ paths:
       summary: Get Instagram demographics
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/youtube/demographics:
     get:
       description: |
@@ -2315,6 +2330,7 @@ paths:
       summary: Get YouTube demographics
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/daily-metrics:
     get:
       description: |
@@ -2443,6 +2459,7 @@ paths:
       summary: Get daily aggregated metrics
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/best-time:
     get:
       description: |
@@ -2525,6 +2542,7 @@ paths:
       summary: Get best times to post
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/content-decay:
     get:
       description: |
@@ -2626,6 +2644,7 @@ paths:
       summary: Get content performance decay
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/posting-frequency:
     get:
       description: |
@@ -2712,6 +2731,7 @@ paths:
       summary: Get frequency vs engagement
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/post-timeline:
     get:
       description: |
@@ -2812,6 +2832,7 @@ paths:
       summary: Get post analytics timeline
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/googlebusiness/performance:
     get:
       description: |
@@ -2922,6 +2943,7 @@ paths:
       summary: Get GBP performance metrics
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/googlebusiness/search-keywords:
     get:
       description: |
@@ -3006,6 +3028,7 @@ paths:
       summary: Get GBP search keywords
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/analytics/inbox/volume:
     get:
       description: |
@@ -3090,6 +3113,7 @@ paths:
       summary: Get inbox messaging volume
       tags:
       - Inbox Analytics
+      x-resource-group: analytics
   /v1/analytics/inbox/heatmap:
     get:
       description: |
@@ -3183,6 +3207,7 @@ paths:
       summary: Get day × hour heatmap
       tags:
       - Inbox Analytics
+      x-resource-group: analytics
   /v1/analytics/inbox/source-breakdown:
     get:
       description: |
@@ -3256,6 +3281,7 @@ paths:
       summary: Get inbox source breakdown
       tags:
       - Inbox Analytics
+      x-resource-group: analytics
   /v1/analytics/inbox/response-time:
     get:
       description: |
@@ -3335,6 +3361,7 @@ paths:
       summary: Get inbox response-time stats
       tags:
       - Inbox Analytics
+      x-resource-group: analytics
   /v1/analytics/inbox/top-accounts:
     get:
       description: |
@@ -3420,6 +3447,7 @@ paths:
       summary: Get top accounts by inbox volume
       tags:
       - Inbox Analytics
+      x-resource-group: analytics
   /v1/analytics/inbox/conversations:
     get:
       description: |
@@ -3551,6 +3579,7 @@ paths:
       summary: List conversation analytics
       tags:
       - Inbox Analytics
+      x-resource-group: messages
   /v1/analytics/inbox/conversations/{conversationId}:
     get:
       description: |
@@ -3623,6 +3652,7 @@ paths:
       summary: Get conversation analytics
       tags:
       - Inbox Analytics
+      x-resource-group: messages
   /v1/account-groups:
     get:
       description: |
@@ -3656,6 +3686,7 @@ paths:
       summary: List groups
       tags:
       - Account Groups
+      x-resource-group: accounts
     post:
       description: |
         Creates a new account group with a name and a list of social account IDs.
@@ -3697,6 +3728,7 @@ paths:
       summary: Create group
       tags:
       - Account Groups
+      x-resource-group: accounts
   /v1/account-groups/{groupId}:
     delete:
       description: Permanently deletes an account group. The accounts themselves are
@@ -3728,6 +3760,7 @@ paths:
       summary: Delete group
       tags:
       - Account Groups
+      x-resource-group: accounts
     put:
       description: "Updates the name or account list of an existing group. You can\
         \ rename the group, change its accounts, or both."
@@ -3779,6 +3812,7 @@ paths:
       summary: Update group
       tags:
       - Account Groups
+      x-resource-group: accounts
   /v1/media/presign:
     post:
       description: "Get a presigned URL to upload files directly to cloud storage\
@@ -3815,6 +3849,7 @@ paths:
       summary: Get upload URL
       tags:
       - Media
+      x-resource-group: publishing
   /v1/reddit/search:
     get:
       description: Search Reddit posts using a connected account. Optionally scope
@@ -3927,6 +3962,7 @@ paths:
       summary: Search posts
       tags:
       - Reddit Search
+      x-resource-group: engagement
   /v1/reddit/feed:
     get:
       description: "Fetch posts from a subreddit feed. Supports sorting, time filtering,\
@@ -4051,6 +4087,7 @@ paths:
       summary: Get subreddit feed
       tags:
       - Reddit Search
+      x-resource-group: engagement
   /v1/billing:
     get:
       description: |
@@ -4078,6 +4115,7 @@ paths:
       summary: "Account billing snapshot (plan, cycle, balance, caps, status)"
       tags:
       - Usage
+      x-resource-group: billing
   /v1/billing/x-pricing:
     get:
       description: |
@@ -4154,6 +4192,7 @@ paths:
       summary: Get X/Twitter API pricing table
       tags:
       - Usage
+      x-resource-group: billing
   /v1/usage:
     get:
       description: |
@@ -4264,6 +4303,7 @@ paths:
       summary: Usage snapshot (default) or billed-spend metering (with params)
       tags:
       - Usage
+      x-resource-group: billing
   /v1/usage-stats:
     get:
       deprecated: true
@@ -4364,6 +4404,7 @@ paths:
       summary: "Get plan and usage snapshot (plan, limits, payment status)"
       tags:
       - Usage
+      x-resource-group: billing
   /v1/usage/calls:
     get:
       description: |
@@ -4445,6 +4486,7 @@ paths:
       summary: Calling usage and cost
       tags:
       - Usage
+      x-resource-group: billing
   /v1/usage/sms:
     get:
       description: |
@@ -4511,6 +4553,7 @@ paths:
       summary: SMS usage (volumes)
       tags:
       - Usage
+      x-resource-group: billing
   /v1/posts:
     get:
       description: Returns a paginated list of posts. Published posts include platformPostUrl
@@ -4731,6 +4774,7 @@ paths:
       summary: List posts
       tags:
       - Posts
+      x-resource-group: publishing
     post:
       description: |
         Create and optionally publish a post. Immediate posts (`publishNow: true`) include `platformPostUrl` in the response.
@@ -5092,6 +5136,7 @@ paths:
       summary: Create post
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/posts/sync-external:
     post:
       description: |
@@ -5141,6 +5186,7 @@ paths:
       summary: Sync an external post
       tags:
       - Analytics
+      x-resource-group: publishing
   /v1/posts/{postId}:
     delete:
       description: Delete a draft or scheduled post from Zernio. Published posts cannot
@@ -5183,6 +5229,7 @@ paths:
       summary: Delete post
       tags:
       - Posts
+      x-resource-group: publishing
     get:
       description: |
         Fetch a single post by ID. For published posts, this returns platformPostUrl for each platform.
@@ -5316,6 +5363,7 @@ paths:
       summary: Get post
       tags:
       - Posts
+      x-resource-group: publishing
     put:
       description: |
         Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited.
@@ -5380,6 +5428,7 @@ paths:
       summary: Update post
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/posts/bulk-upload:
     post:
       description: Create multiple posts by uploading a CSV file. Use dryRun=true
@@ -5469,6 +5518,7 @@ paths:
       summary: Bulk upload from CSV
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/posts/{postId}/retry:
     post:
       description: Immediately retries publishing a failed post. Returns the updated
@@ -5547,6 +5597,7 @@ paths:
       summary: Retry failed post
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/posts/{postId}/unpublish:
     post:
       description: |
@@ -5602,6 +5653,7 @@ paths:
       summary: Unpublish post
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/posts/{postId}/edit:
     post:
       description: |
@@ -5678,6 +5730,7 @@ paths:
       summary: Edit published post
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/posts/{postId}/update-metadata:
     post:
       description: |
@@ -5771,6 +5824,7 @@ paths:
       summary: Update post metadata
       tags:
       - Posts
+      x-resource-group: publishing
   /v1/users:
     get:
       description: Returns all users in the workspace including roles and profile
@@ -5808,6 +5862,7 @@ paths:
       summary: List users
       tags:
       - Users
+      x-resource-group: accounts
   /v1/users/{userId}:
     get:
       description: "Returns a single user's details by ID, including name, email,\
@@ -5846,6 +5901,7 @@ paths:
       summary: Get user
       tags:
       - Users
+      x-resource-group: accounts
   /v1/profiles:
     get:
       description: "Returns profiles sorted default-first, then by creation date.\
@@ -5915,6 +5971,7 @@ paths:
       summary: List profiles
       tags:
       - Profiles
+      x-resource-group: accounts
     post:
       description: "Creates a new profile with a name, optional description, and color.\
         \ Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId\
@@ -5968,6 +6025,7 @@ paths:
       summary: Create profile
       tags:
       - Profiles
+      x-resource-group: accounts
   /v1/profiles/{profileId}:
     delete:
       description: "Permanently deletes a profile. Active connected accounts block\
@@ -6003,6 +6061,7 @@ paths:
       summary: Delete profile
       tags:
       - Profiles
+      x-resource-group: accounts
     get:
       description: "Returns a single profile by ID, including its name, color, and\
         \ default status."
@@ -6038,6 +6097,7 @@ paths:
       summary: Get profile
       tags:
       - Profiles
+      x-resource-group: accounts
     put:
       description: "Updates a profile's name, description, color, or default status."
       operationId: updateProfile
@@ -6087,6 +6147,7 @@ paths:
       summary: Update profile
       tags:
       - Profiles
+      x-resource-group: accounts
   /v1/accounts:
     get:
       description: |
@@ -6183,6 +6244,7 @@ paths:
       summary: List accounts
       tags:
       - Accounts
+      x-resource-group: accounts
   /v1/accounts/follower-stats:
     get:
       description: |
@@ -6279,6 +6341,7 @@ paths:
       tags:
       - Accounts
       - Analytics
+      x-resource-group: analytics
   /v1/accounts/{accountId}:
     delete:
       description: Disconnects and removes a connected social account.
@@ -6307,6 +6370,7 @@ paths:
       summary: Disconnect account
       tags:
       - Accounts
+      x-resource-group: accounts
     patch:
       description: |
         Moves a connected social account to a different profile owned by the same
@@ -6354,6 +6418,7 @@ paths:
       summary: Move account to another profile
       tags:
       - Accounts
+      x-resource-group: accounts
     put:
       description: |
         Updates a connected social account's display name or username override.
@@ -6407,6 +6472,7 @@ paths:
       summary: Update account
       tags:
       - Accounts
+      x-resource-group: accounts
   /v1/accounts/health:
     get:
       description: "Returns health status of all connected accounts including token\
@@ -6500,6 +6566,7 @@ paths:
       summary: Check accounts health
       tags:
       - Accounts
+      x-resource-group: accounts
   /v1/accounts/{accountId}/whatsapp/register:
     post:
       description: |
@@ -6545,6 +6612,7 @@ paths:
       summary: Register a connected WhatsApp number on the Cloud API
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/accounts/{accountId}/health:
     get:
       description: "Returns detailed health info for a specific account including\
@@ -6602,6 +6670,7 @@ paths:
       summary: Check account health
       tags:
       - Accounts
+      x-resource-group: accounts
   /v1/accounts/{accountId}/tiktok/creator-info:
     get:
       description: "Returns TikTok creator details, available privacy levels, posting\
@@ -6687,6 +6756,7 @@ paths:
       summary: Get TikTok creator info
       tags:
       - Accounts
+      x-resource-group: accounts
   /v1/auth/verify:
     get:
       description: "Checks whether the bearer credential on this request is valid,\
@@ -6712,6 +6782,7 @@ paths:
       summary: Verify credential
       tags:
       - API Keys
+      x-resource-group: public
   /v1/api-keys:
     get:
       description: "Returns all API keys for the authenticated user. Keys are returned\
@@ -6747,9 +6818,12 @@ paths:
           description: API keys
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
       summary: List keys
       tags:
       - API Keys
+      x-resource-group: admin-plane
     post:
       description: Creates a new API key with an optional expiry. The full key value
         is only returned once in the response.
@@ -6758,11 +6832,11 @@ paths:
         content:
           application/json:
             example:
-              name: Analytics Read-Only Key
-              scope: profiles
-              profileIds:
-              - 6507a1b2c3d4e5f6a7b8c9d0
-              permission: read
+              name: No Private Messages Key
+              disabledResourceGroups:
+              - messages
+              - contacts
+              - webhooks
             schema:
               $ref: "#/components/schemas/createApiKey_request"
         required: true
@@ -6774,17 +6848,18 @@ paths:
                 message: API key created successfully
                 apiKey:
                   id: 6507a1b2c3d4e5f6a7b8c9d0
-                  name: Analytics Read-Only Key
-                  keyPreview: sk_12345678...90abcdef
-                  key: sk_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+                  name: No Private Messages Key
+                  keyPreview: zrk_12345678...90abcdef
+                  key: zrk_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
                   expiresAt: null
                   createdAt: 2024-01-15T10:30:00Z
-                  scope: profiles
-                  profileIds:
-                  - _id: 6507a1b2c3d4e5f6a7b8c9d0
-                    name: Main Brand
-                    color: "#ffeda0"
-                  permission: read
+                  scope: full
+                  profileIds: []
+                  permission: read-write
+                  disabledResourceGroups:
+                  - messages
+                  - contacts
+                  - webhooks
               schema:
                 $ref: "#/components/schemas/createApiKey_201_response"
           description: Created
@@ -6793,9 +6868,12 @@ paths:
             \ missing profileIds when scope is 'profiles')"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
       summary: Create key
       tags:
       - API Keys
+      x-resource-group: admin-plane
   /v1/api-keys/{keyId}:
     delete:
       description: Permanently revokes and deletes an API key.
@@ -6819,20 +6897,24 @@ paths:
           description: Deleted
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
         "404":
           $ref: "#/components/responses/NotFound"
       summary: Delete key
       tags:
       - API Keys
+      x-resource-group: admin-plane
   /v1/me/connected-apps:
     get:
       description: |
         Returns the OAuth clients (AI assistants and MCP connectors) the authenticated
         user has authorized and that still hold a live token.
 
-        Requires a session or a full-scope API key. A profile-scoped API key or an
-        OAuth access token is rejected with 403: an app must not be able to enumerate
-        its sibling authorizations.
+        Requires a session or a full-access API key. A profile-scoped API key, a
+        restricted (zrk_) API key, or an OAuth access token is rejected with 403: an
+        app must not be able to enumerate its sibling authorizations, and connected-app
+        management is admin-plane.
       operationId: listConnectedApps
       responses:
         "200":
@@ -6856,15 +6938,11 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-          description: "The calling credential may not manage OAuth authorizations\
-            \ (profile-scoped API key or OAuth access token). Error code: insufficient_permissions."
+          $ref: "#/components/responses/ResourceGroupForbidden"
       summary: List connected apps
       tags:
       - Connected Apps
+      x-resource-group: admin-plane
   /v1/me/connected-apps/{clientId}:
     delete:
       description: |
@@ -6874,6 +6952,9 @@ paths:
 
         Idempotent while the authorization is still on record: revoking an app that
         was already revoked returns 200 with `revokedTokens: 0`.
+
+        Requires a session or a full-access API key. A profile-scoped API key, a
+        restricted (zrk_) API key, or an OAuth access token is rejected with 403.
       operationId: revokeConnectedApp
       parameters:
       - description: "OAuth client id, as returned by GET /v1/me/connected-apps."
@@ -6903,12 +6984,7 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-          description: "The calling credential may not manage OAuth authorizations\
-            \ (profile-scoped API key or OAuth access token). Error code: insufficient_permissions."
+          $ref: "#/components/responses/ResourceGroupForbidden"
         "404":
           content:
             application/json:
@@ -6919,11 +6995,15 @@ paths:
       summary: Revoke connected app
       tags:
       - Connected Apps
+      x-resource-group: admin-plane
   /v1/invite/tokens:
     post:
       description: |
         Generate a secure invite link to grant team members access to your profiles.
         Invites expire after 7 days and are single-use.
+
+        Returns 403 when a requested profile is not found or not owned, or when
+        called with a restricted (zrk_) API key: invite management is admin-plane.
       operationId: createInviteToken
       requestBody:
         content:
@@ -6957,10 +7037,11 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: One or more profiles not found or not owned
+          $ref: "#/components/responses/ResourceGroupForbidden"
       summary: Create invite token
       tags:
       - Invites
+      x-resource-group: admin-plane
   /v1/connect/{platform}:
     get:
       description: |
@@ -7052,6 +7133,7 @@ paths:
       summary: Get OAuth connect URL
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: Exchange the OAuth authorization code for tokens and connect the
         account to the specified profile.
@@ -7087,6 +7169,7 @@ paths:
       summary: Complete OAuth callback
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/{platform}/ads:
     get:
       description: |
@@ -7247,6 +7330,7 @@ paths:
       summary: Connect ads for a platform
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/tiktok-ads:
     patch:
       description: |
@@ -7303,6 +7387,7 @@ paths:
       summary: Set TikTok brand identity
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/facebook/select-page:
     get:
       description: Returns the list of Facebook Pages the user can manage after OAuth.
@@ -7359,6 +7444,7 @@ paths:
       summary: List Facebook pages
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: Complete the headless flow by saving the user's selected Facebook
         page. Pass the userProfile from the OAuth redirect and use X-Connect-Token
@@ -7425,6 +7511,7 @@ paths:
       summary: Select Facebook page
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/googlebusiness/locations:
     get:
       description: |
@@ -7511,6 +7598,7 @@ paths:
       summary: List GBP locations
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/googlebusiness/select-location:
     post:
       description: |
@@ -7562,6 +7650,7 @@ paths:
       summary: Select GBP location
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-reviews:
     get:
       description: "Returns reviews for a GBP account including ratings, comments,\
@@ -7690,6 +7779,7 @@ paths:
       summary: Get reviews
       tags:
       - GMB Reviews
+      x-resource-group: engagement
   /v1/accounts/{accountId}/gmb-verifications:
     get:
       description: "Returns the location's Voice of Merchant state plus its verification\
@@ -7756,6 +7846,7 @@ paths:
       summary: Get verification state
       tags:
       - GMB Verifications
+      x-resource-group: accounts
     post:
       description: "Starts a verification for the location. This is a mutating action:\
         \ depending on `method`, Google mails a postcard, places a call, or sends\
@@ -7818,6 +7909,7 @@ paths:
       summary: Start a verification
       tags:
       - GMB Verifications
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-verifications/options:
     post:
       description: "Reports the verification methods Google currently offers for the\
@@ -7879,6 +7971,7 @@ paths:
       summary: Fetch verification options
       tags:
       - GMB Verifications
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-verifications/{verificationId}/complete:
     post:
       description: "Completes a PENDING verification by submitting the PIN/code Google\
@@ -7946,6 +8039,7 @@ paths:
       summary: Complete a verification
       tags:
       - GMB Verifications
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-food-menus:
     get:
       description: "Returns food menus for a GBP location including sections, items,\
@@ -8040,6 +8134,7 @@ paths:
       summary: Get food menus
       tags:
       - GMB Food Menus
+      x-resource-group: accounts
     put:
       description: Updates food menus for a GBP location. Send the full menus array.
         Use updateMask for partial updates.
@@ -8127,6 +8222,7 @@ paths:
       summary: Update food menus
       tags:
       - GMB Food Menus
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-location-details:
     get:
       description: "Returns detailed GBP location info (hours, description, phone,\
@@ -8231,6 +8327,7 @@ paths:
       summary: Get location details
       tags:
       - GMB Location Details
+      x-resource-group: accounts
     put:
       description: |
         Updates GBP location details. The updateMask field is required and specifies which fields to update.
@@ -8341,6 +8438,7 @@ paths:
       summary: Update location details
       tags:
       - GMB Location Details
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-media:
     delete:
       description: Deletes a photo or media item from a GBP location.
@@ -8394,6 +8492,7 @@ paths:
       summary: Delete photo
       tags:
       - GMB Media
+      x-resource-group: accounts
     get:
       description: |
         Lists media items (photos) for a Google Business Profile location.
@@ -8459,6 +8558,7 @@ paths:
       summary: List media
       tags:
       - GMB Media
+      x-resource-group: accounts
     post:
       description: |
         Creates a media item (photo) for a location from a publicly accessible URL.
@@ -8516,6 +8616,7 @@ paths:
       summary: Upload photo
       tags:
       - GMB Media
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-attribute-metadata:
     get:
       description: |
@@ -8646,6 +8747,7 @@ paths:
       summary: Get attribute metadata
       tags:
       - GMB Attributes
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-attributes:
     get:
       description: "Returns GBP location attributes (amenities, services, accessibility,\
@@ -8714,6 +8816,7 @@ paths:
       summary: Get attributes
       tags:
       - GMB Attributes
+      x-resource-group: accounts
     put:
       description: |
         Updates location attributes (amenities, services, etc.).
@@ -8779,6 +8882,7 @@ paths:
       summary: Update attributes
       tags:
       - GMB Attributes
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-place-actions:
     delete:
       description: Deletes a place action link (e.g. booking or ordering URL) from
@@ -8833,6 +8937,7 @@ paths:
       summary: Delete action link
       tags:
       - GMB Place Actions
+      x-resource-group: accounts
     get:
       description: |
         Lists place action links for a Google Business Profile location.
@@ -8906,6 +9011,7 @@ paths:
       summary: List action links
       tags:
       - GMB Place Actions
+      x-resource-group: accounts
     patch:
       description: |
         Updates a place action link (change URL or action type).
@@ -8961,6 +9067,7 @@ paths:
       summary: Update action link
       tags:
       - GMB Place Actions
+      x-resource-group: accounts
     post:
       description: |
         Creates a place action link for a location.
@@ -9017,6 +9124,7 @@ paths:
       summary: Create action link
       tags:
       - GMB Place Actions
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-services:
     get:
       description: |
@@ -9064,6 +9172,7 @@ paths:
       summary: Get services
       tags:
       - GMB Services
+      x-resource-group: accounts
     put:
       description: |
         Replaces the entire service list for a location.
@@ -9127,6 +9236,7 @@ paths:
       summary: Replace services
       tags:
       - GMB Services
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-reviews/batch:
     post:
       description: |
@@ -9184,6 +9294,7 @@ paths:
       summary: Batch get reviews
       tags:
       - GMB Reviews
+      x-resource-group: engagement
   /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply:
     delete:
       description: Removes the business owner reply from a Google Business review.
@@ -9248,6 +9359,7 @@ paths:
       summary: Delete a review reply
       tags:
       - GMB Reviews
+      x-resource-group: engagement
     post:
       description: |
         Posts (or updates) the business owner reply to a Google Business review.
@@ -9323,6 +9435,7 @@ paths:
       summary: Reply to a review
       tags:
       - GMB Reviews
+      x-resource-group: engagement
   /v1/connect/pending-data:
     get:
       description: |
@@ -9385,6 +9498,7 @@ paths:
       summary: Get pending OAuth data
       tags:
       - Connect
+      x-resource-group: public
   /v1/connect/linkedin/organizations:
     get:
       description: "Fetch full LinkedIn organization details (logos, vanity names,\
@@ -9443,6 +9557,7 @@ paths:
       summary: List LinkedIn orgs
       tags:
       - Connect
+      x-resource-group: public
   /v1/connect/linkedin/select-organization:
     post:
       description: Complete the LinkedIn connection flow. Set accountType to "personal"
@@ -9532,6 +9647,7 @@ paths:
       summary: Select LinkedIn org
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/pinterest/select-board:
     get:
       description: For headless flows. Returns Pinterest boards the user can post
@@ -9590,6 +9706,7 @@ paths:
       summary: List Pinterest boards
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: |
         Complete the Pinterest connection flow. After OAuth, use this endpoint to save the selected board and complete the account connection. Use the X-Connect-Token header if you initiated the connection via API key.
@@ -9655,6 +9772,7 @@ paths:
       summary: Select Pinterest board
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/snapchat/select-profile:
     get:
       description: For headless flows. Returns Snapchat Public Profiles the user can
@@ -9715,6 +9833,7 @@ paths:
       summary: List Snapchat profiles
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: Complete the Snapchat connection flow by saving the selected Public
         Profile. Snapchat requires a Public Profile to publish content. Use X-Connect-Token
@@ -9794,6 +9913,7 @@ paths:
       summary: Select Snapchat profile
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/bluesky/credentials:
     post:
       description: |
@@ -9835,6 +9955,7 @@ paths:
       summary: Connect Bluesky account
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/openai-ads/credentials:
     post:
       description: |
@@ -9875,6 +9996,7 @@ paths:
       summary: Connect an OpenAI Ads account
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/whatsapp/credentials:
     post:
       description: |
@@ -9933,6 +10055,7 @@ paths:
       summary: Connect WhatsApp via credentials
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/whatsapp/select-phone-number:
     get:
       description: |
@@ -10007,6 +10130,7 @@ paths:
       summary: List numbers for selection
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: |
         Bind a specific WhatsApp phone number to the Zernio profile after the user picks one from `listWhatsAppPhoneNumbers`. Exchanges the short-lived OAuth token for a long-lived token, subscribes the WABA to webhooks, and creates the SocialAccount.
@@ -10075,6 +10199,7 @@ paths:
       summary: Complete number selection
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/connect/telegram:
     get:
       description: "Generate an access code (valid 15 minutes) for connecting a Telegram\
@@ -10123,6 +10248,7 @@ paths:
       summary: Generate Telegram code
       tags:
       - Connect
+      x-resource-group: accounts
     patch:
       description: |
         Poll this endpoint to check if a Telegram access code has been used to connect a channel/group. Recommended polling interval: 3 seconds.
@@ -10178,6 +10304,7 @@ paths:
       summary: Check Telegram status
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: Connect a Telegram channel/group directly using the chat ID. Alternative
         to the access code flow. The bot must already be an admin in the channel/group.
@@ -10220,6 +10347,7 @@ paths:
       summary: Connect Telegram directly
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/facebook-page:
     get:
       description: "Returns all Facebook pages the connected account has access to,\
@@ -10270,6 +10398,7 @@ paths:
       summary: List Facebook pages
       tags:
       - Connect
+      x-resource-group: accounts
     put:
       description: Switch which Facebook Page is active for a connected account.
       operationId: updateFacebookPage
@@ -10310,6 +10439,7 @@ paths:
       summary: Update Facebook page
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/linkedin-organizations:
     get:
       description: Returns LinkedIn organizations (company pages) the connected account
@@ -10347,6 +10477,7 @@ paths:
       summary: List LinkedIn orgs
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/linkedin-aggregate-analytics:
     get:
       description: Returns aggregate analytics across all posts for a LinkedIn personal
@@ -10581,6 +10712,7 @@ paths:
       summary: Get LinkedIn aggregate stats
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/accounts/{accountId}/linkedin-post-analytics:
     get:
       description: Returns analytics for a specific LinkedIn post by URN. Works for
@@ -10678,6 +10810,7 @@ paths:
       summary: Get LinkedIn post stats
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/accounts/{accountId}/linkedin-post-reactions:
     get:
       description: |
@@ -10769,6 +10902,7 @@ paths:
       summary: Get LinkedIn post reactions
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/accounts/{accountId}/linkedin-organization:
     put:
       description: Switch a LinkedIn account between personal profile and organization
@@ -10815,6 +10949,7 @@ paths:
       summary: Switch LinkedIn account type
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/linkedin-mentions:
     get:
       description: |
@@ -10964,6 +11099,7 @@ paths:
       summary: Resolve LinkedIn mention
       tags:
       - LinkedIn Mentions
+      x-resource-group: accounts
   /v1/accounts/{accountId}/instagram/stories:
     get:
       description: |
@@ -11002,6 +11138,7 @@ paths:
       summary: List active Instagram stories
       tags:
       - Instagram
+      x-resource-group: analytics
   /v1/accounts/{accountId}/instagram/publishing-limit:
     get:
       description: |
@@ -11044,6 +11181,7 @@ paths:
       summary: Get Instagram publishing limit
       tags:
       - Instagram
+      x-resource-group: accounts
   /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
     get:
       description: |
@@ -11093,6 +11231,7 @@ paths:
       summary: Get Instagram story insights
       tags:
       - Instagram
+      x-resource-group: analytics
   /v1/accounts/{accountId}/pinterest-boards:
     get:
       description: Returns the boards available for a connected Pinterest account.
@@ -11132,6 +11271,7 @@ paths:
       summary: List Pinterest boards
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: Creates a new board on the connected Pinterest account. The returned
         board ID can be used immediately as `platformSpecificData.boardId` when creating
@@ -11179,6 +11319,7 @@ paths:
       summary: Create Pinterest board
       tags:
       - Connect
+      x-resource-group: accounts
     put:
       description: Sets the default board used when publishing pins for this account.
       operationId: updatePinterestBoards
@@ -11223,6 +11364,7 @@ paths:
       summary: Set default Pinterest board
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/youtube-playlists:
     get:
       description: Returns the playlists available for a connected YouTube account.
@@ -11268,6 +11410,7 @@ paths:
       summary: List YouTube playlists
       tags:
       - Connect
+      x-resource-group: accounts
     put:
       description: "Sets the default playlist used when publishing videos for this\
         \ account. When a post does not specify a playlistId, the default playlist\
@@ -11308,6 +11451,7 @@ paths:
       summary: Set default YouTube playlist
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-locations:
     get:
       description: |
@@ -11379,6 +11523,7 @@ paths:
       summary: List GBP locations
       tags:
       - Connect
+      x-resource-group: accounts
     put:
       description: Switch which GBP location is active for a connected account.
       operationId: updateGmbLocation
@@ -11420,6 +11565,7 @@ paths:
       summary: Update GBP location
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/gmb-locations/assign:
     post:
       description: |
@@ -11476,6 +11622,7 @@ paths:
       summary: Assign GBP location to another profile
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/facebook-post-reactions:
     get:
       description: |
@@ -11538,6 +11685,7 @@ paths:
       summary: Get Facebook post reactions
       tags:
       - Analytics
+      x-resource-group: analytics
   /v1/accounts/{accountId}/reddit-subreddits:
     get:
       description: Returns the subreddits the connected Reddit account can post to.
@@ -11580,6 +11728,7 @@ paths:
       summary: List Reddit subreddits
       tags:
       - Connect
+      x-resource-group: accounts
     put:
       description: Sets the default subreddit used when publishing posts for this
         Reddit account.
@@ -11618,6 +11767,7 @@ paths:
       summary: Set default subreddit
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules:
     get:
       description: |
@@ -11676,6 +11826,7 @@ paths:
       summary: Get subreddit rules
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/reddit-vote:
     post:
       description: |
@@ -11726,6 +11877,7 @@ paths:
       summary: Vote on a Reddit post or comment
       tags:
       - Connect
+      x-resource-group: engagement
   /v1/accounts/{accountId}/reddit-flairs:
     get:
       description: Returns available post flairs for a subreddit. Some subreddits
@@ -11774,6 +11926,7 @@ paths:
       summary: List subreddit flairs
       tags:
       - Connect
+      x-resource-group: accounts
     post:
       description: |
         Applies a flair to a post the connected account already published. Use the GET on this
@@ -11826,6 +11979,7 @@ paths:
       summary: Set Reddit post flair
       tags:
       - Connect
+      x-resource-group: accounts
   /v1/accounts/{accountId}/slack-settings:
     get:
       description: "Returns the connected Slack channel details and the default message\
@@ -11857,6 +12011,7 @@ paths:
       summary: Get Slack account settings
       tags:
       - Accounts
+      x-resource-group: accounts
     patch:
       description: Set or clear the default message identity for this channel. Empty
         string clears a field; per-post platformSpecificData.username/iconUrl still
@@ -11888,6 +12043,7 @@ paths:
       summary: Update Slack account settings
       tags:
       - Accounts
+      x-resource-group: accounts
   /v1/accounts/{accountId}/discord-settings:
     get:
       description: "Returns the current Discord account settings including webhook\
@@ -11930,6 +12086,7 @@ paths:
       summary: Get Discord account settings
       tags:
       - Discord
+      x-resource-group: accounts
     patch:
       description: |
         Update Discord account settings. Supports two operations (can be combined):
@@ -11979,6 +12136,7 @@ paths:
       summary: Update Discord settings
       tags:
       - Discord
+      x-resource-group: accounts
   /v1/accounts/{accountId}/discord-channels:
     get:
       description: "Returns the text, announcement, and forum channels in the connected\
@@ -12020,6 +12178,7 @@ paths:
       summary: List Discord guild channels
       tags:
       - Discord
+      x-resource-group: accounts
   /v1/accounts/{accountId}/slack-members:
     get:
       description: "Members of the connected Slack workspace that can receive a direct\
@@ -12076,6 +12235,7 @@ paths:
       summary: List Slack workspace members
       tags:
       - Slack
+      x-resource-group: contacts
   /v1/discord/dms:
     post:
       description: |
@@ -12141,6 +12301,7 @@ paths:
       summary: Send a Discord Direct Message
       tags:
       - Discord
+      x-resource-group: messages
   /v1/discord/guilds/{guildId}/roles:
     get:
       description: |
@@ -12193,6 +12354,7 @@ paths:
       summary: List Discord guild roles
       tags:
       - Discord
+      x-resource-group: engagement
     post:
       description: |
         Creates a new role in the guild.
@@ -12255,6 +12417,7 @@ paths:
       summary: Create a Discord guild role
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/guilds/{guildId}/roles/{roleId}:
     delete:
       description: |
@@ -12313,6 +12476,7 @@ paths:
       summary: Delete a Discord guild role
       tags:
       - Discord
+      x-resource-group: engagement
     patch:
       description: |
         Updates a role's name, color, hoist, mentionable flag, or permission bitfield.
@@ -12377,6 +12541,7 @@ paths:
       summary: Edit a Discord guild role
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/guilds/{guildId}/members:
     get:
       description: |
@@ -12441,6 +12606,7 @@ paths:
       summary: List Discord guild members
       tags:
       - Discord
+      x-resource-group: contacts
   /v1/discord/guilds/{guildId}/members/search:
     get:
       description: |
@@ -12501,6 +12667,7 @@ paths:
       summary: Search Discord guild members
       tags:
       - Discord
+      x-resource-group: contacts
   /v1/discord/guilds/{guildId}/members/{userId}:
     get:
       description: |
@@ -12549,6 +12716,7 @@ paths:
       summary: Get a Discord guild member
       tags:
       - Discord
+      x-resource-group: contacts
   /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}:
     delete:
       description: |
@@ -12606,6 +12774,7 @@ paths:
       summary: Remove a role from a guild member
       tags:
       - Discord
+      x-resource-group: contacts
     put:
       description: |
         Assign one role to one member. Idempotent on Discord's side — re-running
@@ -12670,6 +12839,7 @@ paths:
       summary: Assign a role to a guild member
       tags:
       - Discord
+      x-resource-group: contacts
   /v1/discord/channels/{channelId}/messages/{messageId}:
     delete:
       description: |
@@ -12731,6 +12901,7 @@ paths:
       summary: Delete a Discord channel message
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/channels/{channelId}/messages/{messageId}/crosspost:
     post:
       description: |
@@ -12788,6 +12959,7 @@ paths:
       summary: Crosspost Discord message
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/channels/{channelId}/threads:
     post:
       description: |
@@ -12849,6 +13021,7 @@ paths:
       summary: Create a Discord public thread
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/channels/{channelId}/pins:
     get:
       description: |
@@ -12894,6 +13067,7 @@ paths:
       summary: List pinned messages
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/channels/{channelId}/pins/{messageId}:
     delete:
       description: |
@@ -12940,6 +13114,7 @@ paths:
       summary: Unpin a Discord message
       tags:
       - Discord
+      x-resource-group: engagement
     put:
       description: |
         Pin a specific message in a channel. Path shape mirrors Discord's own
@@ -12992,6 +13167,7 @@ paths:
       summary: Pin a Discord message
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/guilds/{guildId}/events:
     get:
       description: |
@@ -13043,6 +13219,7 @@ paths:
       summary: List Discord scheduled events
       tags:
       - Discord
+      x-resource-group: engagement
     post:
       description: |
         Create a guild scheduled event. Three event types, selected via the
@@ -13110,6 +13287,7 @@ paths:
       summary: Create a Discord scheduled event
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/discord/guilds/{guildId}/events/{eventId}:
     delete:
       description: |
@@ -13154,6 +13332,7 @@ paths:
       summary: Delete a Discord scheduled event
       tags:
       - Discord
+      x-resource-group: engagement
     get:
       operationId: getDiscordScheduledEvent
       parameters:
@@ -13192,6 +13371,7 @@ paths:
       summary: Get a Discord scheduled event
       tags:
       - Discord
+      x-resource-group: engagement
     patch:
       description: |
         Patch any subset of fields. Passing `status: 'cancelled'` is how you
@@ -13246,6 +13426,7 @@ paths:
       summary: Update a Discord scheduled event
       tags:
       - Discord
+      x-resource-group: engagement
   /v1/queue/slots:
     delete:
       description: |
@@ -13288,6 +13469,7 @@ paths:
       summary: Delete schedule
       tags:
       - Queue
+      x-resource-group: publishing
     get:
       description: "Returns queue schedules for a profile. Use all=true for all queues,\
         \ or queueId for a specific one. Defaults to the default queue."
@@ -13379,6 +13561,7 @@ paths:
       summary: List schedules
       tags:
       - Queue
+      x-resource-group: publishing
     post:
       description: |
         Create an additional queue for a profile. The first queue created becomes the default.
@@ -13418,6 +13601,7 @@ paths:
       summary: Create schedule
       tags:
       - Queue
+      x-resource-group: publishing
     put:
       description: |
         Create a new queue or update an existing one. Without queueId, creates/updates the default queue. With queueId, updates a specific queue. With setAsDefault=true, makes this queue the default for the profile.
@@ -13478,6 +13662,7 @@ paths:
       summary: Update schedule
       tags:
       - Queue
+      x-resource-group: publishing
   /v1/queue/preview:
     get:
       description: Returns the next N upcoming queue slot times for a profile as ISO
@@ -13539,6 +13724,7 @@ paths:
       summary: Preview upcoming slots
       tags:
       - Queue
+      x-resource-group: publishing
   /v1/queue/next-slot:
     get:
       description: "Returns the next available queue slot for preview purposes. To\
@@ -13583,6 +13769,7 @@ paths:
       summary: Get next available slot
       tags:
       - Queue
+      x-resource-group: publishing
   /v1/webhooks/settings:
     delete:
       description: Permanently delete a webhook configuration.
@@ -13612,6 +13799,7 @@ paths:
       summary: Delete webhook
       tags:
       - Webhooks
+      x-resource-group: webhooks
     get:
       description: Retrieve all configured webhooks for the authenticated user. Supports
         up to 50 webhooks per user.
@@ -13649,6 +13837,7 @@ paths:
       summary: List webhooks
       tags:
       - Webhooks
+      x-resource-group: webhooks
     post:
       description: |
         Create a new webhook configuration. Maximum 50 webhooks per user.
@@ -13656,6 +13845,11 @@ paths:
         `name`, `url` and `events` are required. `url` must be a valid URL and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.
 
         Webhooks are automatically disabled after 10 consecutive delivery failures.
+
+        A restricted (zrk_) API key can only subscribe to events whose resource group
+        the key holds; an event outside the key's groups is rejected with 403. Note
+        that the KEY cannot access private messages; the ACCOUNT's pre-existing
+        webhook subscriptions are a separate grant surface.
       operationId: createWebhookSettings
       requestBody:
         content:
@@ -13703,11 +13897,14 @@ paths:
           description: Validation error or maximum webhooks reached
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
       security:
       - bearerAuth: []
       summary: Create webhook
       tags:
       - Webhooks
+      x-resource-group: webhooks
     put:
       description: |
         Update an existing webhook configuration. All fields except `_id` are optional; only provided fields will be updated.
@@ -13715,6 +13912,9 @@ paths:
         When provided, `name` must be 1-50 characters, `url` must be a valid URL, and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.
 
         Webhooks are automatically disabled after 10 consecutive delivery failures.
+
+        A restricted (zrk_) API key can only set `events` to events whose resource
+        group the key holds; an event outside the key's groups is rejected with 403.
       operationId: updateWebhookSettings
       requestBody:
         content:
@@ -13747,6 +13947,8 @@ paths:
           description: Validation error or missing webhook ID
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
         "404":
           description: Webhook not found
       security:
@@ -13754,12 +13956,17 @@ paths:
       summary: Update webhook
       tags:
       - Webhooks
+      x-resource-group: webhooks
   /v1/webhooks/logs:
     get:
       description: |
         Retrieve recorded webhook delivery attempts for the authenticated user, most recent first.
         Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID,
         plus offset-based pagination.
+
+        For a restricted (zrk_) API key, rows for events outside the key's resource
+        groups are omitted (`pagination.total` may over-count), and an `event` filter
+        naming such an event is rejected with 403.
       operationId: getWebhookLogs
       parameters:
       - description: Maximum number of logs to return
@@ -13836,11 +14043,14 @@ paths:
           description: Invalid query parameter
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
       security:
       - bearerAuth: []
       summary: List webhook delivery logs
       tags:
       - Webhooks
+      x-resource-group: webhooks
   /v1/webhooks/test:
     post:
       description: |
@@ -13884,6 +14094,7 @@ paths:
       summary: Send test webhook
       tags:
       - Webhooks
+      x-resource-group: webhooks
   /v1/logs:
     get:
       description: |
@@ -14079,6 +14290,7 @@ paths:
       summary: List activity logs
       tags:
       - Logs
+      x-resource-group: publishing
   /v1/inbox/conversations:
     get:
       description: |
@@ -14180,6 +14392,7 @@ paths:
       summary: List conversations
       tags:
       - Messages
+      x-resource-group: messages
     post:
       description: |
         Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.
@@ -14239,6 +14452,7 @@ paths:
       summary: Create conversation
       tags:
       - Messages
+      x-resource-group: messages
   /v1/inbox/conversations/search:
     get:
       description: |
@@ -14343,6 +14557,7 @@ paths:
       summary: Search conversations
       tags:
       - Messages
+      x-resource-group: messages
   /v1/inbox/conversations/{conversationId}:
     get:
       description: Retrieve details and metadata for a specific conversation. Requires
@@ -14385,6 +14600,7 @@ paths:
       summary: Get conversation
       tags:
       - Messages
+      x-resource-group: messages
     put:
       description: Archive or activate a conversation. Requires accountId in request
         body.
@@ -14424,6 +14640,7 @@ paths:
       summary: Update conversation status
       tags:
       - Messages
+      x-resource-group: messages
   /v1/inbox/conversations/{conversationId}/messages:
     get:
       description: |
@@ -14533,6 +14750,7 @@ paths:
       summary: List messages
       tags:
       - Messages
+      x-resource-group: messages
     post:
       description: |
         Send a message in a conversation. Supports text, attachments, quick replies,
@@ -14609,6 +14827,7 @@ paths:
       summary: Send message
       tags:
       - Messages
+      x-resource-group: messages
   /v1/whatsapp/media/{mediaId}:
     get:
       description: |
@@ -14671,6 +14890,7 @@ paths:
       summary: Download WhatsApp media
       tags:
       - WhatsApp
+      x-resource-group: messages
   /v1/inbox/conversations/{conversationId}/messages/{messageId}:
     delete:
       description: |
@@ -14726,6 +14946,7 @@ paths:
       summary: Delete message
       tags:
       - Messages
+      x-resource-group: messages
     patch:
       description: |
         Edit the text and/or reply markup of a previously sent Telegram message.
@@ -14772,6 +14993,7 @@ paths:
       summary: Edit message
       tags:
       - Messages
+      x-resource-group: messages
   /v1/inbox/conversations/{conversationId}/typing:
     post:
       description: |
@@ -14819,6 +15041,7 @@ paths:
       summary: Send typing indicator
       tags:
       - Messages
+      x-resource-group: messages
   /v1/inbox/conversations/{conversationId}/read:
     post:
       description: |
@@ -14865,6 +15088,7 @@ paths:
       summary: Mark a conversation as read
       tags:
       - Messages
+      x-resource-group: messages
   /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions:
     delete:
       description: |
@@ -14918,6 +15142,7 @@ paths:
       summary: Remove reaction
       tags:
       - Messages
+      x-resource-group: messages
     post:
       description: |
         Add an emoji reaction to a message. Platform support:
@@ -14968,6 +15193,7 @@ paths:
       summary: Add reaction
       tags:
       - Messages
+      x-resource-group: messages
   /v1/media/upload-direct:
     post:
       description: |
@@ -15002,6 +15228,7 @@ paths:
       summary: Upload media file
       tags:
       - Messages
+      x-resource-group: publishing
   /v1/accounts/{accountId}/messenger-menu:
     delete:
       description: Removes the persistent menu from Facebook Messenger conversations
@@ -15027,6 +15254,7 @@ paths:
       summary: Delete FB persistent menu
       tags:
       - Account Settings
+      x-resource-group: accounts
     get:
       description: Get the persistent menu configuration for a Facebook Messenger
         account.
@@ -15055,6 +15283,7 @@ paths:
       summary: Get FB persistent menu
       tags:
       - Account Settings
+      x-resource-group: accounts
     put:
       description: "Set the persistent menu for a Facebook Messenger account. Max\
         \ 3 top-level items, max 5 nested items."
@@ -15085,6 +15314,7 @@ paths:
       summary: Set FB persistent menu
       tags:
       - Account Settings
+      x-resource-group: accounts
   /v1/accounts/{accountId}/instagram-ice-breakers:
     delete:
       description: Removes the ice breaker questions from an Instagram account's Messenger
@@ -15110,6 +15340,7 @@ paths:
       summary: Delete IG ice breakers
       tags:
       - Account Settings
+      x-resource-group: accounts
     get:
       description: Get the ice breaker configuration for an Instagram account.
       operationId: getInstagramIceBreakers
@@ -15137,6 +15368,7 @@ paths:
       summary: Get IG ice breakers
       tags:
       - Account Settings
+      x-resource-group: accounts
     put:
       description: "Set ice breakers for an Instagram account. Max 4 ice breakers,\
         \ question max 80 chars."
@@ -15167,6 +15399,7 @@ paths:
       summary: Set IG ice breakers
       tags:
       - Account Settings
+      x-resource-group: accounts
   /v1/accounts/{accountId}/telegram-commands:
     delete:
       description: Clears all bot commands configured for a Telegram bot account.
@@ -15191,6 +15424,7 @@ paths:
       summary: Delete TG bot commands
       tags:
       - Account Settings
+      x-resource-group: accounts
     get:
       description: Get the bot commands configuration for a Telegram account.
       operationId: getTelegramCommands
@@ -15218,6 +15452,7 @@ paths:
       summary: Get TG bot commands
       tags:
       - Account Settings
+      x-resource-group: accounts
     put:
       description: Set bot commands for a Telegram account.
       operationId: setTelegramCommands
@@ -15247,6 +15482,7 @@ paths:
       summary: Set TG bot commands
       tags:
       - Account Settings
+      x-resource-group: accounts
   /v1/inbox/comments:
     get:
       description: |
@@ -15379,6 +15615,7 @@ paths:
       summary: List commented posts
       tags:
       - Comments
+      x-resource-group: engagement
   /v1/inbox/comments/{postId}:
     delete:
       description: |
@@ -15437,6 +15674,7 @@ paths:
       summary: Delete comment
       tags:
       - Comments
+      x-resource-group: engagement
     get:
       description: Fetch comments for a specific post. Requires accountId query parameter.
       operationId: getInboxPostComments
@@ -15517,6 +15755,7 @@ paths:
       summary: Get post comments
       tags:
       - Comments
+      x-resource-group: engagement
     post:
       description: Post a reply to a post or specific comment. Requires accountId
         in request body.
@@ -15562,6 +15801,7 @@ paths:
       summary: Reply to comment
       tags:
       - Comments
+      x-resource-group: engagement
   /v1/inbox/comments/{postId}/{commentId}:
     patch:
       description: |
@@ -15624,6 +15864,7 @@ paths:
       summary: Edit comment
       tags:
       - Comments
+      x-resource-group: engagement
   /v1/inbox/comments/{postId}/{commentId}/moderation:
     post:
       description: |
@@ -15690,6 +15931,7 @@ paths:
       summary: Set comment moderation status
       tags:
       - Comments
+      x-resource-group: engagement
   /v1/inbox/comments/{postId}/{commentId}/hide:
     delete:
       description: |
@@ -15735,6 +15977,7 @@ paths:
       summary: Unhide comment
       tags:
       - Comments
+      x-resource-group: engagement
     post:
       description: |
         Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter.
@@ -15780,6 +16023,7 @@ paths:
       summary: Hide comment
       tags:
       - Comments
+      x-resource-group: engagement
   /v1/inbox/comments/{postId}/{commentId}/like:
     delete:
       description: |
@@ -15834,6 +16078,7 @@ paths:
       summary: Unlike comment
       tags:
       - Comments
+      x-resource-group: engagement
     post:
       description: |
         Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit.
@@ -15878,6 +16123,7 @@ paths:
       summary: Like comment
       tags:
       - Comments
+      x-resource-group: engagement
   /v1/inbox/comments/{postId}/{commentId}/private-reply:
     post:
       description: |
@@ -15986,6 +16232,7 @@ paths:
       summary: Send private reply
       tags:
       - Comments
+      x-resource-group: messages
   /v1/twitter/retweet:
     delete:
       description: |
@@ -16028,6 +16275,7 @@ paths:
       summary: Undo retweet
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
     post:
       description: |
         Retweet (repost) a tweet by ID.
@@ -16060,6 +16308,7 @@ paths:
       summary: Retweet a post
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
   /v1/twitter/bookmark:
     delete:
       description: |
@@ -16102,6 +16351,7 @@ paths:
       summary: Remove bookmark
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
     post:
       description: |
         Bookmark a tweet by ID.
@@ -16135,6 +16385,7 @@ paths:
       summary: Bookmark a tweet
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
   /v1/twitter/follow:
     delete:
       description: |
@@ -16177,6 +16428,7 @@ paths:
       summary: Unfollow a user
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
     post:
       description: |
         Follow a user on X/Twitter.
@@ -16210,6 +16462,7 @@ paths:
       summary: Follow a user
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
   /v1/twitter/search:
     get:
       description: |
@@ -16337,6 +16590,7 @@ paths:
       summary: Search recent tweets
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
   /v1/twitter/tweet:
     get:
       description: |
@@ -16391,6 +16645,7 @@ paths:
       summary: Look up a tweet
       tags:
       - Twitter Engagement
+      x-resource-group: engagement
   /v1/inbox/mentions:
     get:
       description: |
@@ -16463,6 +16718,7 @@ paths:
       summary: List mentions
       tags:
       - Mentions
+      x-resource-group: engagement
   /v1/inbox/mentions/reply:
     post:
       description: |
@@ -16520,6 +16776,7 @@ paths:
       summary: Reply to a mention
       tags:
       - Mentions
+      x-resource-group: engagement
   /v1/inbox/reviews:
     get:
       description: |
@@ -16633,6 +16890,7 @@ paths:
       summary: List reviews
       tags:
       - Reviews
+      x-resource-group: engagement
   /v1/inbox/reviews/{reviewId}/reply:
     delete:
       description: Delete a reply to a review (Google Business only). Requires accountId
@@ -16668,6 +16926,7 @@ paths:
       summary: Delete review reply
       tags:
       - Reviews
+      x-resource-group: engagement
     post:
       description: Post a reply to a review. Requires accountId in request body.
       operationId: replyToInboxReview
@@ -16702,6 +16961,7 @@ paths:
       summary: Reply to review
       tags:
       - Reviews
+      x-resource-group: engagement
   /v1/whatsapp/templates:
     get:
       description: |
@@ -16735,6 +16995,7 @@ paths:
       summary: List templates
       tags:
       - WhatsApp
+      x-resource-group: accounts
     post:
       description: |
         Create a new message template. Supports two modes:
@@ -16812,6 +17073,7 @@ paths:
       summary: Create template
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/templates/{templateName}:
     delete:
       description: |
@@ -16858,6 +17120,7 @@ paths:
       summary: Delete template
       tags:
       - WhatsApp
+      x-resource-group: accounts
     get:
       description: |
         Retrieve a single message template by name.
@@ -16900,6 +17163,7 @@ paths:
       summary: Get template
       tags:
       - WhatsApp
+      x-resource-group: accounts
     patch:
       description: |
         Update a message template's components. Only certain fields can be updated depending on
@@ -16954,6 +17218,7 @@ paths:
       summary: Update template
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/calling:
     get:
       description: |
@@ -16991,6 +17256,7 @@ paths:
       summary: Get calling config for an account
       tags:
       - WhatsApp Calling
+      x-resource-group: accounts
   /v1/whatsapp/phone-numbers/{id}/calling:
     delete:
       deprecated: true
@@ -17031,6 +17297,7 @@ paths:
       summary: Disable calling on a number
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
     patch:
       deprecated: true
       description: |
@@ -17073,6 +17340,7 @@ paths:
       summary: Update calling config
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
     post:
       deprecated: true
       description: |
@@ -17121,6 +17389,7 @@ paths:
       summary: Enable calling on a number
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
   /v1/whatsapp/call-permissions:
     get:
       description: |
@@ -17161,6 +17430,7 @@ paths:
       summary: Check call permission
       tags:
       - WhatsApp Calling
+      x-resource-group: contacts
   /v1/whatsapp/calls:
     get:
       description: |
@@ -17251,6 +17521,7 @@ paths:
       summary: List call history for an account
       tags:
       - WhatsApp Calling
+      x-resource-group: messages
     post:
       description: |
         Initiates an outbound Business-Initiated Call. The Telnyx-side SIP
@@ -17299,6 +17570,7 @@ paths:
       summary: Initiate outbound call
       tags:
       - WhatsApp Calling
+      x-resource-group: messages
   /v1/whatsapp/calls/{id}:
     get:
       operationId: getWhatsAppCall
@@ -17333,6 +17605,7 @@ paths:
       summary: Get a single call
       tags:
       - WhatsApp Calling
+      x-resource-group: messages
   /v1/whatsapp/calls/{id}/recording:
     get:
       description: |
@@ -17388,6 +17661,7 @@ paths:
       summary: Get a call recording
       tags:
       - WhatsApp Calling
+      x-resource-group: messages
   /v1/whatsapp/calls/estimate:
     get:
       description: |
@@ -17440,6 +17714,7 @@ paths:
       summary: Estimate per-minute cost
       tags:
       - WhatsApp Calling
+      x-resource-group: messages
   /v1/calls:
     get:
       description: |
@@ -17544,6 +17819,7 @@ paths:
       summary: List all calls (unified history)
       tags:
       - Calls
+      x-resource-group: messages
   /v1/calls/{id}:
     get:
       description: |
@@ -17581,6 +17857,7 @@ paths:
       summary: Get a call (any channel)
       tags:
       - Calls
+      x-resource-group: messages
   /v1/calls/{id}/recording:
     get:
       description: |
@@ -17632,6 +17909,7 @@ paths:
       summary: Get a call recording
       tags:
       - Calls
+      x-resource-group: messages
   /v1/voice/calls:
     get:
       description: |
@@ -17704,6 +17982,7 @@ paths:
       summary: List phone calls
       tags:
       - Voice
+      x-resource-group: messages
     post:
       description: |
         Dials `to` FROM one of your voice-enabled numbers and, on answer,
@@ -17749,6 +18028,7 @@ paths:
       summary: Place an outbound phone call
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/{id}:
     get:
       description: "Full call detail, including the transcript segments when transcription\
@@ -17778,6 +18058,7 @@ paths:
       summary: Get a phone call
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/{id}/end:
     post:
       description: |
@@ -17812,6 +18093,7 @@ paths:
       summary: Hang up a live call
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/{id}/recording:
     get:
       description: |
@@ -17858,6 +18140,7 @@ paths:
       summary: Get a call recording
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/{id}/transfer:
     post:
       description: |
@@ -17898,6 +18181,7 @@ paths:
       summary: Blind-transfer a live call
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/estimate:
     get:
       description: |
@@ -17958,6 +18242,7 @@ paths:
       summary: Estimate call cost
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/web:
     post:
       description: |
@@ -17985,6 +18270,7 @@ paths:
       summary: Mint a browser softphone session
       tags:
       - Voice
+      x-resource-group: messages
   /v1/voice/calls/web/dial:
     post:
       description: |
@@ -18021,6 +18307,7 @@ paths:
       summary: Dial from the browser softphone
       tags:
       - Voice
+      x-resource-group: messages
   /v1/sms/messages:
     post:
       description: |
@@ -18067,6 +18354,7 @@ paths:
       summary: Send an SMS/MMS
       tags:
       - SMS
+      x-resource-group: messages
   /v1/sms/lookup:
     get:
       description: |
@@ -18103,6 +18391,7 @@ paths:
       summary: Look up carrier + line type
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/opt-outs:
     get:
       description: |
@@ -18152,6 +18441,7 @@ paths:
       summary: List SMS opt-outs
       tags:
       - SMS
+      x-resource-group: contacts
   /v1/sms/sender-ids:
     get:
       operationId: listSmsSenderIds
@@ -18169,6 +18459,7 @@ paths:
       summary: List alphanumeric sender IDs
       tags:
       - SMS
+      x-resource-group: telephony
     post:
       description: |
         Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from`
@@ -18213,6 +18504,7 @@ paths:
       summary: Create an alphanumeric sender ID
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/sender-ids/limit-request:
     post:
       description: |
@@ -18247,6 +18539,7 @@ paths:
       summary: Request a higher sender ID daily limit
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/sender-ids/{id}:
     delete:
       description: |
@@ -18280,6 +18573,7 @@ paths:
       summary: Delete an alphanumeric sender ID
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations:
     get:
       operationId: listSmsRegistrations
@@ -18309,6 +18603,7 @@ paths:
       summary: List carrier registrations
       tags:
       - SMS
+      x-resource-group: telephony
     post:
       description: |
         Starts the US carrier registration that a number needs before SMS
@@ -18350,6 +18645,7 @@ paths:
       summary: Start a carrier registration
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations/preflight:
     post:
       description: |
@@ -18382,6 +18678,7 @@ paths:
       summary: Pre-check a carrier registration
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations/{id}:
     delete:
       description: |
@@ -18419,6 +18716,7 @@ paths:
       summary: Deactivate a brand/campaign registration
       tags:
       - SMS
+      x-resource-group: telephony
     get:
       description: Poll this for approval progress after starting a registration.
       operationId: getSmsRegistration
@@ -18448,6 +18746,7 @@ paths:
       summary: Get a carrier registration
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations/{id}/verify-otp:
     post:
       description: |
@@ -18487,6 +18786,7 @@ paths:
       summary: Submit the sole-prop OTP
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations/{id}/resend-otp:
     post:
       description: |
@@ -18524,6 +18824,7 @@ paths:
       summary: Re-send the sole-prop OTP
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations/{id}/appeal:
     post:
       description: |
@@ -18572,6 +18873,7 @@ paths:
       summary: Appeal a rejected campaign
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/registrations/{id}/respond:
     post:
       description: |
@@ -18617,6 +18919,7 @@ paths:
       summary: Reply to a change request
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/sms/opt-in-proof:
     post:
       description: |
@@ -18649,6 +18952,7 @@ paths:
       summary: Upload opt-in form proof
       tags:
       - SMS
+      x-resource-group: contacts
   /v1/sms/registrations/{id}/opt-in-proof:
     post:
       description: |
@@ -18691,6 +18995,7 @@ paths:
       summary: Upload opt-in form proof for an appeal
       tags:
       - SMS
+      x-resource-group: contacts
   /v1/sms/registrations/share:
     post:
       description: |
@@ -18723,6 +19028,7 @@ paths:
       summary: Create a registration share link
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/whatsapp/template-library:
     get:
       description: |
@@ -18767,6 +19073,7 @@ paths:
       summary: Look up a library template
       tags:
       - WhatsApp Templates
+      x-resource-group: accounts
   /v1/whatsapp/business-profile:
     get:
       description: |
@@ -18799,6 +19106,7 @@ paths:
       summary: Get business profile
       tags:
       - WhatsApp
+      x-resource-group: accounts
     post:
       description: |
         Update the WhatsApp Business profile. All fields are optional; only provided fields will be updated.
@@ -18838,6 +19146,7 @@ paths:
       summary: Update business profile
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/business-profile/photo:
     post:
       description: |
@@ -18880,6 +19189,7 @@ paths:
       summary: Upload profile picture
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/business-profile/display-name:
     get:
       description: |
@@ -18913,6 +19223,7 @@ paths:
       summary: Get display name status
       tags:
       - WhatsApp
+      x-resource-group: accounts
     post:
       description: |
         Submit a display name change request for the WhatsApp Business account.
@@ -18946,6 +19257,7 @@ paths:
       summary: Request display name change
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/business-profile/username:
     delete:
       description: |
@@ -18978,6 +19290,7 @@ paths:
       summary: Delete business username
       tags:
       - WhatsApp
+      x-resource-group: accounts
     get:
       description: |
         Fetch the current WhatsApp Business username and its approval status.
@@ -19008,6 +19321,7 @@ paths:
       summary: Get business username
       tags:
       - WhatsApp
+      x-resource-group: accounts
     post:
       description: |
         Claim or transfer a WhatsApp Business username for the account.
@@ -19054,6 +19368,7 @@ paths:
       summary: Set business username
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/business-profile/username/suggestions:
     get:
       description: |
@@ -19091,6 +19406,7 @@ paths:
       summary: Get username suggestions
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/whatsapp/number-info:
     get:
       description: |
@@ -19128,6 +19444,7 @@ paths:
       summary: Get number status
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: contacts
   /v1/whatsapp/block-users/status:
     get:
       description: |
@@ -19169,6 +19486,7 @@ paths:
       summary: Check if a user is blocked
       tags:
       - WhatsApp
+      x-resource-group: contacts
   /v1/whatsapp/block-users:
     delete:
       description: |
@@ -19198,6 +19516,7 @@ paths:
       summary: Unblock users
       tags:
       - WhatsApp
+      x-resource-group: contacts
     get:
       description: |
         List the WhatsApp users blocked on this number. Cursor-paginated; pass
@@ -19247,6 +19566,7 @@ paths:
       summary: List blocked users
       tags:
       - WhatsApp
+      x-resource-group: contacts
     post:
       description: |
         Block one or more WhatsApp users on this number. Blocked users cannot
@@ -19282,6 +19602,7 @@ paths:
       summary: Block users
       tags:
       - WhatsApp
+      x-resource-group: contacts
   /v1/whatsapp/dataset:
     get:
       description: |
@@ -19316,6 +19637,7 @@ paths:
       summary: Get CTWA conversions dataset
       tags:
       - WhatsApp
+      x-resource-group: accounts
     post:
       description: |
         Creates (or fetches, if one already exists) the Meta dataset that
@@ -19358,6 +19680,7 @@ paths:
       summary: Provision CTWA dataset
       tags:
       - WhatsApp
+      x-resource-group: accounts
   /v1/phone-numbers:
     get:
       description: |
@@ -19416,6 +19739,7 @@ paths:
       summary: List phone numbers
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/{id}:
     delete:
       description: |
@@ -19452,6 +19776,7 @@ paths:
       summary: Release phone number
       tags:
       - Phone Numbers
+      x-resource-group: telephony
     get:
       description: |
         Retrieve the current status of a purchased phone number. Poll this to
@@ -19487,6 +19812,7 @@ paths:
       summary: Get phone number
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/purchase:
     post:
       description: |
@@ -19546,6 +19872,7 @@ paths:
       summary: Purchase phone number
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/countries:
     get:
       description: |
@@ -19569,6 +19896,7 @@ paths:
       summary: List offerable number countries
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/available:
     get:
       description: |
@@ -19653,6 +19981,7 @@ paths:
       summary: Search available numbers
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/availability:
     get:
       description: |
@@ -19719,6 +20048,7 @@ paths:
       summary: Check country availability
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers:
     get:
       deprecated: true
@@ -19783,6 +20113,7 @@ paths:
       summary: List phone numbers
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/purchase:
     post:
       deprecated: true
@@ -19846,6 +20177,7 @@ paths:
       summary: Purchase phone number
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/countries:
     get:
       deprecated: true
@@ -19872,6 +20204,7 @@ paths:
       summary: List offerable number countries
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/available:
     get:
       deprecated: true
@@ -19949,6 +20282,7 @@ paths:
       summary: Search available numbers
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/availability:
     get:
       deprecated: true
@@ -20019,6 +20353,7 @@ paths:
       summary: Check country availability
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/kyc:
     get:
       description: |
@@ -20064,6 +20399,7 @@ paths:
       summary: Get KYC form spec
       tags:
       - Phone Numbers
+      x-resource-group: telephony
     post:
       description: |
         Submit the end customer's KYC (textual values, uploaded documents,
@@ -20111,6 +20447,7 @@ paths:
       summary: Submit KYC
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/kyc/document/{documentId}:
     get:
       description: |
@@ -20147,6 +20484,7 @@ paths:
       summary: View a KYC document on file
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/kyc/upload-document:
     post:
       description: |
@@ -20189,6 +20527,7 @@ paths:
       summary: Upload a KYC document
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/kyc/validate-address:
     post:
       description: |
@@ -20234,6 +20573,7 @@ paths:
       summary: Pre-validate KYC address
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/kyc/share:
     post:
       description: |
@@ -20272,6 +20612,7 @@ paths:
       summary: Create a hosted KYC link
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/port-in:
     get:
       description: |
@@ -20292,6 +20633,7 @@ paths:
       summary: List port-in orders
       tags:
       - Phone Numbers
+      x-resource-group: telephony
     post:
       description: |
         Submit a port-in for one or more existing numbers from another carrier.
@@ -20345,6 +20687,7 @@ paths:
       summary: Port numbers in
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/port-in/check:
     post:
       description: |
@@ -20373,6 +20716,7 @@ paths:
       summary: Check portability
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/port-in/documents:
     post:
       description: |
@@ -20406,6 +20750,7 @@ paths:
       summary: Upload a porting document
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/port-in/requirements:
     get:
       description: |
@@ -20461,6 +20806,7 @@ paths:
       summary: Country porting requirements
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/port-in/{id}/requirements:
     get:
       description: |
@@ -20497,6 +20843,7 @@ paths:
       summary: A port-in order's pending requirements
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/port-in/{id}:
     delete:
       description: |
@@ -20534,6 +20881,7 @@ paths:
       summary: Cancel a port-in
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/kyc/review-packet:
     post:
       description: |
@@ -20566,6 +20914,7 @@ paths:
       summary: Pre-review a KYC packet
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/remediate:
     get:
       description: |
@@ -20602,6 +20951,7 @@ paths:
       summary: Get declined requirements
       tags:
       - Phone Numbers
+      x-resource-group: telephony
     post:
       description: |
         Submit corrected values/documents for the declined requirement(s). We
@@ -20642,6 +20992,7 @@ paths:
       summary: Resubmit a declined number
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/remediate/reply:
     post:
       description: |
@@ -20686,6 +21037,7 @@ paths:
       summary: Reply to the regulatory reviewer
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/remediate/respond:
     post:
       description: |
@@ -20734,6 +21086,7 @@ paths:
       summary: Respond to the regulatory reviewer (message + corrections)
       tags:
       - Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/kyc:
     get:
       deprecated: true
@@ -20776,6 +21129,7 @@ paths:
       summary: Get KYC form spec
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
     post:
       deprecated: true
       description: |
@@ -20827,6 +21181,7 @@ paths:
       summary: Submit KYC
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/kyc/upload-document:
     post:
       deprecated: true
@@ -20873,6 +21228,7 @@ paths:
       summary: Upload a KYC document
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/kyc/validate-address:
     post:
       deprecated: true
@@ -20922,6 +21278,7 @@ paths:
       summary: Pre-validate KYC address
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/kyc/share:
     post:
       deprecated: true
@@ -20964,6 +21321,7 @@ paths:
       summary: Create a hosted KYC link
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/{id}/remediate:
     get:
       deprecated: true
@@ -21004,6 +21362,7 @@ paths:
       summary: Get declined requirements
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
     post:
       deprecated: true
       description: |
@@ -21048,6 +21407,7 @@ paths:
       summary: Resubmit a declined number
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/voice:
     delete:
       description: |
@@ -21078,6 +21438,7 @@ paths:
       summary: Disable phone calling on a number
       tags:
       - Voice
+      x-resource-group: telephony
     post:
       description: |
         Turns on regular phone (PSTN) calling for one of your numbers and
@@ -21125,6 +21486,7 @@ paths:
       summary: Enable phone calling on a number
       tags:
       - Voice
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/sms:
     delete:
       description: |
@@ -21156,6 +21518,7 @@ paths:
       summary: Disable SMS on a number
       tags:
       - SMS
+      x-resource-group: telephony
     post:
       description: |
         Turns on SMS for one of your numbers. The number's real carrier
@@ -21206,6 +21569,7 @@ paths:
       summary: Enable SMS on a number
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/sms/reuse-registration:
     post:
       description: |
@@ -21241,6 +21605,7 @@ paths:
       summary: Add number to SMS registration
       tags:
       - SMS
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/whatsapp/calling:
     delete:
       description: |
@@ -21277,6 +21642,7 @@ paths:
       summary: Disable calling on a number
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
     get:
       description: |
         The WhatsApp Business Calling configuration of this number, keyed the
@@ -21314,6 +21680,7 @@ paths:
       summary: Get calling config for a number
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
     patch:
       description: |
         Update fields on an already-enabled number. Only fields present in
@@ -21352,6 +21719,7 @@ paths:
       summary: Update calling config
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
     post:
       description: |
         Enable WhatsApp Business Calling on a connected number. Configures
@@ -21396,6 +21764,7 @@ paths:
       summary: Enable calling on a number
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/whatsapp/caller-id-verification:
     post:
       description: |
@@ -21442,6 +21811,7 @@ paths:
       summary: Start caller-ID verification for a customer-brought number
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
   /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify:
     post:
       description: |
@@ -21485,6 +21855,7 @@ paths:
       summary: Confirm the caller-ID verification code
       tags:
       - WhatsApp Calling
+      x-resource-group: telephony
   /v1/whatsapp/phone-numbers/{phoneNumberId}:
     delete:
       deprecated: true
@@ -21525,6 +21896,7 @@ paths:
       summary: Release phone number
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
     get:
       deprecated: true
       description: |
@@ -21564,6 +21936,7 @@ paths:
       summary: Get phone number
       tags:
       - WhatsApp Phone Numbers
+      x-resource-group: telephony
   /v1/whatsapp/sandbox/sessions:
     get:
       description: |
@@ -21588,6 +21961,7 @@ paths:
       summary: List your sandbox sessions
       tags:
       - WhatsApp Sandbox
+      x-resource-group: messages
     post:
       description: |
         Creates (or refreshes) a pending sandbox session for the given phone and
@@ -21633,6 +22007,7 @@ paths:
       summary: Start a sandbox activation
       tags:
       - WhatsApp Sandbox
+      x-resource-group: messages
   /v1/whatsapp/sandbox/sessions/{sessionId}:
     delete:
       description: |
@@ -21671,6 +22046,7 @@ paths:
       summary: Revoke a sandbox session
       tags:
       - WhatsApp Sandbox
+      x-resource-group: messages
   /v1/whatsapp/wa-groups:
     get:
       description: |
@@ -21722,6 +22098,7 @@ paths:
       summary: List active groups
       tags:
       - WhatsApp
+      x-resource-group: messages
     post:
       description: |
         Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.
@@ -21750,6 +22127,7 @@ paths:
       summary: Create group
       tags:
       - WhatsApp
+      x-resource-group: messages
   /v1/whatsapp/wa-groups/{groupId}:
     delete:
       description: |
@@ -21792,6 +22170,7 @@ paths:
       summary: Delete group
       tags:
       - WhatsApp
+      x-resource-group: messages
     get:
       description: |
         Retrieve metadata about a WhatsApp group including subject, description,
@@ -21834,6 +22213,7 @@ paths:
       summary: Get group info
       tags:
       - WhatsApp
+      x-resource-group: messages
     post:
       description: |
         Update the subject, description, or join approval mode of a WhatsApp group.
@@ -21881,6 +22261,7 @@ paths:
       summary: Update group settings
       tags:
       - WhatsApp
+      x-resource-group: messages
   /v1/whatsapp/wa-groups/{groupId}/participants:
     delete:
       description: |
@@ -21927,6 +22308,7 @@ paths:
       summary: Remove participants
       tags:
       - WhatsApp
+      x-resource-group: messages
     post:
       description: |
         Add participants to a WhatsApp group. Maximum 8 participants per request.
@@ -21972,6 +22354,7 @@ paths:
       summary: Add participants
       tags:
       - WhatsApp
+      x-resource-group: messages
   /v1/whatsapp/wa-groups/{groupId}/invite-link:
     post:
       description: |
@@ -22012,6 +22395,7 @@ paths:
       summary: Create invite link
       tags:
       - WhatsApp
+      x-resource-group: messages
   /v1/whatsapp/wa-groups/{groupId}/join-requests:
     delete:
       description: |
@@ -22058,6 +22442,7 @@ paths:
       summary: Reject join requests
       tags:
       - WhatsApp
+      x-resource-group: messages
     get:
       description: |
         List pending join requests for a WhatsApp group (only for groups with approval_required mode).
@@ -22097,6 +22482,7 @@ paths:
       summary: List join requests
       tags:
       - WhatsApp
+      x-resource-group: messages
     post:
       description: |
         Approve pending join requests for a WhatsApp group.
@@ -22142,6 +22528,7 @@ paths:
       summary: Approve join requests
       tags:
       - WhatsApp
+      x-resource-group: messages
   /v1/whatsapp/flows:
     get:
       description: |
@@ -22174,6 +22561,7 @@ paths:
       summary: List flows
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
     post:
       description: |
         Create a new WhatsApp Flow in DRAFT status. Optionally clone an existing flow.
@@ -22211,6 +22599,7 @@ paths:
       summary: Create flow
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/{flowId}:
     delete:
       description: |
@@ -22251,6 +22640,7 @@ paths:
       summary: Delete flow
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
     get:
       description: |
         Get details for a specific flow, including status, categories, validation errors, and preview URL.
@@ -22296,6 +22686,7 @@ paths:
       summary: Get flow
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
     patch:
       description: |
         Update metadata (name, categories) of a DRAFT flow. Published flows are immutable.
@@ -22334,6 +22725,7 @@ paths:
       summary: Update flow
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/{flowId}/json:
     get:
       description: |
@@ -22372,6 +22764,7 @@ paths:
       summary: Get flow JSON asset
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
     put:
       description: |
         Upload or update the Flow JSON for a DRAFT flow. The Flow JSON defines all screens,
@@ -22445,6 +22838,7 @@ paths:
       summary: Upload flow JSON
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/{flowId}/preview:
     get:
       description: |
@@ -22493,6 +22887,7 @@ paths:
       summary: Get flow preview URL
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/{flowId}/versions:
     get:
       description: |
@@ -22533,6 +22928,7 @@ paths:
       summary: List flow versions
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/{flowId}/publish:
     post:
       description: |
@@ -22573,6 +22969,7 @@ paths:
       summary: Publish flow
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/{flowId}/deprecate:
     post:
       description: |
@@ -22612,6 +23009,7 @@ paths:
       summary: Deprecate flow
       tags:
       - WhatsApp Flows
+      x-resource-group: accounts
   /v1/whatsapp/flows/send:
     post:
       description: |
@@ -22655,6 +23053,7 @@ paths:
       summary: Send flow message
       tags:
       - WhatsApp Flows
+      x-resource-group: messages
   /v1/whatsapp/flow-responses:
     get:
       description: |
@@ -22707,6 +23106,7 @@ paths:
       summary: List flow responses
       tags:
       - WhatsApp Flows
+      x-resource-group: messages
   /v1/contacts:
     get:
       description: "List and search contacts for a profile. Supports filtering by\
@@ -22813,6 +23213,7 @@ paths:
       summary: List contacts
       tags:
       - Contacts
+      x-resource-group: contacts
     post:
       description: "Create a new contact. Optionally create a platform channel in\
         \ the same request by providing accountId, platform, and platformIdentifier."
@@ -22840,6 +23241,7 @@ paths:
       summary: Create contact
       tags:
       - Contacts
+      x-resource-group: contacts
   /v1/contacts/{contactId}:
     delete:
       description: Permanently deletes a contact and all associated channels.
@@ -22864,6 +23266,7 @@ paths:
       summary: Delete contact
       tags:
       - Contacts
+      x-resource-group: contacts
     get:
       description: Returns a contact with all associated messaging channels.
       operationId: getContact
@@ -22891,6 +23294,7 @@ paths:
       summary: Get contact
       tags:
       - Contacts
+      x-resource-group: contacts
     patch:
       description: Update one or more fields on a contact. Only provided fields are
         changed.
@@ -22924,6 +23328,7 @@ paths:
       summary: Update contact
       tags:
       - Contacts
+      x-resource-group: contacts
   /v1/contacts/{contactId}/channels:
     get:
       description: "Returns all messaging channels linked to a contact (e.g. Instagram\
@@ -22953,6 +23358,7 @@ paths:
       summary: List channels for a contact
       tags:
       - Contacts
+      x-resource-group: contacts
   /v1/contacts/bulk:
     post:
       description: "Import up to 1000 contacts at a time. Skips duplicates, merging\
@@ -22989,6 +23395,7 @@ paths:
       summary: Bulk create contacts
       tags:
       - Contacts
+      x-resource-group: contacts
   /v1/contacts/{contactId}/fields/{slug}:
     delete:
       description: Remove a custom field value from a contact. The field definition
@@ -23019,6 +23426,7 @@ paths:
       summary: Clear custom field value
       tags:
       - Custom Fields
+      x-resource-group: contacts
     put:
       description: Set or overwrite a custom field value on a contact. The value type
         must match the field definition.
@@ -23054,6 +23462,7 @@ paths:
       summary: Set custom field value
       tags:
       - Custom Fields
+      x-resource-group: contacts
   /v1/custom-fields:
     get:
       description: Returns all custom field definitions. Optionally filter by profile.
@@ -23081,6 +23490,7 @@ paths:
       summary: List custom field definitions
       tags:
       - Custom Fields
+      x-resource-group: accounts
     post:
       description: "Create a new custom field definition. Supported types are text,\
         \ number, date, boolean, and select."
@@ -23107,6 +23517,7 @@ paths:
       summary: Create custom field
       tags:
       - Custom Fields
+      x-resource-group: accounts
   /v1/custom-fields/{fieldId}:
     delete:
       description: Delete a custom field definition and remove its values from all
@@ -23132,6 +23543,7 @@ paths:
       summary: Delete custom field
       tags:
       - Custom Fields
+      x-resource-group: accounts
     patch:
       description: Update a custom field definition. The field type cannot be changed
         after creation.
@@ -23166,6 +23578,7 @@ paths:
       summary: Update custom field
       tags:
       - Custom Fields
+      x-resource-group: accounts
   /v1/broadcasts:
     get:
       description: "Returns broadcasts with delivery stats. Filter by status, platform,\
@@ -23231,6 +23644,7 @@ paths:
       summary: List broadcasts
       tags:
       - Broadcasts
+      x-resource-group: messages
     post:
       description: Create a broadcast in draft status. Add recipients and then send
         or schedule it.
@@ -23255,6 +23669,7 @@ paths:
       summary: Create broadcast draft
       tags:
       - Broadcasts
+      x-resource-group: messages
   /v1/broadcasts/{broadcastId}:
     delete:
       description: Permanently delete a broadcast. Only drafts can be deleted.
@@ -23277,6 +23692,7 @@ paths:
       summary: Delete broadcast
       tags:
       - Broadcasts
+      x-resource-group: messages
     get:
       description: Returns a broadcast with its full configuration and delivery stats.
       operationId: getBroadcast
@@ -23302,6 +23718,7 @@ paths:
       summary: Get broadcast details
       tags:
       - Broadcasts
+      x-resource-group: messages
     patch:
       description: "Update a broadcast's name, message, template, or segment filters.\
         \ Only draft broadcasts can be updated."
@@ -23333,6 +23750,7 @@ paths:
       summary: Update broadcast
       tags:
       - Broadcasts
+      x-resource-group: messages
   /v1/broadcasts/{broadcastId}/send:
     post:
       description: Immediately start sending a draft broadcast to its recipients.
@@ -23361,6 +23779,7 @@ paths:
       summary: Send broadcast now
       tags:
       - Broadcasts
+      x-resource-group: messages
   /v1/broadcasts/{broadcastId}/schedule:
     post:
       description: Schedule a draft broadcast to be sent at a future date and time.
@@ -23395,6 +23814,7 @@ paths:
       summary: Schedule broadcast for later
       tags:
       - Broadcasts
+      x-resource-group: messages
   /v1/broadcasts/{broadcastId}/cancel:
     post:
       description: Cancel a scheduled or in-progress broadcast. Already-sent messages
@@ -23424,6 +23844,7 @@ paths:
       summary: Cancel broadcast
       tags:
       - Broadcasts
+      x-resource-group: messages
   /v1/broadcasts/{broadcastId}/recipients:
     get:
       description: Returns recipients for a broadcast with individual delivery status.
@@ -23482,6 +23903,7 @@ paths:
       summary: List broadcast recipients
       tags:
       - Broadcasts
+      x-resource-group: messages
     post:
       description: "Add recipients by contact IDs, raw phone numbers, or from the\
         \ broadcast's segment filters."
@@ -23516,6 +23938,7 @@ paths:
       summary: Add recipients to a broadcast
       tags:
       - Broadcasts
+      x-resource-group: messages
   /v1/workflows:
     get:
       description: Returns workflows with run stats. Filter by status or profile.
@@ -23568,6 +23991,7 @@ paths:
       summary: List workflows
       tags:
       - Workflows
+      x-resource-group: accounts
     post:
       description: |
         Create a branching conversation workflow (draft) from a node/edge graph. Created in `draft` status; activate it to start matching inbound messages. The graph is validated structurally; completeness (a trigger node + reachable entry) is required at activation.
@@ -23593,6 +24017,7 @@ paths:
       summary: Create workflow
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}:
     delete:
       description: Permanently delete a workflow and all of its executions.
@@ -23615,6 +24040,7 @@ paths:
       summary: Delete workflow
       tags:
       - Workflows
+      x-resource-group: accounts
     get:
       description: Returns a workflow including its full node/edge graph and run stats.
       operationId: getWorkflow
@@ -23640,6 +24066,7 @@ paths:
       summary: Get workflow with graph
       tags:
       - Workflows
+      x-resource-group: accounts
     patch:
       description: |
         Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a `start_call` node as an error instead of silently saving an unrunnable graph).
@@ -23674,6 +24101,7 @@ paths:
       summary: Update workflow
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}/activate:
     post:
       description: "Validate the graph is runnable and set the workflow live. Once\
@@ -23703,6 +24131,7 @@ paths:
       summary: Activate workflow
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}/pause:
     post:
       description: Stop matching new inbound messages. In-flight executions continue
@@ -23732,6 +24161,7 @@ paths:
       summary: Pause workflow
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}/executions:
     get:
       description: "Returns recent executions (runs) with their status, current node,\
@@ -23790,6 +24220,7 @@ paths:
       summary: List workflow runs
       tags:
       - Workflows
+      x-resource-group: messages
     post:
       description: |
         Kick off a run without waiting for an inbound message (useful for testing). Target an existing conversation by `conversationId`, or — WhatsApp only — a phone number via `to` (a conversation is found or created). `text` seeds the run's `lastMessage` variable. The graph must be runnable.
@@ -23825,6 +24256,7 @@ paths:
       summary: Manually start a workflow run
       tags:
       - Workflows
+      x-resource-group: messages
   /v1/workflows/{workflowId}/executions/{executionId}/events:
     get:
       description: |
@@ -23861,6 +24293,7 @@ paths:
       summary: Get an execution's timeline
       tags:
       - Workflows
+      x-resource-group: messages
   /v1/workflows/{workflowId}/duplicate:
     post:
       description: |
@@ -23890,6 +24323,7 @@ paths:
       summary: Duplicate a workflow
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}/versions:
     get:
       description: |
@@ -23919,6 +24353,7 @@ paths:
       summary: List a workflow's version history
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}/versions/{version}:
     get:
       description: "Returns the full snapshot for a single historical version, including\
@@ -23955,6 +24390,7 @@ paths:
       summary: Get a specific workflow version
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/workflows/{workflowId}/versions/{version}/restore:
     post:
       description: |
@@ -23992,6 +24428,7 @@ paths:
       summary: Restore a workflow version
       tags:
       - Workflows
+      x-resource-group: accounts
   /v1/sequences:
     get:
       description: "Returns sequences with enrollment stats. Filter by status, platform,\
@@ -24047,6 +24484,7 @@ paths:
       summary: List sequences
       tags:
       - Sequences
+      x-resource-group: messages
     post:
       description: Create a multi-step messaging sequence. Each step has a delay and
         a message or WhatsApp template.
@@ -24071,6 +24509,7 @@ paths:
       summary: Create sequence
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/sequences/{sequenceId}:
     delete:
       description: Permanently delete a sequence. Active enrollments are stopped.
@@ -24095,6 +24534,7 @@ paths:
       summary: Delete sequence
       tags:
       - Sequences
+      x-resource-group: messages
     get:
       description: Returns a sequence with all its steps and enrollment stats.
       operationId: getSequence
@@ -24122,6 +24562,7 @@ paths:
       summary: Get sequence with steps
       tags:
       - Sequences
+      x-resource-group: messages
     patch:
       description: "Update a sequence's name, steps, or exit conditions. Steps can\
         \ only be modified while the sequence is draft or paused."
@@ -24155,6 +24596,7 @@ paths:
       summary: Update sequence
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/sequences/{sequenceId}/activate:
     post:
       description: Start a draft or paused sequence. The sequence must have at least
@@ -24184,6 +24626,7 @@ paths:
       summary: Activate sequence
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/sequences/{sequenceId}/pause:
     post:
       description: Pause an active sequence. Enrolled contacts stop receiving messages
@@ -24213,6 +24656,7 @@ paths:
       summary: Pause sequence
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/sequences/{sequenceId}/enroll:
     post:
       description: Enroll one or more contacts into a sequence. Contacts already enrolled
@@ -24248,6 +24692,7 @@ paths:
       summary: Enroll contacts in a sequence
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/sequences/{sequenceId}/enroll/{contactId}:
     delete:
       description: Remove a contact from a sequence. No further messages will be sent
@@ -24280,6 +24725,7 @@ paths:
       summary: Unenroll contact
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/sequences/{sequenceId}/enrollments:
     get:
       description: "Returns enrolled contacts with their progress, status, and next\
@@ -24337,6 +24783,7 @@ paths:
       summary: List enrollments for a sequence
       tags:
       - Sequences
+      x-resource-group: messages
   /v1/comment-automations:
     get:
       description: List all comment-to-DM automations for a profile. Returns automations
@@ -24367,6 +24814,7 @@ paths:
       summary: List comment-to-DM automations
       tags:
       - Comment Automations
+      x-resource-group: messages
     post:
       description: |
         Create a keyword-triggered DM automation on an Instagram or Facebook account.
@@ -24416,6 +24864,7 @@ paths:
       summary: Create comment-to-DM automation
       tags:
       - Comment Automations
+      x-resource-group: messages
   /v1/comment-automations/{automationId}:
     delete:
       description: Permanently delete an automation and all its trigger logs.
@@ -24440,6 +24889,7 @@ paths:
       summary: Delete automation
       tags:
       - Comment Automations
+      x-resource-group: messages
     get:
       description: "Returns an automation with its configuration, stats, and recent\
         \ trigger logs."
@@ -24468,6 +24918,7 @@ paths:
       summary: Get automation details
       tags:
       - Comment Automations
+      x-resource-group: messages
     patch:
       description: |
         Update an automation's keywords, DM message, inline buttons, comment reply, or active status.
@@ -24503,6 +24954,7 @@ paths:
       summary: Update automation settings
       tags:
       - Comment Automations
+      x-resource-group: messages
   /v1/comment-automations/{automationId}/logs:
     get:
       description: "Paginated list of every comment that triggered this automation,\
@@ -24560,6 +25012,7 @@ paths:
       summary: List automation logs
       tags:
       - Comment Automations
+      x-resource-group: messages
   /v1/ads:
     get:
       description: |
@@ -24740,6 +25193,7 @@ paths:
       summary: List ads
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -24874,6 +25328,7 @@ paths:
       summary: List Search keywords
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
   /v1/ads/campaigns:
@@ -25021,6 +25476,7 @@ paths:
       summary: List campaigns
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -25076,6 +25532,7 @@ paths:
       summary: Create a standalone campaign
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/campaigns/{campaignId}/status:
@@ -25117,6 +25574,7 @@ paths:
       summary: Pause or resume a campaign
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -25175,6 +25633,7 @@ paths:
       summary: Delete a campaign
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -25239,6 +25698,7 @@ paths:
       summary: Update a campaign
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -25275,6 +25735,7 @@ paths:
       summary: Pause or resume many campaigns
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -25363,6 +25824,7 @@ paths:
       summary: Duplicate a campaign
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - tiktok
@@ -25424,6 +25886,7 @@ paths:
       summary: Duplicate an ad set
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/{adId}/duplicate:
@@ -25482,6 +25945,7 @@ paths:
       summary: Duplicate an ad
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/ad-sets/{adSetId}:
@@ -25538,6 +26002,7 @@ paths:
       summary: Live ad-set details incl. learning phase
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
     put:
@@ -25618,6 +26083,7 @@ paths:
       summary: Update an ad set
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - tiktok
@@ -25663,6 +26129,7 @@ paths:
       summary: Pause or resume a single ad set
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - tiktok
@@ -25885,6 +26352,7 @@ paths:
       summary: Get campaign tree
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -25996,6 +26464,7 @@ paths:
       summary: Get daily account metrics
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26033,6 +26502,7 @@ paths:
       summary: Cancel an ad
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26078,6 +26548,7 @@ paths:
       summary: Get ad details
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26133,6 +26604,7 @@ paths:
       summary: Update ad
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26188,6 +26660,7 @@ paths:
       summary: Pause or resume a single ad
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26294,6 +26767,7 @@ paths:
       summary: Get campaign analytics
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26336,6 +26810,7 @@ paths:
       summary: Render pre-create ad previews
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/{adId}/preview:
@@ -26385,6 +26860,7 @@ paths:
       summary: Render previews of an existing ad
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/keywords/ideas:
@@ -26423,6 +26899,7 @@ paths:
       summary: Generate keyword ideas (Google Keyword Planner)
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - google
   /v1/ads/keywords/historical-metrics:
@@ -26461,6 +26938,7 @@ paths:
       summary: Historical keyword metrics (Google Keyword Planner)
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - google
   /v1/ads/insights:
@@ -26679,6 +27157,7 @@ paths:
       summary: Flexible live insights query
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26716,6 +27195,7 @@ paths:
       summary: Submit an async insights report run
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/insights/reports/{reportRunId}:
@@ -26780,6 +27260,7 @@ paths:
       summary: Poll an async insights report run
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/{adId}/analytics:
@@ -26868,6 +27349,7 @@ paths:
       summary: Get ad analytics
       tags:
       - Ad Insights
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -26917,6 +27399,7 @@ paths:
       summary: Get ad tracking tags
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
     patch:
@@ -26963,6 +27446,7 @@ paths:
       summary: Set ad tracking tags
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/{adId}/comments:
@@ -27063,6 +27547,7 @@ paths:
       summary: List comments on an ad
       tags:
       - Ad Accounts
+      x-resource-group: engagement
       x-platforms:
       - meta
   /v1/ads/business-centers:
@@ -27103,6 +27588,7 @@ paths:
       summary: List TikTok Business Centers
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - tiktok
   /v1/ads/activity:
@@ -27196,6 +27682,7 @@ paths:
       summary: Ad account change / audit log
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/rf-predictions:
@@ -27240,6 +27727,7 @@ paths:
       summary: Create a Reach & Frequency prediction
       tags:
       - Reach and Frequency
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/rf-predictions/{predictionId}:
@@ -27283,6 +27771,7 @@ paths:
       summary: Cancel a Reach & Frequency reservation
       tags:
       - Reach and Frequency
+      x-resource-group: ads
       x-platforms:
       - meta
     get:
@@ -27327,6 +27816,7 @@ paths:
       summary: Read a Reach & Frequency prediction
       tags:
       - Reach and Frequency
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/rf-predictions/{predictionId}/reserve:
@@ -27368,6 +27858,7 @@ paths:
       summary: Reserve a Reach & Frequency prediction
       tags:
       - Reach and Frequency
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/studies:
@@ -27440,6 +27931,7 @@ paths:
       summary: A/B tests and lift studies
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/businesses:
@@ -27497,6 +27989,7 @@ paths:
       summary: Businesses list
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/labels:
@@ -27560,6 +28053,7 @@ paths:
       summary: Ad labels
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/high-demand-periods:
@@ -27633,6 +28127,7 @@ paths:
       summary: High demand periods / budget schedules
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/creatives:
@@ -27707,6 +28202,7 @@ paths:
       summary: Creative library
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
     post:
@@ -27743,6 +28239,7 @@ paths:
       summary: Create a standalone creative
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/creatives/{creativeId}:
@@ -27788,6 +28285,7 @@ paths:
       summary: Delete a creative
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
     get:
@@ -27839,6 +28337,7 @@ paths:
       summary: Creative details
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
     put:
@@ -27880,6 +28379,7 @@ paths:
       summary: Rename a creative
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/value-rule-sets:
@@ -27961,6 +28461,7 @@ paths:
       summary: List value rule sets
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
     post:
@@ -28022,6 +28523,7 @@ paths:
       summary: Create a value rule set
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/value-rule-sets/{valueRuleSetId}:
@@ -28070,6 +28572,7 @@ paths:
       summary: Delete a value rule set
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
     get:
@@ -28120,6 +28623,7 @@ paths:
       summary: Read a value rule set
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
     put:
@@ -28174,6 +28678,7 @@ paths:
       summary: Replace a value rule set
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/accounts/finance:
@@ -28219,6 +28724,7 @@ paths:
       summary: Ad account finances
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/accounts:
@@ -28284,6 +28790,7 @@ paths:
       summary: List ad accounts
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -28334,6 +28841,7 @@ paths:
       summary: Update ad account settings
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/dsa-defaults:
@@ -28379,6 +28887,7 @@ paths:
       summary: Get ad account DSA defaults
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/dsa-recommendations:
@@ -28429,6 +28938,7 @@ paths:
       summary: List DSA beneficiary/payor suggestions
       tags:
       - Ad Accounts
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/boost:
@@ -28468,6 +28978,7 @@ paths:
       summary: Boost post as ad
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/create:
@@ -28515,6 +29026,7 @@ paths:
       summary: Create standalone ad
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -28597,6 +29109,7 @@ paths:
       summary: List submitted leads
       tags:
       - Lead Gen
+      x-resource-group: contacts
       x-platforms:
       - meta
       - linkedin
@@ -28656,6 +29169,7 @@ paths:
       summary: List lead forms
       tags:
       - Lead Gen
+      x-resource-group: ads
       x-platforms:
       - meta
       - linkedin
@@ -28688,6 +29202,7 @@ paths:
       summary: Create a lead form
       tags:
       - Lead Gen
+      x-resource-group: ads
       x-platforms:
       - meta
       - linkedin
@@ -28727,6 +29242,7 @@ paths:
       summary: Archive a lead form
       tags:
       - Lead Gen
+      x-resource-group: ads
       x-platforms:
       - meta
       - linkedin
@@ -28763,6 +29279,7 @@ paths:
       summary: Get a lead form
       tags:
       - Lead Gen
+      x-resource-group: ads
       x-platforms:
       - meta
       - linkedin
@@ -28825,6 +29342,7 @@ paths:
       summary: List leads for a single form
       tags:
       - Lead Gen
+      x-resource-group: contacts
       x-platforms:
       - meta
   /v1/ads/lead-forms/{formId}/test-leads:
@@ -28860,6 +29378,7 @@ paths:
       summary: Create a test lead
       tags:
       - Lead Gen
+      x-resource-group: contacts
       x-platforms:
       - meta
   /v1/ads/images:
@@ -28933,6 +29452,7 @@ paths:
       summary: Ad image library
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
     post:
@@ -28966,6 +29486,7 @@ paths:
       summary: Upload an ad image from base64
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/interests:
@@ -29011,6 +29532,7 @@ paths:
       summary: Search targeting interests
       tags:
       - Ad Targeting
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/targeting/search:
@@ -29130,6 +29652,7 @@ paths:
       summary: Search targeting options
       tags:
       - Ad Targeting
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29176,6 +29699,7 @@ paths:
       summary: Estimate audience reach
       tags:
       - Ad Targeting
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/targeting/bid-pricing:
@@ -29217,6 +29741,7 @@ paths:
       summary: Suggested bid and budget bounds
       tags:
       - Ad Targeting
+      x-resource-group: ads
       x-platforms:
       - linkedin
   /v1/ads/targeting/supply-forecast:
@@ -29261,6 +29786,7 @@ paths:
       summary: "Impressions, clicks and spend forecast"
       tags:
       - Ad Targeting
+      x-resource-group: ads
       x-platforms:
       - linkedin
   /v1/ads/catalogs:
@@ -29308,6 +29834,7 @@ paths:
       summary: List Meta product catalogs
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/catalogs/{catalogId}/product-sets:
@@ -29352,6 +29879,7 @@ paths:
       summary: List a catalog's product sets
       tags:
       - Ad Creatives
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/audiences:
@@ -29429,6 +29957,7 @@ paths:
       summary: List custom audiences
       tags:
       - Ad Audiences
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29470,6 +29999,7 @@ paths:
       summary: Create custom audience
       tags:
       - Ad Audiences
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29510,6 +30040,7 @@ paths:
       summary: Delete custom audience
       tags:
       - Ad Audiences
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29548,6 +30079,7 @@ paths:
       summary: Get audience details
       tags:
       - Ad Audiences
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29605,6 +30137,7 @@ paths:
       summary: Update an audience
       tags:
       - Ad Audiences
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29658,6 +30191,7 @@ paths:
       summary: Add users to audience
       tags:
       - Ad Audiences
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29707,6 +30241,7 @@ paths:
       summary: Get Event Match Quality
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/conversions:
@@ -29809,6 +30344,7 @@ paths:
       summary: Send conversion events
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -29879,6 +30415,7 @@ paths:
       summary: Adjust uploaded conversions
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/accounts/{accountId}/conversion-destinations:
@@ -29933,6 +30470,7 @@ paths:
       summary: List conversion destinations
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30022,6 +30560,7 @@ paths:
       summary: Create a conversion destination
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30082,6 +30621,7 @@ paths:
       summary: Delete a conversion destination
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30140,6 +30680,7 @@ paths:
       summary: Get a conversion destination
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30198,6 +30739,7 @@ paths:
       summary: Update a conversion destination
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30273,6 +30815,7 @@ paths:
       summary: Remove associated campaigns
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30331,6 +30874,7 @@ paths:
       summary: List associated campaigns
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30391,6 +30935,7 @@ paths:
       summary: Associate campaigns
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30488,6 +31033,7 @@ paths:
       summary: Get attribution metrics
       tags:
       - Conversions
+      x-resource-group: ads
       x-platforms:
       - meta
       - google
@@ -30544,6 +31090,7 @@ paths:
       summary: List conversion events
       tags:
       - WhatsApp
+      x-resource-group: ads
     post:
       description: |
         Forward a WhatsApp Business Messaging conversion event (`LeadSubmitted`,
@@ -30608,6 +31155,7 @@ paths:
       summary: Send WhatsApp conversion event
       tags:
       - WhatsApp
+      x-resource-group: ads
   /v1/ads/messaging:
     post:
       description: |-
@@ -30640,6 +31188,7 @@ paths:
       summary: Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
       tags:
       - Messaging Ads
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/call:
@@ -30672,6 +31221,7 @@ paths:
       summary: Create Click-to-Call ad
       tags:
       - Messaging Ads
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/ads/ctwa:
@@ -30735,6 +31285,7 @@ paths:
       summary: Create Click-to-WhatsApp ad (deprecated)
       tags:
       - Messaging Ads
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/accounts/{accountId}/tracking-tags:
@@ -30797,6 +31348,7 @@ paths:
       summary: List tracking tags
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
     post:
@@ -30872,6 +31424,7 @@ paths:
       summary: Create a tracking tag
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/accounts/{accountId}/tracking-tags/{tagId}:
@@ -30921,6 +31474,7 @@ paths:
       summary: Get a tracking tag
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
     patch:
@@ -30982,6 +31536,7 @@ paths:
       summary: Update a tracking tag
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts:
@@ -31037,6 +31592,7 @@ paths:
       summary: Stop sharing with an account
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
     get:
@@ -31080,6 +31636,7 @@ paths:
       summary: List accounts it is shared with
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
     post:
@@ -31137,6 +31694,7 @@ paths:
       summary: Share with an ad account
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/accounts/{accountId}/tracking-tags/{tagId}/stats:
@@ -31229,6 +31787,7 @@ paths:
       summary: Get aggregated event stats
       tags:
       - Tracking Tags
+      x-resource-group: ads
       x-platforms:
       - meta
   /v1/verify/verifications:
@@ -31290,6 +31849,7 @@ paths:
       summary: Send a verification code
       tags:
       - Verify
+      x-resource-group: telephony
   /v1/verify/verifications/{verificationId}:
     get:
       description: |
@@ -31323,6 +31883,7 @@ paths:
       summary: Get a verification
       tags:
       - Verify
+      x-resource-group: telephony
   /v1/verify/verifications/{verificationId}/check:
     post:
       description: |
@@ -31365,6 +31926,7 @@ paths:
       summary: Check a verification code
       tags:
       - Verify
+      x-resource-group: telephony
 components:
   parameters:
     PageParam:
@@ -31413,6 +31975,23 @@ components:
           schema:
             $ref: "#/components/schemas/inline_object_1"
       description: Resource not found
+    ResourceGroupForbidden:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/inline_object_2"
+      description: "The API key is a restricted key (zrk_ prefix) and may not perform\
+        \ this operation. Three cases. (1) The operation's resource group (see the\
+        \ operation's x-resource-group) is disabled on the key: fix it by creating\
+        \ a key with the group enabled in the dashboard API keys tab and revoking\
+        \ the old one. (2) The operation is admin-plane (x-resource-group admin-plane:\
+        \ API keys, invites, connected apps, member identity), which is never grantable\
+        \ to restricted keys; the error reads \"Restricted API keys cannot manage\
+        \ API keys, invites, or member identity.\" and the fix is a full-access key\
+        \ or the dashboard, never a new restricted key. (3) On webhook subscription\
+        \ writes and delivery-log reads, a named event maps to a resource group the\
+        \ key does not hold (a no-messages key cannot subscribe to or replay message.*\
+        \ events)."
     RateLimited:
       content:
         application/json:
@@ -31473,7 +32052,7 @@ components:
                   effective_account_limit: 2000
                   current_account_count: 2000
           schema:
-            $ref: "#/components/schemas/inline_object_2"
+            $ref: "#/components/schemas/inline_object_3"
       description: |
         Payment method or enterprise contract required. The authenticated
         account hit a billing gate before the connection could proceed.
@@ -37905,6 +38484,9 @@ components:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         scope: full
+        disabledResourceGroups:
+        - publishing
+        - publishing
         name: name
         keyPreview: keyPreview
         profileIds:
@@ -37956,6 +38538,27 @@ components:
           - read-write
           - read
           type: string
+        disabledResourceGroups:
+          description: "Resource groups this key can NOT access (opt-out denylist).\
+            \ Absent or empty means legacy full access. A key with any group disabled\
+            \ is a restricted key (zrk_ prefix) and can never manage API keys, invites,\
+            \ or member identity. Each operation's group is published as x-resource-group.\
+            \ With 'messages' disabled, the KEY cannot access private messages; the\
+            \ ACCOUNT's pre-existing webhook subscriptions are a separate grant surface."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            type: string
+          type: array
     ConnectedApp:
       description: |
         An OAuth client (AI assistant / MCP connector) authorized by the user and still
@@ -46406,6 +47009,9 @@ components:
         apiKeys:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           scope: full
+          disabledResourceGroups:
+          - publishing
+          - publishing
           name: name
           keyPreview: keyPreview
           profileIds:
@@ -46421,6 +47027,9 @@ components:
           key: key
         - createdAt: 2000-01-23T04:56:07.000+00:00
           scope: full
+          disabledResourceGroups:
+          - publishing
+          - publishing
           name: name
           keyPreview: keyPreview
           profileIds:
@@ -46467,6 +47076,29 @@ components:
           - read-write
           - read
           type: string
+        disabledResourceGroups:
+          description: "Resource groups to DISABLE on this key (opt-out denylist).\
+            \ Omit for a legacy full-access key. A key with any group disabled mints\
+            \ with the zrk_ prefix, gets 403 with code=insufficient_permissions and\
+            \ required_group on operations in disabled groups (each operation's group\
+            \ is published as x-resource-group), and can never manage API keys, invites,\
+            \ or member identity. With 'messages' disabled, the KEY cannot access\
+            \ private messages; the ACCOUNT's pre-existing webhook subscriptions are\
+            \ a separate grant surface."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            type: string
+          type: array
       required:
       - name
     createApiKey_201_response:
@@ -46474,6 +47106,9 @@ components:
         apiKey:
           createdAt: 2000-01-23T04:56:07.000+00:00
           scope: full
+          disabledResourceGroups:
+          - publishing
+          - publishing
           name: name
           keyPreview: keyPreview
           profileIds:
@@ -82497,7 +83132,40 @@ components:
         error:
           example: Not found
           type: string
-    inline_object_2_details:
+    inline_object_2:
+      example:
+        code: insufficient_permissions
+        error: This API key has the 'messages' resource group disabled. GET /api/v1/inbox/conversations
+          requires it. Create a key with 'messages' enabled in the dashboard API keys
+          tab.
+        required_group: publishing
+      properties:
+        error:
+          example: This API key has the 'messages' resource group disabled. GET /api/v1/inbox/conversations
+            requires it. Create a key with 'messages' enabled in the dashboard API
+            keys tab.
+          type: string
+        code:
+          enum:
+          - insufficient_permissions
+          - unclassified_resource
+          type: string
+        required_group:
+          description: The resource group the key needs for this operation. Absent
+            on admin-plane and unclassified-path denials.
+          enum:
+          - publishing
+          - engagement
+          - messages
+          - contacts
+          - analytics
+          - ads
+          - telephony
+          - accounts
+          - billing
+          - webhooks
+          type: string
+    inline_object_3_details:
       description: Structured context for SDK clients that want to render their own
         UX. Keys vary by `reason`.
       example:
@@ -82527,7 +83195,7 @@ components:
             set when reason=enterprise_required.
           example: 2000
           type: integer
-    inline_object_2:
+    inline_object_3:
       example:
         reason: free_tier_exceeded
         code: PAYMENT_REQUIRED
@@ -82573,7 +83241,7 @@ components:
           format: uri
           type: string
         details:
-          $ref: "#/components/schemas/inline_object_2_details"
+          $ref: "#/components/schemas/inline_object_3_details"
       required:
       - code
       - error

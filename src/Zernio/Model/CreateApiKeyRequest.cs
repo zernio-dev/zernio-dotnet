@@ -88,6 +88,73 @@ namespace Zernio.Model
         [DataMember(Name = "permission", EmitDefaultValue = false)]
         public PermissionEnum? Permission { get; set; }
         /// <summary>
+        /// Defines DisabledResourceGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DisabledResourceGroupsEnum
+        {
+            /// <summary>
+            /// Enum Publishing for value: publishing
+            /// </summary>
+            [EnumMember(Value = "publishing")]
+            Publishing = 1,
+
+            /// <summary>
+            /// Enum Engagement for value: engagement
+            /// </summary>
+            [EnumMember(Value = "engagement")]
+            Engagement = 2,
+
+            /// <summary>
+            /// Enum Messages for value: messages
+            /// </summary>
+            [EnumMember(Value = "messages")]
+            Messages = 3,
+
+            /// <summary>
+            /// Enum Contacts for value: contacts
+            /// </summary>
+            [EnumMember(Value = "contacts")]
+            Contacts = 4,
+
+            /// <summary>
+            /// Enum Analytics for value: analytics
+            /// </summary>
+            [EnumMember(Value = "analytics")]
+            Analytics = 5,
+
+            /// <summary>
+            /// Enum Ads for value: ads
+            /// </summary>
+            [EnumMember(Value = "ads")]
+            Ads = 6,
+
+            /// <summary>
+            /// Enum Telephony for value: telephony
+            /// </summary>
+            [EnumMember(Value = "telephony")]
+            Telephony = 7,
+
+            /// <summary>
+            /// Enum Accounts for value: accounts
+            /// </summary>
+            [EnumMember(Value = "accounts")]
+            Accounts = 8,
+
+            /// <summary>
+            /// Enum Billing for value: billing
+            /// </summary>
+            [EnumMember(Value = "billing")]
+            Billing = 9,
+
+            /// <summary>
+            /// Enum Webhooks for value: webhooks
+            /// </summary>
+            [EnumMember(Value = "webhooks")]
+            Webhooks = 10
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateApiKeyRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -100,7 +167,8 @@ namespace Zernio.Model
         /// <param name="scope">&#39;full&#39; grants access to all profiles (default), &#39;profiles&#39; restricts to specific profiles (default to ScopeEnum.Full).</param>
         /// <param name="profileIds">Profile IDs this key can access. Required when scope is &#39;profiles&#39;..</param>
         /// <param name="permission">&#39;read-write&#39; allows all operations (default), &#39;read&#39; restricts to GET requests only (default to PermissionEnum.ReadWrite).</param>
-        public CreateApiKeyRequest(string name = default, int expiresIn = default, ScopeEnum? scope = ScopeEnum.Full, List<string> profileIds = default, PermissionEnum? permission = PermissionEnum.ReadWrite)
+        /// <param name="disabledResourceGroups">Resource groups to DISABLE on this key (opt-out denylist). Omit for a legacy full-access key. A key with any group disabled mints with the zrk_ prefix, gets 403 with code&#x3D;insufficient_permissions and required_group on operations in disabled groups (each operation&#39;s group is published as x-resource-group), and can never manage API keys, invites, or member identity. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface..</param>
+        public CreateApiKeyRequest(string name = default, int expiresIn = default, ScopeEnum? scope = ScopeEnum.Full, List<string> profileIds = default, PermissionEnum? permission = PermissionEnum.ReadWrite, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -112,6 +180,7 @@ namespace Zernio.Model
             this.Scope = scope;
             this.ProfileIds = profileIds;
             this.Permission = permission;
+            this.DisabledResourceGroups = disabledResourceGroups;
         }
 
         /// <summary>
@@ -135,6 +204,13 @@ namespace Zernio.Model
         public List<string> ProfileIds { get; set; }
 
         /// <summary>
+        /// Resource groups to DISABLE on this key (opt-out denylist). Omit for a legacy full-access key. A key with any group disabled mints with the zrk_ prefix, gets 403 with code&#x3D;insufficient_permissions and required_group on operations in disabled groups (each operation&#39;s group is published as x-resource-group), and can never manage API keys, invites, or member identity. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.
+        /// </summary>
+        /// <value>Resource groups to DISABLE on this key (opt-out denylist). Omit for a legacy full-access key. A key with any group disabled mints with the zrk_ prefix, gets 403 with code&#x3D;insufficient_permissions and required_group on operations in disabled groups (each operation&#39;s group is published as x-resource-group), and can never manage API keys, invites, or member identity. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.</value>
+        [DataMember(Name = "disabledResourceGroups", EmitDefaultValue = false)]
+        public List<CreateApiKeyRequest.DisabledResourceGroupsEnum> DisabledResourceGroups { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -147,6 +223,7 @@ namespace Zernio.Model
             sb.Append("  Scope: ").Append(Scope).Append("\n");
             sb.Append("  ProfileIds: ").Append(ProfileIds).Append("\n");
             sb.Append("  Permission: ").Append(Permission).Append("\n");
+            sb.Append("  DisabledResourceGroups: ").Append(DisabledResourceGroups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

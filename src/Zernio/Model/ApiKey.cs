@@ -88,6 +88,73 @@ namespace Zernio.Model
         [DataMember(Name = "permission", EmitDefaultValue = false)]
         public PermissionEnum? Permission { get; set; }
         /// <summary>
+        /// Defines DisabledResourceGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DisabledResourceGroupsEnum
+        {
+            /// <summary>
+            /// Enum Publishing for value: publishing
+            /// </summary>
+            [EnumMember(Value = "publishing")]
+            Publishing = 1,
+
+            /// <summary>
+            /// Enum Engagement for value: engagement
+            /// </summary>
+            [EnumMember(Value = "engagement")]
+            Engagement = 2,
+
+            /// <summary>
+            /// Enum Messages for value: messages
+            /// </summary>
+            [EnumMember(Value = "messages")]
+            Messages = 3,
+
+            /// <summary>
+            /// Enum Contacts for value: contacts
+            /// </summary>
+            [EnumMember(Value = "contacts")]
+            Contacts = 4,
+
+            /// <summary>
+            /// Enum Analytics for value: analytics
+            /// </summary>
+            [EnumMember(Value = "analytics")]
+            Analytics = 5,
+
+            /// <summary>
+            /// Enum Ads for value: ads
+            /// </summary>
+            [EnumMember(Value = "ads")]
+            Ads = 6,
+
+            /// <summary>
+            /// Enum Telephony for value: telephony
+            /// </summary>
+            [EnumMember(Value = "telephony")]
+            Telephony = 7,
+
+            /// <summary>
+            /// Enum Accounts for value: accounts
+            /// </summary>
+            [EnumMember(Value = "accounts")]
+            Accounts = 8,
+
+            /// <summary>
+            /// Enum Billing for value: billing
+            /// </summary>
+            [EnumMember(Value = "billing")]
+            Billing = 9,
+
+            /// <summary>
+            /// Enum Webhooks for value: webhooks
+            /// </summary>
+            [EnumMember(Value = "webhooks")]
+            Webhooks = 10
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ApiKey" /> class.
         /// </summary>
         /// <param name="id">id.</param>
@@ -99,7 +166,8 @@ namespace Zernio.Model
         /// <param name="scope">&#39;full&#39; grants access to all profiles, &#39;profiles&#39; restricts to specific profiles (default to ScopeEnum.Full).</param>
         /// <param name="profileIds">Profiles this key can access (populated with name and color). Only present when scope is &#39;profiles&#39;..</param>
         /// <param name="permission">&#39;read-write&#39; allows all operations, &#39;read&#39; restricts to GET requests only (default to PermissionEnum.ReadWrite).</param>
-        public ApiKey(string id = default, string name = default, string keyPreview = default, DateTime expiresAt = default, DateTime createdAt = default, string key = default, ScopeEnum? scope = ScopeEnum.Full, List<ApiKeyProfileIdsInner> profileIds = default, PermissionEnum? permission = PermissionEnum.ReadWrite)
+        /// <param name="disabledResourceGroups">Resource groups this key can NOT access (opt-out denylist). Absent or empty means legacy full access. A key with any group disabled is a restricted key (zrk_ prefix) and can never manage API keys, invites, or member identity. Each operation&#39;s group is published as x-resource-group. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface..</param>
+        public ApiKey(string id = default, string name = default, string keyPreview = default, DateTime expiresAt = default, DateTime createdAt = default, string key = default, ScopeEnum? scope = ScopeEnum.Full, List<ApiKeyProfileIdsInner> profileIds = default, PermissionEnum? permission = PermissionEnum.ReadWrite, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
         {
             this.Id = id;
             this.Name = name;
@@ -110,6 +178,7 @@ namespace Zernio.Model
             this.Scope = scope;
             this.ProfileIds = profileIds;
             this.Permission = permission;
+            this.DisabledResourceGroups = disabledResourceGroups;
         }
 
         /// <summary>
@@ -157,6 +226,13 @@ namespace Zernio.Model
         public List<ApiKeyProfileIdsInner> ProfileIds { get; set; }
 
         /// <summary>
+        /// Resource groups this key can NOT access (opt-out denylist). Absent or empty means legacy full access. A key with any group disabled is a restricted key (zrk_ prefix) and can never manage API keys, invites, or member identity. Each operation&#39;s group is published as x-resource-group. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.
+        /// </summary>
+        /// <value>Resource groups this key can NOT access (opt-out denylist). Absent or empty means legacy full access. A key with any group disabled is a restricted key (zrk_ prefix) and can never manage API keys, invites, or member identity. Each operation&#39;s group is published as x-resource-group. With &#39;messages&#39; disabled, the KEY cannot access private messages; the ACCOUNT&#39;s pre-existing webhook subscriptions are a separate grant surface.</value>
+        [DataMember(Name = "disabledResourceGroups", EmitDefaultValue = false)]
+        public List<ApiKey.DisabledResourceGroupsEnum> DisabledResourceGroups { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +249,7 @@ namespace Zernio.Model
             sb.Append("  Scope: ").Append(Scope).Append("\n");
             sb.Append("  ProfileIds: ").Append(ProfileIds).Append("\n");
             sb.Append("  Permission: ").Append(Permission).Append("\n");
+            sb.Append("  DisabledResourceGroups: ").Append(DisabledResourceGroups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

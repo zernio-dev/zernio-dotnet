@@ -30,17 +30,17 @@ namespace Zernio.Model
     /// <summary>
     /// Structured context for SDK clients that want to render their own UX. Keys vary by &#x60;reason&#x60;.
     /// </summary>
-    [DataContract(Name = "inline_object_2_details")]
-    public partial class InlineObject2Details : IValidatableObject
+    [DataContract(Name = "inline_object_3_details")]
+    public partial class InlineObject3Details : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InlineObject2Details" /> class.
+        /// Initializes a new instance of the <see cref="InlineObject3Details" /> class.
         /// </summary>
         /// <param name="freeTierAccountLimit">How many accounts the free tier allows. Only set when reason&#x3D;free_tier_exceeded..</param>
         /// <param name="currentAccountCount">How many accounts the team currently has connected. Set when reason&#x3D;free_tier_exceeded or reason&#x3D;enterprise_required..</param>
         /// <param name="hasPaymentMethod">Whether the team currently has a card on file in Stripe. Set when reason&#x3D;free_tier_exceeded or reason&#x3D;twitter_passthrough..</param>
         /// <param name="effectiveAccountLimit">The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. .</param>
-        public InlineObject2Details(int freeTierAccountLimit = default, int currentAccountCount = default, bool hasPaymentMethod = default, int effectiveAccountLimit = default)
+        public InlineObject3Details(int freeTierAccountLimit = default, int currentAccountCount = default, bool hasPaymentMethod = default, int effectiveAccountLimit = default)
         {
             this.FreeTierAccountLimit = freeTierAccountLimit;
             this.CurrentAccountCount = currentAccountCount;
@@ -92,7 +92,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InlineObject2Details {\n");
+            sb.Append("class InlineObject3Details {\n");
             sb.Append("  FreeTierAccountLimit: ").Append(FreeTierAccountLimit).Append("\n");
             sb.Append("  CurrentAccountCount: ").Append(CurrentAccountCount).Append("\n");
             sb.Append("  HasPaymentMethod: ").Append(HasPaymentMethod).Append("\n");

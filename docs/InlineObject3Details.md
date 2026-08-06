@@ -1,4 +1,4 @@
-# Zernio.Model.InlineObject2Details
+# Zernio.Model.InlineObject3Details
 Structured context for SDK clients that want to render their own UX. Keys vary by `reason`.
 
 ## Properties

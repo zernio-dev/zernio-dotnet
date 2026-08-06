@@ -34,123 +34,126 @@ namespace Zernio.Model
     public partial class InlineObject2 : IValidatableObject
     {
         /// <summary>
-        /// Machine-readable error code. Stable across versions.
+        /// Defines Code
         /// </summary>
-        /// <value>Machine-readable error code. Stable across versions.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CodeEnum
         {
             /// <summary>
-            /// Enum PAYMENTREQUIRED for value: PAYMENT_REQUIRED
+            /// Enum InsufficientPermissions for value: insufficient_permissions
             /// </summary>
-            [EnumMember(Value = "PAYMENT_REQUIRED")]
-            PAYMENTREQUIRED = 1
+            [EnumMember(Value = "insufficient_permissions")]
+            InsufficientPermissions = 1,
+
+            /// <summary>
+            /// Enum UnclassifiedResource for value: unclassified_resource
+            /// </summary>
+            [EnumMember(Value = "unclassified_resource")]
+            UnclassifiedResource = 2
         }
 
 
         /// <summary>
-        /// Machine-readable error code. Stable across versions.
+        /// Gets or Sets Code
         /// </summary>
-        /// <value>Machine-readable error code. Stable across versions.</value>
-        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
-        public CodeEnum Code { get; set; }
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public CodeEnum? Code { get; set; }
         /// <summary>
-        /// Discriminator for which gate fired.
+        /// The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
         /// </summary>
-        /// <value>Discriminator for which gate fired.</value>
+        /// <value>The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum ReasonEnum
+        public enum RequiredGroupEnum
         {
             /// <summary>
-            /// Enum FreeTierExceeded for value: free_tier_exceeded
+            /// Enum Publishing for value: publishing
             /// </summary>
-            [EnumMember(Value = "free_tier_exceeded")]
-            FreeTierExceeded = 1,
+            [EnumMember(Value = "publishing")]
+            Publishing = 1,
 
             /// <summary>
-            /// Enum TwitterPassthrough for value: twitter_passthrough
+            /// Enum Engagement for value: engagement
             /// </summary>
-            [EnumMember(Value = "twitter_passthrough")]
-            TwitterPassthrough = 2,
+            [EnumMember(Value = "engagement")]
+            Engagement = 2,
 
             /// <summary>
-            /// Enum EnterpriseRequired for value: enterprise_required
+            /// Enum Messages for value: messages
             /// </summary>
-            [EnumMember(Value = "enterprise_required")]
-            EnterpriseRequired = 3
+            [EnumMember(Value = "messages")]
+            Messages = 3,
+
+            /// <summary>
+            /// Enum Contacts for value: contacts
+            /// </summary>
+            [EnumMember(Value = "contacts")]
+            Contacts = 4,
+
+            /// <summary>
+            /// Enum Analytics for value: analytics
+            /// </summary>
+            [EnumMember(Value = "analytics")]
+            Analytics = 5,
+
+            /// <summary>
+            /// Enum Ads for value: ads
+            /// </summary>
+            [EnumMember(Value = "ads")]
+            Ads = 6,
+
+            /// <summary>
+            /// Enum Telephony for value: telephony
+            /// </summary>
+            [EnumMember(Value = "telephony")]
+            Telephony = 7,
+
+            /// <summary>
+            /// Enum Accounts for value: accounts
+            /// </summary>
+            [EnumMember(Value = "accounts")]
+            Accounts = 8,
+
+            /// <summary>
+            /// Enum Billing for value: billing
+            /// </summary>
+            [EnumMember(Value = "billing")]
+            Billing = 9,
+
+            /// <summary>
+            /// Enum Webhooks for value: webhooks
+            /// </summary>
+            [EnumMember(Value = "webhooks")]
+            Webhooks = 10
         }
 
 
         /// <summary>
-        /// Discriminator for which gate fired.
+        /// The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
         /// </summary>
-        /// <value>Discriminator for which gate fired.</value>
-        [DataMember(Name = "reason", IsRequired = true, EmitDefaultValue = true)]
-        public ReasonEnum Reason { get; set; }
+        /// <value>The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.</value>
+        [DataMember(Name = "required_group", EmitDefaultValue = false)]
+        public RequiredGroupEnum? RequiredGroup { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="InlineObject2" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected InlineObject2() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InlineObject2" /> class.
-        /// </summary>
-        /// <param name="error">Human-readable error message suitable for end-user display. (required).</param>
-        /// <param name="code">Machine-readable error code. Stable across versions. (required).</param>
-        /// <param name="reason">Discriminator for which gate fired. (required).</param>
-        /// <param name="documentationUrl">Link to the relevant documentation page..</param>
-        /// <param name="dashboardUrl">Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this is the Zernio billing tab. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page. .</param>
-        /// <param name="details">details.</param>
-        public InlineObject2(string error = default, CodeEnum code = default, ReasonEnum reason = default, string documentationUrl = default, string dashboardUrl = default, InlineObject2Details details = default)
+        /// <param name="error">error.</param>
+        /// <param name="code">code.</param>
+        /// <param name="requiredGroup">The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials..</param>
+        public InlineObject2(string error = default, CodeEnum? code = default, RequiredGroupEnum? requiredGroup = default)
         {
-            // to ensure "error" is required (not null)
-            if (error == null)
-            {
-                throw new ArgumentNullException("error is a required property for InlineObject2 and cannot be null");
-            }
             this.Error = error;
             this.Code = code;
-            this.Reason = reason;
-            this.DocumentationUrl = documentationUrl;
-            this.DashboardUrl = dashboardUrl;
-            this.Details = details;
+            this.RequiredGroup = requiredGroup;
         }
 
         /// <summary>
-        /// Human-readable error message suitable for end-user display.
+        /// Gets or Sets Error
         /// </summary>
-        /// <value>Human-readable error message suitable for end-user display.</value>
         /*
-        <example>X (Twitter) requires a payment method due to API pass-through costs. Add a payment method to connect an X account.</example>
+        <example>This API key has the &#39;messages&#39; resource group disabled. GET /api/v1/inbox/conversations requires it. Create a key with &#39;messages&#39; enabled in the dashboard API keys tab.</example>
         */
-        [DataMember(Name = "error", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
-
-        /// <summary>
-        /// Link to the relevant documentation page.
-        /// </summary>
-        /// <value>Link to the relevant documentation page.</value>
-        /*
-        <example>https://docs.zernio.com/billing/payment-method-required</example>
-        */
-        [DataMember(Name = "documentation_url", EmitDefaultValue = false)]
-        public string DocumentationUrl { get; set; }
-
-        /// <summary>
-        /// Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this is the Zernio billing tab. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page. 
-        /// </summary>
-        /// <value>Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this is the Zernio billing tab. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page. </value>
-        /*
-        <example>https://zernio.com/dashboard?tab&#x3D;billing</example>
-        */
-        [DataMember(Name = "dashboard_url", EmitDefaultValue = false)]
-        public string DashboardUrl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Details
-        /// </summary>
-        [DataMember(Name = "details", EmitDefaultValue = false)]
-        public InlineObject2Details Details { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -162,10 +165,7 @@ namespace Zernio.Model
             sb.Append("class InlineObject2 {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Reason: ").Append(Reason).Append("\n");
-            sb.Append("  DocumentationUrl: ").Append(DocumentationUrl).Append("\n");
-            sb.Append("  DashboardUrl: ").Append(DashboardUrl).Append("\n");
-            sb.Append("  Details: ").Append(Details).Append("\n");
+            sb.Append("  RequiredGroup: ").Append(RequiredGroup).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

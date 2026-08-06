@@ -13,7 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 
 List connected apps
 
-Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
 
 ### Example
 ```csharp
@@ -98,7 +98,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Connected apps |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The calling credential may not manage OAuth authorizations (profile-scoped API key or OAuth access token). Error code: insufficient_permissions. |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -108,7 +108,7 @@ This endpoint does not need any parameter.
 
 Revoke connected app
 
-Ends an app's access: invalidates the client's pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app's next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with `revokedTokens: 0`. 
+Ends an app's access: invalidates the client's pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app's next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with `revokedTokens: 0`.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
 
 ### Example
 ```csharp
@@ -199,7 +199,7 @@ catch (ApiException e)
 | **200** | Revoked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The calling credential may not manage OAuth authorizations (profile-scoped API key or OAuth access token). Error code: insufficient_permissions. |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes and delivery-log reads, a named event maps to a resource group the key does not hold (a no-messages key cannot subscribe to or replay message.* events). |  -  |
 | **404** | The authenticated user has never authorized this client. Error code: oauth_client_not_found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

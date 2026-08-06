@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Permission'
         }
+
+        /// <summary>
+        /// Test the property 'DisabledResourceGroups'
+        /// </summary>
+        [Fact]
+        public void DisabledResourceGroupsTest()
+        {
+            // TODO unit test for the property 'DisabledResourceGroups'
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// List connected apps
         /// </summary>
         /// <remarks>
-        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListConnectedApps200Response</returns>
@@ -42,7 +42,7 @@ namespace Zernio.Api
         /// List connected apps
         /// </summary>
         /// <remarks>
-        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListConnectedApps200Response</returns>
@@ -51,7 +51,7 @@ namespace Zernio.Api
         /// Revoke connected app
         /// </summary>
         /// <remarks>
-        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -62,7 +62,7 @@ namespace Zernio.Api
         /// Revoke connected app
         /// </summary>
         /// <remarks>
-        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -81,7 +81,7 @@ namespace Zernio.Api
         /// List connected apps
         /// </summary>
         /// <remarks>
-        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -92,7 +92,7 @@ namespace Zernio.Api
         /// List connected apps
         /// </summary>
         /// <remarks>
-        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -102,7 +102,7 @@ namespace Zernio.Api
         /// Revoke connected app
         /// </summary>
         /// <remarks>
-        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -114,7 +114,7 @@ namespace Zernio.Api
         /// Revoke connected app
         /// </summary>
         /// <remarks>
-        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -335,7 +335,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListConnectedApps200Response</returns>
@@ -346,7 +346,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListConnectedApps200Response</returns>
@@ -389,7 +389,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -401,7 +401,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-scope API key. A profile-scoped API key or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations. 
+        /// List connected apps Returns the OAuth clients (AI assistants and MCP connectors) the authenticated user has authorized and that still hold a live token.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403: an app must not be able to enumerate its sibling authorizations, and connected-app management is admin-plane. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -448,7 +448,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -460,7 +460,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -509,7 +509,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
@@ -522,7 +522,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;. 
+        /// Revoke connected app Ends an app&#39;s access: invalidates the client&#39;s pending authorization codes and revokes every live token it holds for the authenticated user. Takes effect on the app&#39;s next request.  Idempotent while the authorization is still on record: revoking an app that was already revoked returns 200 with &#x60;revokedTokens: 0&#x60;.  Requires a session or a full-access API key. A profile-scoped API key, a restricted (zrk_) API key, or an OAuth access token is rejected with 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="clientId">OAuth client id, as returned by GET /v1/me/connected-apps.</param>
