@@ -317,6 +317,73 @@ namespace Zernio.Model
         }
 
         /// <summary>
+        /// Defines DisabledResourceGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DisabledResourceGroupsEnum
+        {
+            /// <summary>
+            /// Enum Publishing for value: publishing
+            /// </summary>
+            [EnumMember(Value = "publishing")]
+            Publishing = 1,
+
+            /// <summary>
+            /// Enum Engagement for value: engagement
+            /// </summary>
+            [EnumMember(Value = "engagement")]
+            Engagement = 2,
+
+            /// <summary>
+            /// Enum Messages for value: messages
+            /// </summary>
+            [EnumMember(Value = "messages")]
+            Messages = 3,
+
+            /// <summary>
+            /// Enum Contacts for value: contacts
+            /// </summary>
+            [EnumMember(Value = "contacts")]
+            Contacts = 4,
+
+            /// <summary>
+            /// Enum Analytics for value: analytics
+            /// </summary>
+            [EnumMember(Value = "analytics")]
+            Analytics = 5,
+
+            /// <summary>
+            /// Enum Ads for value: ads
+            /// </summary>
+            [EnumMember(Value = "ads")]
+            Ads = 6,
+
+            /// <summary>
+            /// Enum Telephony for value: telephony
+            /// </summary>
+            [EnumMember(Value = "telephony")]
+            Telephony = 7,
+
+            /// <summary>
+            /// Enum Accounts for value: accounts
+            /// </summary>
+            [EnumMember(Value = "accounts")]
+            Accounts = 8,
+
+            /// <summary>
+            /// Enum Billing for value: billing
+            /// </summary>
+            [EnumMember(Value = "billing")]
+            Billing = 9,
+
+            /// <summary>
+            /// Enum Webhooks for value: webhooks
+            /// </summary>
+            [EnumMember(Value = "webhooks")]
+            Webhooks = 10
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Webhook" /> class.
         /// </summary>
         /// <param name="id">Unique webhook identifier.</param>
@@ -328,7 +395,8 @@ namespace Zernio.Model
         /// <param name="lastFiredAt">Timestamp of last successful webhook delivery.</param>
         /// <param name="failureCount">Consecutive delivery failures (resets on success, webhook disabled at 10).</param>
         /// <param name="customHeaders">Custom headers included in webhook requests.</param>
-        public Webhook(string id = default, string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, DateTime lastFiredAt = default, int failureCount = default, Dictionary<string, string> customHeaders = default)
+        /// <param name="disabledResourceGroups">Resource groups this subscription does not receive (opt-out denylist, same vocabulary and same semantics as the field on API keys). Absent or empty means the subscription receives every event listed in &#x60;events&#x60;, which is how every subscription created before this field existed behaves. An event whose group is listed here is dropped before delivery even when it is still present in &#x60;events&#x60;, and the same check runs on every replay path (test fire, redelivery, dead-letter requeue). Editing the denylist applies to every event emitted afterwards; events already queued when the edit landed can still be delivered for up to five minutes after they were enqueued..</param>
+        public Webhook(string id = default, string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, DateTime lastFiredAt = default, int failureCount = default, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
         {
             this.Id = id;
             this.Name = name;
@@ -339,6 +407,7 @@ namespace Zernio.Model
             this.LastFiredAt = lastFiredAt;
             this.FailureCount = failureCount;
             this.CustomHeaders = customHeaders;
+            this.DisabledResourceGroups = disabledResourceGroups;
         }
 
         /// <summary>
@@ -405,6 +474,13 @@ namespace Zernio.Model
         public Dictionary<string, string> CustomHeaders { get; set; }
 
         /// <summary>
+        /// Resource groups this subscription does not receive (opt-out denylist, same vocabulary and same semantics as the field on API keys). Absent or empty means the subscription receives every event listed in &#x60;events&#x60;, which is how every subscription created before this field existed behaves. An event whose group is listed here is dropped before delivery even when it is still present in &#x60;events&#x60;, and the same check runs on every replay path (test fire, redelivery, dead-letter requeue). Editing the denylist applies to every event emitted afterwards; events already queued when the edit landed can still be delivered for up to five minutes after they were enqueued.
+        /// </summary>
+        /// <value>Resource groups this subscription does not receive (opt-out denylist, same vocabulary and same semantics as the field on API keys). Absent or empty means the subscription receives every event listed in &#x60;events&#x60;, which is how every subscription created before this field existed behaves. An event whose group is listed here is dropped before delivery even when it is still present in &#x60;events&#x60;, and the same check runs on every replay path (test fire, redelivery, dead-letter requeue). Editing the denylist applies to every event emitted afterwards; events already queued when the edit landed can still be delivered for up to five minutes after they were enqueued.</value>
+        [DataMember(Name = "disabledResourceGroups", EmitDefaultValue = false)]
+        public List<Webhook.DisabledResourceGroupsEnum> DisabledResourceGroups { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -421,6 +497,7 @@ namespace Zernio.Model
             sb.Append("  LastFiredAt: ").Append(LastFiredAt).Append("\n");
             sb.Append("  FailureCount: ").Append(FailureCount).Append("\n");
             sb.Append("  CustomHeaders: ").Append(CustomHeaders).Append("\n");
+            sb.Append("  DisabledResourceGroups: ").Append(DisabledResourceGroups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

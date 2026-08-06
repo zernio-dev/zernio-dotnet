@@ -317,6 +317,73 @@ namespace Zernio.Model
         }
 
         /// <summary>
+        /// Defines DisabledResourceGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DisabledResourceGroupsEnum
+        {
+            /// <summary>
+            /// Enum Publishing for value: publishing
+            /// </summary>
+            [EnumMember(Value = "publishing")]
+            Publishing = 1,
+
+            /// <summary>
+            /// Enum Engagement for value: engagement
+            /// </summary>
+            [EnumMember(Value = "engagement")]
+            Engagement = 2,
+
+            /// <summary>
+            /// Enum Messages for value: messages
+            /// </summary>
+            [EnumMember(Value = "messages")]
+            Messages = 3,
+
+            /// <summary>
+            /// Enum Contacts for value: contacts
+            /// </summary>
+            [EnumMember(Value = "contacts")]
+            Contacts = 4,
+
+            /// <summary>
+            /// Enum Analytics for value: analytics
+            /// </summary>
+            [EnumMember(Value = "analytics")]
+            Analytics = 5,
+
+            /// <summary>
+            /// Enum Ads for value: ads
+            /// </summary>
+            [EnumMember(Value = "ads")]
+            Ads = 6,
+
+            /// <summary>
+            /// Enum Telephony for value: telephony
+            /// </summary>
+            [EnumMember(Value = "telephony")]
+            Telephony = 7,
+
+            /// <summary>
+            /// Enum Accounts for value: accounts
+            /// </summary>
+            [EnumMember(Value = "accounts")]
+            Accounts = 8,
+
+            /// <summary>
+            /// Enum Billing for value: billing
+            /// </summary>
+            [EnumMember(Value = "billing")]
+            Billing = 9,
+
+            /// <summary>
+            /// Enum Webhooks for value: webhooks
+            /// </summary>
+            [EnumMember(Value = "webhooks")]
+            Webhooks = 10
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateWebhookSettingsRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -330,7 +397,8 @@ namespace Zernio.Model
         /// <param name="events">Events to subscribe to (at least one required) (required).</param>
         /// <param name="isActive">Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted. (default to true).</param>
         /// <param name="customHeaders">Custom headers to include in webhook requests.</param>
-        public CreateWebhookSettingsRequest(string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = true, Dictionary<string, string> customHeaders = default)
+        /// <param name="disabledResourceGroups">Resource groups this subscription does not receive (opt-out denylist). Omit or send an empty array to receive every event in &#x60;events&#x60;. Listing a group here drops its events before delivery and on every replay path. Set at creation it applies to everything this subscription ever receives; changed later via PUT it applies to events emitted after the change, with a five-minute tail for events already queued (see that operation). When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned into whatever you send here, so a restricted key can never create a subscription wider than itself..</param>
+        public CreateWebhookSettingsRequest(string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = true, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -353,6 +421,7 @@ namespace Zernio.Model
             this.Secret = secret;
             this.IsActive = isActive;
             this.CustomHeaders = customHeaders;
+            this.DisabledResourceGroups = disabledResourceGroups;
         }
 
         /// <summary>
@@ -398,6 +467,13 @@ namespace Zernio.Model
         public Dictionary<string, string> CustomHeaders { get; set; }
 
         /// <summary>
+        /// Resource groups this subscription does not receive (opt-out denylist). Omit or send an empty array to receive every event in &#x60;events&#x60;. Listing a group here drops its events before delivery and on every replay path. Set at creation it applies to everything this subscription ever receives; changed later via PUT it applies to events emitted after the change, with a five-minute tail for events already queued (see that operation). When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned into whatever you send here, so a restricted key can never create a subscription wider than itself.
+        /// </summary>
+        /// <value>Resource groups this subscription does not receive (opt-out denylist). Omit or send an empty array to receive every event in &#x60;events&#x60;. Listing a group here drops its events before delivery and on every replay path. Set at creation it applies to everything this subscription ever receives; changed later via PUT it applies to events emitted after the change, with a five-minute tail for events already queued (see that operation). When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned into whatever you send here, so a restricted key can never create a subscription wider than itself.</value>
+        [DataMember(Name = "disabledResourceGroups", EmitDefaultValue = false)]
+        public List<CreateWebhookSettingsRequest.DisabledResourceGroupsEnum> DisabledResourceGroups { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -411,6 +487,7 @@ namespace Zernio.Model
             sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  CustomHeaders: ").Append(CustomHeaders).Append("\n");
+            sb.Append("  DisabledResourceGroups: ").Append(DisabledResourceGroups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
