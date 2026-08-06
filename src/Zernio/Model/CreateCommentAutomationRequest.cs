@@ -61,8 +61,9 @@ namespace Zernio.Model
         [DataMember(Name = "trigger", EmitDefaultValue = false)]
         public TriggerEnum? Trigger { get; set; }
         /// <summary>
-        /// Defines MatchMode
+        /// How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
         /// </summary>
+        /// <value>How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MatchModeEnum
         {
@@ -76,13 +77,20 @@ namespace Zernio.Model
             /// Enum Contains for value: contains
             /// </summary>
             [EnumMember(Value = "contains")]
-            Contains = 2
+            Contains = 2,
+
+            /// <summary>
+            /// Enum Word for value: word
+            /// </summary>
+            [EnumMember(Value = "word")]
+            Word = 3
         }
 
 
         /// <summary>
-        /// Gets or Sets MatchMode
+        /// How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
         /// </summary>
+        /// <value>How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.</value>
         [DataMember(Name = "matchMode", EmitDefaultValue = false)]
         public MatchModeEnum? MatchMode { get; set; }
         /// <summary>
@@ -101,7 +109,9 @@ namespace Zernio.Model
         /// <param name="postTitle">Post content snippet for display.</param>
         /// <param name="name">Automation label (required).</param>
         /// <param name="keywords">Trigger keywords (empty &#x3D; any comment triggers).</param>
-        /// <param name="matchMode">matchMode (default to MatchModeEnum.Contains).</param>
+        /// <param name="matchMode">How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword. (default to MatchModeEnum.Contains).</param>
+        /// <param name="excludeKeywords">Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode..</param>
+        /// <param name="typoTolerance">Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched..</param>
         /// <param name="dmMessage">DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. (required).</param>
         /// <param name="buttons">Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM..</param>
         /// <param name="commentReply">Optional public reply to the comment.</param>
@@ -109,7 +119,7 @@ namespace Zernio.Model
         /// <param name="commentReplyVariations">Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5..</param>
         /// <param name="linkTracking">Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. (default to true).</param>
         /// <param name="clickTag">Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences..</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default)
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -141,6 +151,8 @@ namespace Zernio.Model
             this.PostTitle = postTitle;
             this.Keywords = keywords;
             this.MatchMode = matchMode;
+            this.ExcludeKeywords = excludeKeywords;
+            this.TypoTolerance = typoTolerance;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
             this.DmMessageVariations = dmMessageVariations;
@@ -196,6 +208,20 @@ namespace Zernio.Model
         /// <value>Trigger keywords (empty &#x3D; any comment triggers)</value>
         [DataMember(Name = "keywords", EmitDefaultValue = false)]
         public List<string> Keywords { get; set; }
+
+        /// <summary>
+        /// Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode.
+        /// </summary>
+        /// <value>Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode.</value>
+        [DataMember(Name = "excludeKeywords", EmitDefaultValue = false)]
+        public List<string> ExcludeKeywords { get; set; }
+
+        /// <summary>
+        /// Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched.
+        /// </summary>
+        /// <value>Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched.</value>
+        [DataMember(Name = "typoTolerance", EmitDefaultValue = true)]
+        public bool TypoTolerance { get; set; }
 
         /// <summary>
         /// DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000.
@@ -263,6 +289,8 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  MatchMode: ").Append(MatchMode).Append("\n");
+            sb.Append("  ExcludeKeywords: ").Append(ExcludeKeywords).Append("\n");
+            sb.Append("  TypoTolerance: ").Append(TypoTolerance).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");

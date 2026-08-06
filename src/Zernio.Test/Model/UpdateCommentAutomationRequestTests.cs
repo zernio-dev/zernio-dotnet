@@ -83,6 +83,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExcludeKeywords'
+        /// </summary>
+        [Fact]
+        public void ExcludeKeywordsTest()
+        {
+            // TODO unit test for the property 'ExcludeKeywords'
+        }
+
+        /// <summary>
+        /// Test the property 'TypoTolerance'
+        /// </summary>
+        [Fact]
+        public void TypoToleranceTest()
+        {
+            // TODO unit test for the property 'TypoTolerance'
+        }
+
+        /// <summary>
         /// Test the property 'DmMessage'
         /// </summary>
         [Fact]

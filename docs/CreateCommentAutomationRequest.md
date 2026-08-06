@@ -12,7 +12,9 @@ Name | Type | Description | Notes
 **PostTitle** | **string** | Post content snippet for display | [optional] 
 **Name** | **string** | Automation label | 
 **Keywords** | **List&lt;string&gt;** | Trigger keywords (empty &#x3D; any comment triggers) | [optional] 
-**MatchMode** | **string** |  | [optional] [default to MatchModeEnum.Contains]
+**MatchMode** | **string** | How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword. | [optional] [default to MatchModeEnum.Contains]
+**ExcludeKeywords** | **List&lt;string&gt;** | Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode. | [optional] 
+**TypoTolerance** | **bool** | Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched. | [optional] 
 **DmMessage** | **string** | DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. | 
 **Buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM. | [optional] 
 **CommentReply** | **string** | Optional public reply to the comment | [optional] 

@@ -59,8 +59,9 @@ namespace Zernio.Model
         [DataMember(Name = "trigger", EmitDefaultValue = false)]
         public TriggerEnum? Trigger { get; set; }
         /// <summary>
-        /// Defines MatchMode
+        /// How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
         /// </summary>
+        /// <value>How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MatchModeEnum
         {
@@ -74,13 +75,20 @@ namespace Zernio.Model
             /// Enum Contains for value: contains
             /// </summary>
             [EnumMember(Value = "contains")]
-            Contains = 2
+            Contains = 2,
+
+            /// <summary>
+            /// Enum Word for value: word
+            /// </summary>
+            [EnumMember(Value = "word")]
+            Word = 3
         }
 
 
         /// <summary>
-        /// Gets or Sets MatchMode
+        /// How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
         /// </summary>
+        /// <value>How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.</value>
         [DataMember(Name = "matchMode", EmitDefaultValue = false)]
         public MatchModeEnum? MatchMode { get; set; }
         /// <summary>
@@ -92,7 +100,9 @@ namespace Zernio.Model
         /// <param name="trigger">trigger.</param>
         /// <param name="platformPostId">platformPostId.</param>
         /// <param name="keywords">keywords.</param>
-        /// <param name="matchMode">matchMode.</param>
+        /// <param name="matchMode">How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword..</param>
+        /// <param name="excludeKeywords">Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode..</param>
+        /// <param name="typoTolerance">Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched..</param>
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
         /// <param name="commentReply">commentReply.</param>
@@ -103,7 +113,7 @@ namespace Zernio.Model
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
-        public CreateCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string platformPostId = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default)
+        public CreateCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string platformPostId = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -112,6 +122,8 @@ namespace Zernio.Model
             this.PlatformPostId = platformPostId;
             this.Keywords = keywords;
             this.MatchMode = matchMode;
+            this.ExcludeKeywords = excludeKeywords;
+            this.TypoTolerance = typoTolerance;
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
@@ -153,6 +165,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "keywords", EmitDefaultValue = false)]
         public List<string> Keywords { get; set; }
+
+        /// <summary>
+        /// Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode.
+        /// </summary>
+        /// <value>Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode.</value>
+        [DataMember(Name = "excludeKeywords", EmitDefaultValue = false)]
+        public List<string> ExcludeKeywords { get; set; }
+
+        /// <summary>
+        /// Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched.
+        /// </summary>
+        /// <value>Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched.</value>
+        [DataMember(Name = "typoTolerance", EmitDefaultValue = true)]
+        public bool TypoTolerance { get; set; }
 
         /// <summary>
         /// Gets or Sets DmMessage
@@ -232,6 +258,8 @@ namespace Zernio.Model
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  MatchMode: ").Append(MatchMode).Append("\n");
+            sb.Append("  ExcludeKeywords: ").Append(ExcludeKeywords).Append("\n");
+            sb.Append("  TypoTolerance: ").Append(TypoTolerance).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
