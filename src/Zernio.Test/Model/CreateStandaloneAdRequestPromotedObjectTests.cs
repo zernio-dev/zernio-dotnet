@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CustomEventStr'
+        /// </summary>
+        [Fact]
+        public void CustomEventStrTest()
+        {
+            // TODO unit test for the property 'CustomEventStr'
+        }
+
+        /// <summary>
         /// Test the property 'PageId'
         /// </summary>
         [Fact]

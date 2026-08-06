@@ -38,6 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="pixelId">pixelId.</param>
         /// <param name="customEventType">customEventType.</param>
+        /// <param name="customEventStr">Pixel custom-event name (custom_event_str); requires customEventType OTHER. Same pairing rules as /v1/ads/create..</param>
         /// <param name="pageId">pageId.</param>
         /// <param name="applicationId">applicationId.</param>
         /// <param name="objectStoreUrl">objectStoreUrl.</param>
@@ -46,10 +47,11 @@ namespace Zernio.Model
         /// <param name="productSetId">productSetId.</param>
         /// <param name="offlineConversionDataSetId">offlineConversionDataSetId.</param>
         /// <param name="whatsappPhoneNumber">whatsappPhoneNumber.</param>
-        public UpdateAdSetRequestPlatformSpecificDataPromotedObject(string pixelId = default, string customEventType = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default, string offlineConversionDataSetId = default, string whatsappPhoneNumber = default)
+        public UpdateAdSetRequestPlatformSpecificDataPromotedObject(string pixelId = default, string customEventType = default, string customEventStr = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default, string offlineConversionDataSetId = default, string whatsappPhoneNumber = default)
         {
             this.PixelId = pixelId;
             this.CustomEventType = customEventType;
+            this.CustomEventStr = customEventStr;
             this.PageId = pageId;
             this.ApplicationId = applicationId;
             this.ObjectStoreUrl = objectStoreUrl;
@@ -72,6 +74,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "customEventType", EmitDefaultValue = false)]
         public string CustomEventType { get; set; }
+
+        /// <summary>
+        /// Pixel custom-event name (custom_event_str); requires customEventType OTHER. Same pairing rules as /v1/ads/create.
+        /// </summary>
+        /// <value>Pixel custom-event name (custom_event_str); requires customEventType OTHER. Same pairing rules as /v1/ads/create.</value>
+        [DataMember(Name = "customEventStr", EmitDefaultValue = false)]
+        public string CustomEventStr { get; set; }
 
         /// <summary>
         /// Gets or Sets PageId
@@ -137,6 +146,7 @@ namespace Zernio.Model
             sb.Append("class UpdateAdSetRequestPlatformSpecificDataPromotedObject {\n");
             sb.Append("  PixelId: ").Append(PixelId).Append("\n");
             sb.Append("  CustomEventType: ").Append(CustomEventType).Append("\n");
+            sb.Append("  CustomEventStr: ").Append(CustomEventStr).Append("\n");
             sb.Append("  PageId: ").Append(PageId).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  ObjectStoreUrl: ").Append(ObjectStoreUrl).Append("\n");
