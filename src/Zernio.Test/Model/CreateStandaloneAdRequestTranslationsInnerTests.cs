@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LinkUrl'
+        /// </summary>
+        [Fact]
+        public void LinkUrlTest()
+        {
+            // TODO unit test for the property 'LinkUrl'
+        }
+
+        /// <summary>
         /// Test the property 'ImageUrl'
         /// </summary>
         [Fact]

@@ -45,10 +45,11 @@ namespace Zernio.Model
         /// <param name="headline">Headline for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level headline. (required).</param>
         /// <param name="body">Primary text for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level body. (required).</param>
         /// <param name="description">Link description for this language. REQUIRED, and must differ from every other locale and from the ad&#39;s top-level description. (required).</param>
+        /// <param name="linkUrl">Destination URL for this language. Inherits the ad&#39;s top-level &#x60;linkUrl&#x60; when omitted, and requires it to be present (400 otherwise): the top-level URL is the destination for every locale you did not override. Unlike text, identical URLs across locales are fine (they share one asset)..</param>
         /// <param name="imageUrl">Image for this language. Inherits the ad&#39;s &#x60;imageUrl&#x60; when omitted. The feed is all-image OR all-video..</param>
         /// <param name="videoUrl">Video for this language. Inherits the ad&#39;s &#x60;video.url&#x60; when omitted. The feed is all-image OR all-video..</param>
         /// <param name="thumbnailUrl">Poster frame for this language&#39;s video..</param>
-        public CreateStandaloneAdRequestTranslationsInner(string locale = default, string headline = default, string body = default, string description = default, string imageUrl = default, string videoUrl = default, string thumbnailUrl = default)
+        public CreateStandaloneAdRequestTranslationsInner(string locale = default, string headline = default, string body = default, string description = default, string linkUrl = default, string imageUrl = default, string videoUrl = default, string thumbnailUrl = default)
         {
             // to ensure "locale" is required (not null)
             if (locale == null)
@@ -74,6 +75,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("description is a required property for CreateStandaloneAdRequestTranslationsInner and cannot be null");
             }
             this.Description = description;
+            this.LinkUrl = linkUrl;
             this.ImageUrl = imageUrl;
             this.VideoUrl = videoUrl;
             this.ThumbnailUrl = thumbnailUrl;
@@ -108,6 +110,13 @@ namespace Zernio.Model
         public string Description { get; set; }
 
         /// <summary>
+        /// Destination URL for this language. Inherits the ad&#39;s top-level &#x60;linkUrl&#x60; when omitted, and requires it to be present (400 otherwise): the top-level URL is the destination for every locale you did not override. Unlike text, identical URLs across locales are fine (they share one asset).
+        /// </summary>
+        /// <value>Destination URL for this language. Inherits the ad&#39;s top-level &#x60;linkUrl&#x60; when omitted, and requires it to be present (400 otherwise): the top-level URL is the destination for every locale you did not override. Unlike text, identical URLs across locales are fine (they share one asset).</value>
+        [DataMember(Name = "linkUrl", EmitDefaultValue = false)]
+        public string LinkUrl { get; set; }
+
+        /// <summary>
         /// Image for this language. Inherits the ad&#39;s &#x60;imageUrl&#x60; when omitted. The feed is all-image OR all-video.
         /// </summary>
         /// <value>Image for this language. Inherits the ad&#39;s &#x60;imageUrl&#x60; when omitted. The feed is all-image OR all-video.</value>
@@ -140,6 +149,7 @@ namespace Zernio.Model
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
