@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class UpdateCommentAutomationRequest : IValidatableObject
     {
         /// <summary>
+        /// What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only.
+        /// </summary>
+        /// <value>What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TriggerEnum
+        {
+            /// <summary>
+            /// Enum Comment for value: comment
+            /// </summary>
+            [EnumMember(Value = "comment")]
+            Comment = 1,
+
+            /// <summary>
+            /// Enum StoryReply for value: story_reply
+            /// </summary>
+            [EnumMember(Value = "story_reply")]
+            StoryReply = 2
+        }
+
+
+        /// <summary>
+        /// What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only.
+        /// </summary>
+        /// <value>What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only.</value>
+        [DataMember(Name = "trigger", EmitDefaultValue = false)]
+        public TriggerEnum? Trigger { get; set; }
+        /// <summary>
         /// How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.
         /// </summary>
         /// <value>How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword.</value>
@@ -70,6 +97,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateCommentAutomationRequest" /> class.
         /// </summary>
         /// <param name="name">name.</param>
+        /// <param name="trigger">What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only..</param>
         /// <param name="keywords">keywords.</param>
         /// <param name="matchMode">How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword..</param>
         /// <param name="excludeKeywords">Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode..</param>
@@ -82,9 +110,10 @@ namespace Zernio.Model
         /// <param name="linkTracking">Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched..</param>
         /// <param name="clickTag">Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it..</param>
         /// <param name="isActive">isActive.</param>
-        public UpdateCommentAutomationRequest(string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default)
+        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default)
         {
             this.Name = name;
+            this.Trigger = trigger;
             this.Keywords = keywords;
             this.MatchMode = matchMode;
             this.ExcludeKeywords = excludeKeywords;
@@ -187,6 +216,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateCommentAutomationRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  MatchMode: ").Append(MatchMode).Append("\n");
             sb.Append("  ExcludeKeywords: ").Append(ExcludeKeywords).Append("\n");
