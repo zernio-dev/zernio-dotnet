@@ -1,10 +1,11 @@
 # Zernio.Model.WebhookPayloadMessageMetadata
-Interactive message metadata (present when message is a quick reply tap, postback button tap, or inline keyboard callback)
+Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, or a quote-reply to an earlier message)
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**QuotedMessageId** | **string** | platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On &#x60;message.sent&#x60; echoes (operator replied from the native app) this is the only metadata field populated.  | [optional] 
 **QuickReplyPayload** | **string** | Payload from a quick reply tap (Facebook/Instagram Messenger). | [optional] 
 **PostbackPayload** | **string** | Payload from a postback button tap (Facebook/Instagram Messenger). | [optional] 
 **PostbackTitle** | **string** | Title of the tapped postback button (Facebook/Instagram Messenger). | [optional] 

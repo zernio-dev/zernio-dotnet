@@ -187,7 +187,7 @@ namespace Zernio.Model
         /// <param name="replyMarkup">replyMarkup.</param>
         /// <param name="messagingType">Facebook messaging type. Required when using messageTag..</param>
         /// <param name="messageTag">Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT..</param>
-        /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID..</param>
+        /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID; for Instagram, the Meta mid (all available in message.platformMessageId from webhooks or the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without reply support, including Facebook Messenger (Meta&#39;s Messenger Send API has no reply_to)..</param>
         /// <param name="location">location.</param>
         /// <param name="contacts">WhatsApp-only. Send one or more contact cards..</param>
         public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, CategoryEnum? category = default, AttachmentTypeEnum? attachmentType = default, string attachmentName = default, bool voiceNote = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default, SendInboxMessageRequestLocation location = default, List<SendInboxMessageRequestContactsInner> contacts = default)
@@ -284,9 +284,9 @@ namespace Zernio.Model
         public SendInboxMessageRequestReplyMarkup ReplyMarkup { get; set; }
 
         /// <summary>
-        /// Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID.
+        /// Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID; for Instagram, the Meta mid (all available in message.platformMessageId from webhooks or the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without reply support, including Facebook Messenger (Meta&#39;s Messenger Send API has no reply_to).
         /// </summary>
-        /// <value>Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID.</value>
+        /// <value>Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID; for Instagram, the Meta mid (all available in message.platformMessageId from webhooks or the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without reply support, including Facebook Messenger (Meta&#39;s Messenger Send API has no reply_to).</value>
         [DataMember(Name = "replyTo", EmitDefaultValue = false)]
         public string ReplyTo { get; set; }
 
