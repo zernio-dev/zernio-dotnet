@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CreativeType'
+        /// </summary>
+        [Fact]
+        public void CreativeTypeTest()
+        {
+            // TODO unit test for the property 'CreativeType'
+        }
+
+        /// <summary>
         /// Test the property 'Goal'
         /// </summary>
         [Fact]

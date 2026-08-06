@@ -59,9 +59,12 @@ namespace Zernio.Model
         /// <param name="videoP95WatchedActions">Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;..</param>
         /// <param name="videoP100WatchedActions">Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;..</param>
         /// <param name="videoAvgTimeWatchedActions">Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages..</param>
+        /// <param name="costPerThruplay">Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays..</param>
+        /// <param name="funnel">funnel.</param>
+        /// <param name="engagementBreakdown">engagementBreakdown.</param>
         /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
         /// <param name="date">Calendar day (YYYY-MM-DD) these metrics apply to..</param>
-        public AdDailyMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, DateTime lastSyncedAt = default, DateOnly date = default)
+        public AdDailyMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default, DateOnly date = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -86,6 +89,9 @@ namespace Zernio.Model
             this.VideoP95WatchedActions = videoP95WatchedActions;
             this.VideoP100WatchedActions = videoP100WatchedActions;
             this.VideoAvgTimeWatchedActions = videoAvgTimeWatchedActions;
+            this.CostPerThruplay = costPerThruplay;
+            this.Funnel = funnel;
+            this.EngagementBreakdown = engagementBreakdown;
             this.LastSyncedAt = lastSyncedAt;
             this.Date = date;
         }
@@ -254,6 +260,25 @@ namespace Zernio.Model
         public decimal VideoAvgTimeWatchedActions { get; set; }
 
         /// <summary>
+        /// Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays.
+        /// </summary>
+        /// <value>Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays.</value>
+        [DataMember(Name = "costPerThruplay", EmitDefaultValue = false)]
+        public decimal CostPerThruplay { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Funnel
+        /// </summary>
+        [DataMember(Name = "funnel", EmitDefaultValue = false)]
+        public AdFunnelCounts Funnel { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EngagementBreakdown
+        /// </summary>
+        [DataMember(Name = "engagementBreakdown", EmitDefaultValue = false)]
+        public AdEngagementCounts EngagementBreakdown { get; set; }
+
+        /// <summary>
         /// Present on individual ads only, not on campaign aggregations
         /// </summary>
         /// <value>Present on individual ads only, not on campaign aggregations</value>
@@ -298,6 +323,9 @@ namespace Zernio.Model
             sb.Append("  VideoP95WatchedActions: ").Append(VideoP95WatchedActions).Append("\n");
             sb.Append("  VideoP100WatchedActions: ").Append(VideoP100WatchedActions).Append("\n");
             sb.Append("  VideoAvgTimeWatchedActions: ").Append(VideoAvgTimeWatchedActions).Append("\n");
+            sb.Append("  CostPerThruplay: ").Append(CostPerThruplay).Append("\n");
+            sb.Append("  Funnel: ").Append(Funnel).Append("\n");
+            sb.Append("  EngagementBreakdown: ").Append(EngagementBreakdown).Append("\n");
             sb.Append("  LastSyncedAt: ").Append(LastSyncedAt).Append("\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("}\n");

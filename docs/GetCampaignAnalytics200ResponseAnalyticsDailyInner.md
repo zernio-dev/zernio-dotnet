@@ -27,6 +27,9 @@ Name | Type | Description | Notes
 **VideoP95WatchedActions** | **int** | Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;. | [optional] 
 **VideoP100WatchedActions** | **int** | Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;. | [optional] 
 **VideoAvgTimeWatchedActions** | **decimal** | Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages. | [optional] 
+**CostPerThruplay** | **decimal** | Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays. | [optional] 
+**Funnel** | [**AdFunnelCounts**](AdFunnelCounts.md) |  | [optional] 
+**EngagementBreakdown** | [**AdEngagementCounts**](AdEngagementCounts.md) |  | [optional] 
 **LastSyncedAt** | **DateTime** | Present on individual ads only, not on campaign aggregations | [optional] 
 **Date** | **DateOnly** |  | [optional] 
 

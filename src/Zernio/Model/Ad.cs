@@ -134,6 +134,48 @@ namespace Zernio.Model
         [DataMember(Name = "adType", EmitDefaultValue = false)]
         public AdTypeEnum? AdType { get; set; }
         /// <summary>
+        /// Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
+        /// </summary>
+        /// <value>Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CreativeTypeEnum
+        {
+            /// <summary>
+            /// Enum Carousel for value: carousel
+            /// </summary>
+            [EnumMember(Value = "carousel")]
+            Carousel = 1,
+
+            /// <summary>
+            /// Enum Video for value: video
+            /// </summary>
+            [EnumMember(Value = "video")]
+            Video = 2,
+
+            /// <summary>
+            /// Enum Document for value: document
+            /// </summary>
+            [EnumMember(Value = "document")]
+            Document = 3,
+
+            /// <summary>
+            /// Enum Image for value: image
+            /// </summary>
+            [EnumMember(Value = "image")]
+            Image = 4
+        }
+
+
+        /// <summary>
+        /// Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.
+        /// </summary>
+        /// <value>Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;.</value>
+        /*
+        <example>video</example>
+        */
+        [DataMember(Name = "creativeType", EmitDefaultValue = true)]
+        public CreativeTypeEnum? CreativeType { get; set; }
+        /// <summary>
         /// Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
         /// </summary>
         /// <value>Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
@@ -224,6 +266,7 @@ namespace Zernio.Model
         /// <param name="configuredStatus">The ad&#39;s own on/off toggle as configured on the platform (Meta &#x60;configured_status&#x60;: ACTIVE / PAUSED), unaffected by ancestor (ad set / campaign) pauses. Distinct from &#x60;status&#x60;, which is the ancestor-cascaded delivery status. Only present for Meta ads synced after this field was added..</param>
         /// <param name="reviewStatus">Platform review state of this ad, independent of delivery &#x60;status&#x60; / &#x60;configuredStatus&#x60;. Absent when the platform reports no review signal..</param>
         /// <param name="adType">adType.</param>
+        /// <param name="creativeType">Creative format, classified from the media the creative carries. &#x60;null&#x60; when the creative carries no media to classify — an unsynced creative and a genuine text-only ad are indistinguishable, so neither is guessed at. Returned by &#x60;GET /v1/ads&#x60;, &#x60;GET /v1/ads/{adId}&#x60; and the ad nodes of &#x60;GET /v1/ads/tree&#x60;..</param>
         /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views..</param>
         /// <param name="isExternal">True for ads synced from platform ad managers.</param>
         /// <param name="budget">budget.</param>
@@ -250,7 +293,7 @@ namespace Zernio.Model
         /// <param name="rejectionReason">rejectionReason.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public Ad(string id = default, string name = default, PlatformEnum? platform = default, AdStatus? status = default, string configuredStatus = default, AdReviewStatus? reviewStatus = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, string costType = default, List<string> servingStatuses = default, string platformAdAccountName = default, DateTime? platformCreatedAt = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public Ad(string id = default, string name = default, PlatformEnum? platform = default, AdStatus? status = default, string configuredStatus = default, AdReviewStatus? reviewStatus = default, AdTypeEnum? adType = default, CreativeTypeEnum? creativeType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, string costType = default, List<string> servingStatuses = default, string platformAdAccountName = default, DateTime? platformCreatedAt = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -259,6 +302,7 @@ namespace Zernio.Model
             this.ConfiguredStatus = configuredStatus;
             this.ReviewStatus = reviewStatus;
             this.AdType = adType;
+            this.CreativeType = creativeType;
             this.Goal = goal;
             this.IsExternal = isExternal;
             this.Budget = budget;
@@ -499,6 +543,7 @@ namespace Zernio.Model
             sb.Append("  ConfiguredStatus: ").Append(ConfiguredStatus).Append("\n");
             sb.Append("  ReviewStatus: ").Append(ReviewStatus).Append("\n");
             sb.Append("  AdType: ").Append(AdType).Append("\n");
+            sb.Append("  CreativeType: ").Append(CreativeType).Append("\n");
             sb.Append("  Goal: ").Append(Goal).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");

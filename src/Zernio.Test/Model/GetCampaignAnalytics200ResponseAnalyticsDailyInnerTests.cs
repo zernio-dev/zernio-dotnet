@@ -263,6 +263,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CostPerThruplay'
+        /// </summary>
+        [Fact]
+        public void CostPerThruplayTest()
+        {
+            // TODO unit test for the property 'CostPerThruplay'
+        }
+
+        /// <summary>
+        /// Test the property 'Funnel'
+        /// </summary>
+        [Fact]
+        public void FunnelTest()
+        {
+            // TODO unit test for the property 'Funnel'
+        }
+
+        /// <summary>
+        /// Test the property 'EngagementBreakdown'
+        /// </summary>
+        [Fact]
+        public void EngagementBreakdownTest()
+        {
+            // TODO unit test for the property 'EngagementBreakdown'
+        }
+
+        /// <summary>
         /// Test the property 'LastSyncedAt'
         /// </summary>
         [Fact]

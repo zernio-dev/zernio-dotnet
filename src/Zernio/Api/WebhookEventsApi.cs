@@ -620,7 +620,7 @@ namespace Zernio.Api
         /// Post recycled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -631,7 +631,7 @@ namespace Zernio.Api
         /// Post recycled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -641,7 +641,7 @@ namespace Zernio.Api
         /// Post scheduled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is created and scheduled for publishing.
+        /// Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -652,7 +652,7 @@ namespace Zernio.Api
         /// Post scheduled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is created and scheduled for publishing.
+        /// Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -1672,7 +1672,7 @@ namespace Zernio.Api
         /// Post recycled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -1684,7 +1684,7 @@ namespace Zernio.Api
         /// Post recycled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -1695,7 +1695,7 @@ namespace Zernio.Api
         /// Post scheduled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is created and scheduled for publishing.
+        /// Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -1707,7 +1707,7 @@ namespace Zernio.Api
         /// Post scheduled event
         /// </summary>
         /// <remarks>
-        /// Fired when a post is created and scheduled for publishing.
+        /// Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -5819,7 +5819,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -5830,7 +5830,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -5879,7 +5879,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -5891,7 +5891,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing).
+        /// Post recycled event Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -5944,7 +5944,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post scheduled event Fired when a post is created and scheduled for publishing.
+        /// Post scheduled event Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -5955,7 +5955,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post scheduled event Fired when a post is created and scheduled for publishing.
+        /// Post scheduled event Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -6004,7 +6004,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post scheduled event Fired when a post is created and scheduled for publishing.
+        /// Post scheduled event Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
@@ -6016,7 +6016,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post scheduled event Fired when a post is created and scheduled for publishing.
+        /// Post scheduled event Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPost"></param>
