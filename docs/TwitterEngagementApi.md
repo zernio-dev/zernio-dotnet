@@ -110,6 +110,7 @@ catch (ApiException e)
 | **200** | Tweet bookmarked |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -211,6 +212,7 @@ catch (ApiException e)
 | **200** | User followed or follow request sent |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -420,6 +422,7 @@ catch (ApiException e)
 | **200** | Bookmark removed |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -521,6 +524,7 @@ catch (ApiException e)
 | **200** | Tweet retweeted |  -  |
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -744,6 +748,7 @@ catch (ApiException e)
 | **200** | Retweet undone |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -847,6 +852,7 @@ catch (ApiException e)
 | **200** | User unfollowed |  -  |
 | **400** | Bad request |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
