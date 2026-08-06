@@ -146,6 +146,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RemovedFromPlatformAt'
+        /// </summary>
+        [Fact]
+        public void RemovedFromPlatformAtTest()
+        {
+            // TODO unit test for the property 'RemovedFromPlatformAt'
+        }
+
+        /// <summary>
         /// Test the property 'IsTrialReel'
         /// </summary>
         [Fact]
