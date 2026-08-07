@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Webhook payload for reaction received events (WhatsApp, Telegram)
+    /// Webhook payload for reaction received events (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)
     /// </summary>
     [DataContract(Name = "WebhookPayloadReaction")]
     public partial class WebhookPayloadReaction : IValidatableObject

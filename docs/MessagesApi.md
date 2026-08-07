@@ -25,7 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add reaction
 
-Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - All others: Returns 400 (not supported) 
+Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta's 24h messaging window - Slack: The emoji must have a Slack name (e.g. `:thumbsup:`); unnamed characters return 400 - All others: Returns 400 (not supported) 
 
 ### Example
 ```csharp
@@ -872,7 +872,7 @@ catch (ApiException e)
 
 Remove reaction
 
-Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - All others: Returns 400 (not supported) 
+Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta's `unreact` action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
 
 ### Example
 ```csharp

@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadReaction
-Webhook payload for reaction received events (WhatsApp, Telegram)
+Webhook payload for reaction received events (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)
 
 ## Properties
 
