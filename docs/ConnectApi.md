@@ -246,6 +246,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Connection status |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Code not found |  -  |
 | **500** | Internal error |  -  |
