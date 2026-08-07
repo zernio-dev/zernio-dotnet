@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class CtwaAdRequestBody : IValidatableObject
     {
         /// <summary>
-        /// Defines BudgetType
+        /// Required unless &#x60;adSetId&#x60; is set.
         /// </summary>
+        /// <value>Required unless &#x60;adSetId&#x60; is set.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BudgetTypeEnum
         {
@@ -54,10 +55,11 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets BudgetType
+        /// Required unless &#x60;adSetId&#x60; is set.
         /// </summary>
-        [DataMember(Name = "budgetType", IsRequired = true, EmitDefaultValue = true)]
-        public BudgetTypeEnum BudgetType { get; set; }
+        /// <value>Required unless &#x60;adSetId&#x60; is set.</value>
+        [DataMember(Name = "budgetType", EmitDefaultValue = false)]
+        public BudgetTypeEnum? BudgetType { get; set; }
         /// <summary>
         /// Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). 
         /// </summary>
@@ -170,8 +172,9 @@ namespace Zernio.Model
         /// <param name="imageUrl">Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. .</param>
         /// <param name="video">video.</param>
         /// <param name="creatives">Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;). Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. .</param>
-        /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0.  (required).</param>
-        /// <param name="budgetType">budgetType (required).</param>
+        /// <param name="adSetId">Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. .</param>
+        /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. .</param>
+        /// <param name="budgetType">Required unless &#x60;adSetId&#x60; is set..</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional; Meta infers from the ad account when omitted. .</param>
         /// <param name="endDate">ISO 8601 datetime. Required when &#x60;budgetType&#x60; is &#x60;lifetime&#x60;. .</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied. .</param>
@@ -192,7 +195,7 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
-        public CtwaAdRequestBody(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
+        public CtwaAdRequestBody(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -212,13 +215,14 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for CtwaAdRequestBody and cannot be null");
             }
             this.Name = name;
-            this.BudgetAmount = budgetAmount;
-            this.BudgetType = budgetType;
             this.Headline = headline;
             this.Body = body;
             this.ImageUrl = imageUrl;
             this.Video = video;
             this.Creatives = creatives;
+            this.AdSetId = adSetId;
+            this.BudgetAmount = budgetAmount;
+            this.BudgetType = budgetType;
             this.Currency = currency;
             this.EndDate = endDate;
             this.Countries = countries;
@@ -297,10 +301,17 @@ namespace Zernio.Model
         public List<CtwaAdRequestBodyCreativesInner> Creatives { get; set; }
 
         /// <summary>
-        /// Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. 
+        /// Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. 
         /// </summary>
-        /// <value>Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. </value>
-        [DataMember(Name = "budgetAmount", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. </value>
+        [DataMember(Name = "adSetId", EmitDefaultValue = false)]
+        public string AdSetId { get; set; }
+
+        /// <summary>
+        /// Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. 
+        /// </summary>
+        /// <value>Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. </value>
+        [DataMember(Name = "budgetAmount", EmitDefaultValue = false)]
         public decimal BudgetAmount { get; set; }
 
         /// <summary>
@@ -434,6 +445,7 @@ namespace Zernio.Model
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  Video: ").Append(Video).Append("\n");
             sb.Append("  Creatives: ").Append(Creatives).Append("\n");
+            sb.Append("  AdSetId: ").Append(AdSetId).Append("\n");
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");
             sb.Append("  BudgetType: ").Append(BudgetType).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// BoostPostRequestBudget
+    /// Required unless adSetId is set.
     /// </summary>
     [DataContract(Name = "boostPost_request_budget")]
     public partial class BoostPostRequestBudget : IValidatableObject

@@ -1117,7 +1117,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
-            var conversationId = "conversationId_example";  // string | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
+            var conversationId = "conversationId_example";  // string | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
             var sendInboxMessageRequest = new SendInboxMessageRequest(); // SendInboxMessageRequest | 
             var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional) 
 
@@ -1162,7 +1162,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **conversationId** | **string** | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. |  |
+| **conversationId** | **string** | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. |  |
 | **sendInboxMessageRequest** | [**SendInboxMessageRequest**](SendInboxMessageRequest.md) |  |  |
 | **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional]  |
 

@@ -1,4 +1,5 @@
 # Zernio.Model.BoostPostRequestBudget
+Required unless adSetId is set.
 
 ## Properties
 

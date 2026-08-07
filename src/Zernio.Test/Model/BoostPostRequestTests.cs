@@ -110,12 +110,39 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AdSetId'
+        /// </summary>
+        [Fact]
+        public void AdSetIdTest()
+        {
+            // TODO unit test for the property 'AdSetId'
+        }
+
+        /// <summary>
         /// Test the property 'Budget'
         /// </summary>
         [Fact]
         public void BudgetTest()
         {
             // TODO unit test for the property 'Budget'
+        }
+
+        /// <summary>
+        /// Test the property 'InstagramAccountId'
+        /// </summary>
+        [Fact]
+        public void InstagramAccountIdTest()
+        {
+            // TODO unit test for the property 'InstagramAccountId'
+        }
+
+        /// <summary>
+        /// Test the property 'DestinationType'
+        /// </summary>
+        [Fact]
+        public void DestinationTypeTest()
+        {
+            // TODO unit test for the property 'DestinationType'
         }
 
         /// <summary>

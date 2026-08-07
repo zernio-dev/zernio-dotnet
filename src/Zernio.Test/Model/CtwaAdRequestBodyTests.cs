@@ -128,6 +128,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AdSetId'
+        /// </summary>
+        [Fact]
+        public void AdSetIdTest()
+        {
+            // TODO unit test for the property 'AdSetId'
+        }
+
+        /// <summary>
         /// Test the property 'BudgetAmount'
         /// </summary>
         [Fact]
