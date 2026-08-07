@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Picture'
         }
+
+        /// <summary>
+        /// Test the property 'InstagramProfile'
+        /// </summary>
+        [Fact]
+        public void InstagramProfileTest()
+        {
+            // TODO unit test for the property 'InstagramProfile'
+        }
     }
 }

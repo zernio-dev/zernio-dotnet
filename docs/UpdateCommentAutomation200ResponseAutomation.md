@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **CommentReply** | **string** |  | [optional] 
 **DmMessageVariations** | **List&lt;string&gt;** | Alternate DM texts rotated at random with dmMessage. Omitted when none. | [optional] 
 **CommentReplyVariations** | **List&lt;string&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. | [optional] 
+**Audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  | [optional] 
+**FollowGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  | [optional] 
 **IsActive** | **bool** |  | [optional] 
 **UpdatedAt** | **DateTime** |  | [optional] 
 

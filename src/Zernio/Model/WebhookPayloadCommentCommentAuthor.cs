@@ -45,7 +45,8 @@ namespace Zernio.Model
         /// <param name="username">username.</param>
         /// <param name="name">name.</param>
         /// <param name="picture">picture.</param>
-        public WebhookPayloadCommentCommentAuthor(string id = default, string username = default, string name = default, string picture = default)
+        /// <param name="instagramProfile">instagramProfile.</param>
+        public WebhookPayloadCommentCommentAuthor(string id = default, string username = default, string name = default, string picture = default, WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -56,6 +57,7 @@ namespace Zernio.Model
             this.Username = username;
             this.Name = name;
             this.Picture = picture;
+            this.InstagramProfile = instagramProfile;
         }
 
         /// <summary>
@@ -84,6 +86,12 @@ namespace Zernio.Model
         public string Picture { get; set; }
 
         /// <summary>
+        /// Gets or Sets InstagramProfile
+        /// </summary>
+        [DataMember(Name = "instagramProfile", EmitDefaultValue = false)]
+        public WebhookPayloadCommentCommentAuthorInstagramProfile InstagramProfile { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,6 +103,7 @@ namespace Zernio.Model
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Picture: ").Append(Picture).Append("\n");
+            sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

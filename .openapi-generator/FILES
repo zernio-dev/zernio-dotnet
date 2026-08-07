@@ -130,6 +130,8 @@ docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
 docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
+docs/CommentAutomationAudience.md
+docs/CommentAutomationFollowGate.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteGoogleBusinessVerificationRequest.md
@@ -603,6 +605,7 @@ docs/GetInboxVolume200ResponseSummary.md
 docs/GetInboxVolume200ResponseTimeseriesInner.md
 docs/GetInboxVolume400Response.md
 docs/GetInstagramAccountInsights404Response.md
+docs/GetInstagramFollowStatus200Response.md
 docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
@@ -1556,6 +1559,7 @@ docs/WebhookPayloadCommentComment.md
 docs/WebhookPayloadCommentCommentAd.md
 docs/WebhookPayloadCommentCommentAttachment.md
 docs/WebhookPayloadCommentCommentAuthor.md
+docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md
 docs/WebhookPayloadCommentPost.md
 docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
@@ -1824,6 +1828,8 @@ src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortabilityRequestTests.cs
 src/Zernio.Test/Model/CheckVerification200ResponseTests.cs
 src/Zernio.Test/Model/CheckVerificationRequestTests.cs
+src/Zernio.Test/Model/CommentAutomationAudienceTests.cs
+src/Zernio.Test/Model/CommentAutomationFollowGateTests.cs
 src/Zernio.Test/Model/CompleteGoogleBusinessVerificationRequestTests.cs
 src/Zernio.Test/Model/CompleteTelegramConnect200ResponseTests.cs
 src/Zernio.Test/Model/CompleteWhatsAppPhoneSelection200ResponseAccountTests.cs
@@ -2281,6 +2287,7 @@ src/Zernio.Test/Model/GetInboxVolume200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxVolume200ResponseTimeseriesInnerTests.cs
 src/Zernio.Test/Model/GetInboxVolume400ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
+src/Zernio.Test/Model/GetInstagramFollowStatus200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramPublishingLimit200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
@@ -3202,6 +3209,7 @@ src/Zernio.Test/Model/WebhookPayloadCallReceivedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAdTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAttachmentTests.cs
+src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorInstagramProfileTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentPostTests.cs
@@ -3484,6 +3492,8 @@ src/Zernio/Model/CheckPhoneNumberPortability200ResponseResultsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortabilityRequest.cs
 src/Zernio/Model/CheckVerification200Response.cs
 src/Zernio/Model/CheckVerificationRequest.cs
+src/Zernio/Model/CommentAutomationAudience.cs
+src/Zernio/Model/CommentAutomationFollowGate.cs
 src/Zernio/Model/CompleteGoogleBusinessVerificationRequest.cs
 src/Zernio/Model/CompleteTelegramConnect200Response.cs
 src/Zernio/Model/CompleteWhatsAppPhoneSelection200Response.cs
@@ -3941,6 +3951,7 @@ src/Zernio/Model/GetInboxVolume200ResponseSummary.cs
 src/Zernio/Model/GetInboxVolume200ResponseTimeseriesInner.cs
 src/Zernio/Model/GetInboxVolume400Response.cs
 src/Zernio/Model/GetInstagramAccountInsights404Response.cs
+src/Zernio/Model/GetInstagramFollowStatus200Response.cs
 src/Zernio/Model/GetInstagramPublishingLimit200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
@@ -4866,6 +4877,7 @@ src/Zernio/Model/WebhookPayloadCommentComment.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAd.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAttachment.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAuthor.cs
+src/Zernio/Model/WebhookPayloadCommentCommentAuthorInstagramProfile.cs
 src/Zernio/Model/WebhookPayloadCommentPost.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
 src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs

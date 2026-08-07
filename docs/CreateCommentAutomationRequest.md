@@ -22,6 +22,10 @@ Name | Type | Description | Notes
 **CommentReplyVariations** | **List&lt;string&gt;** | Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5. | [optional] 
 **LinkTracking** | **bool** | Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. | [optional] [default to true]
 **ClickTag** | **string** | Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences. | [optional] 
+**DmDelaySeconds** | **int** | Seconds to wait after the trigger before sending the DM. Omit or send 0 to reply immediately (the default). Max 86400 (24h). The trigger is still matched and deduplicated the moment the comment arrives, so a delay only moves when the response is sent. | [optional] 
+**CommentReplyDelaySeconds** | **int** | Seconds to wait before posting the public comment reply. Omit or send 0 to post it right after the DM (the default). The reply never goes out before the DM, so a value below dmDelaySeconds is raised to it. Ignored when trigger&#x3D;story_reply, which has no public reply. | [optional] 
+**Audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  | [optional] 
+**FollowGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

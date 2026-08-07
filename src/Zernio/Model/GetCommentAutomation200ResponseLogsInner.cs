@@ -34,38 +34,95 @@ namespace Zernio.Model
     public partial class GetCommentAutomation200ResponseLogsInner : IValidatableObject
     {
         /// <summary>
-        /// DM outcome
+        /// DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.
         /// </summary>
-        /// <value>DM outcome</value>
+        /// <value>DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
+            /// Enum Pending for value: pending
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending = 1,
+
+            /// <summary>
             /// Enum Sent for value: sent
             /// </summary>
             [EnumMember(Value = "sent")]
-            Sent = 1,
+            Sent = 2,
 
             /// <summary>
             /// Enum Failed for value: failed
             /// </summary>
             [EnumMember(Value = "failed")]
-            Failed = 2,
+            Failed = 3,
 
             /// <summary>
             /// Enum Skipped for value: skipped
             /// </summary>
             [EnumMember(Value = "skipped")]
-            Skipped = 3
+            Skipped = 4,
+
+            /// <summary>
+            /// Enum Gated for value: gated
+            /// </summary>
+            [EnumMember(Value = "gated")]
+            Gated = 5
         }
 
 
         /// <summary>
-        /// DM outcome
+        /// DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.
         /// </summary>
-        /// <value>DM outcome</value>
+        /// <value>DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// How the audience rule resolved. Absent on automations without one.
+        /// </summary>
+        /// <value>How the audience rule resolved. Absent on automations without one.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AudienceOutcomeEnum
+        {
+            /// <summary>
+            /// Enum Passed for value: passed
+            /// </summary>
+            [EnumMember(Value = "passed")]
+            Passed = 1,
+
+            /// <summary>
+            /// Enum Blocked for value: blocked
+            /// </summary>
+            [EnumMember(Value = "blocked")]
+            Blocked = 2,
+
+            /// <summary>
+            /// Enum GateSent for value: gate_sent
+            /// </summary>
+            [EnumMember(Value = "gate_sent")]
+            GateSent = 3,
+
+            /// <summary>
+            /// Enum GatePassed for value: gate_passed
+            /// </summary>
+            [EnumMember(Value = "gate_passed")]
+            GatePassed = 4,
+
+            /// <summary>
+            /// Enum GateFailed for value: gate_failed
+            /// </summary>
+            [EnumMember(Value = "gate_failed")]
+            GateFailed = 5
+        }
+
+
+        /// <summary>
+        /// How the audience rule resolved. Absent on automations without one.
+        /// </summary>
+        /// <value>How the audience rule resolved. Absent on automations without one.</value>
+        [DataMember(Name = "audienceOutcome", EmitDefaultValue = false)]
+        public AudienceOutcomeEnum? AudienceOutcome { get; set; }
         /// <summary>
         /// Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case).
         /// </summary>
@@ -107,12 +164,16 @@ namespace Zernio.Model
         /// <param name="commenterId">commenterId.</param>
         /// <param name="commenterName">commenterName.</param>
         /// <param name="commentText">commentText.</param>
-        /// <param name="status">DM outcome.</param>
+        /// <param name="status">DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap..</param>
+        /// <param name="audienceOutcome">How the audience rule resolved. Absent on automations without one..</param>
+        /// <param name="commenterIsFollower">Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account)..</param>
+        /// <param name="commenterFollowerCount">commenterFollowerCount.</param>
         /// <param name="error">DM error message if status is failed.</param>
         /// <param name="commentReplyStatus">Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case)..</param>
         /// <param name="commentReplyError">Public-reply error message if commentReplyStatus is failed.</param>
+        /// <param name="nextDueAt">When the next queued send fires. Present only while something is still pending..</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetCommentAutomation200ResponseLogsInner(string id = default, string commentId = default, string commenterId = default, string commenterName = default, string commentText = default, StatusEnum? status = default, string error = default, CommentReplyStatusEnum? commentReplyStatus = default, string commentReplyError = default, DateTime createdAt = default)
+        public GetCommentAutomation200ResponseLogsInner(string id = default, string commentId = default, string commenterId = default, string commenterName = default, string commentText = default, StatusEnum? status = default, AudienceOutcomeEnum? audienceOutcome = default, bool commenterIsFollower = default, int commenterFollowerCount = default, string error = default, CommentReplyStatusEnum? commentReplyStatus = default, string commentReplyError = default, DateTime nextDueAt = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.CommentId = commentId;
@@ -120,9 +181,13 @@ namespace Zernio.Model
             this.CommenterName = commenterName;
             this.CommentText = commentText;
             this.Status = status;
+            this.AudienceOutcome = audienceOutcome;
+            this.CommenterIsFollower = commenterIsFollower;
+            this.CommenterFollowerCount = commenterFollowerCount;
             this.Error = error;
             this.CommentReplyStatus = commentReplyStatus;
             this.CommentReplyError = commentReplyError;
+            this.NextDueAt = nextDueAt;
             this.CreatedAt = createdAt;
         }
 
@@ -157,6 +222,19 @@ namespace Zernio.Model
         public string CommentText { get; set; }
 
         /// <summary>
+        /// Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account).
+        /// </summary>
+        /// <value>Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account).</value>
+        [DataMember(Name = "commenterIsFollower", EmitDefaultValue = true)]
+        public bool CommenterIsFollower { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CommenterFollowerCount
+        /// </summary>
+        [DataMember(Name = "commenterFollowerCount", EmitDefaultValue = false)]
+        public int CommenterFollowerCount { get; set; }
+
+        /// <summary>
         /// DM error message if status is failed
         /// </summary>
         /// <value>DM error message if status is failed</value>
@@ -169,6 +247,13 @@ namespace Zernio.Model
         /// <value>Public-reply error message if commentReplyStatus is failed</value>
         [DataMember(Name = "commentReplyError", EmitDefaultValue = false)]
         public string CommentReplyError { get; set; }
+
+        /// <summary>
+        /// When the next queued send fires. Present only while something is still pending.
+        /// </summary>
+        /// <value>When the next queued send fires. Present only while something is still pending.</value>
+        [DataMember(Name = "nextDueAt", EmitDefaultValue = false)]
+        public DateTime NextDueAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -190,9 +275,13 @@ namespace Zernio.Model
             sb.Append("  CommenterName: ").Append(CommenterName).Append("\n");
             sb.Append("  CommentText: ").Append(CommentText).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  AudienceOutcome: ").Append(AudienceOutcome).Append("\n");
+            sb.Append("  CommenterIsFollower: ").Append(CommenterIsFollower).Append("\n");
+            sb.Append("  CommenterFollowerCount: ").Append(CommenterFollowerCount).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("  CommentReplyStatus: ").Append(CommentReplyStatus).Append("\n");
             sb.Append("  CommentReplyError: ").Append(CommentReplyError).Append("\n");
+            sb.Append("  NextDueAt: ").Append(NextDueAt).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -110,6 +110,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AudienceOutcome'
+        /// </summary>
+        [Fact]
+        public void AudienceOutcomeTest()
+        {
+            // TODO unit test for the property 'AudienceOutcome'
+        }
+
+        /// <summary>
+        /// Test the property 'CommenterIsFollower'
+        /// </summary>
+        [Fact]
+        public void CommenterIsFollowerTest()
+        {
+            // TODO unit test for the property 'CommenterIsFollower'
+        }
+
+        /// <summary>
+        /// Test the property 'CommenterFollowerCount'
+        /// </summary>
+        [Fact]
+        public void CommenterFollowerCountTest()
+        {
+            // TODO unit test for the property 'CommenterFollowerCount'
+        }
+
+        /// <summary>
         /// Test the property 'Error'
         /// </summary>
         [Fact]
@@ -134,6 +161,15 @@ namespace Zernio.Test.Model
         public void CommentReplyErrorTest()
         {
             // TODO unit test for the property 'CommentReplyError'
+        }
+
+        /// <summary>
+        /// Test the property 'NextDueAt'
+        /// </summary>
+        [Fact]
+        public void NextDueAtTest()
+        {
+            // TODO unit test for the property 'NextDueAt'
         }
 
         /// <summary>

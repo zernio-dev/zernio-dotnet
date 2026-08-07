@@ -80,9 +80,11 @@ namespace Zernio.Model
         /// <param name="commentReply">commentReply.</param>
         /// <param name="dmMessageVariations">Alternate DM texts rotated at random with dmMessage. Omitted when none..</param>
         /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
+        /// <param name="audience">audience.</param>
+        /// <param name="followGate">followGate.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool isActive = default, DateTime updatedAt = default)
+        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -95,6 +97,8 @@ namespace Zernio.Model
             this.CommentReply = commentReply;
             this.DmMessageVariations = dmMessageVariations;
             this.CommentReplyVariations = commentReplyVariations;
+            this.Audience = audience;
+            this.FollowGate = followGate;
             this.IsActive = isActive;
             this.UpdatedAt = updatedAt;
         }
@@ -165,6 +169,18 @@ namespace Zernio.Model
         public List<string> CommentReplyVariations { get; set; }
 
         /// <summary>
+        /// Gets or Sets Audience
+        /// </summary>
+        [DataMember(Name = "audience", EmitDefaultValue = false)]
+        public CommentAutomationAudience Audience { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FollowGate
+        /// </summary>
+        [DataMember(Name = "followGate", EmitDefaultValue = false)]
+        public CommentAutomationFollowGate FollowGate { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -195,6 +211,8 @@ namespace Zernio.Model
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
+            sb.Append("  Audience: ").Append(Audience).Append("\n");
+            sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");

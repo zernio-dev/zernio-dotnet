@@ -17,6 +17,10 @@ Name | Type | Description | Notes
 **CommentReplyVariations** | **List&lt;string&gt;** | Alternate public replies for random rotation. Pass [] to clear. | [optional] 
 **LinkTracking** | **bool** | Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched. | [optional] 
 **ClickTag** | **string** | Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it. | [optional] 
+**DmDelaySeconds** | **int** | Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately. | [optional] 
+**CommentReplyDelaySeconds** | **int** | Seconds to wait before posting the public comment reply. Send 0 to clear it. The reply never goes out before the DM. | [optional] 
+**Audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  | [optional] 
+**FollowGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  | [optional] 
 **IsActive** | **bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

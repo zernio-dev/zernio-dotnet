@@ -109,6 +109,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetInstagramFollowStatus
+        /// </summary>
+        [Fact]
+        public void GetInstagramFollowStatusTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string userId = null;
+            //bool? refresh = null;
+            //var response = instance.GetInstagramFollowStatus(accountId, userId, refresh);
+            //Assert.IsType<GetInstagramFollowStatus200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetSlackSettings
         /// </summary>
         [Fact]

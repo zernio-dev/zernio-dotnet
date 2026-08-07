@@ -109,8 +109,12 @@ namespace Zernio.Model
         /// <param name="commentReplyVariations">Alternate public replies for random rotation. Pass [] to clear..</param>
         /// <param name="linkTracking">Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched..</param>
         /// <param name="clickTag">Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it..</param>
+        /// <param name="dmDelaySeconds">Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately..</param>
+        /// <param name="commentReplyDelaySeconds">Seconds to wait before posting the public comment reply. Send 0 to clear it. The reply never goes out before the DM..</param>
+        /// <param name="audience">audience.</param>
+        /// <param name="followGate">followGate.</param>
         /// <param name="isActive">isActive.</param>
-        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default)
+        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default)
         {
             this.Name = name;
             this.Trigger = trigger;
@@ -125,6 +129,10 @@ namespace Zernio.Model
             this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
+            this.DmDelaySeconds = dmDelaySeconds;
+            this.CommentReplyDelaySeconds = commentReplyDelaySeconds;
+            this.Audience = audience;
+            this.FollowGate = followGate;
             this.IsActive = isActive;
         }
 
@@ -202,6 +210,32 @@ namespace Zernio.Model
         public string ClickTag { get; set; }
 
         /// <summary>
+        /// Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately.
+        /// </summary>
+        /// <value>Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately.</value>
+        [DataMember(Name = "dmDelaySeconds", EmitDefaultValue = false)]
+        public int DmDelaySeconds { get; set; }
+
+        /// <summary>
+        /// Seconds to wait before posting the public comment reply. Send 0 to clear it. The reply never goes out before the DM.
+        /// </summary>
+        /// <value>Seconds to wait before posting the public comment reply. Send 0 to clear it. The reply never goes out before the DM.</value>
+        [DataMember(Name = "commentReplyDelaySeconds", EmitDefaultValue = false)]
+        public int CommentReplyDelaySeconds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Audience
+        /// </summary>
+        [DataMember(Name = "audience", EmitDefaultValue = false)]
+        public CommentAutomationAudience Audience { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FollowGate
+        /// </summary>
+        [DataMember(Name = "followGate", EmitDefaultValue = false)]
+        public CommentAutomationFollowGate FollowGate { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -228,6 +262,10 @@ namespace Zernio.Model
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
+            sb.Append("  DmDelaySeconds: ").Append(DmDelaySeconds).Append("\n");
+            sb.Append("  CommentReplyDelaySeconds: ").Append(CommentReplyDelaySeconds).Append("\n");
+            sb.Append("  Audience: ").Append(Audience).Append("\n");
+            sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -249,6 +287,30 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // DmDelaySeconds (int) maximum
+            if (this.DmDelaySeconds > (int)86400)
+            {
+                yield return new ValidationResult("Invalid value for DmDelaySeconds, must be a value less than or equal to 86400.", new [] { "DmDelaySeconds" });
+            }
+
+            // DmDelaySeconds (int) minimum
+            if (this.DmDelaySeconds < (int)0)
+            {
+                yield return new ValidationResult("Invalid value for DmDelaySeconds, must be a value greater than or equal to 0.", new [] { "DmDelaySeconds" });
+            }
+
+            // CommentReplyDelaySeconds (int) maximum
+            if (this.CommentReplyDelaySeconds > (int)86400)
+            {
+                yield return new ValidationResult("Invalid value for CommentReplyDelaySeconds, must be a value less than or equal to 86400.", new [] { "CommentReplyDelaySeconds" });
+            }
+
+            // CommentReplyDelaySeconds (int) minimum
+            if (this.CommentReplyDelaySeconds < (int)0)
+            {
+                yield return new ValidationResult("Invalid value for CommentReplyDelaySeconds, must be a value greater than or equal to 0.", new [] { "CommentReplyDelaySeconds" });
+            }
+
             yield break;
         }
     }

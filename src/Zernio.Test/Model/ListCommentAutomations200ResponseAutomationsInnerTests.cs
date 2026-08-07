@@ -218,6 +218,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'DmDelaySeconds'
+        /// </summary>
+        [Fact]
+        public void DmDelaySecondsTest()
+        {
+            // TODO unit test for the property 'DmDelaySeconds'
+        }
+
+        /// <summary>
+        /// Test the property 'CommentReplyDelaySeconds'
+        /// </summary>
+        [Fact]
+        public void CommentReplyDelaySecondsTest()
+        {
+            // TODO unit test for the property 'CommentReplyDelaySeconds'
+        }
+
+        /// <summary>
         /// Test the property 'IsActive'
         /// </summary>
         [Fact]

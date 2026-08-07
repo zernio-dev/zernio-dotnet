@@ -173,6 +173,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LeadId'
+        /// </summary>
+        [Fact]
+        public void LeadIdTest()
+        {
+            // TODO unit test for the property 'LeadId'
+        }
+
+        /// <summary>
         /// Test the property 'ClickIds'
         /// </summary>
         [Fact]

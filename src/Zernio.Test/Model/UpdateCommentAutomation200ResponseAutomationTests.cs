@@ -155,6 +155,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Audience'
+        /// </summary>
+        [Fact]
+        public void AudienceTest()
+        {
+            // TODO unit test for the property 'Audience'
+        }
+
+        /// <summary>
+        /// Test the property 'FollowGate'
+        /// </summary>
+        [Fact]
+        public void FollowGateTest()
+        {
+            // TODO unit test for the property 'FollowGate'
+        }
+
+        /// <summary>
         /// Test the property 'IsActive'
         /// </summary>
         [Fact]

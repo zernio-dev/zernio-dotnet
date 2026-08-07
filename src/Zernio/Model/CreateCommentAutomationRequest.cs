@@ -119,7 +119,11 @@ namespace Zernio.Model
         /// <param name="commentReplyVariations">Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5..</param>
         /// <param name="linkTracking">Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. (default to true).</param>
         /// <param name="clickTag">Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences..</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default)
+        /// <param name="dmDelaySeconds">Seconds to wait after the trigger before sending the DM. Omit or send 0 to reply immediately (the default). Max 86400 (24h). The trigger is still matched and deduplicated the moment the comment arrives, so a delay only moves when the response is sent..</param>
+        /// <param name="commentReplyDelaySeconds">Seconds to wait before posting the public comment reply. Omit or send 0 to post it right after the DM (the default). The reply never goes out before the DM, so a value below dmDelaySeconds is raised to it. Ignored when trigger&#x3D;story_reply, which has no public reply..</param>
+        /// <param name="audience">audience.</param>
+        /// <param name="followGate">followGate.</param>
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -159,6 +163,10 @@ namespace Zernio.Model
             this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
+            this.DmDelaySeconds = dmDelaySeconds;
+            this.CommentReplyDelaySeconds = commentReplyDelaySeconds;
+            this.Audience = audience;
+            this.FollowGate = followGate;
         }
 
         /// <summary>
@@ -273,6 +281,32 @@ namespace Zernio.Model
         public string ClickTag { get; set; }
 
         /// <summary>
+        /// Seconds to wait after the trigger before sending the DM. Omit or send 0 to reply immediately (the default). Max 86400 (24h). The trigger is still matched and deduplicated the moment the comment arrives, so a delay only moves when the response is sent.
+        /// </summary>
+        /// <value>Seconds to wait after the trigger before sending the DM. Omit or send 0 to reply immediately (the default). Max 86400 (24h). The trigger is still matched and deduplicated the moment the comment arrives, so a delay only moves when the response is sent.</value>
+        [DataMember(Name = "dmDelaySeconds", EmitDefaultValue = false)]
+        public int DmDelaySeconds { get; set; }
+
+        /// <summary>
+        /// Seconds to wait before posting the public comment reply. Omit or send 0 to post it right after the DM (the default). The reply never goes out before the DM, so a value below dmDelaySeconds is raised to it. Ignored when trigger&#x3D;story_reply, which has no public reply.
+        /// </summary>
+        /// <value>Seconds to wait before posting the public comment reply. Omit or send 0 to post it right after the DM (the default). The reply never goes out before the DM, so a value below dmDelaySeconds is raised to it. Ignored when trigger&#x3D;story_reply, which has no public reply.</value>
+        [DataMember(Name = "commentReplyDelaySeconds", EmitDefaultValue = false)]
+        public int CommentReplyDelaySeconds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Audience
+        /// </summary>
+        [DataMember(Name = "audience", EmitDefaultValue = false)]
+        public CommentAutomationAudience Audience { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FollowGate
+        /// </summary>
+        [DataMember(Name = "followGate", EmitDefaultValue = false)]
+        public CommentAutomationFollowGate FollowGate { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -298,6 +332,10 @@ namespace Zernio.Model
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
+            sb.Append("  DmDelaySeconds: ").Append(DmDelaySeconds).Append("\n");
+            sb.Append("  CommentReplyDelaySeconds: ").Append(CommentReplyDelaySeconds).Append("\n");
+            sb.Append("  Audience: ").Append(Audience).Append("\n");
+            sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -318,6 +356,30 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // DmDelaySeconds (int) maximum
+            if (this.DmDelaySeconds > (int)86400)
+            {
+                yield return new ValidationResult("Invalid value for DmDelaySeconds, must be a value less than or equal to 86400.", new [] { "DmDelaySeconds" });
+            }
+
+            // DmDelaySeconds (int) minimum
+            if (this.DmDelaySeconds < (int)0)
+            {
+                yield return new ValidationResult("Invalid value for DmDelaySeconds, must be a value greater than or equal to 0.", new [] { "DmDelaySeconds" });
+            }
+
+            // CommentReplyDelaySeconds (int) maximum
+            if (this.CommentReplyDelaySeconds > (int)86400)
+            {
+                yield return new ValidationResult("Invalid value for CommentReplyDelaySeconds, must be a value less than or equal to 86400.", new [] { "CommentReplyDelaySeconds" });
+            }
+
+            // CommentReplyDelaySeconds (int) minimum
+            if (this.CommentReplyDelaySeconds < (int)0)
+            {
+                yield return new ValidationResult("Invalid value for CommentReplyDelaySeconds, must be a value greater than or equal to 0.", new [] { "CommentReplyDelaySeconds" });
+            }
+
             yield break;
         }
     }

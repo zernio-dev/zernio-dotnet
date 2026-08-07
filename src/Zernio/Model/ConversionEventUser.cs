@@ -49,8 +49,9 @@ namespace Zernio.Model
         /// <param name="zip">Meta advanced matching (zp). US uses first 5 digits; hashed server-side. Meta only..</param>
         /// <param name="dob">Meta advanced matching (db). YYYYMMDD; hashed server-side. Meta only..</param>
         /// <param name="gender">Meta advanced matching (ge). &#39;f&#39; or &#39;m&#39;; hashed server-side. Meta only..</param>
+        /// <param name="leadId">Meta lead ID from a Lead Ad submission, as a string. Required for Conversion Leads CRM events: send it with &#x60;actionSource: &#39;crm&#39;&#x60; and &#x60;platformData: { event_source: &#39;crm&#39;, lead_event_source: &#39;&lt;CRM name&gt;&#39; }&#x60;. Forwarded unhashed to Meta&#39;s &#x60;user_data.lead_id&#x60;. Meta only. .</param>
         /// <param name="clickIds">clickIds.</param>
-        public ConversionEventUser(string email = default, string phone = default, string firstName = default, string lastName = default, string externalId = default, string ipAddress = default, string userAgent = default, string country = default, string city = default, string state = default, string zip = default, string dob = default, string gender = default, ConversionEventUserClickIds clickIds = default)
+        public ConversionEventUser(string email = default, string phone = default, string firstName = default, string lastName = default, string externalId = default, string ipAddress = default, string userAgent = default, string country = default, string city = default, string state = default, string zip = default, string dob = default, string gender = default, string leadId = default, ConversionEventUserClickIds clickIds = default)
         {
             this.Email = email;
             this.Phone = phone;
@@ -65,6 +66,7 @@ namespace Zernio.Model
             this.Zip = zip;
             this.Dob = dob;
             this.Gender = gender;
+            this.LeadId = leadId;
             this.ClickIds = clickIds;
         }
 
@@ -160,6 +162,13 @@ namespace Zernio.Model
         public string Gender { get; set; }
 
         /// <summary>
+        /// Meta lead ID from a Lead Ad submission, as a string. Required for Conversion Leads CRM events: send it with &#x60;actionSource: &#39;crm&#39;&#x60; and &#x60;platformData: { event_source: &#39;crm&#39;, lead_event_source: &#39;&lt;CRM name&gt;&#39; }&#x60;. Forwarded unhashed to Meta&#39;s &#x60;user_data.lead_id&#x60;. Meta only. 
+        /// </summary>
+        /// <value>Meta lead ID from a Lead Ad submission, as a string. Required for Conversion Leads CRM events: send it with &#x60;actionSource: &#39;crm&#39;&#x60; and &#x60;platformData: { event_source: &#39;crm&#39;, lead_event_source: &#39;&lt;CRM name&gt;&#39; }&#x60;. Forwarded unhashed to Meta&#39;s &#x60;user_data.lead_id&#x60;. Meta only. </value>
+        [DataMember(Name = "leadId", EmitDefaultValue = false)]
+        public string LeadId { get; set; }
+
+        /// <summary>
         /// Gets or Sets ClickIds
         /// </summary>
         [DataMember(Name = "clickIds", EmitDefaultValue = false)]
@@ -186,6 +195,7 @@ namespace Zernio.Model
             sb.Append("  Zip: ").Append(Zip).Append("\n");
             sb.Append("  Dob: ").Append(Dob).Append("\n");
             sb.Append("  Gender: ").Append(Gender).Append("\n");
+            sb.Append("  LeadId: ").Append(LeadId).Append("\n");
             sb.Append("  ClickIds: ").Append(ClickIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

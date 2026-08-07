@@ -110,10 +110,14 @@ namespace Zernio.Model
         /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
         /// <param name="linkTracking">linkTracking.</param>
         /// <param name="clickTag">clickTag.</param>
+        /// <param name="dmDelaySeconds">Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately..</param>
+        /// <param name="commentReplyDelaySeconds">Seconds waited before the public reply is posted. Absent when it follows the DM immediately..</param>
+        /// <param name="audience">audience.</param>
+        /// <param name="followGate">followGate.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
-        public CreateCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string platformPostId = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default)
+        public CreateCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string platformPostId = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -131,6 +135,10 @@ namespace Zernio.Model
             this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
+            this.DmDelaySeconds = dmDelaySeconds;
+            this.CommentReplyDelaySeconds = commentReplyDelaySeconds;
+            this.Audience = audience;
+            this.FollowGate = followGate;
             this.IsActive = isActive;
             this.Stats = stats;
             this.CreatedAt = createdAt;
@@ -226,6 +234,32 @@ namespace Zernio.Model
         public string ClickTag { get; set; }
 
         /// <summary>
+        /// Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately.
+        /// </summary>
+        /// <value>Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately.</value>
+        [DataMember(Name = "dmDelaySeconds", EmitDefaultValue = false)]
+        public int DmDelaySeconds { get; set; }
+
+        /// <summary>
+        /// Seconds waited before the public reply is posted. Absent when it follows the DM immediately.
+        /// </summary>
+        /// <value>Seconds waited before the public reply is posted. Absent when it follows the DM immediately.</value>
+        [DataMember(Name = "commentReplyDelaySeconds", EmitDefaultValue = false)]
+        public int CommentReplyDelaySeconds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Audience
+        /// </summary>
+        [DataMember(Name = "audience", EmitDefaultValue = false)]
+        public CommentAutomationAudience Audience { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FollowGate
+        /// </summary>
+        [DataMember(Name = "followGate", EmitDefaultValue = false)]
+        public CommentAutomationFollowGate FollowGate { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -267,6 +301,10 @@ namespace Zernio.Model
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
+            sb.Append("  DmDelaySeconds: ").Append(DmDelaySeconds).Append("\n");
+            sb.Append("  CommentReplyDelaySeconds: ").Append(CommentReplyDelaySeconds).Append("\n");
+            sb.Append("  Audience: ").Append(Audience).Append("\n");
+            sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  Stats: ").Append(Stats).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");

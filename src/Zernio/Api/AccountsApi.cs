@@ -125,6 +125,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of FollowerStatsResponse</returns>
         ApiResponse<FollowerStatsResponse> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
         /// <summary>
+        /// Check whether an Instagram user follows the account
+        /// </summary>
+        /// <remarks>
+        /// Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <returns>GetInstagramFollowStatus200Response</returns>
+        GetInstagramFollowStatus200Response GetInstagramFollowStatus(string accountId, string userId, bool? refresh = default);
+
+        /// <summary>
+        /// Check whether an Instagram user follows the account
+        /// </summary>
+        /// <remarks>
+        /// Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <returns>ApiResponse of GetInstagramFollowStatus200Response</returns>
+        ApiResponse<GetInstagramFollowStatus200Response> GetInstagramFollowStatusWithHttpInfo(string accountId, string userId, bool? refresh = default);
+        /// <summary>
         /// Get Slack account settings
         /// </summary>
         /// <remarks>
@@ -381,6 +406,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FollowerStatsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<FollowerStatsResponse>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Check whether an Instagram user follows the account
+        /// </summary>
+        /// <remarks>
+        /// Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetInstagramFollowStatus200Response</returns>
+        System.Threading.Tasks.Task<GetInstagramFollowStatus200Response> GetInstagramFollowStatusAsync(string accountId, string userId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Check whether an Instagram user follows the account
+        /// </summary>
+        /// <remarks>
+        /// Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetInstagramFollowStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetInstagramFollowStatus200Response>> GetInstagramFollowStatusWithHttpInfoAsync(string accountId, string userId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Slack account settings
         /// </summary>
@@ -1320,6 +1372,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetFollowerStats", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Check whether an Instagram user follows the account Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <returns>GetInstagramFollowStatus200Response</returns>
+        public GetInstagramFollowStatus200Response GetInstagramFollowStatus(string accountId, string userId, bool? refresh = default)
+        {
+            Zernio.Client.ApiResponse<GetInstagramFollowStatus200Response> localVarResponse = GetInstagramFollowStatusWithHttpInfo(accountId, userId, refresh);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check whether an Instagram user follows the account Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <returns>ApiResponse of GetInstagramFollowStatus200Response</returns>
+        public Zernio.Client.ApiResponse<GetInstagramFollowStatus200Response> GetInstagramFollowStatusWithHttpInfo(string accountId, string userId, bool? refresh = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetInstagramFollowStatus");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling AccountsApi->GetInstagramFollowStatus");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            if (refresh != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "refresh", refresh));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetInstagramFollowStatus200Response>("/v1/accounts/{accountId}/follow-status/{userId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetInstagramFollowStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Check whether an Instagram user follows the account Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetInstagramFollowStatus200Response</returns>
+        public async System.Threading.Tasks.Task<GetInstagramFollowStatus200Response> GetInstagramFollowStatusAsync(string accountId, string userId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetInstagramFollowStatus200Response> localVarResponse = await GetInstagramFollowStatusWithHttpInfoAsync(accountId, userId, refresh, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check whether an Instagram user follows the account Resolves the follow relationship between an Instagram user and the connected account, plus their public profile counters.  &#x60;userId&#x60; is the Instagram-scoped id (IGSID) Meta gives you on a webhook: &#x60;sender.id&#x60; on &#x60;message.received&#x60;, &#x60;comment.author.id&#x60; on &#x60;comment.received&#x60;.  **Meta only answers for people who have MESSAGED the account.** Commenting grants no consent, so a commenter who has never DMed you is unresolvable - that is a platform rule, not a limitation of this endpoint. When it cannot be resolved the response is still &#x60;200&#x60; with &#x60;isFollower: null&#x60; and an &#x60;unavailableReason&#x60;, because \&quot;unknown\&quot; is a normal state to branch on:    * &#x60;consent_required&#x60; - the user has never messaged this account.   * &#x60;dm_access_disabled&#x60; - the account owner turned off Instagram Direct API access.   * &#x60;not_messageable&#x60; - the id is not a messaging-scoped id.   * &#x60;error&#x60; - a transient Graph API failure.  To gate a comment automation on this, use the automation&#39;s &#x60;audience&#x60; rules instead of calling this per comment - they run the same lookup only on comments that actually match a keyword, and can ask the commenter to confirm with one tap.  Answers are cached briefly per (account, user). Pass &#x60;refresh&#x3D;true&#x60; right after asking someone to follow, so a follow from a moment ago is visible. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Instagram account ID</param>
+        /// <param name="userId">Instagram-scoped user id (IGSID) from a webhook payload</param>
+        /// <param name="refresh">Bypass the cache and re-query Meta (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetInstagramFollowStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetInstagramFollowStatus200Response>> GetInstagramFollowStatusWithHttpInfoAsync(string accountId, string userId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetInstagramFollowStatus");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling AccountsApi->GetInstagramFollowStatus");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            if (refresh != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "refresh", refresh));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetInstagramFollowStatus200Response>("/v1/accounts/{accountId}/follow-status/{userId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetInstagramFollowStatus", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -101,7 +101,7 @@ namespace Zernio.Model
         /// <param name="items">Item-level detail for ecommerce events..</param>
         /// <param name="sourceUrl">URL where the conversion originated (used by Meta)..</param>
         /// <param name="actionSource">Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting..</param>
-        /// <param name="platformData">Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is..</param>
+        /// <param name="platformData">Escape hatch for platform-specific fields we haven&#39;t normalized. On Meta, keys are shallow-merged into &#x60;custom_data&#x60; only: fields Zernio already builds (&#x60;value&#x60;, &#x60;currency&#x60;, &#x60;contents&#x60;, &#x60;num_items&#x60;) always win on collision, and &#x60;user_data&#x60; (hashed match keys) is never touched. Use first-class fields (e.g. &#x60;user.leadId&#x60;) for anything that must reach &#x60;user_data&#x60;. .</param>
         public ConversionEvent(string eventName = default, int eventTime = default, string eventId = default, decimal value = default, string currency = default, ConversionEventUser user = default, List<ConversionEventItemsInner> items = default, string sourceUrl = default, ActionSourceEnum? actionSource = default, Dictionary<string, Object> platformData = default)
         {
             // to ensure "eventName" is required (not null)
@@ -202,9 +202,9 @@ namespace Zernio.Model
         public string SourceUrl { get; set; }
 
         /// <summary>
-        /// Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is.
+        /// Escape hatch for platform-specific fields we haven&#39;t normalized. On Meta, keys are shallow-merged into &#x60;custom_data&#x60; only: fields Zernio already builds (&#x60;value&#x60;, &#x60;currency&#x60;, &#x60;contents&#x60;, &#x60;num_items&#x60;) always win on collision, and &#x60;user_data&#x60; (hashed match keys) is never touched. Use first-class fields (e.g. &#x60;user.leadId&#x60;) for anything that must reach &#x60;user_data&#x60;. 
         /// </summary>
-        /// <value>Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is.</value>
+        /// <value>Escape hatch for platform-specific fields we haven&#39;t normalized. On Meta, keys are shallow-merged into &#x60;custom_data&#x60; only: fields Zernio already builds (&#x60;value&#x60;, &#x60;currency&#x60;, &#x60;contents&#x60;, &#x60;num_items&#x60;) always win on collision, and &#x60;user_data&#x60; (hashed match keys) is never touched. Use first-class fields (e.g. &#x60;user.leadId&#x60;) for anything that must reach &#x60;user_data&#x60;. </value>
         [DataMember(Name = "platformData", EmitDefaultValue = false)]
         public Dictionary<string, Object> PlatformData { get; set; }
 
