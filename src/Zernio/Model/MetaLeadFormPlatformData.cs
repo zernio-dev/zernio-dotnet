@@ -34,37 +34,6 @@ namespace Zernio.Model
     public partial class MetaLeadFormPlatformData : IValidatableObject
     {
         /// <summary>
-        /// Defines FormType
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FormTypeEnum
-        {
-            /// <summary>
-            /// Enum MOREVOLUME for value: MORE_VOLUME
-            /// </summary>
-            [EnumMember(Value = "MORE_VOLUME")]
-            MOREVOLUME = 1,
-
-            /// <summary>
-            /// Enum HIGHERINTENT for value: HIGHER_INTENT
-            /// </summary>
-            [EnumMember(Value = "HIGHER_INTENT")]
-            HIGHERINTENT = 2,
-
-            /// <summary>
-            /// Enum RICHCREATIVE for value: RICH_CREATIVE
-            /// </summary>
-            [EnumMember(Value = "RICH_CREATIVE")]
-            RICHCREATIVE = 3
-        }
-
-
-        /// <summary>
-        /// Gets or Sets FormType
-        /// </summary>
-        [DataMember(Name = "formType", EmitDefaultValue = false)]
-        public FormTypeEnum? FormType { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="MetaLeadFormPlatformData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -81,13 +50,11 @@ namespace Zernio.Model
         /// <param name="thankYouButtonText">thankYouButtonText.</param>
         /// <param name="thankYouButtonType">thankYouButtonType.</param>
         /// <param name="thankYouWebsiteUrl">thankYouWebsiteUrl.</param>
-        /// <param name="isOptimizedForQuality">isOptimizedForQuality.</param>
-        /// <param name="formType">formType.</param>
+        /// <param name="isOptimizedForQuality">Set true for a higher-intent form (adds a review step before submit)..</param>
         /// <param name="blockDisplayForNonTargetedViewer">blockDisplayForNonTargetedViewer.</param>
-        /// <param name="allowOrganicLeadGen">allowOrganicLeadGen.</param>
         /// <param name="questionPageCustomHeadline">questionPageCustomHeadline.</param>
         /// <param name="contextCard">contextCard.</param>
-        public MetaLeadFormPlatformData(List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default, FormTypeEnum? formType = default, bool blockDisplayForNonTargetedViewer = default, bool allowOrganicLeadGen = default, string questionPageCustomHeadline = default, MetaLeadFormPlatformDataContextCard contextCard = default)
+        public MetaLeadFormPlatformData(List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default, bool blockDisplayForNonTargetedViewer = default, string questionPageCustomHeadline = default, MetaLeadFormPlatformDataContextCard contextCard = default)
         {
             // to ensure "questions" is required (not null)
             if (questions == null)
@@ -104,9 +71,7 @@ namespace Zernio.Model
             this.ThankYouButtonType = thankYouButtonType;
             this.ThankYouWebsiteUrl = thankYouWebsiteUrl;
             this.IsOptimizedForQuality = isOptimizedForQuality;
-            this.FormType = formType;
             this.BlockDisplayForNonTargetedViewer = blockDisplayForNonTargetedViewer;
-            this.AllowOrganicLeadGen = allowOrganicLeadGen;
             this.QuestionPageCustomHeadline = questionPageCustomHeadline;
             this.ContextCard = contextCard;
         }
@@ -172,8 +137,9 @@ namespace Zernio.Model
         public string ThankYouWebsiteUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsOptimizedForQuality
+        /// Set true for a higher-intent form (adds a review step before submit).
         /// </summary>
+        /// <value>Set true for a higher-intent form (adds a review step before submit).</value>
         [DataMember(Name = "isOptimizedForQuality", EmitDefaultValue = true)]
         public bool IsOptimizedForQuality { get; set; }
 
@@ -182,12 +148,6 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "blockDisplayForNonTargetedViewer", EmitDefaultValue = true)]
         public bool BlockDisplayForNonTargetedViewer { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AllowOrganicLeadGen
-        /// </summary>
-        [DataMember(Name = "allowOrganicLeadGen", EmitDefaultValue = true)]
-        public bool AllowOrganicLeadGen { get; set; }
 
         /// <summary>
         /// Gets or Sets QuestionPageCustomHeadline
@@ -219,9 +179,7 @@ namespace Zernio.Model
             sb.Append("  ThankYouButtonType: ").Append(ThankYouButtonType).Append("\n");
             sb.Append("  ThankYouWebsiteUrl: ").Append(ThankYouWebsiteUrl).Append("\n");
             sb.Append("  IsOptimizedForQuality: ").Append(IsOptimizedForQuality).Append("\n");
-            sb.Append("  FormType: ").Append(FormType).Append("\n");
             sb.Append("  BlockDisplayForNonTargetedViewer: ").Append(BlockDisplayForNonTargetedViewer).Append("\n");
-            sb.Append("  AllowOrganicLeadGen: ").Append(AllowOrganicLeadGen).Append("\n");
             sb.Append("  QuestionPageCustomHeadline: ").Append(QuestionPageCustomHeadline).Append("\n");
             sb.Append("  ContextCard: ").Append(ContextCard).Append("\n");
             sb.Append("}\n");

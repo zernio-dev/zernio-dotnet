@@ -146,30 +146,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'FormType'
-        /// </summary>
-        [Fact]
-        public void FormTypeTest()
-        {
-            // TODO unit test for the property 'FormType'
-        }
-
-        /// <summary>
         /// Test the property 'BlockDisplayForNonTargetedViewer'
         /// </summary>
         [Fact]
         public void BlockDisplayForNonTargetedViewerTest()
         {
             // TODO unit test for the property 'BlockDisplayForNonTargetedViewer'
-        }
-
-        /// <summary>
-        /// Test the property 'AllowOrganicLeadGen'
-        /// </summary>
-        [Fact]
-        public void AllowOrganicLeadGenTest()
-        {
-            // TODO unit test for the property 'AllowOrganicLeadGen'
         }
 
         /// <summary>

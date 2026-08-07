@@ -13,10 +13,8 @@ Name | Type | Description | Notes
 **ThankYouButtonText** | **string** |  | [optional] 
 **ThankYouButtonType** | **string** |  | [optional] 
 **ThankYouWebsiteUrl** | **string** |  | [optional] 
-**IsOptimizedForQuality** | **bool** |  | [optional] 
-**FormType** | **string** |  | [optional] 
+**IsOptimizedForQuality** | **bool** | Set true for a higher-intent form (adds a review step before submit). | [optional] 
 **BlockDisplayForNonTargetedViewer** | **bool** |  | [optional] 
-**AllowOrganicLeadGen** | **bool** |  | [optional] 
 **QuestionPageCustomHeadline** | **string** |  | [optional] 
 **ContextCard** | [**MetaLeadFormPlatformDataContextCard**](MetaLeadFormPlatformDataContextCard.md) |  | [optional] 
 
