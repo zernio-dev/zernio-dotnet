@@ -104,6 +104,7 @@ namespace Zernio.Model
         /// <param name="typoTolerance">Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched..</param>
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (1-3). Pass [] to clear all buttons..</param>
+        /// <param name="template">template.</param>
         /// <param name="commentReply">commentReply.</param>
         /// <param name="dmMessageVariations">Alternate DM texts for random rotation (see create). Pass [] to clear..</param>
         /// <param name="commentReplyVariations">Alternate public replies for random rotation. Pass [] to clear..</param>
@@ -114,7 +115,7 @@ namespace Zernio.Model
         /// <param name="audience">audience.</param>
         /// <param name="followGate">followGate.</param>
         /// <param name="isActive">isActive.</param>
-        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default)
+        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default)
         {
             this.Name = name;
             this.Trigger = trigger;
@@ -124,6 +125,7 @@ namespace Zernio.Model
             this.TypoTolerance = typoTolerance;
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
+            this.Template = template;
             this.CommentReply = commentReply;
             this.DmMessageVariations = dmMessageVariations;
             this.CommentReplyVariations = commentReplyVariations;
@@ -174,6 +176,12 @@ namespace Zernio.Model
         /// <value>Inline DM buttons (1-3). Pass [] to clear all buttons.</value>
         [DataMember(Name = "buttons", EmitDefaultValue = false)]
         public List<DmButton> Buttons { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Template
+        /// </summary>
+        [DataMember(Name = "template", EmitDefaultValue = true)]
+        public CommentAutomationTemplate Template { get; set; }
 
         /// <summary>
         /// Gets or Sets CommentReply
@@ -257,6 +265,7 @@ namespace Zernio.Model
             sb.Append("  TypoTolerance: ").Append(TypoTolerance).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
+            sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");

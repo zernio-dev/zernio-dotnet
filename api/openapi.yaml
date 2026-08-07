@@ -33217,6 +33217,156 @@ components:
       required:
       - title
       - type
+    CommentAutomationTemplate:
+      description: |
+        A Meta generic template (product card) sent as the automation's first DM.
+        It REPLACES the plain `dmMessage` bubble: a Meta message carries one body
+        shape, and a comment gets exactly one private reply, so the card and the
+        text cannot both be delivered. Put your selling copy in `subtitle`.
+        Mutually exclusive with `buttons` (sending both is a 400). Works on both
+        the `comment` and `story_reply` triggers.
+        Up to 10 elements, rendered as a horizontally swipeable carousel.
+        Rendering confirmed on the Instagram and Messenger mobile apps.
+      example:
+        elements:
+        - buttons:
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          subtitle: subtitle
+          imageUrl: https://openapi-generator.tech
+          title: title
+        - buttons:
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          subtitle: subtitle
+          imageUrl: https://openapi-generator.tech
+          title: title
+        - buttons:
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          subtitle: subtitle
+          imageUrl: https://openapi-generator.tech
+          title: title
+        - buttons:
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          subtitle: subtitle
+          imageUrl: https://openapi-generator.tech
+          title: title
+        - buttons:
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          subtitle: subtitle
+          imageUrl: https://openapi-generator.tech
+          title: title
+        type: generic
+      properties:
+        type:
+          enum:
+          - generic
+          type: string
+        elements:
+          items:
+            $ref: "#/components/schemas/CommentAutomationTemplateElement"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - elements
+      - type
+    CommentAutomationTemplateElement:
+      example:
+        buttons:
+        - payload: payload
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        subtitle: subtitle
+        imageUrl: https://openapi-generator.tech
+        title: title
+      properties:
+        title:
+          description: Card headline (80 chars max). Also used as the Inbox preview
+            for the sent DM.
+          maxLength: 80
+          type: string
+        subtitle:
+          description: "Card description, e.g. the price or a short pitch (80 chars\
+            \ max)."
+          maxLength: 80
+          type: string
+        imageUrl:
+          description: Publicly reachable http(s) image rendered large above the card.
+          format: uri
+          type: string
+        buttons:
+          description: "Up to 3 card buttons. A generic template has NO phone button,\
+            \ on either platform. `url` buttons are click-tracked when linkTracking\
+            \ is on."
+          items:
+            $ref: "#/components/schemas/CommentAutomationTemplateElement_buttons_inner"
+          maxItems: 3
+          type: array
+      required:
+      - title
     WhatsAppTemplateButton:
       properties:
         type:
@@ -56829,7 +56979,9 @@ components:
 
         Instagram / Facebook: a generic template (carousel). Set `type: generic`
         and provide up to 10 `elements`, each with a `title` (required) and
-        optional `subtitle`, `imageUrl`, and `buttons`.
+        optional `subtitle`, `imageUrl`, and `buttons`. Mutually exclusive with
+        the top-level `buttons` field (sending both is a 400); put the card's
+        buttons on its `elements` instead.
 
         WhatsApp: sends an approved WhatsApp template message, the only message
         type WhatsApp accepts when the 24-hour customer-service window is closed.
@@ -57433,6 +57585,10 @@ components:
         buttons:
           description: |
             Action buttons. Mutually exclusive with quickReplies. Max 3 items.
+
+            Instagram / Facebook: also mutually exclusive with `template`.
+            A Meta message carries one body shape, so sending both is a 400
+            rather than a silent drop of the buttons.
 
             WhatsApp: buttons always render as interactive reply buttons.
             Only `title` and `payload` are used — `type`, `url`, and `phone`
@@ -68920,6 +69076,89 @@ components:
           type: integer
     listCommentAutomations_200_response_automations_inner:
       example:
+        template:
+          elements:
+          - buttons:
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            subtitle: subtitle
+            imageUrl: https://openapi-generator.tech
+            title: title
+          - buttons:
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            subtitle: subtitle
+            imageUrl: https://openapi-generator.tech
+            title: title
+          - buttons:
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            subtitle: subtitle
+            imageUrl: https://openapi-generator.tech
+            title: title
+          - buttons:
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            subtitle: subtitle
+            imageUrl: https://openapi-generator.tech
+            title: title
+          - buttons:
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            - payload: payload
+              type: url
+              title: title
+              url: https://openapi-generator.tech
+            subtitle: subtitle
+            imageUrl: https://openapi-generator.tech
+            title: title
+          type: generic
         dmMessage: dmMessage
         buttons:
         - payload: payload
@@ -69023,6 +69262,8 @@ components:
           items:
             $ref: "#/components/schemas/DmButton"
           type: array
+        template:
+          $ref: "#/components/schemas/CommentAutomationTemplate"
         commentReply:
           type: string
         dmMessageVariations:
@@ -69062,7 +69303,90 @@ components:
     listCommentAutomations_200_response:
       example:
         automations:
-        - dmMessage: dmMessage
+        - template:
+            elements:
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            type: generic
+          dmMessage: dmMessage
           buttons:
           - payload: payload
             phone: phone
@@ -69112,7 +69436,90 @@ components:
           id: id
           matchMode: exact
           platformPostId: platformPostId
-        - dmMessage: dmMessage
+        - template:
+            elements:
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            - buttons:
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              - payload: payload
+                type: url
+                title: title
+                url: https://openapi-generator.tech
+              subtitle: subtitle
+              imageUrl: https://openapi-generator.tech
+              title: title
+            type: generic
+          dmMessage: dmMessage
           buttons:
           - payload: payload
             phone: phone
@@ -69238,6 +69645,14 @@ components:
             $ref: "#/components/schemas/DmButton"
           maxItems: 3
           type: array
+        template:
+          allOf:
+          - allOf:
+            - $ref: "#/components/schemas/CommentAutomationTemplate"
+            nullable: true
+          description: "Optional product card sent INSTEAD of the plain dmMessage\
+            \ bubble. Mutually exclusive with buttons. dmMessage stays required: it\
+            \ is what gets sent the moment the card is cleared."
         commentReply:
           description: Optional public reply to the comment
           type: string
@@ -69307,6 +69722,7 @@ components:
           type: integer
     createCommentAutomation_200_response_automation:
       example:
+        template: ""
         dmMessage: dmMessage
         audience:
           followerStatus: any
@@ -69403,6 +69819,10 @@ components:
           items:
             $ref: "#/components/schemas/DmButton"
           type: array
+        template:
+          allOf:
+          - $ref: "#/components/schemas/CommentAutomationTemplate"
+          nullable: true
         commentReply:
           type: string
         dmMessageVariations:
@@ -69443,6 +69863,7 @@ components:
     createCommentAutomation_200_response:
       example:
         automation:
+          template: ""
           dmMessage: dmMessage
           audience:
             followerStatus: any
@@ -69501,6 +69922,7 @@ components:
           $ref: "#/components/schemas/createCommentAutomation_200_response_automation"
     getCommentAutomation_200_response_automation:
       example:
+        template: ""
         dmMessage: dmMessage
         keywords:
         - keywords
@@ -69607,6 +70029,10 @@ components:
           items:
             $ref: "#/components/schemas/DmButton"
           type: array
+        template:
+          allOf:
+          - $ref: "#/components/schemas/CommentAutomationTemplate"
+          nullable: true
         commentReply:
           type: string
         dmMessageVariations:
@@ -69728,6 +70154,7 @@ components:
     getCommentAutomation_200_response:
       example:
         automation:
+          template: ""
           dmMessage: dmMessage
           keywords:
           - keywords
@@ -69867,6 +70294,10 @@ components:
             $ref: "#/components/schemas/DmButton"
           maxItems: 3
           type: array
+        template:
+          allOf:
+          - $ref: "#/components/schemas/CommentAutomationTemplate"
+          nullable: true
         commentReply:
           type: string
         dmMessageVariations:
@@ -69910,6 +70341,7 @@ components:
           type: boolean
     updateCommentAutomation_200_response_automation:
       example:
+        template: ""
         dmMessage: dmMessage
         audience:
           followerStatus: any
@@ -69986,6 +70418,10 @@ components:
           items:
             $ref: "#/components/schemas/DmButton"
           type: array
+        template:
+          allOf:
+          - $ref: "#/components/schemas/CommentAutomationTemplate"
+          nullable: true
         commentReply:
           type: string
         dmMessageVariations:
@@ -70012,6 +70448,7 @@ components:
     updateCommentAutomation_200_response:
       example:
         automation:
+          template: ""
           dmMessage: dmMessage
           audience:
             followerStatus: any
@@ -80879,6 +81316,32 @@ components:
           description: When these metrics were last refreshed
           format: date-time
           type: string
+    CommentAutomationTemplateElement_buttons_inner:
+      example:
+        payload: payload
+        type: url
+        title: title
+        url: https://openapi-generator.tech
+      properties:
+        type:
+          enum:
+          - url
+          - postback
+          type: string
+        title:
+          maxLength: 20
+          type: string
+        url:
+          description: Target URL (required when type is url)
+          format: uri
+          type: string
+        payload:
+          description: Postback payload delivered via the messaging_postbacks webhook
+            (required when type is postback)
+          type: string
+      required:
+      - title
+      - type
     WhatsAppHeaderComponent_example:
       properties:
         header_text:

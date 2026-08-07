@@ -182,6 +182,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Template'
+        /// </summary>
+        [Fact]
+        public void TemplateTest()
+        {
+            // TODO unit test for the property 'Template'
+        }
+
+        /// <summary>
         /// Test the property 'CommentReply'
         /// </summary>
         [Fact]

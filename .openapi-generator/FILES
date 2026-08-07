@@ -132,6 +132,9 @@ docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
 docs/CommentAutomationAudience.md
 docs/CommentAutomationFollowGate.md
+docs/CommentAutomationTemplate.md
+docs/CommentAutomationTemplateElement.md
+docs/CommentAutomationTemplateElementButtonsInner.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteGoogleBusinessVerificationRequest.md
@@ -1830,6 +1833,9 @@ src/Zernio.Test/Model/CheckVerification200ResponseTests.cs
 src/Zernio.Test/Model/CheckVerificationRequestTests.cs
 src/Zernio.Test/Model/CommentAutomationAudienceTests.cs
 src/Zernio.Test/Model/CommentAutomationFollowGateTests.cs
+src/Zernio.Test/Model/CommentAutomationTemplateElementButtonsInnerTests.cs
+src/Zernio.Test/Model/CommentAutomationTemplateElementTests.cs
+src/Zernio.Test/Model/CommentAutomationTemplateTests.cs
 src/Zernio.Test/Model/CompleteGoogleBusinessVerificationRequestTests.cs
 src/Zernio.Test/Model/CompleteTelegramConnect200ResponseTests.cs
 src/Zernio.Test/Model/CompleteWhatsAppPhoneSelection200ResponseAccountTests.cs
@@ -3494,6 +3500,9 @@ src/Zernio/Model/CheckVerification200Response.cs
 src/Zernio/Model/CheckVerificationRequest.cs
 src/Zernio/Model/CommentAutomationAudience.cs
 src/Zernio/Model/CommentAutomationFollowGate.cs
+src/Zernio/Model/CommentAutomationTemplate.cs
+src/Zernio/Model/CommentAutomationTemplateElement.cs
+src/Zernio/Model/CommentAutomationTemplateElementButtonsInner.cs
 src/Zernio/Model/CompleteGoogleBusinessVerificationRequest.cs
 src/Zernio/Model/CompleteTelegramConnect200Response.cs
 src/Zernio/Model/CompleteWhatsAppPhoneSelection200Response.cs

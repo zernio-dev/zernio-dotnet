@@ -77,6 +77,7 @@ namespace Zernio.Model
         /// <param name="typoTolerance">Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched..</param>
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
+        /// <param name="template">template.</param>
         /// <param name="commentReply">commentReply.</param>
         /// <param name="dmMessageVariations">Alternate DM texts rotated at random with dmMessage. Omitted when none..</param>
         /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
@@ -84,7 +85,7 @@ namespace Zernio.Model
         /// <param name="followGate">followGate.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default, DateTime updatedAt = default)
+        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -94,6 +95,7 @@ namespace Zernio.Model
             this.TypoTolerance = typoTolerance;
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
+            this.Template = template;
             this.CommentReply = commentReply;
             this.DmMessageVariations = dmMessageVariations;
             this.CommentReplyVariations = commentReplyVariations;
@@ -147,6 +149,12 @@ namespace Zernio.Model
         /// <value>Inline DM buttons (up to 3). Omitted when none are set.</value>
         [DataMember(Name = "buttons", EmitDefaultValue = false)]
         public List<DmButton> Buttons { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Template
+        /// </summary>
+        [DataMember(Name = "template", EmitDefaultValue = true)]
+        public CommentAutomationTemplate Template { get; set; }
 
         /// <summary>
         /// Gets or Sets CommentReply
@@ -208,6 +216,7 @@ namespace Zernio.Model
             sb.Append("  TypoTolerance: ").Append(TypoTolerance).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
+            sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");

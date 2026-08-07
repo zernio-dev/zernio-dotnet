@@ -114,6 +114,7 @@ namespace Zernio.Model
         /// <param name="typoTolerance">Only with matchMode&#x3D;word: also fire on close misspellings of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords shorter than 4 characters are never fuzzy-matched..</param>
         /// <param name="dmMessage">DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. (required).</param>
         /// <param name="buttons">Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM..</param>
+        /// <param name="template">Optional product card sent INSTEAD of the plain dmMessage bubble. Mutually exclusive with buttons. dmMessage stays required: it is what gets sent the moment the card is cleared..</param>
         /// <param name="commentReply">Optional public reply to the comment.</param>
         /// <param name="dmMessageVariations">Optional alternate DM texts for random rotation. When set, each triggered comment sends one picked at random from [dmMessage, ...dmMessageVariations], so repeat commenters get slightly different DMs (helps avoid identical-message patterns). Up to 5. Buttons are attached to whichever text is picked, not varied..</param>
         /// <param name="commentReplyVariations">Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5..</param>
@@ -123,7 +124,7 @@ namespace Zernio.Model
         /// <param name="commentReplyDelaySeconds">Seconds to wait before posting the public comment reply. Omit or send 0 to post it right after the DM (the default). The reply never goes out before the DM, so a value below dmDelaySeconds is raised to it. Ignored when trigger&#x3D;story_reply, which has no public reply..</param>
         /// <param name="audience">audience.</param>
         /// <param name="followGate">followGate.</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default)
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -158,6 +159,7 @@ namespace Zernio.Model
             this.ExcludeKeywords = excludeKeywords;
             this.TypoTolerance = typoTolerance;
             this.Buttons = buttons;
+            this.Template = template;
             this.CommentReply = commentReply;
             this.DmMessageVariations = dmMessageVariations;
             this.CommentReplyVariations = commentReplyVariations;
@@ -246,6 +248,13 @@ namespace Zernio.Model
         public List<DmButton> Buttons { get; set; }
 
         /// <summary>
+        /// Optional product card sent INSTEAD of the plain dmMessage bubble. Mutually exclusive with buttons. dmMessage stays required: it is what gets sent the moment the card is cleared.
+        /// </summary>
+        /// <value>Optional product card sent INSTEAD of the plain dmMessage bubble. Mutually exclusive with buttons. dmMessage stays required: it is what gets sent the moment the card is cleared.</value>
+        [DataMember(Name = "template", EmitDefaultValue = true)]
+        public CommentAutomationTemplate Template { get; set; }
+
+        /// <summary>
         /// Optional public reply to the comment
         /// </summary>
         /// <value>Optional public reply to the comment</value>
@@ -327,6 +336,7 @@ namespace Zernio.Model
             sb.Append("  TypoTolerance: ").Append(TypoTolerance).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
+            sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
