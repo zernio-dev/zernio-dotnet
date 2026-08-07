@@ -1016,6 +1016,8 @@ docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
+docs/MoveWhatsAppNumberToProfile200Response.md
+docs/MoveWhatsAppNumberToProfileRequest.md
 docs/OnVerificationApprovedRequest.md
 docs/OnVerificationApprovedRequestVerification.md
 docs/OnVerificationFailedRequest.md
@@ -2691,6 +2693,8 @@ src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
+src/Zernio.Test/Model/MoveWhatsAppNumberToProfile200ResponseTests.cs
+src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
 src/Zernio.Test/Model/OnVerificationApprovedRequestTests.cs
 src/Zernio.Test/Model/OnVerificationApprovedRequestVerificationTests.cs
 src/Zernio.Test/Model/OnVerificationFailedRequestTests.cs
@@ -4358,6 +4362,8 @@ src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
+src/Zernio/Model/MoveWhatsAppNumberToProfile200Response.cs
+src/Zernio/Model/MoveWhatsAppNumberToProfileRequest.cs
 src/Zernio/Model/OnVerificationApprovedRequest.cs
 src/Zernio/Model/OnVerificationApprovedRequestVerification.cs
 src/Zernio/Model/OnVerificationFailedRequest.cs

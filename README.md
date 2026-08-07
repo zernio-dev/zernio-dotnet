@@ -653,6 +653,7 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
 *WhatsAppPhoneNumbersApi* | [**ListWhatsAppNumberCountries**](docs/WhatsAppPhoneNumbersApi.md#listwhatsappnumbercountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
+*WhatsAppPhoneNumbersApi* | [**MoveWhatsAppNumberToProfile**](docs/WhatsAppPhoneNumbersApi.md#movewhatsappnumbertoprofile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile
 *WhatsAppPhoneNumbersApi* | [**PurchaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**ReleaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releasewhatsappphonenumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
 *WhatsAppPhoneNumbersApi* | [**RemediateWhatsAppNumber**](docs/WhatsAppPhoneNumbersApi.md#remediatewhatsappnumber) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Resubmit a declined number
@@ -1657,6 +1658,8 @@ Class | Method | HTTP request | Description
  - [Model.MoneyAmount](docs/MoneyAmount.md)
  - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [Model.MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [Model.MoveWhatsAppNumberToProfile200Response](docs/MoveWhatsAppNumberToProfile200Response.md)
+ - [Model.MoveWhatsAppNumberToProfileRequest](docs/MoveWhatsAppNumberToProfileRequest.md)
  - [Model.OnVerificationApprovedRequest](docs/OnVerificationApprovedRequest.md)
  - [Model.OnVerificationApprovedRequestVerification](docs/OnVerificationApprovedRequestVerification.md)
  - [Model.OnVerificationFailedRequest](docs/OnVerificationFailedRequest.md)

@@ -154,6 +154,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test MoveWhatsAppNumberToProfile
+        /// </summary>
+        [Fact]
+        public void MoveWhatsAppNumberToProfileTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest = null;
+            //var response = instance.MoveWhatsAppNumberToProfile(id, moveWhatsAppNumberToProfileRequest);
+            //Assert.IsType<MoveWhatsAppNumberToProfile200Response>(response);
+        }
+
+        /// <summary>
         /// Test PurchaseWhatsAppPhoneNumber
         /// </summary>
         [Fact]

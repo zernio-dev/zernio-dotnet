@@ -12,6 +12,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**GetWhatsAppPhoneNumbers**](WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
 | [**ListWhatsAppNumberCountries**](WhatsAppPhoneNumbersApi.md#listwhatsappnumbercountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries |
+| [**MoveWhatsAppNumberToProfile**](WhatsAppPhoneNumbersApi.md#movewhatsappnumbertoprofile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile |
 | [**PurchaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number |
 | [**ReleaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#releasewhatsappphonenumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
 | [**RemediateWhatsAppNumber**](WhatsAppPhoneNumbersApi.md#remediatewhatsappnumber) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Resubmit a declined number |
@@ -822,6 +823,111 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Offerable countries, cheapest first. |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="movewhatsappnumbertoprofile"></a>
+# **MoveWhatsAppNumberToProfile**
+> MoveWhatsAppNumberToProfile200Response MoveWhatsAppNumberToProfile (string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest)
+
+Move a number to another profile
+
+Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform `phone`, plus `sms` when SMS is enabled) and, once WhatsApp is connected, the `whatsapp` account. They all carry a profileId and this endpoint moves them together.  Use this instead of `PATCH /v1/accounts/{accountId}`: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a `profileId` passed to `GET /v1/connect/whatsapp` cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  `id` is the number record id from `GET /v1/phone-numbers`, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class MoveWhatsAppNumberToProfileExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | WhatsAppPhoneNumber id.
+            var moveWhatsAppNumberToProfileRequest = new MoveWhatsAppNumberToProfileRequest(); // MoveWhatsAppNumberToProfileRequest | 
+
+            try
+            {
+                // Move a number to another profile
+                MoveWhatsAppNumberToProfile200Response result = apiInstance.MoveWhatsAppNumberToProfile(id, moveWhatsAppNumberToProfileRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.MoveWhatsAppNumberToProfile: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the MoveWhatsAppNumberToProfileWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Move a number to another profile
+    ApiResponse<MoveWhatsAppNumberToProfile200Response> response = apiInstance.MoveWhatsAppNumberToProfileWithHttpInfo(id, moveWhatsAppNumberToProfileRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.MoveWhatsAppNumberToProfileWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | WhatsAppPhoneNumber id. |  |
+| **moveWhatsAppNumberToProfileRequest** | [**MoveWhatsAppNumberToProfileRequest**](MoveWhatsAppNumberToProfileRequest.md) |  |  |
+
+### Return type
+
+[**MoveWhatsAppNumberToProfile200Response**](MoveWhatsAppNumberToProfile200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number moved, or already on that profile. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | No access to the source or destination profile, or the Inbox add-on is not active. |  -  |
+| **404** | Number not found, or the destination profile does not exist. |  -  |
+| **409** | The destination profile already holds an account on one of the platforms this number occupies. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -217,6 +217,29 @@ namespace Zernio.Api
         [Obsolete]
         ApiResponse<ListWhatsAppNumberCountries200Response> ListWhatsAppNumberCountriesWithHttpInfo();
         /// <summary>
+        /// Move a number to another profile
+        /// </summary>
+        /// <remarks>
+        /// Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <returns>MoveWhatsAppNumberToProfile200Response</returns>
+        MoveWhatsAppNumberToProfile200Response MoveWhatsAppNumberToProfile(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest);
+
+        /// <summary>
+        /// Move a number to another profile
+        /// </summary>
+        /// <remarks>
+        /// Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <returns>ApiResponse of MoveWhatsAppNumberToProfile200Response</returns>
+        ApiResponse<MoveWhatsAppNumberToProfile200Response> MoveWhatsAppNumberToProfileWithHttpInfo(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest);
+        /// <summary>
         /// Purchase phone number
         /// </summary>
         /// <remarks>
@@ -604,6 +627,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListWhatsAppNumberCountries200Response)</returns>
         [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppNumberCountries200Response>> ListWhatsAppNumberCountriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Move a number to another profile
+        /// </summary>
+        /// <remarks>
+        /// Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MoveWhatsAppNumberToProfile200Response</returns>
+        System.Threading.Tasks.Task<MoveWhatsAppNumberToProfile200Response> MoveWhatsAppNumberToProfileAsync(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Move a number to another profile
+        /// </summary>
+        /// <remarks>
+        /// Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MoveWhatsAppNumberToProfile200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MoveWhatsAppNumberToProfile200Response>> MoveWhatsAppNumberToProfileWithHttpInfoAsync(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Purchase phone number
         /// </summary>
@@ -2080,6 +2128,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListWhatsAppNumberCountries", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Move a number to another profile Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <returns>MoveWhatsAppNumberToProfile200Response</returns>
+        public MoveWhatsAppNumberToProfile200Response MoveWhatsAppNumberToProfile(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest)
+        {
+            Zernio.Client.ApiResponse<MoveWhatsAppNumberToProfile200Response> localVarResponse = MoveWhatsAppNumberToProfileWithHttpInfo(id, moveWhatsAppNumberToProfileRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Move a number to another profile Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <returns>ApiResponse of MoveWhatsAppNumberToProfile200Response</returns>
+        public Zernio.Client.ApiResponse<MoveWhatsAppNumberToProfile200Response> MoveWhatsAppNumberToProfileWithHttpInfo(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppPhoneNumbersApi->MoveWhatsAppNumberToProfile");
+
+            // verify the required parameter 'moveWhatsAppNumberToProfileRequest' is set
+            if (moveWhatsAppNumberToProfileRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'moveWhatsAppNumberToProfileRequest' when calling WhatsAppPhoneNumbersApi->MoveWhatsAppNumberToProfile");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = moveWhatsAppNumberToProfileRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<MoveWhatsAppNumberToProfile200Response>("/v1/whatsapp/phone-numbers/{id}/profile", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("MoveWhatsAppNumberToProfile", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Move a number to another profile Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MoveWhatsAppNumberToProfile200Response</returns>
+        public async System.Threading.Tasks.Task<MoveWhatsAppNumberToProfile200Response> MoveWhatsAppNumberToProfileAsync(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<MoveWhatsAppNumberToProfile200Response> localVarResponse = await MoveWhatsAppNumberToProfileWithHttpInfoAsync(id, moveWhatsAppNumberToProfileRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Move a number to another profile Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the social account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a provisioned number always places it on the profile the NUMBER is on, so a &#x60;profileId&#x60; passed to &#x60;GET /v1/connect/whatsapp&#x60; cannot re-home it and a later reconnect pulls the account back. This endpoint is how you re-home it.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="moveWhatsAppNumberToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MoveWhatsAppNumberToProfile200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<MoveWhatsAppNumberToProfile200Response>> MoveWhatsAppNumberToProfileWithHttpInfoAsync(string id, MoveWhatsAppNumberToProfileRequest moveWhatsAppNumberToProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppPhoneNumbersApi->MoveWhatsAppNumberToProfile");
+
+            // verify the required parameter 'moveWhatsAppNumberToProfileRequest' is set
+            if (moveWhatsAppNumberToProfileRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'moveWhatsAppNumberToProfileRequest' when calling WhatsAppPhoneNumbersApi->MoveWhatsAppNumberToProfile");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = moveWhatsAppNumberToProfileRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<MoveWhatsAppNumberToProfile200Response>("/v1/whatsapp/phone-numbers/{id}/profile", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("MoveWhatsAppNumberToProfile", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
