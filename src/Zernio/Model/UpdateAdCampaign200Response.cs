@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateAdCampaign200Response
+    /// Echoes back only the fields you sent, plus &#x60;updated&#x60;.
     /// </summary>
     [DataContract(Name = "updateAdCampaign_200_response")]
     public partial class UpdateAdCampaign200Response : IValidatableObject
@@ -61,23 +61,28 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdCampaign200Response" /> class.
         /// </summary>
-        /// <param name="updated">updated.</param>
+        /// <param name="updated">Local Ad documents mirrored. 0 on the empty-campaign path..</param>
         /// <param name="budget">budget.</param>
         /// <param name="budgetLevel">budgetLevel.</param>
         /// <param name="bidStrategy">bidStrategy.</param>
+        /// <param name="bidAmount">bidAmount.</param>
+        /// <param name="roasAverageFloor">roasAverageFloor.</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, Object platformSpecificData = default)
+        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, Object platformSpecificData = default)
         {
             this.Updated = updated;
             this.Budget = budget;
             this.BudgetLevel = budgetLevel;
             this.BidStrategy = bidStrategy;
+            this.BidAmount = bidAmount;
+            this.RoasAverageFloor = roasAverageFloor;
             this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
-        /// Gets or Sets Updated
+        /// Local Ad documents mirrored. 0 on the empty-campaign path.
         /// </summary>
+        /// <value>Local Ad documents mirrored. 0 on the empty-campaign path.</value>
         [DataMember(Name = "updated", EmitDefaultValue = false)]
         public int Updated { get; set; }
 
@@ -86,6 +91,18 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
         public AdBudget Budget { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BidAmount
+        /// </summary>
+        [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
+        public decimal BidAmount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RoasAverageFloor
+        /// </summary>
+        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
+        public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
         /// Gets or Sets PlatformSpecificData
@@ -105,6 +122,8 @@ namespace Zernio.Model
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  BudgetLevel: ").Append(BudgetLevel).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
+            sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -56,15 +56,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'AccountId'
-        /// </summary>
-        [Fact]
-        public void AccountIdTest()
-        {
-            // TODO unit test for the property 'AccountId'
-        }
-
-        /// <summary>
         /// Test the property 'Platform'
         /// </summary>
         [Fact]
@@ -74,12 +65,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Budget'
+        /// Test the property 'AccountId'
         /// </summary>
         [Fact]
-        public void BudgetTest()
+        public void AccountIdTest()
         {
-            // TODO unit test for the property 'Budget'
+            // TODO unit test for the property 'AccountId'
         }
 
         /// <summary>
@@ -89,6 +80,33 @@ namespace Zernio.Test.Model
         public void BidStrategyTest()
         {
             // TODO unit test for the property 'BidStrategy'
+        }
+
+        /// <summary>
+        /// Test the property 'BidAmount'
+        /// </summary>
+        [Fact]
+        public void BidAmountTest()
+        {
+            // TODO unit test for the property 'BidAmount'
+        }
+
+        /// <summary>
+        /// Test the property 'RoasAverageFloor'
+        /// </summary>
+        [Fact]
+        public void RoasAverageFloorTest()
+        {
+            // TODO unit test for the property 'RoasAverageFloor'
+        }
+
+        /// <summary>
+        /// Test the property 'Budget'
+        /// </summary>
+        [Fact]
+        public void BudgetTest()
+        {
+            // TODO unit test for the property 'Budget'
         }
 
         /// <summary>

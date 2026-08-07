@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class UpdateAdCampaignRequest : IValidatableObject
     {
         /// <summary>
-        /// Defines Platform
+        /// Required: platform campaign IDs are not globally unique.
         /// </summary>
+        /// <value>Required: platform campaign IDs are not globally unique.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -49,20 +50,27 @@ namespace Zernio.Model
             /// Enum Instagram for value: instagram
             /// </summary>
             [EnumMember(Value = "instagram")]
-            Instagram = 2
+            Instagram = 2,
+
+            /// <summary>
+            /// Enum Google for value: google
+            /// </summary>
+            [EnumMember(Value = "google")]
+            Google = 3
         }
 
 
         /// <summary>
-        /// Gets or Sets Platform
+        /// Required: platform campaign IDs are not globally unique.
         /// </summary>
+        /// <value>Required: platform campaign IDs are not globally unique.</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
 
         /// <summary>
-        /// Campaign-level default. Ad sets inherit this unless they override.
+        /// **Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy.
         /// </summary>
-        /// <value>Campaign-level default. Ad sets inherit this unless they override.</value>
+        /// <value>**Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy.</value>
         [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
         public BidStrategy? BidStrategy { get; set; }
         /// <summary>
@@ -73,28 +81,46 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdCampaignRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from..</param>
-        /// <param name="platform">platform (required).</param>
+        /// <param name="platform">Required: platform campaign IDs are not globally unique. (required).</param>
+        /// <param name="accountId">**Meta only.** Zernio SocialAccount id owning the ad account. Needed only for an EMPTY campaign (zero ads); ignored otherwise..</param>
+        /// <param name="bidStrategy">**Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy..</param>
+        /// <param name="bidAmount">**Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both..</param>
+        /// <param name="roasAverageFloor">**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS..</param>
         /// <param name="budget">budget.</param>
-        /// <param name="bidStrategy">Campaign-level default. Ad sets inherit this unless they override..</param>
-        /// <param name="name">Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required..</param>
+        /// <param name="name">**Meta only.** Rename the campaign..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaignRequest(string accountId = default, PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
+        public UpdateAdCampaignRequest(PlatformEnum platform = default, string accountId = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, UpdateAdCampaignRequestBudget budget = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
         {
             this.Platform = platform;
             this.AccountId = accountId;
-            this.Budget = budget;
             this.BidStrategy = bidStrategy;
+            this.BidAmount = bidAmount;
+            this.RoasAverageFloor = roasAverageFloor;
+            this.Budget = budget;
             this.Name = name;
             this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
-        /// Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.
+        /// **Meta only.** Zernio SocialAccount id owning the ad account. Needed only for an EMPTY campaign (zero ads); ignored otherwise.
         /// </summary>
-        /// <value>Zernio SocialAccount id owning the ad account. Required only to update an EMPTY campaign (zero ads), which has no local Ad documents to resolve a token from.</value>
+        /// <value>**Meta only.** Zernio SocialAccount id owning the ad account. Needed only for an EMPTY campaign (zero ads); ignored otherwise.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
+
+        /// <summary>
+        /// **Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both.
+        /// </summary>
+        /// <value>**Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both.</value>
+        [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
+        public decimal BidAmount { get; set; }
+
+        /// <summary>
+        /// **Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.
+        /// </summary>
+        /// <value>**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.</value>
+        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
+        public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
         /// Gets or Sets Budget
@@ -103,9 +129,9 @@ namespace Zernio.Model
         public UpdateAdCampaignRequestBudget Budget { get; set; }
 
         /// <summary>
-        /// Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required.
+        /// **Meta only.** Rename the campaign.
         /// </summary>
-        /// <value>Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required.</value>
+        /// <value>**Meta only.** Rename the campaign.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
@@ -123,10 +149,12 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdCampaignRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
-            sb.Append("  Budget: ").Append(Budget).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
+            sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");

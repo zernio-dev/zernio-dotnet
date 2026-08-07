@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateAdCampaignRequestBudget
+    /// **Meta only.** The CBO budget.
     /// </summary>
     [DataContract(Name = "updateAdCampaign_request_budget")]
     public partial class UpdateAdCampaignRequestBudget : IValidatableObject

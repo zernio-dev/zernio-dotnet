@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BidAmount'
+        /// </summary>
+        [Fact]
+        public void BidAmountTest()
+        {
+            // TODO unit test for the property 'BidAmount'
+        }
+
+        /// <summary>
+        /// Test the property 'RoasAverageFloor'
+        /// </summary>
+        [Fact]
+        public void RoasAverageFloorTest()
+        {
+            // TODO unit test for the property 'RoasAverageFloor'
+        }
+
+        /// <summary>
         /// Test the property 'PlatformSpecificData'
         /// </summary>
         [Fact]

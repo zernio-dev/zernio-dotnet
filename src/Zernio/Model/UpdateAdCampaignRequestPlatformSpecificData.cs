@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Platform-specific campaign settings. The platform is implied by the &#x60;platform&#x60; body param (same convention as platformSpecificData on POST /v1/ads/create). Meta (facebook/instagram) only; other platforms return 400. 
+    /// **Meta only.** Platform implied by the &#x60;platform&#x60; body param, same convention as POST /v1/ads/create.
     /// </summary>
     [DataContract(Name = "updateAdCampaign_request_platformSpecificData")]
     public partial class UpdateAdCampaignRequestPlatformSpecificData : IValidatableObject
@@ -36,16 +36,16 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdCampaignRequestPlatformSpecificData" /> class.
         /// </summary>
-        /// <param name="spendCap">Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap (0 is rejected by Meta)..</param>
+        /// <param name="spendCap">Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap; 0 is rejected by Meta..</param>
         public UpdateAdCampaignRequestPlatformSpecificData(decimal? spendCap = default)
         {
             this.SpendCap = spendCap;
         }
 
         /// <summary>
-        /// Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap (0 is rejected by Meta).
+        /// Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap; 0 is rejected by Meta.
         /// </summary>
-        /// <value>Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap (0 is rejected by Meta).</value>
+        /// <value>Campaign lifetime spend cap, in the ad account&#39;s currency (Meta &#x60;spend_cap&#x60;). Pass null to remove the cap; 0 is rejected by Meta.</value>
         [DataMember(Name = "spendCap", EmitDefaultValue = true)]
         public decimal? SpendCap { get; set; }
 
