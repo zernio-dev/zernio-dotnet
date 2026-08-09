@@ -87,14 +87,16 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="type">type.</param>
-        /// <param name="url">url.</param>
+        /// <param name="url">Direct media link. On Instagram and Facebook this is a signed Meta CDN url that EXPIRES: use it now, do not store it. Persist &#x60;refreshUrl&#x60; instead..</param>
+        /// <param name="refreshUrl">Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely..</param>
         /// <param name="filename">filename.</param>
         /// <param name="previewUrl">previewUrl.</param>
-        public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner(string id = default, TypeEnum? type = default, string url = default, string filename = default, string previewUrl = default)
+        public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner(string id = default, TypeEnum? type = default, string url = default, string refreshUrl = default, string filename = default, string previewUrl = default)
         {
             this.Id = id;
             this.Type = type;
             this.Url = url;
+            this.RefreshUrl = refreshUrl;
             this.Filename = filename;
             this.PreviewUrl = previewUrl;
         }
@@ -106,10 +108,18 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Direct media link. On Instagram and Facebook this is a signed Meta CDN url that EXPIRES: use it now, do not store it. Persist &#x60;refreshUrl&#x60; instead.
         /// </summary>
+        /// <value>Direct media link. On Instagram and Facebook this is a signed Meta CDN url that EXPIRES: use it now, do not store it. Persist &#x60;refreshUrl&#x60; instead.</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
+
+        /// <summary>
+        /// Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely.
+        /// </summary>
+        /// <value>Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely.</value>
+        [DataMember(Name = "refreshUrl", EmitDefaultValue = true)]
+        public string RefreshUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Filename
@@ -134,6 +144,7 @@ namespace Zernio.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  RefreshUrl: ").Append(RefreshUrl).Append("\n");
             sb.Append("  Filename: ").Append(Filename).Append("\n");
             sb.Append("  PreviewUrl: ").Append(PreviewUrl).Append("\n");
             sb.Append("}\n");

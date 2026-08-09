@@ -434,6 +434,7 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**EditInboxMessage**](docs/MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**GetInboxConversation**](docs/MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
 *MessagesApi* | [**GetInboxConversationMessages**](docs/MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
+*MessagesApi* | [**GetMessageAttachment**](docs/MessagesApi.md#getmessageattachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**ListInboxConversations**](docs/MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**MarkConversationRead**](docs/MessagesApi.md#markconversationread) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**RemoveMessageReaction**](docs/MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
@@ -1296,6 +1297,7 @@ Class | Method | HTTP request | Description
  - [Model.GetLinkedInSupplyForecastRequestCompetingBid](docs/GetLinkedInSupplyForecastRequestCompetingBid.md)
  - [Model.GetMediaPresignedUrl200Response](docs/GetMediaPresignedUrl200Response.md)
  - [Model.GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
+ - [Model.GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)
  - [Model.GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
  - [Model.GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
  - [Model.GetPendingOAuthData200ResponseOrganizationsInner](docs/GetPendingOAuthData200ResponseOrganizationsInner.md)

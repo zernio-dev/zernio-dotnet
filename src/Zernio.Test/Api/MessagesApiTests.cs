@@ -138,6 +138,22 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetMessageAttachment
+        /// </summary>
+        [Fact]
+        public void GetMessageAttachmentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string conversationId = null;
+            //string messageId = null;
+            //int index = null;
+            //string accountId = null;
+            //string? format = null;
+            //var response = instance.GetMessageAttachment(conversationId, messageId, index, accountId, format);
+            //Assert.IsType<GetMessageAttachment200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListInboxConversations
         /// </summary>
         [Fact]

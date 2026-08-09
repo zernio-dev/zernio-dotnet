@@ -177,6 +177,35 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetInboxConversationMessages200Response</returns>
         ApiResponse<GetInboxConversationMessages200Response> GetInboxConversationMessagesWithHttpInfo(string conversationId, string accountId, int? limit = default, string? cursor = default, string? sortOrder = default);
         /// <summary>
+        /// Resolve message attachment
+        /// </summary>
+        /// <remarks>
+        /// Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <returns>GetMessageAttachment200Response</returns>
+        GetMessageAttachment200Response GetMessageAttachment(string conversationId, string messageId, int index, string accountId, string? format = default);
+
+        /// <summary>
+        /// Resolve message attachment
+        /// </summary>
+        /// <remarks>
+        /// Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <returns>ApiResponse of GetMessageAttachment200Response</returns>
+        ApiResponse<GetMessageAttachment200Response> GetMessageAttachmentWithHttpInfo(string conversationId, string messageId, int index, string accountId, string? format = default);
+        /// <summary>
         /// List conversations
         /// </summary>
         /// <remarks>
@@ -553,6 +582,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxConversationMessages200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetInboxConversationMessages200Response>> GetInboxConversationMessagesWithHttpInfoAsync(string conversationId, string accountId, int? limit = default, string? cursor = default, string? sortOrder = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Resolve message attachment
+        /// </summary>
+        /// <remarks>
+        /// Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetMessageAttachment200Response</returns>
+        System.Threading.Tasks.Task<GetMessageAttachment200Response> GetMessageAttachmentAsync(string conversationId, string messageId, int index, string accountId, string? format = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Resolve message attachment
+        /// </summary>
+        /// <remarks>
+        /// Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetMessageAttachment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetMessageAttachment200Response>> GetMessageAttachmentWithHttpInfoAsync(string conversationId, string messageId, int index, string accountId, string? format = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List conversations
         /// </summary>
@@ -1902,6 +1962,179 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetInboxConversationMessages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Resolve message attachment Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <returns>GetMessageAttachment200Response</returns>
+        public GetMessageAttachment200Response GetMessageAttachment(string conversationId, string messageId, int index, string accountId, string? format = default)
+        {
+            Zernio.Client.ApiResponse<GetMessageAttachment200Response> localVarResponse = GetMessageAttachmentWithHttpInfo(conversationId, messageId, index, accountId, format);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Resolve message attachment Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <returns>ApiResponse of GetMessageAttachment200Response</returns>
+        public Zernio.Client.ApiResponse<GetMessageAttachment200Response> GetMessageAttachmentWithHttpInfo(string conversationId, string messageId, int index, string accountId, string? format = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->GetMessageAttachment");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->GetMessageAttachment");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->GetMessageAttachment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Zernio.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("index", Zernio.Client.ClientUtils.ParameterToString(index)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (format != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "format", format));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetMessageAttachment200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetMessageAttachment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Resolve message attachment Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetMessageAttachment200Response</returns>
+        public async System.Threading.Tasks.Task<GetMessageAttachment200Response> GetMessageAttachmentAsync(string conversationId, string messageId, int index, string accountId, string? format = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetMessageAttachment200Response> localVarResponse = await GetMessageAttachmentWithHttpInfoAsync(conversationId, messageId, index, accountId, format, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Resolve message attachment Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the &#x60;url&#x60; on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message&#39;s media from Meta and persists it before answering. The message id never expires, so this URL is the one to store — it is returned on each attachment as &#x60;refreshUrl&#x60;.  By default it responds &#x60;302&#x60; to the live media url, so it can be used directly as an &#x60;&lt;img src&gt;&#x60; on a browser session. API-key integrators should pass &#x60;?format&#x3D;json&#x60; and read &#x60;url&#x60; off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and &#x60;404&#x60; otherwise. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID (Zernio id or platform conversation id)</param>
+        /// <param name="messageId">The message id as returned by the list-messages endpoint (the platform message id)</param>
+        /// <param name="index">Zero-based position of the attachment in the message&#39;s attachments array</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="format">&#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body (optional, default to redirect)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetMessageAttachment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetMessageAttachment200Response>> GetMessageAttachmentWithHttpInfoAsync(string conversationId, string messageId, int index, string accountId, string? format = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->GetMessageAttachment");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->GetMessageAttachment");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->GetMessageAttachment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Zernio.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("index", Zernio.Client.ClientUtils.ParameterToString(index)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (format != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "format", format));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetMessageAttachment200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetMessageAttachment", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

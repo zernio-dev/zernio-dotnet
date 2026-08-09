@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RefreshUrl'
+        /// </summary>
+        [Fact]
+        public void RefreshUrlTest()
+        {
+            // TODO unit test for the property 'RefreshUrl'
+        }
+
+        /// <summary>
         /// Test the property 'Filename'
         /// </summary>
         [Fact]

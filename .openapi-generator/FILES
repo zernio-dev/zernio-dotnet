@@ -642,6 +642,7 @@ docs/GetLinkedInSupplyForecastRequest.md
 docs/GetLinkedInSupplyForecastRequestCompetingBid.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
+docs/GetMessageAttachment200Response.md
 docs/GetMessengerMenu200Response.md
 docs/GetPendingOAuthData200Response.md
 docs/GetPendingOAuthData200ResponseOrganizationsInner.md
@@ -2335,6 +2336,7 @@ src/Zernio.Test/Model/GetLinkedInSupplyForecastRequestCompetingBidTests.cs
 src/Zernio.Test/Model/GetLinkedInSupplyForecastRequestTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
+src/Zernio.Test/Model/GetMessageAttachment200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerMenu200ResponseTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseTests.cs
@@ -4010,6 +4012,7 @@ src/Zernio/Model/GetLinkedInSupplyForecastRequest.cs
 src/Zernio/Model/GetLinkedInSupplyForecastRequestCompetingBid.cs
 src/Zernio/Model/GetMediaPresignedUrl200Response.cs
 src/Zernio/Model/GetMediaPresignedUrlRequest.cs
+src/Zernio/Model/GetMessageAttachment200Response.cs
 src/Zernio/Model/GetMessengerMenu200Response.cs
 src/Zernio/Model/GetPendingOAuthData200Response.cs
 src/Zernio/Model/GetPendingOAuthData200ResponseOrganizationsInner.cs
