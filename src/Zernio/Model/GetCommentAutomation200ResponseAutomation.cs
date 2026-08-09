@@ -118,11 +118,12 @@ namespace Zernio.Model
         /// <param name="commentReplyDelaySeconds">Seconds waited before the public reply is posted. Absent when it follows the DM immediately..</param>
         /// <param name="audience">audience.</param>
         /// <param name="followGate">followGate.</param>
+        /// <param name="alsoMatchInDms">Whether these keywords also fire on a plain inbound DM..</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public GetCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public GetCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool alsoMatchInDms = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -148,6 +149,7 @@ namespace Zernio.Model
             this.CommentReplyDelaySeconds = commentReplyDelaySeconds;
             this.Audience = audience;
             this.FollowGate = followGate;
+            this.AlsoMatchInDms = alsoMatchInDms;
             this.IsActive = isActive;
             this.Stats = stats;
             this.CreatedAt = createdAt;
@@ -294,6 +296,13 @@ namespace Zernio.Model
         public CommentAutomationFollowGate FollowGate { get; set; }
 
         /// <summary>
+        /// Whether these keywords also fire on a plain inbound DM.
+        /// </summary>
+        /// <value>Whether these keywords also fire on a plain inbound DM.</value>
+        [DataMember(Name = "alsoMatchInDms", EmitDefaultValue = true)]
+        public bool AlsoMatchInDms { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -349,6 +358,7 @@ namespace Zernio.Model
             sb.Append("  CommentReplyDelaySeconds: ").Append(CommentReplyDelaySeconds).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
             sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
+            sb.Append("  AlsoMatchInDms: ").Append(AlsoMatchInDms).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  Stats: ").Append(Stats).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **CommenterId** | **string** |  | [optional] 
 **CommenterName** | **string** |  | [optional] 
 **CommentText** | **string** |  | [optional] 
+**Source** | **string** | Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered). | [optional] 
 **Status** | **string** | DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap. | [optional] 
 **AudienceOutcome** | **string** | How the audience rule resolved. Absent on automations without one. | [optional] 
 **CommenterIsFollower** | **bool** | Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account). | [optional] 

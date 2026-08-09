@@ -34,6 +34,39 @@ namespace Zernio.Model
     public partial class GetCommentAutomation200ResponseLogsInner : IValidatableObject
     {
         /// <summary>
+        /// Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered).
+        /// </summary>
+        /// <value>Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SourceEnum
+        {
+            /// <summary>
+            /// Enum Comment for value: comment
+            /// </summary>
+            [EnumMember(Value = "comment")]
+            Comment = 1,
+
+            /// <summary>
+            /// Enum StoryReply for value: story_reply
+            /// </summary>
+            [EnumMember(Value = "story_reply")]
+            StoryReply = 2,
+
+            /// <summary>
+            /// Enum Dm for value: dm
+            /// </summary>
+            [EnumMember(Value = "dm")]
+            Dm = 3
+        }
+
+
+        /// <summary>
+        /// Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered).
+        /// </summary>
+        /// <value>Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered).</value>
+        [DataMember(Name = "source", EmitDefaultValue = false)]
+        public SourceEnum? Source { get; set; }
+        /// <summary>
         /// DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.
         /// </summary>
         /// <value>DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap.</value>
@@ -164,6 +197,7 @@ namespace Zernio.Model
         /// <param name="commenterId">commenterId.</param>
         /// <param name="commenterName">commenterName.</param>
         /// <param name="commentText">commentText.</param>
+        /// <param name="source">Which door triggered this send. Absent on rows written before this field existed (all of those are comment-triggered)..</param>
         /// <param name="status">DM outcome. &#39;pending&#39; &#x3D; the automation has a dmDelaySeconds and the response is queued but not sent yet. &#39;gated&#39; &#x3D; the follow-gate confirmation DM went out and we are waiting for the tap; it flips to &#39;sent&#39; or &#39;skipped&#39; when they tap..</param>
         /// <param name="audienceOutcome">How the audience rule resolved. Absent on automations without one..</param>
         /// <param name="commenterIsFollower">Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account)..</param>
@@ -173,13 +207,14 @@ namespace Zernio.Model
         /// <param name="commentReplyError">Public-reply error message if commentReplyStatus is failed.</param>
         /// <param name="nextDueAt">When the next queued send fires. Present only while something is still pending..</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetCommentAutomation200ResponseLogsInner(string id = default, string commentId = default, string commenterId = default, string commenterName = default, string commentText = default, StatusEnum? status = default, AudienceOutcomeEnum? audienceOutcome = default, bool commenterIsFollower = default, int commenterFollowerCount = default, string error = default, CommentReplyStatusEnum? commentReplyStatus = default, string commentReplyError = default, DateTime nextDueAt = default, DateTime createdAt = default)
+        public GetCommentAutomation200ResponseLogsInner(string id = default, string commentId = default, string commenterId = default, string commenterName = default, string commentText = default, SourceEnum? source = default, StatusEnum? status = default, AudienceOutcomeEnum? audienceOutcome = default, bool commenterIsFollower = default, int commenterFollowerCount = default, string error = default, CommentReplyStatusEnum? commentReplyStatus = default, string commentReplyError = default, DateTime nextDueAt = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.CommentId = commentId;
             this.CommenterId = commenterId;
             this.CommenterName = commenterName;
             this.CommentText = commentText;
+            this.Source = source;
             this.Status = status;
             this.AudienceOutcome = audienceOutcome;
             this.CommenterIsFollower = commenterIsFollower;
@@ -274,6 +309,7 @@ namespace Zernio.Model
             sb.Append("  CommenterId: ").Append(CommenterId).Append("\n");
             sb.Append("  CommenterName: ").Append(CommenterName).Append("\n");
             sb.Append("  CommentText: ").Append(CommentText).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AudienceOutcome: ").Append(AudienceOutcome).Append("\n");
             sb.Append("  CommenterIsFollower: ").Append(CommenterIsFollower).Append("\n");

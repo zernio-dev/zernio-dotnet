@@ -272,6 +272,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AlsoMatchInDms'
+        /// </summary>
+        [Fact]
+        public void AlsoMatchInDmsTest()
+        {
+            // TODO unit test for the property 'AlsoMatchInDms'
+        }
+
+        /// <summary>
         /// Test the property 'IsActive'
         /// </summary>
         [Fact]

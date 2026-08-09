@@ -83,9 +83,10 @@ namespace Zernio.Model
         /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
         /// <param name="audience">audience.</param>
         /// <param name="followGate">followGate.</param>
+        /// <param name="alsoMatchInDms">Whether these keywords also fire on a plain inbound DM..</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default, DateTime updatedAt = default)
+        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool alsoMatchInDms = default, bool isActive = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -101,6 +102,7 @@ namespace Zernio.Model
             this.CommentReplyVariations = commentReplyVariations;
             this.Audience = audience;
             this.FollowGate = followGate;
+            this.AlsoMatchInDms = alsoMatchInDms;
             this.IsActive = isActive;
             this.UpdatedAt = updatedAt;
         }
@@ -189,6 +191,13 @@ namespace Zernio.Model
         public CommentAutomationFollowGate FollowGate { get; set; }
 
         /// <summary>
+        /// Whether these keywords also fire on a plain inbound DM.
+        /// </summary>
+        /// <value>Whether these keywords also fire on a plain inbound DM.</value>
+        [DataMember(Name = "alsoMatchInDms", EmitDefaultValue = true)]
+        public bool AlsoMatchInDms { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -222,6 +231,7 @@ namespace Zernio.Model
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
             sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
+            sb.Append("  AlsoMatchInDms: ").Append(AlsoMatchInDms).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **CommentReplyVariations** | **List&lt;string&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. | [optional] 
 **Audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  | [optional] 
 **FollowGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  | [optional] 
+**AlsoMatchInDms** | **bool** | Whether these keywords also fire on a plain inbound DM. | [optional] 
 **IsActive** | **bool** |  | [optional] 
 **UpdatedAt** | **DateTime** |  | [optional] 
 

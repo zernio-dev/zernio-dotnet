@@ -122,9 +122,10 @@ namespace Zernio.Model
         /// <param name="clickTag">Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences..</param>
         /// <param name="dmDelaySeconds">Seconds to wait after the trigger before sending the DM. Omit or send 0 to reply immediately (the default). Max 86400 (24h). The trigger is still matched and deduplicated the moment the comment arrives, so a delay only moves when the response is sent..</param>
         /// <param name="commentReplyDelaySeconds">Seconds to wait before posting the public comment reply. Omit or send 0 to post it right after the DM (the default). The reply never goes out before the DM, so a value below dmDelaySeconds is raised to it. Ignored when trigger&#x3D;story_reply, which has no public reply..</param>
+        /// <param name="alsoMatchInDms">Also fire these keywords on a plain inbound DM, so the automation answers people who message the keyword instead of commenting it. Requires at least one keyword (an empty keyword list means &#39;match anything&#39;, which would answer every inbound message) and is rejected on story_reply automations, which already trigger on DMs. Dedup is per door: a contact who already received the DM from their comment can still receive it from a DM. (default to false).</param>
         /// <param name="audience">audience.</param>
         /// <param name="followGate">followGate.</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default)
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, bool alsoMatchInDms = false, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -167,6 +168,7 @@ namespace Zernio.Model
             this.ClickTag = clickTag;
             this.DmDelaySeconds = dmDelaySeconds;
             this.CommentReplyDelaySeconds = commentReplyDelaySeconds;
+            this.AlsoMatchInDms = alsoMatchInDms;
             this.Audience = audience;
             this.FollowGate = followGate;
         }
@@ -304,6 +306,13 @@ namespace Zernio.Model
         public int CommentReplyDelaySeconds { get; set; }
 
         /// <summary>
+        /// Also fire these keywords on a plain inbound DM, so the automation answers people who message the keyword instead of commenting it. Requires at least one keyword (an empty keyword list means &#39;match anything&#39;, which would answer every inbound message) and is rejected on story_reply automations, which already trigger on DMs. Dedup is per door: a contact who already received the DM from their comment can still receive it from a DM.
+        /// </summary>
+        /// <value>Also fire these keywords on a plain inbound DM, so the automation answers people who message the keyword instead of commenting it. Requires at least one keyword (an empty keyword list means &#39;match anything&#39;, which would answer every inbound message) and is rejected on story_reply automations, which already trigger on DMs. Dedup is per door: a contact who already received the DM from their comment can still receive it from a DM.</value>
+        [DataMember(Name = "alsoMatchInDms", EmitDefaultValue = true)]
+        public bool AlsoMatchInDms { get; set; }
+
+        /// <summary>
         /// Gets or Sets Audience
         /// </summary>
         [DataMember(Name = "audience", EmitDefaultValue = false)]
@@ -344,6 +353,7 @@ namespace Zernio.Model
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("  DmDelaySeconds: ").Append(DmDelaySeconds).Append("\n");
             sb.Append("  CommentReplyDelaySeconds: ").Append(CommentReplyDelaySeconds).Append("\n");
+            sb.Append("  AlsoMatchInDms: ").Append(AlsoMatchInDms).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
             sb.Append("  FollowGate: ").Append(FollowGate).Append("\n");
             sb.Append("}\n");

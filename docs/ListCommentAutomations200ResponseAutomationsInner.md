@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **ClickTag** | **string** | Tag applied to a contact when they click a tracked link. | [optional] 
 **DmDelaySeconds** | **int** | Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately. | [optional] 
 **CommentReplyDelaySeconds** | **int** | Seconds waited before the public reply is posted. Absent when it follows the DM immediately. | [optional] 
+**AlsoMatchInDms** | **bool** | Whether these keywords also fire on a plain inbound DM. | [optional] 
 **IsActive** | **bool** |  | [optional] 
 **Stats** | [**ListCommentAutomations200ResponseAutomationsInnerStats**](ListCommentAutomations200ResponseAutomationsInnerStats.md) |  | [optional] 
 **CreatedAt** | **DateTime** |  | [optional] 

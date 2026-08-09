@@ -110,12 +110,13 @@ namespace Zernio.Model
         /// <param name="commentReplyVariations">Alternate public replies for random rotation. Pass [] to clear..</param>
         /// <param name="linkTracking">Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched..</param>
         /// <param name="clickTag">Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it..</param>
+        /// <param name="alsoMatchInDms">Also fire these keywords on a plain inbound DM. Enabling it requires the automation to end up with at least one keyword (this request&#39;s keywords if you send them, otherwise the stored ones) and is rejected on story_reply automations..</param>
         /// <param name="dmDelaySeconds">Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately..</param>
         /// <param name="commentReplyDelaySeconds">Seconds to wait before posting the public comment reply. Send 0 to clear it. The reply never goes out before the DM..</param>
         /// <param name="audience">audience.</param>
         /// <param name="followGate">followGate.</param>
         /// <param name="isActive">isActive.</param>
-        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default)
+        public UpdateCommentAutomationRequest(string name = default, TriggerEnum? trigger = default, List<string> keywords = default, MatchModeEnum? matchMode = default, List<string> excludeKeywords = default, bool typoTolerance = default, string dmMessage = default, List<DmButton> buttons = default, CommentAutomationTemplate template = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool alsoMatchInDms = default, int dmDelaySeconds = default, int commentReplyDelaySeconds = default, CommentAutomationAudience audience = default, CommentAutomationFollowGate followGate = default, bool isActive = default)
         {
             this.Name = name;
             this.Trigger = trigger;
@@ -131,6 +132,7 @@ namespace Zernio.Model
             this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
+            this.AlsoMatchInDms = alsoMatchInDms;
             this.DmDelaySeconds = dmDelaySeconds;
             this.CommentReplyDelaySeconds = commentReplyDelaySeconds;
             this.Audience = audience;
@@ -218,6 +220,13 @@ namespace Zernio.Model
         public string ClickTag { get; set; }
 
         /// <summary>
+        /// Also fire these keywords on a plain inbound DM. Enabling it requires the automation to end up with at least one keyword (this request&#39;s keywords if you send them, otherwise the stored ones) and is rejected on story_reply automations.
+        /// </summary>
+        /// <value>Also fire these keywords on a plain inbound DM. Enabling it requires the automation to end up with at least one keyword (this request&#39;s keywords if you send them, otherwise the stored ones) and is rejected on story_reply automations.</value>
+        [DataMember(Name = "alsoMatchInDms", EmitDefaultValue = true)]
+        public bool AlsoMatchInDms { get; set; }
+
+        /// <summary>
         /// Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately.
         /// </summary>
         /// <value>Seconds to wait after the trigger before sending the DM. Send 0 to clear the delay and reply immediately.</value>
@@ -271,6 +280,7 @@ namespace Zernio.Model
             sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
+            sb.Append("  AlsoMatchInDms: ").Append(AlsoMatchInDms).Append("\n");
             sb.Append("  DmDelaySeconds: ").Append(DmDelaySeconds).Append("\n");
             sb.Append("  CommentReplyDelaySeconds: ").Append(CommentReplyDelaySeconds).Append("\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
