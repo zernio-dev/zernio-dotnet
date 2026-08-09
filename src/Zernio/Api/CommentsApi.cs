@@ -138,7 +138,7 @@ namespace Zernio.Api
         /// Like comment
         /// </summary>
         /// <remarks>
-        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -151,7 +151,7 @@ namespace Zernio.Api
         /// Like comment
         /// </summary>
         /// <remarks>
-        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -159,6 +159,29 @@ namespace Zernio.Api
         /// <param name="likeInboxCommentRequest"></param>
         /// <returns>ApiResponse of LikeInboxComment200Response</returns>
         ApiResponse<LikeInboxComment200Response> LikeInboxCommentWithHttpInfo(string postId, string commentId, LikeInboxCommentRequest likeInboxCommentRequest);
+        /// <summary>
+        /// Like post
+        /// </summary>
+        /// <remarks>
+        /// Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <returns>LikePost200Response</returns>
+        LikePost200Response LikePost(string postId, LikePostRequest likePostRequest);
+
+        /// <summary>
+        /// Like post
+        /// </summary>
+        /// <remarks>
+        /// Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <returns>ApiResponse of LikePost200Response</returns>
+        ApiResponse<LikePost200Response> LikePostWithHttpInfo(string postId, LikePostRequest likePostRequest);
         /// <summary>
         /// List commented posts
         /// </summary>
@@ -298,7 +321,7 @@ namespace Zernio.Api
         /// Unlike comment
         /// </summary>
         /// <remarks>
-        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -312,7 +335,7 @@ namespace Zernio.Api
         /// Unlike comment
         /// </summary>
         /// <remarks>
-        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -321,6 +344,31 @@ namespace Zernio.Api
         /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
         /// <returns>ApiResponse of UnlikeInboxComment200Response</returns>
         ApiResponse<UnlikeInboxComment200Response> UnlikeInboxCommentWithHttpInfo(string postId, string commentId, string accountId, string? likeUri = default);
+        /// <summary>
+        /// Unlike post
+        /// </summary>
+        /// <remarks>
+        /// Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <returns>UnlikePost200Response</returns>
+        UnlikePost200Response UnlikePost(string postId, string accountId, string? likeUri = default);
+
+        /// <summary>
+        /// Unlike post
+        /// </summary>
+        /// <remarks>
+        /// Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <returns>ApiResponse of UnlikePost200Response</returns>
+        ApiResponse<UnlikePost200Response> UnlikePostWithHttpInfo(string postId, string accountId, string? likeUri = default);
         #endregion Synchronous Operations
     }
 
@@ -448,7 +496,7 @@ namespace Zernio.Api
         /// Like comment
         /// </summary>
         /// <remarks>
-        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -462,7 +510,7 @@ namespace Zernio.Api
         /// Like comment
         /// </summary>
         /// <remarks>
-        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -471,6 +519,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LikeInboxComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<LikeInboxComment200Response>> LikeInboxCommentWithHttpInfoAsync(string postId, string commentId, LikeInboxCommentRequest likeInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Like post
+        /// </summary>
+        /// <remarks>
+        /// Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of LikePost200Response</returns>
+        System.Threading.Tasks.Task<LikePost200Response> LikePostAsync(string postId, LikePostRequest likePostRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Like post
+        /// </summary>
+        /// <remarks>
+        /// Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (LikePost200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<LikePost200Response>> LikePostWithHttpInfoAsync(string postId, LikePostRequest likePostRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List commented posts
         /// </summary>
@@ -620,7 +693,7 @@ namespace Zernio.Api
         /// Unlike comment
         /// </summary>
         /// <remarks>
-        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -635,7 +708,7 @@ namespace Zernio.Api
         /// Unlike comment
         /// </summary>
         /// <remarks>
-        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -645,6 +718,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnlikeInboxComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnlikeInboxComment200Response>> UnlikeInboxCommentWithHttpInfoAsync(string postId, string commentId, string accountId, string? likeUri = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Unlike post
+        /// </summary>
+        /// <remarks>
+        /// Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnlikePost200Response</returns>
+        System.Threading.Tasks.Task<UnlikePost200Response> UnlikePostAsync(string postId, string accountId, string? likeUri = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unlike post
+        /// </summary>
+        /// <remarks>
+        /// Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnlikePost200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UnlikePost200Response>> UnlikePostWithHttpInfoAsync(string postId, string accountId, string? likeUri = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1517,7 +1617,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1531,7 +1631,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1593,7 +1693,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1608,7 +1708,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the cid (content identifier) is required in the request body. 
+        /// Like comment Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1667,6 +1767,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("LikeInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Like post Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <returns>LikePost200Response</returns>
+        public LikePost200Response LikePost(string postId, LikePostRequest likePostRequest)
+        {
+            Zernio.Client.ApiResponse<LikePost200Response> localVarResponse = LikePostWithHttpInfo(postId, likePostRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Like post Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <returns>ApiResponse of LikePost200Response</returns>
+        public Zernio.Client.ApiResponse<LikePost200Response> LikePostWithHttpInfo(string postId, LikePostRequest likePostRequest)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->LikePost");
+
+            // verify the required parameter 'likePostRequest' is set
+            if (likePostRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'likePostRequest' when calling CommentsApi->LikePost");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.Data = likePostRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<LikePost200Response>("/v1/inbox/posts/{postId}/like", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("LikePost", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Like post Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of LikePost200Response</returns>
+        public async System.Threading.Tasks.Task<LikePost200Response> LikePostAsync(string postId, LikePostRequest likePostRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<LikePost200Response> localVarResponse = await LikePostWithHttpInfoAsync(postId, likePostRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Like post Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60;, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec&#39;s &#x60;accountId&#x60; and the brand post&#39;s ID. &#x60;postId&#x60; accepts either a Zernio post ID or the platform&#39;s native post ID. A Zernio post ID resolves to the entry for &#x60;accountId&#x60;, falling back to the post&#39;s single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the &#x60;w_member_social_feed&#x60; / &#x60;w_organization_social_feed&#x60; scopes, which are not retroactive: accounts connected before those were requested get a 403 with code &#x60;linkedin_reconnect_required&#x60; until the user reconnects the account. YouTube spends 50 quota units per call. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="likePostRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (LikePost200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<LikePost200Response>> LikePostWithHttpInfoAsync(string postId, LikePostRequest likePostRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->LikePost");
+
+            // verify the required parameter 'likePostRequest' is set
+            if (likePostRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'likePostRequest' when calling CommentsApi->LikePost");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.Data = likePostRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<LikePost200Response>("/v1/inbox/posts/{postId}/like", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("LikePost", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2507,7 +2750,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2522,7 +2765,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2588,7 +2831,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2604,7 +2847,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit. For Bluesky, the likeUri query parameter is required. 
+        /// Unlike comment Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2667,6 +2910,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UnlikeInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unlike post Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <returns>UnlikePost200Response</returns>
+        public UnlikePost200Response UnlikePost(string postId, string accountId, string? likeUri = default)
+        {
+            Zernio.Client.ApiResponse<UnlikePost200Response> localVarResponse = UnlikePostWithHttpInfo(postId, accountId, likeUri);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unlike post Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <returns>ApiResponse of UnlikePost200Response</returns>
+        public Zernio.Client.ApiResponse<UnlikePost200Response> UnlikePostWithHttpInfo(string postId, string accountId, string? likeUri = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->UnlikePost");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling CommentsApi->UnlikePost");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (likeUri != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "likeUri", likeUri));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UnlikePost200Response>("/v1/inbox/posts/{postId}/like", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnlikePost", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unlike post Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnlikePost200Response</returns>
+        public async System.Threading.Tasks.Task<UnlikePost200Response> UnlikePostAsync(string postId, string accountId, string? likeUri = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UnlikePost200Response> localVarResponse = await UnlikePostWithHttpInfoAsync(postId, accountId, likeUri, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unlike post Remove this account&#39;s like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, &#x60;likeUri&#x60; (returned when the post was liked) is required. Reddit uses &#x60;POST /v1/accounts/{accountId}/reddit-vote&#x60; with &#x60;direction: 0&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">Zernio post ID or the platform&#39;s native post ID</param>
+        /// <param name="accountId"></param>
+        /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnlikePost200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UnlikePost200Response>> UnlikePostWithHttpInfoAsync(string postId, string accountId, string? likeUri = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->UnlikePost");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling CommentsApi->UnlikePost");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (likeUri != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "likeUri", likeUri));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UnlikePost200Response>("/v1/inbox/posts/{postId}/like", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnlikePost", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -128,6 +128,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test LikePost
+        /// </summary>
+        [Fact]
+        public void LikePostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string postId = null;
+            //LikePostRequest likePostRequest = null;
+            //var response = instance.LikePost(postId, likePostRequest);
+            //Assert.IsType<LikePost200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListInboxComments
         /// </summary>
         [Fact]
@@ -215,6 +228,20 @@ namespace Zernio.Test.Api
             //string? likeUri = null;
             //var response = instance.UnlikeInboxComment(postId, commentId, accountId, likeUri);
             //Assert.IsType<UnlikeInboxComment200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UnlikePost
+        /// </summary>
+        [Fact]
+        public void UnlikePostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string postId = null;
+            //string accountId = null;
+            //string? likeUri = null;
+            //var response = instance.UnlikePost(postId, accountId, likeUri);
+            //Assert.IsType<UnlikePost200Response>(response);
         }
     }
 }

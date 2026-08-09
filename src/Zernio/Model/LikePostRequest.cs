@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// LikeInboxCommentRequest
+    /// LikePostRequest
     /// </summary>
-    [DataContract(Name = "likeInboxComment_request")]
-    public partial class LikeInboxCommentRequest : IValidatableObject
+    [DataContract(Name = "likePost_request")]
+    public partial class LikePostRequest : IValidatableObject
     {
         /// <summary>
         /// (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms.
@@ -85,22 +85,22 @@ namespace Zernio.Model
         [DataMember(Name = "reactionType", EmitDefaultValue = false)]
         public ReactionTypeEnum? ReactionType { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LikeInboxCommentRequest" /> class.
+        /// Initializes a new instance of the <see cref="LikePostRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected LikeInboxCommentRequest() { }
+        protected LikePostRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LikeInboxCommentRequest" /> class.
+        /// Initializes a new instance of the <see cref="LikePostRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
+        /// <param name="accountId">The social account acting as the liker (required).</param>
         /// <param name="reactionType">(LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms..</param>
-        /// <param name="cid">(Bluesky only) Content identifier for the comment.</param>
-        public LikeInboxCommentRequest(string accountId = default, ReactionTypeEnum? reactionType = default, string cid = default)
+        /// <param name="cid">(Bluesky only) Content identifier of the post.</param>
+        public LikePostRequest(string accountId = default, ReactionTypeEnum? reactionType = default, string cid = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
             {
-                throw new ArgumentNullException("accountId is a required property for LikeInboxCommentRequest and cannot be null");
+                throw new ArgumentNullException("accountId is a required property for LikePostRequest and cannot be null");
             }
             this.AccountId = accountId;
             this.ReactionType = reactionType;
@@ -108,16 +108,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The social account acting as the liker
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The social account acting as the liker</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// (Bluesky only) Content identifier for the comment
+        /// (Bluesky only) Content identifier of the post
         /// </summary>
-        /// <value>(Bluesky only) Content identifier for the comment</value>
+        /// <value>(Bluesky only) Content identifier of the post</value>
         [DataMember(Name = "cid", EmitDefaultValue = false)]
         public string Cid { get; set; }
 
@@ -128,7 +128,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LikeInboxCommentRequest {\n");
+            sb.Append("class LikePostRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ReactionType: ").Append(ReactionType).Append("\n");
             sb.Append("  Cid: ").Append(Cid).Append("\n");

@@ -809,6 +809,8 @@ docs/InvitesApi.md
 docs/LeadGenApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
+docs/LikePost200Response.md
+docs/LikePostRequest.md
 docs/LinkedInAdsPlatformData.md
 docs/LinkedInAdsPlatformDataCarousel.md
 docs/LinkedInAdsPlatformDataCarouselCardsInner.md
@@ -1339,6 +1341,7 @@ docs/UnblockWhatsAppUsersRequest.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
+docs/UnlikePost200Response.md
 docs/UnpinDiscordMessage200Response.md
 docs/UnpublishPost200Response.md
 docs/UnpublishPostRequest.md
@@ -2499,6 +2502,8 @@ src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
 src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/LikeInboxCommentRequestTests.cs
+src/Zernio.Test/Model/LikePost200ResponseTests.cs
+src/Zernio.Test/Model/LikePostRequestTests.cs
 src/Zernio.Test/Model/LinkedInAdsPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/LinkedInAdsPlatformDataCarouselTests.cs
 src/Zernio.Test/Model/LinkedInAdsPlatformDataConversationMessagesInnerButtonsInnerTests.cs
@@ -3011,6 +3016,7 @@ src/Zernio.Test/Model/UnblockWhatsAppUsersRequestTests.cs
 src/Zernio.Test/Model/UndoRetweet200ResponseTests.cs
 src/Zernio.Test/Model/UnfollowUser200ResponseTests.cs
 src/Zernio.Test/Model/UnlikeInboxComment200ResponseTests.cs
+src/Zernio.Test/Model/UnlikePost200ResponseTests.cs
 src/Zernio.Test/Model/UnpinDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/UnpublishPost200ResponseTests.cs
 src/Zernio.Test/Model/UnpublishPostRequestTests.cs
@@ -4175,6 +4181,8 @@ src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
 src/Zernio/Model/LikeInboxCommentRequest.cs
+src/Zernio/Model/LikePost200Response.cs
+src/Zernio/Model/LikePostRequest.cs
 src/Zernio/Model/LinkedInAdsPlatformData.cs
 src/Zernio/Model/LinkedInAdsPlatformDataCarousel.cs
 src/Zernio/Model/LinkedInAdsPlatformDataCarouselCardsInner.cs
@@ -4687,6 +4695,7 @@ src/Zernio/Model/UnblockWhatsAppUsersRequest.cs
 src/Zernio/Model/UndoRetweet200Response.cs
 src/Zernio/Model/UnfollowUser200Response.cs
 src/Zernio/Model/UnlikeInboxComment200Response.cs
+src/Zernio/Model/UnlikePost200Response.cs
 src/Zernio/Model/UnpinDiscordMessage200Response.cs
 src/Zernio/Model/UnpublishPost200Response.cs
 src/Zernio/Model/UnpublishPostRequest.cs
