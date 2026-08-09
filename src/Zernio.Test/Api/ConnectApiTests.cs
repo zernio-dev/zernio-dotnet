@@ -183,7 +183,8 @@ namespace Zernio.Test.Api
             //string profileId = null;
             //string? redirectUrl = null;
             //bool? headless = null;
-            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless);
+            //string? loginMethod = null;
+            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless, loginMethod);
             //Assert.IsType<GetConnectUrl200Response>(response);
         }
 
@@ -367,6 +368,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListInstagramPages
+        /// </summary>
+        [Fact]
+        public void ListInstagramPagesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string profileId = null;
+            //string tempToken = null;
+            //var response = instance.ListInstagramPages(profileId, tempToken);
+            //Assert.IsType<ListInstagramPages200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListLinkedInOrganizations
         /// </summary>
         [Fact]
@@ -443,6 +457,18 @@ namespace Zernio.Test.Api
             //SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest = null;
             //var response = instance.SelectGoogleBusinessLocation(selectGoogleBusinessLocationRequest);
             //Assert.IsType<SelectGoogleBusinessLocation200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SelectInstagramAccount
+        /// </summary>
+        [Fact]
+        public void SelectInstagramAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SelectInstagramAccountRequest selectInstagramAccountRequest = null;
+            //var response = instance.SelectInstagramAccount(selectInstagramAccountRequest);
+            //Assert.IsType<SelectInstagramAccount200Response>(response);
         }
 
         /// <summary>

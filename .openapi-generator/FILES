@@ -921,6 +921,9 @@ docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
+docs/ListInstagramPages200Response.md
+docs/ListInstagramPages200ResponsePagesInner.md
+docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md
 docs/ListInstagramStories200Response.md
 docs/ListInstagramStories200ResponseDataInner.md
 docs/ListLeadForms200Response.md
@@ -1179,6 +1182,9 @@ docs/SelectFacebookPageRequestUserProfile.md
 docs/SelectGoogleBusinessLocation200Response.md
 docs/SelectGoogleBusinessLocation200ResponseAccount.md
 docs/SelectGoogleBusinessLocationRequest.md
+docs/SelectInstagramAccount200Response.md
+docs/SelectInstagramAccount200ResponseAccount.md
+docs/SelectInstagramAccountRequest.md
 docs/SelectLinkedInOrganization200Response.md
 docs/SelectLinkedInOrganization200ResponseAccount.md
 docs/SelectLinkedInOrganization200ResponseBulkRefresh.md
@@ -2603,6 +2609,9 @@ src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerReviewerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseTests.cs
+src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccountTests.cs
+src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerTests.cs
+src/Zernio.Test/Model/ListInstagramPages200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseTests.cs
 src/Zernio.Test/Model/ListLeadForms200ResponseTests.cs
@@ -2848,6 +2857,9 @@ src/Zernio.Test/Model/SelectFacebookPageRequestUserProfileTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocationRequestTests.cs
+src/Zernio.Test/Model/SelectInstagramAccount200ResponseAccountTests.cs
+src/Zernio.Test/Model/SelectInstagramAccount200ResponseTests.cs
+src/Zernio.Test/Model/SelectInstagramAccountRequestTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseBulkRefreshTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseTests.cs
@@ -4272,6 +4284,9 @@ src/Zernio/Model/ListInboxReviews200ResponseDataInner.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReply.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReviewer.cs
 src/Zernio/Model/ListInboxReviews200ResponseSummary.cs
+src/Zernio/Model/ListInstagramPages200Response.cs
+src/Zernio/Model/ListInstagramPages200ResponsePagesInner.cs
+src/Zernio/Model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.cs
 src/Zernio/Model/ListInstagramStories200Response.cs
 src/Zernio/Model/ListInstagramStories200ResponseDataInner.cs
 src/Zernio/Model/ListLeadForms200Response.cs
@@ -4517,6 +4532,9 @@ src/Zernio/Model/SelectFacebookPageRequestUserProfile.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200Response.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/SelectGoogleBusinessLocationRequest.cs
+src/Zernio/Model/SelectInstagramAccount200Response.cs
+src/Zernio/Model/SelectInstagramAccount200ResponseAccount.cs
+src/Zernio/Model/SelectInstagramAccountRequest.cs
 src/Zernio/Model/SelectLinkedInOrganization200Response.cs
 src/Zernio/Model/SelectLinkedInOrganization200ResponseAccount.cs
 src/Zernio/Model/SelectLinkedInOrganization200ResponseBulkRefresh.cs

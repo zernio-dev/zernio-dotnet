@@ -248,8 +248,9 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <returns>GetConnectUrl200Response</returns>
-        GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default);
+        GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default);
 
         /// <summary>
         /// Get OAuth connect URL
@@ -262,8 +263,9 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <returns>ApiResponse of GetConnectUrl200Response</returns>
-        ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default);
+        ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default);
         /// <summary>
         /// List Facebook pages
         /// </summary>
@@ -583,6 +585,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListGoogleBusinessLocations200Response</returns>
         ApiResponse<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsWithHttpInfo(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default);
         /// <summary>
+        /// List Pages with a linked Instagram account
+        /// </summary>
+        /// <remarks>
+        /// Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <returns>ListInstagramPages200Response</returns>
+        ListInstagramPages200Response ListInstagramPages(string profileId, string tempToken);
+
+        /// <summary>
+        /// List Pages with a linked Instagram account
+        /// </summary>
+        /// <remarks>
+        /// Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <returns>ApiResponse of ListInstagramPages200Response</returns>
+        ApiResponse<ListInstagramPages200Response> ListInstagramPagesWithHttpInfo(string profileId, string tempToken);
+        /// <summary>
         /// List LinkedIn orgs
         /// </summary>
         /// <remarks>
@@ -722,6 +747,27 @@ namespace Zernio.Api
         /// <param name="selectGoogleBusinessLocationRequest"></param>
         /// <returns>ApiResponse of SelectGoogleBusinessLocation200Response</returns>
         ApiResponse<SelectGoogleBusinessLocation200Response> SelectGoogleBusinessLocationWithHttpInfo(SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest);
+        /// <summary>
+        /// Select the Page whose Instagram account to connect
+        /// </summary>
+        /// <remarks>
+        /// Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <returns>SelectInstagramAccount200Response</returns>
+        SelectInstagramAccount200Response SelectInstagramAccount(SelectInstagramAccountRequest selectInstagramAccountRequest);
+
+        /// <summary>
+        /// Select the Page whose Instagram account to connect
+        /// </summary>
+        /// <remarks>
+        /// Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <returns>ApiResponse of SelectInstagramAccount200Response</returns>
+        ApiResponse<SelectInstagramAccount200Response> SelectInstagramAccountWithHttpInfo(SelectInstagramAccountRequest selectInstagramAccountRequest);
         /// <summary>
         /// Select LinkedIn org
         /// </summary>
@@ -1218,9 +1264,10 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetConnectUrl200Response</returns>
-        System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get OAuth connect URL
@@ -1233,9 +1280,10 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConnectUrl200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Facebook pages
         /// </summary>
@@ -1583,6 +1631,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListGoogleBusinessLocations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListGoogleBusinessLocations200Response>> ListGoogleBusinessLocationsWithHttpInfoAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List Pages with a linked Instagram account
+        /// </summary>
+        /// <remarks>
+        /// Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListInstagramPages200Response</returns>
+        System.Threading.Tasks.Task<ListInstagramPages200Response> ListInstagramPagesAsync(string profileId, string tempToken, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Pages with a linked Instagram account
+        /// </summary>
+        /// <remarks>
+        /// Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListInstagramPages200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListInstagramPages200Response>> ListInstagramPagesWithHttpInfoAsync(string profileId, string tempToken, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List LinkedIn orgs
         /// </summary>
         /// <remarks>
@@ -1734,6 +1807,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SelectGoogleBusinessLocation200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SelectGoogleBusinessLocation200Response>> SelectGoogleBusinessLocationWithHttpInfoAsync(SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Select the Page whose Instagram account to connect
+        /// </summary>
+        /// <remarks>
+        /// Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SelectInstagramAccount200Response</returns>
+        System.Threading.Tasks.Task<SelectInstagramAccount200Response> SelectInstagramAccountAsync(SelectInstagramAccountRequest selectInstagramAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Select the Page whose Instagram account to connect
+        /// </summary>
+        /// <remarks>
+        /// Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SelectInstagramAccount200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SelectInstagramAccount200Response>> SelectInstagramAccountWithHttpInfoAsync(SelectInstagramAccountRequest selectInstagramAccountRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Select LinkedIn org
         /// </summary>
@@ -3509,10 +3605,11 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <returns>GetConnectUrl200Response</returns>
-        public GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default)
+        public GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default)
         {
-            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = GetConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless);
+            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = GetConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod);
             return localVarResponse.Data;
         }
 
@@ -3524,8 +3621,9 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <returns>ApiResponse of GetConnectUrl200Response</returns>
-        public Zernio.Client.ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default)
+        public Zernio.Client.ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default)
         {
             // verify the required parameter 'platform' is set
             if (platform == null)
@@ -3560,6 +3658,10 @@ namespace Zernio.Api
             if (headless != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "headless", headless));
+            }
+            if (loginMethod != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "loginMethod", loginMethod));
             }
 
             // authentication (bearerAuth) required
@@ -3589,11 +3691,12 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetConnectUrl200Response</returns>
-        public async System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = await GetConnectUrlWithHttpInfoAsync(platform, profileId, redirectUrl, headless, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = await GetConnectUrlWithHttpInfoAsync(platform, profileId, redirectUrl, headless, loginMethod, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3605,9 +3708,10 @@ namespace Zernio.Api
         /// <param name="profileId">Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.</param>
         /// <param name="redirectUrl">Your custom redirect URL after connection completes. Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId. (optional)</param>
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
+        /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; does not support &#x60;headless&#x3D;true&#x60;: its callback always redirects to Zernio&#39;s hosted account-selection page. Pass a &#x60;redirect_url&#x60; and let the standard flow return the user to you.  (optional, default to instagram_login)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConnectUrl200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'platform' is set
             if (platform == null)
@@ -3644,6 +3748,10 @@ namespace Zernio.Api
             if (headless != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "headless", headless));
+            }
+            if (loginMethod != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "loginMethod", loginMethod));
             }
 
             // authentication (bearerAuth) required
@@ -5617,6 +5725,157 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List Pages with a linked Instagram account Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <returns>ListInstagramPages200Response</returns>
+        public ListInstagramPages200Response ListInstagramPages(string profileId, string tempToken)
+        {
+            Zernio.Client.ApiResponse<ListInstagramPages200Response> localVarResponse = ListInstagramPagesWithHttpInfo(profileId, tempToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Pages with a linked Instagram account Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <returns>ApiResponse of ListInstagramPages200Response</returns>
+        public Zernio.Client.ApiResponse<ListInstagramPages200Response> ListInstagramPagesWithHttpInfo(string profileId, string tempToken)
+        {
+            // verify the required parameter 'profileId' is set
+            if (profileId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling ConnectApi->ListInstagramPages");
+
+            // verify the required parameter 'tempToken' is set
+            if (tempToken == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tempToken' when calling ConnectApi->ListInstagramPages");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+
+            // authentication (connectToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-Connect-Token")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", this.Configuration.GetApiKeyWithPrefix("X-Connect-Token"));
+            }
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListInstagramPages200Response>("/v1/connect/instagram/select-account", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListInstagramPages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Pages with a linked Instagram account Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListInstagramPages200Response</returns>
+        public async System.Threading.Tasks.Task<ListInstagramPages200Response> ListInstagramPagesAsync(string profileId, string tempToken, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListInstagramPages200Response> localVarResponse = await ListInstagramPagesWithHttpInfoAsync(profileId, tempToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Pages with a linked Instagram account Completes the &#x60;loginMethod&#x3D;facebook_login&#x60; Instagram flow, i.e. \&quot;Instagram API with Facebook Login\&quot;.  After the user authorizes on Facebook, extract &#x60;tempToken&#x60; from the redirect params and pass it here to list the Facebook Pages they manage. Only Pages that have a linked Instagram professional account are returned, so an empty array means the user has no eligible Page. Use the X-Connect-Token header if connecting via API key.  Not used by the default &#x60;instagram_login&#x60; flow, which creates the account without a selection step. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Profile ID from your connection flow</param>
+        /// <param name="tempToken">Long-lived Facebook user access token from the OAuth callback redirect</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListInstagramPages200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListInstagramPages200Response>> ListInstagramPagesWithHttpInfoAsync(string profileId, string tempToken, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'profileId' is set
+            if (profileId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling ConnectApi->ListInstagramPages");
+
+            // verify the required parameter 'tempToken' is set
+            if (tempToken == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tempToken' when calling ConnectApi->ListInstagramPages");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+
+            // authentication (connectToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-Connect-Token")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", this.Configuration.GetApiKeyWithPrefix("X-Connect-Token"));
+            }
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListInstagramPages200Response>("/v1/connect/instagram/select-account", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListInstagramPages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -6492,6 +6751,145 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SelectGoogleBusinessLocation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Select the Page whose Instagram account to connect Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <returns>SelectInstagramAccount200Response</returns>
+        public SelectInstagramAccount200Response SelectInstagramAccount(SelectInstagramAccountRequest selectInstagramAccountRequest)
+        {
+            Zernio.Client.ApiResponse<SelectInstagramAccount200Response> localVarResponse = SelectInstagramAccountWithHttpInfo(selectInstagramAccountRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Select the Page whose Instagram account to connect Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <returns>ApiResponse of SelectInstagramAccount200Response</returns>
+        public Zernio.Client.ApiResponse<SelectInstagramAccount200Response> SelectInstagramAccountWithHttpInfo(SelectInstagramAccountRequest selectInstagramAccountRequest)
+        {
+            // verify the required parameter 'selectInstagramAccountRequest' is set
+            if (selectInstagramAccountRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'selectInstagramAccountRequest' when calling ConnectApi->SelectInstagramAccount");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = selectInstagramAccountRequest;
+
+            // authentication (connectToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-Connect-Token")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", this.Configuration.GetApiKeyWithPrefix("X-Connect-Token"));
+            }
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SelectInstagramAccount200Response>("/v1/connect/instagram/select-account", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SelectInstagramAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Select the Page whose Instagram account to connect Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SelectInstagramAccount200Response</returns>
+        public async System.Threading.Tasks.Task<SelectInstagramAccount200Response> SelectInstagramAccountAsync(SelectInstagramAccountRequest selectInstagramAccountRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SelectInstagramAccount200Response> localVarResponse = await SelectInstagramAccountWithHttpInfoAsync(selectInstagramAccountRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Select the Page whose Instagram account to connect Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account&#39;s access token, so every Instagram call for it runs against the Facebook Graph host.  One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account&#39;s conversations, external posts and stats. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="selectInstagramAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SelectInstagramAccount200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SelectInstagramAccount200Response>> SelectInstagramAccountWithHttpInfoAsync(SelectInstagramAccountRequest selectInstagramAccountRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'selectInstagramAccountRequest' is set
+            if (selectInstagramAccountRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'selectInstagramAccountRequest' when calling ConnectApi->SelectInstagramAccount");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = selectInstagramAccountRequest;
+
+            // authentication (connectToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-Connect-Token")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", this.Configuration.GetApiKeyWithPrefix("X-Connect-Token"));
+            }
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SelectInstagramAccount200Response>("/v1/connect/instagram/select-account", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SelectInstagramAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
