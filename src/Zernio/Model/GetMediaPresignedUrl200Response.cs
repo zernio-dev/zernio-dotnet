@@ -37,8 +37,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetMediaPresignedUrl200Response" /> class.
         /// </summary>
         /// <param name="uploadUrl">Presigned URL to PUT your file to (expires in 1 hour).</param>
-        /// <param name="publicUrl">Public URL where the file will be accessible after upload.</param>
-        /// <param name="key">Storage key/path of the file.</param>
+        /// <param name="publicUrl">Public URL where the file will be accessible after upload. Served from the temp/ prefix by default (expires 7 days after upload) or from media/ when permanent is true..</param>
+        /// <param name="key">Storage key/path of the file. Prefixed temp/ by default, media/ when permanent is true..</param>
         /// <param name="expiresIn">Seconds until the presigned uploadUrl expires (always 3600).</param>
         public GetMediaPresignedUrl200Response(string uploadUrl = default, string publicUrl = default, string key = default, int expiresIn = default)
         {
@@ -56,16 +56,16 @@ namespace Zernio.Model
         public string UploadUrl { get; set; }
 
         /// <summary>
-        /// Public URL where the file will be accessible after upload
+        /// Public URL where the file will be accessible after upload. Served from the temp/ prefix by default (expires 7 days after upload) or from media/ when permanent is true.
         /// </summary>
-        /// <value>Public URL where the file will be accessible after upload</value>
+        /// <value>Public URL where the file will be accessible after upload. Served from the temp/ prefix by default (expires 7 days after upload) or from media/ when permanent is true.</value>
         [DataMember(Name = "publicUrl", EmitDefaultValue = false)]
         public string PublicUrl { get; set; }
 
         /// <summary>
-        /// Storage key/path of the file
+        /// Storage key/path of the file. Prefixed temp/ by default, media/ when permanent is true.
         /// </summary>
-        /// <value>Storage key/path of the file</value>
+        /// <value>Storage key/path of the file. Prefixed temp/ by default, media/ when permanent is true.</value>
         [DataMember(Name = "key", EmitDefaultValue = false)]
         public string Key { get; set; }
 

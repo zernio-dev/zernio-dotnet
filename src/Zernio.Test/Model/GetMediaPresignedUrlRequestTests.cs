@@ -81,5 +81,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Size'
         }
+
+        /// <summary>
+        /// Test the property 'Permanent'
+        /// </summary>
+        [Fact]
+        public void PermanentTest()
+        {
+            // TODO unit test for the property 'Permanent'
+        }
     }
 }

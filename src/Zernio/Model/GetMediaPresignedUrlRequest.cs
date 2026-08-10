@@ -182,7 +182,8 @@ namespace Zernio.Model
         /// <param name="filename">Name of the file to upload (required).</param>
         /// <param name="contentType">MIME type of the file (required).</param>
         /// <param name="size">Optional file size in bytes for pre-validation (max 5GB).</param>
-        public GetMediaPresignedUrlRequest(string filename = default, ContentTypeEnum contentType = default, int size = default)
+        /// <param name="permanent">Write the file to permanent storage instead of temporary storage. Temporary files auto-delete 7 days after upload; permanent files never expire. (default to false).</param>
+        public GetMediaPresignedUrlRequest(string filename = default, ContentTypeEnum contentType = default, int size = default, bool permanent = false)
         {
             // to ensure "filename" is required (not null)
             if (filename == null)
@@ -192,6 +193,7 @@ namespace Zernio.Model
             this.Filename = filename;
             this.ContentType = contentType;
             this.Size = size;
+            this.Permanent = permanent;
         }
 
         /// <summary>
@@ -215,6 +217,16 @@ namespace Zernio.Model
         public int Size { get; set; }
 
         /// <summary>
+        /// Write the file to permanent storage instead of temporary storage. Temporary files auto-delete 7 days after upload; permanent files never expire.
+        /// </summary>
+        /// <value>Write the file to permanent storage instead of temporary storage. Temporary files auto-delete 7 days after upload; permanent files never expire.</value>
+        /*
+        <example>true</example>
+        */
+        [DataMember(Name = "permanent", EmitDefaultValue = true)]
+        public bool Permanent { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -225,6 +237,7 @@ namespace Zernio.Model
             sb.Append("  Filename: ").Append(Filename).Append("\n");
             sb.Append("  ContentType: ").Append(ContentType).Append("\n");
             sb.Append("  Size: ").Append(Size).Append("\n");
+            sb.Append("  Permanent: ").Append(Permanent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
