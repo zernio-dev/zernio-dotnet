@@ -164,6 +164,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**MoveAccountToProfile**](docs/AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**UpdateSlackSettings**](docs/AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AdAccountsApi* | [**CreateCustomConversion**](docs/AdAccountsApi.md#createcustomconversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion
+*AdAccountsApi* | [**CreateHighDemandPeriod**](docs/AdAccountsApi.md#createhighdemandperiod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase
 *AdAccountsApi* | [**CreateValueRuleSet**](docs/AdAccountsApi.md#createvalueruleset) | **POST** /v1/ads/value-rule-sets | Create a value rule set
 *AdAccountsApi* | [**DeleteValueRuleSet**](docs/AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**GetAdAccountFinance**](docs/AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances
@@ -176,6 +178,7 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**ListAdLabels**](docs/AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels
 *AdAccountsApi* | [**ListAdStudies**](docs/AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies
 *AdAccountsApi* | [**ListAdsBusinessCenters**](docs/AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
+*AdAccountsApi* | [**ListCustomConversions**](docs/AdAccountsApi.md#listcustomconversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
 *AdAccountsApi* | [**ListHighDemandPeriods**](docs/AdAccountsApi.md#listhighdemandperiods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
 *AdAccountsApi* | [**ListMetaBusinesses**](docs/AdAccountsApi.md#listmetabusinesses) | **GET** /v1/ads/businesses | Businesses list
 *AdAccountsApi* | [**ListValueRuleSets**](docs/AdAccountsApi.md#listvaluerulesets) | **GET** /v1/ads/value-rule-sets | List value rule sets
@@ -870,6 +873,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [Model.CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
  - [Model.CreateCtwaAd201Response](docs/CreateCtwaAd201Response.md)
+ - [Model.CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [Model.CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [Model.CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
  - [Model.CreateDiscordGuildRole201Response](docs/CreateDiscordGuildRole201Response.md)
@@ -887,6 +891,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [Model.CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
  - [Model.CreateGoogleBusinessPlaceActionRequest](docs/CreateGoogleBusinessPlaceActionRequest.md)
+ - [Model.CreateHighDemandPeriod201Response](docs/CreateHighDemandPeriod201Response.md)
+ - [Model.CreateHighDemandPeriodRequest](docs/CreateHighDemandPeriodRequest.md)
  - [Model.CreateInboxConversation201Response](docs/CreateInboxConversation201Response.md)
  - [Model.CreateInboxConversation201ResponseData](docs/CreateInboxConversation201ResponseData.md)
  - [Model.CreateInboxConversation400Response](docs/CreateInboxConversation400Response.md)
@@ -998,6 +1004,8 @@ Class | Method | HTTP request | Description
  - [Model.CtwaAdRequestBodyZipsInner](docs/CtwaAdRequestBodyZipsInner.md)
  - [Model.CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [Model.CtwaSingleResponse](docs/CtwaSingleResponse.md)
+ - [Model.CustomConversion](docs/CustomConversion.md)
+ - [Model.CustomConversionResult](docs/CustomConversionResult.md)
  - [Model.DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
  - [Model.DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [Model.DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
@@ -1535,6 +1543,7 @@ Class | Method | HTTP request | Description
  - [Model.ListConversionAssociations200ResponseAssociationsInner](docs/ListConversionAssociations200ResponseAssociationsInner.md)
  - [Model.ListConversionDestinations200Response](docs/ListConversionDestinations200Response.md)
  - [Model.ListConversionDestinations200ResponseDestinationsInner](docs/ListConversionDestinations200ResponseDestinationsInner.md)
+ - [Model.ListCustomConversions200Response](docs/ListCustomConversions200Response.md)
  - [Model.ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [Model.ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
  - [Model.ListDiscordGuildMembers200Response](docs/ListDiscordGuildMembers200Response.md)

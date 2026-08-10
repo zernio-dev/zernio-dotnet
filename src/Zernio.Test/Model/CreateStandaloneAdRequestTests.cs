@@ -173,6 +173,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MultiAdvertiser'
+        /// </summary>
+        [Fact]
+        public void MultiAdvertiserTest()
+        {
+            // TODO unit test for the property 'MultiAdvertiser'
+        }
+
+        /// <summary>
         /// Test the property 'ValidateOnly'
         /// </summary>
         [Fact]

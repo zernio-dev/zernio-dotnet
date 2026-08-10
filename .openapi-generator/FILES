@@ -203,6 +203,7 @@ docs/CreateConversionDestination201Response.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateConversionDestinationRequestValue.md
 docs/CreateCtwaAd201Response.md
+docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
 docs/CreateCustomFieldRequest.md
 docs/CreateDiscordGuildRole201Response.md
@@ -220,6 +221,8 @@ docs/CreateGoogleBusinessMedia200Response.md
 docs/CreateGoogleBusinessMediaRequest.md
 docs/CreateGoogleBusinessPlaceAction200Response.md
 docs/CreateGoogleBusinessPlaceActionRequest.md
+docs/CreateHighDemandPeriod201Response.md
+docs/CreateHighDemandPeriodRequest.md
 docs/CreateInboxConversation201Response.md
 docs/CreateInboxConversation201ResponseData.md
 docs/CreateInboxConversation400Response.md
@@ -331,6 +334,8 @@ docs/CtwaAdRequestBodyVideo.md
 docs/CtwaAdRequestBodyZipsInner.md
 docs/CtwaMultiResponse.md
 docs/CtwaSingleResponse.md
+docs/CustomConversion.md
+docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
 docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
@@ -883,6 +888,7 @@ docs/ListConversionAssociations200Response.md
 docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
+docs/ListCustomConversions200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
 docs/ListDiscordGuildMembers200Response.md
@@ -1910,6 +1916,7 @@ src/Zernio.Test/Model/CreateConversionDestination201ResponseTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestValueTests.cs
 src/Zernio.Test/Model/CreateCtwaAd201ResponseTests.cs
+src/Zernio.Test/Model/CreateCustomConversionRequestTests.cs
 src/Zernio.Test/Model/CreateCustomField200ResponseTests.cs
 src/Zernio.Test/Model/CreateCustomFieldRequestTests.cs
 src/Zernio.Test/Model/CreateDiscordGuildRole201ResponseTests.cs
@@ -1927,6 +1934,8 @@ src/Zernio.Test/Model/CreateGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessMediaRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessPlaceAction200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessPlaceActionRequestTests.cs
+src/Zernio.Test/Model/CreateHighDemandPeriod201ResponseTests.cs
+src/Zernio.Test/Model/CreateHighDemandPeriodRequestTests.cs
 src/Zernio.Test/Model/CreateInboxConversation201ResponseDataTests.cs
 src/Zernio.Test/Model/CreateInboxConversation201ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation400ResponseTests.cs
@@ -2038,6 +2047,8 @@ src/Zernio.Test/Model/CtwaAdRequestBodyVideoTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyZipsInnerTests.cs
 src/Zernio.Test/Model/CtwaMultiResponseTests.cs
 src/Zernio.Test/Model/CtwaSingleResponseTests.cs
+src/Zernio.Test/Model/CustomConversionResultTests.cs
+src/Zernio.Test/Model/CustomConversionTests.cs
 src/Zernio.Test/Model/DeactivateSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
@@ -2575,6 +2586,7 @@ src/Zernio.Test/Model/ListConversionAssociations200ResponseAssociationsInnerTest
 src/Zernio.Test/Model/ListConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseTests.cs
+src/Zernio.Test/Model/ListCustomConversions200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseTests.cs
 src/Zernio.Test/Model/ListDiscordGuildMembers200ResponsePaginationTests.cs
@@ -3589,6 +3601,7 @@ src/Zernio/Model/CreateConversionDestination201Response.cs
 src/Zernio/Model/CreateConversionDestinationRequest.cs
 src/Zernio/Model/CreateConversionDestinationRequestValue.cs
 src/Zernio/Model/CreateCtwaAd201Response.cs
+src/Zernio/Model/CreateCustomConversionRequest.cs
 src/Zernio/Model/CreateCustomField200Response.cs
 src/Zernio/Model/CreateCustomFieldRequest.cs
 src/Zernio/Model/CreateDiscordGuildRole201Response.cs
@@ -3606,6 +3619,8 @@ src/Zernio/Model/CreateGoogleBusinessMedia200Response.cs
 src/Zernio/Model/CreateGoogleBusinessMediaRequest.cs
 src/Zernio/Model/CreateGoogleBusinessPlaceAction200Response.cs
 src/Zernio/Model/CreateGoogleBusinessPlaceActionRequest.cs
+src/Zernio/Model/CreateHighDemandPeriod201Response.cs
+src/Zernio/Model/CreateHighDemandPeriodRequest.cs
 src/Zernio/Model/CreateInboxConversation201Response.cs
 src/Zernio/Model/CreateInboxConversation201ResponseData.cs
 src/Zernio/Model/CreateInboxConversation400Response.cs
@@ -3717,6 +3732,8 @@ src/Zernio/Model/CtwaAdRequestBodyVideo.cs
 src/Zernio/Model/CtwaAdRequestBodyZipsInner.cs
 src/Zernio/Model/CtwaMultiResponse.cs
 src/Zernio/Model/CtwaSingleResponse.cs
+src/Zernio/Model/CustomConversion.cs
+src/Zernio/Model/CustomConversionResult.cs
 src/Zernio/Model/DeactivateSmsRegistration200Response.cs
 src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
@@ -4254,6 +4271,7 @@ src/Zernio/Model/ListConversionAssociations200Response.cs
 src/Zernio/Model/ListConversionAssociations200ResponseAssociationsInner.cs
 src/Zernio/Model/ListConversionDestinations200Response.cs
 src/Zernio/Model/ListConversionDestinations200ResponseDestinationsInner.cs
+src/Zernio/Model/ListCustomConversions200Response.cs
 src/Zernio/Model/ListCustomFields200Response.cs
 src/Zernio/Model/ListCustomFields200ResponseFieldsInner.cs
 src/Zernio/Model/ListDiscordGuildMembers200Response.cs

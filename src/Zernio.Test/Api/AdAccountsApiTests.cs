@@ -55,6 +55,31 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateCustomConversion
+        /// </summary>
+        [Fact]
+        public void CreateCustomConversionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //CreateCustomConversionRequest createCustomConversionRequest = null;
+            //var response = instance.CreateCustomConversion(accountId, createCustomConversionRequest);
+            //Assert.IsType<CustomConversionResult>(response);
+        }
+
+        /// <summary>
+        /// Test CreateHighDemandPeriod
+        /// </summary>
+        [Fact]
+        public void CreateHighDemandPeriodTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateHighDemandPeriodRequest createHighDemandPeriodRequest = null;
+            //var response = instance.CreateHighDemandPeriod(createHighDemandPeriodRequest);
+            //Assert.IsType<CreateHighDemandPeriod201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateValueRuleSet
         /// </summary>
         [Fact]
@@ -219,6 +244,19 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.ListAdsBusinessCenters(accountId);
             //Assert.IsType<ListAdsBusinessCenters200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListCustomConversions
+        /// </summary>
+        [Fact]
+        public void ListCustomConversionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.ListCustomConversions(accountId, adAccountId);
+            //Assert.IsType<ListCustomConversions200Response>(response);
         }
 
         /// <summary>

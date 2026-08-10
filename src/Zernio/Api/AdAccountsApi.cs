@@ -29,6 +29,50 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Create or reuse a custom conversion
+        /// </summary>
+        /// <remarks>
+        /// Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <returns>CustomConversionResult</returns>
+        CustomConversionResult CreateCustomConversion(string accountId, CreateCustomConversionRequest createCustomConversionRequest);
+
+        /// <summary>
+        /// Create or reuse a custom conversion
+        /// </summary>
+        /// <remarks>
+        /// Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <returns>ApiResponse of CustomConversionResult</returns>
+        ApiResponse<CustomConversionResult> CreateCustomConversionWithHttpInfo(string accountId, CreateCustomConversionRequest createCustomConversionRequest);
+        /// <summary>
+        /// Schedule a budget increase
+        /// </summary>
+        /// <remarks>
+        /// Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <returns>CreateHighDemandPeriod201Response</returns>
+        CreateHighDemandPeriod201Response CreateHighDemandPeriod(CreateHighDemandPeriodRequest createHighDemandPeriodRequest);
+
+        /// <summary>
+        /// Schedule a budget increase
+        /// </summary>
+        /// <remarks>
+        /// Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <returns>ApiResponse of CreateHighDemandPeriod201Response</returns>
+        ApiResponse<CreateHighDemandPeriod201Response> CreateHighDemandPeriodWithHttpInfo(CreateHighDemandPeriodRequest createHighDemandPeriodRequest);
+        /// <summary>
         /// Create a value rule set
         /// </summary>
         /// <remarks>
@@ -327,6 +371,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdsBusinessCenters200Response</returns>
         ApiResponse<ListAdsBusinessCenters200Response> ListAdsBusinessCentersWithHttpInfo(string accountId);
         /// <summary>
+        /// List custom conversions
+        /// </summary>
+        /// <remarks>
+        /// The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>ListCustomConversions200Response</returns>
+        ListCustomConversions200Response ListCustomConversions(string accountId, string adAccountId);
+
+        /// <summary>
+        /// List custom conversions
+        /// </summary>
+        /// <remarks>
+        /// The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>ApiResponse of ListCustomConversions200Response</returns>
+        ApiResponse<ListCustomConversions200Response> ListCustomConversionsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
         /// High demand periods / budget schedules
         /// </summary>
         /// <remarks>
@@ -460,6 +527,54 @@ namespace Zernio.Api
     public interface IAdAccountsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Create or reuse a custom conversion
+        /// </summary>
+        /// <remarks>
+        /// Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomConversionResult</returns>
+        System.Threading.Tasks.Task<CustomConversionResult> CreateCustomConversionAsync(string accountId, CreateCustomConversionRequest createCustomConversionRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create or reuse a custom conversion
+        /// </summary>
+        /// <remarks>
+        /// Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomConversionResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CustomConversionResult>> CreateCustomConversionWithHttpInfoAsync(string accountId, CreateCustomConversionRequest createCustomConversionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Schedule a budget increase
+        /// </summary>
+        /// <remarks>
+        /// Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateHighDemandPeriod201Response</returns>
+        System.Threading.Tasks.Task<CreateHighDemandPeriod201Response> CreateHighDemandPeriodAsync(CreateHighDemandPeriodRequest createHighDemandPeriodRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Schedule a budget increase
+        /// </summary>
+        /// <remarks>
+        /// Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateHighDemandPeriod201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateHighDemandPeriod201Response>> CreateHighDemandPeriodWithHttpInfoAsync(CreateHighDemandPeriodRequest createHighDemandPeriodRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a value rule set
         /// </summary>
@@ -782,6 +897,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdsBusinessCenters200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdsBusinessCenters200Response>> ListAdsBusinessCentersWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List custom conversions
+        /// </summary>
+        /// <remarks>
+        /// The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListCustomConversions200Response</returns>
+        System.Threading.Tasks.Task<ListCustomConversions200Response> ListCustomConversionsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List custom conversions
+        /// </summary>
+        /// <remarks>
+        /// The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListCustomConversions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListCustomConversions200Response>> ListCustomConversionsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// High demand periods / budget schedules
         /// </summary>
@@ -1128,6 +1268,278 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Create or reuse a custom conversion Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <returns>CustomConversionResult</returns>
+        public CustomConversionResult CreateCustomConversion(string accountId, CreateCustomConversionRequest createCustomConversionRequest)
+        {
+            Zernio.Client.ApiResponse<CustomConversionResult> localVarResponse = CreateCustomConversionWithHttpInfo(accountId, createCustomConversionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create or reuse a custom conversion Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <returns>ApiResponse of CustomConversionResult</returns>
+        public Zernio.Client.ApiResponse<CustomConversionResult> CreateCustomConversionWithHttpInfo(string accountId, CreateCustomConversionRequest createCustomConversionRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->CreateCustomConversion");
+
+            // verify the required parameter 'createCustomConversionRequest' is set
+            if (createCustomConversionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createCustomConversionRequest' when calling AdAccountsApi->CreateCustomConversion");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createCustomConversionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CustomConversionResult>("/v1/accounts/{accountId}/custom-conversions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateCustomConversion", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create or reuse a custom conversion Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CustomConversionResult</returns>
+        public async System.Threading.Tasks.Task<CustomConversionResult> CreateCustomConversionAsync(string accountId, CreateCustomConversionRequest createCustomConversionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CustomConversionResult> localVarResponse = await CreateCustomConversionWithHttpInfoAsync(accountId, createCustomConversionRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create or reuse a custom conversion Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="createCustomConversionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CustomConversionResult)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CustomConversionResult>> CreateCustomConversionWithHttpInfoAsync(string accountId, CreateCustomConversionRequest createCustomConversionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->CreateCustomConversion");
+
+            // verify the required parameter 'createCustomConversionRequest' is set
+            if (createCustomConversionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createCustomConversionRequest' when calling AdAccountsApi->CreateCustomConversion");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createCustomConversionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CustomConversionResult>("/v1/accounts/{accountId}/custom-conversions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateCustomConversion", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Schedule a budget increase Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <returns>CreateHighDemandPeriod201Response</returns>
+        public CreateHighDemandPeriod201Response CreateHighDemandPeriod(CreateHighDemandPeriodRequest createHighDemandPeriodRequest)
+        {
+            Zernio.Client.ApiResponse<CreateHighDemandPeriod201Response> localVarResponse = CreateHighDemandPeriodWithHttpInfo(createHighDemandPeriodRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Schedule a budget increase Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <returns>ApiResponse of CreateHighDemandPeriod201Response</returns>
+        public Zernio.Client.ApiResponse<CreateHighDemandPeriod201Response> CreateHighDemandPeriodWithHttpInfo(CreateHighDemandPeriodRequest createHighDemandPeriodRequest)
+        {
+            // verify the required parameter 'createHighDemandPeriodRequest' is set
+            if (createHighDemandPeriodRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createHighDemandPeriodRequest' when calling AdAccountsApi->CreateHighDemandPeriod");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createHighDemandPeriodRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateHighDemandPeriod201Response>("/v1/ads/high-demand-periods", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateHighDemandPeriod", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Schedule a budget increase Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateHighDemandPeriod201Response</returns>
+        public async System.Threading.Tasks.Task<CreateHighDemandPeriod201Response> CreateHighDemandPeriodAsync(CreateHighDemandPeriodRequest createHighDemandPeriodRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateHighDemandPeriod201Response> localVarResponse = await CreateHighDemandPeriodWithHttpInfoAsync(createHighDemandPeriodRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Schedule a budget increase Pre-schedule a temporary budget increase (Black Friday, a launch, a sale) instead of editing the budget by hand on the day. Same target rule as the GET: exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60;.  Two Meta constraints worth knowing before you call it. &#x60;timeStart&#x60; / &#x60;timeEnd&#x60; must fall on a 15-minute boundary, and a campaign cannot mix &#x60;ABSOLUTE&#x60; and &#x60;MULTIPLIER&#x60; across its schedules — the second type is rejected with \&quot;Can&#39;t mix your budget scaling selection\&quot;. Window rules (must sit inside the campaign&#39;s run dates, minimum lead time, no overlap) are Meta&#39;s and its message is forwarded verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createHighDemandPeriodRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateHighDemandPeriod201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateHighDemandPeriod201Response>> CreateHighDemandPeriodWithHttpInfoAsync(CreateHighDemandPeriodRequest createHighDemandPeriodRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createHighDemandPeriodRequest' is set
+            if (createHighDemandPeriodRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createHighDemandPeriodRequest' when calling AdAccountsApi->CreateHighDemandPeriod");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createHighDemandPeriodRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateHighDemandPeriod201Response>("/v1/ads/high-demand-periods", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateHighDemandPeriod", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -2942,6 +3354,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdsBusinessCenters", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List custom conversions The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>ListCustomConversions200Response</returns>
+        public ListCustomConversions200Response ListCustomConversions(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<ListCustomConversions200Response> localVarResponse = ListCustomConversionsWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List custom conversions The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>ApiResponse of ListCustomConversions200Response</returns>
+        public Zernio.Client.ApiResponse<ListCustomConversions200Response> ListCustomConversionsWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListCustomConversions");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListCustomConversions");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListCustomConversions200Response>("/v1/accounts/{accountId}/custom-conversions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListCustomConversions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List custom conversions The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListCustomConversions200Response</returns>
+        public async System.Threading.Tasks.Task<ListCustomConversions200Response> ListCustomConversionsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListCustomConversions200Response> localVarResponse = await ListCustomConversionsWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List custom conversions The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Meta ads SocialAccount id.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListCustomConversions200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListCustomConversions200Response>> ListCustomConversionsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListCustomConversions");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListCustomConversions");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListCustomConversions200Response>("/v1/accounts/{accountId}/custom-conversions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListCustomConversions", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
