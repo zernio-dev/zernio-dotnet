@@ -288,6 +288,7 @@ docs/CreateStandaloneAdRequestPlacementAssets.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
+docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
@@ -2005,6 +2006,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacemen
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementsTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
@@ -3696,6 +3698,7 @@ src/Zernio/Model/CreateStandaloneAdRequestPlacementAssets.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
+src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTracking.cs

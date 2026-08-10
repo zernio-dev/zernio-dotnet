@@ -959,6 +959,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateStandaloneAdRequestPlacementAssetsRulesInner](docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md)
  - [Model.CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements](docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md)
  - [Model.CreateStandaloneAdRequestPlacements](docs/CreateStandaloneAdRequestPlacements.md)
+ - [Model.CreateStandaloneAdRequestPlatformSpecificData](docs/CreateStandaloneAdRequestPlatformSpecificData.md)
  - [Model.CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [Model.CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [Model.CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
