@@ -618,6 +618,7 @@ docs/GetInboxVolume200ResponseSummary.md
 docs/GetInboxVolume200ResponseTimeseriesInner.md
 docs/GetInboxVolume400Response.md
 docs/GetInstagramAccountInsights404Response.md
+docs/GetInstagramAudio200Response.md
 docs/GetInstagramFollowStatus200Response.md
 docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
@@ -810,9 +811,11 @@ docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md
 docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md
 docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md
 docs/InstagramApi.md
+docs/InstagramAudioAsset.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
 docs/InstagramPlatformData.md
+docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InvitesApi.md
@@ -1183,6 +1186,7 @@ docs/SearchInboxConversations200ResponseDataInnerMatchesInner.md
 docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
+docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
 docs/SearchTweets200Response.md
 docs/SearchTweets200ResponseMeta.md
@@ -2327,6 +2331,7 @@ src/Zernio.Test/Model/GetInboxVolume200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxVolume200ResponseTimeseriesInnerTests.cs
 src/Zernio.Test/Model/GetInboxVolume400ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
+src/Zernio.Test/Model/GetInstagramAudio200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramFollowStatus200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramPublishingLimit200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
@@ -2517,8 +2522,10 @@ src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueValuesInnerTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseUnavailableMetricsInnerTests.cs
+src/Zernio.Test/Model/InstagramAudioAssetTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseDemographicsValueInnerTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseTests.cs
+src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
@@ -2874,6 +2881,7 @@ src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaAccountsSkippedInne
 src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaFailedAccountsInnerTests.cs
 src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaTests.cs
 src/Zernio.Test/Model/SearchInboxConversations200ResponseTests.cs
+src/Zernio.Test/Model/SearchInstagramAudio200ResponseTests.cs
 src/Zernio.Test/Model/SearchReddit200ResponseTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponseMetaTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponsePaginationTests.cs
@@ -4018,6 +4026,7 @@ src/Zernio/Model/GetInboxVolume200ResponseSummary.cs
 src/Zernio/Model/GetInboxVolume200ResponseTimeseriesInner.cs
 src/Zernio/Model/GetInboxVolume400Response.cs
 src/Zernio/Model/GetInstagramAccountInsights404Response.cs
+src/Zernio/Model/GetInstagramAudio200Response.cs
 src/Zernio/Model/GetInstagramFollowStatus200Response.cs
 src/Zernio/Model/GetInstagramPublishingLimit200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200Response.cs
@@ -4208,9 +4217,11 @@ src/Zernio/Model/InstagramAccountInsightsResponseMetricsValue.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValueValuesInner.cs
 src/Zernio/Model/InstagramAccountInsightsResponseUnavailableMetricsInner.cs
+src/Zernio/Model/InstagramAudioAsset.cs
 src/Zernio/Model/InstagramDemographicsResponse.cs
 src/Zernio/Model/InstagramDemographicsResponseDemographicsValueInner.cs
 src/Zernio/Model/InstagramPlatformData.cs
+src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
@@ -4565,6 +4576,7 @@ src/Zernio/Model/SearchInboxConversations200ResponseDataInnerMatchesInner.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMeta.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMetaAccountsSkippedInner.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMetaFailedAccountsInner.cs
+src/Zernio/Model/SearchInstagramAudio200Response.cs
 src/Zernio/Model/SearchReddit200Response.cs
 src/Zernio/Model/SearchTweets200Response.cs
 src/Zernio/Model/SearchTweets200ResponseMeta.cs

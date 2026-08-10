@@ -63,12 +63,13 @@ namespace Zernio.Model
         /// <param name="firstComment">Optional first comment to add after the post is created (not applied to Stories).</param>
         /// <param name="trialParams">trialParams.</param>
         /// <param name="userTags">Tag Instagram users by username. The tag shape depends on the media: photos require x/y coordinates, Reels and videos take username only (coordinates are ignored), stories accept optional coordinates. For carousels, use mediaIndex to target specific slides (defaults to 0); video slides take username-only tags. Photo tags without valid coordinates are skipped..</param>
-        /// <param name="audioName">Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once..</param>
+        /// <param name="audioName">Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once. Unrelated to audioConfiguration, which attaches a catalog track..</param>
+        /// <param name="audioConfiguration">audioConfiguration.</param>
         /// <param name="thumbOffset">Millisecond offset from video start for the Reel cover frame. Ignored when instagramThumbnail or reelCover is provided. Defaults to 0..</param>
         /// <param name="instagramThumbnail">Custom cover image URL for Instagram Reels (JPG or PNG, publicly accessible). Overrides thumbOffset when provided. Also accepted as reelCover (alias)..</param>
         /// <param name="reelCover">Alias for instagramThumbnail. If both are provided, instagramThumbnail takes priority..</param>
         /// <param name="isAiGenerated">When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels. (default to false).</param>
-        public InstagramPlatformData(ContentTypeEnum? contentType = default, bool shareToFeed = true, List<string> collaborators = default, string firstComment = default, InstagramPlatformDataTrialParams trialParams = default, List<InstagramPlatformDataUserTagsInner> userTags = default, string audioName = default, int thumbOffset = default, string instagramThumbnail = default, string reelCover = default, bool isAiGenerated = false)
+        public InstagramPlatformData(ContentTypeEnum? contentType = default, bool shareToFeed = true, List<string> collaborators = default, string firstComment = default, InstagramPlatformDataTrialParams trialParams = default, List<InstagramPlatformDataUserTagsInner> userTags = default, string audioName = default, InstagramPlatformDataAudioConfiguration audioConfiguration = default, int thumbOffset = default, string instagramThumbnail = default, string reelCover = default, bool isAiGenerated = false)
         {
             this.ContentType = contentType;
             this.ShareToFeed = shareToFeed;
@@ -77,6 +78,7 @@ namespace Zernio.Model
             this.TrialParams = trialParams;
             this.UserTags = userTags;
             this.AudioName = audioName;
+            this.AudioConfiguration = audioConfiguration;
             this.ThumbOffset = thumbOffset;
             this.InstagramThumbnail = instagramThumbnail;
             this.ReelCover = reelCover;
@@ -118,14 +120,20 @@ namespace Zernio.Model
         public List<InstagramPlatformDataUserTagsInner> UserTags { get; set; }
 
         /// <summary>
-        /// Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once.
+        /// Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once. Unrelated to audioConfiguration, which attaches a catalog track.
         /// </summary>
-        /// <value>Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once.</value>
+        /// <value>Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once. Unrelated to audioConfiguration, which attaches a catalog track.</value>
         /*
         <example>My Podcast Intro</example>
         */
         [DataMember(Name = "audioName", EmitDefaultValue = false)]
         public string AudioName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AudioConfiguration
+        /// </summary>
+        [DataMember(Name = "audioConfiguration", EmitDefaultValue = false)]
+        public InstagramPlatformDataAudioConfiguration AudioConfiguration { get; set; }
 
         /// <summary>
         /// Millisecond offset from video start for the Reel cover frame. Ignored when instagramThumbnail or reelCover is provided. Defaults to 0.
@@ -173,6 +181,7 @@ namespace Zernio.Model
             sb.Append("  TrialParams: ").Append(TrialParams).Append("\n");
             sb.Append("  UserTags: ").Append(UserTags).Append("\n");
             sb.Append("  AudioName: ").Append(AudioName).Append("\n");
+            sb.Append("  AudioConfiguration: ").Append(AudioConfiguration).Append("\n");
             sb.Append("  ThumbOffset: ").Append(ThumbOffset).Append("\n");
             sb.Append("  InstagramThumbnail: ").Append(InstagramThumbnail).Append("\n");
             sb.Append("  ReelCover: ").Append(ReelCover).Append("\n");

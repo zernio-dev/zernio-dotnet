@@ -418,9 +418,11 @@ Class | Method | HTTP request | Description
 *InboxAnalyticsApi* | [**GetInboxTopAccounts**](docs/InboxAnalyticsApi.md#getinboxtopaccounts) | **GET** /v1/analytics/inbox/top-accounts | Get top accounts by inbox volume
 *InboxAnalyticsApi* | [**GetInboxVolume**](docs/InboxAnalyticsApi.md#getinboxvolume) | **GET** /v1/analytics/inbox/volume | Get inbox messaging volume
 *InboxAnalyticsApi* | [**ListInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#listinboxconversationanalytics) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
+*InstagramApi* | [**GetInstagramAudio**](docs/InstagramApi.md#getinstagramaudio) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata
 *InstagramApi* | [**GetInstagramPublishingLimit**](docs/InstagramApi.md#getinstagrampublishinglimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**GetInstagramStoryInsights**](docs/InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**ListInstagramStories**](docs/InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
+*InstagramApi* | [**SearchInstagramAudio**](docs/InstagramApi.md#searchinstagramaudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
 *InvitesApi* | [**CreateInviteToken**](docs/InvitesApi.md#createinvitetoken) | **POST** /v1/invite/tokens | Create invite token
 *LeadGenApi* | [**ArchiveLeadForm**](docs/LeadGenApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *LeadGenApi* | [**CreateLeadForm**](docs/LeadGenApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form
@@ -1279,6 +1281,7 @@ Class | Method | HTTP request | Description
  - [Model.GetInboxVolume200ResponseTimeseriesInner](docs/GetInboxVolume200ResponseTimeseriesInner.md)
  - [Model.GetInboxVolume400Response](docs/GetInboxVolume400Response.md)
  - [Model.GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
+ - [Model.GetInstagramAudio200Response](docs/GetInstagramAudio200Response.md)
  - [Model.GetInstagramFollowStatus200Response](docs/GetInstagramFollowStatus200Response.md)
  - [Model.GetInstagramPublishingLimit200Response](docs/GetInstagramPublishingLimit200Response.md)
  - [Model.GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
@@ -1469,9 +1472,11 @@ Class | Method | HTTP request | Description
  - [Model.InstagramAccountInsightsResponseMetricsValueBreakdownsInner](docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md)
  - [Model.InstagramAccountInsightsResponseMetricsValueValuesInner](docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md)
  - [Model.InstagramAccountInsightsResponseUnavailableMetricsInner](docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md)
+ - [Model.InstagramAudioAsset](docs/InstagramAudioAsset.md)
  - [Model.InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [Model.InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
  - [Model.InstagramPlatformData](docs/InstagramPlatformData.md)
+ - [Model.InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [Model.InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [Model.InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [Model.LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
@@ -1826,6 +1831,7 @@ Class | Method | HTTP request | Description
  - [Model.SearchInboxConversations200ResponseMeta](docs/SearchInboxConversations200ResponseMeta.md)
  - [Model.SearchInboxConversations200ResponseMetaAccountsSkippedInner](docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [Model.SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
+ - [Model.SearchInstagramAudio200Response](docs/SearchInstagramAudio200Response.md)
  - [Model.SearchReddit200Response](docs/SearchReddit200Response.md)
  - [Model.SearchTweets200Response](docs/SearchTweets200Response.md)
  - [Model.SearchTweets200ResponseMeta](docs/SearchTweets200ResponseMeta.md)

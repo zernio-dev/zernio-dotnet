@@ -29,6 +29,29 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Get Instagram audio metadata
+        /// </summary>
+        /// <remarks>
+        /// Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <returns>GetInstagramAudio200Response</returns>
+        GetInstagramAudio200Response GetInstagramAudio(string accountId, string audioId);
+
+        /// <summary>
+        /// Get Instagram audio metadata
+        /// </summary>
+        /// <remarks>
+        /// Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <returns>ApiResponse of GetInstagramAudio200Response</returns>
+        ApiResponse<GetInstagramAudio200Response> GetInstagramAudioWithHttpInfo(string accountId, string audioId);
+        /// <summary>
         /// Get Instagram publishing limit
         /// </summary>
         /// <remarks>
@@ -93,6 +116,31 @@ namespace Zernio.Api
         /// <param name="accountId">The Instagram account ID</param>
         /// <returns>ApiResponse of ListInstagramStories200Response</returns>
         ApiResponse<ListInstagramStories200Response> ListInstagramStoriesWithHttpInfo(string accountId);
+        /// <summary>
+        /// Search Instagram audio
+        /// </summary>
+        /// <remarks>
+        /// Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <returns>SearchInstagramAudio200Response</returns>
+        SearchInstagramAudio200Response SearchInstagramAudio(string accountId, string audioType, string? q = default);
+
+        /// <summary>
+        /// Search Instagram audio
+        /// </summary>
+        /// <remarks>
+        /// Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <returns>ApiResponse of SearchInstagramAudio200Response</returns>
+        ApiResponse<SearchInstagramAudio200Response> SearchInstagramAudioWithHttpInfo(string accountId, string audioType, string? q = default);
         #endregion Synchronous Operations
     }
 
@@ -102,6 +150,31 @@ namespace Zernio.Api
     public interface IInstagramApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Get Instagram audio metadata
+        /// </summary>
+        /// <remarks>
+        /// Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetInstagramAudio200Response</returns>
+        System.Threading.Tasks.Task<GetInstagramAudio200Response> GetInstagramAudioAsync(string accountId, string audioId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Instagram audio metadata
+        /// </summary>
+        /// <remarks>
+        /// Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetInstagramAudio200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetInstagramAudio200Response>> GetInstagramAudioWithHttpInfoAsync(string accountId, string audioId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Instagram publishing limit
         /// </summary>
@@ -173,6 +246,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListInstagramStories200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListInstagramStories200Response>> ListInstagramStoriesWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Search Instagram audio
+        /// </summary>
+        /// <remarks>
+        /// Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchInstagramAudio200Response</returns>
+        System.Threading.Tasks.Task<SearchInstagramAudio200Response> SearchInstagramAudioAsync(string accountId, string audioType, string? q = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Search Instagram audio
+        /// </summary>
+        /// <remarks>
+        /// Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchInstagramAudio200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchInstagramAudio200Response>> SearchInstagramAudioWithHttpInfoAsync(string accountId, string audioType, string? q = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -384,6 +484,147 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Get Instagram audio metadata Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <returns>GetInstagramAudio200Response</returns>
+        public GetInstagramAudio200Response GetInstagramAudio(string accountId, string audioId)
+        {
+            Zernio.Client.ApiResponse<GetInstagramAudio200Response> localVarResponse = GetInstagramAudioWithHttpInfo(accountId, audioId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Instagram audio metadata Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <returns>ApiResponse of GetInstagramAudio200Response</returns>
+        public Zernio.Client.ApiResponse<GetInstagramAudio200Response> GetInstagramAudioWithHttpInfo(string accountId, string audioId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling InstagramApi->GetInstagramAudio");
+
+            // verify the required parameter 'audioId' is set
+            if (audioId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audioId' when calling InstagramApi->GetInstagramAudio");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("audioId", Zernio.Client.ClientUtils.ParameterToString(audioId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetInstagramAudio200Response>("/v1/accounts/{accountId}/instagram/audio/{audioId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetInstagramAudio", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Instagram audio metadata Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetInstagramAudio200Response</returns>
+        public async System.Threading.Tasks.Task<GetInstagramAudio200Response> GetInstagramAudioAsync(string accountId, string audioId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetInstagramAudio200Response> localVarResponse = await GetInstagramAudioWithHttpInfoAsync(accountId, audioId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Instagram audio metadata Fetch one audio asset&#39;s metadata by ID. Use it to re-validate a stored &#x60;audioId&#x60; before a scheduled Reel publishes, or to refresh the preview &#x60;downloadUrl&#x60; (Meta expires preview URLs after roughly 1.5 days).  Same connection requirement as the search endpoint: Facebook-Login Instagram accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioId">Instagram audio asset ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetInstagramAudio200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetInstagramAudio200Response>> GetInstagramAudioWithHttpInfoAsync(string accountId, string audioId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling InstagramApi->GetInstagramAudio");
+
+            // verify the required parameter 'audioId' is set
+            if (audioId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audioId' when calling InstagramApi->GetInstagramAudio");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("audioId", Zernio.Client.ClientUtils.ParameterToString(audioId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetInstagramAudio200Response>("/v1/accounts/{accountId}/instagram/audio/{audioId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetInstagramAudio", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -775,6 +1016,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListInstagramStories", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search Instagram audio Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <returns>SearchInstagramAudio200Response</returns>
+        public SearchInstagramAudio200Response SearchInstagramAudio(string accountId, string audioType, string? q = default)
+        {
+            Zernio.Client.ApiResponse<SearchInstagramAudio200Response> localVarResponse = SearchInstagramAudioWithHttpInfo(accountId, audioType, q);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search Instagram audio Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <returns>ApiResponse of SearchInstagramAudio200Response</returns>
+        public Zernio.Client.ApiResponse<SearchInstagramAudio200Response> SearchInstagramAudioWithHttpInfo(string accountId, string audioType, string? q = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling InstagramApi->SearchInstagramAudio");
+
+            // verify the required parameter 'audioType' is set
+            if (audioType == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audioType' when calling InstagramApi->SearchInstagramAudio");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "audioType", audioType));
+            if (q != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "q", q));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<SearchInstagramAudio200Response>("/v1/accounts/{accountId}/instagram/audio", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchInstagramAudio", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search Instagram audio Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchInstagramAudio200Response</returns>
+        public async System.Threading.Tasks.Task<SearchInstagramAudio200Response> SearchInstagramAudioAsync(string accountId, string audioType, string? q = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SearchInstagramAudio200Response> localVarResponse = await SearchInstagramAudioWithHttpInfoAsync(accountId, audioType, q, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search Instagram audio Search Instagram&#39;s audio catalog (licensed music or original sounds), or list what is currently trending by omitting &#x60;q&#x60;. Returns up to ~30 assets; Meta exposes no pagination on this edge.  Pass the returned &#x60;audioId&#x60; as &#x60;platformSpecificData.audioConfiguration.audioId&#x60; when creating a Reel to publish it with that track.  Requires an Instagram account connected via **Facebook Login**. Meta hosts this catalog on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_audio_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Instagram account</param>
+        /// <param name="audioType">Catalog to search: licensed music or original sounds from Reels.</param>
+        /// <param name="q">Search keywords. Omit to get the current trending list. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchInstagramAudio200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchInstagramAudio200Response>> SearchInstagramAudioWithHttpInfoAsync(string accountId, string audioType, string? q = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling InstagramApi->SearchInstagramAudio");
+
+            // verify the required parameter 'audioType' is set
+            if (audioType == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audioType' when calling InstagramApi->SearchInstagramAudio");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "audioType", audioType));
+            if (q != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "q", q));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchInstagramAudio200Response>("/v1/accounts/{accountId}/instagram/audio", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchInstagramAudio", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -245,6 +245,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AudioConfiguration'
+        /// </summary>
+        [Fact]
+        public void AudioConfigurationTest()
+        {
+            // TODO unit test for the property 'AudioConfiguration'
+        }
+
+        /// <summary>
         /// Test the property 'ThumbOffset'
         /// </summary>
         [Fact]

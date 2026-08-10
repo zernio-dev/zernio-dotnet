@@ -55,6 +55,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetInstagramAudio
+        /// </summary>
+        [Fact]
+        public void GetInstagramAudioTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string audioId = null;
+            //var response = instance.GetInstagramAudio(accountId, audioId);
+            //Assert.IsType<GetInstagramAudio200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetInstagramPublishingLimit
         /// </summary>
         [Fact]
@@ -89,6 +102,20 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.ListInstagramStories(accountId);
             //Assert.IsType<ListInstagramStories200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SearchInstagramAudio
+        /// </summary>
+        [Fact]
+        public void SearchInstagramAudioTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string audioType = null;
+            //string? q = null;
+            //var response = instance.SearchInstagramAudio(accountId, audioType, q);
+            //Assert.IsType<SearchInstagramAudio200Response>(response);
         }
     }
 }
