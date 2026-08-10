@@ -146,6 +146,39 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdInsightsReport200Response</returns>
         ApiResponse<GetAdInsightsReport200Response> GetAdInsightsReportWithHttpInfo(string reportRunId, string accountId, int? limit = default, string? after = default);
         /// <summary>
+        /// Google Ads search terms report
+        /// </summary>
+        /// <remarks>
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>GetAdsSearchTerms200Response</returns>
+        GetAdsSearchTerms200Response GetAdsSearchTerms(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default);
+
+        /// <summary>
+        /// Google Ads search terms report
+        /// </summary>
+        /// <remarks>
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ApiResponse of GetAdsSearchTerms200Response</returns>
+        ApiResponse<GetAdsSearchTerms200Response> GetAdsSearchTermsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default);
+        /// <summary>
         /// Get campaign analytics
         /// </summary>
         /// <remarks>
@@ -367,6 +400,41 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdInsightsReport200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdInsightsReport200Response>> GetAdInsightsReportWithHttpInfoAsync(string reportRunId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Google Ads search terms report
+        /// </summary>
+        /// <remarks>
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdsSearchTerms200Response</returns>
+        System.Threading.Tasks.Task<GetAdsSearchTerms200Response> GetAdsSearchTermsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Google Ads search terms report
+        /// </summary>
+        /// <remarks>
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdsSearchTerms200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdsSearchTerms200Response>> GetAdsSearchTermsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get campaign analytics
         /// </summary>
@@ -1379,6 +1447,205 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdInsightsReport", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>GetAdsSearchTerms200Response</returns>
+        public GetAdsSearchTerms200Response GetAdsSearchTerms(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> localVarResponse = GetAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ApiResponse of GetAdsSearchTerms200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> GetAdsSearchTermsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->GetAdsSearchTerms");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adGroupId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adGroupId", adGroupId));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdsSearchTerms200Response>("/v1/ads/search-terms", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdsSearchTerms", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdsSearchTerms200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdsSearchTerms200Response> GetAdsSearchTermsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> localVarResponse = await GetAdsSearchTermsWithHttpInfoAsync(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60; live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
+        /// <param name="adGroupId">Numeric Google ad group id filter. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdsSearchTerms200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsSearchTerms200Response>> GetAdsSearchTermsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->GetAdsSearchTerms");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adGroupId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adGroupId", adGroupId));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdsSearchTerms200Response>("/v1/ads/search-terms", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdsSearchTerms", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

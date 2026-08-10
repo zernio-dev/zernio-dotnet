@@ -43,7 +43,10 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Internal post ID (null for posts not published through Zernio) (required).</param>
         /// <param name="platformPostId">Platform&#39;s post ID (required).</param>
-        public WebhookPayloadCommentPost(string id = default, string platformPostId = default)
+        /// <param name="content">Post text, from our synced copy — no platform call is made on the comment path, so null when the post was never synced. (required).</param>
+        /// <param name="imageUrl">Post thumbnail or first media item URL. Platform CDN URLs expire, fetch promptly. (required).</param>
+        /// <param name="permalink">Public URL of the post. Null for posts published through Zernio that were never re-synced. (required).</param>
+        public WebhookPayloadCommentPost(string id = default, string platformPostId = default, string content = default, string imageUrl = default, string permalink = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -57,6 +60,24 @@ namespace Zernio.Model
                 throw new ArgumentNullException("platformPostId is a required property for WebhookPayloadCommentPost and cannot be null");
             }
             this.PlatformPostId = platformPostId;
+            // to ensure "content" is required (not null)
+            if (content == null)
+            {
+                throw new ArgumentNullException("content is a required property for WebhookPayloadCommentPost and cannot be null");
+            }
+            this.Content = content;
+            // to ensure "imageUrl" is required (not null)
+            if (imageUrl == null)
+            {
+                throw new ArgumentNullException("imageUrl is a required property for WebhookPayloadCommentPost and cannot be null");
+            }
+            this.ImageUrl = imageUrl;
+            // to ensure "permalink" is required (not null)
+            if (permalink == null)
+            {
+                throw new ArgumentNullException("permalink is a required property for WebhookPayloadCommentPost and cannot be null");
+            }
+            this.Permalink = permalink;
         }
 
         /// <summary>
@@ -74,6 +95,27 @@ namespace Zernio.Model
         public string PlatformPostId { get; set; }
 
         /// <summary>
+        /// Post text, from our synced copy — no platform call is made on the comment path, so null when the post was never synced.
+        /// </summary>
+        /// <value>Post text, from our synced copy — no platform call is made on the comment path, so null when the post was never synced.</value>
+        [DataMember(Name = "content", IsRequired = true, EmitDefaultValue = true)]
+        public string Content { get; set; }
+
+        /// <summary>
+        /// Post thumbnail or first media item URL. Platform CDN URLs expire, fetch promptly.
+        /// </summary>
+        /// <value>Post thumbnail or first media item URL. Platform CDN URLs expire, fetch promptly.</value>
+        [DataMember(Name = "imageUrl", IsRequired = true, EmitDefaultValue = true)]
+        public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Public URL of the post. Null for posts published through Zernio that were never re-synced.
+        /// </summary>
+        /// <value>Public URL of the post. Null for posts published through Zernio that were never re-synced.</value>
+        [DataMember(Name = "permalink", IsRequired = true, EmitDefaultValue = true)]
+        public string Permalink { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -83,6 +125,9 @@ namespace Zernio.Model
             sb.Append("class WebhookPayloadCommentPost {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
+            sb.Append("  Content: ").Append(Content).Append("\n");
+            sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
+            sb.Append("  Permalink: ").Append(Permalink).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

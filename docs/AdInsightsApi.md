@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GenerateKeywordIdeas**](AdInsightsApi.md#generatekeywordideas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
 | [**GetAdAnalytics**](AdInsightsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdInsightsReport**](AdInsightsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
+| [**GetAdsSearchTerms**](AdInsightsApi.md#getadssearchterms) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**GetCampaignAnalytics**](AdInsightsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**QueryAdInsights**](AdInsightsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query |
 
@@ -532,6 +533,120 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadssearchterms"></a>
+# **GetAdsSearchTerms**
+> GetAdsSearchTerms200Response GetAdsSearchTerms (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? campaignId = null, string? adGroupId = null, string? pageToken = null)
+
+Google Ads search terms report
+
+The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google's `search_term_view` live; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdsSearchTermsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to today. (optional) 
+            var campaignId = "campaignId_example";  // string? | Numeric Google campaign id filter. (optional) 
+            var adGroupId = "adGroupId_example";  // string? | Numeric Google ad group id filter. (optional) 
+            var pageToken = "pageToken_example";  // string? | Cursor from paging.nextPageToken of the previous page. (optional) 
+
+            try
+            {
+                // Google Ads search terms report
+                GetAdsSearchTerms200Response result = apiInstance.GetAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdInsightsApi.GetAdsSearchTerms: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdsSearchTermsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Google Ads search terms report
+    ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.GetAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdInsightsApi.GetAdsSearchTermsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **fromDate** | **DateOnly?** | Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | Defaults to today. | [optional]  |
+| **campaignId** | **string?** | Numeric Google campaign id filter. | [optional]  |
+| **adGroupId** | **string?** | Numeric Google ad group id filter. | [optional]  |
+| **pageToken** | **string?** | Cursor from paging.nextPageToken of the previous page. | [optional]  |
+
+### Return type
+
+[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Search terms |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

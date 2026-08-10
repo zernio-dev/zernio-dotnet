@@ -121,6 +121,24 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdsSearchTerms
+        /// </summary>
+        [Fact]
+        public void GetAdsSearchTermsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //string? campaignId = null;
+            //string? adGroupId = null;
+            //string? pageToken = null;
+            //var response = instance.GetAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+            //Assert.IsType<GetAdsSearchTerms200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetCampaignAnalytics
         /// </summary>
         [Fact]

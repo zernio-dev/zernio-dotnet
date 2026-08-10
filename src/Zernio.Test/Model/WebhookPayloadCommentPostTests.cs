@@ -72,5 +72,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'PlatformPostId'
         }
+
+        /// <summary>
+        /// Test the property 'Content'
+        /// </summary>
+        [Fact]
+        public void ContentTest()
+        {
+            // TODO unit test for the property 'Content'
+        }
+
+        /// <summary>
+        /// Test the property 'ImageUrl'
+        /// </summary>
+        [Fact]
+        public void ImageUrlTest()
+        {
+            // TODO unit test for the property 'ImageUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'Permalink'
+        /// </summary>
+        [Fact]
+        public void PermalinkTest()
+        {
+            // TODO unit test for the property 'Permalink'
+        }
     }
 }

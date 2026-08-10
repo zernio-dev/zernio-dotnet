@@ -96,6 +96,7 @@ docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestBudget.md
+docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
@@ -472,6 +473,9 @@ docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsActivityLog200Response.md
 docs/GetAdsActivityLog200ResponsePaging.md
+docs/GetAdsSearchTerms200Response.md
+docs/GetAdsSearchTerms200ResponseDataInner.md
+docs/GetAdsSearchTerms200ResponsePaging.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
 docs/GetAllAccountsHealth200Response.md
@@ -1022,6 +1026,7 @@ docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
+docs/MetaAdsPlatformData.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/Money.md
@@ -1816,6 +1821,7 @@ src/Zernio.Test/Model/BlueskyPlatformDataTests.cs
 src/Zernio.Test/Model/BookmarkPost200ResponseTests.cs
 src/Zernio.Test/Model/BookmarkPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
+src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCitiesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCustomLocationsInnerTests.cs
@@ -2175,6 +2181,9 @@ src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsActivityLog200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdsActivityLog200ResponseTests.cs
+src/Zernio.Test/Model/GetAdsSearchTerms200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/GetAdsSearchTerms200ResponsePagingTests.cs
+src/Zernio.Test/Model/GetAdsSearchTerms200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerTests.cs
@@ -2715,6 +2724,7 @@ src/Zernio.Test/Model/LookupSmsNumber200ResponseTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
+src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataContextCardTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MoneyAmountTests.cs
@@ -3502,6 +3512,7 @@ src/Zernio/Model/BookmarkPost200Response.cs
 src/Zernio/Model/BookmarkPostRequest.cs
 src/Zernio/Model/BoostPostRequest.cs
 src/Zernio/Model/BoostPostRequestBudget.cs
+src/Zernio/Model/BoostPostRequestPlatformSpecificData.cs
 src/Zernio/Model/BoostPostRequestSchedule.cs
 src/Zernio/Model/BoostPostRequestTargeting.cs
 src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
@@ -3860,6 +3871,9 @@ src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree200Response.cs
 src/Zernio/Model/GetAdsActivityLog200Response.cs
 src/Zernio/Model/GetAdsActivityLog200ResponsePaging.cs
+src/Zernio/Model/GetAdsSearchTerms200Response.cs
+src/Zernio/Model/GetAdsSearchTerms200ResponseDataInner.cs
+src/Zernio/Model/GetAdsSearchTerms200ResponsePaging.cs
 src/Zernio/Model/GetAdsTimeline200Response.cs
 src/Zernio/Model/GetAdsTimeline200ResponseRowsInner.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs
@@ -4400,6 +4414,7 @@ src/Zernio/Model/LookupSmsNumber200Response.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
+src/Zernio/Model/MetaAdsPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
 src/Zernio/Model/Money.cs
