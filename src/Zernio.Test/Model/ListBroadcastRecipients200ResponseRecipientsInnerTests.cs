@@ -146,6 +146,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ErrorTraceId'
+        /// </summary>
+        [Fact]
+        public void ErrorTraceIdTest()
+        {
+            // TODO unit test for the property 'ErrorTraceId'
+        }
+
+        /// <summary>
         /// Test the property 'SentAt'
         /// </summary>
         [Fact]

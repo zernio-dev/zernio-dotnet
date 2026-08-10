@@ -89,10 +89,11 @@ namespace Zernio.Model
         /// <param name="error">error.</param>
         /// <param name="errorCode">Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed..</param>
         /// <param name="errorExplanation">Plain-language translation of errorCode (e.g. for 131026, that the recipient has likely opted out of marketing messages). Null for unmapped codes; fall back to error..</param>
+        /// <param name="errorTraceId">Meta trace id (fbtrace_id) for the failed send. Quote this when escalating to Meta Direct Support. Only populated for status&#x3D;failed on Meta platforms..</param>
         /// <param name="sentAt">sentAt.</param>
         /// <param name="deliveredAt">deliveredAt.</param>
         /// <param name="readAt">readAt.</param>
-        public ListBroadcastRecipients200ResponseRecipientsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, StatusEnum? status = default, string messageId = default, string error = default, int? errorCode = default, string errorExplanation = default, DateTime sentAt = default, DateTime deliveredAt = default, DateTime readAt = default)
+        public ListBroadcastRecipients200ResponseRecipientsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, StatusEnum? status = default, string messageId = default, string error = default, int? errorCode = default, string errorExplanation = default, string errorTraceId = default, DateTime sentAt = default, DateTime deliveredAt = default, DateTime readAt = default)
         {
             this.Id = id;
             this.ContactId = contactId;
@@ -104,6 +105,7 @@ namespace Zernio.Model
             this.Error = error;
             this.ErrorCode = errorCode;
             this.ErrorExplanation = errorExplanation;
+            this.ErrorTraceId = errorTraceId;
             this.SentAt = sentAt;
             this.DeliveredAt = deliveredAt;
             this.ReadAt = readAt;
@@ -166,6 +168,13 @@ namespace Zernio.Model
         public string ErrorExplanation { get; set; }
 
         /// <summary>
+        /// Meta trace id (fbtrace_id) for the failed send. Quote this when escalating to Meta Direct Support. Only populated for status&#x3D;failed on Meta platforms.
+        /// </summary>
+        /// <value>Meta trace id (fbtrace_id) for the failed send. Quote this when escalating to Meta Direct Support. Only populated for status&#x3D;failed on Meta platforms.</value>
+        [DataMember(Name = "errorTraceId", EmitDefaultValue = true)]
+        public string ErrorTraceId { get; set; }
+
+        /// <summary>
         /// Gets or Sets SentAt
         /// </summary>
         [DataMember(Name = "sentAt", EmitDefaultValue = false)]
@@ -201,6 +210,7 @@ namespace Zernio.Model
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  ErrorExplanation: ").Append(ErrorExplanation).Append("\n");
+            sb.Append("  ErrorTraceId: ").Append(ErrorTraceId).Append("\n");
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  DeliveredAt: ").Append(DeliveredAt).Append("\n");
             sb.Append("  ReadAt: ").Append(ReadAt).Append("\n");

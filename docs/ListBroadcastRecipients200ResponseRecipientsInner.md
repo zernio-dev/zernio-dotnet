@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Error** | **string** |  | [optional] 
 **ErrorCode** | **int?** | Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed. | [optional] 
 **ErrorExplanation** | **string** | Plain-language translation of errorCode (e.g. for 131026, that the recipient has likely opted out of marketing messages). Null for unmapped codes; fall back to error. | [optional] 
+**ErrorTraceId** | **string** | Meta trace id (fbtrace_id) for the failed send. Quote this when escalating to Meta Direct Support. Only populated for status&#x3D;failed on Meta platforms. | [optional] 
 **SentAt** | **DateTime** |  | [optional] 
 **DeliveredAt** | **DateTime** |  | [optional] 
 **ReadAt** | **DateTime** |  | [optional] 
