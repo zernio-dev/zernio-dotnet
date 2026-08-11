@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta + TikTok only. Pinterest / X / LinkedIn / Google return 501. 
+    /// Meta + TikTok (demographics/interests) and Google (keyword edits only). Pinterest / X / LinkedIn return 501. 
     /// </summary>
     [DataContract(Name = "updateAd_request_targeting")]
     public partial class UpdateAdRequestTargeting : IValidatableObject
@@ -60,19 +60,37 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdRequestTargeting" /> class.
         /// </summary>
+        /// <param name="keywords">Google only. The FULL new set of positive keywords for the ad group; live keywords not listed are removed. Entries are strings (BROAD) or { text, matchType } with matchType exact | phrase | broad. Mirrored to GET /v1/ads/keywords immediately..</param>
+        /// <param name="negativeKeywords">Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords..</param>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
         /// <param name="countries">countries.</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
         /// <param name="advantageAudience">Meta only. Omit to preserve the existing setting on update. 0 &#x3D; disabled, 1 &#x3D; enabled..</param>
-        public UpdateAdRequestTargeting(int ageMin = default, int ageMax = default, List<string> countries = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
+        public UpdateAdRequestTargeting(List<UpdateAdRequestTargetingKeywordsInner> keywords = default, List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = default, int ageMin = default, int ageMax = default, List<string> countries = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
         {
+            this.Keywords = keywords;
+            this.NegativeKeywords = negativeKeywords;
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
             this.Countries = countries;
             this.Interests = interests;
             this.AdvantageAudience = advantageAudience;
         }
+
+        /// <summary>
+        /// Google only. The FULL new set of positive keywords for the ad group; live keywords not listed are removed. Entries are strings (BROAD) or { text, matchType } with matchType exact | phrase | broad. Mirrored to GET /v1/ads/keywords immediately.
+        /// </summary>
+        /// <value>Google only. The FULL new set of positive keywords for the ad group; live keywords not listed are removed. Entries are strings (BROAD) or { text, matchType } with matchType exact | phrase | broad. Mirrored to GET /v1/ads/keywords immediately.</value>
+        [DataMember(Name = "keywords", EmitDefaultValue = false)]
+        public List<UpdateAdRequestTargetingKeywordsInner> Keywords { get; set; }
+
+        /// <summary>
+        /// Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords.
+        /// </summary>
+        /// <value>Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords.</value>
+        [DataMember(Name = "negativeKeywords", EmitDefaultValue = false)]
+        public List<UpdateAdRequestTargetingKeywordsInner> NegativeKeywords { get; set; }
 
         /// <summary>
         /// Gets or Sets AgeMin
@@ -107,6 +125,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdRequestTargeting {\n");
+            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
+            sb.Append("  NegativeKeywords: ").Append(NegativeKeywords).Append("\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");

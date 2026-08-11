@@ -56,6 +56,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Keywords'
+        /// </summary>
+        [Fact]
+        public void KeywordsTest()
+        {
+            // TODO unit test for the property 'Keywords'
+        }
+
+        /// <summary>
+        /// Test the property 'NegativeKeywords'
+        /// </summary>
+        [Fact]
+        public void NegativeKeywordsTest()
+        {
+            // TODO unit test for the property 'NegativeKeywords'
+        }
+
+        /// <summary>
         /// Test the property 'AgeMin'
         /// </summary>
         [Fact]
