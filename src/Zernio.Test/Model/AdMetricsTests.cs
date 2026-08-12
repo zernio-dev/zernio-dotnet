@@ -182,6 +182,69 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CostPerAction'
+        /// </summary>
+        [Fact]
+        public void CostPerActionTest()
+        {
+            // TODO unit test for the property 'CostPerAction'
+        }
+
+        /// <summary>
+        /// Test the property 'OutboundClicks'
+        /// </summary>
+        [Fact]
+        public void OutboundClicksTest()
+        {
+            // TODO unit test for the property 'OutboundClicks'
+        }
+
+        /// <summary>
+        /// Test the property 'OutboundClicksCtr'
+        /// </summary>
+        [Fact]
+        public void OutboundClicksCtrTest()
+        {
+            // TODO unit test for the property 'OutboundClicksCtr'
+        }
+
+        /// <summary>
+        /// Test the property 'InlineLinkClicks'
+        /// </summary>
+        [Fact]
+        public void InlineLinkClicksTest()
+        {
+            // TODO unit test for the property 'InlineLinkClicks'
+        }
+
+        /// <summary>
+        /// Test the property 'InlineLinkClickCtr'
+        /// </summary>
+        [Fact]
+        public void InlineLinkClickCtrTest()
+        {
+            // TODO unit test for the property 'InlineLinkClickCtr'
+        }
+
+        /// <summary>
+        /// Test the property 'UniqueClicks'
+        /// </summary>
+        [Fact]
+        public void UniqueClicksTest()
+        {
+            // TODO unit test for the property 'UniqueClicks'
+        }
+
+        /// <summary>
+        /// Test the property 'UniqueCtr'
+        /// </summary>
+        [Fact]
+        public void UniqueCtrTest()
+        {
+            // TODO unit test for the property 'UniqueCtr'
+        }
+
+        /// <summary>
         /// Test the property 'VideoPlayActions'
         /// </summary>
         [Fact]

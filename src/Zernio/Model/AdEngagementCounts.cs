@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="saves">Saves of the ad&#39;s post (&#x60;onsite_conversion.post_save&#x60;)..</param>
         /// <param name="pageLikes">New Page likes attributed to the ad (&#x60;like&#x60;)..</param>
         /// <param name="videoViews">3-second video views (&#x60;video_view&#x60;). For completion-based counts use &#x60;videoThruplayWatchedActions&#x60;..</param>
-        /// <param name="linkClicks">Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session &#x60;inline_link_clicks&#x60; reported by &#x60;GET /v1/ads/{adId}/analytics&#x60;..</param>
+        /// <param name="linkClicks">Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session count in the sibling &#x60;inlineLinkClicks&#x60; field..</param>
         public AdEngagementCounts(int postEngagement = default, int pageEngagement = default, int reactions = default, int comments = default, int shares = default, int saves = default, int pageLikes = default, int videoViews = default, int linkClicks = default)
         {
             this.PostEngagement = postEngagement;
@@ -115,9 +115,9 @@ namespace Zernio.Model
         public int VideoViews { get; set; }
 
         /// <summary>
-        /// Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session &#x60;inline_link_clicks&#x60; reported by &#x60;GET /v1/ads/{adId}/analytics&#x60;.
+        /// Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session count in the sibling &#x60;inlineLinkClicks&#x60; field.
         /// </summary>
-        /// <value>Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session &#x60;inline_link_clicks&#x60; reported by &#x60;GET /v1/ads/{adId}/analytics&#x60;.</value>
+        /// <value>Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session count in the sibling &#x60;inlineLinkClicks&#x60; field.</value>
         [DataMember(Name = "linkClicks", EmitDefaultValue = false)]
         public int LinkClicks { get; set; }
 

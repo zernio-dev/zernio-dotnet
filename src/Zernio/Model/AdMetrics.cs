@@ -50,6 +50,13 @@ namespace Zernio.Model
         /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}..</param>
         /// <param name="purchaseValue">Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only..</param>
         /// <param name="roas">Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level..</param>
+        /// <param name="costPerAction">Derived &#x60;spend / actions[type]&#x60; for every action type with a non-zero count, in ad-account native currency. Same keys as &#x60;actions&#x60;. Rounded to 4 decimals because cheap actions cost well under a cent. Recomputed from summed spend + counts at every rollup level. Empty object when spend is 0 or no actions are reported..</param>
+        /// <param name="outboundClicks">Clicks leading off Meta&#39;s surfaces to the advertiser&#39;s destination. Meta-only; other platforms report 0..</param>
+        /// <param name="outboundClicksCtr">Derived &#x60;outboundClicks / impressions * 100&#x60;, recomputed from sums at every rollup level..</param>
+        /// <param name="inlineLinkClicks">In-session link clicks. Differs from the attributed &#x60;link_click&#x60; count in &#x60;actions&#x60;/&#x60;engagementBreakdown.linkClicks&#x60;, which uses the attribution window. Meta-only..</param>
+        /// <param name="inlineLinkClickCtr">Derived &#x60;inlineLinkClicks / impressions * 100&#x60;, recomputed from sums at every rollup level..</param>
+        /// <param name="uniqueClicks">People who clicked at least once. NOT additive: summed across days/children it overcounts people who clicked on multiple days or ads, so treat rollups as an upper bound (same caveat as &#x60;reach&#x60;). Meta-only..</param>
+        /// <param name="uniqueCtr">Derived &#x60;uniqueClicks / impressions * 100&#x60; (NOT Meta&#39;s reach-based unique_ctr). Inherits the non-additivity caveat of &#x60;uniqueClicks&#x60;..</param>
         /// <param name="videoPlayActions">Number of times the video started playing, summed over the date range and across children at ad-set/campaign level. 0 for non-video ads. Sources: Meta &#x60;video_play_actions&#x60;, TikTok &#x60;video_play_actions&#x60;..</param>
         /// <param name="video30SecWatchedActions">Views of at least 30 seconds (or to the end, for shorter videos). Sources: Meta &#x60;video_30_sec_watched_actions&#x60; (Meta only)..</param>
         /// <param name="videoThruplayWatchedActions">ThruPlays (watched to completion, or at least 15 seconds). Sources: Meta &#x60;video_thruplay_watched_actions&#x60; (Meta only)..</param>
@@ -63,7 +70,7 @@ namespace Zernio.Model
         /// <param name="funnel">funnel.</param>
         /// <param name="engagementBreakdown">engagementBreakdown.</param>
         /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
-        public AdMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default)
+        public AdMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, Dictionary<string, decimal> costPerAction = default, int outboundClicks = default, decimal outboundClicksCtr = default, int inlineLinkClicks = default, decimal inlineLinkClickCtr = default, int uniqueClicks = default, decimal uniqueCtr = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -79,6 +86,13 @@ namespace Zernio.Model
             this.ActionValues = actionValues;
             this.PurchaseValue = purchaseValue;
             this.Roas = roas;
+            this.CostPerAction = costPerAction;
+            this.OutboundClicks = outboundClicks;
+            this.OutboundClicksCtr = outboundClicksCtr;
+            this.InlineLinkClicks = inlineLinkClicks;
+            this.InlineLinkClickCtr = inlineLinkClickCtr;
+            this.UniqueClicks = uniqueClicks;
+            this.UniqueCtr = uniqueCtr;
             this.VideoPlayActions = videoPlayActions;
             this.Video30SecWatchedActions = video30SecWatchedActions;
             this.VideoThruplayWatchedActions = videoThruplayWatchedActions;
@@ -195,6 +209,58 @@ namespace Zernio.Model
         public decimal Roas { get; set; }
 
         /// <summary>
+        /// Derived &#x60;spend / actions[type]&#x60; for every action type with a non-zero count, in ad-account native currency. Same keys as &#x60;actions&#x60;. Rounded to 4 decimals because cheap actions cost well under a cent. Recomputed from summed spend + counts at every rollup level. Empty object when spend is 0 or no actions are reported.
+        /// </summary>
+        /// <value>Derived &#x60;spend / actions[type]&#x60; for every action type with a non-zero count, in ad-account native currency. Same keys as &#x60;actions&#x60;. Rounded to 4 decimals because cheap actions cost well under a cent. Recomputed from summed spend + counts at every rollup level. Empty object when spend is 0 or no actions are reported.</value>
+        /*
+        <example>{link_click&#x3D;0.1052, offsite_conversion.fb_pixel_purchase&#x3D;4.0114}</example>
+        */
+        [DataMember(Name = "costPerAction", EmitDefaultValue = false)]
+        public Dictionary<string, decimal> CostPerAction { get; set; }
+
+        /// <summary>
+        /// Clicks leading off Meta&#39;s surfaces to the advertiser&#39;s destination. Meta-only; other platforms report 0.
+        /// </summary>
+        /// <value>Clicks leading off Meta&#39;s surfaces to the advertiser&#39;s destination. Meta-only; other platforms report 0.</value>
+        [DataMember(Name = "outboundClicks", EmitDefaultValue = false)]
+        public int OutboundClicks { get; set; }
+
+        /// <summary>
+        /// Derived &#x60;outboundClicks / impressions * 100&#x60;, recomputed from sums at every rollup level.
+        /// </summary>
+        /// <value>Derived &#x60;outboundClicks / impressions * 100&#x60;, recomputed from sums at every rollup level.</value>
+        [DataMember(Name = "outboundClicksCtr", EmitDefaultValue = false)]
+        public decimal OutboundClicksCtr { get; set; }
+
+        /// <summary>
+        /// In-session link clicks. Differs from the attributed &#x60;link_click&#x60; count in &#x60;actions&#x60;/&#x60;engagementBreakdown.linkClicks&#x60;, which uses the attribution window. Meta-only.
+        /// </summary>
+        /// <value>In-session link clicks. Differs from the attributed &#x60;link_click&#x60; count in &#x60;actions&#x60;/&#x60;engagementBreakdown.linkClicks&#x60;, which uses the attribution window. Meta-only.</value>
+        [DataMember(Name = "inlineLinkClicks", EmitDefaultValue = false)]
+        public int InlineLinkClicks { get; set; }
+
+        /// <summary>
+        /// Derived &#x60;inlineLinkClicks / impressions * 100&#x60;, recomputed from sums at every rollup level.
+        /// </summary>
+        /// <value>Derived &#x60;inlineLinkClicks / impressions * 100&#x60;, recomputed from sums at every rollup level.</value>
+        [DataMember(Name = "inlineLinkClickCtr", EmitDefaultValue = false)]
+        public decimal InlineLinkClickCtr { get; set; }
+
+        /// <summary>
+        /// People who clicked at least once. NOT additive: summed across days/children it overcounts people who clicked on multiple days or ads, so treat rollups as an upper bound (same caveat as &#x60;reach&#x60;). Meta-only.
+        /// </summary>
+        /// <value>People who clicked at least once. NOT additive: summed across days/children it overcounts people who clicked on multiple days or ads, so treat rollups as an upper bound (same caveat as &#x60;reach&#x60;). Meta-only.</value>
+        [DataMember(Name = "uniqueClicks", EmitDefaultValue = false)]
+        public int UniqueClicks { get; set; }
+
+        /// <summary>
+        /// Derived &#x60;uniqueClicks / impressions * 100&#x60; (NOT Meta&#39;s reach-based unique_ctr). Inherits the non-additivity caveat of &#x60;uniqueClicks&#x60;.
+        /// </summary>
+        /// <value>Derived &#x60;uniqueClicks / impressions * 100&#x60; (NOT Meta&#39;s reach-based unique_ctr). Inherits the non-additivity caveat of &#x60;uniqueClicks&#x60;.</value>
+        [DataMember(Name = "uniqueCtr", EmitDefaultValue = false)]
+        public decimal UniqueCtr { get; set; }
+
+        /// <summary>
         /// Number of times the video started playing, summed over the date range and across children at ad-set/campaign level. 0 for non-video ads. Sources: Meta &#x60;video_play_actions&#x60;, TikTok &#x60;video_play_actions&#x60;.
         /// </summary>
         /// <value>Number of times the video started playing, summed over the date range and across children at ad-set/campaign level. 0 for non-video ads. Sources: Meta &#x60;video_play_actions&#x60;, TikTok &#x60;video_play_actions&#x60;.</value>
@@ -305,6 +371,13 @@ namespace Zernio.Model
             sb.Append("  ActionValues: ").Append(ActionValues).Append("\n");
             sb.Append("  PurchaseValue: ").Append(PurchaseValue).Append("\n");
             sb.Append("  Roas: ").Append(Roas).Append("\n");
+            sb.Append("  CostPerAction: ").Append(CostPerAction).Append("\n");
+            sb.Append("  OutboundClicks: ").Append(OutboundClicks).Append("\n");
+            sb.Append("  OutboundClicksCtr: ").Append(OutboundClicksCtr).Append("\n");
+            sb.Append("  InlineLinkClicks: ").Append(InlineLinkClicks).Append("\n");
+            sb.Append("  InlineLinkClickCtr: ").Append(InlineLinkClickCtr).Append("\n");
+            sb.Append("  UniqueClicks: ").Append(UniqueClicks).Append("\n");
+            sb.Append("  UniqueCtr: ").Append(UniqueCtr).Append("\n");
             sb.Append("  VideoPlayActions: ").Append(VideoPlayActions).Append("\n");
             sb.Append("  Video30SecWatchedActions: ").Append(Video30SecWatchedActions).Append("\n");
             sb.Append("  VideoThruplayWatchedActions: ").Append(VideoThruplayWatchedActions).Append("\n");
