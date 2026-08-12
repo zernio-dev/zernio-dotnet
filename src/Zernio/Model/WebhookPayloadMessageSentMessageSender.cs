@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessageSender" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
-        /// <param name="contactId">Zernio CRM Contact id for this sender, when one exists..</param>
+        /// <param name="contactId">Always omitted on this event: the sender is the business, not a contact. Use conversation.contactId to join back to the CRM Contact..</param>
         /// <param name="name">name.</param>
         /// <param name="username">username.</param>
         /// <param name="picture">picture.</param>
@@ -67,9 +67,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Zernio CRM Contact id for this sender, when one exists.
+        /// Always omitted on this event: the sender is the business, not a contact. Use conversation.contactId to join back to the CRM Contact.
         /// </summary>
-        /// <value>Zernio CRM Contact id for this sender, when one exists.</value>
+        /// <value>Always omitted on this event: the sender is the business, not a contact. Use conversation.contactId to join back to the CRM Contact.</value>
         [DataMember(Name = "contactId", EmitDefaultValue = false)]
         public string ContactId { get; set; }
 

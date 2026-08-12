@@ -137,12 +137,12 @@ namespace Zernio.Api
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -156,12 +156,12 @@ namespace Zernio.Api
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -321,12 +321,12 @@ namespace Zernio.Api
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -341,12 +341,12 @@ namespace Zernio.Api
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -1232,12 +1232,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -1252,12 +1252,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -1340,12 +1340,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
@@ -1361,12 +1361,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and full-text search.
+        /// List contacts List and search contacts for a profile. Supports filtering by tags, platform, subscription status, and text search on name, email and company.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles. Matches the profile recorded on the contact itself, which is set when the contact is created and is independent of the profile its account currently belongs to. Filter by accountId to list a contact through its channel instead. (optional)</param>
         /// <param name="accountId">Filter by the SocialAccount that owns the contact channel. Contacts are resolved through their channels, so the profileId contact filter is not applied while accountId is set. A profileId sent alongside is still access-checked and still scopes the returned filters.tags list. (optional)</param>
-        /// <param name="search"> (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. (optional)</param>
         /// <param name="tag"> (optional)</param>
         /// <param name="tags">Comma-separated tags, matches contacts carrying any of them (optional)</param>
         /// <param name="platform"> (optional)</param>
