@@ -101,6 +101,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'StatusSkippedReasons'
+        /// </summary>
+        [Fact]
+        public void StatusSkippedReasonsTest()
+        {
+            // TODO unit test for the property 'StatusSkippedReasons'
+        }
+
+        /// <summary>
+        /// Test the property 'StatusMessage'
+        /// </summary>
+        [Fact]
+        public void StatusMessageTest()
+        {
+            // TODO unit test for the property 'StatusMessage'
+        }
+
+        /// <summary>
         /// Test the property 'BidStrategy'
         /// </summary>
         [Fact]

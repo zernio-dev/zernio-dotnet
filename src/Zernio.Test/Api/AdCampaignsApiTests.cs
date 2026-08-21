@@ -62,7 +62,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //BoostPostRequest boostPostRequest = null;
-            //var response = instance.BoostPost(boostPostRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.BoostPost(boostPostRequest, idempotencyKey);
             //Assert.IsType<UpdateAd200Response>(response);
         }
 
@@ -216,11 +217,13 @@ namespace Zernio.Test.Api
             //string? campaignId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
+            //bool? hasDelivery = null;
+            //decimal? minSpend = null;
             //string? sort = null;
             //int? timeIncrement = null;
             //string? dailyLevel = null;
-            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
-            //Assert.IsType<GetAdTree200Response>(response);
+            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel);
+            //Assert.IsType<AdTreeResponse>(response);
         }
 
         /// <summary>
@@ -236,7 +239,7 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //string? platform = null;
             //var response = instance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform);
-            //Assert.IsType<GetAdsTimeline200Response>(response);
+            //Assert.IsType<AdsTimelineResponse>(response);
         }
 
         /// <summary>
@@ -258,7 +261,9 @@ namespace Zernio.Test.Api
             //string? profileId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
-            //var response = instance.ListAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+            //bool? hasDelivery = null;
+            //decimal? minSpend = null;
+            //var response = instance.ListAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend);
             //Assert.IsType<ListAdCampaigns200Response>(response);
         }
 
@@ -307,7 +312,7 @@ namespace Zernio.Test.Api
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
             //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
-            //Assert.IsType<ListAds200Response>(response);
+            //Assert.IsType<AdsListResponse>(response);
         }
 
         /// <summary>

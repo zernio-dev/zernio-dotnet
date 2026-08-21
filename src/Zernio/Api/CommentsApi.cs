@@ -37,7 +37,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <returns>DeleteInboxComment200Response</returns>
         DeleteInboxComment200Response DeleteInboxComment(string postId, string accountId, string commentId);
 
@@ -50,7 +50,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <returns>ApiResponse of DeleteInboxComment200Response</returns>
         ApiResponse<DeleteInboxComment200Response> DeleteInboxCommentWithHttpInfo(string postId, string accountId, string commentId);
         /// <summary>
@@ -82,14 +82,14 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <returns>GetInboxPostComments200Response</returns>
         GetInboxPostComments200Response GetInboxPostComments(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default);
@@ -98,14 +98,14 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <returns>ApiResponse of GetInboxPostComments200Response</returns>
         ApiResponse<GetInboxPostComments200Response> GetInboxPostCommentsWithHttpInfo(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default);
@@ -186,7 +186,7 @@ namespace Zernio.Api
         /// List commented posts
         /// </summary>
         /// <remarks>
-        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -205,7 +205,7 @@ namespace Zernio.Api
         /// List commented posts
         /// </summary>
         /// <remarks>
-        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -387,7 +387,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteInboxComment200Response</returns>
         System.Threading.Tasks.Task<DeleteInboxComment200Response> DeleteInboxCommentAsync(string postId, string accountId, string commentId, System.Threading.CancellationToken cancellationToken = default);
@@ -401,7 +401,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteInboxComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteInboxComment200Response>> DeleteInboxCommentWithHttpInfoAsync(string postId, string accountId, string commentId, System.Threading.CancellationToken cancellationToken = default);
@@ -436,14 +436,14 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxPostComments200Response</returns>
@@ -453,14 +453,14 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxPostComments200Response)</returns>
@@ -548,7 +548,7 @@ namespace Zernio.Api
         /// List commented posts
         /// </summary>
         /// <remarks>
-        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -568,7 +568,7 @@ namespace Zernio.Api
         /// List commented posts
         /// </summary>
         /// <remarks>
-        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -964,7 +964,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <returns>DeleteInboxComment200Response</returns>
         public DeleteInboxComment200Response DeleteInboxComment(string postId, string accountId, string commentId)
         {
@@ -978,7 +978,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <returns>ApiResponse of DeleteInboxComment200Response</returns>
         public Zernio.Client.ApiResponse<DeleteInboxComment200Response> DeleteInboxCommentWithHttpInfo(string postId, string accountId, string commentId)
         {
@@ -1039,7 +1039,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteInboxComment200Response</returns>
         public async System.Threading.Tasks.Task<DeleteInboxComment200Response> DeleteInboxCommentAsync(string postId, string accountId, string commentId, System.Threading.CancellationToken cancellationToken = default)
@@ -1054,7 +1054,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="accountId"></param>
-        /// <param name="commentId"></param>
+        /// <param name="commentId">For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteInboxComment200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteInboxComment200Response>> DeleteInboxCommentWithHttpInfoAsync(string postId, string accountId, string commentId, System.Threading.CancellationToken cancellationToken = default)
@@ -1271,14 +1271,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <returns>GetInboxPostComments200Response</returns>
         public GetInboxPostComments200Response GetInboxPostComments(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default)
@@ -1288,14 +1288,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <returns>ApiResponse of GetInboxPostComments200Response</returns>
         public Zernio.Client.ApiResponse<GetInboxPostComments200Response> GetInboxPostCommentsWithHttpInfo(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default)
@@ -1363,14 +1363,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxPostComments200Response</returns>
@@ -1381,14 +1381,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
+        /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
         /// <param name="accountId"></param>
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
-        /// <param name="cursor">Pagination cursor (optional)</param>
+        /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
         /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxPostComments200Response)</returns>
@@ -1917,7 +1917,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -1937,7 +1937,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -2025,7 +2025,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
@@ -2046,7 +2046,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook and Instagram only, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. 
+        /// List commented posts Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too. There&#39;s one row per (ad, placement-with-comments): an ad that runs on both Facebook feed and Instagram feed produces up to two rows (the Page dark post and the IG media have separate comment threads), each flagged &#x60;isAd: true&#x60; with &#x60;adId&#x60; and &#x60;placement&#x60; (&#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;). Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch a row&#39;s thread from GET /v1/ads/{adId}/comments?placement&#x3D;{placement}. Ad comment counts are read with the Marketing API token (Facebook side) or the connected Instagram account&#39;s token (Instagram side); a row whose count can&#39;t be read is omitted.  Pagination walks each account&#39;s platform listing. Following &#x60;nextCursor&#x60; reaches past the first page on Facebook, Instagram, Threads, LinkedIn and YouTube, since they are the platforms that support a server-side date window; on the others the listing stops at its first page. Cursor pagination is only coherent for the default sort (&#x60;sortBy&#x3D;date&#x60;, &#x60;sortOrder&#x3D;desc&#x60;): with &#x60;sortOrder&#x3D;asc&#x60;, or with &#x60;sortBy&#x3D;comments&#x60;, the cursor filter does not match the sort order and the second page is unreliable.  &#x60;nextCursor&#x60; is opaque: pass it back verbatim, never construct or parse it, its composition may change without notice. Because each page re-queries a live window, results can still shift between requests, so dedupe by &#x60;id&#x60; on the client.  &#x60;commentCount&#x60; semantics differ by platform: YouTube&#39;s includes replies, Facebook&#39;s counts top-level comments only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>

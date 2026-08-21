@@ -407,6 +407,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnReferralReceived
+        /// </summary>
+        [Fact]
+        public void OnReferralReceivedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadReferral webhookPayloadReferral = null;
+            //instance.OnReferralReceived(webhookPayloadReferral);
+        }
+
+        /// <summary>
         /// Test OnReviewNew
         /// </summary>
         [Fact]
@@ -558,6 +569,17 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest = null;
             //instance.OnWhatsAppNumberVerificationRequired(onWhatsAppNumberVerificationRequiredRequest);
+        }
+
+        /// <summary>
+        /// Test OnWhatsAppTemplateCategoryUpdated
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppTemplateCategoryUpdatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated = null;
+            //instance.OnWhatsAppTemplateCategoryUpdated(webhookPayloadWhatsAppTemplateCategoryUpdated);
         }
 
         /// <summary>

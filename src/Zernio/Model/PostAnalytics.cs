@@ -41,14 +41,14 @@ namespace Zernio.Model
         /// <param name="likes">likes.</param>
         /// <param name="comments">comments.</param>
         /// <param name="shares">shares.</param>
-        /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest).</param>
+        /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest, X/Twitter).</param>
         /// <param name="clicks">clicks.</param>
         /// <param name="views">views.</param>
         /// <param name="follows">Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms..</param>
         /// <param name="igReelsAvgWatchTime">Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="igReelsVideoViewTotalTime">Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="videoDurationSeconds">Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio)..</param>
-        /// <param name="engagementRate">engagementRate.</param>
+        /// <param name="engagementRate">Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula..</param>
         /// <param name="lastUpdated">lastUpdated.</param>
         public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
         {
@@ -114,9 +114,9 @@ namespace Zernio.Model
         public int Shares { get; set; }
 
         /// <summary>
-        /// Number of saves/bookmarks (Instagram, Pinterest)
+        /// Number of saves/bookmarks (Instagram, Pinterest, X/Twitter)
         /// </summary>
-        /// <value>Number of saves/bookmarks (Instagram, Pinterest)</value>
+        /// <value>Number of saves/bookmarks (Instagram, Pinterest, X/Twitter)</value>
         /*
         <example>0</example>
         */
@@ -182,10 +182,11 @@ namespace Zernio.Model
         public int? VideoDurationSeconds { get; set; }
 
         /// <summary>
-        /// Gets or Sets EngagementRate
+        /// Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula.
         /// </summary>
+        /// <value>Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula.</value>
         /*
-        <example>0</example>
+        <example>6.59</example>
         */
         [DataMember(Name = "engagementRate", EmitDefaultValue = false)]
         public decimal EngagementRate { get; set; }

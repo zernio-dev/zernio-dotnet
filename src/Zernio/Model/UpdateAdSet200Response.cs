@@ -53,8 +53,9 @@ namespace Zernio.Model
         [DataMember(Name = "budgetLevel", EmitDefaultValue = false)]
         public BudgetLevelEnum? BudgetLevel { get; set; }
         /// <summary>
-        /// Defines Status
+        /// The status written to the ad set. Absent when nothing was written (see statusMessage).
         /// </summary>
+        /// <value>The status written to the ad set. Absent when nothing was written (see statusMessage).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -73,8 +74,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// The status written to the ad set. Absent when nothing was written (see statusMessage).
         /// </summary>
+        /// <value>The status written to the ad set. Absent when nothing was written (see statusMessage).</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
 
@@ -88,20 +90,24 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="budget">budget.</param>
         /// <param name="budgetLevel">budgetLevel.</param>
-        /// <param name="status">status.</param>
-        /// <param name="statusUpdated">statusUpdated.</param>
-        /// <param name="statusSkipped">statusSkipped.</param>
+        /// <param name="status">The status written to the ad set. Absent when nothing was written (see statusMessage)..</param>
+        /// <param name="statusUpdated">Number of ads whose own stored status changed alongside the ad set switch.</param>
+        /// <param name="statusSkipped">Number of ads whose own status was left as it was.</param>
+        /// <param name="statusSkippedReasons">Why each group of ads was skipped.</param>
+        /// <param name="statusMessage">Present only where the platform has no ad-set switch and no child ad was actionable; &#x60;status&#x60; is then absent because nothing was written.</param>
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">bidAmount.</param>
         /// <param name="roasAverageFloor">roasAverageFloor.</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdSet200Response(AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, StatusEnum? status = default, int statusUpdated = default, int statusSkipped = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, Object platformSpecificData = default)
+        public UpdateAdSet200Response(AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, StatusEnum? status = default, int statusUpdated = default, int statusSkipped = default, List<string> statusSkippedReasons = default, string statusMessage = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, Object platformSpecificData = default)
         {
             this.Budget = budget;
             this.BudgetLevel = budgetLevel;
             this.Status = status;
             this.StatusUpdated = statusUpdated;
             this.StatusSkipped = statusSkipped;
+            this.StatusSkippedReasons = statusSkippedReasons;
+            this.StatusMessage = statusMessage;
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
@@ -115,16 +121,32 @@ namespace Zernio.Model
         public AdBudget Budget { get; set; }
 
         /// <summary>
-        /// Gets or Sets StatusUpdated
+        /// Number of ads whose own stored status changed alongside the ad set switch
         /// </summary>
+        /// <value>Number of ads whose own stored status changed alongside the ad set switch</value>
         [DataMember(Name = "statusUpdated", EmitDefaultValue = false)]
         public int StatusUpdated { get; set; }
 
         /// <summary>
-        /// Gets or Sets StatusSkipped
+        /// Number of ads whose own status was left as it was
         /// </summary>
+        /// <value>Number of ads whose own status was left as it was</value>
         [DataMember(Name = "statusSkipped", EmitDefaultValue = false)]
         public int StatusSkipped { get; set; }
+
+        /// <summary>
+        /// Why each group of ads was skipped
+        /// </summary>
+        /// <value>Why each group of ads was skipped</value>
+        [DataMember(Name = "statusSkippedReasons", EmitDefaultValue = false)]
+        public List<string> StatusSkippedReasons { get; set; }
+
+        /// <summary>
+        /// Present only where the platform has no ad-set switch and no child ad was actionable; &#x60;status&#x60; is then absent because nothing was written
+        /// </summary>
+        /// <value>Present only where the platform has no ad-set switch and no child ad was actionable; &#x60;status&#x60; is then absent because nothing was written</value>
+        [DataMember(Name = "statusMessage", EmitDefaultValue = false)]
+        public string StatusMessage { get; set; }
 
         /// <summary>
         /// Gets or Sets BidAmount
@@ -157,6 +179,8 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  StatusUpdated: ").Append(StatusUpdated).Append("\n");
             sb.Append("  StatusSkipped: ").Append(StatusSkipped).Append("\n");
+            sb.Append("  StatusSkippedReasons: ").Append(StatusSkippedReasons).Append("\n");
+            sb.Append("  StatusMessage: ").Append(StatusMessage).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");

@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Reusable'
         }
+
+        /// <summary>
+        /// Test the property 'PendingReview'
+        /// </summary>
+        [Fact]
+        public void PendingReviewTest()
+        {
+            // TODO unit test for the property 'PendingReview'
+        }
     }
 }

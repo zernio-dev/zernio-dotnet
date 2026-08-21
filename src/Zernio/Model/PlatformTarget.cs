@@ -61,9 +61,9 @@ namespace Zernio.Model
         [DataMember(Name = "trialGraduationStrategy", EmitDefaultValue = false)]
         public TrialGraduationStrategyEnum? TrialGraduationStrategy { get; set; }
         /// <summary>
-        /// Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown
+        /// Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown
         /// </summary>
-        /// <value>Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown</value>
+        /// <value>Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ErrorCategoryEnum
         {
@@ -104,23 +104,35 @@ namespace Zernio.Model
             PlatformError = 6,
 
             /// <summary>
+            /// Enum PlatformRateLimit for value: platform_rate_limit
+            /// </summary>
+            [EnumMember(Value = "platform_rate_limit")]
+            PlatformRateLimit = 7,
+
+            /// <summary>
+            /// Enum QuotaExhausted for value: quota_exhausted
+            /// </summary>
+            [EnumMember(Value = "quota_exhausted")]
+            QuotaExhausted = 8,
+
+            /// <summary>
             /// Enum SystemError for value: system_error
             /// </summary>
             [EnumMember(Value = "system_error")]
-            SystemError = 7,
+            SystemError = 9,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 8
+            Unknown = 10
         }
 
 
         /// <summary>
-        /// Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown
+        /// Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown
         /// </summary>
-        /// <value>Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown</value>
+        /// <value>Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown</value>
         [DataMember(Name = "errorCategory", EmitDefaultValue = false)]
         public ErrorCategoryEnum? ErrorCategory { get; set; }
         /// <summary>
@@ -167,13 +179,13 @@ namespace Zernio.Model
         /// <param name="platformSpecificData">platformSpecificData.</param>
         /// <param name="status">Platform-specific status: pending, publishing, published, failed.</param>
         /// <param name="platformPostId">The native post ID on the platform (populated after successful publish).</param>
-        /// <param name="platformPostUrl">Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time..</param>
+        /// <param name="platformPostUrl">Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads); the TikTok reconcile cron backfills it later..</param>
         /// <param name="publishedAt">Timestamp when the post was published to this platform.</param>
         /// <param name="removedFromPlatformAt">Set when a post that was successfully published later disappears from the platform (deleted on-platform or taken down by the platform). status stays \&quot;published\&quot; (it reflects the publish outcome); poll this field to detect post-publish removals. Absent while the post is live, and cleared if the post reappears. Detection runs with the analytics sync, so expect up to a few hours of lag..</param>
         /// <param name="isTrialReel">Present and true only when this Instagram reel was launched as a Trial through Zernio (created with platformSpecificData.trialParams). Use it to segment trial reels in analytics. Note: Instagram&#39;s Graph API exposes no readable trial field, so this reflects creation-time intent only. It indicates the reel STARTED as a trial, not whether or when it graduated..</param>
         /// <param name="trialGraduationStrategy">Graduation strategy the trial reel was launched with. Present only when isTrialReel is true..</param>
         /// <param name="errorMessage">Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed..</param>
-        /// <param name="errorCategory">Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown.</param>
+        /// <param name="errorCategory">Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown.</param>
         /// <param name="errorSource">Who caused the error: user (fix content/reconnect), platform (outage/API change), system (Zernio issue, rare).</param>
         public PlatformTarget(string platform = default, PlatformTargetAccountId accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, PlatformTargetPlatformSpecificData platformSpecificData = default, string status = default, string platformPostId = default, string platformPostUrl = default, DateTime publishedAt = default, DateTime? removedFromPlatformAt = default, bool isTrialReel = default, TrialGraduationStrategyEnum? trialGraduationStrategy = default, string errorMessage = default, ErrorCategoryEnum? errorCategory = default, ErrorSourceEnum? errorSource = default)
         {
@@ -258,13 +270,13 @@ namespace Zernio.Model
         public string PlatformPostId { get; set; }
 
         /// <summary>
-        /// Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time.
+        /// Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads); the TikTok reconcile cron backfills it later.
         /// </summary>
-        /// <value>Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time.</value>
+        /// <value>Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads); the TikTok reconcile cron backfills it later.</value>
         /*
         <example>https://twitter.com/acmecorp/status/1234567890123456789</example>
         */
-        [DataMember(Name = "platformPostUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "platformPostUrl", EmitDefaultValue = true)]
         public string PlatformPostUrl { get; set; }
 
         /// <summary>

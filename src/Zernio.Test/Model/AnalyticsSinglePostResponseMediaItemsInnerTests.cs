@@ -90,5 +90,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AltText'
         }
+
+        /// <summary>
+        /// Test the property 'MediaStatus'
+        /// </summary>
+        [Fact]
+        public void MediaStatusTest()
+        {
+            // TODO unit test for the property 'MediaStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'UnavailableReason'
+        /// </summary>
+        [Fact]
+        public void UnavailableReasonTest()
+        {
+            // TODO unit test for the property 'UnavailableReason'
+        }
     }
 }

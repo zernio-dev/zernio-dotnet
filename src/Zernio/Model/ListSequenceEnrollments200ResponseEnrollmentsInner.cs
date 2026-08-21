@@ -85,7 +85,7 @@ namespace Zernio.Model
         /// <param name="stepsSent">stepsSent.</param>
         /// <param name="lastStepSentAt">lastStepSentAt.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListSequenceEnrollments200ResponseEnrollmentsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, int currentStepIndex = default, StatusEnum? status = default, string exitReason = default, DateTime nextStepAt = default, int stepsSent = default, DateTime lastStepSentAt = default, DateTime createdAt = default)
+        public ListSequenceEnrollments200ResponseEnrollmentsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, int currentStepIndex = default, StatusEnum? status = default, string exitReason = default, DateTime? nextStepAt = default, int stepsSent = default, DateTime? lastStepSentAt = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.ContactId = contactId;
@@ -140,14 +140,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ExitReason
         /// </summary>
-        [DataMember(Name = "exitReason", EmitDefaultValue = false)]
+        [DataMember(Name = "exitReason", EmitDefaultValue = true)]
         public string ExitReason { get; set; }
 
         /// <summary>
         /// Gets or Sets NextStepAt
         /// </summary>
-        [DataMember(Name = "nextStepAt", EmitDefaultValue = false)]
-        public DateTime NextStepAt { get; set; }
+        [DataMember(Name = "nextStepAt", EmitDefaultValue = true)]
+        public DateTime? NextStepAt { get; set; }
 
         /// <summary>
         /// Gets or Sets StepsSent
@@ -158,8 +158,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets LastStepSentAt
         /// </summary>
-        [DataMember(Name = "lastStepSentAt", EmitDefaultValue = false)]
-        public DateTime LastStepSentAt { get; set; }
+        [DataMember(Name = "lastStepSentAt", EmitDefaultValue = true)]
+        public DateTime? LastStepSentAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt

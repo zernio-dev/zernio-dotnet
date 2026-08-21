@@ -100,7 +100,7 @@ namespace Zernio.Model
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
         /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
-        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
+        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsListResponsePostsInnerMediaItemsInner> mediaItems = default)
         {
             this.Id = id;
             this.LatePostId = latePostId;
@@ -203,7 +203,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>All media items for this post. Carousel posts contain one entry per slide.</value>
         [DataMember(Name = "mediaItems", EmitDefaultValue = false)]
-        public List<AnalyticsSinglePostResponseMediaItemsInner> MediaItems { get; set; }
+        public List<AnalyticsListResponsePostsInnerMediaItemsInner> MediaItems { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

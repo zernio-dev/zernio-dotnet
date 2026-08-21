@@ -148,6 +148,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ConnectShopifyWithToken
+        /// </summary>
+        [Fact]
+        public void ConnectShopifyWithTokenTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest = null;
+            //var response = instance.ConnectShopifyWithToken(connectShopifyWithTokenRequest);
+            //Assert.IsType<ConnectShopifyWithToken200Response>(response);
+        }
+
+        /// <summary>
         /// Test ConnectWhatsAppCredentials
         /// </summary>
         [Fact]
@@ -184,7 +196,8 @@ namespace Zernio.Test.Api
             //string? redirectUrl = null;
             //bool? headless = null;
             //string? loginMethod = null;
-            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless, loginMethod);
+            //string? onboarding = null;
+            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, onboarding);
             //Assert.IsType<GetConnectUrl200Response>(response);
         }
 
@@ -275,6 +288,20 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.GetRedditSubreddits(accountId);
             //Assert.IsType<GetRedditSubreddits200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetShopifyConnectUrl
+        /// </summary>
+        [Fact]
+        public void GetShopifyConnectUrlTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string profileId = null;
+            //string shop = null;
+            //string? redirectUrl = null;
+            //var response = instance.GetShopifyConnectUrl(profileId, shop, redirectUrl);
+            //Assert.IsType<GetConnectUrl200Response>(response);
         }
 
         /// <summary>

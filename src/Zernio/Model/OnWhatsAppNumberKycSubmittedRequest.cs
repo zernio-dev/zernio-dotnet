@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="varEvent">varEvent.</param>
-        /// <param name="timestamp">timestamp.</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt..</param>
         /// <param name="number">number.</param>
         public OnWhatsAppNumberKycSubmittedRequest(string id = default, EventEnum? varEvent = default, DateTime timestamp = default, OnWhatsAppNumberDeclinedRequestNumber number = default)
         {
@@ -86,8 +86,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", EmitDefaultValue = false)]
         public DateTime Timestamp { get; set; }
 

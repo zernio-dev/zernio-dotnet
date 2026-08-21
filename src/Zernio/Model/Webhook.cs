@@ -214,106 +214,118 @@ namespace Zernio.Model
             ReactionReceived = 29,
 
             /// <summary>
+            /// Enum ReferralReceived for value: referral.received
+            /// </summary>
+            [EnumMember(Value = "referral.received")]
+            ReferralReceived = 30,
+
+            /// <summary>
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 30,
+            CommentReceived = 31,
 
             /// <summary>
             /// Enum ReviewNew for value: review.new
             /// </summary>
             [EnumMember(Value = "review.new")]
-            ReviewNew = 31,
+            ReviewNew = 32,
 
             /// <summary>
             /// Enum ReviewUpdated for value: review.updated
             /// </summary>
             [EnumMember(Value = "review.updated")]
-            ReviewUpdated = 32,
+            ReviewUpdated = 33,
 
             /// <summary>
             /// Enum LeadReceived for value: lead.received
             /// </summary>
             [EnumMember(Value = "lead.received")]
-            LeadReceived = 33,
+            LeadReceived = 34,
 
             /// <summary>
             /// Enum AdStatusChanged for value: ad.status_changed
             /// </summary>
             [EnumMember(Value = "ad.status_changed")]
-            AdStatusChanged = 34,
+            AdStatusChanged = 35,
 
             /// <summary>
             /// Enum WhatsappTemplateStatusUpdated for value: whatsapp.template.status_updated
             /// </summary>
             [EnumMember(Value = "whatsapp.template.status_updated")]
-            WhatsappTemplateStatusUpdated = 35,
+            WhatsappTemplateStatusUpdated = 36,
+
+            /// <summary>
+            /// Enum WhatsappTemplateCategoryUpdated for value: whatsapp.template.category_updated
+            /// </summary>
+            [EnumMember(Value = "whatsapp.template.category_updated")]
+            WhatsappTemplateCategoryUpdated = 37,
 
             /// <summary>
             /// Enum WhatsappAutomaticEvent for value: whatsapp.automatic_event
             /// </summary>
             [EnumMember(Value = "whatsapp.automatic_event")]
-            WhatsappAutomaticEvent = 36,
+            WhatsappAutomaticEvent = 38,
 
             /// <summary>
             /// Enum WhatsappNumberActivated for value: whatsapp.number.activated
             /// </summary>
             [EnumMember(Value = "whatsapp.number.activated")]
-            WhatsappNumberActivated = 37,
+            WhatsappNumberActivated = 39,
 
             /// <summary>
             /// Enum WhatsappNumberDeclined for value: whatsapp.number.declined
             /// </summary>
             [EnumMember(Value = "whatsapp.number.declined")]
-            WhatsappNumberDeclined = 38,
+            WhatsappNumberDeclined = 40,
 
             /// <summary>
             /// Enum WhatsappNumberActionRequired for value: whatsapp.number.action_required
             /// </summary>
             [EnumMember(Value = "whatsapp.number.action_required")]
-            WhatsappNumberActionRequired = 39,
+            WhatsappNumberActionRequired = 41,
 
             /// <summary>
             /// Enum WhatsappNumberVerificationRequired for value: whatsapp.number.verification_required
             /// </summary>
             [EnumMember(Value = "whatsapp.number.verification_required")]
-            WhatsappNumberVerificationRequired = 40,
+            WhatsappNumberVerificationRequired = 42,
 
             /// <summary>
             /// Enum WhatsappNumberSuspended for value: whatsapp.number.suspended
             /// </summary>
             [EnumMember(Value = "whatsapp.number.suspended")]
-            WhatsappNumberSuspended = 41,
+            WhatsappNumberSuspended = 43,
 
             /// <summary>
             /// Enum WhatsappNumberReactivated for value: whatsapp.number.reactivated
             /// </summary>
             [EnumMember(Value = "whatsapp.number.reactivated")]
-            WhatsappNumberReactivated = 42,
+            WhatsappNumberReactivated = 44,
 
             /// <summary>
             /// Enum WhatsappNumberReleased for value: whatsapp.number.released
             /// </summary>
             [EnumMember(Value = "whatsapp.number.released")]
-            WhatsappNumberReleased = 43,
+            WhatsappNumberReleased = 45,
 
             /// <summary>
             /// Enum WhatsappNumberKycSubmitted for value: whatsapp.number.kyc_submitted
             /// </summary>
             [EnumMember(Value = "whatsapp.number.kyc_submitted")]
-            WhatsappNumberKycSubmitted = 44,
+            WhatsappNumberKycSubmitted = 46,
 
             /// <summary>
             /// Enum VerificationApproved for value: verification.approved
             /// </summary>
             [EnumMember(Value = "verification.approved")]
-            VerificationApproved = 45,
+            VerificationApproved = 47,
 
             /// <summary>
             /// Enum VerificationFailed for value: verification.failed
             /// </summary>
             [EnumMember(Value = "verification.failed")]
-            VerificationFailed = 46
+            VerificationFailed = 48
         }
 
         /// <summary>

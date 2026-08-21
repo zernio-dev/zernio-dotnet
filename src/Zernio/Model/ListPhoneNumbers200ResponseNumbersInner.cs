@@ -119,8 +119,9 @@ namespace Zernio.Model
         /// <param name="endUserFirstName">endUserFirstName.</param>
         /// <param name="endUserLastName">endUserLastName.</param>
         /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
+        /// <param name="callingEnabled">Whether WhatsApp Business Calling is enabled on this number (manage via /v1/whatsapp/phone-numbers/{id}/calling)..</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, string registrantName = default, string telnyxOrderId = default, int monthlyCents = default, bool hostedByZernio = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime createdAt = default)
+        public ListPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, string registrantName = default, string telnyxOrderId = default, int monthlyCents = default, bool hostedByZernio = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, bool callingEnabled = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
@@ -138,6 +139,7 @@ namespace Zernio.Model
             this.EndUserFirstName = endUserFirstName;
             this.EndUserLastName = endUserLastName;
             this.RegulatoryDeclineReason = regulatoryDeclineReason;
+            this.CallingEnabled = callingEnabled;
             this.CreatedAt = createdAt;
         }
 
@@ -238,6 +240,13 @@ namespace Zernio.Model
         public string RegulatoryDeclineReason { get; set; }
 
         /// <summary>
+        /// Whether WhatsApp Business Calling is enabled on this number (manage via /v1/whatsapp/phone-numbers/{id}/calling).
+        /// </summary>
+        /// <value>Whether WhatsApp Business Calling is enabled on this number (manage via /v1/whatsapp/phone-numbers/{id}/calling).</value>
+        [DataMember(Name = "callingEnabled", EmitDefaultValue = true)]
+        public bool CallingEnabled { get; set; }
+
+        /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name = "createdAt", EmitDefaultValue = false)]
@@ -267,6 +276,7 @@ namespace Zernio.Model
             sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
             sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
             sb.Append("  RegulatoryDeclineReason: ").Append(RegulatoryDeclineReason).Append("\n");
+            sb.Append("  CallingEnabled: ").Append(CallingEnabled).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -218,6 +218,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CampaignStatus'
+        /// </summary>
+        [Fact]
+        public void CampaignStatusTest()
+        {
+            // TODO unit test for the property 'CampaignStatus'
+        }
+
+        /// <summary>
         /// Test the property 'BudgetLevel'
         /// </summary>
         [Fact]
@@ -791,6 +800,15 @@ namespace Zernio.Test.Model
         public void IdentityTypeTest()
         {
             // TODO unit test for the property 'IdentityType'
+        }
+
+        /// <summary>
+        /// Test the property 'SmartPlus'
+        /// </summary>
+        [Fact]
+        public void SmartPlusTest()
+        {
+            // TODO unit test for the property 'SmartPlus'
         }
 
         /// <summary>

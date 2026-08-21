@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExtendedAddress'
+        /// </summary>
+        [Fact]
+        public void ExtendedAddressTest()
+        {
+            // TODO unit test for the property 'ExtendedAddress'
+        }
+
+        /// <summary>
         /// Test the property 'Locality'
         /// </summary>
         [Fact]

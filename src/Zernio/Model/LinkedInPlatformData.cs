@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers. 
+    /// Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers. Polls are supported via the poll object: 2-4 options, cannot be combined with media or reshareUrl, cannot be edited after publishing, and API-created polls are non-sponsored only. 
     /// </summary>
     [DataContract(Name = "LinkedInPlatformData")]
     public partial class LinkedInPlatformData : IValidatableObject
@@ -40,9 +40,10 @@ namespace Zernio.Model
         /// <param name="organizationUrn">Target LinkedIn Organization URN (e.g. \&quot;urn:li:organization:123456789\&quot;). If omitted, uses the default org. Use GET /v1/accounts/{id}/linkedin-organizations to list orgs..</param>
         /// <param name="firstComment">Optional first comment to add after the post is created.</param>
         /// <param name="disableLinkPreview">Set to true to disable automatic link previews for URLs in the post content (default is false).</param>
-        /// <param name="reshareUrl">LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. The published post becomes a quote-reshare: your content is shown as the commentary and the original post is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Mutually exclusive with media. Works on personal profiles and organization pages..</param>
+        /// <param name="reshareUrl">LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. With content, the published post is a quote-reshare: your text is the commentary and the original is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Leave content empty (and omit customContent) to publish a plain repost with no text, LinkedIn&#39;s one-click \&quot;Repost\&quot;. Mutually exclusive with media. Works on personal profiles and organization pages..</param>
         /// <param name="geoRestriction">geoRestriction.</param>
-        public LinkedInPlatformData(string documentTitle = default, string organizationUrn = default, string firstComment = default, bool disableLinkPreview = default, string reshareUrl = default, GeoRestriction geoRestriction = default)
+        /// <param name="poll">poll.</param>
+        public LinkedInPlatformData(string documentTitle = default, string organizationUrn = default, string firstComment = default, bool disableLinkPreview = default, string reshareUrl = default, GeoRestriction geoRestriction = default, LinkedInPlatformDataPoll poll = default)
         {
             this.DocumentTitle = documentTitle;
             this.OrganizationUrn = organizationUrn;
@@ -50,6 +51,7 @@ namespace Zernio.Model
             this.DisableLinkPreview = disableLinkPreview;
             this.ReshareUrl = reshareUrl;
             this.GeoRestriction = geoRestriction;
+            this.Poll = poll;
         }
 
         /// <summary>
@@ -81,9 +83,9 @@ namespace Zernio.Model
         public bool DisableLinkPreview { get; set; }
 
         /// <summary>
-        /// LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. The published post becomes a quote-reshare: your content is shown as the commentary and the original post is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Mutually exclusive with media. Works on personal profiles and organization pages.
+        /// LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. With content, the published post is a quote-reshare: your text is the commentary and the original is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Leave content empty (and omit customContent) to publish a plain repost with no text, LinkedIn&#39;s one-click \&quot;Repost\&quot;. Mutually exclusive with media. Works on personal profiles and organization pages.
         /// </summary>
-        /// <value>LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. The published post becomes a quote-reshare: your content is shown as the commentary and the original post is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Mutually exclusive with media. Works on personal profiles and organization pages.</value>
+        /// <value>LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. With content, the published post is a quote-reshare: your text is the commentary and the original is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Leave content empty (and omit customContent) to publish a plain repost with no text, LinkedIn&#39;s one-click \&quot;Repost\&quot;. Mutually exclusive with media. Works on personal profiles and organization pages.</value>
         [DataMember(Name = "reshareUrl", EmitDefaultValue = false)]
         public string ReshareUrl { get; set; }
 
@@ -92,6 +94,12 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "geoRestriction", EmitDefaultValue = false)]
         public GeoRestriction GeoRestriction { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Poll
+        /// </summary>
+        [DataMember(Name = "poll", EmitDefaultValue = false)]
+        public LinkedInPlatformDataPoll Poll { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,6 +115,7 @@ namespace Zernio.Model
             sb.Append("  DisableLinkPreview: ").Append(DisableLinkPreview).Append("\n");
             sb.Append("  ReshareUrl: ").Append(ReshareUrl).Append("\n");
             sb.Append("  GeoRestriction: ").Append(GeoRestriction).Append("\n");
+            sb.Append("  Poll: ").Append(Poll).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

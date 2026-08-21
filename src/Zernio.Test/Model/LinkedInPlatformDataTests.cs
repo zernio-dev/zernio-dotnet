@@ -108,5 +108,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'GeoRestriction'
         }
+
+        /// <summary>
+        /// Test the property 'Poll'
+        /// </summary>
+        [Fact]
+        public void PollTest()
+        {
+            // TODO unit test for the property 'Poll'
+        }
     }
 }

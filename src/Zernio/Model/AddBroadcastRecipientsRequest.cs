@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AddBroadcastRecipientsRequest" /> class.
         /// </summary>
-        /// <param name="contactIds">Specific contact IDs to add.</param>
+        /// <param name="contactIds">Specific contact IDs to add. Zernio contact ids (24-character hex), as returned by the list-contacts endpoint. A platform identifier such as a WhatsApp wa_id is rejected with 400; use phones for raw numbers..</param>
         /// <param name="phones">Raw phone numbers (auto-creates contacts). Useful for WhatsApp/Telegram manual entry.</param>
         /// <param name="useSegment">Auto-populate from broadcast segment filters.</param>
         public AddBroadcastRecipientsRequest(List<string> contactIds = default, List<string> phones = default, bool useSegment = default)
@@ -47,9 +47,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Specific contact IDs to add
+        /// Specific contact IDs to add. Zernio contact ids (24-character hex), as returned by the list-contacts endpoint. A platform identifier such as a WhatsApp wa_id is rejected with 400; use phones for raw numbers.
         /// </summary>
-        /// <value>Specific contact IDs to add</value>
+        /// <value>Specific contact IDs to add. Zernio contact ids (24-character hex), as returned by the list-contacts endpoint. A platform identifier such as a WhatsApp wa_id is rejected with 400; use phones for raw numbers.</value>
         [DataMember(Name = "contactIds", EmitDefaultValue = false)]
         public List<string> ContactIds { get; set; }
 

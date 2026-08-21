@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published (url required) and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem. 
+    /// A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem. 
     /// </summary>
     [DataContract(Name = "ExternalPostMediaItem")]
     public partial class ExternalPostMediaItem : IValidatableObject
@@ -59,6 +59,54 @@ namespace Zernio.Model
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
         /// <summary>
+        /// unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field).
+        /// </summary>
+        /// <value>unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MediaStatusEnum
+        {
+            /// <summary>
+            /// Enum Available for value: available
+            /// </summary>
+            [EnumMember(Value = "available")]
+            Available = 1,
+
+            /// <summary>
+            /// Enum Unavailable for value: unavailable
+            /// </summary>
+            [EnumMember(Value = "unavailable")]
+            Unavailable = 2
+        }
+
+
+        /// <summary>
+        /// unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field).
+        /// </summary>
+        /// <value>unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field).</value>
+        [DataMember(Name = "mediaStatus", EmitDefaultValue = false)]
+        public MediaStatusEnum? MediaStatus { get; set; }
+        /// <summary>
+        /// Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.
+        /// </summary>
+        /// <value>Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum UnavailableReasonEnum
+        {
+            /// <summary>
+            /// Enum PlatformWithheld for value: platform_withheld
+            /// </summary>
+            [EnumMember(Value = "platform_withheld")]
+            PlatformWithheld = 1
+        }
+
+
+        /// <summary>
+        /// Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.
+        /// </summary>
+        /// <value>Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help.</value>
+        [DataMember(Name = "unavailableReason", EmitDefaultValue = false)]
+        public UnavailableReasonEnum? UnavailableReason { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ExternalPostMediaItem" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -67,9 +115,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ExternalPostMediaItem" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="url">url (required).</param>
-        /// <param name="thumbnail">thumbnail.</param>
-        public ExternalPostMediaItem(TypeEnum type = default, string url = default, string thumbnail = default)
+        /// <param name="url">&#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable. For LinkedIn videos where the platform returns no file, url falls back to the cover image and the item carries mediaStatus: unavailable.&#39; (required).</param>
+        /// <param name="thumbnail">Cover image. Still present when url is null..</param>
+        /// <param name="mediaStatus">unavailable means the media file could not be retrieved (url is null or, for LinkedIn videos, a cover image standing in for the file). available or absent means the file is available at url (older synced items omit the field)..</param>
+        /// <param name="unavailableReason">Why the file is missing. platform_withheld means the platform declined to return it and retrying will not help..</param>
+        public ExternalPostMediaItem(TypeEnum type = default, string url = default, string thumbnail = default, MediaStatusEnum? mediaStatus = default, UnavailableReasonEnum? unavailableReason = default)
         {
             this.Type = type;
             // to ensure "url" is required (not null)
@@ -79,17 +129,21 @@ namespace Zernio.Model
             }
             this.Url = url;
             this.Thumbnail = thumbnail;
+            this.MediaStatus = mediaStatus;
+            this.UnavailableReason = unavailableReason;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// &#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable. For LinkedIn videos where the platform returns no file, url falls back to the cover image and the item carries mediaStatus: unavailable.&#39;
         /// </summary>
+        /// <value>&#39;Direct URL to the media file. Null when the platform withholds it: check mediaStatus before downloading. Instagram omits the video file for Reels it flags as containing copyrighted material (its docs name audio as the usual cause), so type stays \&quot;video\&quot; while the file is permanently unreachable. For LinkedIn videos where the platform returns no file, url falls back to the cover image and the item carries mediaStatus: unavailable.&#39;</value>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
         /// <summary>
-        /// Gets or Sets Thumbnail
+        /// Cover image. Still present when url is null.
         /// </summary>
+        /// <value>Cover image. Still present when url is null.</value>
         [DataMember(Name = "thumbnail", EmitDefaultValue = false)]
         public string Thumbnail { get; set; }
 
@@ -104,6 +158,8 @@ namespace Zernio.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Thumbnail: ").Append(Thumbnail).Append("\n");
+            sb.Append("  MediaStatus: ").Append(MediaStatus).Append("\n");
+            sb.Append("  UnavailableReason: ").Append(UnavailableReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

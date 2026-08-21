@@ -39,8 +39,8 @@ namespace Zernio.Model
         /// <param name="elapsedVideoTimeRatio">Position in the video as a ratio (0.01-1.0, exclusive end of each interval).</param>
         /// <param name="audienceWatchRatio">Absolute share of viewers watching at this point. Can exceed 1 (rewinds/looping, common on Shorts)..</param>
         /// <param name="relativeRetentionPerformance">Retention vs videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best).</param>
-        /// <param name="startedWatching">Viewers who started watching in this segment.</param>
-        /// <param name="stoppedWatching">Viewers who stopped watching in this segment.</param>
+        /// <param name="startedWatching">Viewers who started watching in this segment. 0 when YouTube has no segment-level data for the video..</param>
+        /// <param name="stoppedWatching">Viewers who stopped watching in this segment. 0 when YouTube has no segment-level data for the video..</param>
         /// <param name="totalSegmentImpressions">Total views of this segment, including rewatches.</param>
         public YouTubeVideoRetentionResponseRetentionCurveInner(decimal elapsedVideoTimeRatio = default, decimal audienceWatchRatio = default, decimal relativeRetentionPerformance = default, int startedWatching = default, int stoppedWatching = default, int totalSegmentImpressions = default)
         {
@@ -74,16 +74,16 @@ namespace Zernio.Model
         public decimal RelativeRetentionPerformance { get; set; }
 
         /// <summary>
-        /// Viewers who started watching in this segment
+        /// Viewers who started watching in this segment. 0 when YouTube has no segment-level data for the video.
         /// </summary>
-        /// <value>Viewers who started watching in this segment</value>
+        /// <value>Viewers who started watching in this segment. 0 when YouTube has no segment-level data for the video.</value>
         [DataMember(Name = "startedWatching", EmitDefaultValue = false)]
         public int StartedWatching { get; set; }
 
         /// <summary>
-        /// Viewers who stopped watching in this segment
+        /// Viewers who stopped watching in this segment. 0 when YouTube has no segment-level data for the video.
         /// </summary>
-        /// <value>Viewers who stopped watching in this segment</value>
+        /// <value>Viewers who stopped watching in this segment. 0 when YouTube has no segment-level data for the video.</value>
         [DataMember(Name = "stoppedWatching", EmitDefaultValue = false)]
         public int StoppedWatching { get; set; }
 

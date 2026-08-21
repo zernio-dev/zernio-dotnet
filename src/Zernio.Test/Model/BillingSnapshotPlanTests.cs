@@ -72,5 +72,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'IsUsageBased'
         }
+
+        /// <summary>
+        /// Test the property 'IsPaid'
+        /// </summary>
+        [Fact]
+        public void IsPaidTest()
+        {
+            // TODO unit test for the property 'IsPaid'
+        }
     }
 }

@@ -65,7 +65,7 @@ namespace Zernio.Model
         /// <param name="comment">comment (required).</param>
         /// <param name="post">post (required).</param>
         /// <param name="account">account (required).</param>
-        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
         public WebhookPayloadComment(string id = default, EventEnum varEvent = default, WebhookPayloadCommentComment comment = default, WebhookPayloadCommentPost post = default, WebhookPayloadCommentAccount account = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
@@ -122,8 +122,9 @@ namespace Zernio.Model
         public WebhookPayloadCommentAccount Account { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Timestamp { get; set; }
 

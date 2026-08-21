@@ -45,8 +45,9 @@ namespace Zernio.Model
         /// <param name="username">username.</param>
         /// <param name="name">name.</param>
         /// <param name="picture">picture.</param>
+        /// <param name="isOwnAccount">True when this comment was authored by the connected account itself (Meta re-delivers the account&#39;s own replies as comments events). Populated on the Instagram and Facebook realtime webhooks only; absent means not evaluated, never \&quot;not the account\&quot;..</param>
         /// <param name="instagramProfile">instagramProfile.</param>
-        public WebhookPayloadCommentCommentAuthor(string id = default, string username = default, string name = default, string picture = default, WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile = default)
+        public WebhookPayloadCommentCommentAuthor(string id = default, string username = default, string name = default, string picture = default, bool isOwnAccount = default, WebhookPayloadCommentCommentAuthorInstagramProfile instagramProfile = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -57,6 +58,7 @@ namespace Zernio.Model
             this.Username = username;
             this.Name = name;
             this.Picture = picture;
+            this.IsOwnAccount = isOwnAccount;
             this.InstagramProfile = instagramProfile;
         }
 
@@ -86,6 +88,13 @@ namespace Zernio.Model
         public string Picture { get; set; }
 
         /// <summary>
+        /// True when this comment was authored by the connected account itself (Meta re-delivers the account&#39;s own replies as comments events). Populated on the Instagram and Facebook realtime webhooks only; absent means not evaluated, never \&quot;not the account\&quot;.
+        /// </summary>
+        /// <value>True when this comment was authored by the connected account itself (Meta re-delivers the account&#39;s own replies as comments events). Populated on the Instagram and Facebook realtime webhooks only; absent means not evaluated, never \&quot;not the account\&quot;.</value>
+        [DataMember(Name = "isOwnAccount", EmitDefaultValue = true)]
+        public bool IsOwnAccount { get; set; }
+
+        /// <summary>
         /// Gets or Sets InstagramProfile
         /// </summary>
         [DataMember(Name = "instagramProfile", EmitDefaultValue = false)]
@@ -103,6 +112,7 @@ namespace Zernio.Model
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Picture: ").Append(Picture).Append("\n");
+            sb.Append("  IsOwnAccount: ").Append(IsOwnAccount).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

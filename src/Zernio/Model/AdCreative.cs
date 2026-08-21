@@ -40,6 +40,7 @@ namespace Zernio.Model
         /// <param name="imageUrl">Alternative image URL.</param>
         /// <param name="videoId">Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token..</param>
         /// <param name="videoUrl">Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads..</param>
+        /// <param name="creativeId">Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create..</param>
         /// <param name="objectType">Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews — when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available..</param>
         /// <param name="objectStoryId">Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead..</param>
         /// <param name="effectiveObjectStoryId">Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it..</param>
@@ -57,12 +58,13 @@ namespace Zernio.Model
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
             this.ThumbnailUrl = thumbnailUrl;
             this.ImageUrl = imageUrl;
             this.VideoId = videoId;
             this.VideoUrl = videoUrl;
+            this.CreativeId = creativeId;
             this.ObjectType = objectType;
             this.ObjectStoryId = objectStoryId;
             this.EffectiveObjectStoryId = effectiveObjectStoryId;
@@ -109,6 +111,13 @@ namespace Zernio.Model
         /// <value>Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads.</value>
         [DataMember(Name = "videoUrl", EmitDefaultValue = true)]
         public string VideoUrl { get; set; }
+
+        /// <summary>
+        /// Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create.
+        /// </summary>
+        /// <value>Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create.</value>
+        [DataMember(Name = "creativeId", EmitDefaultValue = true)]
+        public string CreativeId { get; set; }
 
         /// <summary>
         /// Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews — when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available.
@@ -241,6 +250,7 @@ namespace Zernio.Model
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoId: ").Append(VideoId).Append("\n");
             sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
+            sb.Append("  CreativeId: ").Append(CreativeId).Append("\n");
             sb.Append("  ObjectType: ").Append(ObjectType).Append("\n");
             sb.Append("  ObjectStoryId: ").Append(ObjectStoryId).Append("\n");
             sb.Append("  EffectiveObjectStoryId: ").Append(EffectiveObjectStoryId).Append("\n");

@@ -41,13 +41,15 @@ namespace Zernio.Model
         /// <param name="displayName">displayName.</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="connectedAt">connectedAt.</param>
-        public ListPhoneNumbers200ResponseConnectedInner(string accountId = default, string phoneNumber = default, string displayName = default, string profileId = default, DateTime? connectedAt = default)
+        /// <param name="callingEnabled">Whether WhatsApp Business Calling is enabled on this number..</param>
+        public ListPhoneNumbers200ResponseConnectedInner(string accountId = default, string phoneNumber = default, string displayName = default, string profileId = default, DateTime? connectedAt = default, bool callingEnabled = default)
         {
             this.AccountId = accountId;
             this.PhoneNumber = phoneNumber;
             this.DisplayName = displayName;
             this.ProfileId = profileId;
             this.ConnectedAt = connectedAt;
+            this.CallingEnabled = callingEnabled;
         }
 
         /// <summary>
@@ -81,6 +83,13 @@ namespace Zernio.Model
         public DateTime? ConnectedAt { get; set; }
 
         /// <summary>
+        /// Whether WhatsApp Business Calling is enabled on this number.
+        /// </summary>
+        /// <value>Whether WhatsApp Business Calling is enabled on this number.</value>
+        [DataMember(Name = "callingEnabled", EmitDefaultValue = true)]
+        public bool CallingEnabled { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -93,6 +102,7 @@ namespace Zernio.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ConnectedAt: ").Append(ConnectedAt).Append("\n");
+            sb.Append("  CallingEnabled: ").Append(CallingEnabled).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

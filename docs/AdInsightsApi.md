@@ -11,6 +11,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdInsightsReport**](AdInsightsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
 | [**GetAdsSearchTerms**](AdInsightsApi.md#getadssearchterms) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**GetCampaignAnalytics**](AdInsightsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
+| [**ListLocalServicesLeadConversations**](AdInsightsApi.md#listlocalservicesleadconversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead |
+| [**ListLocalServicesLeads**](AdInsightsApi.md#listlocalservicesleads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
 | [**QueryAdInsights**](AdInsightsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query |
 
 <a id="createadinsightsreport"></a>
@@ -321,7 +323,7 @@ catch (ApiException e)
 
 <a id="getadanalytics"></a>
 # **GetAdAnalytics**
-> GetAdAnalytics200Response GetAdAnalytics (string adId, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
+> AdAnalyticsResponse GetAdAnalytics (string adId, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
 
 Get ad analytics
 
@@ -359,7 +361,7 @@ namespace Example
             try
             {
                 // Get ad analytics
-                GetAdAnalytics200Response result = apiInstance.GetAdAnalytics(adId, fromDate, toDate, breakdowns);
+                AdAnalyticsResponse result = apiInstance.GetAdAnalytics(adId, fromDate, toDate, breakdowns);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -380,7 +382,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get ad analytics
-    ApiResponse<GetAdAnalytics200Response> response = apiInstance.GetAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
+    ApiResponse<AdAnalyticsResponse> response = apiInstance.GetAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -404,7 +406,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)
+[**AdAnalyticsResponse**](AdAnalyticsResponse.md)
 
 ### Authorization
 
@@ -420,7 +422,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
-| **202** | Part of the requested date range predates the ingested history; a background backfill job has been queued. The body has the same shape as the 200 response, carries the currently-available data, and includes &#x60;backfillPending: true&#x60;. A &#x60;Retry-After&#x60; header carries the recommended poll interval in seconds. Allow the job a short time to run (typically 1-3 minutes) and submit the request again; once ingestion completes the same request returns 200 with the full range. |  -  |
+| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -652,7 +654,7 @@ catch (ApiException e)
 
 <a id="getcampaignanalytics"></a>
 # **GetCampaignAnalytics**
-> GetCampaignAnalytics200Response GetCampaignAnalytics (string campaignId, string? platform = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
+> CampaignAnalyticsResponse GetCampaignAnalytics (string campaignId, string? platform = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
 
 Get campaign analytics
 
@@ -691,7 +693,7 @@ namespace Example
             try
             {
                 // Get campaign analytics
-                GetCampaignAnalytics200Response result = apiInstance.GetCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
+                CampaignAnalyticsResponse result = apiInstance.GetCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -712,7 +714,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get campaign analytics
-    ApiResponse<GetCampaignAnalytics200Response> response = apiInstance.GetCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
+    ApiResponse<CampaignAnalyticsResponse> response = apiInstance.GetCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -737,7 +739,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetCampaignAnalytics200Response**](GetCampaignAnalytics200Response.md)
+[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)
 
 ### Authorization
 
@@ -753,11 +755,235 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign analytics |  -  |
-| **202** | Part of the requested date range predates the ingested history; a background backfill job has been queued. The body has the same shape as the 200 response, carries the currently-available data, and includes &#x60;backfillPending: true&#x60;. A &#x60;Retry-After&#x60; header carries the recommended poll interval in seconds. Allow the job a short time to run (typically 1-3 minutes) and submit the request again; once ingestion completes the same request returns 200 with the full range. |  -  |
+| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listlocalservicesleadconversations"></a>
+# **ListLocalServicesLeadConversations**
+> ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations (string leadId, string accountId, string? customerId = null, string? pageToken = null)
+
+Conversations of a Local Services lead
+
+Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from `local_services_lead_conversation`, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListLocalServicesLeadConversationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
+            var leadId = "leadId_example";  // string | Numeric lead id from /v1/ads/local-services/leads.
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var pageToken = "pageToken_example";  // string? | Cursor from paging.nextPageToken of the previous page. (optional) 
+
+            try
+            {
+                // Conversations of a Local Services lead
+                ListLocalServicesLeadConversations200Response result = apiInstance.ListLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdInsightsApi.ListLocalServicesLeadConversations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListLocalServicesLeadConversationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Conversations of a Local Services lead
+    ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdInsightsApi.ListLocalServicesLeadConversationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **leadId** | **string** | Numeric lead id from /v1/ads/local-services/leads. |  |
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **pageToken** | **string?** | Cursor from paging.nextPageToken of the previous page. | [optional]  |
+
+### Return type
+
+[**ListLocalServicesLeadConversations200Response**](ListLocalServicesLeadConversations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead conversations |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listlocalservicesleads"></a>
+# **ListLocalServicesLeads**
+> ListLocalServicesLeads200Response ListLocalServicesLeads (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? leadType = null, string? leadStatus = null, bool? chargedOnly = null, string? pageToken = null)
+
+Google Local Services Ads leads
+
+Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google's `local_services_lead` resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and `WIPED_OUT` leads arrive with contact erased (`contact` is null). Draws on the shared Google Ads operations budget.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListLocalServicesLeadsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Leads created at/after this day. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Leads created at/before this day. (optional) 
+            var leadType = "PHONE_CALL";  // string? |  (optional) 
+            var leadStatus = "leadStatus_example";  // string? | Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional) 
+            var chargedOnly = true;  // bool? | true = only leads Google charged for. (optional) 
+            var pageToken = "pageToken_example";  // string? | Cursor from paging.nextPageToken of the previous page. (optional) 
+
+            try
+            {
+                // Google Local Services Ads leads
+                ListLocalServicesLeads200Response result = apiInstance.ListLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdInsightsApi.ListLocalServicesLeads: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListLocalServicesLeadsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Google Local Services Ads leads
+    ApiResponse<ListLocalServicesLeads200Response> response = apiInstance.ListLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdInsightsApi.ListLocalServicesLeadsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **fromDate** | **DateOnly?** | Leads created at/after this day. | [optional]  |
+| **toDate** | **DateOnly?** | Leads created at/before this day. | [optional]  |
+| **leadType** | **string?** |  | [optional]  |
+| **leadStatus** | **string?** | Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). | [optional]  |
+| **chargedOnly** | **bool?** | true &#x3D; only leads Google charged for. | [optional]  |
+| **pageToken** | **string?** | Cursor from paging.nextPageToken of the previous page. | [optional]  |
+
+### Return type
+
+[**ListLocalServicesLeads200Response**](ListLocalServicesLeads200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Local Services leads |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Google Ads operations budget exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

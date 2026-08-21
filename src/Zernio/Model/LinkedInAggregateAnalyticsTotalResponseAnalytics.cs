@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// <param name="shares">Total reshares across all posts.</param>
         /// <param name="saves">Total times posts were saved (personal accounts only).</param>
         /// <param name="sends">Total times posts were sent via LinkedIn messaging (personal accounts only).</param>
-        /// <param name="engagementRate">Overall engagement rate as percentage.</param>
+        /// <param name="engagementRate">Overall engagement rate, as a percentage rounded to 2 decimals: (reactions + comments + shares + saves + sends) / impressions * 100. Clicks are not counted, and there is no fallback denominator, so this is 0 whenever impressions is 0. This is NOT the same formula as PostAnalytics.engagementRate on GET /v1/analytics..</param>
         public LinkedInAggregateAnalyticsTotalResponseAnalytics(int impressions = default, int reach = default, int reactions = default, int comments = default, int shares = default, int saves = default, int sends = default, decimal engagementRate = default)
         {
             this.Impressions = impressions;
@@ -106,9 +106,9 @@ namespace Zernio.Model
         public int Sends { get; set; }
 
         /// <summary>
-        /// Overall engagement rate as percentage
+        /// Overall engagement rate, as a percentage rounded to 2 decimals: (reactions + comments + shares + saves + sends) / impressions * 100. Clicks are not counted, and there is no fallback denominator, so this is 0 whenever impressions is 0. This is NOT the same formula as PostAnalytics.engagementRate on GET /v1/analytics.
         /// </summary>
-        /// <value>Overall engagement rate as percentage</value>
+        /// <value>Overall engagement rate, as a percentage rounded to 2 decimals: (reactions + comments + shares + saves + sends) / impressions * 100. Clicks are not counted, and there is no fallback denominator, so this is 0 whenever impressions is 0. This is NOT the same formula as PostAnalytics.engagementRate on GET /v1/analytics.</value>
         [DataMember(Name = "engagementRate", EmitDefaultValue = false)]
         public decimal EngagementRate { get; set; }
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **FirstName** | **string** |  | [optional] 
 **LastName** | **string** |  | [optional] 
 **StreetAddress** | **string** |  | [optional] 
+**ExtendedAddress** | **string** | Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address. | [optional] 
 **Locality** | **string** |  | [optional] 
 **AdministrativeArea** | **string** |  | [optional] 
 **PostalCode** | **string** |  | [optional] 

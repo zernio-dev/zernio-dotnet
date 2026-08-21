@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ConnectedAt'
         }
+
+        /// <summary>
+        /// Test the property 'CallingEnabled'
+        /// </summary>
+        [Fact]
+        public void CallingEnabledTest()
+        {
+            // TODO unit test for the property 'CallingEnabled'
+        }
     }
 }

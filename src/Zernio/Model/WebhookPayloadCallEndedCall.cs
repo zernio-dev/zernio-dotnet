@@ -109,10 +109,12 @@ namespace Zernio.Model
         /// <param name="endedAt">endedAt.</param>
         /// <param name="durationSeconds">durationSeconds.</param>
         /// <param name="endReason">endReason.</param>
+        /// <param name="hangupCause">Raw carrier hangup cause behind endReason (e.g. normal_clearing, call_rejected, not_found). Null when the carrier reported none..</param>
+        /// <param name="sipHangupCause">SIP response code that ended the call when SIP-signalled (e.g. &#39;403&#39;, &#39;486&#39;, &#39;603&#39;). endReason collapses all three to &#39;rejected&#39;, so this is what separates a refused destination from a busy line. Null on non-SIP legs..</param>
         /// <param name="recordingUrl">recordingUrl.</param>
         /// <param name="recordingExpiresAt">recordingExpiresAt.</param>
         /// <param name="billing">billing.</param>
-        public WebhookPayloadCallEndedCall(string id = default, string metaCallId = default, string accountId = default, string phoneNumberId = default, DirectionEnum? direction = default, string from = default, string to = default, DateTime startedAt = default, DateTime endedAt = default, int durationSeconds = default, EndReasonEnum? endReason = default, string recordingUrl = default, DateTime recordingExpiresAt = default, WebhookPayloadCallEndedCallBilling billing = default)
+        public WebhookPayloadCallEndedCall(string id = default, string metaCallId = default, string accountId = default, string phoneNumberId = default, DirectionEnum? direction = default, string from = default, string to = default, DateTime startedAt = default, DateTime endedAt = default, int durationSeconds = default, EndReasonEnum? endReason = default, string hangupCause = default, string sipHangupCause = default, string recordingUrl = default, DateTime recordingExpiresAt = default, WebhookPayloadCallEndedCallBilling billing = default)
         {
             this.Id = id;
             this.MetaCallId = metaCallId;
@@ -125,6 +127,8 @@ namespace Zernio.Model
             this.EndedAt = endedAt;
             this.DurationSeconds = durationSeconds;
             this.EndReason = endReason;
+            this.HangupCause = hangupCause;
+            this.SipHangupCause = sipHangupCause;
             this.RecordingUrl = recordingUrl;
             this.RecordingExpiresAt = recordingExpiresAt;
             this.Billing = billing;
@@ -185,6 +189,20 @@ namespace Zernio.Model
         public int DurationSeconds { get; set; }
 
         /// <summary>
+        /// Raw carrier hangup cause behind endReason (e.g. normal_clearing, call_rejected, not_found). Null when the carrier reported none.
+        /// </summary>
+        /// <value>Raw carrier hangup cause behind endReason (e.g. normal_clearing, call_rejected, not_found). Null when the carrier reported none.</value>
+        [DataMember(Name = "hangupCause", EmitDefaultValue = true)]
+        public string HangupCause { get; set; }
+
+        /// <summary>
+        /// SIP response code that ended the call when SIP-signalled (e.g. &#39;403&#39;, &#39;486&#39;, &#39;603&#39;). endReason collapses all three to &#39;rejected&#39;, so this is what separates a refused destination from a busy line. Null on non-SIP legs.
+        /// </summary>
+        /// <value>SIP response code that ended the call when SIP-signalled (e.g. &#39;403&#39;, &#39;486&#39;, &#39;603&#39;). endReason collapses all three to &#39;rejected&#39;, so this is what separates a refused destination from a busy line. Null on non-SIP legs.</value>
+        [DataMember(Name = "sipHangupCause", EmitDefaultValue = true)]
+        public string SipHangupCause { get; set; }
+
+        /// <summary>
         /// Gets or Sets RecordingUrl
         /// </summary>
         [DataMember(Name = "recordingUrl", EmitDefaultValue = false)]
@@ -221,6 +239,8 @@ namespace Zernio.Model
             sb.Append("  EndedAt: ").Append(EndedAt).Append("\n");
             sb.Append("  DurationSeconds: ").Append(DurationSeconds).Append("\n");
             sb.Append("  EndReason: ").Append(EndReason).Append("\n");
+            sb.Append("  HangupCause: ").Append(HangupCause).Append("\n");
+            sb.Append("  SipHangupCause: ").Append(SipHangupCause).Append("\n");
             sb.Append("  RecordingUrl: ").Append(RecordingUrl).Append("\n");
             sb.Append("  RecordingExpiresAt: ").Append(RecordingExpiresAt).Append("\n");
             sb.Append("  Billing: ").Append(Billing).Append("\n");

@@ -200,6 +200,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CallingEnabled'
+        /// </summary>
+        [Fact]
+        public void CallingEnabledTest()
+        {
+            // TODO unit test for the property 'CallingEnabled'
+        }
+
+        /// <summary>
         /// Test the property 'CreatedAt'
         /// </summary>
         [Fact]

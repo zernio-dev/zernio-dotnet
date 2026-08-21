@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Shared payload for message.delivered, message.read, and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.  Platform support:   * message.delivered — WhatsApp, Facebook Messenger.   * message.read      — WhatsApp, Facebook Messenger, Instagram.   * message.failed    — WhatsApp only (other platforms don&#39;t expose     per-message failure via webhook). 
+    /// Shared payload for message.delivered, message.read, and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.  Platform support:   * message.delivered: WhatsApp, Facebook Messenger, SMS.   * message.read: WhatsApp, Facebook Messenger, Instagram. Not SMS     (carriers report delivery, never read).   * message.failed: WhatsApp and SMS (other platforms don&#39;t expose     per-message failure via webhook). On SMS, &#x60;error.code&#x60; is the     carrier&#39;s numeric code and &#x60;error.message&#x60; its reason. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessageDeliveryStatus")]
     public partial class WebhookPayloadMessageDeliveryStatus : IValidatableObject
@@ -79,7 +79,7 @@ namespace Zernio.Model
         /// <param name="error">error.</param>
         /// <param name="conversation">conversation (required).</param>
         /// <param name="account">account (required).</param>
-        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
         public WebhookPayloadMessageDeliveryStatus(string id = default, EventEnum varEvent = default, InboxWebhookMessage message = default, DateTime statusAt = default, WebhookPayloadMessageDeliveryStatusError error = default, InboxWebhookConversation conversation = default, InboxWebhookAccount account = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
@@ -150,8 +150,9 @@ namespace Zernio.Model
         public InboxWebhookAccount Account { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Timestamp { get; set; }
 

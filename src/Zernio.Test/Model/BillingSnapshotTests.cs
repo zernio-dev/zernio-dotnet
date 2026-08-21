@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ShopifyShopDomain'
+        /// </summary>
+        [Fact]
+        public void ShopifyShopDomainTest()
+        {
+            // TODO unit test for the property 'ShopifyShopDomain'
+        }
+
+        /// <summary>
         /// Test the property 'Period'
         /// </summary>
         [Fact]

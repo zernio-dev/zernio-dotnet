@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Bluesky post settings. Supports text posts with up to 4 images or a single video. threadItems creates a reply chain (Bluesky thread). Images exceeding 1MB are automatically compressed. Alt text supported via mediaItem properties. 
+    /// Bluesky post settings. Supports text posts with up to 4 images or a single video. threadItems creates a reply chain (Bluesky thread). Images exceeding 1MB are automatically compressed. Alt text supported via mediaItem properties. Use langs to tag post language for feed-generator filtering. 
     /// </summary>
     [DataContract(Name = "BlueskyPlatformData")]
     public partial class BlueskyPlatformData : IValidatableObject
@@ -36,11 +36,23 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BlueskyPlatformData" /> class.
         /// </summary>
+        /// <param name="langs">Language(s) of the post text as 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), written to the post record&#39;s langs field. Bluesky feed generators filter on this field, so posts without it never appear in language-scoped feeds. Can only be set at creation (Bluesky has no post editing). When threadItems is used, every item in the thread carries the same langs. When omitted, the account&#39;s default (set via PATCH /v1/accounts/{accountId}/bluesky-settings) applies; with no default either, the field is absent from the record. .</param>
         /// <param name="threadItems">Complete sequence of posts in a Bluesky thread. The first item becomes the root post, subsequent items are chained as replies. When threadItems is provided, the top-level content field is used only for display and search purposes, it is NOT published. You must include your first post as threadItems[0]. .</param>
-        public BlueskyPlatformData(List<TwitterPlatformDataThreadItemsInner> threadItems = default)
+        public BlueskyPlatformData(List<string> langs = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default)
         {
+            this.Langs = langs;
             this.ThreadItems = threadItems;
         }
+
+        /// <summary>
+        /// Language(s) of the post text as 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), written to the post record&#39;s langs field. Bluesky feed generators filter on this field, so posts without it never appear in language-scoped feeds. Can only be set at creation (Bluesky has no post editing). When threadItems is used, every item in the thread carries the same langs. When omitted, the account&#39;s default (set via PATCH /v1/accounts/{accountId}/bluesky-settings) applies; with no default either, the field is absent from the record. 
+        /// </summary>
+        /// <value>Language(s) of the post text as 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), written to the post record&#39;s langs field. Bluesky feed generators filter on this field, so posts without it never appear in language-scoped feeds. Can only be set at creation (Bluesky has no post editing). When threadItems is used, every item in the thread carries the same langs. When omitted, the account&#39;s default (set via PATCH /v1/accounts/{accountId}/bluesky-settings) applies; with no default either, the field is absent from the record. </value>
+        /*
+        <example>[pt, en]</example>
+        */
+        [DataMember(Name = "langs", EmitDefaultValue = false)]
+        public List<string> Langs { get; set; }
 
         /// <summary>
         /// Complete sequence of posts in a Bluesky thread. The first item becomes the root post, subsequent items are chained as replies. When threadItems is provided, the top-level content field is used only for display and search purposes, it is NOT published. You must include your first post as threadItems[0]. 
@@ -57,6 +69,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BlueskyPlatformData {\n");
+            sb.Append("  Langs: ").Append(Langs).Append("\n");
             sb.Append("  ThreadItems: ").Append(ThreadItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

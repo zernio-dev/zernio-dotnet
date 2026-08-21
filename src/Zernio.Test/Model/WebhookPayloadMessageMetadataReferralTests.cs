@@ -182,6 +182,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RefererUri'
+        /// </summary>
+        [Fact]
+        public void RefererUriTest()
+        {
+            // TODO unit test for the property 'RefererUri'
+        }
+
+        /// <summary>
         /// Test the property 'AdsContextData'
         /// </summary>
         [Fact]

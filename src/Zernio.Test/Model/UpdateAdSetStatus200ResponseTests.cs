@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Status'
+        /// </summary>
+        [Fact]
+        public void StatusTest()
+        {
+            // TODO unit test for the property 'Status'
+        }
+
+        /// <summary>
         /// Test the property 'Updated'
         /// </summary>
         [Fact]
@@ -71,6 +80,24 @@ namespace Zernio.Test.Model
         public void SkippedTest()
         {
             // TODO unit test for the property 'Skipped'
+        }
+
+        /// <summary>
+        /// Test the property 'SkippedReasons'
+        /// </summary>
+        [Fact]
+        public void SkippedReasonsTest()
+        {
+            // TODO unit test for the property 'SkippedReasons'
+        }
+
+        /// <summary>
+        /// Test the property 'Message'
+        /// </summary>
+        [Fact]
+        public void MessageTest()
+        {
+            // TODO unit test for the property 'Message'
         }
     }
 }

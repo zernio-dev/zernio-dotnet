@@ -93,7 +93,7 @@ namespace Zernio.Model
         /// <param name="id">Stable webhook event ID (required).</param>
         /// <param name="varEvent">varEvent (required).</param>
         /// <param name="post">post (required).</param>
-        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
         public WebhookPayloadPost(string id = default, EventEnum varEvent = default, WebhookPayloadPostPost post = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
@@ -126,8 +126,9 @@ namespace Zernio.Model
         public WebhookPayloadPostPost Post { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Timestamp { get; set; }
 

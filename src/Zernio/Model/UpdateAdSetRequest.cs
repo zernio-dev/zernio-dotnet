@@ -95,9 +95,9 @@ namespace Zernio.Model
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
-        /// Omit if not toggling delivery state
+        /// Writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;) on Meta and LinkedIn, whatever delivery status its ads report. Omit if not toggling delivery state.
         /// </summary>
-        /// <value>Omit if not toggling delivery state</value>
+        /// <value>Writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;) on Meta and LinkedIn, whatever delivery status its ads report. Omit if not toggling delivery state.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -116,9 +116,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Omit if not toggling delivery state
+        /// Writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;) on Meta and LinkedIn, whatever delivery status its ads report. Omit if not toggling delivery state.
         /// </summary>
-        /// <value>Omit if not toggling delivery state</value>
+        /// <value>Writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;) on Meta and LinkedIn, whatever delivery status its ads report. Omit if not toggling delivery state.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
 
@@ -138,7 +138,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="platform">platform (required).</param>
         /// <param name="budget">budget.</param>
-        /// <param name="status">Omit if not toggling delivery state.</param>
+        /// <param name="status">Writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;) on Meta and LinkedIn, whatever delivery status its ads report. Omit if not toggling delivery state..</param>
         /// <param name="name">Rename the ad set (Meta only; other platforms return 501). At least one of budget/status/bidStrategy/name is required..</param>
         /// <param name="bidStrategy">Ad-set-level bid strategy. Overrides the campaign-level default. Supported on Meta (facebook, instagram), TikTok, and OpenAI. On TikTok the Meta-style enum is mapped to bid_type / bid_price / deep_bid_type automatically. On OpenAI, LOWEST_COST_WITH_BID_CAP and COST_CAP both map to the ad group&#39;s &#x60;bidding_config.max_bid_micros&#x60; (one knob covers both); LOWEST_COST_WITH_MIN_ROAS is rejected with 422 (OpenAI has no ROAS-based bidding). Other platforms (linkedin, pinterest, google, twitter) return 501 Not Implemented when bidStrategy is set. .</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. Internally converted to Meta&#39;s smallest-denomination integer, or (on OpenAI) to micros (× 1,000,000). Meta only: may be sent alone, WITHOUT bidStrategy, to update the cap amount on an ad set whose parent campaign is COST_CAP or LOWEST_COST_WITH_BID_CAP (the strategy is inherited from the campaign and is left untouched). .</param>

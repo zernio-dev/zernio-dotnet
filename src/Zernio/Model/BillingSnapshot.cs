@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum Stripe for value: stripe
             /// </summary>
             [EnumMember(Value = "stripe")]
-            Stripe = 2
+            Stripe = 2,
+
+            /// <summary>
+            /// Enum Shopify for value: shopify
+            /// </summary>
+            [EnumMember(Value = "shopify")]
+            Shopify = 3
         }
 
 
@@ -63,15 +69,17 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="billingSystem">billingSystem.</param>
         /// <param name="plan">plan.</param>
+        /// <param name="shopifyShopDomain">myshopify.com domain owning the subscription; present only when billingSystem is shopify..</param>
         /// <param name="period">period.</param>
         /// <param name="balance">balance.</param>
         /// <param name="caps">caps.</param>
         /// <param name="status">status.</param>
         /// <param name="legacy">legacy.</param>
-        public BillingSnapshot(BillingSystemEnum? billingSystem = default, BillingSnapshotPlan plan = default, BillingSnapshotPeriod period = default, BillingSnapshotBalance balance = default, BillingSnapshotCaps caps = default, BillingSnapshotStatus status = default, BillingSnapshotLegacy legacy = default)
+        public BillingSnapshot(BillingSystemEnum? billingSystem = default, BillingSnapshotPlan plan = default, string shopifyShopDomain = default, BillingSnapshotPeriod period = default, BillingSnapshotBalance balance = default, BillingSnapshotCaps caps = default, BillingSnapshotStatus status = default, BillingSnapshotLegacy legacy = default)
         {
             this.BillingSystem = billingSystem;
             this.Plan = plan;
+            this.ShopifyShopDomain = shopifyShopDomain;
             this.Period = period;
             this.Balance = balance;
             this.Caps = caps;
@@ -84,6 +92,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "plan", EmitDefaultValue = false)]
         public BillingSnapshotPlan Plan { get; set; }
+
+        /// <summary>
+        /// myshopify.com domain owning the subscription; present only when billingSystem is shopify.
+        /// </summary>
+        /// <value>myshopify.com domain owning the subscription; present only when billingSystem is shopify.</value>
+        [DataMember(Name = "shopifyShopDomain", EmitDefaultValue = true)]
+        public string ShopifyShopDomain { get; set; }
 
         /// <summary>
         /// Gets or Sets Period
@@ -125,6 +140,7 @@ namespace Zernio.Model
             sb.Append("class BillingSnapshot {\n");
             sb.Append("  BillingSystem: ").Append(BillingSystem).Append("\n");
             sb.Append("  Plan: ").Append(Plan).Append("\n");
+            sb.Append("  ShopifyShopDomain: ").Append(ShopifyShopDomain).Append("\n");
             sb.Append("  Period: ").Append(Period).Append("\n");
             sb.Append("  Balance: ").Append(Balance).Append("\n");
             sb.Append("  Caps: ").Append(Caps).Append("\n");

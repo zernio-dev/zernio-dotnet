@@ -25,6 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppTemplates**](WhatsAppApi.md#getwhatsapptemplates) | **GET** /v1/whatsapp/templates | List templates |
 | [**GetWhatsappBusinessUsername**](WhatsAppApi.md#getwhatsappbusinessusername) | **GET** /v1/whatsapp/business-profile/username | Get business username |
 | [**GetWhatsappBusinessUsernameSuggestions**](WhatsAppApi.md#getwhatsappbusinessusernamesuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
+| [**ListWhatsAppAccountEvents**](WhatsAppApi.md#listwhatsappaccountevents) | **GET** /v1/whatsapp/account-events | List account notifications |
 | [**ListWhatsAppConversions**](WhatsAppApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**ListWhatsAppGroupChats**](WhatsAppApi.md#listwhatsappgroupchats) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**ListWhatsAppGroupJoinRequests**](WhatsAppApi.md#listwhatsappgroupjoinrequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
@@ -2175,6 +2176,109 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Username suggestions retrieved successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listwhatsappaccountevents"></a>
+# **ListWhatsAppAccountEvents**
+> ListWhatsAppAccountEvents200Response ListWhatsAppAccountEvents (string accountId, int? limit = null)
+
+List account notifications
+
+Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account's first recorded event and is not backfilled. Complements the push events `whatsapp.template.status_updated` and `account.disconnected` with a pollable history. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListWhatsAppAccountEventsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var limit = 50;  // int? | Maximum events to return (optional)  (default to 50)
+
+            try
+            {
+                // List account notifications
+                ListWhatsAppAccountEvents200Response result = apiInstance.ListWhatsAppAccountEvents(accountId, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.ListWhatsAppAccountEvents: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListWhatsAppAccountEventsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List account notifications
+    ApiResponse<ListWhatsAppAccountEvents200Response> response = apiInstance.ListWhatsAppAccountEventsWithHttpInfo(accountId, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.ListWhatsAppAccountEventsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp social account ID |  |
+| **limit** | **int?** | Maximum events to return | [optional] [default to 50] |
+
+### Return type
+
+[**ListWhatsAppAccountEvents200Response**](ListWhatsAppAccountEvents200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recorded events, newest first |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 

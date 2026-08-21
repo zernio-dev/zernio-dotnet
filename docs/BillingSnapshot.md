@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingSystem** | **string** |  | [optional] 
 **Plan** | [**BillingSnapshotPlan**](BillingSnapshotPlan.md) |  | [optional] 
+**ShopifyShopDomain** | **string** | myshopify.com domain owning the subscription; present only when billingSystem is shopify. | [optional] 
 **Period** | [**BillingSnapshotPeriod**](BillingSnapshotPeriod.md) |  | [optional] 
 **Balance** | [**BillingSnapshotBalance**](BillingSnapshotBalance.md) |  | [optional] 
 **Caps** | [**BillingSnapshotCaps**](BillingSnapshotCaps.md) |  | [optional] 

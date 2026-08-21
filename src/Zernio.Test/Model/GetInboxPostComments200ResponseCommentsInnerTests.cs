@@ -137,6 +137,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RepliesHasMore'
+        /// </summary>
+        [Fact]
+        public void RepliesHasMoreTest()
+        {
+            // TODO unit test for the property 'RepliesHasMore'
+        }
+
+        /// <summary>
         /// Test the property 'CanReply'
         /// </summary>
         [Fact]

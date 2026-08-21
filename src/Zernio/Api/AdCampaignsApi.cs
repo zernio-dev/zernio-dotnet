@@ -32,23 +32,25 @@ namespace Zernio.Api
         /// Boost post as ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>UpdateAd200Response</returns>
-        UpdateAd200Response BoostPost(BoostPostRequest boostPostRequest);
+        UpdateAd200Response BoostPost(BoostPostRequest boostPostRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Boost post as ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of UpdateAd200Response</returns>
-        ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest);
+        ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest, string? idempotencyKey = default);
         /// <summary>
         /// Pause or resume many campaigns
         /// </summary>
@@ -298,13 +300,15 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
-        /// <returns>GetAdTree200Response</returns>
-        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
+        /// <returns>AdTreeResponse</returns>
+        AdTreeResponse GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
 
         /// <summary>
         /// Get campaign tree
@@ -323,13 +327,15 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
-        /// <returns>ApiResponse of GetAdTree200Response</returns>
-        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
+        /// <returns>ApiResponse of AdTreeResponse</returns>
+        ApiResponse<AdTreeResponse> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default);
         /// <summary>
         /// Get daily account metrics
         /// </summary>
@@ -342,8 +348,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
-        /// <returns>GetAdsTimeline200Response</returns>
-        GetAdsTimeline200Response GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
+        /// <returns>AdsTimelineResponse</returns>
+        AdsTimelineResponse GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
 
         /// <summary>
         /// Get daily account metrics
@@ -357,8 +363,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
-        /// <returns>ApiResponse of GetAdsTimeline200Response</returns>
-        ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
+        /// <returns>ApiResponse of AdsTimelineResponse</returns>
+        ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
         /// <summary>
         /// List campaigns
         /// </summary>
@@ -378,8 +384,10 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        ListAdCampaigns200Response ListAdCampaigns(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ListAdCampaigns200Response ListAdCampaigns(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default);
 
         /// <summary>
         /// List campaigns
@@ -400,8 +408,10 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -465,8 +475,8 @@ namespace Zernio.Api
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <returns>ListAds200Response</returns>
-        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        /// <returns>AdsListResponse</returns>
+        AdsListResponse ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List ads
@@ -490,8 +500,8 @@ namespace Zernio.Api
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <returns>ApiResponse of ListAds200Response</returns>
-        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        /// <returns>ApiResponse of AdsListResponse</returns>
+        ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -542,7 +552,7 @@ namespace Zernio.Api
         /// Pause or resume a campaign
         /// </summary>
         /// <remarks>
-        /// Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -554,7 +564,7 @@ namespace Zernio.Api
         /// Pause or resume a campaign
         /// </summary>
         /// <remarks>
-        /// Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -588,7 +598,7 @@ namespace Zernio.Api
         /// Pause or resume a single ad set
         /// </summary>
         /// <remarks>
-        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -600,7 +610,7 @@ namespace Zernio.Api
         /// Pause or resume a single ad set
         /// </summary>
         /// <remarks>
-        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -643,25 +653,27 @@ namespace Zernio.Api
         /// Boost post as ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateAd200Response</returns>
-        System.Threading.Tasks.Task<UpdateAd200Response> BoostPostAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateAd200Response> BoostPostAsync(BoostPostRequest boostPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Boost post as ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Pause or resume many campaigns
         /// </summary>
@@ -931,14 +943,16 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetAdTree200Response</returns>
-        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of AdTreeResponse</returns>
+        System.Threading.Tasks.Task<AdTreeResponse> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get campaign tree
@@ -957,14 +971,16 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (AdTreeResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdTreeResponse>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get daily account metrics
         /// </summary>
@@ -978,8 +994,8 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetAdsTimeline200Response</returns>
-        System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of AdsTimelineResponse</returns>
+        System.Threading.Tasks.Task<AdsTimelineResponse> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get daily account metrics
@@ -994,8 +1010,8 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetAdsTimeline200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (AdsTimelineResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List campaigns
         /// </summary>
@@ -1015,9 +1031,11 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaigns
@@ -1038,9 +1056,11 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -1107,8 +1127,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ListAds200Response</returns>
-        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of AdsListResponse</returns>
+        System.Threading.Tasks.Task<AdsListResponse> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List ads
@@ -1133,8 +1153,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (AdsListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -1189,7 +1209,7 @@ namespace Zernio.Api
         /// Pause or resume a campaign
         /// </summary>
         /// <remarks>
-        /// Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -1202,7 +1222,7 @@ namespace Zernio.Api
         /// Pause or resume a campaign
         /// </summary>
         /// <remarks>
-        /// Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -1239,7 +1259,7 @@ namespace Zernio.Api
         /// Pause or resume a single ad set
         /// </summary>
         /// <remarks>
-        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -1252,7 +1272,7 @@ namespace Zernio.Api
         /// Pause or resume a single ad set
         /// </summary>
         /// <remarks>
-        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -1499,24 +1519,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>UpdateAd200Response</returns>
-        public UpdateAd200Response BoostPost(BoostPostRequest boostPostRequest)
+        public UpdateAd200Response BoostPost(BoostPostRequest boostPostRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<UpdateAd200Response> localVarResponse = BoostPostWithHttpInfo(boostPostRequest);
+            Zernio.Client.ApiResponse<UpdateAd200Response> localVarResponse = BoostPostWithHttpInfo(boostPostRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of UpdateAd200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest)
+        public Zernio.Client.ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'boostPostRequest' is set
             if (boostPostRequest == null)
@@ -1539,6 +1561,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = boostPostRequest;
 
             // authentication (bearerAuth) required
@@ -1561,26 +1587,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateAd200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateAd200Response> BoostPostAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateAd200Response> BoostPostAsync(BoostPostRequest boostPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateAd200Response> localVarResponse = await BoostPostWithHttpInfoAsync(boostPostRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateAd200Response> localVarResponse = await BoostPostWithHttpInfoAsync(boostPostRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms. 
+        /// Boost post as ad Creates a paid ad from an existing published post, keeping the post&#39;s engagement. By default it provisions the whole hierarchy (campaign, ad set, ad).  **Attach shape (Meta).** Send &#x60;adSetId&#x60; to put the ad under an EXISTING ad set instead, so that ad set keeps its learning phase. It then owns &#x60;budget&#x60;, &#x60;schedule&#x60; and &#x60;targeting&#x60;, and sending any of those alongside &#x60;adSetId&#x60; is a 400 rather than a silent drop. &#x60;budget&#x60; is required only without &#x60;adSetId&#x60;.  &#x60;instagramAccountId&#x60;, &#x60;destinationType&#x60; and &#x60;adSetId&#x60; are Meta-only and return 400 on other platforms.  **Retries.** Boosts are NOT idempotent and can take minutes when Meta requires re-hosting an Instagram video, so do not retry on client timeout. Send an Idempotency-Key header to make retries safe: same key and body replays the original 201, and distinct keys always create distinct ads. Without the header, an identical request is treated as a retry: while one is in flight it returns 409, and within 10 minutes of a completed boost it returns the already-created ad instead of creating another. To intentionally duplicate an ad, send distinct Idempotency-Keys (or vary the body, e.g. the name). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="boostPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'boostPostRequest' is set
             if (boostPostRequest == null)
@@ -1605,6 +1633,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = boostPostRequest;
 
             // authentication (bearerAuth) required
@@ -3059,15 +3091,17 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
-        /// <returns>GetAdTree200Response</returns>
-        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
+        /// <returns>AdTreeResponse</returns>
+        public AdTreeResponse GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
         {
-            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
+            Zernio.Client.ApiResponse<AdTreeResponse> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel);
             return localVarResponse.Data;
         }
 
@@ -3085,13 +3119,15 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
-        /// <returns>ApiResponse of GetAdTree200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
+        /// <returns>ApiResponse of AdTreeResponse</returns>
+        public Zernio.Client.ApiResponse<AdTreeResponse> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3157,6 +3193,14 @@ namespace Zernio.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
+            if (hasDelivery != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "hasDelivery", hasDelivery));
+            }
+            if (minSpend != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "minSpend", minSpend));
+            }
             if (sort != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
@@ -3178,7 +3222,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetAdTree200Response>("/v1/ads/tree", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdTreeResponse>("/v1/ads/tree", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3203,16 +3247,18 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetAdTree200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of AdTreeResponse</returns>
+        public async System.Threading.Tasks.Task<AdTreeResponse> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AdTreeResponse> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3230,14 +3276,16 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
-        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). On its own it affects only the spend/impression numbers overlaid on each node, not which campaigns are returned — pass &#x60;hasDelivery&#x60; or &#x60;minSpend&#x60; to also filter the campaign set to this window. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window, so a campaign that spent then and is paused today is still returned. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount. Expressed in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign node): spend is stored per ad account in its native currency and one response can span several. Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="timeIncrement">Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. (optional)</param>
         /// <param name="dailyLevel">Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only — the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest — a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. (optional, default to campaign)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (AdTreeResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdTreeResponse>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, string? sort = default, int? timeIncrement = default, string? dailyLevel = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3305,6 +3353,14 @@ namespace Zernio.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
+            if (hasDelivery != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "hasDelivery", hasDelivery));
+            }
+            if (minSpend != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "minSpend", minSpend));
+            }
             if (sort != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
@@ -3327,7 +3383,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdTree200Response>("/v1/ads/tree", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdTreeResponse>("/v1/ads/tree", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3347,10 +3403,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
-        /// <returns>GetAdsTimeline200Response</returns>
-        public GetAdsTimeline200Response GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
+        /// <returns>AdsTimelineResponse</returns>
+        public AdsTimelineResponse GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
         {
-            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform);
+            Zernio.Client.ApiResponse<AdsTimelineResponse> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform);
             return localVarResponse.Data;
         }
 
@@ -3363,8 +3419,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
-        /// <returns>ApiResponse of GetAdsTimeline200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
+        /// <returns>ApiResponse of AdsTimelineResponse</returns>
+        public Zernio.Client.ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3412,7 +3468,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetAdsTimeline200Response>("/v1/ads/timeline", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdsTimelineResponse>("/v1/ads/timeline", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3433,10 +3489,10 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetAdsTimeline200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of AdsTimelineResponse</returns>
+        public async System.Threading.Tasks.Task<AdsTimelineResponse> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, adAccountId, fromDate, toDate, platform, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AdsTimelineResponse> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, adAccountId, fromDate, toDate, platform, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3450,8 +3506,8 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetAdsTimeline200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (AdsTimelineResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3502,7 +3558,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdsTimeline200Response>("/v1/ads/timeline", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdsTimelineResponse>("/v1/ads/timeline", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -3529,10 +3585,12 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        public ListAdCampaigns200Response ListAdCampaigns(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public ListAdCampaigns200Response ListAdCampaigns(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend);
             return localVarResponse.Data;
         }
 
@@ -3552,8 +3610,10 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3618,6 +3678,14 @@ namespace Zernio.Api
             if (toDate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (hasDelivery != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "hasDelivery", hasDelivery));
+            }
+            if (minSpend != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "minSpend", minSpend));
             }
 
             // authentication (bearerAuth) required
@@ -3655,11 +3723,13 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3679,9 +3749,11 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="hasDelivery">Return only campaigns that delivered between &#x60;fromDate&#x60; and &#x60;toDate&#x60; — spend above zero, or impressions served at zero spend. Unlike &#x60;status&#x60;, which reads a campaign&#39;s CURRENT state, this filters on what happened inside the window. Filters the campaign set itself, so &#x60;pagination.total&#x60; counts only matching campaigns. Mirrors the same filter on /v1/ads/tree. (optional)</param>
+        /// <param name="minSpend">Return only campaigns whose spend between &#x60;fromDate&#x60; and &#x60;toDate&#x60; reaches this amount, in each campaign&#39;s OWN currency (the &#x60;currency&#x60; field on the campaign). Implies &#x60;hasDelivery&#x60;; &#x60;minSpend&#x3D;0&#x60; applies no filter. Mirrors the same filter on /v1/ads/tree. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(bool? includeEmpty = default, int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? pageId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, bool? hasDelivery = default, decimal? minSpend = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3748,6 +3820,14 @@ namespace Zernio.Api
             if (toDate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (hasDelivery != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "hasDelivery", hasDelivery));
+            }
+            if (minSpend != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "minSpend", minSpend));
             }
 
             // authentication (bearerAuth) required
@@ -4034,10 +4114,10 @@ namespace Zernio.Api
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <returns>ListAds200Response</returns>
-        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        /// <returns>AdsListResponse</returns>
+        public AdsListResponse ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+            Zernio.Client.ApiResponse<AdsListResponse> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -4060,8 +4140,8 @@ namespace Zernio.Api
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <returns>ApiResponse of ListAds200Response</returns>
-        public Zernio.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        /// <returns>ApiResponse of AdsListResponse</returns>
+        public Zernio.Client.ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -4148,7 +4228,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<ListAds200Response>("/v1/ads", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdsListResponse>("/v1/ads", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4179,10 +4259,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ListAds200Response</returns>
-        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of AdsListResponse</returns>
+        public async System.Threading.Tasks.Task<AdsListResponse> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AdsListResponse> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4206,8 +4286,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (AdsListResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -4297,7 +4377,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAds200Response>("/v1/ads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdsListResponse>("/v1/ads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4595,7 +4675,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a campaign Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Pause or resume a campaign Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4608,7 +4688,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a campaign Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Pause or resume a campaign Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4664,7 +4744,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a campaign Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Pause or resume a campaign Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4678,7 +4758,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a campaign Updates the status of all ads in a campaign. Makes one platform API call (not per-ad) since status cascades through the campaign hierarchy. Ads in terminal statuses (rejected, completed, cancelled) are automatically skipped. 
+        /// Pause or resume a campaign Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering — the last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -4881,7 +4961,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -4894,7 +4974,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -4950,7 +5030,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>
@@ -4964,7 +5044,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  On Meta and LinkedIn this writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;), whatever delivery status its ads report — an ad still in review does not block resuming its ad set. The echoed &#x60;status&#x60; is the confirmation that it landed. Where the platform has no ad-set switch (TikTok and others) the toggle is emulated by flipping the child ads; a call with no actionable ad then writes nothing and returns a &#x60;message&#x60; with no &#x60;status&#x60;.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside the switch, so &#x60;updated: 0&#x60; is a normal successful response. See &#x60;skippedReasons&#x60; for which of the three cases applies (terminal, already in the target state, or switched on but not yet delivering).  A campaign created paused needs its campaign resumed as well: pair this with PUT /v1/ads/campaigns/{campaignId}/status. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Platform ad set ID</param>

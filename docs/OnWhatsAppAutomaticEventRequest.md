@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
 **Event** | **string** |  | [optional] 
-**Timestamp** | **DateTime** |  | [optional] 
+**Timestamp** | **DateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. | [optional] 
 **AccountId** | **string** | SocialAccount id of the WhatsApp number whose conversation was flagged. | [optional] 
 **ConversationId** | **string** | Zernio conversation id, when the thread could be resolved. | [optional] 
 **PlatformMessageId** | **string** | The wamid of the message Meta&#39;s analysis flagged. | [optional] 

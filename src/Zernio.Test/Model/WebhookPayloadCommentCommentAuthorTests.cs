@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsOwnAccount'
+        /// </summary>
+        [Fact]
+        public void IsOwnAccountTest()
+        {
+            // TODO unit test for the property 'IsOwnAccount'
+        }
+
+        /// <summary>
         /// Test the property 'InstagramProfile'
         /// </summary>
         [Fact]

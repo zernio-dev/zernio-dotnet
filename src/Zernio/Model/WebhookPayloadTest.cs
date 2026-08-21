@@ -63,7 +63,7 @@ namespace Zernio.Model
         /// <param name="id">Stable webhook event ID (required).</param>
         /// <param name="varEvent">varEvent (required).</param>
         /// <param name="message">Human-readable test message (required).</param>
-        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this test event (set once when the payload is built). Test fires are sent synchronously as a single attempt; a later redelivery of this event keeps the original value. (required).</param>
         public WebhookPayloadTest(string id = default, EventEnum varEvent = default, string message = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
@@ -97,8 +97,9 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// UTC time at which Zernio generated this test event (set once when the payload is built). Test fires are sent synchronously as a single attempt; a later redelivery of this event keeps the original value.
         /// </summary>
+        /// <value>UTC time at which Zernio generated this test event (set once when the payload is built). Test fires are sent synchronously as a single attempt; a later redelivery of this event keeps the original value.</value>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Timestamp { get; set; }
 

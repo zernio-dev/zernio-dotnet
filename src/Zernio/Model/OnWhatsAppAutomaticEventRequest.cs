@@ -57,7 +57,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="varEvent">varEvent.</param>
-        /// <param name="timestamp">timestamp.</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt..</param>
         /// <param name="accountId">SocialAccount id of the WhatsApp number whose conversation was flagged..</param>
         /// <param name="conversationId">Zernio conversation id, when the thread could be resolved..</param>
         /// <param name="platformMessageId">The wamid of the message Meta&#39;s analysis flagged..</param>
@@ -86,8 +86,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", EmitDefaultValue = false)]
         public DateTime Timestamp { get; set; }
 

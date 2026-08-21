@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <param name="adObject">adObject (required).</param>
         /// <param name="status">status (required).</param>
         /// <param name="error">error.</param>
-        /// <param name="timestamp">ISO-8601 timestamp the webhook was produced. (required).</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
         public WebhookPayloadAdStatusChanged(string id = default, EventEnum varEvent = default, WebhookPayloadAdStatusChangedAccount account = default, WebhookPayloadAdStatusChangedAdObject adObject = default, WebhookPayloadAdStatusChangedStatus status = default, WebhookPayloadAdStatusChangedError error = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
@@ -130,9 +130,9 @@ namespace Zernio.Model
         public WebhookPayloadAdStatusChangedError Error { get; set; }
 
         /// <summary>
-        /// ISO-8601 timestamp the webhook was produced.
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
-        /// <value>ISO-8601 timestamp the webhook was produced.</value>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Timestamp { get; set; }
 

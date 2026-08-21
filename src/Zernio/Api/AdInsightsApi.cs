@@ -102,8 +102,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>GetAdAnalytics200Response</returns>
-        GetAdAnalytics200Response GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+        /// <returns>AdAnalyticsResponse</returns>
+        AdAnalyticsResponse GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
 
         /// <summary>
         /// Get ad analytics
@@ -116,8 +116,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>ApiResponse of GetAdAnalytics200Response</returns>
-        ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+        /// <returns>ApiResponse of AdAnalyticsResponse</returns>
+        ApiResponse<AdAnalyticsResponse> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
         /// <summary>
         /// Poll an async insights report run
         /// </summary>
@@ -190,8 +190,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>GetCampaignAnalytics200Response</returns>
-        GetCampaignAnalytics200Response GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+        /// <returns>CampaignAnalyticsResponse</returns>
+        CampaignAnalyticsResponse GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
 
         /// <summary>
         /// Get campaign analytics
@@ -205,8 +205,70 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>ApiResponse of GetCampaignAnalytics200Response</returns>
-        ApiResponse<GetCampaignAnalytics200Response> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+        /// <returns>ApiResponse of CampaignAnalyticsResponse</returns>
+        ApiResponse<CampaignAnalyticsResponse> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+        /// <summary>
+        /// Conversations of a Local Services lead
+        /// </summary>
+        /// <remarks>
+        /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ListLocalServicesLeadConversations200Response</returns>
+        ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? customerId = default, string? pageToken = default);
+
+        /// <summary>
+        /// Conversations of a Local Services lead
+        /// </summary>
+        /// <remarks>
+        /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListLocalServicesLeadConversations200Response</returns>
+        ApiResponse<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsWithHttpInfo(string leadId, string accountId, string? customerId = default, string? pageToken = default);
+        /// <summary>
+        /// Google Local Services Ads leads
+        /// </summary>
+        /// <remarks>
+        /// Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ListLocalServicesLeads200Response</returns>
+        ListLocalServicesLeads200Response ListLocalServicesLeads(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default);
+
+        /// <summary>
+        /// Google Local Services Ads leads
+        /// </summary>
+        /// <remarks>
+        /// Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListLocalServicesLeads200Response</returns>
+        ApiResponse<ListLocalServicesLeads200Response> ListLocalServicesLeadsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default);
         /// <summary>
         /// Flexible live insights query
         /// </summary>
@@ -354,8 +416,8 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetAdAnalytics200Response</returns>
-        System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of AdAnalyticsResponse</returns>
+        System.Threading.Tasks.Task<AdAnalyticsResponse> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get ad analytics
@@ -369,8 +431,8 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetAdAnalytics200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (AdAnalyticsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AdAnalyticsResponse>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Poll an async insights report run
         /// </summary>
@@ -448,8 +510,8 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetCampaignAnalytics200Response</returns>
-        System.Threading.Tasks.Task<GetCampaignAnalytics200Response> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of CampaignAnalyticsResponse</returns>
+        System.Threading.Tasks.Task<CampaignAnalyticsResponse> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get campaign analytics
@@ -464,8 +526,74 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetCampaignAnalytics200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetCampaignAnalytics200Response>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (CampaignAnalyticsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CampaignAnalyticsResponse>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Conversations of a Local Services lead
+        /// </summary>
+        /// <remarks>
+        /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLocalServicesLeadConversations200Response</returns>
+        System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Conversations of a Local Services lead
+        /// </summary>
+        /// <remarks>
+        /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLocalServicesLeadConversations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListLocalServicesLeadConversations200Response>> ListLocalServicesLeadConversationsWithHttpInfoAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Google Local Services Ads leads
+        /// </summary>
+        /// <remarks>
+        /// Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLocalServicesLeads200Response</returns>
+        System.Threading.Tasks.Task<ListLocalServicesLeads200Response> ListLocalServicesLeadsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Google Local Services Ads leads
+        /// </summary>
+        /// <remarks>
+        /// Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLocalServicesLeads200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListLocalServicesLeads200Response>> ListLocalServicesLeadsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Flexible live insights query
         /// </summary>
@@ -1133,10 +1261,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>GetAdAnalytics200Response</returns>
-        public GetAdAnalytics200Response GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
+        /// <returns>AdAnalyticsResponse</returns>
+        public AdAnalyticsResponse GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
-            Zernio.Client.ApiResponse<GetAdAnalytics200Response> localVarResponse = GetAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
+            Zernio.Client.ApiResponse<AdAnalyticsResponse> localVarResponse = GetAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
             return localVarResponse.Data;
         }
 
@@ -1148,8 +1276,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>ApiResponse of GetAdAnalytics200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
+        /// <returns>ApiResponse of AdAnalyticsResponse</returns>
+        public Zernio.Client.ApiResponse<AdAnalyticsResponse> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -1193,7 +1321,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetAdAnalytics200Response>("/v1/ads/{adId}/analytics", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AdAnalyticsResponse>("/v1/ads/{adId}/analytics", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1213,10 +1341,10 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetAdAnalytics200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of AdAnalyticsResponse</returns>
+        public async System.Threading.Tasks.Task<AdAnalyticsResponse> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdAnalytics200Response> localVarResponse = await GetAdAnalyticsWithHttpInfoAsync(adId, fromDate, toDate, breakdowns, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AdAnalyticsResponse> localVarResponse = await GetAdAnalyticsWithHttpInfoAsync(adId, fromDate, toDate, breakdowns, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1229,8 +1357,8 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetAdAnalytics200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (AdAnalyticsResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdAnalyticsResponse>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -1277,7 +1405,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdAnalytics200Response>("/v1/ads/{adId}/analytics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AdAnalyticsResponse>("/v1/ads/{adId}/analytics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1661,10 +1789,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>GetCampaignAnalytics200Response</returns>
-        public GetCampaignAnalytics200Response GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
+        /// <returns>CampaignAnalyticsResponse</returns>
+        public CampaignAnalyticsResponse GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
-            Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> localVarResponse = GetCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
+            Zernio.Client.ApiResponse<CampaignAnalyticsResponse> localVarResponse = GetCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
             return localVarResponse.Data;
         }
 
@@ -1677,8 +1805,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
-        /// <returns>ApiResponse of GetCampaignAnalytics200Response</returns>
-        public Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
+        /// <returns>ApiResponse of CampaignAnalyticsResponse</returns>
+        public Zernio.Client.ApiResponse<CampaignAnalyticsResponse> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1726,7 +1854,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetCampaignAnalytics200Response>("/v1/ads/campaigns/{campaignId}/analytics", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<CampaignAnalyticsResponse>("/v1/ads/campaigns/{campaignId}/analytics", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1747,10 +1875,10 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetCampaignAnalytics200Response</returns>
-        public async System.Threading.Tasks.Task<GetCampaignAnalytics200Response> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of CampaignAnalyticsResponse</returns>
+        public async System.Threading.Tasks.Task<CampaignAnalyticsResponse> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> localVarResponse = await GetCampaignAnalyticsWithHttpInfoAsync(campaignId, platform, fromDate, toDate, breakdowns, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CampaignAnalyticsResponse> localVarResponse = await GetCampaignAnalyticsWithHttpInfoAsync(campaignId, platform, fromDate, toDate, breakdowns, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1764,8 +1892,8 @@ namespace Zernio.Api
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetCampaignAnalytics200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetCampaignAnalytics200Response>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (CampaignAnalyticsResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CampaignAnalyticsResponse>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -1816,11 +1944,387 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetCampaignAnalytics200Response>("/v1/ads/campaigns/{campaignId}/analytics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CampaignAnalyticsResponse>("/v1/ads/campaigns/{campaignId}/analytics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetCampaignAnalytics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ListLocalServicesLeadConversations200Response</returns>
+        public ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? customerId = default, string? pageToken = default)
+        {
+            Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListLocalServicesLeadConversations200Response</returns>
+        public Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsWithHttpInfo(string leadId, string accountId, string? customerId = default, string? pageToken = default)
+        {
+            // verify the required parameter 'leadId' is set
+            if (leadId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'leadId' when calling AdInsightsApi->ListLocalServicesLeadConversations");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->ListLocalServicesLeadConversations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("leadId", Zernio.Client.ClientUtils.ParameterToString(leadId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListLocalServicesLeadConversations200Response>("/v1/ads/local-services/leads/{leadId}/conversations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLocalServicesLeadConversations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLocalServicesLeadConversations200Response</returns>
+        public async System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = await ListLocalServicesLeadConversationsWithHttpInfoAsync(leadId, accountId, customerId, pageToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLocalServicesLeadConversations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response>> ListLocalServicesLeadConversationsWithHttpInfoAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'leadId' is set
+            if (leadId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'leadId' when calling AdInsightsApi->ListLocalServicesLeadConversations");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->ListLocalServicesLeadConversations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("leadId", Zernio.Client.ClientUtils.ParameterToString(leadId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListLocalServicesLeadConversations200Response>("/v1/ads/local-services/leads/{leadId}/conversations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLocalServicesLeadConversations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Google Local Services Ads leads Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ListLocalServicesLeads200Response</returns>
+        public ListLocalServicesLeads200Response ListLocalServicesLeads(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default)
+        {
+            Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> localVarResponse = ListLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Google Local Services Ads leads Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListLocalServicesLeads200Response</returns>
+        public Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> ListLocalServicesLeadsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->ListLocalServicesLeads");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (leadType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "leadType", leadType));
+            }
+            if (leadStatus != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "leadStatus", leadStatus));
+            }
+            if (chargedOnly != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "chargedOnly", chargedOnly));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListLocalServicesLeads200Response>("/v1/ads/local-services/leads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLocalServicesLeads", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Google Local Services Ads leads Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLocalServicesLeads200Response</returns>
+        public async System.Threading.Tasks.Task<ListLocalServicesLeads200Response> ListLocalServicesLeadsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> localVarResponse = await ListLocalServicesLeadsWithHttpInfoAsync(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Google Local Services Ads leads Leads generated by Local Services Ads (phone calls, messages, bookings), read live from Google&#39;s &#x60;local_services_lead&#x60; resource, newest first. No persistence: Google is the source of truth and lead/credit statuses keep changing server-side. Google never returns healthcare-category leads, and &#x60;WIPED_OUT&#x60; leads arrive with contact erased (&#x60;contact&#x60; is null). Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Leads created at/after this day. (optional)</param>
+        /// <param name="toDate">Leads created at/before this day. (optional)</param>
+        /// <param name="leadType"> (optional)</param>
+        /// <param name="leadStatus">Google LocalServicesLeadStatus enum value (e.g. NEW, BOOKED, WIPED_OUT). (optional)</param>
+        /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
+        /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLocalServicesLeads200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLocalServicesLeads200Response>> ListLocalServicesLeadsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->ListLocalServicesLeads");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (leadType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "leadType", leadType));
+            }
+            if (leadStatus != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "leadStatus", leadStatus));
+            }
+            if (chargedOnly != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "chargedOnly", chargedOnly));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListLocalServicesLeads200Response>("/v1/ads/local-services/leads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLocalServicesLeads", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

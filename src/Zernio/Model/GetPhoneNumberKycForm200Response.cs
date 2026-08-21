@@ -40,12 +40,14 @@ namespace Zernio.Model
         /// <param name="numberType">numberType.</param>
         /// <param name="fields">fields.</param>
         /// <param name="reusable">reusable.</param>
-        public GetPhoneNumberKycForm200Response(string country = default, string numberType = default, List<GetPhoneNumberKycForm200ResponseFieldsInner> fields = default, GetPhoneNumberKycForm200ResponseReusable reusable = default)
+        /// <param name="pendingReview">true when this account already has a number for this country in regulatory review (status pending_regulatory). Scope is the whole account across all profiles, and the country only (any number type), so it is not a per-end-client signal on a multi-tenant setup. Informational only: it never blocks a submission, and several same-country numbers may sit in review at once. For a per-end-client view, call GET /v1/phone-numbers with &#x60;profileId&#x60; and &#x60;status&#x3D;pending_regulatory&#x60;; that view also lists numbers declined in the last 30 days..</param>
+        public GetPhoneNumberKycForm200Response(string country = default, string numberType = default, List<GetPhoneNumberKycForm200ResponseFieldsInner> fields = default, GetPhoneNumberKycForm200ResponseReusable reusable = default, bool pendingReview = default)
         {
             this.Country = country;
             this.NumberType = numberType;
             this.Fields = fields;
             this.Reusable = reusable;
+            this.PendingReview = pendingReview;
         }
 
         /// <summary>
@@ -73,6 +75,13 @@ namespace Zernio.Model
         public GetPhoneNumberKycForm200ResponseReusable Reusable { get; set; }
 
         /// <summary>
+        /// true when this account already has a number for this country in regulatory review (status pending_regulatory). Scope is the whole account across all profiles, and the country only (any number type), so it is not a per-end-client signal on a multi-tenant setup. Informational only: it never blocks a submission, and several same-country numbers may sit in review at once. For a per-end-client view, call GET /v1/phone-numbers with &#x60;profileId&#x60; and &#x60;status&#x3D;pending_regulatory&#x60;; that view also lists numbers declined in the last 30 days.
+        /// </summary>
+        /// <value>true when this account already has a number for this country in regulatory review (status pending_regulatory). Scope is the whole account across all profiles, and the country only (any number type), so it is not a per-end-client signal on a multi-tenant setup. Informational only: it never blocks a submission, and several same-country numbers may sit in review at once. For a per-end-client view, call GET /v1/phone-numbers with &#x60;profileId&#x60; and &#x60;status&#x3D;pending_regulatory&#x60;; that view also lists numbers declined in the last 30 days.</value>
+        [DataMember(Name = "pendingReview", EmitDefaultValue = true)]
+        public bool PendingReview { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,6 +93,7 @@ namespace Zernio.Model
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
             sb.Append("  Reusable: ").Append(Reusable).Append("\n");
+            sb.Append("  PendingReview: ").Append(PendingReview).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

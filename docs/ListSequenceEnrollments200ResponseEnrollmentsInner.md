@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **CurrentStepIndex** | **int** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **ExitReason** | **string** |  | [optional] 
-**NextStepAt** | **DateTime** |  | [optional] 
+**NextStepAt** | **DateTime?** |  | [optional] 
 **StepsSent** | **int** |  | [optional] 
-**LastStepSentAt** | **DateTime** |  | [optional] 
+**LastStepSentAt** | **DateTime?** |  | [optional] 
 **CreatedAt** | **DateTime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

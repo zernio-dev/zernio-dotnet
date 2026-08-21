@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// X (Twitter) geo-restriction applies at the media level. Media in geo-restricted tweets will be hidden for users outside the specified countries; the tweet text itself remains visible globally. Requires media to be attached (ignored for text-only tweets). 
+    /// X-specific post options. The article field creates a long-form X Article and is mutually exclusive with tweet media and tweet-only options. Geo-restriction applies at the media level: media is hidden outside the specified countries while tweet text remains visible. 
     /// </summary>
     [DataContract(Name = "TwitterPlatformData")]
     public partial class TwitterPlatformData : IValidatableObject
@@ -75,6 +75,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TwitterPlatformData" /> class.
         /// </summary>
+        /// <param name="article">article.</param>
         /// <param name="replyToTweetId">ID of an existing tweet to reply to. The published tweet will appear as a reply in that tweet&#39;s thread. For threads, only the first tweet replies to the target; subsequent tweets chain normally. X only permits replying to your own posts or posts you are mentioned in; replying to an arbitrary other account&#39;s post is rejected by X..</param>
         /// <param name="quoteTweetId">ID (or full status URL) of an existing tweet to quote-repost. The published tweet becomes a quote tweet of the target. Mutually exclusive with media and poll. X only permits quoting your own posts or posts you are mentioned in / part of the conversation thread of; quoting an arbitrary other account&#39;s post is rejected by X. Billed at the standard create rate ($0.015), unlike pasting a tweet URL into the text which is billed at the URL rate ($0.20). For threads, applies to the first tweet only..</param>
         /// <param name="replySettings">Controls who can reply to the tweet. \&quot;following\&quot; allows only people you follow, \&quot;mentionedUsers\&quot; allows only mentioned users, \&quot;subscribers\&quot; allows only subscribers, \&quot;verified\&quot; allows only verified users. Omit for default (everyone can reply). For threads, applies to the first tweet only. Cannot be combined with replyToTweetId..</param>
@@ -85,8 +86,9 @@ namespace Zernio.Model
         /// <param name="paidPartnership">When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier. (default to false).</param>
         /// <param name="madeWithAi">When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only. (default to false).</param>
         /// <param name="sensitiveMedia">sensitiveMedia.</param>
-        public TwitterPlatformData(string replyToTweetId = default, string quoteTweetId = default, ReplySettingsEnum? replySettings = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default, TwitterPlatformDataPoll poll = default, bool longVideo = false, GeoRestriction geoRestriction = default, bool paidPartnership = false, bool madeWithAi = false, TwitterPlatformDataSensitiveMedia sensitiveMedia = default)
+        public TwitterPlatformData(XArticle article = default, string replyToTweetId = default, string quoteTweetId = default, ReplySettingsEnum? replySettings = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default, TwitterPlatformDataPoll poll = default, bool longVideo = false, GeoRestriction geoRestriction = default, bool paidPartnership = false, bool madeWithAi = false, TwitterPlatformDataSensitiveMedia sensitiveMedia = default)
         {
+            this.Article = article;
             this.ReplyToTweetId = replyToTweetId;
             this.QuoteTweetId = quoteTweetId;
             this.ReplySettings = replySettings;
@@ -98,6 +100,12 @@ namespace Zernio.Model
             this.MadeWithAi = madeWithAi;
             this.SensitiveMedia = sensitiveMedia;
         }
+
+        /// <summary>
+        /// Gets or Sets Article
+        /// </summary>
+        [DataMember(Name = "article", EmitDefaultValue = false)]
+        public XArticle Article { get; set; }
 
         /// <summary>
         /// ID of an existing tweet to reply to. The published tweet will appear as a reply in that tweet&#39;s thread. For threads, only the first tweet replies to the target; subsequent tweets chain normally. X only permits replying to your own posts or posts you are mentioned in; replying to an arbitrary other account&#39;s post is rejected by X.
@@ -167,6 +175,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TwitterPlatformData {\n");
+            sb.Append("  Article: ").Append(Article).Append("\n");
             sb.Append("  ReplyToTweetId: ").Append(ReplyToTweetId).Append("\n");
             sb.Append("  QuoteTweetId: ").Append(QuoteTweetId).Append("\n");
             sb.Append("  ReplySettings: ").Append(ReplySettings).Append("\n");

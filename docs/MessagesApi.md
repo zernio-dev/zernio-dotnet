@@ -579,7 +579,7 @@ namespace Example
             var conversationId = "conversationId_example";  // string | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.
             var accountId = "accountId_example";  // string | Social account ID
             var limit = 100;  // int? | Number of messages to return per page. Default 100, max 100. (optional)  (default to 100)
-            var cursor = "cursor_example";  // string? | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response. (optional) 
+            var cursor = "cursor_example";  // string? | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional) 
             var sortOrder = "asc";  // string? | Order of returned messages. Default `asc` (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See `sortOrderApplied` in the response.  (optional)  (default to asc)
 
             try
@@ -626,7 +626,7 @@ catch (ApiException e)
 | **conversationId** | **string** | The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. |  |
 | **accountId** | **string** | Social account ID |  |
 | **limit** | **int?** | Number of messages to return per page. Default 100, max 100. | [optional] [default to 100] |
-| **cursor** | **string?** | Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. | [optional]  |
+| **cursor** | **string?** | Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. | [optional]  |
 | **sortOrder** | **string?** | Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  | [optional] [default to asc] |
 
 ### Return type
@@ -647,6 +647,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Messages in conversation |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1122,7 +1123,7 @@ namespace Example
             var platform = "facebook";  // string? | Filter by platform (searchable platforms only) (optional) 
             var accountId = "accountId_example";  // string? | Filter by specific social account ID (optional) 
             var limit = 20;  // int? | Maximum number of conversations to return (optional)  (default to 20)
-            var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
+            var cursor = "cursor_example";  // string? | Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional) 
 
             try
             {
@@ -1171,7 +1172,7 @@ catch (ApiException e)
 | **platform** | **string?** | Filter by platform (searchable platforms only) | [optional]  |
 | **accountId** | **string?** | Filter by specific social account ID | [optional]  |
 | **limit** | **int?** | Maximum number of conversations to return | [optional] [default to 20] |
-| **cursor** | **string?** | Pagination cursor for next page | [optional]  |
+| **cursor** | **string?** | Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional]  |
 
 ### Return type
 
@@ -1191,7 +1192,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversations containing the query, most recent match first |  -  |
-| **400** | Invalid query or unsupported platform |  -  |
+| **400** | Invalid query, unsupported platform, or malformed cursor |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 

@@ -110,15 +110,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'MediaUrl'
-        /// </summary>
-        [Fact]
-        public void MediaUrlTest()
-        {
-            // TODO unit test for the property 'MediaUrl'
-        }
-
-        /// <summary>
         /// Test the property 'ThumbnailUrl'
         /// </summary>
         [Fact]

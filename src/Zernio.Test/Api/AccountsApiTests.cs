@@ -93,6 +93,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetBlueskySettings
+        /// </summary>
+        [Fact]
+        public void GetBlueskySettingsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetBlueskySettings(accountId);
+            //Assert.IsType<GetBlueskySettings200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetFollowerStats
         /// </summary>
         [Fact]
@@ -188,6 +200,18 @@ namespace Zernio.Test.Api
             //UpdateAccountRequest updateAccountRequest = null;
             //var response = instance.UpdateAccount(accountId, updateAccountRequest);
             //Assert.IsType<UpdateAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateBlueskySettings
+        /// </summary>
+        [Fact]
+        public void UpdateBlueskySettingsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //UpdateBlueskySettingsRequest updateBlueskySettingsRequest = null;
+            //instance.UpdateBlueskySettings(accountId, updateBlueskySettingsRequest);
         }
 
         /// <summary>

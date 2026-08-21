@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LinkPreview'
+        /// </summary>
+        [Fact]
+        public void LinkPreviewTest()
+        {
+            // TODO unit test for the property 'LinkPreview'
+        }
+
+        /// <summary>
         /// Test the property 'AttachmentType'
         /// </summary>
         [Fact]

@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Article'
+        /// </summary>
+        [Fact]
+        public void ArticleTest()
+        {
+            // TODO unit test for the property 'Article'
+        }
+
+        /// <summary>
         /// Test the property 'ReplyToTweetId'
         /// </summary>
         [Fact]
@@ -746,6 +755,15 @@ namespace Zernio.Test.Model
         public void VideoPosterUrlTest()
         {
             // TODO unit test for the property 'VideoPosterUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'Langs'
+        /// </summary>
+        [Fact]
+        public void LangsTest()
+        {
+            // TODO unit test for the property 'Langs'
         }
 
         /// <summary>

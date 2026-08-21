@@ -42,11 +42,10 @@ namespace Zernio.Model
         /// <param name="content">Post caption / text.</param>
         /// <param name="publishedAt">When the post was published on the platform.</param>
         /// <param name="mediaType">Media type (e.g. image, video, carousel).</param>
-        /// <param name="mediaUrl">Primary media URL.</param>
         /// <param name="thumbnailUrl">Thumbnail URL.</param>
         /// <param name="mediaItems">Per-item media (for carousels / multi-media posts).</param>
         /// <param name="analytics">analytics.</param>
-        public ExternalPostSummary(string platform = default, string platformPostId = default, string platformPostUrl = default, string content = default, DateTime publishedAt = default, string mediaType = default, string mediaUrl = default, string thumbnailUrl = default, List<Object> mediaItems = default, ExternalPostSummaryAnalytics analytics = default)
+        public ExternalPostSummary(string platform = default, string platformPostId = default, string platformPostUrl = default, string content = default, DateTime publishedAt = default, string mediaType = default, string thumbnailUrl = default, List<Object> mediaItems = default, ExternalPostSummaryAnalytics analytics = default)
         {
             this.Platform = platform;
             this.PlatformPostId = platformPostId;
@@ -54,7 +53,6 @@ namespace Zernio.Model
             this.Content = content;
             this.PublishedAt = publishedAt;
             this.MediaType = mediaType;
-            this.MediaUrl = mediaUrl;
             this.ThumbnailUrl = thumbnailUrl;
             this.MediaItems = mediaItems;
             this.Analytics = analytics;
@@ -103,13 +101,6 @@ namespace Zernio.Model
         public string MediaType { get; set; }
 
         /// <summary>
-        /// Primary media URL
-        /// </summary>
-        /// <value>Primary media URL</value>
-        [DataMember(Name = "mediaUrl", EmitDefaultValue = false)]
-        public string MediaUrl { get; set; }
-
-        /// <summary>
         /// Thumbnail URL
         /// </summary>
         /// <value>Thumbnail URL</value>
@@ -143,7 +134,6 @@ namespace Zernio.Model
             sb.Append("  Content: ").Append(Content).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  MediaType: ").Append(MediaType).Append("\n");
-            sb.Append("  MediaUrl: ").Append(MediaUrl).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  MediaItems: ").Append(MediaItems).Append("\n");
             sb.Append("  Analytics: ").Append(Analytics).Append("\n");

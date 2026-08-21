@@ -43,10 +43,11 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="country">ISO 3166-1 alpha-2 country code. (required).</param>
         /// <param name="streetAddress">streetAddress (required).</param>
+        /// <param name="extendedAddress">Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address..</param>
         /// <param name="locality">City / town. (required).</param>
         /// <param name="administrativeArea">State / province / region. When omitted, the pre-check is skipped (the final submit still validates)..</param>
         /// <param name="postalCode">postalCode (required).</param>
-        public ValidatePhoneNumberKycAddressRequest(string country = default, string streetAddress = default, string locality = default, string administrativeArea = default, string postalCode = default)
+        public ValidatePhoneNumberKycAddressRequest(string country = default, string streetAddress = default, string extendedAddress = default, string locality = default, string administrativeArea = default, string postalCode = default)
         {
             // to ensure "country" is required (not null)
             if (country == null)
@@ -72,6 +73,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("postalCode is a required property for ValidatePhoneNumberKycAddressRequest and cannot be null");
             }
             this.PostalCode = postalCode;
+            this.ExtendedAddress = extendedAddress;
             this.AdministrativeArea = administrativeArea;
         }
 
@@ -87,6 +89,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "street_address", IsRequired = true, EmitDefaultValue = true)]
         public string StreetAddress { get; set; }
+
+        /// <summary>
+        /// Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address.
+        /// </summary>
+        /// <value>Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address.</value>
+        [DataMember(Name = "extended_address", EmitDefaultValue = false)]
+        public string ExtendedAddress { get; set; }
 
         /// <summary>
         /// City / town.
@@ -118,6 +127,7 @@ namespace Zernio.Model
             sb.Append("class ValidatePhoneNumberKycAddressRequest {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  StreetAddress: ").Append(StreetAddress).Append("\n");
+            sb.Append("  ExtendedAddress: ").Append(ExtendedAddress).Append("\n");
             sb.Append("  Locality: ").Append(Locality).Append("\n");
             sb.Append("  AdministrativeArea: ").Append(AdministrativeArea).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");

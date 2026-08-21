@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="sends">Times the post was sent via LinkedIn messaging (personal accounts only; 0 for organization accounts).</param>
         /// <param name="clicks">Clicks on the post (organization accounts only).</param>
         /// <param name="views">Video views (video posts only).</param>
-        /// <param name="engagementRate">Engagement rate as percentage.</param>
+        /// <param name="engagementRate">Engagement rate, as a percentage rounded to 2 decimals: (likes + comments + shares + clicks + saves + sends) / impressions * 100. Unlike PostAnalytics.engagementRate on GET /v1/analytics, this one DOES count clicks and has no fallback denominator, so it is 0 whenever impressions is 0. For organization accounts the value is the rate LinkedIn returns, not one computed here..</param>
         public GetLinkedInPostAnalytics200ResponseAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int sends = default, int clicks = default, int views = default, decimal engagementRate = default)
         {
             this.Impressions = impressions;
@@ -124,9 +124,9 @@ namespace Zernio.Model
         public int Views { get; set; }
 
         /// <summary>
-        /// Engagement rate as percentage
+        /// Engagement rate, as a percentage rounded to 2 decimals: (likes + comments + shares + clicks + saves + sends) / impressions * 100. Unlike PostAnalytics.engagementRate on GET /v1/analytics, this one DOES count clicks and has no fallback denominator, so it is 0 whenever impressions is 0. For organization accounts the value is the rate LinkedIn returns, not one computed here.
         /// </summary>
-        /// <value>Engagement rate as percentage</value>
+        /// <value>Engagement rate, as a percentage rounded to 2 decimals: (likes + comments + shares + clicks + saves + sends) / impressions * 100. Unlike PostAnalytics.engagementRate on GET /v1/analytics, this one DOES count clicks and has no fallback denominator, so it is 0 whenever impressions is 0. For organization accounts the value is the rate LinkedIn returns, not one computed here.</value>
         [DataMember(Name = "engagementRate", EmitDefaultValue = false)]
         public decimal EngagementRate { get; set; }
 

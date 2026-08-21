@@ -138,7 +138,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ContactName
         /// </summary>
-        [DataMember(Name = "contactName", EmitDefaultValue = false)]
+        [DataMember(Name = "contactName", EmitDefaultValue = true)]
         public string ContactName { get; set; }
 
         /// <summary>

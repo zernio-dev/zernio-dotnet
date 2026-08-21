@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Views** | **int** |  | [optional] 
 **Reach** | **int** |  | [optional] 
 **Impressions** | **int** |  | [optional] 
-**EngagementRate** | **decimal** |  | [optional] 
+**EngagementRate** | **decimal** | Percentage, rounded to 2 decimals. Same definition as PostAnalytics.engagementRate: (likes + comments + shares + saves) / (impressions or reach or views) * 100, where the denominator is the first of the three that is non-zero. Clicks and follows are never counted. | [optional] 
 **LastUpdated** | **DateTime** | When these metrics were last refreshed | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

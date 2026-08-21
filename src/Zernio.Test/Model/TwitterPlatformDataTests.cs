@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Article'
+        /// </summary>
+        [Fact]
+        public void ArticleTest()
+        {
+            // TODO unit test for the property 'Article'
+        }
+
+        /// <summary>
         /// Test the property 'ReplyToTweetId'
         /// </summary>
         [Fact]

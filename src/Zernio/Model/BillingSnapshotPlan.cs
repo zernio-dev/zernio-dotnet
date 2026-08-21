@@ -38,10 +38,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="name">name.</param>
         /// <param name="isUsageBased">isUsageBased.</param>
-        public BillingSnapshotPlan(string name = default, bool isUsageBased = default)
+        /// <param name="isPaid">True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing)..</param>
+        public BillingSnapshotPlan(string name = default, bool isUsageBased = default, bool isPaid = default)
         {
             this.Name = name;
             this.IsUsageBased = isUsageBased;
+            this.IsPaid = isPaid;
         }
 
         /// <summary>
@@ -57,6 +59,13 @@ namespace Zernio.Model
         public bool IsUsageBased { get; set; }
 
         /// <summary>
+        /// True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing).
+        /// </summary>
+        /// <value>True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing).</value>
+        [DataMember(Name = "isPaid", EmitDefaultValue = true)]
+        public bool IsPaid { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -66,6 +75,7 @@ namespace Zernio.Model
             sb.Append("class BillingSnapshotPlan {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  IsUsageBased: ").Append(IsUsageBased).Append("\n");
+            sb.Append("  IsPaid: ").Append(IsPaid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

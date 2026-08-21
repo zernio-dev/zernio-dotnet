@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="views">views.</param>
         /// <param name="reach">reach.</param>
         /// <param name="impressions">impressions.</param>
-        /// <param name="engagementRate">engagementRate.</param>
+        /// <param name="engagementRate">Percentage, rounded to 2 decimals. Same definition as PostAnalytics.engagementRate: (likes + comments + shares + saves) / (impressions or reach or views) * 100, where the denominator is the first of the three that is non-zero. Clicks and follows are never counted..</param>
         /// <param name="lastUpdated">When these metrics were last refreshed.</param>
         public ExternalPostSummaryAnalytics(int likes = default, int comments = default, int shares = default, int saves = default, int sends = default, int clicks = default, int views = default, int reach = default, int impressions = default, decimal engagementRate = default, DateTime lastUpdated = default)
         {
@@ -117,8 +117,9 @@ namespace Zernio.Model
         public int Impressions { get; set; }
 
         /// <summary>
-        /// Gets or Sets EngagementRate
+        /// Percentage, rounded to 2 decimals. Same definition as PostAnalytics.engagementRate: (likes + comments + shares + saves) / (impressions or reach or views) * 100, where the denominator is the first of the three that is non-zero. Clicks and follows are never counted.
         /// </summary>
+        /// <value>Percentage, rounded to 2 decimals. Same definition as PostAnalytics.engagementRate: (likes + comments + shares + saves) / (impressions or reach or views) * 100, where the denominator is the first of the three that is non-zero. Clicks and follows are never counted.</value>
         [DataMember(Name = "engagementRate", EmitDefaultValue = false)]
         public decimal EngagementRate { get; set; }
 

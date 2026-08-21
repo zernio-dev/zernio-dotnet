@@ -34,46 +34,67 @@ namespace Zernio.Model
     public partial class UpdateAdCampaignStatus200Response : IValidatableObject
     {
         /// <summary>
+        /// The status written to the campaign
+        /// </summary>
+        /// <value>The status written to the campaign</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum Active for value: active
+            /// </summary>
+            [EnumMember(Value = "active")]
+            Active = 1,
+
+            /// <summary>
+            /// Enum Paused for value: paused
+            /// </summary>
+            [EnumMember(Value = "paused")]
+            Paused = 2
+        }
+
+
+        /// <summary>
+        /// The status written to the campaign
+        /// </summary>
+        /// <value>The status written to the campaign</value>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdCampaignStatus200Response" /> class.
         /// </summary>
-        /// <param name="updated">Number of ads updated.</param>
-        /// <param name="skipped">Number of ads skipped.</param>
-        /// <param name="skippedReasons">skippedReasons.</param>
-        /// <param name="message">Human-readable summary (present when no ads were actionable).</param>
-        public UpdateAdCampaignStatus200Response(int updated = default, int skipped = default, List<string> skippedReasons = default, string message = default)
+        /// <param name="status">The status written to the campaign.</param>
+        /// <param name="updated">Number of ads whose own stored status changed too. 0 is normal on a resume whose ads are all awaiting the platform..</param>
+        /// <param name="skipped">Number of ads whose own status was left as it was.</param>
+        /// <param name="skippedReasons">Why each group of ads was skipped.</param>
+        public UpdateAdCampaignStatus200Response(StatusEnum? status = default, int updated = default, int skipped = default, List<string> skippedReasons = default)
         {
+            this.Status = status;
             this.Updated = updated;
             this.Skipped = skipped;
             this.SkippedReasons = skippedReasons;
-            this.Message = message;
         }
 
         /// <summary>
-        /// Number of ads updated
+        /// Number of ads whose own stored status changed too. 0 is normal on a resume whose ads are all awaiting the platform.
         /// </summary>
-        /// <value>Number of ads updated</value>
+        /// <value>Number of ads whose own stored status changed too. 0 is normal on a resume whose ads are all awaiting the platform.</value>
         [DataMember(Name = "updated", EmitDefaultValue = false)]
         public int Updated { get; set; }
 
         /// <summary>
-        /// Number of ads skipped
+        /// Number of ads whose own status was left as it was
         /// </summary>
-        /// <value>Number of ads skipped</value>
+        /// <value>Number of ads whose own status was left as it was</value>
         [DataMember(Name = "skipped", EmitDefaultValue = false)]
         public int Skipped { get; set; }
 
         /// <summary>
-        /// Gets or Sets SkippedReasons
+        /// Why each group of ads was skipped
         /// </summary>
+        /// <value>Why each group of ads was skipped</value>
         [DataMember(Name = "skippedReasons", EmitDefaultValue = false)]
         public List<string> SkippedReasons { get; set; }
-
-        /// <summary>
-        /// Human-readable summary (present when no ads were actionable)
-        /// </summary>
-        /// <value>Human-readable summary (present when no ads were actionable)</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,10 +104,10 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdCampaignStatus200Response {\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  Skipped: ").Append(Skipped).Append("\n");
             sb.Append("  SkippedReasons: ").Append(SkippedReasons).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

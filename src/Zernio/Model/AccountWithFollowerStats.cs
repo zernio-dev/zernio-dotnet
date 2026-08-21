@@ -175,7 +175,25 @@ namespace Zernio.Model
             /// Enum Openaiads for value: openaiads
             /// </summary>
             [EnumMember(Value = "openaiads")]
-            Openaiads = 23
+            Openaiads = 23,
+
+            /// <summary>
+            /// Enum Sms for value: sms
+            /// </summary>
+            [EnumMember(Value = "sms")]
+            Sms = 24,
+
+            /// <summary>
+            /// Enum Phone for value: phone
+            /// </summary>
+            [EnumMember(Value = "phone")]
+            Phone = 25,
+
+            /// <summary>
+            /// Enum Rcs for value: rcs
+            /// </summary>
+            [EnumMember(Value = "rcs")]
+            Rcs = 26
         }
 
 

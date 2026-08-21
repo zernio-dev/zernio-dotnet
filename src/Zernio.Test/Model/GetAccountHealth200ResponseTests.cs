@@ -135,5 +135,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Recommendations'
         }
+
+        /// <summary>
+        /// Test the property 'PlatformConnection'
+        /// </summary>
+        [Fact]
+        public void PlatformConnectionTest()
+        {
+            // TODO unit test for the property 'PlatformConnection'
+        }
     }
 }

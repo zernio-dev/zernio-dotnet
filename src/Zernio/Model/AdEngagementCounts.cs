@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// The single &#x60;engagement&#x60; total split into the interactions behind it.  Note that &#x60;engagement&#x60; is not the sum of these: Meta&#39;s own &#x60;post_engagement&#x60; and &#x60;page_engagement&#x60; totals already contain the individual interactions, and all of them are counted into &#x60;engagement&#x60;. Use these fields when you need a specific interaction, and &#x60;engagement&#x60; only as the coarse total it has always been.  Meta-only; other platforms leave these at 0. 
+    /// The single &#x60;engagement&#x60; total split into the interactions behind it.  Note that &#x60;engagement&#x60; is not the sum of these: Meta&#39;s own &#x60;post_engagement&#x60; and &#x60;page_engagement&#x60; totals already contain the individual interactions, and all of them are counted into &#x60;engagement&#x60;. Use these fields when you need a specific interaction, and &#x60;engagement&#x60; only as the coarse total it has always been.  Populated for Meta and, since 2026-08, TikTok (&#x60;reactions&#x60; &#x3D; paid likes, &#x60;comments&#x60;, &#x60;shares&#x60;; TikTok&#39;s &#x60;follow&#x60; count lives in &#x60;actions.follow&#x60;, not here). Other platforms leave these at 0. TikTok history note: paused TikTok ads are not re-synced, so campaigns that ended before the rollout keep 0s here. 
     /// </summary>
     [DataContract(Name = "AdEngagementCounts")]
     public partial class AdEngagementCounts : IValidatableObject
@@ -36,11 +36,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AdEngagementCounts" /> class.
         /// </summary>
-        /// <param name="postEngagement">Meta&#39;s own post-engagement total (&#x60;post_engagement&#x60;)..</param>
-        /// <param name="pageEngagement">Meta&#39;s own page-engagement total (&#x60;page_engagement&#x60;)..</param>
-        /// <param name="reactions">Reactions on the ad&#39;s post (&#x60;post_reaction&#x60;)..</param>
+        /// <param name="postEngagement">Meta&#39;s own post-engagement total (&#x60;post_engagement&#x60;). Meta-only..</param>
+        /// <param name="pageEngagement">Meta&#39;s own page-engagement total (&#x60;page_engagement&#x60;). Meta-only..</param>
+        /// <param name="reactions">Reactions on the ad&#39;s post (&#x60;post_reaction&#x60;). For TikTok these are its paid likes..</param>
         /// <param name="comments">Comments on the ad&#39;s post..</param>
-        /// <param name="shares">Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;..</param>
+        /// <param name="shares">Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;; TikTok under &#x60;share&#x60;..</param>
         /// <param name="saves">Saves of the ad&#39;s post (&#x60;onsite_conversion.post_save&#x60;)..</param>
         /// <param name="pageLikes">New Page likes attributed to the ad (&#x60;like&#x60;)..</param>
         /// <param name="videoViews">3-second video views (&#x60;video_view&#x60;). For completion-based counts use &#x60;videoThruplayWatchedActions&#x60;..</param>
@@ -59,23 +59,23 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta&#39;s own post-engagement total (&#x60;post_engagement&#x60;).
+        /// Meta&#39;s own post-engagement total (&#x60;post_engagement&#x60;). Meta-only.
         /// </summary>
-        /// <value>Meta&#39;s own post-engagement total (&#x60;post_engagement&#x60;).</value>
+        /// <value>Meta&#39;s own post-engagement total (&#x60;post_engagement&#x60;). Meta-only.</value>
         [DataMember(Name = "postEngagement", EmitDefaultValue = false)]
         public int PostEngagement { get; set; }
 
         /// <summary>
-        /// Meta&#39;s own page-engagement total (&#x60;page_engagement&#x60;).
+        /// Meta&#39;s own page-engagement total (&#x60;page_engagement&#x60;). Meta-only.
         /// </summary>
-        /// <value>Meta&#39;s own page-engagement total (&#x60;page_engagement&#x60;).</value>
+        /// <value>Meta&#39;s own page-engagement total (&#x60;page_engagement&#x60;). Meta-only.</value>
         [DataMember(Name = "pageEngagement", EmitDefaultValue = false)]
         public int PageEngagement { get; set; }
 
         /// <summary>
-        /// Reactions on the ad&#39;s post (&#x60;post_reaction&#x60;).
+        /// Reactions on the ad&#39;s post (&#x60;post_reaction&#x60;). For TikTok these are its paid likes.
         /// </summary>
-        /// <value>Reactions on the ad&#39;s post (&#x60;post_reaction&#x60;).</value>
+        /// <value>Reactions on the ad&#39;s post (&#x60;post_reaction&#x60;). For TikTok these are its paid likes.</value>
         [DataMember(Name = "reactions", EmitDefaultValue = false)]
         public int Reactions { get; set; }
 
@@ -87,9 +87,9 @@ namespace Zernio.Model
         public int Comments { get; set; }
 
         /// <summary>
-        /// Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;.
+        /// Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;; TikTok under &#x60;share&#x60;.
         /// </summary>
-        /// <value>Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;.</value>
+        /// <value>Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;; TikTok under &#x60;share&#x60;.</value>
         [DataMember(Name = "shares", EmitDefaultValue = false)]
         public int Shares { get; set; }
 

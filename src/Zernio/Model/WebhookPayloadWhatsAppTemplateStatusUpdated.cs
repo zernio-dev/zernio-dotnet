@@ -64,7 +64,7 @@ namespace Zernio.Model
         /// <param name="varEvent">varEvent (required).</param>
         /// <param name="account">account (required).</param>
         /// <param name="template">template (required).</param>
-        /// <param name="timestamp">ISO-8601 timestamp the webhook was produced. (required).</param>
+        /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
         public WebhookPayloadWhatsAppTemplateStatusUpdated(string id = default, EventEnum varEvent = default, WebhookPayloadWhatsAppTemplateStatusUpdatedAccount account = default, WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate template = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
@@ -109,9 +109,9 @@ namespace Zernio.Model
         public WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate Template { get; set; }
 
         /// <summary>
-        /// ISO-8601 timestamp the webhook was produced.
+        /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
-        /// <value>ISO-8601 timestamp the webhook was produced.</value>
+        /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Timestamp { get; set; }
 

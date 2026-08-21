@@ -157,7 +157,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <returns>GetInboxConversationMessages200Response</returns>
         GetInboxConversationMessages200Response GetInboxConversationMessages(string conversationId, string accountId, int? limit = default, string? cursor = default, string? sortOrder = default);
@@ -172,7 +172,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <returns>ApiResponse of GetInboxConversationMessages200Response</returns>
         ApiResponse<GetInboxConversationMessages200Response> GetInboxConversationMessagesWithHttpInfo(string conversationId, string accountId, int? limit = default, string? cursor = default, string? sortOrder = default);
@@ -299,7 +299,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <returns>SearchInboxConversations200Response</returns>
         SearchInboxConversations200Response SearchInboxConversations(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default);
 
@@ -316,7 +316,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <returns>ApiResponse of SearchInboxConversations200Response</returns>
         ApiResponse<SearchInboxConversations200Response> SearchInboxConversationsWithHttpInfo(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default);
         /// <summary>
@@ -561,7 +561,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxConversationMessages200Response</returns>
@@ -577,7 +577,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxConversationMessages200Response)</returns>
@@ -713,7 +713,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchInboxConversations200Response</returns>
         System.Threading.Tasks.Task<SearchInboxConversations200Response> SearchInboxConversationsAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
@@ -731,7 +731,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchInboxConversations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SearchInboxConversations200Response>> SearchInboxConversationsWithHttpInfoAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1798,7 +1798,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <returns>GetInboxConversationMessages200Response</returns>
         public GetInboxConversationMessages200Response GetInboxConversationMessages(string conversationId, string accountId, int? limit = default, string? cursor = default, string? sortOrder = default)
@@ -1814,7 +1814,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <returns>ApiResponse of GetInboxConversationMessages200Response</returns>
         public Zernio.Client.ApiResponse<GetInboxConversationMessages200Response> GetInboxConversationMessagesWithHttpInfo(string conversationId, string accountId, int? limit = default, string? cursor = default, string? sortOrder = default)
@@ -1884,7 +1884,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxConversationMessages200Response</returns>
@@ -1901,7 +1901,7 @@ namespace Zernio.Api
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="limit">Number of messages to return per page. Default 100, max 100. (optional, default to 100)</param>
-        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response. (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional)</param>
         /// <param name="sortOrder">Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  (optional, default to asc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxConversationMessages200Response)</returns>
@@ -2646,7 +2646,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <returns>SearchInboxConversations200Response</returns>
         public SearchInboxConversations200Response SearchInboxConversations(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default)
         {
@@ -2664,7 +2664,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <returns>ApiResponse of SearchInboxConversations200Response</returns>
         public Zernio.Client.ApiResponse<SearchInboxConversations200Response> SearchInboxConversationsWithHttpInfo(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default)
         {
@@ -2743,7 +2743,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchInboxConversations200Response</returns>
         public async System.Threading.Tasks.Task<SearchInboxConversations200Response> SearchInboxConversationsAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2762,7 +2762,7 @@ namespace Zernio.Api
         /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
-        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cursor">Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchInboxConversations200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchInboxConversations200Response>> SearchInboxConversationsWithHttpInfoAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)

@@ -53,7 +53,7 @@ namespace Zernio.Api
         /// Check account health
         /// </summary>
         /// <remarks>
-        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -64,7 +64,7 @@ namespace Zernio.Api
         /// Check account health
         /// </summary>
         /// <remarks>
-        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -95,6 +95,27 @@ namespace Zernio.Api
         /// <param name="status">Filter by health status (optional)</param>
         /// <returns>ApiResponse of GetAllAccountsHealth200Response</returns>
         ApiResponse<GetAllAccountsHealth200Response> GetAllAccountsHealthWithHttpInfo(string? profileId = default, string? platform = default, string? status = default);
+        /// <summary>
+        /// Get Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>GetBlueskySettings200Response</returns>
+        GetBlueskySettings200Response GetBlueskySettings(string accountId);
+
+        /// <summary>
+        /// Get Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of GetBlueskySettings200Response</returns>
+        ApiResponse<GetBlueskySettings200Response> GetBlueskySettingsWithHttpInfo(string accountId);
         /// <summary>
         /// Get follower stats
         /// </summary>
@@ -271,6 +292,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAccount200Response</returns>
         ApiResponse<UpdateAccount200Response> UpdateAccountWithHttpInfo(string accountId, UpdateAccountRequest updateAccountRequest);
         /// <summary>
+        /// Update Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <returns></returns>
+        void UpdateBlueskySettings(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest);
+
+        /// <summary>
+        /// Update Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> UpdateBlueskySettingsWithHttpInfo(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest);
+        /// <summary>
         /// Update Slack account settings
         /// </summary>
         /// <remarks>
@@ -329,7 +373,7 @@ namespace Zernio.Api
         /// Check account health
         /// </summary>
         /// <remarks>
-        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -341,7 +385,7 @@ namespace Zernio.Api
         /// Check account health
         /// </summary>
         /// <remarks>
-        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -375,6 +419,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAllAccountsHealth200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAllAccountsHealth200Response>> GetAllAccountsHealthWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetBlueskySettings200Response</returns>
+        System.Threading.Tasks.Task<GetBlueskySettings200Response> GetBlueskySettingsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetBlueskySettings200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetBlueskySettings200Response>> GetBlueskySettingsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get follower stats
         /// </summary>
@@ -564,6 +631,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAccount200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAccount200Response>> UpdateAccountWithHttpInfoAsync(string accountId, UpdateAccountRequest updateAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task UpdateBlueskySettingsAsync(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update Bluesky account settings
+        /// </summary>
+        /// <remarks>
+        /// Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateBlueskySettingsWithHttpInfoAsync(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update Slack account settings
         /// </summary>
@@ -930,7 +1022,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -942,7 +1034,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -991,7 +1083,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -1004,7 +1096,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.
+        /// Check account health Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The account ID to check</param>
@@ -1199,6 +1291,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAllAccountsHealth", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Bluesky account settings Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>GetBlueskySettings200Response</returns>
+        public GetBlueskySettings200Response GetBlueskySettings(string accountId)
+        {
+            Zernio.Client.ApiResponse<GetBlueskySettings200Response> localVarResponse = GetBlueskySettingsWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Bluesky account settings Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of GetBlueskySettings200Response</returns>
+        public Zernio.Client.ApiResponse<GetBlueskySettings200Response> GetBlueskySettingsWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetBlueskySettings");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetBlueskySettings200Response>("/v1/accounts/{accountId}/bluesky-settings", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetBlueskySettings", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Bluesky account settings Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetBlueskySettings200Response</returns>
+        public async System.Threading.Tasks.Task<GetBlueskySettings200Response> GetBlueskySettingsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetBlueskySettings200Response> localVarResponse = await GetBlueskySettingsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Bluesky account settings Returns the account&#39;s default post languages (defaultLangs), applied at publish time whenever a post&#39;s platformSpecificData.langs is absent. Null when no default is set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetBlueskySettings200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetBlueskySettings200Response>> GetBlueskySettingsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetBlueskySettings");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetBlueskySettings200Response>("/v1/accounts/{accountId}/bluesky-settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetBlueskySettings", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2262,6 +2481,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update Bluesky account settings Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <returns></returns>
+        public void UpdateBlueskySettings(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest)
+        {
+            UpdateBlueskySettingsWithHttpInfo(accountId, updateBlueskySettingsRequest);
+        }
+
+        /// <summary>
+        /// Update Bluesky account settings Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> UpdateBlueskySettingsWithHttpInfo(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->UpdateBlueskySettings");
+
+            // verify the required parameter 'updateBlueskySettingsRequest' is set
+            if (updateBlueskySettingsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateBlueskySettingsRequest' when calling AccountsApi->UpdateBlueskySettings");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = updateBlueskySettingsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<Object>("/v1/accounts/{accountId}/bluesky-settings", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateBlueskySettings", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update Bluesky account settings Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task UpdateBlueskySettingsAsync(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await UpdateBlueskySettingsWithHttpInfoAsync(accountId, updateBlueskySettingsRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update Bluesky account settings Set or clear the account&#39;s default post languages. 1-3 BCP-47 codes (e.g. \&quot;pt\&quot;, \&quot;en-US\&quot;), the same validation as per-post langs; explicit null clears the default. Per-post platformSpecificData.langs always overrides this default. Applies to posts published after the change; already-published posts cannot be retagged (Bluesky has no post edit).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateBlueskySettingsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateBlueskySettingsWithHttpInfoAsync(string accountId, UpdateBlueskySettingsRequest updateBlueskySettingsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->UpdateBlueskySettings");
+
+            // verify the required parameter 'updateBlueskySettingsRequest' is set
+            if (updateBlueskySettingsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateBlueskySettingsRequest' when calling AccountsApi->UpdateBlueskySettings");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = updateBlueskySettingsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/accounts/{accountId}/bluesky-settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateBlueskySettings", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

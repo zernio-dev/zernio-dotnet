@@ -42,10 +42,11 @@ namespace Zernio.Model
         /// <param name="firstName">firstName.</param>
         /// <param name="lastName">lastName.</param>
         /// <param name="streetAddress">streetAddress.</param>
+        /// <param name="extendedAddress">Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address..</param>
         /// <param name="locality">locality.</param>
         /// <param name="administrativeArea">administrativeArea.</param>
         /// <param name="postalCode">postalCode.</param>
-        public SubmitPhoneNumberKycRequestAddress(string requirementId = default, string countryCode = default, string businessName = default, string firstName = default, string lastName = default, string streetAddress = default, string locality = default, string administrativeArea = default, string postalCode = default)
+        public SubmitPhoneNumberKycRequestAddress(string requirementId = default, string countryCode = default, string businessName = default, string firstName = default, string lastName = default, string streetAddress = default, string extendedAddress = default, string locality = default, string administrativeArea = default, string postalCode = default)
         {
             this.RequirementId = requirementId;
             this.CountryCode = countryCode;
@@ -53,6 +54,7 @@ namespace Zernio.Model
             this.FirstName = firstName;
             this.LastName = lastName;
             this.StreetAddress = streetAddress;
+            this.ExtendedAddress = extendedAddress;
             this.Locality = locality;
             this.AdministrativeArea = administrativeArea;
             this.PostalCode = postalCode;
@@ -95,6 +97,13 @@ namespace Zernio.Model
         public string StreetAddress { get; set; }
 
         /// <summary>
+        /// Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address.
+        /// </summary>
+        /// <value>Address complement: apartment, suite, unit, or the quadra/lote used in some countries. Optional. Does not substitute for a building number on street_address.</value>
+        [DataMember(Name = "extended_address", EmitDefaultValue = false)]
+        public string ExtendedAddress { get; set; }
+
+        /// <summary>
         /// Gets or Sets Locality
         /// </summary>
         [DataMember(Name = "locality", EmitDefaultValue = false)]
@@ -126,6 +135,7 @@ namespace Zernio.Model
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("  StreetAddress: ").Append(StreetAddress).Append("\n");
+            sb.Append("  ExtendedAddress: ").Append(ExtendedAddress).Append("\n");
             sb.Append("  Locality: ").Append(Locality).Append("\n");
             sb.Append("  AdministrativeArea: ").Append(AdministrativeArea).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");

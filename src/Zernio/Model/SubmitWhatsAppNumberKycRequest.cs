@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">profileId (required).</param>
         /// <param name="country">country (required).</param>
-        /// <param name="submissionId">Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number..</param>
+        /// <param name="submissionId">Idempotency token for this submission attempt. Once the number has been ordered, a retry with the same token returns that same number instead of ordering another. A submission that fails before the number is ordered releases the token, so you can correct your details and re-submit with it. Omit it and every call provisions a new number..</param>
         /// <param name="quantity">Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). With &#x60;areaCode&#x60;, a quantity above that area&#39;s live stock is rejected with a 400. (default to 1).</param>
         /// <param name="reuse">Reuse a prior approved verification for this country (skips document/field collection; places the order immediately)..</param>
         /// <param name="reuseOptionId">Which reusable verification to use (GET reusable.options[].id). The unambiguous selection key. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
@@ -94,9 +94,9 @@ namespace Zernio.Model
         public string Country { get; set; }
 
         /// <summary>
-        /// Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number.
+        /// Idempotency token for this submission attempt. Once the number has been ordered, a retry with the same token returns that same number instead of ordering another. A submission that fails before the number is ordered releases the token, so you can correct your details and re-submit with it. Omit it and every call provisions a new number.
         /// </summary>
-        /// <value>Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number.</value>
+        /// <value>Idempotency token for this submission attempt. Once the number has been ordered, a retry with the same token returns that same number instead of ordering another. A submission that fails before the number is ordered releases the token, so you can correct your details and re-submit with it. Omit it and every call provisions a new number.</value>
         [DataMember(Name = "submissionId", EmitDefaultValue = false)]
         public string SubmissionId { get; set; }
 

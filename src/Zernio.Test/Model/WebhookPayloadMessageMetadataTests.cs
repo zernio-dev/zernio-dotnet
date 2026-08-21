@@ -207,5 +207,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Referral'
         }
+
+        /// <summary>
+        /// Test the property 'Unsupported'
+        /// </summary>
+        [Fact]
+        public void UnsupportedTest()
+        {
+            // TODO unit test for the property 'Unsupported'
+        }
+
+        /// <summary>
+        /// Test the property 'NoRenderableContent'
+        /// </summary>
+        [Fact]
+        public void NoRenderableContentTest()
+        {
+            // TODO unit test for the property 'NoRenderableContent'
+        }
     }
 }

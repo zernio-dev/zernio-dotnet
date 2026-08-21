@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Langs'
+        /// </summary>
+        [Fact]
+        public void LangsTest()
+        {
+            // TODO unit test for the property 'Langs'
+        }
+
+        /// <summary>
         /// Test the property 'ThreadItems'
         /// </summary>
         [Fact]

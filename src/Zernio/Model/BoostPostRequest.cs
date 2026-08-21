@@ -204,7 +204,7 @@ namespace Zernio.Model
         /// <param name="budget">budget.</param>
         /// <param name="instagramAccountId">Meta only. Instagram identity the ad runs AS (creative.instagram_user_id), overriding the account linked to the Page. Live-verified against a Page-post creative..</param>
         /// <param name="destinationType">Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this..</param>
-        /// <param name="currency">currency.</param>
+        /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency. Meta only. Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is)..</param>
         /// <param name="schedule">schedule.</param>
         /// <param name="targeting">targeting.</param>
         /// <param name="rawTargeting">Meta only. A Meta-native targeting spec (e.g. &#x60;{ \&quot;geo_locations\&quot;: { \&quot;cities\&quot;: [{ \&quot;key\&quot;: \&quot;...\&quot;, \&quot;radius\&quot;: 15, \&quot;distance_unit\&quot;: \&quot;kilometer\&quot; }] } }&#x60;). Sent alone it is forwarded unchanged. Use for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places, user_os, wireless_carrier).  Can be combined with &#x60;targeting&#x60;: rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key (camelCase wins on collision). The merge goes one level deep inside &#x60;geo_locations&#x60; and &#x60;excluded_geo_locations&#x60; (built sub-keys win; raw-only sub-keys such as &#x60;location_types&#x60; survive). Array values (&#x60;flexible_spec&#x60;, ...) are replaced as a whole key, never element-merged.  When &#x60;rawTargeting&#x60; is present the &#x60;advantage_audience: 0&#x60; default that Zernio normally applies is no longer emitted, so it cannot clobber a &#x60;targeting_automation&#x60; sent in the raw spec. Meta requires &#x60;targeting_automation&#x60; on ad set creation, so include it in the raw spec, or send &#x60;targeting.advantage_audience&#x60; (0 or 1), which is merged over raw as &#x60;targeting_automation&#x60;. .</param>
@@ -216,7 +216,7 @@ namespace Zernio.Model
         /// <param name="specialAdCategories">Meta only. Required for housing, employment, credit, or political ads..</param>
         /// <param name="specialAdCategoryCountry">Meta (metaads) only. 2-letter ISO country codes the special ad category applies to. Requires specialAdCategories to be set (400 otherwise)..</param>
         /// <param name="linkUrl">Destination URL for the CTA button. Send it together with &#x60;callToAction&#x60;.  **Meta**: adds a top-level &#x60;call_to_action&#x60; to the post-reference creative. This is what gives a &#x60;traffic&#x60; boost a clickable destination without replacing the creative and losing the post&#39;s social proof. Ignored when &#x60;leadGenFormId&#x60; is set, which supplies its own destination. Live-verified against a Page-post creative.  **TikTok**: maps to &#x60;landing_page_url&#x60; on the Spark Ad creative (&#x60;AdcreateCreatives.landing_page_url&#x60;); Spark Ads have no clickable destination without it.  Ignored on LinkedIn / Pinterest / X / Google, which infer the destination from the boosted post. .</param>
-        /// <param name="callToAction">CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: validated against the Meta CTA enum (same values as POST /v1/ads/create), e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;SIGN_UP&#x60;.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. .</param>
+        /// <param name="callToAction">CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. .</param>
         /// <param name="sparkAuthCode">TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. .</param>
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
@@ -322,8 +322,9 @@ namespace Zernio.Model
         public string InstagramAccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Currency
+        /// ISO 4217 currency code matching the ad account&#39;s currency. Meta only. Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is).
         /// </summary>
+        /// <value>ISO 4217 currency code matching the ad account&#39;s currency. Meta only. Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is).</value>
         /*
         <example>USD</example>
         */
@@ -399,9 +400,9 @@ namespace Zernio.Model
         public string LinkUrl { get; set; }
 
         /// <summary>
-        /// CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: validated against the Meta CTA enum (same values as POST /v1/ads/create), e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;SIGN_UP&#x60;.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
+        /// CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
         /// </summary>
-        /// <value>CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: validated against the Meta CTA enum (same values as POST /v1/ads/create), e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;SIGN_UP&#x60;.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. </value>
+        /// <value>CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. </value>
         [DataMember(Name = "callToAction", EmitDefaultValue = false)]
         public string CallToAction { get; set; }
 
@@ -492,6 +493,18 @@ namespace Zernio.Model
             if (this.Name != null && this.Name.Length > 255)
             {
                 yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
+            // Currency (string) maxLength
+            if (this.Currency != null && this.Currency.Length > 3)
+            {
+                yield return new ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
+            }
+
+            // Currency (string) minLength
+            if (this.Currency != null && this.Currency.Length < 3)
+            {
+                yield return new ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
             }
 
             // DsaBeneficiary (string) maxLength

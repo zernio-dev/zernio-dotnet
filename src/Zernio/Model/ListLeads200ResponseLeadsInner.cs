@@ -37,16 +37,16 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListLeads200ResponseLeadsInner" /> class.
         /// </summary>
         /// <param name="id">Zernio lead id..</param>
-        /// <param name="leadgenId">Meta lead id..</param>
+        /// <param name="leadgenId">Meta lead id. On LinkedIn, the leadFormResponse id..</param>
         /// <param name="formId">formId.</param>
         /// <param name="formName">formName.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="adId">adId.</param>
         /// <param name="adsetId">adsetId.</param>
-        /// <param name="campaignId">campaignId.</param>
+        /// <param name="campaignId">On LinkedIn, this is the LinkedIn Campaign id, which corresponds to platformAdSetId on GET /v1/ads (LinkedIn&#39;s Campaign Group is Zernio&#39;s campaign)..</param>
         /// <param name="isOrganic">isOrganic.</param>
         /// <param name="createdTime">ISO 8601..</param>
-        /// <param name="fields">Question key → answer..</param>
+        /// <param name="fields">Question key → answer. On LinkedIn, the key is the lowercased predefinedField, else the question name, else the numeric questionId; multiple-choice values are option labels (unlike Meta, which returns the option key)..</param>
         /// <param name="fieldData">Raw Meta field_data..</param>
         public ListLeads200ResponseLeadsInner(string id = default, string leadgenId = default, string formId = default, string formName = default, string accountId = default, string adId = default, string adsetId = default, string campaignId = default, bool isOrganic = default, string createdTime = default, Dictionary<string, string> fields = default, List<Object> fieldData = default)
         {
@@ -72,9 +72,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Meta lead id.
+        /// Meta lead id. On LinkedIn, the leadFormResponse id.
         /// </summary>
-        /// <value>Meta lead id.</value>
+        /// <value>Meta lead id. On LinkedIn, the leadFormResponse id.</value>
         [DataMember(Name = "leadgenId", EmitDefaultValue = false)]
         public string LeadgenId { get; set; }
 
@@ -109,8 +109,9 @@ namespace Zernio.Model
         public string AdsetId { get; set; }
 
         /// <summary>
-        /// Gets or Sets CampaignId
+        /// On LinkedIn, this is the LinkedIn Campaign id, which corresponds to platformAdSetId on GET /v1/ads (LinkedIn&#39;s Campaign Group is Zernio&#39;s campaign).
         /// </summary>
+        /// <value>On LinkedIn, this is the LinkedIn Campaign id, which corresponds to platformAdSetId on GET /v1/ads (LinkedIn&#39;s Campaign Group is Zernio&#39;s campaign).</value>
         [DataMember(Name = "campaignId", EmitDefaultValue = true)]
         public string CampaignId { get; set; }
 
@@ -128,9 +129,9 @@ namespace Zernio.Model
         public string CreatedTime { get; set; }
 
         /// <summary>
-        /// Question key → answer.
+        /// Question key → answer. On LinkedIn, the key is the lowercased predefinedField, else the question name, else the numeric questionId; multiple-choice values are option labels (unlike Meta, which returns the option key).
         /// </summary>
-        /// <value>Question key → answer.</value>
+        /// <value>Question key → answer. On LinkedIn, the key is the lowercased predefinedField, else the question name, else the numeric questionId; multiple-choice values are option labels (unlike Meta, which returns the option key).</value>
         [DataMember(Name = "fields", EmitDefaultValue = false)]
         public Dictionary<string, string> Fields { get; set; }
 

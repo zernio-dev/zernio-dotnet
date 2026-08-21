@@ -102,7 +102,7 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //string? breakdowns = null;
             //var response = instance.GetAdAnalytics(adId, fromDate, toDate, breakdowns);
-            //Assert.IsType<GetAdAnalytics200Response>(response);
+            //Assert.IsType<AdAnalyticsResponse>(response);
         }
 
         /// <summary>
@@ -151,7 +151,41 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //string? breakdowns = null;
             //var response = instance.GetCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
-            //Assert.IsType<GetCampaignAnalytics200Response>(response);
+            //Assert.IsType<CampaignAnalyticsResponse>(response);
+        }
+
+        /// <summary>
+        /// Test ListLocalServicesLeadConversations
+        /// </summary>
+        [Fact]
+        public void ListLocalServicesLeadConversationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string leadId = null;
+            //string accountId = null;
+            //string? customerId = null;
+            //string? pageToken = null;
+            //var response = instance.ListLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
+            //Assert.IsType<ListLocalServicesLeadConversations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListLocalServicesLeads
+        /// </summary>
+        [Fact]
+        public void ListLocalServicesLeadsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //string? leadType = null;
+            //string? leadStatus = null;
+            //bool? chargedOnly = null;
+            //string? pageToken = null;
+            //var response = instance.ListLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            //Assert.IsType<ListLocalServicesLeads200Response>(response);
         }
 
         /// <summary>

@@ -36,6 +36,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnPostScheduled**](WebhookEventsApi.md#onpostscheduled) | **POST** /post.scheduled | Post scheduled event |
 | [**OnPostTikTokUrlResolved**](WebhookEventsApi.md#onposttiktokurlresolved) | **POST** /post.tiktok.url_resolved | TikTok post URL resolved event |
 | [**OnReactionReceived**](WebhookEventsApi.md#onreactionreceived) | **POST** /reaction.received | Reaction received event |
+| [**OnReferralReceived**](WebhookEventsApi.md#onreferralreceived) | **POST** /referral.received | Referral received event |
 | [**OnReviewNew**](WebhookEventsApi.md#onreviewnew) | **POST** /review.new | Review new event |
 | [**OnReviewUpdated**](WebhookEventsApi.md#onreviewupdated) | **POST** /review.updated | Review updated event |
 | [**OnVerificationApproved**](WebhookEventsApi.md#onverificationapproved) | **POST** /verification.approved | Verification approved event |
@@ -50,6 +51,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnWhatsAppNumberReleased**](WebhookEventsApi.md#onwhatsappnumberreleased) | **POST** /whatsapp.number.released | WhatsApp number released event |
 | [**OnWhatsAppNumberSuspended**](WebhookEventsApi.md#onwhatsappnumbersuspended) | **POST** /whatsapp.number.suspended | WhatsApp number suspended event |
 | [**OnWhatsAppNumberVerificationRequired**](WebhookEventsApi.md#onwhatsappnumberverificationrequired) | **POST** /whatsapp.number.verification_required | WhatsApp number verification-required event |
+| [**OnWhatsAppTemplateCategoryUpdated**](WebhookEventsApi.md#onwhatsapptemplatecategoryupdated) | **POST** /whatsapp.template.category_updated | WhatsApp template category updated event |
 | [**OnWhatsAppTemplateStatusUpdated**](WebhookEventsApi.md#onwhatsapptemplatestatusupdated) | **POST** /whatsapp.template.status_updated | WhatsApp template status updated event |
 
 <a id="onaccountadsinitialsynccompleted"></a>
@@ -3060,6 +3062,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onreferralreceived"></a>
+# **OnReferralReceived**
+> void OnReferralReceived (WebhookPayloadReferral webhookPayloadReferral)
+
+Referral received event
+
+Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point - an ig.me / m.me link with a `ref` parameter, or (Messenger) a returning Click-to-Message ad click - which Meta delivers as a standalone referral with no message attached. A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on `message.received` under `metadata.referral` instead; the two never fire for the same click. The first referral captured on a conversation is also persisted on it (see `metadata` on `GET /v1/inbox/conversations`). Requires the Inbox add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnReferralReceivedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadReferral = new WebhookPayloadReferral(); // WebhookPayloadReferral | 
+
+            try
+            {
+                // Referral received event
+                apiInstance.OnReferralReceived(webhookPayloadReferral);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnReferralReceived: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnReferralReceivedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Referral received event
+    apiInstance.OnReferralReceivedWithHttpInfo(webhookPayloadReferral);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnReferralReceivedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadReferral** | [**WebhookPayloadReferral**](WebhookPayloadReferral.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onreviewnew"></a>
 # **OnReviewNew**
 > void OnReviewNew (WebhookPayloadReviewNew webhookPayloadReviewNew)
@@ -4354,6 +4450,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **onWhatsAppNumberVerificationRequiredRequest** | [**OnWhatsAppNumberVerificationRequiredRequest**](OnWhatsAppNumberVerificationRequiredRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onwhatsapptemplatecategoryupdated"></a>
+# **OnWhatsAppTemplateCategoryUpdated**
+> void OnWhatsAppTemplateCategoryUpdated (WebhookPayloadWhatsAppTemplateCategoryUpdated webhookPayloadWhatsAppTemplateCategoryUpdated)
+
+WhatsApp template category updated event
+
+Fired when Meta reclassifies a WhatsApp Business template's category after approval. Forwarded from Meta's `template_category_update` webhook field on the WhatsApp Business Account. Category drives Meta's per-conversation tariff and whether the template is subject to the recipient's marketing opt-out. `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWhatsAppTemplateCategoryUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWhatsAppTemplateCategoryUpdated = new WebhookPayloadWhatsAppTemplateCategoryUpdated(); // WebhookPayloadWhatsAppTemplateCategoryUpdated | 
+
+            try
+            {
+                // WhatsApp template category updated event
+                apiInstance.OnWhatsAppTemplateCategoryUpdated(webhookPayloadWhatsAppTemplateCategoryUpdated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppTemplateCategoryUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWhatsAppTemplateCategoryUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // WhatsApp template category updated event
+    apiInstance.OnWhatsAppTemplateCategoryUpdatedWithHttpInfo(webhookPayloadWhatsAppTemplateCategoryUpdated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppTemplateCategoryUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWhatsAppTemplateCategoryUpdated** | [**WebhookPayloadWhatsAppTemplateCategoryUpdated**](WebhookPayloadWhatsAppTemplateCategoryUpdated.md) |  |  |
 
 ### Return type
 

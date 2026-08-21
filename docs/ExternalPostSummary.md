@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **Content** | **string** | Post caption / text | [optional] 
 **PublishedAt** | **DateTime** | When the post was published on the platform | [optional] 
 **MediaType** | **string** | Media type (e.g. image, video, carousel) | [optional] 
-**MediaUrl** | **string** | Primary media URL | [optional] 
 **ThumbnailUrl** | **string** | Thumbnail URL | [optional] 
 **MediaItems** | **List&lt;Object&gt;** | Per-item media (for carousels / multi-media posts) | [optional] 
 **Analytics** | [**ExternalPostSummaryAnalytics**](ExternalPostSummaryAnalytics.md) |  | [optional] 

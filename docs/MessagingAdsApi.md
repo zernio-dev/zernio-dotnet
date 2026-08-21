@@ -103,6 +103,7 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -305,6 +306,7 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+| **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

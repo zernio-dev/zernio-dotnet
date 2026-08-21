@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec. (required).</param>
         /// <param name="name">Human-readable label. (required).</param>
-        /// <param name="type">What the result is (e.g. city, region, country, zip, metro, interest, behavior, income). (required).</param>
+        /// <param name="type">What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income). (required).</param>
         /// <param name="path">Optional breadcrumb of parent labels (e.g. [&#39;United States&#39;, &#39;California&#39;, &#39;Los Angeles&#39;]). Disambiguates same-named results..</param>
         /// <param name="audienceSize">Optional estimated reachable users for this option, when the platform returns it..</param>
         public SearchAdTargeting200ResponseResultsInner(string id = default, string name = default, string type = default, List<string> path = default, int? audienceSize = default)
@@ -85,9 +85,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// What the result is (e.g. city, region, country, zip, metro, interest, behavior, income).
+        /// What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income).
         /// </summary>
-        /// <value>What the result is (e.g. city, region, country, zip, metro, interest, behavior, income).</value>
+        /// <value>What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income).</value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 

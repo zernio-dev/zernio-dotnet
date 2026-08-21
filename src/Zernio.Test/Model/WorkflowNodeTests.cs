@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Position'
         }
+
+        /// <summary>
+        /// Test the property 'Label'
+        /// </summary>
+        [Fact]
+        public void LabelTest()
+        {
+            // TODO unit test for the property 'Label'
+        }
     }
 }

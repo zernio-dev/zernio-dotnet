@@ -155,6 +155,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'HangupCause'
+        /// </summary>
+        [Fact]
+        public void HangupCauseTest()
+        {
+            // TODO unit test for the property 'HangupCause'
+        }
+
+        /// <summary>
+        /// Test the property 'SipHangupCause'
+        /// </summary>
+        [Fact]
+        public void SipHangupCauseTest()
+        {
+            // TODO unit test for the property 'SipHangupCause'
+        }
+
+        /// <summary>
         /// Test the property 'RecordingUrl'
         /// </summary>
         [Fact]

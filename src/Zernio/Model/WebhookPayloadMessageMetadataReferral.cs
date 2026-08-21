@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Ad-click attribution forwarded verbatim from Meta. Populated only on the FIRST inbound message after the click; absent on subsequent messages of the same conversation.  The populated subset identifies the source platform:   - &#x60;ctwa_clid&#x60; and &#x60;source_*&#x60; fields: WhatsApp CTWA     (Click-to-WhatsApp). Attribution window is 7 days from click.     Forward to Meta Conversions API for Business Messaging replay.   - &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60;: Facebook Messenger CTM     (Click-to-Message) or Instagram CTD (Click-to-Direct). Use     &#x60;ad_id&#x60; to attribute the conversation to a specific ad. 
+    /// Click attribution forwarded verbatim from Meta. Populated only on the FIRST inbound message after the click; absent on subsequent messages of the same conversation. On Instagram and Messenger a RETURNING click also attaches it to the first message that follows, so read it on every &#x60;message.received&#x60; for per-click attribution; a click that opens an existing thread WITHOUT a message arrives as the separate &#x60;referral.received&#x60; event.  The populated subset identifies the source:   - &#x60;ctwa_clid&#x60; and &#x60;source_*&#x60; fields: WhatsApp CTWA     (Click-to-WhatsApp). Attribution window is 7 days from click.     Forward to Meta Conversions API for Business Messaging replay.   - &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60;: Facebook Messenger CTM     (Click-to-Message) or Instagram CTD (Click-to-Direct). Use     &#x60;ad_id&#x60; to attribute the conversation to a specific ad.   - &#x60;ref&#x60; without &#x60;ad_id&#x60;: an ig.me / m.me link carrying a     &#x60;?ref&#x3D;&#x60; parameter (&#x60;source&#x60; is &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or     &#x60;IGME-SOURCE-LINK&#x60; depending on surface - treat it as     opaque). Instagram delivers ig.me refs on new threads only     when the account has at least one Ice Breaker configured     (&#x60;PUT /v1/accounts/{accountId}/instagram-ice-breakers&#x60;). 
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessage_metadata_referral")]
     public partial class WebhookPayloadMessageMetadataReferral : IValidatableObject
@@ -47,11 +47,12 @@ namespace Zernio.Model
         /// <param name="videoUrl">videoUrl.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="adId">Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation. .</param>
-        /// <param name="varRef">Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. .</param>
-        /// <param name="source">Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. .</param>
-        /// <param name="type">Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. .</param>
+        /// <param name="varRef">The &#x60;ref&#x60; parameter passed through from the Meta ad creative or from an ig.me / m.me link. Instagram / Facebook Messenger only. .</param>
+        /// <param name="source">Meta-supplied source identifier (&#x60;ADS&#x60; for ad clicks; &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or &#x60;IGME-SOURCE-LINK&#x60; for ref links). Instagram / Facebook Messenger only. .</param>
+        /// <param name="type">Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Instagram / Facebook Messenger only. .</param>
+        /// <param name="refererUri">URI of the originating site, when Meta supplies one (m.me links opened from the web). Facebook Messenger only. .</param>
         /// <param name="adsContextData">adsContextData.</param>
-        public WebhookPayloadMessageMetadataReferral(string ctwaClid = default, string sourceId = default, string sourceType = default, string sourceUrl = default, string headline = default, string body = default, string mediaType = default, string imageUrl = default, string videoUrl = default, string thumbnailUrl = default, string adId = default, string varRef = default, string source = default, string type = default, WebhookPayloadMessageMetadataReferralAdsContextData adsContextData = default)
+        public WebhookPayloadMessageMetadataReferral(string ctwaClid = default, string sourceId = default, string sourceType = default, string sourceUrl = default, string headline = default, string body = default, string mediaType = default, string imageUrl = default, string videoUrl = default, string thumbnailUrl = default, string adId = default, string varRef = default, string source = default, string type = default, string refererUri = default, WebhookPayloadMessageMetadataReferralAdsContextData adsContextData = default)
         {
             this.CtwaClid = ctwaClid;
             this.SourceId = sourceId;
@@ -67,6 +68,7 @@ namespace Zernio.Model
             this.Ref = varRef;
             this.Source = source;
             this.Type = type;
+            this.RefererUri = refererUri;
             this.AdsContextData = adsContextData;
         }
 
@@ -139,25 +141,32 @@ namespace Zernio.Model
         public string AdId { get; set; }
 
         /// <summary>
-        /// Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. 
+        /// The &#x60;ref&#x60; parameter passed through from the Meta ad creative or from an ig.me / m.me link. Instagram / Facebook Messenger only. 
         /// </summary>
-        /// <value>Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. </value>
+        /// <value>The &#x60;ref&#x60; parameter passed through from the Meta ad creative or from an ig.me / m.me link. Instagram / Facebook Messenger only. </value>
         [DataMember(Name = "ref", EmitDefaultValue = false)]
         public string Ref { get; set; }
 
         /// <summary>
-        /// Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+        /// Meta-supplied source identifier (&#x60;ADS&#x60; for ad clicks; &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or &#x60;IGME-SOURCE-LINK&#x60; for ref links). Instagram / Facebook Messenger only. 
         /// </summary>
-        /// <value>Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. </value>
+        /// <value>Meta-supplied source identifier (&#x60;ADS&#x60; for ad clicks; &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or &#x60;IGME-SOURCE-LINK&#x60; for ref links). Instagram / Facebook Messenger only. </value>
         [DataMember(Name = "source", EmitDefaultValue = false)]
         public string Source { get; set; }
 
         /// <summary>
-        /// Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+        /// Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Instagram / Facebook Messenger only. 
         /// </summary>
-        /// <value>Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. </value>
+        /// <value>Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Instagram / Facebook Messenger only. </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
+
+        /// <summary>
+        /// URI of the originating site, when Meta supplies one (m.me links opened from the web). Facebook Messenger only. 
+        /// </summary>
+        /// <value>URI of the originating site, when Meta supplies one (m.me links opened from the web). Facebook Messenger only. </value>
+        [DataMember(Name = "referer_uri", EmitDefaultValue = false)]
+        public string RefererUri { get; set; }
 
         /// <summary>
         /// Gets or Sets AdsContextData
@@ -187,6 +196,7 @@ namespace Zernio.Model
             sb.Append("  Ref: ").Append(Ref).Append("\n");
             sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  RefererUri: ").Append(RefererUri).Append("\n");
             sb.Append("  AdsContextData: ").Append(AdsContextData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
