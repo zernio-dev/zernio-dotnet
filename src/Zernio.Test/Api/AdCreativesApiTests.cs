@@ -177,6 +177,22 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdVideos
+        /// </summary>
+        [Fact]
+        public void ListAdVideosTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //string? fields = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListAdVideos(accountId, adAccountId, fields, limit, after);
+            //Assert.IsType<ListAdVideos200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdCreative
         /// </summary>
         [Fact]

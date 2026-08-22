@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdCatalogs**](AdCreativesApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs |
 | [**ListAdCreatives**](AdCreativesApi.md#listadcreatives) | **GET** /v1/ads/creatives | Creative library |
 | [**ListAdImages**](AdCreativesApi.md#listadimages) | **GET** /v1/ads/images | Ad image library |
+| [**ListAdVideos**](AdCreativesApi.md#listadvideos) | **GET** /v1/ads/videos | Ad video library |
 | [**UpdateAdCreative**](AdCreativesApi.md#updateadcreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative |
 | [**UploadAdImage**](AdCreativesApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64 |
 
@@ -953,6 +954,115 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Ad images (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadvideos"></a>
+# **ListAdVideos**
+> ListAdVideos200Response ListAdVideos (string accountId, string adAccountId, string? fields = null, int? limit = null, string? after = null)
+
+Ad video library
+
+Lists the ad account's video library (Meta's `/act_X/advideos`), rows returned verbatim. The default projection covers id, title, status, poster frames and length; `fields` is a raw-passthrough override. Any `id` here is reusable as `video.id` on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as `creative.videoId` on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once `status.video_status` reads `ready`. There is no upload operation here: upload by URL inline via `video.url` on POST /v1/ads/create.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdVideosExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCreativesApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var fields = "fields_example";  // string? | Comma-separated Graph field override (supports nested {} projections). (optional) 
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // Ad video library
+                ListAdVideos200Response result = apiInstance.ListAdVideos(accountId, adAccountId, fields, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCreativesApi.ListAdVideos: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdVideosWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad video library
+    ApiResponse<ListAdVideos200Response> response = apiInstance.ListAdVideosWithHttpInfo(accountId, adAccountId, fields, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCreativesApi.ListAdVideosWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **fields** | **string?** | Comma-separated Graph field override (supports nested {} projections). | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdVideos200Response**](ListAdVideos200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad videos (raw Meta shape) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 

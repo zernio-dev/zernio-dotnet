@@ -246,6 +246,35 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdImages200Response</returns>
         ApiResponse<ListAdImages200Response> ListAdImagesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
         /// <summary>
+        /// Ad video library
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdVideos200Response</returns>
+        ListAdVideos200Response ListAdVideos(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Ad video library
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdVideos200Response</returns>
+        ApiResponse<ListAdVideos200Response> ListAdVideosWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+        /// <summary>
         /// Rename a creative
         /// </summary>
         /// <remarks>
@@ -533,6 +562,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdImages200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdImages200Response>> ListAdImagesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Ad video library
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdVideos200Response</returns>
+        System.Threading.Tasks.Task<ListAdVideos200Response> ListAdVideosAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Ad video library
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdVideos200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdVideos200Response>> ListAdVideosWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Rename a creative
         /// </summary>
@@ -2115,6 +2175,183 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdImages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad video library Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdVideos200Response</returns>
+        public ListAdVideos200Response ListAdVideos(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListAdVideos200Response> localVarResponse = ListAdVideosWithHttpInfo(accountId, adAccountId, fields, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad video library Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdVideos200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdVideos200Response> ListAdVideosWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCreativesApi->ListAdVideos");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdCreativesApi->ListAdVideos");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdVideos200Response>("/v1/ads/videos", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdVideos", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad video library Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdVideos200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdVideos200Response> ListAdVideosAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdVideos200Response> localVarResponse = await ListAdVideosWithHttpInfoAsync(accountId, adAccountId, fields, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad video library Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames and length; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. There is no upload operation here: upload by URL inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdVideos200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdVideos200Response>> ListAdVideosWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCreativesApi->ListAdVideos");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdCreativesApi->ListAdVideos");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdVideos200Response>("/v1/ads/videos", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdVideos", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

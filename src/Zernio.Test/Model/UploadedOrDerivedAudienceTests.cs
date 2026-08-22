@@ -227,6 +227,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UrlContains'
+        /// </summary>
+        [Fact]
+        public void UrlContainsTest()
+        {
+            // TODO unit test for the property 'UrlContains'
+        }
+
+        /// <summary>
         /// Test the property 'Rule'
         /// </summary>
         [Fact]

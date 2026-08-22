@@ -897,6 +897,7 @@ docs/ListAdKeywords200Response.md
 docs/ListAdKeywords200ResponseKeywordsInner.md
 docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
+docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
@@ -2679,6 +2680,7 @@ src/Zernio.Test/Model/ListAdKeywords200ResponseKeywordsInnerTests.cs
 src/Zernio.Test/Model/ListAdKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
+src/Zernio.Test/Model/ListAdVideos200ResponseTests.cs
 src/Zernio.Test/Model/ListAds202ResponseTests.cs
 src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
 src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
@@ -4448,6 +4450,7 @@ src/Zernio/Model/ListAdKeywords200Response.cs
 src/Zernio/Model/ListAdKeywords200ResponseKeywordsInner.cs
 src/Zernio/Model/ListAdLabels200Response.cs
 src/Zernio/Model/ListAdStudies200Response.cs
+src/Zernio/Model/ListAdVideos200Response.cs
 src/Zernio/Model/ListAds202Response.cs
 src/Zernio/Model/ListAdsBusinessCenters200Response.cs
 src/Zernio/Model/ListApiKeys200Response.cs

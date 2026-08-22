@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta (facebook, instagram) and LinkedIn. When set, creates a VIDEO ad on the legacy (or, for Meta, attach) shape. Mutually exclusive with &#x60;imageUrl&#x60;. For Meta multi-creative, set &#x60;video&#x60; per entry inside &#x60;creatives[]&#x60; instead. For LinkedIn the video is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;) and the campaign format is set to SINGLE_VIDEO; LinkedIn ignores &#x60;thumbnailUrl&#x60; (it auto-generates the poster frame) — supply MP4 H.264/AAC, 3s-30min, 75KB-500MB.
+    /// Meta (facebook, instagram) and LinkedIn. Creates a single VIDEO ad. Mutually exclusive with &#x60;imageUrl&#x60;. Supply &#x60;url&#x60; to upload a file, or &#x60;id&#x60; to reuse a video already on the ad account (list them with GET /v1/ads/videos). Works on the single-ad and attach (&#x60;adSetId&#x60;) shapes; for Meta multi-creative, set &#x60;video&#x60; per entry inside &#x60;creatives[]&#x60; instead. For LinkedIn the video is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;) and the campaign format is set to SINGLE_VIDEO; LinkedIn ignores &#x60;thumbnailUrl&#x60; (it auto-generates the poster frame) — supply MP4 H.264/AAC, 3s-30min, 75KB-500MB.
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_video")]
     public partial class CreateStandaloneAdRequestVideo : IValidatableObject
