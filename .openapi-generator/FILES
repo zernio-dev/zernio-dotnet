@@ -1166,6 +1166,9 @@ docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
+docs/ReplaceAdAudienceCompanies200Response.md
+docs/ReplaceAdAudienceCompaniesRequest.md
+docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md
 docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
@@ -2938,6 +2941,9 @@ src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
 src/Zernio.Test/Model/RemoveConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/RemoveDiscordMemberRole200ResponseTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
+src/Zernio.Test/Model/ReplaceAdAudienceCompanies200ResponseTests.cs
+src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTests.cs
+src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseDataTests.cs
@@ -4708,6 +4714,9 @@ src/Zernio/Model/RemoveBookmark200Response.cs
 src/Zernio/Model/RemoveConversionAssociations200Response.cs
 src/Zernio/Model/RemoveDiscordMemberRole200Response.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
+src/Zernio/Model/ReplaceAdAudienceCompanies200Response.cs
+src/Zernio/Model/ReplaceAdAudienceCompaniesRequest.cs
+src/Zernio/Model/ReplaceAdAudienceCompaniesRequestCompaniesInner.cs
 src/Zernio/Model/ReplyToGoogleBusinessReview200Response.cs
 src/Zernio/Model/ReplyToGoogleBusinessReviewRequest.cs
 src/Zernio/Model/ReplyToInboxPost200Response.cs

@@ -119,6 +119,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ReplaceAdAudienceCompanies
+        /// </summary>
+        [Fact]
+        public void ReplaceAdAudienceCompaniesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string audienceId = null;
+            //ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest = null;
+            //var response = instance.ReplaceAdAudienceCompanies(audienceId, replaceAdAudienceCompaniesRequest);
+            //Assert.IsType<ReplaceAdAudienceCompanies200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdAudience
         /// </summary>
         [Fact]

@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Add users to audience
         /// </summary>
         /// <remarks>
-        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Add users to audience
         /// </summary>
         /// <remarks>
-        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -142,6 +142,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
         ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default);
         /// <summary>
+        /// Replace audience companies
+        /// </summary>
+        /// <remarks>
+        /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <returns>ReplaceAdAudienceCompanies200Response</returns>
+        ReplaceAdAudienceCompanies200Response ReplaceAdAudienceCompanies(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest);
+
+        /// <summary>
+        /// Replace audience companies
+        /// </summary>
+        /// <remarks>
+        /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <returns>ApiResponse of ReplaceAdAudienceCompanies200Response</returns>
+        ApiResponse<ReplaceAdAudienceCompanies200Response> ReplaceAdAudienceCompaniesWithHttpInfo(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest);
+        /// <summary>
         /// Update an audience
         /// </summary>
         /// <remarks>
@@ -177,7 +200,7 @@ namespace Zernio.Api
         /// Add users to audience
         /// </summary>
         /// <remarks>
-        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -190,7 +213,7 @@ namespace Zernio.Api
         /// Add users to audience
         /// </summary>
         /// <remarks>
-        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -202,7 +225,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -214,7 +237,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -296,6 +319,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Replace audience companies
+        /// </summary>
+        /// <remarks>
+        /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplaceAdAudienceCompanies200Response</returns>
+        System.Threading.Tasks.Task<ReplaceAdAudienceCompanies200Response> ReplaceAdAudienceCompaniesAsync(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Replace audience companies
+        /// </summary>
+        /// <remarks>
+        /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplaceAdAudienceCompanies200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplaceAdAudienceCompanies200Response>> ReplaceAdAudienceCompaniesWithHttpInfoAsync(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update an audience
         /// </summary>
@@ -535,7 +583,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -548,7 +596,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -604,7 +652,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -618,7 +666,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
+        /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -678,7 +726,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -690,7 +738,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -740,7 +788,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -753,7 +801,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only; &#x60;company_list&#x60;, &#x60;engagement&#x60; and &#x60;website_retargeting&#x60; are LinkedIn-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;.  How the audience gets filled depends on the type:  - &#x60;customer_list&#x60; is created empty. Add members with &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;.   On TikTok and Pinterest the audience is provisioned lazily on that first upload (until then its status is &#x60;pending&#x60;). - &#x60;company_list&#x60; is filled AT CREATION from the &#x60;companies&#x60; array below, which is required. To change the list   afterwards send the new full list to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60; (a replace, not a merge).   The &#x60;/users&#x60; endpoint rejects these audiences with a 422. - &#x60;website&#x60;, &#x60;website_retargeting&#x60;, &#x60;engagement&#x60;, &#x60;meta_engagement&#x60; and &#x60;lookalike&#x60; fill themselves from the pixel,   engagement source or seed audience you point them at. They take no member upload at all.  Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -1219,6 +1267,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdAudiences", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <returns>ReplaceAdAudienceCompanies200Response</returns>
+        public ReplaceAdAudienceCompanies200Response ReplaceAdAudienceCompanies(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest)
+        {
+            Zernio.Client.ApiResponse<ReplaceAdAudienceCompanies200Response> localVarResponse = ReplaceAdAudienceCompaniesWithHttpInfo(audienceId, replaceAdAudienceCompaniesRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <returns>ApiResponse of ReplaceAdAudienceCompanies200Response</returns>
+        public Zernio.Client.ApiResponse<ReplaceAdAudienceCompanies200Response> ReplaceAdAudienceCompaniesWithHttpInfo(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest)
+        {
+            // verify the required parameter 'audienceId' is set
+            if (audienceId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audienceId' when calling AdAudiencesApi->ReplaceAdAudienceCompanies");
+
+            // verify the required parameter 'replaceAdAudienceCompaniesRequest' is set
+            if (replaceAdAudienceCompaniesRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replaceAdAudienceCompaniesRequest' when calling AdAudiencesApi->ReplaceAdAudienceCompanies");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("audienceId", Zernio.Client.ClientUtils.ParameterToString(audienceId)); // path parameter
+            localVarRequestOptions.Data = replaceAdAudienceCompaniesRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReplaceAdAudienceCompanies200Response>("/v1/ads/audiences/{audienceId}/companies", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplaceAdAudienceCompanies", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplaceAdAudienceCompanies200Response</returns>
+        public async System.Threading.Tasks.Task<ReplaceAdAudienceCompanies200Response> ReplaceAdAudienceCompaniesAsync(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplaceAdAudienceCompanies200Response> localVarResponse = await ReplaceAdAudienceCompaniesWithHttpInfoAsync(audienceId, replaceAdAudienceCompaniesRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side. LinkedIn does not document how quickly companies dropped from the list stop being targeted, so treat removals as eventual rather than immediate. Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a later update, and the audience stays &#x60;processing&#x60; meanwhile. LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at 300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="replaceAdAudienceCompaniesRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplaceAdAudienceCompanies200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplaceAdAudienceCompanies200Response>> ReplaceAdAudienceCompaniesWithHttpInfoAsync(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'audienceId' is set
+            if (audienceId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audienceId' when calling AdAudiencesApi->ReplaceAdAudienceCompanies");
+
+            // verify the required parameter 'replaceAdAudienceCompaniesRequest' is set
+            if (replaceAdAudienceCompaniesRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replaceAdAudienceCompaniesRequest' when calling AdAudiencesApi->ReplaceAdAudienceCompanies");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("audienceId", Zernio.Client.ClientUtils.ParameterToString(audienceId)); // path parameter
+            localVarRequestOptions.Data = replaceAdAudienceCompaniesRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReplaceAdAudienceCompanies200Response>("/v1/ads/audiences/{audienceId}/companies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplaceAdAudienceCompanies", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
