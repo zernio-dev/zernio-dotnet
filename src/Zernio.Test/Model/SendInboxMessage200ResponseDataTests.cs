@@ -74,21 +74,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'SentAt'
+        /// Test the property 'Attachments'
         /// </summary>
         [Fact]
-        public void SentAtTest()
+        public void AttachmentsTest()
         {
-            // TODO unit test for the property 'SentAt'
-        }
-
-        /// <summary>
-        /// Test the property 'Message'
-        /// </summary>
-        [Fact]
-        public void MessageTest()
-        {
-            // TODO unit test for the property 'Message'
+            // TODO unit test for the property 'Attachments'
         }
     }
 }

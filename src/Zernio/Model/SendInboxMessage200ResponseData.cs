@@ -36,45 +36,36 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessage200ResponseData" /> class.
         /// </summary>
-        /// <param name="messageId">ID of the sent message (not returned for Reddit).</param>
-        /// <param name="conversationId">Twitter conversation ID.</param>
-        /// <param name="sentAt">Bluesky sent timestamp.</param>
-        /// <param name="message">Success message (Reddit only).</param>
-        public SendInboxMessage200ResponseData(string messageId = default, string conversationId = default, DateTime? sentAt = default, string message = default)
+        /// <param name="messageId">Platform id of the sent message (not returned for Reddit). For WhatsApp this is the raw Meta wamid, the same id delivered as message.platformMessageId on webhooks and delivery-status updates, and the value to pass as replyTo to quote-reply..</param>
+        /// <param name="conversationId">Zernio conversation id, echoed so the thread can be read back or replied to. It equals the id the list-conversations endpoint returns for Telegram, WhatsApp, SMS and Slack; for Facebook, Instagram, Bluesky and Reddit that endpoint returns the platform thread id instead, so do not correlate the two by equality. For X (Twitter), when the request addressed the conversation by its Twitter dm_conversation_id, that platform id is echoed back instead. Omitted when the send succeeded but the conversation could not be resolved to a stored record..</param>
+        /// <param name="attachments">Echo of the sent attachment with its resolved public URL, when one is available (Facebook, Instagram, Telegram, WhatsApp)..</param>
+        public SendInboxMessage200ResponseData(string messageId = default, string conversationId = default, List<SendInboxMessage200ResponseDataAttachmentsInner> attachments = default)
         {
             this.MessageId = messageId;
             this.ConversationId = conversationId;
-            this.SentAt = sentAt;
-            this.Message = message;
+            this.Attachments = attachments;
         }
 
         /// <summary>
-        /// ID of the sent message (not returned for Reddit)
+        /// Platform id of the sent message (not returned for Reddit). For WhatsApp this is the raw Meta wamid, the same id delivered as message.platformMessageId on webhooks and delivery-status updates, and the value to pass as replyTo to quote-reply.
         /// </summary>
-        /// <value>ID of the sent message (not returned for Reddit)</value>
+        /// <value>Platform id of the sent message (not returned for Reddit). For WhatsApp this is the raw Meta wamid, the same id delivered as message.platformMessageId on webhooks and delivery-status updates, and the value to pass as replyTo to quote-reply.</value>
         [DataMember(Name = "messageId", EmitDefaultValue = false)]
         public string MessageId { get; set; }
 
         /// <summary>
-        /// Twitter conversation ID
+        /// Zernio conversation id, echoed so the thread can be read back or replied to. It equals the id the list-conversations endpoint returns for Telegram, WhatsApp, SMS and Slack; for Facebook, Instagram, Bluesky and Reddit that endpoint returns the platform thread id instead, so do not correlate the two by equality. For X (Twitter), when the request addressed the conversation by its Twitter dm_conversation_id, that platform id is echoed back instead. Omitted when the send succeeded but the conversation could not be resolved to a stored record.
         /// </summary>
-        /// <value>Twitter conversation ID</value>
-        [DataMember(Name = "conversationId", EmitDefaultValue = true)]
+        /// <value>Zernio conversation id, echoed so the thread can be read back or replied to. It equals the id the list-conversations endpoint returns for Telegram, WhatsApp, SMS and Slack; for Facebook, Instagram, Bluesky and Reddit that endpoint returns the platform thread id instead, so do not correlate the two by equality. For X (Twitter), when the request addressed the conversation by its Twitter dm_conversation_id, that platform id is echoed back instead. Omitted when the send succeeded but the conversation could not be resolved to a stored record.</value>
+        [DataMember(Name = "conversationId", EmitDefaultValue = false)]
         public string ConversationId { get; set; }
 
         /// <summary>
-        /// Bluesky sent timestamp
+        /// Echo of the sent attachment with its resolved public URL, when one is available (Facebook, Instagram, Telegram, WhatsApp).
         /// </summary>
-        /// <value>Bluesky sent timestamp</value>
-        [DataMember(Name = "sentAt", EmitDefaultValue = true)]
-        public DateTime? SentAt { get; set; }
-
-        /// <summary>
-        /// Success message (Reddit only)
-        /// </summary>
-        /// <value>Success message (Reddit only)</value>
-        [DataMember(Name = "message", EmitDefaultValue = true)]
-        public string Message { get; set; }
+        /// <value>Echo of the sent attachment with its resolved public URL, when one is available (Facebook, Instagram, Telegram, WhatsApp).</value>
+        [DataMember(Name = "attachments", EmitDefaultValue = false)]
+        public List<SendInboxMessage200ResponseDataAttachmentsInner> Attachments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -86,8 +77,7 @@ namespace Zernio.Model
             sb.Append("class SendInboxMessage200ResponseData {\n");
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
             sb.Append("  ConversationId: ").Append(ConversationId).Append("\n");
-            sb.Append("  SentAt: ").Append(SentAt).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Attachments: ").Append(Attachments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

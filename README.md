@@ -1932,6 +1932,7 @@ Class | Method | HTTP request | Description
  - [Model.SendDiscordDirectMessageRequestAttachmentsInner](docs/SendDiscordDirectMessageRequestAttachmentsInner.md)
  - [Model.SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [Model.SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
+ - [Model.SendInboxMessage200ResponseDataAttachmentsInner](docs/SendInboxMessage200ResponseDataAttachmentsInner.md)
  - [Model.SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
  - [Model.SendInboxMessage400ResponsePlatformError](docs/SendInboxMessage400ResponsePlatformError.md)
  - [Model.SendInboxMessageRequest](docs/SendInboxMessageRequest.md)
