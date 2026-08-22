@@ -44,8 +44,12 @@ namespace Zernio.Model
         /// <param name="mediaType">Media type (e.g. image, video, carousel).</param>
         /// <param name="thumbnailUrl">Thumbnail URL.</param>
         /// <param name="mediaItems">Per-item media (for carousels / multi-media posts).</param>
+        /// <param name="mediaProductType">Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it..</param>
+        /// <param name="isAiGenerated">Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it..</param>
+        /// <param name="isSharedToFeed">Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it..</param>
+        /// <param name="mediaAudioType">Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it..</param>
         /// <param name="analytics">analytics.</param>
-        public ExternalPostSummary(string platform = default, string platformPostId = default, string platformPostUrl = default, string content = default, DateTime publishedAt = default, string mediaType = default, string thumbnailUrl = default, List<Object> mediaItems = default, ExternalPostSummaryAnalytics analytics = default)
+        public ExternalPostSummary(string platform = default, string platformPostId = default, string platformPostUrl = default, string content = default, DateTime publishedAt = default, string mediaType = default, string thumbnailUrl = default, List<Object> mediaItems = default, string mediaProductType = default, bool isAiGenerated = default, bool isSharedToFeed = default, string mediaAudioType = default, ExternalPostSummaryAnalytics analytics = default)
         {
             this.Platform = platform;
             this.PlatformPostId = platformPostId;
@@ -55,6 +59,10 @@ namespace Zernio.Model
             this.MediaType = mediaType;
             this.ThumbnailUrl = thumbnailUrl;
             this.MediaItems = mediaItems;
+            this.MediaProductType = mediaProductType;
+            this.IsAiGenerated = isAiGenerated;
+            this.IsSharedToFeed = isSharedToFeed;
+            this.MediaAudioType = mediaAudioType;
             this.Analytics = analytics;
         }
 
@@ -115,6 +123,34 @@ namespace Zernio.Model
         public List<Object> MediaItems { get; set; }
 
         /// <summary>
+        /// Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it.
+        /// </summary>
+        /// <value>Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it.</value>
+        [DataMember(Name = "mediaProductType", EmitDefaultValue = false)]
+        public string MediaProductType { get; set; }
+
+        /// <summary>
+        /// Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it.
+        /// </summary>
+        /// <value>Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it.</value>
+        [DataMember(Name = "isAiGenerated", EmitDefaultValue = true)]
+        public bool IsAiGenerated { get; set; }
+
+        /// <summary>
+        /// Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it.
+        /// </summary>
+        /// <value>Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it.</value>
+        [DataMember(Name = "isSharedToFeed", EmitDefaultValue = true)]
+        public bool IsSharedToFeed { get; set; }
+
+        /// <summary>
+        /// Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it.
+        /// </summary>
+        /// <value>Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it.</value>
+        [DataMember(Name = "mediaAudioType", EmitDefaultValue = false)]
+        public string MediaAudioType { get; set; }
+
+        /// <summary>
         /// Gets or Sets Analytics
         /// </summary>
         [DataMember(Name = "analytics", EmitDefaultValue = false)]
@@ -136,6 +172,10 @@ namespace Zernio.Model
             sb.Append("  MediaType: ").Append(MediaType).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  MediaItems: ").Append(MediaItems).Append("\n");
+            sb.Append("  MediaProductType: ").Append(MediaProductType).Append("\n");
+            sb.Append("  IsAiGenerated: ").Append(IsAiGenerated).Append("\n");
+            sb.Append("  IsSharedToFeed: ").Append(IsSharedToFeed).Append("\n");
+            sb.Append("  MediaAudioType: ").Append(MediaAudioType).Append("\n");
             sb.Append("  Analytics: ").Append(Analytics).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

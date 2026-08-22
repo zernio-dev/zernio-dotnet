@@ -189,5 +189,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'MediaItems'
         }
+
+        /// <summary>
+        /// Test the property 'MediaProductType'
+        /// </summary>
+        [Fact]
+        public void MediaProductTypeTest()
+        {
+            // TODO unit test for the property 'MediaProductType'
+        }
+
+        /// <summary>
+        /// Test the property 'IsAiGenerated'
+        /// </summary>
+        [Fact]
+        public void IsAiGeneratedTest()
+        {
+            // TODO unit test for the property 'IsAiGenerated'
+        }
+
+        /// <summary>
+        /// Test the property 'IsSharedToFeed'
+        /// </summary>
+        [Fact]
+        public void IsSharedToFeedTest()
+        {
+            // TODO unit test for the property 'IsSharedToFeed'
+        }
+
+        /// <summary>
+        /// Test the property 'MediaAudioType'
+        /// </summary>
+        [Fact]
+        public void MediaAudioTypeTest()
+        {
+            // TODO unit test for the property 'MediaAudioType'
+        }
     }
 }

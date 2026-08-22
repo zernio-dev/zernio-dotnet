@@ -74,14 +74,16 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListWhatsAppAccountEvents200ResponseEventsInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
+        /// <param name="accountId">WhatsApp social account the event belongs to.</param>
         /// <param name="type">Event kind, e.g. template_approved, template_rejected, account_restricted, account_disconnected.</param>
         /// <param name="severity">severity.</param>
         /// <param name="title">title.</param>
         /// <param name="detail">detail.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListWhatsAppAccountEvents200ResponseEventsInner(string id = default, string type = default, SeverityEnum? severity = default, string title = default, string detail = default, DateTime createdAt = default)
+        public ListWhatsAppAccountEvents200ResponseEventsInner(string id = default, string accountId = default, string type = default, SeverityEnum? severity = default, string title = default, string detail = default, DateTime createdAt = default)
         {
             this.Id = id;
+            this.AccountId = accountId;
             this.Type = type;
             this.Severity = severity;
             this.Title = title;
@@ -94,6 +96,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// WhatsApp social account the event belongs to
+        /// </summary>
+        /// <value>WhatsApp social account the event belongs to</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Event kind, e.g. template_approved, template_rejected, account_restricted, account_disconnected
@@ -129,6 +138,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListWhatsAppAccountEvents200ResponseEventsInner {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Severity: ").Append(Severity).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");

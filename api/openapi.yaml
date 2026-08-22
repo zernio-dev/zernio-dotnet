@@ -35245,6 +35245,10 @@ components:
         POST /v1/posts/sync-external. Analytics are exposed separately via
         GET /v1/analytics?source=external.
       example:
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        mediaType: mediaType
+        platform: platform
+        content: content
         analytics:
           shares: 5
           engagementRate: 7.386281948385884
@@ -35257,14 +35261,14 @@ components:
           views: 3
           likes: 1
           sends: 7
-        publishedAt: 2000-01-23T04:56:07.000+00:00
+        isSharedToFeed: true
         mediaItems:
         - "{}"
         - "{}"
+        isAiGenerated: true
         platformPostUrl: platformPostUrl
-        mediaType: mediaType
-        platform: platform
-        content: content
+        mediaProductType: mediaProductType
+        mediaAudioType: mediaAudioType
         platformPostId: platformPostId
         thumbnailUrl: thumbnailUrl
       properties:
@@ -35295,6 +35299,22 @@ components:
           items:
             type: object
           type: array
+        mediaProductType:
+          description: "Instagram only: the platform media product type (e.g. FEED,\
+            \ REELS, STORY, AD). Absent when the platform did not report it."
+          type: string
+        isAiGenerated:
+          description: "Instagram only: whether Instagram labeled the media as AI-generated.\
+            \ Absent when the platform did not report it."
+          type: boolean
+        isSharedToFeed:
+          description: "Instagram reels only: whether the reel is also shared to the\
+            \ main feed. Absent when the platform did not report it."
+          type: boolean
+        mediaAudioType:
+          description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
+            \ Absent when the platform did not report it."
+          type: string
         analytics:
           $ref: "#/components/schemas/ExternalPostSummary_analytics"
     ErrorResponse:
@@ -37730,8 +37750,15 @@ components:
     ExternalPostWebhookPost:
       description: Native (external) post data shared by all post.external.* payloads.
       example:
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        mediaType: mediaType
+        source: external
+        platform: platform
+        url: url
+        content: content
         accountId: accountId
         deletedAt: 2000-01-23T04:56:07.000+00:00
+        isSharedToFeed: true
         mediaItems:
         - thumbnail: thumbnail
           unavailableReason: platform_withheld
@@ -37743,13 +37770,10 @@ components:
           mediaStatus: available
           type: image
           url: url
-        publishedAt: 2000-01-23T04:56:07.000+00:00
-        mediaType: mediaType
+        isAiGenerated: true
+        mediaProductType: mediaProductType
         id: id
-        source: external
-        platform: platform
-        url: url
-        content: content
+        mediaAudioType: mediaAudioType
         thumbnailUrl: thumbnailUrl
       properties:
         id:
@@ -37780,6 +37804,22 @@ components:
           type: string
         publishedAt:
           format: date-time
+          type: string
+        mediaProductType:
+          description: "Instagram only: the platform media product type (e.g. FEED,\
+            \ REELS, STORY, AD). Absent when the platform did not report it."
+          type: string
+        isAiGenerated:
+          description: "Instagram only: whether Instagram labeled the media as AI-generated.\
+            \ Absent when the platform did not report it."
+          type: boolean
+        isSharedToFeed:
+          description: "Instagram reels only: whether the reel is also shared to the\
+            \ main feed. Absent when the platform did not report it."
+          type: boolean
+        mediaAudioType:
+          description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
+            \ Absent when the platform did not report it."
           type: string
         source:
           description: Always "external" — distinguishes these from Zernio-originated
@@ -37813,8 +37853,15 @@ components:
         not real-time. On post.external.deleted, post.deletedAt is populated.
       example:
         post:
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          mediaType: mediaType
+          source: external
+          platform: platform
+          url: url
+          content: content
           accountId: accountId
           deletedAt: 2000-01-23T04:56:07.000+00:00
+          isSharedToFeed: true
           mediaItems:
           - thumbnail: thumbnail
             unavailableReason: platform_withheld
@@ -37826,13 +37873,10 @@ components:
             mediaStatus: available
             type: image
             url: url
-          publishedAt: 2000-01-23T04:56:07.000+00:00
-          mediaType: mediaType
+          isAiGenerated: true
+          mediaProductType: mediaProductType
           id: id
-          source: external
-          platform: platform
-          url: url
-          content: content
+          mediaAudioType: mediaAudioType
           thumbnailUrl: thumbnailUrl
         id: id
         event: post.external.created
@@ -43001,6 +43045,7 @@ components:
           clicks: 0
           views: 0
           likes: 0
+        isSharedToFeed: true
         mediaItems:
         - thumbnail: https://openapi-generator.tech
           altText: altText
@@ -43014,9 +43059,12 @@ components:
           mediaStatus: available
           type: image
           url: https://openapi-generator.tech
+        isAiGenerated: true
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         platformPostUrl: https://openapi-generator.tech
+        mediaProductType: mediaProductType
         latePostId: latePostId
+        mediaAudioType: mediaAudioType
         syncStatus: synced
         status: published
         thumbnailUrl: https://openapi-generator.tech
@@ -43089,6 +43137,22 @@ components:
           items:
             $ref: "#/components/schemas/AnalyticsSinglePostResponse_mediaItems_inner"
           type: array
+        mediaProductType:
+          description: "Instagram only: the platform media product type (e.g. FEED,\
+            \ REELS, STORY, AD). Absent when the platform did not report it."
+          type: string
+        isAiGenerated:
+          description: "Instagram only: whether Instagram labeled the media as AI-generated.\
+            \ Absent when the platform did not report it."
+          type: boolean
+        isSharedToFeed:
+          description: "Instagram reels only: whether the reel is also shared to the\
+            \ main feed. Absent when the platform did not report it."
+          type: boolean
+        mediaAudioType:
+          description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
+            \ Absent when the platform did not report it."
+          type: string
     AnalyticsListResponse:
       properties:
         overview:
@@ -54783,7 +54847,11 @@ components:
         found: true
         post: ""
         posts:
-        - analytics:
+        - publishedAt: 2000-01-23T04:56:07.000+00:00
+          mediaType: mediaType
+          platform: platform
+          content: content
+          analytics:
             shares: 5
             engagementRate: 7.386281948385884
             lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -54795,17 +54863,21 @@ components:
             views: 3
             likes: 1
             sends: 7
-          publishedAt: 2000-01-23T04:56:07.000+00:00
+          isSharedToFeed: true
           mediaItems:
           - "{}"
           - "{}"
+          isAiGenerated: true
           platformPostUrl: platformPostUrl
-          mediaType: mediaType
-          platform: platform
-          content: content
+          mediaProductType: mediaProductType
+          mediaAudioType: mediaAudioType
           platformPostId: platformPostId
           thumbnailUrl: thumbnailUrl
-        - analytics:
+        - publishedAt: 2000-01-23T04:56:07.000+00:00
+          mediaType: mediaType
+          platform: platform
+          content: content
+          analytics:
             shares: 5
             engagementRate: 7.386281948385884
             lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -54817,14 +54889,14 @@ components:
             views: 3
             likes: 1
             sends: 7
-          publishedAt: 2000-01-23T04:56:07.000+00:00
+          isSharedToFeed: true
           mediaItems:
           - "{}"
           - "{}"
+          isAiGenerated: true
           platformPostUrl: platformPostUrl
-          mediaType: mediaType
-          platform: platform
-          content: content
+          mediaProductType: mediaProductType
+          mediaAudioType: mediaAudioType
           platformPostId: platformPostId
           thumbnailUrl: thumbnailUrl
       properties:
@@ -70668,6 +70740,7 @@ components:
     listWhatsAppAccountEvents_200_response_events_inner:
       example:
         severity: info
+        accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
         id: id
         detail: detail
@@ -70675,6 +70748,9 @@ components:
         title: title
       properties:
         id:
+          type: string
+        accountId:
+          description: WhatsApp social account the event belongs to
           type: string
         type:
           description: "Event kind, e.g. template_approved, template_rejected, account_restricted,\
@@ -70699,12 +70775,14 @@ components:
       example:
         events:
         - severity: info
+          accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           id: id
           detail: detail
           type: type
           title: title
         - severity: info
+          accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           id: id
           detail: detail
@@ -95055,6 +95133,22 @@ components:
           items:
             $ref: "#/components/schemas/AnalyticsListResponse_posts_inner_mediaItems_inner"
           type: array
+        mediaProductType:
+          description: "Instagram only: the platform media product type (e.g. FEED,\
+            \ REELS, STORY, AD). Absent when the platform did not report it."
+          type: string
+        isAiGenerated:
+          description: "Instagram only: whether Instagram labeled the media as AI-generated.\
+            \ Absent when the platform did not report it."
+          type: boolean
+        isSharedToFeed:
+          description: "Instagram reels only: whether the reel is also shared to the\
+            \ main feed. Absent when the platform did not report it."
+          type: boolean
+        mediaAudioType:
+          description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
+            \ Absent when the platform did not report it."
+          type: string
     LinkedInAggregateAnalyticsTotalResponse_analytics:
       example:
         shares: 5
