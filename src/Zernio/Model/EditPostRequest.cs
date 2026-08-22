@@ -62,7 +62,43 @@ namespace Zernio.Model
             /// Enum Reddit for value: reddit
             /// </summary>
             [EnumMember(Value = "reddit")]
-            Reddit = 4
+            Reddit = 4,
+
+            /// <summary>
+            /// Enum Linkedin for value: linkedin
+            /// </summary>
+            [EnumMember(Value = "linkedin")]
+            Linkedin = 5,
+
+            /// <summary>
+            /// Enum Telegram for value: telegram
+            /// </summary>
+            [EnumMember(Value = "telegram")]
+            Telegram = 6,
+
+            /// <summary>
+            /// Enum Pinterest for value: pinterest
+            /// </summary>
+            [EnumMember(Value = "pinterest")]
+            Pinterest = 7,
+
+            /// <summary>
+            /// Enum Googlebusiness for value: googlebusiness
+            /// </summary>
+            [EnumMember(Value = "googlebusiness")]
+            Googlebusiness = 8,
+
+            /// <summary>
+            /// Enum Youtube for value: youtube
+            /// </summary>
+            [EnumMember(Value = "youtube")]
+            Youtube = 9,
+
+            /// <summary>
+            /// Enum Slack for value: slack
+            /// </summary>
+            [EnumMember(Value = "slack")]
+            Slack = 10
         }
 
 
@@ -82,7 +118,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="platform">The platform to edit the post on. (required).</param>
         /// <param name="content">The new post text content (required).</param>
-        public EditPostRequest(PlatformEnum platform = default, string content = default)
+        /// <param name="accountId">Which account&#39;s copy of the post to edit when the post was published to several accounts on the same platform; defaults to the first. .</param>
+        public EditPostRequest(PlatformEnum platform = default, string content = default, string accountId = default)
         {
             this.Platform = platform;
             // to ensure "content" is required (not null)
@@ -91,6 +128,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("content is a required property for EditPostRequest and cannot be null");
             }
             this.Content = content;
+            this.AccountId = accountId;
         }
 
         /// <summary>
@@ -99,6 +137,13 @@ namespace Zernio.Model
         /// <value>The new post text content</value>
         [DataMember(Name = "content", IsRequired = true, EmitDefaultValue = true)]
         public string Content { get; set; }
+
+        /// <summary>
+        /// Which account&#39;s copy of the post to edit when the post was published to several accounts on the same platform; defaults to the first. 
+        /// </summary>
+        /// <value>Which account&#39;s copy of the post to edit when the post was published to several accounts on the same platform; defaults to the first. </value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,6 +155,7 @@ namespace Zernio.Model
             sb.Append("class EditPostRequest {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Content: ").Append(Content).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
