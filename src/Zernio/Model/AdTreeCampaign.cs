@@ -164,14 +164,14 @@ namespace Zernio.Model
         /// <param name="profileId">profileId.</param>
         /// <param name="advertisingChannelType">Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, LOCAL_SERVICES, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms..</param>
         /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).</param>
-        /// <param name="optimizationGoal">Optimization goal shared across ad sets, or comma-separated values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); &#x60;NONE&#x60; with a manual costType is a campaign LinkedIn will not deliver..</param>
+        /// <param name="optimizationGoal">optimizationGoal.</param>
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">Representative bid for the campaign, bubbled up from the top-spending ad set (whole currency units). Meta: populated when the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, which has no bidStrategy gate and where 0 is a real, delivery-stopping value rather than unset..</param>
         /// <param name="roasAverageFloor">Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x)..</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="adSets">adSets.</param>
         /// <param name="daily">Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it..</param>
-        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default, List<AdDailyMetrics> daily = default)
+        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, AdTreeCampaignOptimizationGoal optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default, List<AdDailyMetrics> daily = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
@@ -314,11 +314,10 @@ namespace Zernio.Model
         public string PlatformObjective { get; set; }
 
         /// <summary>
-        /// Optimization goal shared across ad sets, or comma-separated values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); &#x60;NONE&#x60; with a manual costType is a campaign LinkedIn will not deliver.
+        /// Gets or Sets OptimizationGoal
         /// </summary>
-        /// <value>Optimization goal shared across ad sets, or comma-separated values when ad sets differ. Meta: e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g. MAX_CLICK, MAX_IMPRESSION, NONE); &#x60;NONE&#x60; with a manual costType is a campaign LinkedIn will not deliver.</value>
-        [DataMember(Name = "optimizationGoal", EmitDefaultValue = true)]
-        public string OptimizationGoal { get; set; }
+        [DataMember(Name = "optimizationGoal", EmitDefaultValue = false)]
+        public AdTreeCampaignOptimizationGoal OptimizationGoal { get; set; }
 
         /// <summary>
         /// Representative bid for the campaign, bubbled up from the top-spending ad set (whole currency units). Meta: populated when the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, which has no bidStrategy gate and where 0 is a real, delivery-stopping value rather than unset.

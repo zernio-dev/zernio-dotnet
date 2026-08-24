@@ -42,6 +42,7 @@ docs/AdTreeAdSetPromotedObject.md
 docs/AdTreeCampaign.md
 docs/AdTreeCampaignBudget.md
 docs/AdTreeCampaignCampaignBudget.md
+docs/AdTreeCampaignOptimizationGoal.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
 docs/AddBroadcastRecipients200Response.md
@@ -1865,6 +1866,7 @@ src/Zernio.Test/Model/AdTreeAdSetPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeAdSetTests.cs
 src/Zernio.Test/Model/AdTreeCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdTreeCampaignCampaignBudgetTests.cs
+src/Zernio.Test/Model/AdTreeCampaignOptimizationGoalTests.cs
 src/Zernio.Test/Model/AdTreeCampaignPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeCampaignTests.cs
 src/Zernio.Test/Model/AdTreeResponseTests.cs
@@ -3652,6 +3654,7 @@ src/Zernio/Model/AdTreeAdSetPromotedObject.cs
 src/Zernio/Model/AdTreeCampaign.cs
 src/Zernio/Model/AdTreeCampaignBudget.cs
 src/Zernio/Model/AdTreeCampaignCampaignBudget.cs
+src/Zernio/Model/AdTreeCampaignOptimizationGoal.cs
 src/Zernio/Model/AdTreeCampaignPromotedObject.cs
 src/Zernio/Model/AdTreeResponse.cs
 src/Zernio/Model/AddBroadcastRecipients200Response.cs
