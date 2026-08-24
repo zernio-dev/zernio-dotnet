@@ -376,6 +376,7 @@ docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
 docs/DeleteAdCreative200Response.md
+docs/DeleteAdVideo200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
@@ -1552,6 +1553,9 @@ docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadAdImage201Response.md
 docs/UploadAdImage201ResponseImage.md
 docs/UploadAdImageRequest.md
+docs/UploadAdVideo201Response.md
+docs/UploadAdVideo201ResponseVideo.md
+docs/UploadAdVideoRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadPhoneNumberKycDocument200Response.md
 docs/UploadPhoneNumberPortInDocument200Response.md
@@ -2191,6 +2195,7 @@ src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaignRequestTests.cs
 src/Zernio.Test/Model/DeleteAdCreative200ResponseTests.cs
+src/Zernio.Test/Model/DeleteAdVideo200ResponseTests.cs
 src/Zernio.Test/Model/DeleteDiscordScheduledEvent200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessPlaceAction200ResponseTests.cs
@@ -3336,6 +3341,9 @@ src/Zernio.Test/Model/UpdateYoutubeDefaultPlaylistRequestTests.cs
 src/Zernio.Test/Model/UploadAdImage201ResponseImageTests.cs
 src/Zernio.Test/Model/UploadAdImage201ResponseTests.cs
 src/Zernio.Test/Model/UploadAdImageRequestTests.cs
+src/Zernio.Test/Model/UploadAdVideo201ResponseTests.cs
+src/Zernio.Test/Model/UploadAdVideo201ResponseVideoTests.cs
+src/Zernio.Test/Model/UploadAdVideoRequestTests.cs
 src/Zernio.Test/Model/UploadMediaDirect200ResponseTests.cs
 src/Zernio.Test/Model/UploadPhoneNumberKycDocument200ResponseTests.cs
 src/Zernio.Test/Model/UploadPhoneNumberPortInDocument200ResponseTests.cs
@@ -3979,6 +3987,7 @@ src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
 src/Zernio/Model/DeleteAdCampaignRequest.cs
 src/Zernio/Model/DeleteAdCreative200Response.cs
+src/Zernio/Model/DeleteAdVideo200Response.cs
 src/Zernio/Model/DeleteDiscordScheduledEvent200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessMedia200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessPlaceAction200Response.cs
@@ -5124,6 +5133,9 @@ src/Zernio/Model/UpdateYoutubeDefaultPlaylistRequest.cs
 src/Zernio/Model/UploadAdImage201Response.cs
 src/Zernio/Model/UploadAdImage201ResponseImage.cs
 src/Zernio/Model/UploadAdImageRequest.cs
+src/Zernio/Model/UploadAdVideo201Response.cs
+src/Zernio/Model/UploadAdVideo201ResponseVideo.cs
+src/Zernio/Model/UploadAdVideoRequest.cs
 src/Zernio/Model/UploadMediaDirect200Response.cs
 src/Zernio/Model/UploadPhoneNumberKycDocument200Response.cs
 src/Zernio/Model/UploadPhoneNumberPortInDocument200Response.cs

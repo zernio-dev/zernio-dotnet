@@ -226,6 +226,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**UpdateAdStatus**](docs/AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdCreativesApi* | [**CreateAdCreative**](docs/AdCreativesApi.md#createadcreative) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**DeleteAdCreative**](docs/AdCreativesApi.md#deleteadcreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
+*AdCreativesApi* | [**DeleteAdVideo**](docs/AdCreativesApi.md#deleteadvideo) | **DELETE** /v1/ads/videos/{videoId} | Delete an ad video
 *AdCreativesApi* | [**GenerateAdPreviews**](docs/AdCreativesApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews
 *AdCreativesApi* | [**GetAdCreative**](docs/AdCreativesApi.md#getadcreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details
 *AdCreativesApi* | [**GetAdPreviews**](docs/AdCreativesApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
@@ -236,6 +237,7 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**ListAdVideos**](docs/AdCreativesApi.md#listadvideos) | **GET** /v1/ads/videos | Ad video library
 *AdCreativesApi* | [**UpdateAdCreative**](docs/AdCreativesApi.md#updateadcreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
 *AdCreativesApi* | [**UploadAdImage**](docs/AdCreativesApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64
+*AdCreativesApi* | [**UploadAdVideo**](docs/AdCreativesApi.md#uploadadvideo) | **POST** /v1/ads/videos | Upload an ad video
 *AdInsightsApi* | [**CreateAdInsightsReport**](docs/AdInsightsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run
 *AdInsightsApi* | [**GenerateKeywordHistoricalMetrics**](docs/AdInsightsApi.md#generatekeywordhistoricalmetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner)
 *AdInsightsApi* | [**GenerateKeywordIdeas**](docs/AdInsightsApi.md#generatekeywordideas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner)
@@ -1082,6 +1084,7 @@ Class | Method | HTTP request | Description
  - [Model.DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [Model.DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
  - [Model.DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
+ - [Model.DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
  - [Model.DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [Model.DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [Model.DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
@@ -2227,6 +2230,9 @@ Class | Method | HTTP request | Description
  - [Model.UploadAdImage201Response](docs/UploadAdImage201Response.md)
  - [Model.UploadAdImage201ResponseImage](docs/UploadAdImage201ResponseImage.md)
  - [Model.UploadAdImageRequest](docs/UploadAdImageRequest.md)
+ - [Model.UploadAdVideo201Response](docs/UploadAdVideo201Response.md)
+ - [Model.UploadAdVideo201ResponseVideo](docs/UploadAdVideo201ResponseVideo.md)
+ - [Model.UploadAdVideoRequest](docs/UploadAdVideoRequest.md)
  - [Model.UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [Model.UploadPhoneNumberKycDocument200Response](docs/UploadPhoneNumberKycDocument200Response.md)
  - [Model.UploadPhoneNumberPortInDocument200Response](docs/UploadPhoneNumberPortInDocument200Response.md)

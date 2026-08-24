@@ -80,6 +80,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DeleteAdVideo
+        /// </summary>
+        [Fact]
+        public void DeleteAdVideoTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string videoId = null;
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.DeleteAdVideo(videoId, accountId, adAccountId);
+            //Assert.IsType<DeleteAdVideo200Response>(response);
+        }
+
+        /// <summary>
         /// Test GenerateAdPreviews
         /// </summary>
         [Fact]
@@ -215,6 +229,18 @@ namespace Zernio.Test.Api
             //UploadAdImageRequest uploadAdImageRequest = null;
             //var response = instance.UploadAdImage(uploadAdImageRequest);
             //Assert.IsType<UploadAdImage201Response>(response);
+        }
+
+        /// <summary>
+        /// Test UploadAdVideo
+        /// </summary>
+        [Fact]
+        public void UploadAdVideoTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UploadAdVideoRequest uploadAdVideoRequest = null;
+            //var response = instance.UploadAdVideo(uploadAdVideoRequest);
+            //Assert.IsType<UploadAdVideo201Response>(response);
         }
     }
 }
