@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// <param name="createdAt">createdAt.</param>
         /// <param name="expiresAt">expiresAt.</param>
         /// <param name="completedAt">completedAt.</param>
-        public UploadTokenStatusResponse(string token = default, StatusEnum? status = default, List<UploadedFile> files = default, DateTime createdAt = default, DateTime expiresAt = default, DateTime completedAt = default)
+        public UploadTokenStatusResponse(string token = default, StatusEnum? status = default, List<UploadedFile> files = default, DateTime createdAt = default, DateTime expiresAt = default, DateTime? completedAt = default)
         {
             this.Token = token;
             this.Status = status;
@@ -110,8 +110,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets CompletedAt
         /// </summary>
-        [DataMember(Name = "completedAt", EmitDefaultValue = false)]
-        public DateTime CompletedAt { get; set; }
+        [DataMember(Name = "completedAt", EmitDefaultValue = true)]
+        public DateTime? CompletedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
