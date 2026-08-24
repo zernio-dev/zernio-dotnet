@@ -99,7 +99,8 @@ namespace Zernio.Model
         /// <param name="accountId">WhatsApp social account ID (required).</param>
         /// <param name="name">New flow name.</param>
         /// <param name="categories">categories.</param>
-        public UpdateWhatsAppFlowRequest(string accountId = default, string name = default, List<CategoriesEnum> categories = default)
+        /// <param name="endpointUri">HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used..</param>
+        public UpdateWhatsAppFlowRequest(string accountId = default, string name = default, List<CategoriesEnum> categories = default, string endpointUri = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -109,6 +110,7 @@ namespace Zernio.Model
             this.AccountId = accountId;
             this.Name = name;
             this.Categories = categories;
+            this.EndpointUri = endpointUri;
         }
 
         /// <summary>
@@ -132,6 +134,13 @@ namespace Zernio.Model
         public List<UpdateWhatsAppFlowRequest.CategoriesEnum> Categories { get; set; }
 
         /// <summary>
+        /// HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used.
+        /// </summary>
+        /// <value>HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used.</value>
+        [DataMember(Name = "endpointUri", EmitDefaultValue = false)]
+        public string EndpointUri { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -142,6 +151,7 @@ namespace Zernio.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Categories: ").Append(Categories).Append("\n");
+            sb.Append("  EndpointUri: ").Append(EndpointUri).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

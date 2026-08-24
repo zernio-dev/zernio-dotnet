@@ -285,7 +285,7 @@ namespace Zernio.Api
         /// Update flow
         /// </summary>
         /// <remarks>
-        /// Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -297,7 +297,7 @@ namespace Zernio.Api
         /// Update flow
         /// </summary>
         /// <remarks>
-        /// Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -615,7 +615,7 @@ namespace Zernio.Api
         /// Update flow
         /// </summary>
         /// <remarks>
-        /// Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -628,7 +628,7 @@ namespace Zernio.Api
         /// Update flow
         /// </summary>
         /// <remarks>
-        /// Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -2426,7 +2426,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update flow Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update flow Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -2439,7 +2439,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update flow Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update flow Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -2495,7 +2495,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update flow Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update flow Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
@@ -2509,7 +2509,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update flow Update metadata (name, categories) of a DRAFT flow. Published flows are immutable. 
+        /// Update flow Update metadata (name, categories, endpointUri) of a DRAFT flow. Published flows are immutable. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>

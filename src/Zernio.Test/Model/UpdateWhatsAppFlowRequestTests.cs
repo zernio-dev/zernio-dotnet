@@ -81,5 +81,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Categories'
         }
+
+        /// <summary>
+        /// Test the property 'EndpointUri'
+        /// </summary>
+        [Fact]
+        public void EndpointUriTest()
+        {
+            // TODO unit test for the property 'EndpointUri'
+        }
     }
 }

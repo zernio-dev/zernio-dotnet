@@ -101,7 +101,8 @@ namespace Zernio.Model
         /// <param name="categories">Flow categories (required).</param>
         /// <param name="cloneFlowId">Optional: ID of an existing flow to clone the Flow JSON from.</param>
         /// <param name="asVersion">When cloning, true keeps the clone in cloneFlowId&#39;s version lineage (auto-numbered next version); false/absent creates an independent flow. Ignored without cloneFlowId..</param>
-        public CreateWhatsAppFlowRequest(string accountId = default, string name = default, List<CategoriesEnum> categories = default, string cloneFlowId = default, bool asVersion = default)
+        /// <param name="endpointUri">HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used..</param>
+        public CreateWhatsAppFlowRequest(string accountId = default, string name = default, List<CategoriesEnum> categories = default, string cloneFlowId = default, bool asVersion = default, string endpointUri = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -123,6 +124,7 @@ namespace Zernio.Model
             this.Categories = categories;
             this.CloneFlowId = cloneFlowId;
             this.AsVersion = asVersion;
+            this.EndpointUri = endpointUri;
         }
 
         /// <summary>
@@ -161,6 +163,13 @@ namespace Zernio.Model
         public bool AsVersion { get; set; }
 
         /// <summary>
+        /// HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used.
+        /// </summary>
+        /// <value>HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used.</value>
+        [DataMember(Name = "endpointUri", EmitDefaultValue = false)]
+        public string EndpointUri { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +182,7 @@ namespace Zernio.Model
             sb.Append("  Categories: ").Append(Categories).Append("\n");
             sb.Append("  CloneFlowId: ").Append(CloneFlowId).Append("\n");
             sb.Append("  AsVersion: ").Append(AsVersion).Append("\n");
+            sb.Append("  EndpointUri: ").Append(EndpointUri).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
