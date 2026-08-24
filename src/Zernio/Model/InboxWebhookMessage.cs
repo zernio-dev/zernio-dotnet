@@ -117,7 +117,7 @@ namespace Zernio.Model
         /// <param name="text">Message text content (retained on deleted messages for API consumers; Zernio dashboard UI hides this) (required).</param>
         /// <param name="attachments">attachments (required).</param>
         /// <param name="sender">sender (required).</param>
-        /// <param name="sentAt">sentAt (required).</param>
+        /// <param name="sentAt">When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order. (required).</param>
         /// <param name="isRead">isRead (required).</param>
         public InboxWebhookMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<InboxWebhookMessageAttachmentsInner> attachments = default, InboxWebhookMessageSender sender = default, DateTime sentAt = default, bool isRead = default)
         {
@@ -204,8 +204,9 @@ namespace Zernio.Model
         public InboxWebhookMessageSender Sender { get; set; }
 
         /// <summary>
-        /// Gets or Sets SentAt
+        /// When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order.
         /// </summary>
+        /// <value>When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order.</value>
         [DataMember(Name = "sentAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTime SentAt { get; set; }
 

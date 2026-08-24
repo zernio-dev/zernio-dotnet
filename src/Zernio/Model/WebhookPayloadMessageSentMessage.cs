@@ -138,7 +138,7 @@ namespace Zernio.Model
         /// <param name="text">Message text content (required).</param>
         /// <param name="attachments">attachments (required).</param>
         /// <param name="sender">sender (required).</param>
-        /// <param name="sentAt">sentAt (required).</param>
+        /// <param name="sentAt">When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order. (required).</param>
         /// <param name="isRead">isRead (required).</param>
         /// <param name="source">WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field..</param>
         public WebhookPayloadMessageSentMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments = default, WebhookPayloadMessageSentMessageSender sender = default, DateTime sentAt = default, bool isRead = default, SourceEnum? source = default)
@@ -227,8 +227,9 @@ namespace Zernio.Model
         public WebhookPayloadMessageSentMessageSender Sender { get; set; }
 
         /// <summary>
-        /// Gets or Sets SentAt
+        /// When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order.
         /// </summary>
+        /// <value>When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order.</value>
         [DataMember(Name = "sentAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTime SentAt { get; set; }
 
