@@ -319,6 +319,7 @@ catch (ApiException e)
 | **400** | Invalid request (including forwardTo set to the number itself) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Phone number not found |  -  |
+| **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

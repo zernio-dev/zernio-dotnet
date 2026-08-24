@@ -4,17 +4,233 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**AttachNumberToSipTrunk**](VoiceApi.md#attachnumbertosiptrunk) | **POST** /v1/phone-numbers/{id}/sip-trunk | Attach a number to a SIP trunk |
+| [**CreateSipTrunk**](VoiceApi.md#createsiptrunk) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk |
 | [**CreateVoiceCall**](VoiceApi.md#createvoicecall) | **POST** /v1/voice/calls | Place an outbound phone call |
 | [**CreateVoiceWebSession**](VoiceApi.md#createvoicewebsession) | **POST** /v1/voice/calls/web | Mint a browser softphone session |
+| [**DeleteSipTrunk**](VoiceApi.md#deletesiptrunk) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk |
+| [**DetachNumberFromSipTrunk**](VoiceApi.md#detachnumberfromsiptrunk) | **DELETE** /v1/phone-numbers/{id}/sip-trunk | Detach a number from its SIP trunk |
 | [**DialVoiceWebCall**](VoiceApi.md#dialvoicewebcall) | **POST** /v1/voice/calls/web/dial | Dial from the browser softphone |
 | [**DisableVoiceOnNumber**](VoiceApi.md#disablevoiceonnumber) | **DELETE** /v1/phone-numbers/{id}/voice | Disable phone calling on a number |
 | [**EnableVoiceOnNumber**](VoiceApi.md#enablevoiceonnumber) | **POST** /v1/phone-numbers/{id}/voice | Enable phone calling on a number |
 | [**EndVoiceCall**](VoiceApi.md#endvoicecall) | **POST** /v1/voice/calls/{id}/end | Hang up a live call |
+| [**GetSipTrunk**](VoiceApi.md#getsiptrunk) | **GET** /v1/phone-numbers/sip-trunks/{id} | Get a SIP trunk |
 | [**GetVoiceCall**](VoiceApi.md#getvoicecall) | **GET** /v1/voice/calls/{id} | Get a phone call |
 | [**GetVoiceCallEstimate**](VoiceApi.md#getvoicecallestimate) | **GET** /v1/voice/calls/estimate | Estimate call cost |
 | [**GetVoiceCallRecording**](VoiceApi.md#getvoicecallrecording) | **GET** /v1/voice/calls/{id}/recording | Get a call recording |
+| [**ListSipTrunks**](VoiceApi.md#listsiptrunks) | **GET** /v1/phone-numbers/sip-trunks | List SIP trunks |
 | [**ListVoiceCalls**](VoiceApi.md#listvoicecalls) | **GET** /v1/voice/calls | List phone calls |
+| [**RotateSipTrunkCredentials**](VoiceApi.md#rotatesiptrunkcredentials) | **POST** /v1/phone-numbers/sip-trunks/{id}/rotate-credentials | Rotate a SIP trunk&#39;s password |
 | [**TransferVoiceCall**](VoiceApi.md#transfervoicecall) | **POST** /v1/voice/calls/{id}/transfer | Blind-transfer a live call |
+
+<a id="attachnumbertosiptrunk"></a>
+# **AttachNumberToSipTrunk**
+> AttachNumberToSipTrunk200Response AttachNumberToSipTrunk (string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest)
+
+Attach a number to a SIP trunk
+
+Routes the number's calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AttachNumberToSipTrunkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Phone number record ID (from GET /v1/phone-numbers).
+            var attachNumberToSipTrunkRequest = new AttachNumberToSipTrunkRequest(); // AttachNumberToSipTrunkRequest | 
+
+            try
+            {
+                // Attach a number to a SIP trunk
+                AttachNumberToSipTrunk200Response result = apiInstance.AttachNumberToSipTrunk(id, attachNumberToSipTrunkRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.AttachNumberToSipTrunk: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AttachNumberToSipTrunkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Attach a number to a SIP trunk
+    ApiResponse<AttachNumberToSipTrunk200Response> response = apiInstance.AttachNumberToSipTrunkWithHttpInfo(id, attachNumberToSipTrunkRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.AttachNumberToSipTrunkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Phone number record ID (from GET /v1/phone-numbers). |  |
+| **attachNumberToSipTrunkRequest** | [**AttachNumberToSipTrunkRequest**](AttachNumberToSipTrunkRequest.md) |  |  |
+
+### Return type
+
+[**AttachNumberToSipTrunk200Response**](AttachNumberToSipTrunk200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number attached (idempotent for the same trunk). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **404** | Number or trunk not found |  -  |
+| **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
+| **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createsiptrunk"></a>
+# **CreateSipTrunk**
+> CreateSipTrunk201Response CreateSipTrunk (CreateSipTrunkRequest createSipTrunkRequest)
+
+Create a SIP trunk
+
+Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to `sipHost`, and the platform originates outbound calls through `termination.uri` with the digest credentials.  The `digestPassword` is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency's clients) stay isolated. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateSipTrunkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+            var createSipTrunkRequest = new CreateSipTrunkRequest(); // CreateSipTrunkRequest | 
+
+            try
+            {
+                // Create a SIP trunk
+                CreateSipTrunk201Response result = apiInstance.CreateSipTrunk(createSipTrunkRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.CreateSipTrunk: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateSipTrunkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a SIP trunk
+    ApiResponse<CreateSipTrunk201Response> response = apiInstance.CreateSipTrunkWithHttpInfo(createSipTrunkRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.CreateSipTrunkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createSipTrunkRequest** | [**CreateSipTrunkRequest**](CreateSipTrunkRequest.md) |  |  |
+
+### Return type
+
+[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **409** | The workspace trunk limit was reached (code invalid_resource_state). |  -  |
+| **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="createvoicecall"></a>
 # **CreateVoiceCall**
@@ -212,6 +428,209 @@ This endpoint does not need any parameter.
 | **200** | WebRTC session minted. |  -  |
 | **401** | Unauthorized |  -  |
 | **502** | Failed to mint the WebRTC session |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletesiptrunk"></a>
+# **DeleteSipTrunk**
+> DeleteSmsSenderId200Response DeleteSipTrunk (string id)
+
+Delete a SIP trunk
+
+Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteSipTrunkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+
+            try
+            {
+                // Delete a SIP trunk
+                DeleteSmsSenderId200Response result = apiInstance.DeleteSipTrunk(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.DeleteSipTrunk: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteSipTrunkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a SIP trunk
+    ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.DeleteSipTrunkWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.DeleteSipTrunkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trunk deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
+| **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="detachnumberfromsiptrunk"></a>
+# **DetachNumberFromSipTrunk**
+> DetachNumberFromSipTrunk200Response DetachNumberFromSipTrunk (string id)
+
+Detach a number from its SIP trunk
+
+Returns the number's calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DetachNumberFromSipTrunkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+
+            try
+            {
+                // Detach a number from its SIP trunk
+                DetachNumberFromSipTrunk200Response result = apiInstance.DetachNumberFromSipTrunk(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.DetachNumberFromSipTrunk: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DetachNumberFromSipTrunkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Detach a number from its SIP trunk
+    ApiResponse<DetachNumberFromSipTrunk200Response> response = apiInstance.DetachNumberFromSipTrunkWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.DetachNumberFromSipTrunkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+
+### Return type
+
+[**DetachNumberFromSipTrunk200Response**](DetachNumberFromSipTrunk200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number detached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -516,6 +935,7 @@ catch (ApiException e)
 | **200** | Voice enabled; the full effective voice config is echoed back. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
+| **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -618,6 +1038,105 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Call not found |  -  |
 | **502** | Carrier-side hangup failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getsiptrunk"></a>
+# **GetSipTrunk**
+> GetSipTrunk200Response GetSipTrunk (string id)
+
+Get a SIP trunk
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetSipTrunkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+
+            try
+            {
+                // Get a SIP trunk
+                GetSipTrunk200Response result = apiInstance.GetSipTrunk(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.GetSipTrunk: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetSipTrunkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a SIP trunk
+    ApiResponse<GetSipTrunk200Response> response = apiInstance.GetSipTrunkWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.GetSipTrunkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+
+### Return type
+
+[**GetSipTrunk200Response**](GetSipTrunk200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trunk detail, including the attached numbers. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -930,6 +1449,98 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listsiptrunks"></a>
+# **ListSipTrunks**
+> ListSipTrunks200Response ListSipTrunks ()
+
+List SIP trunks
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListSipTrunksExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // List SIP trunks
+                ListSipTrunks200Response result = apiInstance.ListSipTrunks();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.ListSipTrunks: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListSipTrunksWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List SIP trunks
+    ApiResponse<ListSipTrunks200Response> response = apiInstance.ListSipTrunksWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.ListSipTrunksWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ListSipTrunks200Response**](ListSipTrunks200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s trunks. Passwords are never included. |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listvoicecalls"></a>
 # **ListVoiceCalls**
 > ListVoiceCalls200Response ListVoiceCalls (string? status = null, string? direction = null, string? number = null, DateTime? before = null, int? limit = null)
@@ -1034,6 +1645,107 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="rotatesiptrunkcredentials"></a>
+# **RotateSipTrunkCredentials**
+> RotateSipTrunkCredentials200Response RotateSipTrunkCredentials (string id)
+
+Rotate a SIP trunk's password
+
+Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RotateSipTrunkCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+
+            try
+            {
+                // Rotate a SIP trunk's password
+                RotateSipTrunkCredentials200Response result = apiInstance.RotateSipTrunkCredentials(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.RotateSipTrunkCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RotateSipTrunkCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Rotate a SIP trunk's password
+    ApiResponse<RotateSipTrunkCredentials200Response> response = apiInstance.RotateSipTrunkCredentialsWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.RotateSipTrunkCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+
+### Return type
+
+[**RotateSipTrunkCredentials200Response**](RotateSipTrunkCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | New credentials. The password is shown only here. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | SIP trunk not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

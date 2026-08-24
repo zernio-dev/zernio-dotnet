@@ -111,6 +111,7 @@ namespace Zernio.Model
         /// <param name="telnyxOrderId">Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review..</param>
         /// <param name="monthlyCents">Per-country monthly price in cents ($2..$25)..</param>
         /// <param name="hostedByZernio">False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them..</param>
+        /// <param name="sipTrunkId">SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409..</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="provisionedAt">provisionedAt.</param>
         /// <param name="metaPreverifiedId">metaPreverifiedId.</param>
@@ -121,7 +122,7 @@ namespace Zernio.Model
         /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
         /// <param name="callingEnabled">Whether WhatsApp Business Calling is enabled on this number (manage via /v1/whatsapp/phone-numbers/{id}/calling)..</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, string registrantName = default, string telnyxOrderId = default, int monthlyCents = default, bool hostedByZernio = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, bool callingEnabled = default, DateTime createdAt = default)
+        public ListPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, string registrantName = default, string telnyxOrderId = default, int monthlyCents = default, bool hostedByZernio = default, string sipTrunkId = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, bool callingEnabled = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
@@ -131,6 +132,7 @@ namespace Zernio.Model
             this.TelnyxOrderId = telnyxOrderId;
             this.MonthlyCents = monthlyCents;
             this.HostedByZernio = hostedByZernio;
+            this.SipTrunkId = sipTrunkId;
             this.ProfileId = profileId;
             this.ProvisionedAt = provisionedAt;
             this.MetaPreverifiedId = metaPreverifiedId;
@@ -188,6 +190,13 @@ namespace Zernio.Model
         /// <value>False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them.</value>
         [DataMember(Name = "hostedByZernio", EmitDefaultValue = true)]
         public bool HostedByZernio { get; set; }
+
+        /// <summary>
+        /// SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409.
+        /// </summary>
+        /// <value>SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409.</value>
+        [DataMember(Name = "sipTrunkId", EmitDefaultValue = true)]
+        public string SipTrunkId { get; set; }
 
         /// <summary>
         /// Gets or Sets ProfileId
@@ -268,6 +277,7 @@ namespace Zernio.Model
             sb.Append("  TelnyxOrderId: ").Append(TelnyxOrderId).Append("\n");
             sb.Append("  MonthlyCents: ").Append(MonthlyCents).Append("\n");
             sb.Append("  HostedByZernio: ").Append(HostedByZernio).Append("\n");
+            sb.Append("  SipTrunkId: ").Append(SipTrunkId).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ProvisionedAt: ").Append(ProvisionedAt).Append("\n");
             sb.Append("  MetaPreverifiedId: ").Append(MetaPreverifiedId).Append("\n");

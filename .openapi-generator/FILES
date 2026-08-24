@@ -82,6 +82,8 @@ docs/ArchiveLeadForm200Response.md
 docs/AssignGoogleBusinessLocation200Response.md
 docs/AssignGoogleBusinessLocation200ResponseAccount.md
 docs/AssignGoogleBusinessLocationRequest.md
+docs/AttachNumberToSipTrunk200Response.md
+docs/AttachNumberToSipTrunkRequest.md
 docs/BatchGetGoogleBusinessReviews200Response.md
 docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md
 docs/BatchGetGoogleBusinessReviewsRequest.md
@@ -292,6 +294,9 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateSipTrunk201Response.md
+docs/CreateSipTrunk201ResponseTermination.md
+docs/CreateSipTrunkRequest.md
 docs/CreateSmsSenderId200Response.md
 docs/CreateSmsSenderIdRequest.md
 docs/CreateStandaloneAd200Response.md
@@ -380,6 +385,7 @@ docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteValueRuleSet200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
+docs/DetachNumberFromSipTrunk200Response.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
 docs/DisableSmsOnNumber200Response.md
@@ -711,6 +717,8 @@ docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
 docs/GetSequence200ResponseSequenceStepsInnerTemplate.md
+docs/GetSipTrunk200Response.md
+docs/GetSipTrunk200ResponseNumbersInner.md
 docs/GetSlackSettings200Response.md
 docs/GetSlackSettings200ResponseAccount.md
 docs/GetSmsRegistration200Response.md
@@ -1005,6 +1013,9 @@ docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
+docs/ListSipTrunks200Response.md
+docs/ListSipTrunks200ResponseTrunksInner.md
+docs/ListSipTrunks200ResponseTrunksInnerTermination.md
 docs/ListSlackMembers200Response.md
 docs/ListSlackMembers200ResponseMembersInner.md
 docs/ListSmsOptOuts200Response.md
@@ -1205,6 +1216,7 @@ docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
 docs/RevokeConnectedApp200Response.md
 docs/RfPrediction.md
+docs/RotateSipTrunkCredentials200Response.md
 docs/SMSApi.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
@@ -1893,6 +1905,8 @@ src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
+src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
+src/Zernio.Test/Model/AttachNumberToSipTrunkRequestTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInnerTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviewsRequestTests.cs
@@ -2094,6 +2108,9 @@ src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestTests.cs
+src/Zernio.Test/Model/CreateSipTrunk201ResponseTerminationTests.cs
+src/Zernio.Test/Model/CreateSipTrunk201ResponseTests.cs
+src/Zernio.Test/Model/CreateSipTrunkRequestTests.cs
 src/Zernio.Test/Model/CreateSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/CreateSmsSenderIdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd200ResponseResultsInnerTests.cs
@@ -2181,6 +2198,7 @@ src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
+src/Zernio.Test/Model/DetachNumberFromSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCall200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCallRequestTests.cs
 src/Zernio.Test/Model/DisableSmsOnNumber200ResponseTests.cs
@@ -2503,6 +2521,8 @@ src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseTests.cs
+src/Zernio.Test/Model/GetSipTrunk200ResponseNumbersInnerTests.cs
+src/Zernio.Test/Model/GetSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/GetSlackSettings200ResponseAccountTests.cs
 src/Zernio.Test/Model/GetSlackSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsRegistration200ResponseCampaignContentTests.cs
@@ -2792,6 +2812,9 @@ src/Zernio.Test/Model/ListSequenceEnrollments200ResponseEnrollmentsInnerTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseSequencesInnerTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseTests.cs
+src/Zernio.Test/Model/ListSipTrunks200ResponseTests.cs
+src/Zernio.Test/Model/ListSipTrunks200ResponseTrunksInnerTerminationTests.cs
+src/Zernio.Test/Model/ListSipTrunks200ResponseTrunksInnerTests.cs
 src/Zernio.Test/Model/ListSlackMembers200ResponseMembersInnerTests.cs
 src/Zernio.Test/Model/ListSlackMembers200ResponseTests.cs
 src/Zernio.Test/Model/ListSmsOptOuts200ResponseOptOutsInnerTests.cs
@@ -2980,6 +3003,7 @@ src/Zernio.Test/Model/ReviewWebhookReviewReviewerTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewTests.cs
 src/Zernio.Test/Model/RevokeConnectedApp200ResponseTests.cs
 src/Zernio.Test/Model/RfPredictionTests.cs
+src/Zernio.Test/Model/RotateSipTrunkCredentials200ResponseTests.cs
 src/Zernio.Test/Model/SavedTargetingAudienceTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseTests.cs
@@ -3667,6 +3691,8 @@ src/Zernio/Model/ArchiveLeadForm200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
+src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
+src/Zernio/Model/AttachNumberToSipTrunkRequest.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200Response.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviewsRequest.cs
@@ -3868,6 +3894,9 @@ src/Zernio/Model/CreateSequenceRequest.cs
 src/Zernio/Model/CreateSequenceRequestStepsInner.cs
 src/Zernio/Model/CreateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.cs
+src/Zernio/Model/CreateSipTrunk201Response.cs
+src/Zernio/Model/CreateSipTrunk201ResponseTermination.cs
+src/Zernio/Model/CreateSipTrunkRequest.cs
 src/Zernio/Model/CreateSmsSenderId200Response.cs
 src/Zernio/Model/CreateSmsSenderIdRequest.cs
 src/Zernio/Model/CreateStandaloneAd200Response.cs
@@ -3955,6 +3984,7 @@ src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteValueRuleSet200Response.cs
 src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
+src/Zernio/Model/DetachNumberFromSipTrunk200Response.cs
 src/Zernio/Model/DialVoiceWebCall200Response.cs
 src/Zernio/Model/DialVoiceWebCallRequest.cs
 src/Zernio/Model/DisableSmsOnNumber200Response.cs
@@ -4277,6 +4307,8 @@ src/Zernio/Model/GetSequence200Response.cs
 src/Zernio/Model/GetSequence200ResponseSequence.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInner.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInnerTemplate.cs
+src/Zernio/Model/GetSipTrunk200Response.cs
+src/Zernio/Model/GetSipTrunk200ResponseNumbersInner.cs
 src/Zernio/Model/GetSlackSettings200Response.cs
 src/Zernio/Model/GetSlackSettings200ResponseAccount.cs
 src/Zernio/Model/GetSmsRegistration200Response.cs
@@ -4566,6 +4598,9 @@ src/Zernio/Model/ListSequenceEnrollments200Response.cs
 src/Zernio/Model/ListSequenceEnrollments200ResponseEnrollmentsInner.cs
 src/Zernio/Model/ListSequences200Response.cs
 src/Zernio/Model/ListSequences200ResponseSequencesInner.cs
+src/Zernio/Model/ListSipTrunks200Response.cs
+src/Zernio/Model/ListSipTrunks200ResponseTrunksInner.cs
+src/Zernio/Model/ListSipTrunks200ResponseTrunksInnerTermination.cs
 src/Zernio/Model/ListSlackMembers200Response.cs
 src/Zernio/Model/ListSlackMembers200ResponseMembersInner.cs
 src/Zernio/Model/ListSmsOptOuts200Response.cs
@@ -4754,6 +4789,7 @@ src/Zernio/Model/ReviewWebhookReviewReply.cs
 src/Zernio/Model/ReviewWebhookReviewReviewer.cs
 src/Zernio/Model/RevokeConnectedApp200Response.cs
 src/Zernio/Model/RfPrediction.cs
+src/Zernio/Model/RotateSipTrunkCredentials200Response.cs
 src/Zernio/Model/SavedTargetingAudience.cs
 src/Zernio/Model/ScheduleBroadcast200Response.cs
 src/Zernio/Model/ScheduleBroadcast200ResponseBroadcast.cs

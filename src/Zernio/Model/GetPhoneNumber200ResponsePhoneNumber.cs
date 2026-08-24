@@ -114,7 +114,8 @@ namespace Zernio.Model
         /// <param name="endUserLastName">endUserLastName.</param>
         /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
         /// <param name="provisionedAt">provisionedAt.</param>
-        public GetPhoneNumber200ResponsePhoneNumber(string id = default, string phoneNumber = default, StatusEnum? status = default, string country = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime provisionedAt = default)
+        /// <param name="sipTrunkId">SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409..</param>
+        public GetPhoneNumber200ResponsePhoneNumber(string id = default, string phoneNumber = default, StatusEnum? status = default, string country = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime provisionedAt = default, string sipTrunkId = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
@@ -127,6 +128,7 @@ namespace Zernio.Model
             this.EndUserLastName = endUserLastName;
             this.RegulatoryDeclineReason = regulatoryDeclineReason;
             this.ProvisionedAt = provisionedAt;
+            this.SipTrunkId = sipTrunkId;
         }
 
         /// <summary>
@@ -192,6 +194,13 @@ namespace Zernio.Model
         public DateTime ProvisionedAt { get; set; }
 
         /// <summary>
+        /// SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409.
+        /// </summary>
+        /// <value>SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409.</value>
+        [DataMember(Name = "sipTrunkId", EmitDefaultValue = true)]
+        public string SipTrunkId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -210,6 +219,7 @@ namespace Zernio.Model
             sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
             sb.Append("  RegulatoryDeclineReason: ").Append(RegulatoryDeclineReason).Append("\n");
             sb.Append("  ProvisionedAt: ").Append(ProvisionedAt).Append("\n");
+            sb.Append("  SipTrunkId: ").Append(SipTrunkId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

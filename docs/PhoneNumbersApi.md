@@ -1536,6 +1536,7 @@ catch (ApiException e)
 | **400** | Phone number is already released or being released |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **409** | The number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

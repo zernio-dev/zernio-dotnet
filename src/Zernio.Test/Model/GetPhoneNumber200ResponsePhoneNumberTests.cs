@@ -153,5 +153,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ProvisionedAt'
         }
+
+        /// <summary>
+        /// Test the property 'SipTrunkId'
+        /// </summary>
+        [Fact]
+        public void SipTrunkIdTest()
+        {
+            // TODO unit test for the property 'SipTrunkId'
+        }
     }
 }

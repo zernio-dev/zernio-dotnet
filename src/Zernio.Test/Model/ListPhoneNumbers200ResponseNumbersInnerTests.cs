@@ -128,6 +128,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SipTrunkId'
+        /// </summary>
+        [Fact]
+        public void SipTrunkIdTest()
+        {
+            // TODO unit test for the property 'SipTrunkId'
+        }
+
+        /// <summary>
         /// Test the property 'ProfileId'
         /// </summary>
         [Fact]

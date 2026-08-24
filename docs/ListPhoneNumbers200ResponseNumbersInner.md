@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **TelnyxOrderId** | **string** | Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review. | [optional] 
 **MonthlyCents** | **int** | Per-country monthly price in cents ($2..$25). | [optional] 
 **HostedByZernio** | **bool** | False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them. | [optional] 
+**SipTrunkId** | **string** | SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409. | [optional] 
 **ProfileId** | **Object** |  | [optional] 
 **ProvisionedAt** | **DateTime** |  | [optional] 
 **MetaPreverifiedId** | **string** |  | [optional] 

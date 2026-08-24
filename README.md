@@ -593,16 +593,23 @@ Class | Method | HTTP request | Description
 *VerifyApi* | [**CheckVerification**](docs/VerifyApi.md#checkverification) | **POST** /v1/verify/verifications/{verificationId}/check | Check a verification code
 *VerifyApi* | [**CreateVerification**](docs/VerifyApi.md#createverification) | **POST** /v1/verify/verifications | Send a verification code
 *VerifyApi* | [**GetVerification**](docs/VerifyApi.md#getverification) | **GET** /v1/verify/verifications/{verificationId} | Get a verification
+*VoiceApi* | [**AttachNumberToSipTrunk**](docs/VoiceApi.md#attachnumbertosiptrunk) | **POST** /v1/phone-numbers/{id}/sip-trunk | Attach a number to a SIP trunk
+*VoiceApi* | [**CreateSipTrunk**](docs/VoiceApi.md#createsiptrunk) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk
 *VoiceApi* | [**CreateVoiceCall**](docs/VoiceApi.md#createvoicecall) | **POST** /v1/voice/calls | Place an outbound phone call
 *VoiceApi* | [**CreateVoiceWebSession**](docs/VoiceApi.md#createvoicewebsession) | **POST** /v1/voice/calls/web | Mint a browser softphone session
+*VoiceApi* | [**DeleteSipTrunk**](docs/VoiceApi.md#deletesiptrunk) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk
+*VoiceApi* | [**DetachNumberFromSipTrunk**](docs/VoiceApi.md#detachnumberfromsiptrunk) | **DELETE** /v1/phone-numbers/{id}/sip-trunk | Detach a number from its SIP trunk
 *VoiceApi* | [**DialVoiceWebCall**](docs/VoiceApi.md#dialvoicewebcall) | **POST** /v1/voice/calls/web/dial | Dial from the browser softphone
 *VoiceApi* | [**DisableVoiceOnNumber**](docs/VoiceApi.md#disablevoiceonnumber) | **DELETE** /v1/phone-numbers/{id}/voice | Disable phone calling on a number
 *VoiceApi* | [**EnableVoiceOnNumber**](docs/VoiceApi.md#enablevoiceonnumber) | **POST** /v1/phone-numbers/{id}/voice | Enable phone calling on a number
 *VoiceApi* | [**EndVoiceCall**](docs/VoiceApi.md#endvoicecall) | **POST** /v1/voice/calls/{id}/end | Hang up a live call
+*VoiceApi* | [**GetSipTrunk**](docs/VoiceApi.md#getsiptrunk) | **GET** /v1/phone-numbers/sip-trunks/{id} | Get a SIP trunk
 *VoiceApi* | [**GetVoiceCall**](docs/VoiceApi.md#getvoicecall) | **GET** /v1/voice/calls/{id} | Get a phone call
 *VoiceApi* | [**GetVoiceCallEstimate**](docs/VoiceApi.md#getvoicecallestimate) | **GET** /v1/voice/calls/estimate | Estimate call cost
 *VoiceApi* | [**GetVoiceCallRecording**](docs/VoiceApi.md#getvoicecallrecording) | **GET** /v1/voice/calls/{id}/recording | Get a call recording
+*VoiceApi* | [**ListSipTrunks**](docs/VoiceApi.md#listsiptrunks) | **GET** /v1/phone-numbers/sip-trunks | List SIP trunks
 *VoiceApi* | [**ListVoiceCalls**](docs/VoiceApi.md#listvoicecalls) | **GET** /v1/voice/calls | List phone calls
+*VoiceApi* | [**RotateSipTrunkCredentials**](docs/VoiceApi.md#rotatesiptrunkcredentials) | **POST** /v1/phone-numbers/sip-trunks/{id}/rotate-credentials | Rotate a SIP trunk's password
 *VoiceApi* | [**TransferVoiceCall**](docs/VoiceApi.md#transfervoicecall) | **POST** /v1/voice/calls/{id}/transfer | Blind-transfer a live call
 *WebhooksApi* | [**CreateWebhookSettings**](docs/WebhooksApi.md#createwebhooksettings) | **POST** /v1/webhooks/settings | Create webhook
 *WebhooksApi* | [**DeleteWebhookSettings**](docs/WebhooksApi.md#deletewebhooksettings) | **DELETE** /v1/webhooks/settings | Delete webhook
@@ -782,6 +789,8 @@ Class | Method | HTTP request | Description
  - [Model.AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
  - [Model.AssignGoogleBusinessLocation200ResponseAccount](docs/AssignGoogleBusinessLocation200ResponseAccount.md)
  - [Model.AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
+ - [Model.AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
+ - [Model.AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
  - [Model.BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
  - [Model.BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [Model.BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
@@ -983,6 +992,9 @@ Class | Method | HTTP request | Description
  - [Model.CreateSequenceRequestStepsInner](docs/CreateSequenceRequestStepsInner.md)
  - [Model.CreateSequenceRequestStepsInnerTemplate](docs/CreateSequenceRequestStepsInnerTemplate.md)
  - [Model.CreateSequenceRequestStepsInnerTemplateVariableMappingValue](docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md)
+ - [Model.CreateSipTrunk201Response](docs/CreateSipTrunk201Response.md)
+ - [Model.CreateSipTrunk201ResponseTermination](docs/CreateSipTrunk201ResponseTermination.md)
+ - [Model.CreateSipTrunkRequest](docs/CreateSipTrunkRequest.md)
  - [Model.CreateSmsSenderId200Response](docs/CreateSmsSenderId200Response.md)
  - [Model.CreateSmsSenderIdRequest](docs/CreateSmsSenderIdRequest.md)
  - [Model.CreateStandaloneAd200Response](docs/CreateStandaloneAd200Response.md)
@@ -1070,6 +1082,7 @@ Class | Method | HTTP request | Description
  - [Model.DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [Model.DeleteValueRuleSet200Response](docs/DeleteValueRuleSet200Response.md)
  - [Model.DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
+ - [Model.DetachNumberFromSipTrunk200Response](docs/DetachNumberFromSipTrunk200Response.md)
  - [Model.DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [Model.DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
  - [Model.DisableSmsOnNumber200Response](docs/DisableSmsOnNumber200Response.md)
@@ -1392,6 +1405,8 @@ Class | Method | HTTP request | Description
  - [Model.GetSequence200ResponseSequence](docs/GetSequence200ResponseSequence.md)
  - [Model.GetSequence200ResponseSequenceStepsInner](docs/GetSequence200ResponseSequenceStepsInner.md)
  - [Model.GetSequence200ResponseSequenceStepsInnerTemplate](docs/GetSequence200ResponseSequenceStepsInnerTemplate.md)
+ - [Model.GetSipTrunk200Response](docs/GetSipTrunk200Response.md)
+ - [Model.GetSipTrunk200ResponseNumbersInner](docs/GetSipTrunk200ResponseNumbersInner.md)
  - [Model.GetSlackSettings200Response](docs/GetSlackSettings200Response.md)
  - [Model.GetSlackSettings200ResponseAccount](docs/GetSlackSettings200ResponseAccount.md)
  - [Model.GetSmsRegistration200Response](docs/GetSmsRegistration200Response.md)
@@ -1681,6 +1696,9 @@ Class | Method | HTTP request | Description
  - [Model.ListSequenceEnrollments200ResponseEnrollmentsInner](docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md)
  - [Model.ListSequences200Response](docs/ListSequences200Response.md)
  - [Model.ListSequences200ResponseSequencesInner](docs/ListSequences200ResponseSequencesInner.md)
+ - [Model.ListSipTrunks200Response](docs/ListSipTrunks200Response.md)
+ - [Model.ListSipTrunks200ResponseTrunksInner](docs/ListSipTrunks200ResponseTrunksInner.md)
+ - [Model.ListSipTrunks200ResponseTrunksInnerTermination](docs/ListSipTrunks200ResponseTrunksInnerTermination.md)
  - [Model.ListSlackMembers200Response](docs/ListSlackMembers200Response.md)
  - [Model.ListSlackMembers200ResponseMembersInner](docs/ListSlackMembers200ResponseMembersInner.md)
  - [Model.ListSmsOptOuts200Response](docs/ListSmsOptOuts200Response.md)
@@ -1869,6 +1887,7 @@ Class | Method | HTTP request | Description
  - [Model.ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
  - [Model.RevokeConnectedApp200Response](docs/RevokeConnectedApp200Response.md)
  - [Model.RfPrediction](docs/RfPrediction.md)
+ - [Model.RotateSipTrunkCredentials200Response](docs/RotateSipTrunkCredentials200Response.md)
  - [Model.SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [Model.ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [Model.ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)

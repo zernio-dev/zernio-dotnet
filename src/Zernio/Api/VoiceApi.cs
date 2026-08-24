@@ -29,6 +29,50 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Attach a number to a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <returns>AttachNumberToSipTrunk200Response</returns>
+        AttachNumberToSipTrunk200Response AttachNumberToSipTrunk(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest);
+
+        /// <summary>
+        /// Attach a number to a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <returns>ApiResponse of AttachNumberToSipTrunk200Response</returns>
+        ApiResponse<AttachNumberToSipTrunk200Response> AttachNumberToSipTrunkWithHttpInfo(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest);
+        /// <summary>
+        /// Create a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <returns>CreateSipTrunk201Response</returns>
+        CreateSipTrunk201Response CreateSipTrunk(CreateSipTrunkRequest createSipTrunkRequest);
+
+        /// <summary>
+        /// Create a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <returns>ApiResponse of CreateSipTrunk201Response</returns>
+        ApiResponse<CreateSipTrunk201Response> CreateSipTrunkWithHttpInfo(CreateSipTrunkRequest createSipTrunkRequest);
+        /// <summary>
         /// Place an outbound phone call
         /// </summary>
         /// <remarks>
@@ -70,6 +114,48 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of CreateVoiceWebSession200Response</returns>
         ApiResponse<CreateVoiceWebSession200Response> CreateVoiceWebSessionWithHttpInfo();
+        /// <summary>
+        /// Delete a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DeleteSmsSenderId200Response</returns>
+        DeleteSmsSenderId200Response DeleteSipTrunk(string id);
+
+        /// <summary>
+        /// Delete a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DeleteSmsSenderId200Response</returns>
+        ApiResponse<DeleteSmsSenderId200Response> DeleteSipTrunkWithHttpInfo(string id);
+        /// <summary>
+        /// Detach a number from its SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DetachNumberFromSipTrunk200Response</returns>
+        DetachNumberFromSipTrunk200Response DetachNumberFromSipTrunk(string id);
+
+        /// <summary>
+        /// Detach a number from its SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DetachNumberFromSipTrunk200Response</returns>
+        ApiResponse<DetachNumberFromSipTrunk200Response> DetachNumberFromSipTrunkWithHttpInfo(string id);
         /// <summary>
         /// Dial from the browser softphone
         /// </summary>
@@ -157,6 +243,24 @@ namespace Zernio.Api
         /// <returns>ApiResponse of EndVoiceCall200Response</returns>
         ApiResponse<EndVoiceCall200Response> EndVoiceCallWithHttpInfo(string id);
         /// <summary>
+        /// Get a SIP trunk
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>GetSipTrunk200Response</returns>
+        GetSipTrunk200Response GetSipTrunk(string id);
+
+        /// <summary>
+        /// Get a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of GetSipTrunk200Response</returns>
+        ApiResponse<GetSipTrunk200Response> GetSipTrunkWithHttpInfo(string id);
+        /// <summary>
         /// Get a phone call
         /// </summary>
         /// <remarks>
@@ -228,6 +332,22 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppCallRecording200Response</returns>
         ApiResponse<GetWhatsAppCallRecording200Response> GetVoiceCallRecordingWithHttpInfo(string id, string? varAs = default);
         /// <summary>
+        /// List SIP trunks
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListSipTrunks200Response</returns>
+        ListSipTrunks200Response ListSipTrunks();
+
+        /// <summary>
+        /// List SIP trunks
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListSipTrunks200Response</returns>
+        ApiResponse<ListSipTrunks200Response> ListSipTrunksWithHttpInfo();
+        /// <summary>
         /// List phone calls
         /// </summary>
         /// <remarks>
@@ -256,6 +376,27 @@ namespace Zernio.Api
         /// <param name="limit"> (optional, default to 50)</param>
         /// <returns>ApiResponse of ListVoiceCalls200Response</returns>
         ApiResponse<ListVoiceCalls200Response> ListVoiceCallsWithHttpInfo(string? status = default, string? direction = default, string? number = default, DateTime? before = default, int? limit = default);
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password
+        /// </summary>
+        /// <remarks>
+        /// Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>RotateSipTrunkCredentials200Response</returns>
+        RotateSipTrunkCredentials200Response RotateSipTrunkCredentials(string id);
+
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password
+        /// </summary>
+        /// <remarks>
+        /// Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of RotateSipTrunkCredentials200Response</returns>
+        ApiResponse<RotateSipTrunkCredentials200Response> RotateSipTrunkCredentialsWithHttpInfo(string id);
         /// <summary>
         /// Blind-transfer a live call
         /// </summary>
@@ -288,6 +429,54 @@ namespace Zernio.Api
     public interface IVoiceApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Attach a number to a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AttachNumberToSipTrunk200Response</returns>
+        System.Threading.Tasks.Task<AttachNumberToSipTrunk200Response> AttachNumberToSipTrunkAsync(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Attach a number to a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AttachNumberToSipTrunk200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AttachNumberToSipTrunk200Response>> AttachNumberToSipTrunkWithHttpInfoAsync(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateSipTrunk201Response</returns>
+        System.Threading.Tasks.Task<CreateSipTrunk201Response> CreateSipTrunkAsync(CreateSipTrunkRequest createSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateSipTrunk201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateSipTrunk201Response>> CreateSipTrunkWithHttpInfoAsync(CreateSipTrunkRequest createSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Place an outbound phone call
         /// </summary>
@@ -334,6 +523,52 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateVoiceWebSession200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateVoiceWebSession200Response>> CreateVoiceWebSessionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteSmsSenderId200Response</returns>
+        System.Threading.Tasks.Task<DeleteSmsSenderId200Response> DeleteSipTrunkAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteSmsSenderId200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteSmsSenderId200Response>> DeleteSipTrunkWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Detach a number from its SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DetachNumberFromSipTrunk200Response</returns>
+        System.Threading.Tasks.Task<DetachNumberFromSipTrunk200Response> DetachNumberFromSipTrunkAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Detach a number from its SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DetachNumberFromSipTrunk200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DetachNumberFromSipTrunk200Response>> DetachNumberFromSipTrunkWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Dial from the browser softphone
         /// </summary>
@@ -429,6 +664,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (EndVoiceCall200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<EndVoiceCall200Response>> EndVoiceCallWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetSipTrunk200Response</returns>
+        System.Threading.Tasks.Task<GetSipTrunk200Response> GetSipTrunkAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a SIP trunk
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetSipTrunk200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetSipTrunk200Response>> GetSipTrunkWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get a phone call
         /// </summary>
         /// <remarks>
@@ -506,6 +764,27 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppCallRecording200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallRecording200Response>> GetVoiceCallRecordingWithHttpInfoAsync(string id, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List SIP trunks
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListSipTrunks200Response</returns>
+        System.Threading.Tasks.Task<ListSipTrunks200Response> ListSipTrunksAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List SIP trunks
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListSipTrunks200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListSipTrunks200Response>> ListSipTrunksWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List phone calls
         /// </summary>
         /// <remarks>
@@ -536,6 +815,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListVoiceCalls200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListVoiceCalls200Response>> ListVoiceCallsWithHttpInfoAsync(string? status = default, string? direction = default, string? number = default, DateTime? before = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password
+        /// </summary>
+        /// <remarks>
+        /// Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RotateSipTrunkCredentials200Response</returns>
+        System.Threading.Tasks.Task<RotateSipTrunkCredentials200Response> RotateSipTrunkCredentialsAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password
+        /// </summary>
+        /// <remarks>
+        /// Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RotateSipTrunkCredentials200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RotateSipTrunkCredentials200Response>> RotateSipTrunkCredentialsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Blind-transfer a live call
         /// </summary>
@@ -772,6 +1074,278 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Attach a number to a SIP trunk Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <returns>AttachNumberToSipTrunk200Response</returns>
+        public AttachNumberToSipTrunk200Response AttachNumberToSipTrunk(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest)
+        {
+            Zernio.Client.ApiResponse<AttachNumberToSipTrunk200Response> localVarResponse = AttachNumberToSipTrunkWithHttpInfo(id, attachNumberToSipTrunkRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Attach a number to a SIP trunk Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <returns>ApiResponse of AttachNumberToSipTrunk200Response</returns>
+        public Zernio.Client.ApiResponse<AttachNumberToSipTrunk200Response> AttachNumberToSipTrunkWithHttpInfo(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->AttachNumberToSipTrunk");
+
+            // verify the required parameter 'attachNumberToSipTrunkRequest' is set
+            if (attachNumberToSipTrunkRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'attachNumberToSipTrunkRequest' when calling VoiceApi->AttachNumberToSipTrunk");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = attachNumberToSipTrunkRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AttachNumberToSipTrunk200Response>("/v1/phone-numbers/{id}/sip-trunk", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AttachNumberToSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Attach a number to a SIP trunk Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AttachNumberToSipTrunk200Response</returns>
+        public async System.Threading.Tasks.Task<AttachNumberToSipTrunk200Response> AttachNumberToSipTrunkAsync(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AttachNumberToSipTrunk200Response> localVarResponse = await AttachNumberToSipTrunkWithHttpInfoAsync(id, attachNumberToSipTrunkRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Attach a number to a SIP trunk Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="attachNumberToSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AttachNumberToSipTrunk200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AttachNumberToSipTrunk200Response>> AttachNumberToSipTrunkWithHttpInfoAsync(string id, AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->AttachNumberToSipTrunk");
+
+            // verify the required parameter 'attachNumberToSipTrunkRequest' is set
+            if (attachNumberToSipTrunkRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'attachNumberToSipTrunkRequest' when calling VoiceApi->AttachNumberToSipTrunk");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = attachNumberToSipTrunkRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AttachNumberToSipTrunk200Response>("/v1/phone-numbers/{id}/sip-trunk", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AttachNumberToSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <returns>CreateSipTrunk201Response</returns>
+        public CreateSipTrunk201Response CreateSipTrunk(CreateSipTrunkRequest createSipTrunkRequest)
+        {
+            Zernio.Client.ApiResponse<CreateSipTrunk201Response> localVarResponse = CreateSipTrunkWithHttpInfo(createSipTrunkRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <returns>ApiResponse of CreateSipTrunk201Response</returns>
+        public Zernio.Client.ApiResponse<CreateSipTrunk201Response> CreateSipTrunkWithHttpInfo(CreateSipTrunkRequest createSipTrunkRequest)
+        {
+            // verify the required parameter 'createSipTrunkRequest' is set
+            if (createSipTrunkRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createSipTrunkRequest' when calling VoiceApi->CreateSipTrunk");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createSipTrunkRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateSipTrunk201Response>("/v1/phone-numbers/sip-trunks", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateSipTrunk201Response</returns>
+        public async System.Threading.Tasks.Task<CreateSipTrunk201Response> CreateSipTrunkAsync(CreateSipTrunkRequest createSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateSipTrunk201Response> localVarResponse = await CreateSipTrunkWithHttpInfoAsync(createSipTrunkRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSipTrunkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateSipTrunk201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateSipTrunk201Response>> CreateSipTrunkWithHttpInfoAsync(CreateSipTrunkRequest createSipTrunkRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createSipTrunkRequest' is set
+            if (createSipTrunkRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createSipTrunkRequest' when calling VoiceApi->CreateSipTrunk");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createSipTrunkRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateSipTrunk201Response>("/v1/phone-numbers/sip-trunks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -1022,6 +1596,260 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateVoiceWebSession", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a SIP trunk Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DeleteSmsSenderId200Response</returns>
+        public DeleteSmsSenderId200Response DeleteSipTrunk(string id)
+        {
+            Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> localVarResponse = DeleteSipTrunkWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a SIP trunk Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DeleteSmsSenderId200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> DeleteSipTrunkWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->DeleteSipTrunk");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteSmsSenderId200Response>("/v1/phone-numbers/sip-trunks/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a SIP trunk Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteSmsSenderId200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteSmsSenderId200Response> DeleteSipTrunkAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> localVarResponse = await DeleteSipTrunkWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a SIP trunk Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteSmsSenderId200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteSmsSenderId200Response>> DeleteSipTrunkWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->DeleteSipTrunk");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteSmsSenderId200Response>("/v1/phone-numbers/sip-trunks/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Detach a number from its SIP trunk Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DetachNumberFromSipTrunk200Response</returns>
+        public DetachNumberFromSipTrunk200Response DetachNumberFromSipTrunk(string id)
+        {
+            Zernio.Client.ApiResponse<DetachNumberFromSipTrunk200Response> localVarResponse = DetachNumberFromSipTrunkWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Detach a number from its SIP trunk Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DetachNumberFromSipTrunk200Response</returns>
+        public Zernio.Client.ApiResponse<DetachNumberFromSipTrunk200Response> DetachNumberFromSipTrunkWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->DetachNumberFromSipTrunk");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DetachNumberFromSipTrunk200Response>("/v1/phone-numbers/{id}/sip-trunk", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DetachNumberFromSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Detach a number from its SIP trunk Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DetachNumberFromSipTrunk200Response</returns>
+        public async System.Threading.Tasks.Task<DetachNumberFromSipTrunk200Response> DetachNumberFromSipTrunkAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DetachNumberFromSipTrunk200Response> localVarResponse = await DetachNumberFromSipTrunkWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Detach a number from its SIP trunk Returns the number&#39;s calls to Zernio routing. Idempotent when the number is not attached to any trunk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DetachNumberFromSipTrunk200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DetachNumberFromSipTrunk200Response>> DetachNumberFromSipTrunkWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->DetachNumberFromSipTrunk");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DetachNumberFromSipTrunk200Response>("/v1/phone-numbers/{id}/sip-trunk", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DetachNumberFromSipTrunk", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1547,6 +2375,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get a SIP trunk 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>GetSipTrunk200Response</returns>
+        public GetSipTrunk200Response GetSipTrunk(string id)
+        {
+            Zernio.Client.ApiResponse<GetSipTrunk200Response> localVarResponse = GetSipTrunkWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a SIP trunk 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of GetSipTrunk200Response</returns>
+        public Zernio.Client.ApiResponse<GetSipTrunk200Response> GetSipTrunkWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->GetSipTrunk");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetSipTrunk200Response>("/v1/phone-numbers/sip-trunks/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a SIP trunk 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetSipTrunk200Response</returns>
+        public async System.Threading.Tasks.Task<GetSipTrunk200Response> GetSipTrunkAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetSipTrunk200Response> localVarResponse = await GetSipTrunkWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a SIP trunk 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetSipTrunk200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetSipTrunk200Response>> GetSipTrunkWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->GetSipTrunk");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetSipTrunk200Response>("/v1/phone-numbers/sip-trunks/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetSipTrunk", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get a phone call Full call detail, including the transcript segments when transcription was on.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1976,6 +2931,119 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List SIP trunks 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListSipTrunks200Response</returns>
+        public ListSipTrunks200Response ListSipTrunks()
+        {
+            Zernio.Client.ApiResponse<ListSipTrunks200Response> localVarResponse = ListSipTrunksWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List SIP trunks 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListSipTrunks200Response</returns>
+        public Zernio.Client.ApiResponse<ListSipTrunks200Response> ListSipTrunksWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListSipTrunks200Response>("/v1/phone-numbers/sip-trunks", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListSipTrunks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List SIP trunks 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListSipTrunks200Response</returns>
+        public async System.Threading.Tasks.Task<ListSipTrunks200Response> ListSipTrunksAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListSipTrunks200Response> localVarResponse = await ListSipTrunksWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List SIP trunks 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListSipTrunks200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListSipTrunks200Response>> ListSipTrunksWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListSipTrunks200Response>("/v1/phone-numbers/sip-trunks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListSipTrunks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List phone calls Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; for the next page. For a history that also includes WhatsApp calls, use &#x60;GET /v1/calls&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2142,6 +3210,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListVoiceCalls", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>RotateSipTrunkCredentials200Response</returns>
+        public RotateSipTrunkCredentials200Response RotateSipTrunkCredentials(string id)
+        {
+            Zernio.Client.ApiResponse<RotateSipTrunkCredentials200Response> localVarResponse = RotateSipTrunkCredentialsWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of RotateSipTrunkCredentials200Response</returns>
+        public Zernio.Client.ApiResponse<RotateSipTrunkCredentials200Response> RotateSipTrunkCredentialsWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->RotateSipTrunkCredentials");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RotateSipTrunkCredentials200Response>("/v1/phone-numbers/sip-trunks/{id}/rotate-credentials", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RotateSipTrunkCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RotateSipTrunkCredentials200Response</returns>
+        public async System.Threading.Tasks.Task<RotateSipTrunkCredentials200Response> RotateSipTrunkCredentialsAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RotateSipTrunkCredentials200Response> localVarResponse = await RotateSipTrunkCredentialsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Rotate a SIP trunk&#39;s password Mints a new digest password on the trunk. The old password stops working immediately, so update the destination platform right away. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RotateSipTrunkCredentials200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RotateSipTrunkCredentials200Response>> RotateSipTrunkCredentialsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling VoiceApi->RotateSipTrunkCredentials");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RotateSipTrunkCredentials200Response>("/v1/phone-numbers/sip-trunks/{id}/rotate-credentials", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RotateSipTrunkCredentials", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -55,6 +55,31 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AttachNumberToSipTrunk
+        /// </summary>
+        [Fact]
+        public void AttachNumberToSipTrunkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //AttachNumberToSipTrunkRequest attachNumberToSipTrunkRequest = null;
+            //var response = instance.AttachNumberToSipTrunk(id, attachNumberToSipTrunkRequest);
+            //Assert.IsType<AttachNumberToSipTrunk200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateSipTrunk
+        /// </summary>
+        [Fact]
+        public void CreateSipTrunkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateSipTrunkRequest createSipTrunkRequest = null;
+            //var response = instance.CreateSipTrunk(createSipTrunkRequest);
+            //Assert.IsType<CreateSipTrunk201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateVoiceCall
         /// </summary>
         [Fact]
@@ -76,6 +101,30 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.CreateVoiceWebSession();
             //Assert.IsType<CreateVoiceWebSession200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteSipTrunk
+        /// </summary>
+        [Fact]
+        public void DeleteSipTrunkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.DeleteSipTrunk(id);
+            //Assert.IsType<DeleteSmsSenderId200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DetachNumberFromSipTrunk
+        /// </summary>
+        [Fact]
+        public void DetachNumberFromSipTrunkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.DetachNumberFromSipTrunk(id);
+            //Assert.IsType<DetachNumberFromSipTrunk200Response>(response);
         }
 
         /// <summary>
@@ -128,6 +177,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetSipTrunk
+        /// </summary>
+        [Fact]
+        public void GetSipTrunkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.GetSipTrunk(id);
+            //Assert.IsType<GetSipTrunk200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetVoiceCall
         /// </summary>
         [Fact]
@@ -168,6 +229,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListSipTrunks
+        /// </summary>
+        [Fact]
+        public void ListSipTrunksTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.ListSipTrunks();
+            //Assert.IsType<ListSipTrunks200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListVoiceCalls
         /// </summary>
         [Fact]
@@ -181,6 +253,18 @@ namespace Zernio.Test.Api
             //int? limit = null;
             //var response = instance.ListVoiceCalls(status, direction, number, before, limit);
             //Assert.IsType<ListVoiceCalls200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RotateSipTrunkCredentials
+        /// </summary>
+        [Fact]
+        public void RotateSipTrunkCredentialsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.RotateSipTrunkCredentials(id);
+            //Assert.IsType<RotateSipTrunkCredentials200Response>(response);
         }
 
         /// <summary>
