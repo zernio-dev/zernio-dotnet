@@ -38,11 +38,13 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="message">message.</param>
         /// <param name="registrationWarning">Present when the account was created but Meta rejected the Cloud API registration. The number cannot send messages until this is resolved..</param>
+        /// <param name="webhookNotice">Present when the WABA webhook subscription (with the Zernio override callback) succeeded. Explains the delivery cutover and warns against unsubscribing the app from the WABA afterward..</param>
         /// <param name="account">account.</param>
-        public ConnectWhatsAppCredentials200Response(string message = default, string registrationWarning = default, ConnectWhatsAppCredentials200ResponseAccount account = default)
+        public ConnectWhatsAppCredentials200Response(string message = default, string registrationWarning = default, string webhookNotice = default, ConnectWhatsAppCredentials200ResponseAccount account = default)
         {
             this.Message = message;
             this.RegistrationWarning = registrationWarning;
+            this.WebhookNotice = webhookNotice;
             this.Account = account;
         }
 
@@ -60,6 +62,13 @@ namespace Zernio.Model
         public string RegistrationWarning { get; set; }
 
         /// <summary>
+        /// Present when the WABA webhook subscription (with the Zernio override callback) succeeded. Explains the delivery cutover and warns against unsubscribing the app from the WABA afterward.
+        /// </summary>
+        /// <value>Present when the WABA webhook subscription (with the Zernio override callback) succeeded. Explains the delivery cutover and warns against unsubscribing the app from the WABA afterward.</value>
+        [DataMember(Name = "webhookNotice", EmitDefaultValue = false)]
+        public string WebhookNotice { get; set; }
+
+        /// <summary>
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name = "account", EmitDefaultValue = false)]
@@ -75,6 +84,7 @@ namespace Zernio.Model
             sb.Append("class ConnectWhatsAppCredentials200Response {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  RegistrationWarning: ").Append(RegistrationWarning).Append("\n");
+            sb.Append("  WebhookNotice: ").Append(WebhookNotice).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

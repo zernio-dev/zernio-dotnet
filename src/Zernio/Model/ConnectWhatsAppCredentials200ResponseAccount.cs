@@ -60,15 +60,19 @@ namespace Zernio.Model
         /// <param name="username">Display phone number.</param>
         /// <param name="displayName">Meta-verified business name.</param>
         /// <param name="isActive">isActive.</param>
-        /// <param name="selectedPhoneNumber">The connected phone number.</param>
-        public ConnectWhatsAppCredentials200ResponseAccount(string accountId = default, PlatformEnum? platform = default, string username = default, string displayName = default, bool isActive = default, string selectedPhoneNumber = default)
+        /// <param name="phoneNumber">The connected phone number.</param>
+        /// <param name="verifiedName">Meta-verified business name for the phone number.</param>
+        /// <param name="qualityRating">Meta quality rating for the phone number (e.g. GREEN, YELLOW, RED, UNKNOWN).</param>
+        public ConnectWhatsAppCredentials200ResponseAccount(string accountId = default, PlatformEnum? platform = default, string username = default, string displayName = default, bool isActive = default, string phoneNumber = default, string verifiedName = default, string qualityRating = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
             this.Username = username;
             this.DisplayName = displayName;
             this.IsActive = isActive;
-            this.SelectedPhoneNumber = selectedPhoneNumber;
+            this.PhoneNumber = phoneNumber;
+            this.VerifiedName = verifiedName;
+            this.QualityRating = qualityRating;
         }
 
         /// <summary>
@@ -101,8 +105,22 @@ namespace Zernio.Model
         /// The connected phone number
         /// </summary>
         /// <value>The connected phone number</value>
-        [DataMember(Name = "selectedPhoneNumber", EmitDefaultValue = false)]
-        public string SelectedPhoneNumber { get; set; }
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Meta-verified business name for the phone number
+        /// </summary>
+        /// <value>Meta-verified business name for the phone number</value>
+        [DataMember(Name = "verifiedName", EmitDefaultValue = false)]
+        public string VerifiedName { get; set; }
+
+        /// <summary>
+        /// Meta quality rating for the phone number (e.g. GREEN, YELLOW, RED, UNKNOWN)
+        /// </summary>
+        /// <value>Meta quality rating for the phone number (e.g. GREEN, YELLOW, RED, UNKNOWN)</value>
+        [DataMember(Name = "qualityRating", EmitDefaultValue = false)]
+        public string QualityRating { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,7 +135,9 @@ namespace Zernio.Model
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
-            sb.Append("  SelectedPhoneNumber: ").Append(SelectedPhoneNumber).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  VerifiedName: ").Append(VerifiedName).Append("\n");
+            sb.Append("  QualityRating: ").Append(QualityRating).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

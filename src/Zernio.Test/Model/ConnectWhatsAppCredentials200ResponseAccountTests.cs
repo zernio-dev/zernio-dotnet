@@ -101,12 +101,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'SelectedPhoneNumber'
+        /// Test the property 'PhoneNumber'
         /// </summary>
         [Fact]
-        public void SelectedPhoneNumberTest()
+        public void PhoneNumberTest()
         {
-            // TODO unit test for the property 'SelectedPhoneNumber'
+            // TODO unit test for the property 'PhoneNumber'
+        }
+
+        /// <summary>
+        /// Test the property 'VerifiedName'
+        /// </summary>
+        [Fact]
+        public void VerifiedNameTest()
+        {
+            // TODO unit test for the property 'VerifiedName'
+        }
+
+        /// <summary>
+        /// Test the property 'QualityRating'
+        /// </summary>
+        [Fact]
+        public void QualityRatingTest()
+        {
+            // TODO unit test for the property 'QualityRating'
         }
     }
 }

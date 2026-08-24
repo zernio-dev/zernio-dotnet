@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'WebhookNotice'
+        /// </summary>
+        [Fact]
+        public void WebhookNoticeTest()
+        {
+            // TODO unit test for the property 'WebhookNotice'
+        }
+
+        /// <summary>
         /// Test the property 'Account'
         /// </summary>
         [Fact]
