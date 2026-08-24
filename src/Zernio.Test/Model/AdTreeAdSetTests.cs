@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CreatedTime'
+        /// </summary>
+        [Fact]
+        public void CreatedTimeTest()
+        {
+            // TODO unit test for the property 'CreatedTime'
+        }
+
+        /// <summary>
         /// Test the property 'AdCount'
         /// </summary>
         [Fact]

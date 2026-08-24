@@ -52,6 +52,7 @@ namespace Zernio.Model
         /// <param name="platformAdSetId">platformAdSetId.</param>
         /// <param name="adSetName">adSetName.</param>
         /// <param name="status">Derived from child ad statuses.</param>
+        /// <param name="createdTime">Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting..</param>
         /// <param name="adCount">adCount.</param>
         /// <param name="budget">budget.</param>
         /// <param name="adSetBudget">adSetBudget.</param>
@@ -65,11 +66,12 @@ namespace Zernio.Model
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="ads">Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation: &#x60;_id&#x60;, &#x60;name&#x60;, &#x60;platform&#x60;, &#x60;status&#x60;, &#x60;configuredStatus&#x60;, &#x60;reviewStatus&#x60;, &#x60;budget&#x60;, &#x60;metrics&#x60;, &#x60;creative&#x60;, &#x60;goal&#x60; and the &#x60;platform*&#x60; ids are always included; &#x60;targeting&#x60; and &#x60;schedule&#x60; may be absent. &#x60;configuredStatus&#x60; (the ad&#39;s own on/off toggle) and &#x60;reviewStatus&#x60; (the platform&#39;s review verdict) are part of this contract, not incidental: a rejected ad is only distinguishable from a healthy one through &#x60;reviewStatus&#x60;. When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;..</param>
         /// <param name="daily">Per-day metric series for this ad set. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; and &#x60;dailyLevel&#x60; is &#x60;adset&#x60; or &#x60;ad&#x60;..</param>
-        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, string costType = default, List<string> servingStatuses = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default, List<AdDailyMetrics> daily = default)
+        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, DateTime? createdTime = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, string costType = default, List<string> servingStatuses = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default, List<AdDailyMetrics> daily = default)
         {
             this.PlatformAdSetId = platformAdSetId;
             this.AdSetName = adSetName;
             this.Status = status;
+            this.CreatedTime = createdTime;
             this.AdCount = adCount;
             this.Budget = budget;
             this.AdSetBudget = adSetBudget;
@@ -96,6 +98,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "adSetName", EmitDefaultValue = false)]
         public string AdSetName { get; set; }
+
+        /// <summary>
+        /// Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting.
+        /// </summary>
+        /// <value>Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting.</value>
+        [DataMember(Name = "createdTime", EmitDefaultValue = true)]
+        public DateTime? CreatedTime { get; set; }
 
         /// <summary>
         /// Gets or Sets AdCount
@@ -190,6 +199,7 @@ namespace Zernio.Model
             sb.Append("  PlatformAdSetId: ").Append(PlatformAdSetId).Append("\n");
             sb.Append("  AdSetName: ").Append(AdSetName).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  CreatedTime: ").Append(CreatedTime).Append("\n");
             sb.Append("  AdCount: ").Append(AdCount).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  AdSetBudget: ").Append(AdSetBudget).Append("\n");

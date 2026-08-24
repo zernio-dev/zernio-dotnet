@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PlatformCampaignId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **CampaignName** | **string** |  | [optional] 
+**CreatedTime** | **DateTime?** | Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced) — a campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;. | [optional] 
 **Status** | **AdStatus** | Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state. | [optional] 
 **ReviewStatus** | **AdReviewStatus** |  | [optional] 
 **PlatformCampaignStatus** | **string** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;. | [optional] 

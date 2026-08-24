@@ -35242,9 +35242,11 @@ components:
             Multi-creative shape: N CTWA ads under one campaign + one
             ad set, sharing budget and targeting. Mutually exclusive
             with the top-level single-creative fields (`headline` /
-            `body` / `imageUrl` / `video`). Each entry must supply its
-            own headline, body, and exactly one of `imageUrl` /
-            `video`.
+            `body` / `imageUrl` / `video`): setting both is a 400,
+            unlike `POST /v1/ads/create` where the top-level fields
+            are silently ignored in multi-creative mode. Each entry
+            must supply its own headline, body, and exactly one of
+            `imageUrl` / `video`.
           items:
             $ref: "#/components/schemas/CtwaAdRequestBody_creatives_inner"
           minItems: 1
@@ -47416,6 +47418,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -47848,6 +47851,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -48201,6 +48205,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -48350,6 +48355,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -48782,6 +48788,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -49135,6 +49142,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -51293,6 +51301,7 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         platformAdSetId: platformAdSetId
+        createdTime: 2000-01-23T04:56:07.000+00:00
         metrics:
           conversions: 7.386281948385884
           videoAvgTimeWatchedActions: 2.8841621266687802
@@ -51370,6 +51379,14 @@ components:
           allOf:
           - $ref: "#/components/schemas/AdStatus"
           description: Derived from child ad statuses
+        createdTime:
+          description: "Earliest `platformCreatedAt` (platform ad creation time; falls\
+            \ back to `createdAt`, Zernio's sync time, for ads synced before that\
+            \ field existed) across this ad set's ads. Not the ad set's own creation\
+            \ time on the platform — a proxy usable for sorting."
+          format: date-time
+          nullable: true
+          type: string
         adCount:
           type: integer
         budget:
@@ -51454,6 +51471,7 @@ components:
           pixel_id: pixel_id
         isBudgetScheduleEnabled: false
         advertisingChannelType: advertisingChannelType
+        createdTime: 2000-01-23T04:56:07.000+00:00
         currency: currency
         budget:
           amount: 1.4658129805029452
@@ -51886,6 +51904,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
+          createdTime: 2000-01-23T04:56:07.000+00:00
           metrics:
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 2.8841621266687802
@@ -52239,6 +52258,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
+          createdTime: 2000-01-23T04:56:07.000+00:00
           metrics:
             conversions: 7.386281948385884
             videoAvgTimeWatchedActions: 2.8841621266687802
@@ -52392,6 +52412,18 @@ components:
           - openai
           type: string
         campaignName:
+          type: string
+        createdTime:
+          description: "Earliest `platformCreatedAt` (platform ad creation time; falls\
+            \ back to `createdAt`, Zernio's sync time, for ads synced before that\
+            \ field existed) across every ad in the campaign. Not the platform campaign's\
+            \ own creation time (Meta's `Campaign.created_time` etc. is not synced)\
+            \ — a campaign created empty and populated later will show its first ad's\
+            \ time, not the campaign's. Usable for sorting \"most recently created\"\
+            \ without the numeric-campaign-id heuristic. Same source as `AdTreeAdSet.createdTime`\
+            \ and `Ad.platformCreatedAt`; mirrors `AdCampaign.earliestAd`."
+          format: date-time
+          nullable: true
           type: string
         status:
           allOf:
@@ -81563,6 +81595,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -81995,6 +82028,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -82348,6 +82382,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -82497,6 +82532,7 @@ components:
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
           advertisingChannelType: advertisingChannelType
+          createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -82929,6 +82965,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802
@@ -83282,6 +83319,7 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
+            createdTime: 2000-01-23T04:56:07.000+00:00
             metrics:
               conversions: 7.386281948385884
               videoAvgTimeWatchedActions: 2.8841621266687802

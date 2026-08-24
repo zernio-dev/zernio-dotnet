@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PlatformAdSetId** | **string** |  | [optional] 
 **AdSetName** | **string** |  | [optional] 
 **Status** | **AdStatus** | Derived from child ad statuses | [optional] 
+**CreatedTime** | **DateTime?** | Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting. | [optional] 
 **AdCount** | **int** |  | [optional] 
 **Budget** | [**AdTreeAdSetBudget**](AdTreeAdSetBudget.md) |  | [optional] 
 **AdSetBudget** | [**AdTreeAdSetAdSetBudget**](AdTreeAdSetAdSetBudget.md) |  | [optional] 
