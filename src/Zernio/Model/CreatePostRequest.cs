@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreatePostRequest" /> class.
         /// </summary>
         /// <param name="title">title.</param>
-        /// <param name="content">Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn plain repost (platformSpecificData.reshareUrl with no text). Required for other text-only posts..</param>
+        /// <param name="content">Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn text-free reshare (platformSpecificData.reshareUrl with no text). Required for other text-only posts..</param>
         /// <param name="mediaItems">mediaItems.</param>
         /// <param name="platforms">Target platforms and accounts for this post. Required for non-draft posts (returns 400 if empty). Drafts can omit platforms..</param>
         /// <param name="scheduledFor">scheduledFor.</param>
@@ -84,9 +84,9 @@ namespace Zernio.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn plain repost (platformSpecificData.reshareUrl with no text). Required for other text-only posts.
+        /// Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn text-free reshare (platformSpecificData.reshareUrl with no text). Required for other text-only posts.
         /// </summary>
-        /// <value>Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn plain repost (platformSpecificData.reshareUrl with no text). Required for other text-only posts.</value>
+        /// <value>Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn text-free reshare (platformSpecificData.reshareUrl with no text). Required for other text-only posts.</value>
         [DataMember(Name = "content", EmitDefaultValue = false)]
         public string Content { get; set; }
 
