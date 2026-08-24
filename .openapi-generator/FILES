@@ -914,6 +914,7 @@ docs/ListBlogArticles200Response.md
 docs/ListBlogs200Response.md
 docs/ListBroadcastRecipients200Response.md
 docs/ListBroadcastRecipients200ResponseRecipientsInner.md
+docs/ListBroadcastRecipients200ResponseSummary.md
 docs/ListBroadcasts200Response.md
 docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCalls200Response.md
@@ -2713,6 +2714,7 @@ src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogArticles200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogs200ResponseTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseRecipientsInnerTests.cs
+src/Zernio.Test/Model/ListBroadcastRecipients200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseTests.cs
 src/Zernio.Test/Model/ListBroadcasts200ResponseBroadcastsInnerTests.cs
 src/Zernio.Test/Model/ListBroadcasts200ResponseTests.cs
@@ -4501,6 +4503,7 @@ src/Zernio/Model/ListBlogArticles200Response.cs
 src/Zernio/Model/ListBlogs200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200ResponseRecipientsInner.cs
+src/Zernio/Model/ListBroadcastRecipients200ResponseSummary.cs
 src/Zernio/Model/ListBroadcasts200Response.cs
 src/Zernio/Model/ListBroadcasts200ResponseBroadcastsInner.cs
 src/Zernio/Model/ListCalls200Response.cs

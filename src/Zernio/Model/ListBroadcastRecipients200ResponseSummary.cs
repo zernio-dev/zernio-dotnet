@@ -28,49 +28,65 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListBroadcastRecipients200Response
+    /// Delivery totals across all recipients in the broadcast, independent of pagination and status filtering.
     /// </summary>
-    [DataContract(Name = "listBroadcastRecipients_200_response")]
-    public partial class ListBroadcastRecipients200Response : IValidatableObject
+    [DataContract(Name = "listBroadcastRecipients_200_response_summary")]
+    public partial class ListBroadcastRecipients200ResponseSummary : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListBroadcastRecipients200Response" /> class.
+        /// Initializes a new instance of the <see cref="ListBroadcastRecipients200ResponseSummary" /> class.
         /// </summary>
-        /// <param name="success">success.</param>
-        /// <param name="recipients">recipients.</param>
-        /// <param name="pagination">pagination.</param>
-        /// <param name="summary">summary.</param>
-        public ListBroadcastRecipients200Response(bool success = default, List<ListBroadcastRecipients200ResponseRecipientsInner> recipients = default, ListContacts200ResponsePagination pagination = default, ListBroadcastRecipients200ResponseSummary summary = default)
+        /// <param name="total">total.</param>
+        /// <param name="pending">pending.</param>
+        /// <param name="sent">sent.</param>
+        /// <param name="delivered">delivered.</param>
+        /// <param name="read">read.</param>
+        /// <param name="failed">failed.</param>
+        public ListBroadcastRecipients200ResponseSummary(int total = default, int pending = default, int sent = default, int delivered = default, int read = default, int failed = default)
         {
-            this.Success = success;
-            this.Recipients = recipients;
-            this.Pagination = pagination;
-            this.Summary = summary;
+            this.Total = total;
+            this.Pending = pending;
+            this.Sent = sent;
+            this.Delivered = delivered;
+            this.Read = read;
+            this.Failed = failed;
         }
 
         /// <summary>
-        /// Gets or Sets Success
+        /// Gets or Sets Total
         /// </summary>
-        [DataMember(Name = "success", EmitDefaultValue = true)]
-        public bool Success { get; set; }
+        [DataMember(Name = "total", EmitDefaultValue = false)]
+        public int Total { get; set; }
 
         /// <summary>
-        /// Gets or Sets Recipients
+        /// Gets or Sets Pending
         /// </summary>
-        [DataMember(Name = "recipients", EmitDefaultValue = false)]
-        public List<ListBroadcastRecipients200ResponseRecipientsInner> Recipients { get; set; }
+        [DataMember(Name = "pending", EmitDefaultValue = false)]
+        public int Pending { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
+        /// Gets or Sets Sent
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public ListContacts200ResponsePagination Pagination { get; set; }
+        [DataMember(Name = "sent", EmitDefaultValue = false)]
+        public int Sent { get; set; }
 
         /// <summary>
-        /// Gets or Sets Summary
+        /// Gets or Sets Delivered
         /// </summary>
-        [DataMember(Name = "summary", EmitDefaultValue = false)]
-        public ListBroadcastRecipients200ResponseSummary Summary { get; set; }
+        [DataMember(Name = "delivered", EmitDefaultValue = false)]
+        public int Delivered { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Read
+        /// </summary>
+        [DataMember(Name = "read", EmitDefaultValue = false)]
+        public int Read { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Failed
+        /// </summary>
+        [DataMember(Name = "failed", EmitDefaultValue = false)]
+        public int Failed { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,11 +95,13 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListBroadcastRecipients200Response {\n");
-            sb.Append("  Success: ").Append(Success).Append("\n");
-            sb.Append("  Recipients: ").Append(Recipients).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
-            sb.Append("  Summary: ").Append(Summary).Append("\n");
+            sb.Append("class ListBroadcastRecipients200ResponseSummary {\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
+            sb.Append("  Pending: ").Append(Pending).Append("\n");
+            sb.Append("  Sent: ").Append(Sent).Append("\n");
+            sb.Append("  Delivered: ").Append(Delivered).Append("\n");
+            sb.Append("  Read: ").Append(Read).Append("\n");
+            sb.Append("  Failed: ").Append(Failed).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
