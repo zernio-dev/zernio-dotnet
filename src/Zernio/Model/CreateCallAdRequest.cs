@@ -118,6 +118,60 @@ namespace Zernio.Model
         [DataMember(Name = "objective", EmitDefaultValue = false)]
         public ObjectiveEnum? Objective { get; set; }
         /// <summary>
+        /// Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. 
+        /// </summary>
+        /// <value>Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum ACTIVE for value: ACTIVE
+            /// </summary>
+            [EnumMember(Value = "ACTIVE")]
+            ACTIVE = 1,
+
+            /// <summary>
+            /// Enum PAUSED for value: PAUSED
+            /// </summary>
+            [EnumMember(Value = "PAUSED")]
+            PAUSED = 2
+        }
+
+
+        /// <summary>
+        /// Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. 
+        /// </summary>
+        /// <value>Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. </value>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). 
+        /// </summary>
+        /// <value>Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CampaignStatusEnum
+        {
+            /// <summary>
+            /// Enum ACTIVE for value: ACTIVE
+            /// </summary>
+            [EnumMember(Value = "ACTIVE")]
+            ACTIVE = 1,
+
+            /// <summary>
+            /// Enum PAUSED for value: PAUSED
+            /// </summary>
+            [EnumMember(Value = "PAUSED")]
+            PAUSED = 2
+        }
+
+
+        /// <summary>
+        /// Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). 
+        /// </summary>
+        /// <value>Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). </value>
+        [DataMember(Name = "campaignStatus", EmitDefaultValue = false)]
+        public CampaignStatusEnum? CampaignStatus { get; set; }
+        /// <summary>
         /// Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. 
         /// </summary>
         /// <value>Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. </value>
@@ -172,7 +226,7 @@ namespace Zernio.Model
         /// <param name="imageUrl">Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. .</param>
         /// <param name="video">video.</param>
         /// <param name="creatives">Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;). Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. .</param>
-        /// <param name="adSetId">Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. .</param>
+        /// <param name="adSetId">Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. .</param>
         /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. .</param>
         /// <param name="budgetType">Required unless &#x60;adSetId&#x60; is set..</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is). .</param>
@@ -190,6 +244,8 @@ namespace Zernio.Model
         /// <param name="placements">placements.</param>
         /// <param name="advantageAudience">Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). .</param>
         /// <param name="objective">Defaults to &#x60;OUTCOME_ENGAGEMENT&#x60;. &#x60;OUTCOME_SALES&#x60; and &#x60;OUTCOME_LEADS&#x60; require additional account configuration (Dataset linked to the WABA for sales) and may be rejected by Meta if missing. .</param>
+        /// <param name="status">Ad-level status. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; skips activating the newly created ad(s) after Meta accepts them. .</param>
+        /// <param name="campaignStatus">Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; holds activation at the campaign so it never spends before the advertiser reviews it, while the ad set and ad still switch on (one resume call brings the whole hierarchy live). Only meaningful when a new campaign is being created; rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign). .</param>
         /// <param name="bidStrategy">Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. .</param>
         /// <param name="bidAmount">Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. .</param>
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
@@ -197,7 +253,7 @@ namespace Zernio.Model
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         /// <param name="phoneNumber">E.164 number the CALL_NOW CTA dials (e.g. +34600111222). (required).</param>
         /// <param name="linkUrl">Website shown as the creative&#39;s link. Required: Meta rejects tel: as link_data.link; the phone number rides only the CTA. (required).</param>
-        public CreateCallAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, string phoneNumber = default, string linkUrl = default)
+        public CreateCallAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, string phoneNumber = default, string linkUrl = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -252,6 +308,8 @@ namespace Zernio.Model
             this.Placements = placements;
             this.AdvantageAudience = advantageAudience;
             this.Objective = objective;
+            this.Status = status;
+            this.CampaignStatus = campaignStatus;
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
@@ -315,9 +373,9 @@ namespace Zernio.Model
         public List<CtwaAdRequestBodyCreativesInner> Creatives { get; set; }
 
         /// <summary>
-        /// Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. 
+        /// Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. 
         /// </summary>
-        /// <value>Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. </value>
+        /// <value>Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. </value>
         [DataMember(Name = "adSetId", EmitDefaultValue = false)]
         public string AdSetId { get; set; }
 
@@ -491,6 +549,8 @@ namespace Zernio.Model
             sb.Append("  Placements: ").Append(Placements).Append("\n");
             sb.Append("  AdvantageAudience: ").Append(AdvantageAudience).Append("\n");
             sb.Append("  Objective: ").Append(Objective).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  CampaignStatus: ").Append(CampaignStatus).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");

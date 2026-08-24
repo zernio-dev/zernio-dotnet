@@ -36,40 +36,35 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CtwaAdRequestBodyVideo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CtwaAdRequestBodyVideo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CtwaAdRequestBodyVideo" /> class.
-        /// </summary>
-        /// <param name="url">url (required).</param>
-        /// <param name="thumbnailUrl">Required by Meta for every video creative. Used as the ad thumbnail.  (required).</param>
-        public CtwaAdRequestBodyVideo(string url = default, string thumbnailUrl = default)
+        /// <param name="url">Public URL of the video to upload. Provide either &#x60;url&#x60; or &#x60;id&#x60;..</param>
+        /// <param name="id">Reuse a video already uploaded to this ad account (list them with GET /v1/ads/videos) instead of re-uploading. Wins over &#x60;url&#x60;. Provide either &#x60;url&#x60; or &#x60;id&#x60;..</param>
+        /// <param name="thumbnailUrl">OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field to control the poster frame exactly. .</param>
+        public CtwaAdRequestBodyVideo(string url = default, string id = default, string thumbnailUrl = default)
         {
-            // to ensure "url" is required (not null)
-            if (url == null)
-            {
-                throw new ArgumentNullException("url is a required property for CtwaAdRequestBodyVideo and cannot be null");
-            }
             this.Url = url;
-            // to ensure "thumbnailUrl" is required (not null)
-            if (thumbnailUrl == null)
-            {
-                throw new ArgumentNullException("thumbnailUrl is a required property for CtwaAdRequestBodyVideo and cannot be null");
-            }
+            this.Id = id;
             this.ThumbnailUrl = thumbnailUrl;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Public URL of the video to upload. Provide either &#x60;url&#x60; or &#x60;id&#x60;.
         /// </summary>
-        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Public URL of the video to upload. Provide either &#x60;url&#x60; or &#x60;id&#x60;.</value>
+        [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>
-        /// Required by Meta for every video creative. Used as the ad thumbnail. 
+        /// Reuse a video already uploaded to this ad account (list them with GET /v1/ads/videos) instead of re-uploading. Wins over &#x60;url&#x60;. Provide either &#x60;url&#x60; or &#x60;id&#x60;.
         /// </summary>
-        /// <value>Required by Meta for every video creative. Used as the ad thumbnail. </value>
-        [DataMember(Name = "thumbnailUrl", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Reuse a video already uploaded to this ad account (list them with GET /v1/ads/videos) instead of re-uploading. Wins over &#x60;url&#x60;. Provide either &#x60;url&#x60; or &#x60;id&#x60;.</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field to control the poster frame exactly. 
+        /// </summary>
+        /// <value>OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field to control the poster frame exactly. </value>
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
@@ -81,6 +76,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CtwaAdRequestBodyVideo {\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
