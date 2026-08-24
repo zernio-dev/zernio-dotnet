@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | [optional] 
-**Description** | **string** |  | [optional] 
+**Description** | **string** | Set to null to clear the description. | [optional] 
 **Color** | **string** |  | [optional] 
 **IsDefault** | **bool** |  | [optional] 
 

@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateProfileRequest" /> class.
         /// </summary>
         /// <param name="name">name.</param>
-        /// <param name="description">description.</param>
+        /// <param name="description">Set to null to clear the description..</param>
         /// <param name="color">color.</param>
         /// <param name="isDefault">isDefault.</param>
         public UpdateProfileRequest(string name = default, string description = default, string color = default, bool isDefault = default)
@@ -55,9 +55,10 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Set to null to clear the description.
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        /// <value>Set to null to clear the description.</value>
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -104,6 +105,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) minLength
+            if (this.Name != null && this.Name.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

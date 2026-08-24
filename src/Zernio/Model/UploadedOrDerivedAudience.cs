@@ -173,9 +173,9 @@ namespace Zernio.Model
         [DataMember(Name = "lookbackDays", EmitDefaultValue = false)]
         public LookbackDaysEnum? LookbackDays { get; set; }
         /// <summary>
-        /// Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+        /// Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. 
         /// </summary>
-        /// <value>Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. </value>
+        /// <value>Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum EngagementSourceEnum
         {
@@ -200,9 +200,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+        /// Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. 
         /// </summary>
-        /// <value>Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. </value>
+        /// <value>Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. </value>
         [DataMember(Name = "engagementSource", EmitDefaultValue = false)]
         public EngagementSourceEnum? EngagementSource { get; set; }
         /// <summary>
@@ -226,7 +226,7 @@ namespace Zernio.Model
         /// <param name="companies">Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. Not hashed, LinkedIn matches these against its own company graph. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. Replace the list later with POST /v1/ads/audiences/{audienceId}/companies. .</param>
         /// <param name="pixelId">Required for website audiences.</param>
         /// <param name="retentionDays">Required for website (max 180) and meta_engagement (max 365) audiences..</param>
-        /// <param name="engagementSource">Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. .</param>
+        /// <param name="engagementSource">Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. .</param>
         /// <param name="sourceId">Required for meta_engagement: the Page / IG account / video id..</param>
         /// <param name="varEvent">meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. .</param>
         /// <param name="sourceAudienceId">Required for lookalike audiences.</param>
