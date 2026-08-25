@@ -98,7 +98,13 @@ namespace Zernio.Model
             /// Enum CatalogSales for value: catalog_sales
             /// </summary>
             [EnumMember(Value = "catalog_sales")]
-            CatalogSales = 10
+            CatalogSales = 10,
+
+            /// <summary>
+            /// Enum PageLikes for value: page_likes
+            /// </summary>
+            [EnumMember(Value = "page_likes")]
+            PageLikes = 11
         }
 
 
