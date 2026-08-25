@@ -1,4 +1,4 @@
-# Zernio.Model.SearchInboxConversations200ResponseMetaAccountsSkippedInner
+# Zernio.Model.ListInboxConversations200ResponseMetaAccountsSkippedInner
 
 ## Properties
 

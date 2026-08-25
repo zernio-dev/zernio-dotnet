@@ -40,12 +40,14 @@ namespace Zernio.Model
         /// <param name="accountsFailed">accountsFailed.</param>
         /// <param name="failedAccounts">failedAccounts.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public ListInboxConversations200ResponseMeta(int accountsQueried = default, int accountsFailed = default, List<ListInboxConversations200ResponseMetaFailedAccountsInner> failedAccounts = default, DateTime lastUpdated = default)
+        /// <param name="accountsSkipped">Connected accounts that were not queried: their platform does not support this feature, or the account is not enabled for it.</param>
+        public ListInboxConversations200ResponseMeta(int accountsQueried = default, int accountsFailed = default, List<ListInboxConversations200ResponseMetaFailedAccountsInner> failedAccounts = default, DateTime lastUpdated = default, List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped = default)
         {
             this.AccountsQueried = accountsQueried;
             this.AccountsFailed = accountsFailed;
             this.FailedAccounts = failedAccounts;
             this.LastUpdated = lastUpdated;
+            this.AccountsSkipped = accountsSkipped;
         }
 
         /// <summary>
@@ -73,6 +75,13 @@ namespace Zernio.Model
         public DateTime LastUpdated { get; set; }
 
         /// <summary>
+        /// Connected accounts that were not queried: their platform does not support this feature, or the account is not enabled for it
+        /// </summary>
+        /// <value>Connected accounts that were not queried: their platform does not support this feature, or the account is not enabled for it</value>
+        [DataMember(Name = "accountsSkipped", EmitDefaultValue = false)]
+        public List<ListInboxConversations200ResponseMetaAccountsSkippedInner> AccountsSkipped { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,6 +93,7 @@ namespace Zernio.Model
             sb.Append("  AccountsFailed: ").Append(AccountsFailed).Append("\n");
             sb.Append("  FailedAccounts: ").Append(FailedAccounts).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
+            sb.Append("  AccountsSkipped: ").Append(AccountsSkipped).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

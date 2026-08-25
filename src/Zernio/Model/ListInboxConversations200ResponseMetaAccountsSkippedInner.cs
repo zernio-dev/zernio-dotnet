@@ -28,17 +28,17 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SearchInboxConversations200ResponseMetaAccountsSkippedInner
+    /// ListInboxConversations200ResponseMetaAccountsSkippedInner
     /// </summary>
-    [DataContract(Name = "searchInboxConversations_200_response_meta_accountsSkipped_inner")]
-    public partial class SearchInboxConversations200ResponseMetaAccountsSkippedInner : IValidatableObject
+    [DataContract(Name = "listInboxConversations_200_response_meta_accountsSkipped_inner")]
+    public partial class ListInboxConversations200ResponseMetaAccountsSkippedInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchInboxConversations200ResponseMetaAccountsSkippedInner" /> class.
+        /// Initializes a new instance of the <see cref="ListInboxConversations200ResponseMetaAccountsSkippedInner" /> class.
         /// </summary>
         /// <param name="accountId">accountId.</param>
         /// <param name="platform">platform.</param>
-        public SearchInboxConversations200ResponseMetaAccountsSkippedInner(string accountId = default, string platform = default)
+        public ListInboxConversations200ResponseMetaAccountsSkippedInner(string accountId = default, string platform = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
@@ -63,7 +63,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SearchInboxConversations200ResponseMetaAccountsSkippedInner {\n");
+            sb.Append("class ListInboxConversations200ResponseMetaAccountsSkippedInner {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("}\n");

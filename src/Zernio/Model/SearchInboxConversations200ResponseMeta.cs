@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="failedAccounts">failedAccounts.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
         /// <param name="accountsSkipped">Connected messaging accounts that cannot be searched (live-fetched platforms).</param>
-        public SearchInboxConversations200ResponseMeta(int accountsQueried = default, int accountsFailed = default, List<SearchInboxConversations200ResponseMetaFailedAccountsInner> failedAccounts = default, DateTime lastUpdated = default, List<SearchInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped = default)
+        public SearchInboxConversations200ResponseMeta(int accountsQueried = default, int accountsFailed = default, List<SearchInboxConversations200ResponseMetaFailedAccountsInner> failedAccounts = default, DateTime lastUpdated = default, List<ListInboxConversations200ResponseMetaAccountsSkippedInner> accountsSkipped = default)
         {
             this.AccountsQueried = accountsQueried;
             this.AccountsFailed = accountsFailed;
@@ -79,7 +79,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Connected messaging accounts that cannot be searched (live-fetched platforms)</value>
         [DataMember(Name = "accountsSkipped", EmitDefaultValue = false)]
-        public List<SearchInboxConversations200ResponseMetaAccountsSkippedInner> AccountsSkipped { get; set; }
+        public List<ListInboxConversations200ResponseMetaAccountsSkippedInner> AccountsSkipped { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

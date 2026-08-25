@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'LastUpdated'
         }
+
+        /// <summary>
+        /// Test the property 'AccountsSkipped'
+        /// </summary>
+        [Fact]
+        public void AccountsSkippedTest()
+        {
+            // TODO unit test for the property 'AccountsSkipped'
+        }
     }
 }
