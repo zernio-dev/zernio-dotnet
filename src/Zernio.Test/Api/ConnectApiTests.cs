@@ -136,6 +136,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ConnectDiscordChannel
+        /// </summary>
+        [Fact]
+        public void ConnectDiscordChannelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConnectDiscordChannelRequest connectDiscordChannelRequest = null;
+            //instance.ConnectDiscordChannel(connectDiscordChannelRequest);
+        }
+
+        /// <summary>
         /// Test ConnectOpenAIAdsCredentials
         /// </summary>
         [Fact]
@@ -160,6 +171,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ConnectSlackChannel
+        /// </summary>
+        [Fact]
+        public void ConnectSlackChannelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConnectSlackChannelRequest connectSlackChannelRequest = null;
+            //instance.ConnectSlackChannel(connectSlackChannelRequest);
+        }
+
+        /// <summary>
         /// Test ConnectWhatsAppCredentials
         /// </summary>
         [Fact]
@@ -169,6 +191,17 @@ namespace Zernio.Test.Api
             //ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest = null;
             //var response = instance.ConnectWhatsAppCredentials(connectWhatsAppCredentialsRequest);
             //Assert.IsType<ConnectWhatsAppCredentials200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ConnectWhatsAppEmbeddedSignup
+        /// </summary>
+        [Fact]
+        public void ConnectWhatsAppEmbeddedSignupTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest = null;
+            //instance.ConnectWhatsAppEmbeddedSignup(connectWhatsAppEmbeddedSignupRequest);
         }
 
         /// <summary>

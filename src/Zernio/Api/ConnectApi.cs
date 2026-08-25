@@ -173,6 +173,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ConnectBlueskyCredentials200Response</returns>
         ApiResponse<ConnectBlueskyCredentials200Response> ConnectBlueskyCredentialsWithHttpInfo(ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest);
         /// <summary>
+        /// Connect a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <returns></returns>
+        void ConnectDiscordChannel(ConnectDiscordChannelRequest connectDiscordChannelRequest);
+
+        /// <summary>
+        /// Connect a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ConnectDiscordChannelWithHttpInfo(ConnectDiscordChannelRequest connectDiscordChannelRequest);
+        /// <summary>
         /// Connect an OpenAI Ads account
         /// </summary>
         /// <remarks>
@@ -215,6 +236,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ConnectShopifyWithToken200Response</returns>
         ApiResponse<ConnectShopifyWithToken200Response> ConnectShopifyWithTokenWithHttpInfo(ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest);
         /// <summary>
+        /// Connect a Slack channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <returns></returns>
+        void ConnectSlackChannel(ConnectSlackChannelRequest connectSlackChannelRequest);
+
+        /// <summary>
+        /// Connect a Slack channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ConnectSlackChannelWithHttpInfo(ConnectSlackChannelRequest connectSlackChannelRequest);
+        /// <summary>
         /// Connect WhatsApp via credentials
         /// </summary>
         /// <remarks>
@@ -235,6 +277,27 @@ namespace Zernio.Api
         /// <param name="connectWhatsAppCredentialsRequest"></param>
         /// <returns>ApiResponse of ConnectWhatsAppCredentials200Response</returns>
         ApiResponse<ConnectWhatsAppCredentials200Response> ConnectWhatsAppCredentialsWithHttpInfo(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest);
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup
+        /// </summary>
+        /// <remarks>
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <returns></returns>
+        void ConnectWhatsAppEmbeddedSignup(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest);
+
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup
+        /// </summary>
+        /// <remarks>
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest);
         /// <summary>
         /// Create Pinterest board
         /// </summary>
@@ -540,10 +603,10 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <returns></returns>
         void HandleOAuthCallback(string platform, HandleOAuthCallbackRequest handleOAuthCallbackRequest);
@@ -552,10 +615,10 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> HandleOAuthCallbackWithHttpInfo(string platform, HandleOAuthCallbackRequest handleOAuthCallbackRequest);
@@ -1231,6 +1294,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ConnectBlueskyCredentials200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectBlueskyCredentials200Response>> ConnectBlueskyCredentialsWithHttpInfoAsync(ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Connect a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ConnectDiscordChannelAsync(ConnectDiscordChannelRequest connectDiscordChannelRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Connect a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ConnectDiscordChannelWithHttpInfoAsync(ConnectDiscordChannelRequest connectDiscordChannelRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Connect an OpenAI Ads account
         /// </summary>
         /// <remarks>
@@ -1277,6 +1363,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ConnectShopifyWithToken200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectShopifyWithToken200Response>> ConnectShopifyWithTokenWithHttpInfoAsync(ConnectShopifyWithTokenRequest connectShopifyWithTokenRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Connect a Slack channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ConnectSlackChannelAsync(ConnectSlackChannelRequest connectSlackChannelRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Connect a Slack channel
+        /// </summary>
+        /// <remarks>
+        /// Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ConnectSlackChannelWithHttpInfoAsync(ConnectSlackChannelRequest connectSlackChannelRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Connect WhatsApp via credentials
         /// </summary>
         /// <remarks>
@@ -1299,6 +1408,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectWhatsAppCredentials200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectWhatsAppCredentials200Response>> ConnectWhatsAppCredentialsWithHttpInfoAsync(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup
+        /// </summary>
+        /// <remarks>
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ConnectWhatsAppEmbeddedSignupAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup
+        /// </summary>
+        /// <remarks>
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Pinterest board
         /// </summary>
@@ -1630,10 +1762,10 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -1643,10 +1775,10 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -3297,6 +3429,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Connect a Discord channel Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <returns></returns>
+        public void ConnectDiscordChannel(ConnectDiscordChannelRequest connectDiscordChannelRequest)
+        {
+            ConnectDiscordChannelWithHttpInfo(connectDiscordChannelRequest);
+        }
+
+        /// <summary>
+        /// Connect a Discord channel Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> ConnectDiscordChannelWithHttpInfo(ConnectDiscordChannelRequest connectDiscordChannelRequest)
+        {
+            // verify the required parameter 'connectDiscordChannelRequest' is set
+            if (connectDiscordChannelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectDiscordChannelRequest' when calling ConnectApi->ConnectDiscordChannel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectDiscordChannelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/v1/connect/discord", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectDiscordChannel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect a Discord channel Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ConnectDiscordChannelAsync(ConnectDiscordChannelRequest connectDiscordChannelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await ConnectDiscordChannelWithHttpInfoAsync(connectDiscordChannelRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Connect a Discord channel Finalize a Discord connect by binding one channel to a profile. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. One connected account per channel: repeat the call with a different channelId to add another.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectDiscordChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> ConnectDiscordChannelWithHttpInfoAsync(ConnectDiscordChannelRequest connectDiscordChannelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'connectDiscordChannelRequest' is set
+            if (connectDiscordChannelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectDiscordChannelRequest' when calling ConnectApi->ConnectDiscordChannel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectDiscordChannelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/connect/discord", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectDiscordChannel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Connect an OpenAI Ads account Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3555,6 +3814,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Connect a Slack channel Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <returns></returns>
+        public void ConnectSlackChannel(ConnectSlackChannelRequest connectSlackChannelRequest)
+        {
+            ConnectSlackChannelWithHttpInfo(connectSlackChannelRequest);
+        }
+
+        /// <summary>
+        /// Connect a Slack channel Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> ConnectSlackChannelWithHttpInfo(ConnectSlackChannelRequest connectSlackChannelRequest)
+        {
+            // verify the required parameter 'connectSlackChannelRequest' is set
+            if (connectSlackChannelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectSlackChannelRequest' when calling ConnectApi->ConnectSlackChannel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectSlackChannelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/v1/connect/slack", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectSlackChannel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect a Slack channel Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ConnectSlackChannelAsync(ConnectSlackChannelRequest connectSlackChannelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await ConnectSlackChannelWithHttpInfoAsync(connectSlackChannelRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Connect a Slack channel Finalize a Slack connect by creating the per-channel account. Served by a dedicated route, so it is not reachable through POST /v1/connect/{platform}. Send pendingDataToken for a first connect (the nonce from the OAuth redirect) or accountId to add another channel to a workspace already connected.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectSlackChannelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> ConnectSlackChannelWithHttpInfoAsync(ConnectSlackChannelRequest connectSlackChannelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'connectSlackChannelRequest' is set
+            if (connectSlackChannelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectSlackChannelRequest' when calling ConnectApi->ConnectSlackChannel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectSlackChannelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/connect/slack", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectSlackChannel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Connect WhatsApp via credentials Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the whatsapp_business_management and whatsapp_business_messaging permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number)  Warning: connecting subscribes your own Meta app to this WABA with an override callback that redirects its webhook delivery to Zernio. This WABA&#39;s events stop reaching any callback URL you had configured before, immediately and with no overlap window. Do not unsubscribe your app from the WABA afterward: that also cuts off Zernio&#39;s delivery, and recovery requires calling this endpoint again. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3677,6 +4063,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConnectWhatsAppCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <returns></returns>
+        public void ConnectWhatsAppEmbeddedSignup(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest)
+        {
+            ConnectWhatsAppEmbeddedSignupWithHttpInfo(connectWhatsAppEmbeddedSignupRequest);
+        }
+
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest)
+        {
+            // verify the required parameter 'connectWhatsAppEmbeddedSignupRequest' is set
+            if (connectWhatsAppEmbeddedSignupRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectWhatsAppEmbeddedSignupRequest' when calling ConnectApi->ConnectWhatsAppEmbeddedSignup");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectWhatsAppEmbeddedSignupRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/v1/connect/whatsapp/embedded-signup", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectWhatsAppEmbeddedSignup", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ConnectWhatsAppEmbeddedSignupAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(connectWhatsAppEmbeddedSignupRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'connectWhatsAppEmbeddedSignupRequest' is set
+            if (connectWhatsAppEmbeddedSignupRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectWhatsAppEmbeddedSignupRequest' when calling ConnectApi->ConnectWhatsAppEmbeddedSignup");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectWhatsAppEmbeddedSignupRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/connect/whatsapp/embedded-signup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectWhatsAppEmbeddedSignup", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -5515,10 +6028,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <returns></returns>
         public void HandleOAuthCallback(string platform, HandleOAuthCallbackRequest handleOAuthCallbackRequest)
@@ -5527,10 +6040,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Zernio.Client.ApiResponse<Object> HandleOAuthCallbackWithHttpInfo(string platform, HandleOAuthCallbackRequest handleOAuthCallbackRequest)
@@ -5583,10 +6096,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -5596,10 +6109,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="platform"></param>
+        /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
         /// <param name="handleOAuthCallbackRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
