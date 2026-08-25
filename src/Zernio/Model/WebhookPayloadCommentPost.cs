@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="platformPostId">Platform&#39;s post ID (required).</param>
         /// <param name="content">Post text, from our synced copy — no platform call is made on the comment path, so null when the post was never synced. (required).</param>
         /// <param name="imageUrl">Post thumbnail or first media item URL. Platform CDN URLs expire, fetch promptly. (required).</param>
-        /// <param name="permalink">Public URL of the post. Null for posts published through Zernio that were never re-synced. (required).</param>
+        /// <param name="permalink">Public URL of the post. Null when no URL was ever stored for it, for example a platform draft or a post recovered without one. (required).</param>
         public WebhookPayloadCommentPost(string id = default, string platformPostId = default, string content = default, string imageUrl = default, string permalink = default)
         {
             // to ensure "id" is required (not null)
@@ -109,9 +109,9 @@ namespace Zernio.Model
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// Public URL of the post. Null for posts published through Zernio that were never re-synced.
+        /// Public URL of the post. Null when no URL was ever stored for it, for example a platform draft or a post recovered without one.
         /// </summary>
-        /// <value>Public URL of the post. Null for posts published through Zernio that were never re-synced.</value>
+        /// <value>Public URL of the post. Null when no URL was ever stored for it, for example a platform draft or a post recovered without one.</value>
         [DataMember(Name = "permalink", IsRequired = true, EmitDefaultValue = true)]
         public string Permalink { get; set; }
 
