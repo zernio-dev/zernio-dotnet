@@ -120,6 +120,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdMedia
+        /// </summary>
+        [Fact]
+        public void GetAdMediaTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //var response = instance.GetAdMedia(adId);
+            //Assert.IsType<GetAdMedia200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAdPreviews
         /// </summary>
         [Fact]

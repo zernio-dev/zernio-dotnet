@@ -144,6 +144,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdCreative200Response</returns>
         ApiResponse<GetAdCreative200Response> GetAdCreativeWithHttpInfo(string creativeId, string accountId, string? fields = default);
         /// <summary>
+        /// Direct video and image URLs for an ad
+        /// </summary>
+        /// <remarks>
+        /// Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <returns>GetAdMedia200Response</returns>
+        GetAdMedia200Response GetAdMedia(string adId);
+
+        /// <summary>
+        /// Direct video and image URLs for an ad
+        /// </summary>
+        /// <remarks>
+        /// Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <returns>ApiResponse of GetAdMedia200Response</returns>
+        ApiResponse<GetAdMedia200Response> GetAdMediaWithHttpInfo(string adId);
+        /// <summary>
         /// Render previews of an existing ad
         /// </summary>
         /// <remarks>
@@ -498,6 +519,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdCreative200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdCreative200Response>> GetAdCreativeWithHttpInfoAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Direct video and image URLs for an ad
+        /// </summary>
+        /// <remarks>
+        /// Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdMedia200Response</returns>
+        System.Threading.Tasks.Task<GetAdMedia200Response> GetAdMediaAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Direct video and image URLs for an ad
+        /// </summary>
+        /// <remarks>
+        /// Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdMedia200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdMedia200Response>> GetAdMediaWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Render previews of an existing ad
         /// </summary>
@@ -1651,6 +1695,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdCreative", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Direct video and image URLs for an ad Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <returns>GetAdMedia200Response</returns>
+        public GetAdMedia200Response GetAdMedia(string adId)
+        {
+            Zernio.Client.ApiResponse<GetAdMedia200Response> localVarResponse = GetAdMediaWithHttpInfo(adId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Direct video and image URLs for an ad Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <returns>ApiResponse of GetAdMedia200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdMedia200Response> GetAdMediaWithHttpInfo(string adId)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdCreativesApi->GetAdMedia");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdMedia200Response>("/v1/ads/{adId}/media", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdMedia", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Direct video and image URLs for an ad Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdMedia200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdMedia200Response> GetAdMediaAsync(string adId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdMedia200Response> localVarResponse = await GetAdMediaWithHttpInfoAsync(adId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Direct video and image URLs for an ad Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived — re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex) or platform ad id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdMedia200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdMedia200Response>> GetAdMediaWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdCreativesApi->GetAdMedia");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdMedia200Response>("/v1/ads/{adId}/media", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdMedia", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

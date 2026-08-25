@@ -505,6 +505,8 @@ docs/GetAdComments200ResponsePagination.md
 docs/GetAdCreative200Response.md
 docs/GetAdInsightsReport200Response.md
 docs/GetAdInsightsReport200ResponsePaging.md
+docs/GetAdMedia200Response.md
+docs/GetAdMedia200ResponseMediaInner.md
 docs/GetAdPreviews200Response.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
@@ -2317,6 +2319,8 @@ src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
 src/Zernio.Test/Model/GetAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/GetAdInsightsReport200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdInsightsReport200ResponseTests.cs
+src/Zernio.Test/Model/GetAdMedia200ResponseMediaInnerTests.cs
+src/Zernio.Test/Model/GetAdMedia200ResponseTests.cs
 src/Zernio.Test/Model/GetAdPreviews200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
@@ -4111,6 +4115,8 @@ src/Zernio/Model/GetAdComments200ResponsePagination.cs
 src/Zernio/Model/GetAdCreative200Response.cs
 src/Zernio/Model/GetAdInsightsReport200Response.cs
 src/Zernio/Model/GetAdInsightsReport200ResponsePaging.cs
+src/Zernio/Model/GetAdMedia200Response.cs
+src/Zernio/Model/GetAdMedia200ResponseMediaInner.cs
 src/Zernio/Model/GetAdPreviews200Response.cs
 src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
