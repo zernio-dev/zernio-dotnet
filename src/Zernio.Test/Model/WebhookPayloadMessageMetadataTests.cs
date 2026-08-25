@@ -146,6 +146,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'NfmReplyName'
+        /// </summary>
+        [Fact]
+        public void NfmReplyNameTest()
+        {
+            // TODO unit test for the property 'NfmReplyName'
+        }
+
+        /// <summary>
         /// Test the property 'Order'
         /// </summary>
         [Fact]

@@ -1983,6 +1983,8 @@ Class | Method | HTTP request | Description
  - [Model.SendInboxMessageRequestInteractiveAction](docs/SendInboxMessageRequestInteractiveAction.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf](docs/SendInboxMessageRequestInteractiveActionOneOf.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf1](docs/SendInboxMessageRequestInteractiveActionOneOf1.md)
+ - [Model.SendInboxMessageRequestInteractiveActionOneOf10](docs/SendInboxMessageRequestInteractiveActionOneOf10.md)
+ - [Model.SendInboxMessageRequestInteractiveActionOneOf10Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf10Parameters.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf1Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf1Parameters.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf2](docs/SendInboxMessageRequestInteractiveActionOneOf2.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf2Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf2Parameters.md)

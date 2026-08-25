@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Button** | **string** | CTA label that opens the list (max ~20 chars). | 
 **Sections** | [**List&lt;SendInboxMessageRequestInteractiveActionOneOf7SectionsInner&gt;**](SendInboxMessageRequestInteractiveActionOneOf7SectionsInner.md) | 1-10 sections. Total products across all sections cannot exceed 30. | 
 **Name** | **string** |  | 
-**Parameters** | [**SendInboxMessageRequestInteractiveActionOneOf8Parameters**](SendInboxMessageRequestInteractiveActionOneOf8Parameters.md) |  | 
+**Parameters** | [**SendInboxMessageRequestInteractiveActionOneOf10Parameters**](SendInboxMessageRequestInteractiveActionOneOf10Parameters.md) |  | 
 **CatalogId** | **string** | Meta catalog ID connected to the WhatsApp Business Account. | 
 **ProductRetailerId** | **string** | Retailer ID (SKU) of the product inside the catalog. | 
 **Cards** | [**List&lt;SendInboxMessageRequestInteractiveActionOneOf9CardsInner&gt;**](SendInboxMessageRequestInteractiveActionOneOf9CardsInner.md) |  | 

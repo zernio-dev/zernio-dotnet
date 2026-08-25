@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class WebhookPayloadMessageMetadata : IValidatableObject
     {
         /// <summary>
-        /// WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). 
+        /// WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). 
         /// </summary>
-        /// <value>WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). </value>
+        /// <value>WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum InteractiveTypeEnum
         {
@@ -61,9 +61,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). 
+        /// WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). 
         /// </summary>
-        /// <value>WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). </value>
+        /// <value>WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). </value>
         [DataMember(Name = "interactiveType", EmitDefaultValue = false)]
         public InteractiveTypeEnum? InteractiveType { get; set; }
         /// <summary>
@@ -101,11 +101,12 @@ namespace Zernio.Model
         /// <param name="postbackPayload">Payload from a postback button tap (Facebook/Instagram Messenger)..</param>
         /// <param name="postbackTitle">Title of the tapped postback button (Facebook/Instagram Messenger)..</param>
         /// <param name="callbackData">Callback data from an inline keyboard button tap (Telegram)..</param>
-        /// <param name="interactiveType">WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission). .</param>
+        /// <param name="interactiveType">WhatsApp only. Which kind of interactive reply the user sent: &#x60;button_reply&#x60; (tap on an interactive button), &#x60;list_reply&#x60; (tap on a list row), or &#x60;nfm_reply&#x60; (a WhatsApp Flow submission or an &#x60;address_message&#x60; submission, see &#x60;nfmReplyName&#x60;). .</param>
         /// <param name="interactiveId">WhatsApp only. The &#x60;id&#x60; of the tapped button or list row, matching the &#x60;id&#x60; you supplied when the message was sent. Not set for Flow responses. .</param>
         /// <param name="buttonPayload">WhatsApp only. Payload attached to a tapped template button. Template buttons emit a plain &#x60;button&#x60; webhook (not an interactive reply), so &#x60;interactiveType&#x60; is empty while this field is populated. .</param>
         /// <param name="flowResponseJson">WhatsApp only. Raw &#x60;nfm_reply.response_json&#x60; string returned by a Flow submission. Useful if you need the exact wire payload; for typed access use &#x60;flowResponseData&#x60; instead. .</param>
-        /// <param name="flowResponseData">WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. .</param>
+        /// <param name="flowResponseData">WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. An &#x60;address_message&#x60; submission (&#x60;nfmReplyName: address_message&#x60;) carries the address fields (&#x60;name&#x60;, &#x60;address&#x60;, &#x60;city&#x60;, &#x60;state&#x60;, &#x60;in_pin_code&#x60;, ...), either at the top level or nested under &#x60;values&#x60;; read both. .</param>
+        /// <param name="nfmReplyName">WhatsApp only. &#x60;nfm_reply.name&#x60; as Meta sent it, e.g. &#x60;flow&#x60; or &#x60;address_message&#x60;. Address submissions share the &#x60;nfm_reply&#x60; envelope with Flow submissions and are otherwise indistinguishable in &#x60;flowResponseData&#x60;; use this field to tell them apart. .</param>
         /// <param name="order">order.</param>
         /// <param name="referredProduct">referredProduct.</param>
         /// <param name="contacts">WhatsApp only. Contact cards the user shared, forwarded verbatim from Meta. Read &#x60;contactsOrigin&#x60; before treating any number here as the sender&#39;s own. .</param>
@@ -115,7 +116,7 @@ namespace Zernio.Model
         /// <param name="referral">referral.</param>
         /// <param name="unsupported">unsupported.</param>
         /// <param name="noRenderableContent">Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, just the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;. .</param>
-        public WebhookPayloadMessageMetadata(string quotedMessageId = default, string quickReplyPayload = default, string postbackPayload = default, string postbackTitle = default, string callbackData = default, InteractiveTypeEnum? interactiveType = default, string interactiveId = default, string buttonPayload = default, string flowResponseJson = default, Dictionary<string, Object> flowResponseData = default, WebhookPayloadMessageMetadataOrder order = default, WebhookPayloadMessageMetadataReferredProduct referredProduct = default, List<Dictionary<string, Object>> contacts = default, ContactsOriginEnum? contactsOrigin = default, WebhookPayloadMessageMetadataStoryReply storyReply = default, bool isStoryMention = default, WebhookPayloadMessageMetadataReferral referral = default, WebhookPayloadMessageMetadataUnsupported unsupported = default, bool noRenderableContent = default)
+        public WebhookPayloadMessageMetadata(string quotedMessageId = default, string quickReplyPayload = default, string postbackPayload = default, string postbackTitle = default, string callbackData = default, InteractiveTypeEnum? interactiveType = default, string interactiveId = default, string buttonPayload = default, string flowResponseJson = default, Dictionary<string, Object> flowResponseData = default, string nfmReplyName = default, WebhookPayloadMessageMetadataOrder order = default, WebhookPayloadMessageMetadataReferredProduct referredProduct = default, List<Dictionary<string, Object>> contacts = default, ContactsOriginEnum? contactsOrigin = default, WebhookPayloadMessageMetadataStoryReply storyReply = default, bool isStoryMention = default, WebhookPayloadMessageMetadataReferral referral = default, WebhookPayloadMessageMetadataUnsupported unsupported = default, bool noRenderableContent = default)
         {
             this.QuotedMessageId = quotedMessageId;
             this.QuickReplyPayload = quickReplyPayload;
@@ -127,6 +128,7 @@ namespace Zernio.Model
             this.ButtonPayload = buttonPayload;
             this.FlowResponseJson = flowResponseJson;
             this.FlowResponseData = flowResponseData;
+            this.NfmReplyName = nfmReplyName;
             this.Order = order;
             this.ReferredProduct = referredProduct;
             this.Contacts = contacts;
@@ -195,11 +197,18 @@ namespace Zernio.Model
         public string FlowResponseJson { get; set; }
 
         /// <summary>
-        /// WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. 
+        /// WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. An &#x60;address_message&#x60; submission (&#x60;nfmReplyName: address_message&#x60;) carries the address fields (&#x60;name&#x60;, &#x60;address&#x60;, &#x60;city&#x60;, &#x60;state&#x60;, &#x60;in_pin_code&#x60;, ...), either at the top level or nested under &#x60;values&#x60;; read both. 
         /// </summary>
-        /// <value>WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. </value>
+        /// <value>WhatsApp only. Parsed Flow response JSON. Populated when &#x60;flowResponseJson&#x60; is valid JSON; otherwise omitted. Keys and value types depend on the specific Flow that was submitted. An &#x60;address_message&#x60; submission (&#x60;nfmReplyName: address_message&#x60;) carries the address fields (&#x60;name&#x60;, &#x60;address&#x60;, &#x60;city&#x60;, &#x60;state&#x60;, &#x60;in_pin_code&#x60;, ...), either at the top level or nested under &#x60;values&#x60;; read both. </value>
         [DataMember(Name = "flowResponseData", EmitDefaultValue = false)]
         public Dictionary<string, Object> FlowResponseData { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. &#x60;nfm_reply.name&#x60; as Meta sent it, e.g. &#x60;flow&#x60; or &#x60;address_message&#x60;. Address submissions share the &#x60;nfm_reply&#x60; envelope with Flow submissions and are otherwise indistinguishable in &#x60;flowResponseData&#x60;; use this field to tell them apart. 
+        /// </summary>
+        /// <value>WhatsApp only. &#x60;nfm_reply.name&#x60; as Meta sent it, e.g. &#x60;flow&#x60; or &#x60;address_message&#x60;. Address submissions share the &#x60;nfm_reply&#x60; envelope with Flow submissions and are otherwise indistinguishable in &#x60;flowResponseData&#x60;; use this field to tell them apart. </value>
+        [DataMember(Name = "nfmReplyName", EmitDefaultValue = false)]
+        public string NfmReplyName { get; set; }
 
         /// <summary>
         /// Gets or Sets Order
@@ -270,6 +279,7 @@ namespace Zernio.Model
             sb.Append("  ButtonPayload: ").Append(ButtonPayload).Append("\n");
             sb.Append("  FlowResponseJson: ").Append(FlowResponseJson).Append("\n");
             sb.Append("  FlowResponseData: ").Append(FlowResponseData).Append("\n");
+            sb.Append("  NfmReplyName: ").Append(NfmReplyName).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  ReferredProduct: ").Append(ReferredProduct).Append("\n");
             sb.Append("  Contacts: ").Append(Contacts).Append("\n");
