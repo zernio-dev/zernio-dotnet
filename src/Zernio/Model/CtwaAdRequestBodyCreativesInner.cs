@@ -45,7 +45,8 @@ namespace Zernio.Model
         /// <param name="body">Primary text shown above the image / video. (required).</param>
         /// <param name="imageUrl">Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. .</param>
         /// <param name="video">video.</param>
-        public CtwaAdRequestBodyCreativesInner(string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyCreativesInnerVideo video = default)
+        /// <param name="welcomeMessage">welcomeMessage.</param>
+        public CtwaAdRequestBodyCreativesInner(string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyCreativesInnerVideo video = default, CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage = default)
         {
             // to ensure "headline" is required (not null)
             if (headline == null)
@@ -61,6 +62,7 @@ namespace Zernio.Model
             this.Body = body;
             this.ImageUrl = imageUrl;
             this.Video = video;
+            this.WelcomeMessage = welcomeMessage;
         }
 
         /// <summary>
@@ -90,6 +92,12 @@ namespace Zernio.Model
         public CtwaAdRequestBodyCreativesInnerVideo Video { get; set; }
 
         /// <summary>
+        /// Gets or Sets WelcomeMessage
+        /// </summary>
+        [DataMember(Name = "welcomeMessage", EmitDefaultValue = false)]
+        public CtwaAdRequestBodyCreativesInnerWelcomeMessage WelcomeMessage { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -101,6 +109,7 @@ namespace Zernio.Model
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  Video: ").Append(Video).Append("\n");
+            sb.Append("  WelcomeMessage: ").Append(WelcomeMessage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

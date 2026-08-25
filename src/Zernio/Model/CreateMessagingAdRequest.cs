@@ -258,6 +258,7 @@ namespace Zernio.Model
         /// <param name="body">Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
         /// <param name="imageUrl">Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. .</param>
         /// <param name="video">video.</param>
+        /// <param name="welcomeMessage">welcomeMessage.</param>
         /// <param name="creatives">Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. .</param>
         /// <param name="adSetId">Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. .</param>
         /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. .</param>
@@ -285,7 +286,7 @@ namespace Zernio.Model
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         /// <param name="destination">Where the conversation opens when the ad is tapped. (required).</param>
-        public CreateMessagingAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, DestinationEnum destination = default)
+        public CreateMessagingAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, DestinationEnum destination = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -310,6 +311,7 @@ namespace Zernio.Model
             this.Body = body;
             this.ImageUrl = imageUrl;
             this.Video = video;
+            this.WelcomeMessage = welcomeMessage;
             this.Creatives = creatives;
             this.AdSetId = adSetId;
             this.BudgetAmount = budgetAmount;
@@ -385,6 +387,12 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "video", EmitDefaultValue = false)]
         public CtwaAdRequestBodyVideo Video { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WelcomeMessage
+        /// </summary>
+        [DataMember(Name = "welcomeMessage", EmitDefaultValue = false)]
+        public CtwaAdRequestBodyWelcomeMessage WelcomeMessage { get; set; }
 
         /// <summary>
         /// Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. 
@@ -537,6 +545,7 @@ namespace Zernio.Model
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  Video: ").Append(Video).Append("\n");
+            sb.Append("  WelcomeMessage: ").Append(WelcomeMessage).Append("\n");
             sb.Append("  Creatives: ").Append(Creatives).Append("\n");
             sb.Append("  AdSetId: ").Append(AdSetId).Append("\n");
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");

@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Video'
         }
+
+        /// <summary>
+        /// Test the property 'WelcomeMessage'
+        /// </summary>
+        [Fact]
+        public void WelcomeMessageTest()
+        {
+            // TODO unit test for the property 'WelcomeMessage'
+        }
     }
 }
