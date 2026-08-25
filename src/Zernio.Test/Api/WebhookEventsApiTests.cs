@@ -473,6 +473,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnWhatsAppAccountNameStatusUpdated
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppAccountNameStatusUpdatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated = null;
+            //instance.OnWhatsAppAccountNameStatusUpdated(webhookPayloadWhatsAppAccountNameStatusUpdated);
+        }
+
+        /// <summary>
         /// Test OnWhatsAppAutomaticEvent
         /// </summary>
         [Fact]
