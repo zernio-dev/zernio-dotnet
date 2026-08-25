@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead..</param>
         public UpdateWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default)
         {
             this.Id = id;
@@ -59,8 +59,12 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.
         /// </summary>
+        /// <value>Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.</value>
+        /*
+        <example>PENDING</example>
+        */
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
