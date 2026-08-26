@@ -155,6 +155,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ReelsSkipRate'
+        /// </summary>
+        [Fact]
+        public void ReelsSkipRateTest()
+        {
+            // TODO unit test for the property 'ReelsSkipRate'
+        }
+
+        /// <summary>
+        /// Test the property 'Reposts'
+        /// </summary>
+        [Fact]
+        public void RepostsTest()
+        {
+            // TODO unit test for the property 'Reposts'
+        }
+
+        /// <summary>
         /// Test the property 'VideoDurationSeconds'
         /// </summary>
         [Fact]

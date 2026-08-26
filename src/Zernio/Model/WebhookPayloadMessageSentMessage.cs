@@ -122,9 +122,9 @@ namespace Zernio.Model
         [DataMember(Name = "direction", IsRequired = true, EmitDefaultValue = true)]
         public DirectionEnum Direction { get; set; }
         /// <summary>
-        /// WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+        /// WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.
         /// </summary>
-        /// <value>WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.</value>
+        /// <value>WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SourceEnum
         {
@@ -143,11 +143,68 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+        /// WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.
         /// </summary>
-        /// <value>WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.</value>
+        /// <value>WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that.</value>
         [DataMember(Name = "source", EmitDefaultValue = false)]
         public SourceEnum? Source { get; set; }
+        /// <summary>
+        /// Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+        /// </summary>
+        /// <value>Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SentViaEnum
+        {
+            /// <summary>
+            /// Enum Human for value: human
+            /// </summary>
+            [EnumMember(Value = "human")]
+            Human = 1,
+
+            /// <summary>
+            /// Enum Api for value: api
+            /// </summary>
+            [EnumMember(Value = "api")]
+            Api = 2,
+
+            /// <summary>
+            /// Enum Broadcast for value: broadcast
+            /// </summary>
+            [EnumMember(Value = "broadcast")]
+            Broadcast = 3,
+
+            /// <summary>
+            /// Enum Sequence for value: sequence
+            /// </summary>
+            [EnumMember(Value = "sequence")]
+            Sequence = 4,
+
+            /// <summary>
+            /// Enum Workflow for value: workflow
+            /// </summary>
+            [EnumMember(Value = "workflow")]
+            Workflow = 5,
+
+            /// <summary>
+            /// Enum CommentAutomation for value: comment_automation
+            /// </summary>
+            [EnumMember(Value = "comment_automation")]
+            CommentAutomation = 6,
+
+            /// <summary>
+            /// Enum BulkApi for value: bulk-api
+            /// </summary>
+            [EnumMember(Value = "bulk-api")]
+            BulkApi = 7
+        }
+
+
+        /// <summary>
+        /// Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+        /// </summary>
+        /// <value>Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. </value>
+        [DataMember(Name = "sentVia", EmitDefaultValue = true)]
+        public SentViaEnum? SentVia { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessage" /> class.
         /// </summary>
@@ -166,8 +223,9 @@ namespace Zernio.Model
         /// <param name="sender">sender (required).</param>
         /// <param name="sentAt">When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order. (required).</param>
         /// <param name="isRead">isRead (required).</param>
-        /// <param name="source">WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field..</param>
-        public WebhookPayloadMessageSentMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments = default, WebhookPayloadMessageSentMessageSender sender = default, DateTime sentAt = default, bool isRead = default, SourceEnum? source = default)
+        /// <param name="source">WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. Says where WhatsApp saw the send come from, not which Zernio surface produced it: read sentVia for that..</param>
+        /// <param name="sentVia">Which Zernio surface produced this message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints, and the same value a later GET on this message returns.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: a message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. .</param>
+        public WebhookPayloadMessageSentMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments = default, WebhookPayloadMessageSentMessageSender sender = default, DateTime sentAt = default, bool isRead = default, SourceEnum? source = default, SentViaEnum? sentVia = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -210,6 +268,7 @@ namespace Zernio.Model
             this.SentAt = sentAt;
             this.IsRead = isRead;
             this.Source = source;
+            this.SentVia = sentVia;
         }
 
         /// <summary>
@@ -284,6 +343,7 @@ namespace Zernio.Model
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
             sb.Append("  Source: ").Append(Source).Append("\n");
+            sb.Append("  SentVia: ").Append(SentVia).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

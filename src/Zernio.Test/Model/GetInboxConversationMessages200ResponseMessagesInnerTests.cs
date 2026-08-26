@@ -297,5 +297,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Metadata'
         }
+
+        /// <summary>
+        /// Test the property 'SentVia'
+        /// </summary>
+        [Fact]
+        public void SentViaTest()
+        {
+            // TODO unit test for the property 'SentVia'
+        }
     }
 }

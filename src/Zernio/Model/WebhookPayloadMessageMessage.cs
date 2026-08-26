@@ -102,6 +102,63 @@ namespace Zernio.Model
         [DataMember(Name = "direction", IsRequired = true, EmitDefaultValue = true)]
         public DirectionEnum Direction { get; set; }
         /// <summary>
+        /// Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. 
+        /// </summary>
+        /// <value>Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SentViaEnum
+        {
+            /// <summary>
+            /// Enum Human for value: human
+            /// </summary>
+            [EnumMember(Value = "human")]
+            Human = 1,
+
+            /// <summary>
+            /// Enum Api for value: api
+            /// </summary>
+            [EnumMember(Value = "api")]
+            Api = 2,
+
+            /// <summary>
+            /// Enum Broadcast for value: broadcast
+            /// </summary>
+            [EnumMember(Value = "broadcast")]
+            Broadcast = 3,
+
+            /// <summary>
+            /// Enum Sequence for value: sequence
+            /// </summary>
+            [EnumMember(Value = "sequence")]
+            Sequence = 4,
+
+            /// <summary>
+            /// Enum Workflow for value: workflow
+            /// </summary>
+            [EnumMember(Value = "workflow")]
+            Workflow = 5,
+
+            /// <summary>
+            /// Enum CommentAutomation for value: comment_automation
+            /// </summary>
+            [EnumMember(Value = "comment_automation")]
+            CommentAutomation = 6,
+
+            /// <summary>
+            /// Enum BulkApi for value: bulk-api
+            /// </summary>
+            [EnumMember(Value = "bulk-api")]
+            BulkApi = 7
+        }
+
+
+        /// <summary>
+        /// Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. 
+        /// </summary>
+        /// <value>Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. </value>
+        [DataMember(Name = "sentVia", EmitDefaultValue = true)]
+        public SentViaEnum? SentVia { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageMessage" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -119,7 +176,8 @@ namespace Zernio.Model
         /// <param name="sender">sender (required).</param>
         /// <param name="sentAt">When the message was sent, as reported by the platform and passed through unmodified. Full ISO 8601 date-time: Instagram and Facebook carry millisecond precision, while some platforms (for example WhatsApp and Telegram) report whole seconds. Use this field as the chronological ordering key. If two messages share the same value, fetch the conversation messages with sortOrder&#x3D;desc for the deterministic order. (required).</param>
         /// <param name="isRead">isRead (required).</param>
-        public WebhookPayloadMessageMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageMessageAttachmentsInner> attachments = default, WebhookPayloadMessageMessageSender sender = default, DateTime sentAt = default, bool isRead = default)
+        /// <param name="sentVia">Which Zernio surface produced the message. Always present and always &#x60;null&#x60; on this event, since nobody on our side produced an inbound message; it is only informative on &#x60;message.sent&#x60;, which documents the vocabulary. .</param>
+        public WebhookPayloadMessageMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageMessageAttachmentsInner> attachments = default, WebhookPayloadMessageMessageSender sender = default, DateTime sentAt = default, bool isRead = default, SentViaEnum? sentVia = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -161,6 +219,7 @@ namespace Zernio.Model
             this.Sender = sender;
             this.SentAt = sentAt;
             this.IsRead = isRead;
+            this.SentVia = sentVia;
         }
 
         /// <summary>
@@ -234,6 +293,7 @@ namespace Zernio.Model
             sb.Append("  Sender: ").Append(Sender).Append("\n");
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
+            sb.Append("  SentVia: ").Append(SentVia).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

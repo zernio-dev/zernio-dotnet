@@ -146,6 +146,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TemplateButtonParams'
+        /// </summary>
+        [Fact]
+        public void TemplateButtonParamsTest()
+        {
+            // TODO unit test for the property 'TemplateButtonParams'
+        }
+
+        /// <summary>
         /// Test the property 'HeaderMedia'
         /// </summary>
         [Fact]

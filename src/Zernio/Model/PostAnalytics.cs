@@ -47,10 +47,12 @@ namespace Zernio.Model
         /// <param name="follows">Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms..</param>
         /// <param name="igReelsAvgWatchTime">Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="igReelsVideoViewTotalTime">Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms..</param>
+        /// <param name="reelsSkipRate">Instagram Reels only: the rate of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Passed through exactly as Meta reports it, with no rescaling, so do not assume a 0-1 share. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views..</param>
+        /// <param name="reposts">Instagram only: reposts of the media by other users, minus deleted reposts. Available on feed posts, reels and stories. 0 for other platforms, including Threads, where reposts are counted in shares instead..</param>
         /// <param name="videoDurationSeconds">Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio)..</param>
         /// <param name="engagementRate">Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula..</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
+        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, decimal reelsSkipRate = default, int reposts = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
         {
             this.Impressions = impressions;
             this.Reach = reach;
@@ -63,6 +65,8 @@ namespace Zernio.Model
             this.Follows = follows;
             this.IgReelsAvgWatchTime = igReelsAvgWatchTime;
             this.IgReelsVideoViewTotalTime = igReelsVideoViewTotalTime;
+            this.ReelsSkipRate = reelsSkipRate;
+            this.Reposts = reposts;
             this.VideoDurationSeconds = videoDurationSeconds;
             this.EngagementRate = engagementRate;
             this.LastUpdated = lastUpdated;
@@ -172,6 +176,26 @@ namespace Zernio.Model
         public int IgReelsVideoViewTotalTime { get; set; }
 
         /// <summary>
+        /// Instagram Reels only: the rate of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Passed through exactly as Meta reports it, with no rescaling, so do not assume a 0-1 share. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views.
+        /// </summary>
+        /// <value>Instagram Reels only: the rate of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Passed through exactly as Meta reports it, with no rescaling, so do not assume a 0-1 share. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views.</value>
+        /*
+        <example>0</example>
+        */
+        [DataMember(Name = "reelsSkipRate", EmitDefaultValue = false)]
+        public decimal ReelsSkipRate { get; set; }
+
+        /// <summary>
+        /// Instagram only: reposts of the media by other users, minus deleted reposts. Available on feed posts, reels and stories. 0 for other platforms, including Threads, where reposts are counted in shares instead.
+        /// </summary>
+        /// <value>Instagram only: reposts of the media by other users, minus deleted reposts. Available on feed posts, reels and stories. 0 for other platforms, including Threads, where reposts are counted in shares instead.</value>
+        /*
+        <example>0</example>
+        */
+        [DataMember(Name = "reposts", EmitDefaultValue = false)]
+        public int Reposts { get; set; }
+
+        /// <summary>
         /// Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio).
         /// </summary>
         /// <value>Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio).</value>
@@ -216,6 +240,8 @@ namespace Zernio.Model
             sb.Append("  Follows: ").Append(Follows).Append("\n");
             sb.Append("  IgReelsAvgWatchTime: ").Append(IgReelsAvgWatchTime).Append("\n");
             sb.Append("  IgReelsVideoViewTotalTime: ").Append(IgReelsVideoViewTotalTime).Append("\n");
+            sb.Append("  ReelsSkipRate: ").Append(ReelsSkipRate).Append("\n");
+            sb.Append("  Reposts: ").Append(Reposts).Append("\n");
             sb.Append("  VideoDurationSeconds: ").Append(VideoDurationSeconds).Append("\n");
             sb.Append("  EngagementRate: ").Append(EngagementRate).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");

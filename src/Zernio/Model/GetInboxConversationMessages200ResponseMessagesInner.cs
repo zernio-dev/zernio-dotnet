@@ -143,6 +143,63 @@ namespace Zernio.Model
         [DataMember(Name = "deliveryStatus", EmitDefaultValue = true)]
         public DeliveryStatusEnum? DeliveryStatus { get; set; }
         /// <summary>
+        /// Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+        /// </summary>
+        /// <value>Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SentViaEnum
+        {
+            /// <summary>
+            /// Enum Human for value: human
+            /// </summary>
+            [EnumMember(Value = "human")]
+            Human = 1,
+
+            /// <summary>
+            /// Enum Api for value: api
+            /// </summary>
+            [EnumMember(Value = "api")]
+            Api = 2,
+
+            /// <summary>
+            /// Enum Broadcast for value: broadcast
+            /// </summary>
+            [EnumMember(Value = "broadcast")]
+            Broadcast = 3,
+
+            /// <summary>
+            /// Enum Sequence for value: sequence
+            /// </summary>
+            [EnumMember(Value = "sequence")]
+            Sequence = 4,
+
+            /// <summary>
+            /// Enum Workflow for value: workflow
+            /// </summary>
+            [EnumMember(Value = "workflow")]
+            Workflow = 5,
+
+            /// <summary>
+            /// Enum CommentAutomation for value: comment_automation
+            /// </summary>
+            [EnumMember(Value = "comment_automation")]
+            CommentAutomation = 6,
+
+            /// <summary>
+            /// Enum BulkApi for value: bulk-api
+            /// </summary>
+            [EnumMember(Value = "bulk-api")]
+            BulkApi = 7
+        }
+
+
+        /// <summary>
+        /// Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. 
+        /// </summary>
+        /// <value>Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. </value>
+        [DataMember(Name = "sentVia", EmitDefaultValue = true)]
+        public SentViaEnum? SentVia { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetInboxConversationMessages200ResponseMessagesInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
@@ -171,8 +228,9 @@ namespace Zernio.Model
         /// <param name="sentAt">Original send time for outgoing messages (used for Messenger watermark queries)..</param>
         /// <param name="deliveryError">deliveryError.</param>
         /// <param name="reactions">Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread..</param>
-        /// <param name="metadata">Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. .</param>
-        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool? storyReply = default, bool? isStoryMention = default, bool isEdited = default, DateTime? editedAt = default, int editCount = default, List<InboxMessageEditHistoryEntry> editHistory = default, bool isDeleted = default, DateTime? deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime? deliveredAt = default, DateTime? readAt = default, DateTime? sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default)
+        /// <param name="metadata">Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. It can also carry &#x60;source&#x60; (&#x60;whatsapp_business_app&#x60; / &#x60;coexistence_history&#x60; on a WhatsApp Coexistence number, &#x60;bulk-api&#x60; on a POST /v1/whatsapp/bulk send), which is where the message reached us from rather than who produced it: read &#x60;sentVia&#x60; for that. .</param>
+        /// <param name="sentVia">Which Zernio surface produced this outgoing message: &#x60;human&#x60; (an operator in the Zernio inbox), &#x60;api&#x60; (a call to this API), &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60;, or &#x60;bulk-api&#x60; (POST /v1/whatsapp/bulk). Same vocabulary as the &#x60;source&#x60; filter on the inbox analytics endpoints.  Always present, and &#x60;null&#x60; whenever the lineage is unknown: every incoming message, any outgoing message sent from the platform&#39;s own app, and every message stored before this field shipped (2026-08). Existing messages are NOT backfilled, so treat &#x60;null&#x60; as \&quot;unknown\&quot;, never as \&quot;sent by a human\&quot;. .</param>
+        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool? storyReply = default, bool? isStoryMention = default, bool isEdited = default, DateTime? editedAt = default, int editCount = default, List<InboxMessageEditHistoryEntry> editHistory = default, bool isDeleted = default, DateTime? deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime? deliveredAt = default, DateTime? readAt = default, DateTime? sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default, SentViaEnum? sentVia = default)
         {
             this.Id = id;
             this.ConversationId = conversationId;
@@ -201,6 +259,7 @@ namespace Zernio.Model
             this.DeliveryError = deliveryError;
             this.Reactions = reactions;
             this.Metadata = metadata;
+            this.SentVia = sentVia;
         }
 
         /// <summary>
@@ -352,9 +411,9 @@ namespace Zernio.Model
         public List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> Reactions { get; set; }
 
         /// <summary>
-        /// Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. 
+        /// Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. It can also carry &#x60;source&#x60; (&#x60;whatsapp_business_app&#x60; / &#x60;coexistence_history&#x60; on a WhatsApp Coexistence number, &#x60;bulk-api&#x60; on a POST /v1/whatsapp/bulk send), which is where the message reached us from rather than who produced it: read &#x60;sentVia&#x60; for that. 
         /// </summary>
-        /// <value>Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. </value>
+        /// <value>Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. It can also carry &#x60;source&#x60; (&#x60;whatsapp_business_app&#x60; / &#x60;coexistence_history&#x60; on a WhatsApp Coexistence number, &#x60;bulk-api&#x60; on a POST /v1/whatsapp/bulk send), which is where the message reached us from rather than who produced it: read &#x60;sentVia&#x60; for that. </value>
         [DataMember(Name = "metadata", EmitDefaultValue = false)]
         public Dictionary<string, Object> Metadata { get; set; }
 
@@ -393,6 +452,7 @@ namespace Zernio.Model
             sb.Append("  DeliveryError: ").Append(DeliveryError).Append("\n");
             sb.Append("  Reactions: ").Append(Reactions).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  SentVia: ").Append(SentVia).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
