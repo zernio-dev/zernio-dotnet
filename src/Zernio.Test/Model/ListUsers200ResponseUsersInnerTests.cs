@@ -117,5 +117,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'CreatedAt'
         }
+
+        /// <summary>
+        /// Test the property 'LastLoginAt'
+        /// </summary>
+        [Fact]
+        public void LastLoginAtTest()
+        {
+            // TODO unit test for the property 'LastLoginAt'
+        }
     }
 }

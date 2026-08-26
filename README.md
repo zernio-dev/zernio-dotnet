@@ -2372,6 +2372,7 @@ Class | Method | HTTP request | Description
  - [Model.WebhookPayloadMessageSentMessage](docs/WebhookPayloadMessageSentMessage.md)
  - [Model.WebhookPayloadMessageSentMessageAttachmentsInner](docs/WebhookPayloadMessageSentMessageAttachmentsInner.md)
  - [Model.WebhookPayloadMessageSentMessageSender](docs/WebhookPayloadMessageSentMessageSender.md)
+ - [Model.WebhookPayloadMessageSentMetadata](docs/WebhookPayloadMessageSentMetadata.md)
  - [Model.WebhookPayloadPost](docs/WebhookPayloadPost.md)
  - [Model.WebhookPayloadPostPlatform](docs/WebhookPayloadPostPlatform.md)
  - [Model.WebhookPayloadPostPlatformAccount](docs/WebhookPayloadPostPlatformAccount.md)

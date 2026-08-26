@@ -1659,7 +1659,7 @@ void (empty response body)
 
 Message sent event
 
-Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
+Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers. Sends that carry platform-specific context deliver it under `metadata`, so a quote-reply arrives with `metadata.quotedMessageId` and mirroring CRMs can thread it without a lookup. 
 
 ### Example
 ```csharp

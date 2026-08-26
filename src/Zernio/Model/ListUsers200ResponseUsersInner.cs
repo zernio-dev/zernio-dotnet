@@ -43,7 +43,8 @@ namespace Zernio.Model
         /// <param name="isRoot">isRoot.</param>
         /// <param name="profileAccess">profileAccess.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListUsers200ResponseUsersInner(string id = default, string name = default, string email = default, string role = default, bool isRoot = default, List<string> profileAccess = default, DateTime createdAt = default)
+        /// <param name="lastLoginAt">Last sign-in, stamped at most once an hour, so it is accurate to within an hour rather than to the exact session. Omitted for members with no recorded sign-in since the field shipped, which does not mean they never signed in..</param>
+        public ListUsers200ResponseUsersInner(string id = default, string name = default, string email = default, string role = default, bool isRoot = default, List<string> profileAccess = default, DateTime createdAt = default, DateTime lastLoginAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -52,6 +53,7 @@ namespace Zernio.Model
             this.IsRoot = isRoot;
             this.ProfileAccess = profileAccess;
             this.CreatedAt = createdAt;
+            this.LastLoginAt = lastLoginAt;
         }
 
         /// <summary>
@@ -97,6 +99,13 @@ namespace Zernio.Model
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
+        /// Last sign-in, stamped at most once an hour, so it is accurate to within an hour rather than to the exact session. Omitted for members with no recorded sign-in since the field shipped, which does not mean they never signed in.
+        /// </summary>
+        /// <value>Last sign-in, stamped at most once an hour, so it is accurate to within an hour rather than to the exact session. Omitted for members with no recorded sign-in since the field shipped, which does not mean they never signed in.</value>
+        [DataMember(Name = "lastLoginAt", EmitDefaultValue = false)]
+        public DateTime LastLoginAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -111,6 +120,7 @@ namespace Zernio.Model
             sb.Append("  IsRoot: ").Append(IsRoot).Append("\n");
             sb.Append("  ProfileAccess: ").Append(ProfileAccess).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  LastLoginAt: ").Append(LastLoginAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

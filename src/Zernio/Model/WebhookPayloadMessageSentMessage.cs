@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class WebhookPayloadMessageSentMessage : IValidatableObject
     {
         /// <summary>
-        /// Defines Platform
+        /// Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent.
         /// </summary>
+        /// <value>Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -61,13 +62,38 @@ namespace Zernio.Model
             /// Enum Whatsapp for value: whatsapp
             /// </summary>
             [EnumMember(Value = "whatsapp")]
-            Whatsapp = 4
+            Whatsapp = 4,
+
+            /// <summary>
+            /// Enum Twitter for value: twitter
+            /// </summary>
+            [EnumMember(Value = "twitter")]
+            Twitter = 5,
+
+            /// <summary>
+            /// Enum Reddit for value: reddit
+            /// </summary>
+            [EnumMember(Value = "reddit")]
+            Reddit = 6,
+
+            /// <summary>
+            /// Enum Bluesky for value: bluesky
+            /// </summary>
+            [EnumMember(Value = "bluesky")]
+            Bluesky = 7,
+
+            /// <summary>
+            /// Enum Slack for value: slack
+            /// </summary>
+            [EnumMember(Value = "slack")]
+            Slack = 8
         }
 
 
         /// <summary>
-        /// Gets or Sets Platform
+        /// Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent.
         /// </summary>
+        /// <value>Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent.</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
@@ -132,7 +158,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Internal message ID (required).</param>
         /// <param name="conversationId">Internal conversation ID (required).</param>
-        /// <param name="platform">platform (required).</param>
+        /// <param name="platform">Every platform whose outgoing messages Zernio observes. sms is absent on purpose: its carrier receipts update delivery status and never raise message.sent. (required).</param>
         /// <param name="platformMessageId">Platform&#39;s message ID (required).</param>
         /// <param name="direction">direction (required).</param>
         /// <param name="text">Message text content (required).</param>

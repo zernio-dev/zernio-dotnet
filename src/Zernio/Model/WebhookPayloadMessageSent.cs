@@ -65,8 +65,9 @@ namespace Zernio.Model
         /// <param name="message">message (required).</param>
         /// <param name="conversation">conversation (required).</param>
         /// <param name="account">account (required).</param>
+        /// <param name="metadata">metadata.</param>
         /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
-        public WebhookPayloadMessageSent(string id = default, EventEnum varEvent = default, WebhookPayloadMessageSentMessage message = default, InboxWebhookConversation conversation = default, InboxWebhookAccount account = default, DateTime timestamp = default)
+        public WebhookPayloadMessageSent(string id = default, EventEnum varEvent = default, WebhookPayloadMessageSentMessage message = default, InboxWebhookConversation conversation = default, InboxWebhookAccount account = default, WebhookPayloadMessageSentMetadata metadata = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -94,6 +95,7 @@ namespace Zernio.Model
             }
             this.Account = account;
             this.Timestamp = timestamp;
+            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -122,6 +124,12 @@ namespace Zernio.Model
         public InboxWebhookAccount Account { get; set; }
 
         /// <summary>
+        /// Gets or Sets Metadata
+        /// </summary>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public WebhookPayloadMessageSentMetadata Metadata { get; set; }
+
+        /// <summary>
         /// UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.
         /// </summary>
         /// <value>UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt.</value>
@@ -141,6 +149,7 @@ namespace Zernio.Model
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Conversation: ").Append(Conversation).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
