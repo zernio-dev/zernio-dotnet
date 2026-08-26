@@ -27639,6 +27639,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
     put:
       description: |
         Campaign-level edits. Send at least one of `budget`, `bidStrategy`, `name`
@@ -81768,6 +81769,7 @@ components:
           enum:
           - facebook
           - instagram
+          - google
           type: string
         accountId:
           description: "Zernio SocialAccount id owning the ad account. Required only\
