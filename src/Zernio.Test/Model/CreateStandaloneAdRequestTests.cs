@@ -686,6 +686,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Sitelinks'
+        /// </summary>
+        [Fact]
+        public void SitelinksTest()
+        {
+            // TODO unit test for the property 'Sitelinks'
+        }
+
+        /// <summary>
         /// Test the property 'AdvantageAudience'
         /// </summary>
         [Fact]
