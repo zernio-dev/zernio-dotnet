@@ -52,7 +52,7 @@ namespace Zernio.Model
         /// <param name="photos">Photos attached to the review. Google Business only; always an empty array for other platforms..</param>
         /// <param name="reply">reply.</param>
         /// <param name="reviewUrl">reviewUrl.</param>
-        public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string locationId = default, string locationName = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, bool hasPhotos = default, int photoCount = default, List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
+        public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string locationId = default, string locationName = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, bool hasPhotos = default, int photoCount = default, List<ListInboxReviews200ResponseDataInnerPhotosInner> photos = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -160,7 +160,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Photos attached to the review. Google Business only; always an empty array for other platforms.</value>
         [DataMember(Name = "photos", EmitDefaultValue = false)]
-        public List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> Photos { get; set; }
+        public List<ListInboxReviews200ResponseDataInnerPhotosInner> Photos { get; set; }
 
         /// <summary>
         /// Gets or Sets Reply

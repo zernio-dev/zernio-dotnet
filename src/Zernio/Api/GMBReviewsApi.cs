@@ -75,6 +75,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DeleteGoogleBusinessReviewReply200Response</returns>
         ApiResponse<DeleteGoogleBusinessReviewReply200Response> DeleteGoogleBusinessReviewReplyWithHttpInfo(string accountId, string reviewId);
         /// <summary>
+        /// Get a review
+        /// </summary>
+        /// <remarks>
+        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <returns>GetGoogleBusinessReview200Response</returns>
+        GetGoogleBusinessReview200Response GetGoogleBusinessReview(string accountId, string reviewId, string? locationId = default);
+
+        /// <summary>
+        /// Get a review
+        /// </summary>
+        /// <remarks>
+        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessReview200Response</returns>
+        ApiResponse<GetGoogleBusinessReview200Response> GetGoogleBusinessReviewWithHttpInfo(string accountId, string reviewId, string? locationId = default);
+        /// <summary>
         /// Get reviews
         /// </summary>
         /// <remarks>
@@ -185,6 +210,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteGoogleBusinessReviewReply200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteGoogleBusinessReviewReply200Response>> DeleteGoogleBusinessReviewReplyWithHttpInfoAsync(string accountId, string reviewId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get a review
+        /// </summary>
+        /// <remarks>
+        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGoogleBusinessReview200Response</returns>
+        System.Threading.Tasks.Task<GetGoogleBusinessReview200Response> GetGoogleBusinessReviewAsync(string accountId, string reviewId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a review
+        /// </summary>
+        /// <remarks>
+        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGoogleBusinessReview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetGoogleBusinessReview200Response>> GetGoogleBusinessReviewWithHttpInfoAsync(string accountId, string reviewId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get reviews
         /// </summary>
@@ -732,6 +784,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteGoogleBusinessReviewReply", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <returns>GetGoogleBusinessReview200Response</returns>
+        public GetGoogleBusinessReview200Response GetGoogleBusinessReview(string accountId, string reviewId, string? locationId = default)
+        {
+            Zernio.Client.ApiResponse<GetGoogleBusinessReview200Response> localVarResponse = GetGoogleBusinessReviewWithHttpInfo(accountId, reviewId, locationId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessReview200Response</returns>
+        public Zernio.Client.ApiResponse<GetGoogleBusinessReview200Response> GetGoogleBusinessReviewWithHttpInfo(string accountId, string reviewId, string? locationId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->GetGoogleBusinessReview");
+
+            // verify the required parameter 'reviewId' is set
+            if (reviewId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reviewId' when calling GMBReviewsApi->GetGoogleBusinessReview");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetGoogleBusinessReview200Response>("/v1/accounts/{accountId}/gmb-reviews/{reviewId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessReview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGoogleBusinessReview200Response</returns>
+        public async System.Threading.Tasks.Task<GetGoogleBusinessReview200Response> GetGoogleBusinessReviewAsync(string accountId, string reviewId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetGoogleBusinessReview200Response> localVarResponse = await GetGoogleBusinessReviewWithHttpInfoAsync(accountId, reviewId, locationId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="locationId">Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGoogleBusinessReview200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetGoogleBusinessReview200Response>> GetGoogleBusinessReviewWithHttpInfoAsync(string accountId, string reviewId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->GetGoogleBusinessReview");
+
+            // verify the required parameter 'reviewId' is set
+            if (reviewId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reviewId' when calling GMBReviewsApi->GetGoogleBusinessReview");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetGoogleBusinessReview200Response>("/v1/accounts/{accountId}/gmb-reviews/{reviewId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessReview", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

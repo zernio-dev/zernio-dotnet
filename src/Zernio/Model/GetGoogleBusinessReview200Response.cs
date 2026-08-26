@@ -28,30 +28,24 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetGoogleBusinessReviews200Response
+    /// GetGoogleBusinessReview200Response
     /// </summary>
-    [DataContract(Name = "getGoogleBusinessReviews_200_response")]
-    public partial class GetGoogleBusinessReviews200Response : IValidatableObject
+    [DataContract(Name = "getGoogleBusinessReview_200_response")]
+    public partial class GetGoogleBusinessReview200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetGoogleBusinessReviews200Response" /> class.
+        /// Initializes a new instance of the <see cref="GetGoogleBusinessReview200Response" /> class.
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="locationId">locationId.</param>
-        /// <param name="reviews">reviews.</param>
-        /// <param name="averageRating">Overall average rating.</param>
-        /// <param name="totalReviewCount">Total number of reviews.</param>
-        /// <param name="nextPageToken">Token for next page.</param>
-        public GetGoogleBusinessReviews200Response(bool success = default, string accountId = default, string locationId = default, List<GoogleBusinessReview> reviews = default, decimal averageRating = default, int totalReviewCount = default, string nextPageToken = default)
+        /// <param name="review">review.</param>
+        public GetGoogleBusinessReview200Response(bool success = default, string accountId = default, string locationId = default, GoogleBusinessReview review = default)
         {
             this.Success = success;
             this.AccountId = accountId;
             this.LocationId = locationId;
-            this.Reviews = reviews;
-            this.AverageRating = averageRating;
-            this.TotalReviewCount = totalReviewCount;
-            this.NextPageToken = nextPageToken;
+            this.Review = review;
         }
 
         /// <summary>
@@ -73,31 +67,10 @@ namespace Zernio.Model
         public string LocationId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Reviews
+        /// Gets or Sets Review
         /// </summary>
-        [DataMember(Name = "reviews", EmitDefaultValue = false)]
-        public List<GoogleBusinessReview> Reviews { get; set; }
-
-        /// <summary>
-        /// Overall average rating
-        /// </summary>
-        /// <value>Overall average rating</value>
-        [DataMember(Name = "averageRating", EmitDefaultValue = false)]
-        public decimal AverageRating { get; set; }
-
-        /// <summary>
-        /// Total number of reviews
-        /// </summary>
-        /// <value>Total number of reviews</value>
-        [DataMember(Name = "totalReviewCount", EmitDefaultValue = false)]
-        public int TotalReviewCount { get; set; }
-
-        /// <summary>
-        /// Token for next page
-        /// </summary>
-        /// <value>Token for next page</value>
-        [DataMember(Name = "nextPageToken", EmitDefaultValue = true)]
-        public string NextPageToken { get; set; }
+        [DataMember(Name = "review", EmitDefaultValue = false)]
+        public GoogleBusinessReview Review { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -106,14 +79,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetGoogleBusinessReviews200Response {\n");
+            sb.Append("class GetGoogleBusinessReview200Response {\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  LocationId: ").Append(LocationId).Append("\n");
-            sb.Append("  Reviews: ").Append(Reviews).Append("\n");
-            sb.Append("  AverageRating: ").Append(AverageRating).Append("\n");
-            sb.Append("  TotalReviewCount: ").Append(TotalReviewCount).Append("\n");
-            sb.Append("  NextPageToken: ").Append(NextPageToken).Append("\n");
+            sb.Append("  Review: ").Append(Review).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

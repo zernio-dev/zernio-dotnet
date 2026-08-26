@@ -6,6 +6,7 @@ All URIs are relative to *https://zernio.com/api*
 |--------|--------------|-------------|
 | [**BatchGetGoogleBusinessReviews**](GMBReviewsApi.md#batchgetgooglebusinessreviews) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews |
 | [**DeleteGoogleBusinessReviewReply**](GMBReviewsApi.md#deletegooglebusinessreviewreply) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply |
+| [**GetGoogleBusinessReview**](GMBReviewsApi.md#getgooglebusinessreview) | **GET** /v1/accounts/{accountId}/gmb-reviews/{reviewId} | Get a review |
 | [**GetGoogleBusinessReviews**](GMBReviewsApi.md#getgooglebusinessreviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews |
 | [**ReplyToGoogleBusinessReview**](GMBReviewsApi.md#replytogooglebusinessreview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review |
 
@@ -212,6 +213,112 @@ catch (ApiException e)
 | **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to delete reply |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgooglebusinessreview"></a>
+# **GetGoogleBusinessReview**
+> GetGoogleBusinessReview200Response GetGoogleBusinessReview (string accountId, string reviewId, string? locationId = null)
+
+Get a review
+
+Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account's selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGoogleBusinessReviewExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new GMBReviewsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The Zernio account ID (from /v1/accounts)
+            var reviewId = "reviewId_example";  // string | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+            var locationId = "locationId_example";  // string? | Override which location to read the review from. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs. (optional) 
+
+            try
+            {
+                // Get a review
+                GetGoogleBusinessReview200Response result = apiInstance.GetGoogleBusinessReview(accountId, reviewId, locationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling GMBReviewsApi.GetGoogleBusinessReview: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGoogleBusinessReviewWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a review
+    ApiResponse<GetGoogleBusinessReview200Response> response = apiInstance.GetGoogleBusinessReviewWithHttpInfo(accountId, reviewId, locationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling GMBReviewsApi.GetGoogleBusinessReviewWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The Zernio account ID (from /v1/accounts) |  |
+| **reviewId** | **string** | The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name |  |
+| **locationId** | **string?** | Override which location to read the review from. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional]  |
+
+### Return type
+
+[**GetGoogleBusinessReview200Response**](GetGoogleBusinessReview200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Review fetched successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Account not found, or no such review on this location |  -  |
+| **500** | Failed to fetch the review |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

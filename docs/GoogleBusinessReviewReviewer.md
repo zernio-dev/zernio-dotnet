@@ -1,4 +1,4 @@
-# Zernio.Model.GetGoogleBusinessReviews200ResponseReviewsInnerReviewer
+# Zernio.Model.GoogleBusinessReviewReviewer
 
 ## Properties
 

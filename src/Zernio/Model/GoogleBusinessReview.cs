@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetGoogleBusinessReviews200ResponseReviewsInner
+    /// A Google Business Profile review, as returned by every gmb-reviews read endpoint.
     /// </summary>
-    [DataContract(Name = "getGoogleBusinessReviews_200_response_reviews_inner")]
-    public partial class GetGoogleBusinessReviews200ResponseReviewsInner : IValidatableObject
+    [DataContract(Name = "GoogleBusinessReview")]
+    public partial class GoogleBusinessReview : IValidatableObject
     {
         /// <summary>
         /// Google&#39;s string rating
@@ -79,12 +79,12 @@ namespace Zernio.Model
         [DataMember(Name = "starRating", EmitDefaultValue = false)]
         public StarRatingEnum? StarRating { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetGoogleBusinessReviews200ResponseReviewsInner" /> class.
+        /// Initializes a new instance of the <see cref="GoogleBusinessReview" /> class.
         /// </summary>
         /// <param name="id">Review ID.</param>
         /// <param name="name">Full resource name.</param>
         /// <param name="reviewer">reviewer.</param>
-        /// <param name="rating">Numeric star rating.</param>
+        /// <param name="rating">Numeric star rating (0 when Google sends no rating).</param>
         /// <param name="starRating">Google&#39;s string rating.</param>
         /// <param name="comment">Review text.</param>
         /// <param name="createTime">createTime.</param>
@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// <param name="reviewReply">reviewReply.</param>
         /// <param name="photoCount">Number of photos attached to the review (photos only, videos are not counted).</param>
         /// <param name="photos">Photos attached to the review by the reviewer.</param>
-        public GetGoogleBusinessReviews200ResponseReviewsInner(string id = default, string name = default, GetGoogleBusinessReviews200ResponseReviewsInnerReviewer reviewer = default, int rating = default, StarRatingEnum? starRating = default, string comment = default, DateTime createTime = default, DateTime updateTime = default, GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply reviewReply = default, int photoCount = default, List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = default)
+        public GoogleBusinessReview(string id = default, string name = default, GoogleBusinessReviewReviewer reviewer = default, int rating = default, StarRatingEnum? starRating = default, string comment = default, DateTime createTime = default, DateTime updateTime = default, GoogleBusinessReviewReviewReply reviewReply = default, int photoCount = default, List<ListInboxReviews200ResponseDataInnerPhotosInner> photos = default)
         {
             this.Id = id;
             this.Name = name;
@@ -125,12 +125,12 @@ namespace Zernio.Model
         /// Gets or Sets Reviewer
         /// </summary>
         [DataMember(Name = "reviewer", EmitDefaultValue = false)]
-        public GetGoogleBusinessReviews200ResponseReviewsInnerReviewer Reviewer { get; set; }
+        public GoogleBusinessReviewReviewer Reviewer { get; set; }
 
         /// <summary>
-        /// Numeric star rating
+        /// Numeric star rating (0 when Google sends no rating)
         /// </summary>
-        /// <value>Numeric star rating</value>
+        /// <value>Numeric star rating (0 when Google sends no rating)</value>
         [DataMember(Name = "rating", EmitDefaultValue = false)]
         public int Rating { get; set; }
 
@@ -157,7 +157,7 @@ namespace Zernio.Model
         /// Gets or Sets ReviewReply
         /// </summary>
         [DataMember(Name = "reviewReply", EmitDefaultValue = false)]
-        public GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply ReviewReply { get; set; }
+        public GoogleBusinessReviewReviewReply ReviewReply { get; set; }
 
         /// <summary>
         /// Number of photos attached to the review (photos only, videos are not counted)
@@ -171,7 +171,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Photos attached to the review by the reviewer</value>
         [DataMember(Name = "photos", EmitDefaultValue = false)]
-        public List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> Photos { get; set; }
+        public List<ListInboxReviews200ResponseDataInnerPhotosInner> Photos { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -180,7 +180,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetGoogleBusinessReviews200ResponseReviewsInner {\n");
+            sb.Append("class GoogleBusinessReview {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Reviewer: ").Append(Reviewer).Append("\n");
@@ -219,9 +219,9 @@ namespace Zernio.Model
             }
 
             // Rating (int) minimum
-            if (this.Rating < (int)1)
+            if (this.Rating < (int)0)
             {
-                yield return new ValidationResult("Invalid value for Rating, must be a value greater than or equal to 1.", new [] { "Rating" });
+                yield return new ValidationResult("Invalid value for Rating, must be a value greater than or equal to 0.", new [] { "Rating" });
             }
 
             yield break;

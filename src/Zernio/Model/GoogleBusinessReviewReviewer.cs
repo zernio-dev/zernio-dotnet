@@ -28,25 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner
+    /// GoogleBusinessReviewReviewer
     /// </summary>
-    [DataContract(Name = "getGoogleBusinessReviews_200_response_reviews_inner_photos_inner")]
-    public partial class GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner : IValidatableObject
+    [DataContract(Name = "GoogleBusinessReview_reviewer")]
+    public partial class GoogleBusinessReviewReviewer : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner" /> class.
+        /// Initializes a new instance of the <see cref="GoogleBusinessReviewReviewer" /> class.
         /// </summary>
-        /// <param name="url">url.</param>
-        public GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner(string url = default)
+        /// <param name="displayName">displayName.</param>
+        /// <param name="profilePhotoUrl">profilePhotoUrl.</param>
+        /// <param name="isAnonymous">isAnonymous.</param>
+        public GoogleBusinessReviewReviewer(string displayName = default, string profilePhotoUrl = default, bool isAnonymous = default)
         {
-            this.Url = url;
+            this.DisplayName = displayName;
+            this.ProfilePhotoUrl = profilePhotoUrl;
+            this.IsAnonymous = isAnonymous;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Gets or Sets DisplayName
         /// </summary>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
+        [DataMember(Name = "displayName", EmitDefaultValue = false)]
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ProfilePhotoUrl
+        /// </summary>
+        [DataMember(Name = "profilePhotoUrl", EmitDefaultValue = true)]
+        public string ProfilePhotoUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets IsAnonymous
+        /// </summary>
+        [DataMember(Name = "isAnonymous", EmitDefaultValue = true)]
+        public bool IsAnonymous { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +71,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("class GoogleBusinessReviewReviewer {\n");
+            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  ProfilePhotoUrl: ").Append(ProfilePhotoUrl).Append("\n");
+            sb.Append("  IsAnonymous: ").Append(IsAnonymous).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,17 +28,17 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply
+    /// GoogleBusinessReviewReviewReply
     /// </summary>
-    [DataContract(Name = "getGoogleBusinessReviews_200_response_reviews_inner_reviewReply")]
-    public partial class GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply : IValidatableObject
+    [DataContract(Name = "GoogleBusinessReview_reviewReply")]
+    public partial class GoogleBusinessReviewReviewReply : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply" /> class.
+        /// Initializes a new instance of the <see cref="GoogleBusinessReviewReviewReply" /> class.
         /// </summary>
         /// <param name="comment">Business owner reply.</param>
         /// <param name="updateTime">updateTime.</param>
-        public GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply(string comment = default, DateTime updateTime = default)
+        public GoogleBusinessReviewReviewReply(string comment = default, DateTime updateTime = default)
         {
             this.Comment = comment;
             this.UpdateTime = updateTime;
@@ -64,7 +64,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply {\n");
+            sb.Append("class GoogleBusinessReviewReviewReply {\n");
             sb.Append("  Comment: ").Append(Comment).Append("\n");
             sb.Append("  UpdateTime: ").Append(UpdateTime).Append("\n");
             sb.Append("}\n");

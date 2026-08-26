@@ -436,6 +436,7 @@ Class | Method | HTTP request | Description
 *GMBPlaceActionsApi* | [**UpdateGoogleBusinessPlaceAction**](docs/GMBPlaceActionsApi.md#updategooglebusinessplaceaction) | **PATCH** /v1/accounts/{accountId}/gmb-place-actions | Update action link
 *GMBReviewsApi* | [**BatchGetGoogleBusinessReviews**](docs/GMBReviewsApi.md#batchgetgooglebusinessreviews) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews
 *GMBReviewsApi* | [**DeleteGoogleBusinessReviewReply**](docs/GMBReviewsApi.md#deletegooglebusinessreviewreply) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply
+*GMBReviewsApi* | [**GetGoogleBusinessReview**](docs/GMBReviewsApi.md#getgooglebusinessreview) | **GET** /v1/accounts/{accountId}/gmb-reviews/{reviewId} | Get a review
 *GMBReviewsApi* | [**GetGoogleBusinessReviews**](docs/GMBReviewsApi.md#getgooglebusinessreviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews
 *GMBReviewsApi* | [**ReplyToGoogleBusinessReview**](docs/GMBReviewsApi.md#replytogooglebusinessreview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review
 *GMBServicesApi* | [**GetGoogleBusinessServices**](docs/GMBServicesApi.md#getgooglebusinessservices) | **GET** /v1/accounts/{accountId}/gmb-services | Get services
@@ -1307,11 +1308,8 @@ Class | Method | HTTP request | Description
  - [Model.GetGoogleBusinessPerformance200ResponseMetricsValue](docs/GetGoogleBusinessPerformance200ResponseMetricsValue.md)
  - [Model.GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner](docs/GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner.md)
  - [Model.GetGoogleBusinessPerformance400Response](docs/GetGoogleBusinessPerformance400Response.md)
+ - [Model.GetGoogleBusinessReview200Response](docs/GetGoogleBusinessReview200Response.md)
  - [Model.GetGoogleBusinessReviews200Response](docs/GetGoogleBusinessReviews200Response.md)
- - [Model.GetGoogleBusinessReviews200ResponseReviewsInner](docs/GetGoogleBusinessReviews200ResponseReviewsInner.md)
- - [Model.GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner](docs/GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.md)
- - [Model.GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply](docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.md)
- - [Model.GetGoogleBusinessReviews200ResponseReviewsInnerReviewer](docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.md)
  - [Model.GetGoogleBusinessSearchKeywords200Response](docs/GetGoogleBusinessSearchKeywords200Response.md)
  - [Model.GetGoogleBusinessSearchKeywords200ResponseKeywordsInner](docs/GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.md)
  - [Model.GetGoogleBusinessSearchKeywords200ResponseMonthRange](docs/GetGoogleBusinessSearchKeywords200ResponseMonthRange.md)
@@ -1527,6 +1525,9 @@ Class | Method | HTTP request | Description
  - [Model.GoogleBusinessPlatformDataEventScheduleStartDate](docs/GoogleBusinessPlatformDataEventScheduleStartDate.md)
  - [Model.GoogleBusinessPlatformDataEventScheduleStartTime](docs/GoogleBusinessPlatformDataEventScheduleStartTime.md)
  - [Model.GoogleBusinessPlatformDataOffer](docs/GoogleBusinessPlatformDataOffer.md)
+ - [Model.GoogleBusinessReview](docs/GoogleBusinessReview.md)
+ - [Model.GoogleBusinessReviewReviewReply](docs/GoogleBusinessReviewReviewReply.md)
+ - [Model.GoogleBusinessReviewReviewer](docs/GoogleBusinessReviewReviewer.md)
  - [Model.HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
  - [Model.HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [Model.HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
@@ -1681,6 +1682,7 @@ Class | Method | HTTP request | Description
  - [Model.ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)
  - [Model.ListInboxReviews200Response](docs/ListInboxReviews200Response.md)
  - [Model.ListInboxReviews200ResponseDataInner](docs/ListInboxReviews200ResponseDataInner.md)
+ - [Model.ListInboxReviews200ResponseDataInnerPhotosInner](docs/ListInboxReviews200ResponseDataInnerPhotosInner.md)
  - [Model.ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [Model.ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
  - [Model.ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)

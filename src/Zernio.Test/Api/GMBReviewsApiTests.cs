@@ -81,6 +81,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetGoogleBusinessReview
+        /// </summary>
+        [Fact]
+        public void GetGoogleBusinessReviewTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string reviewId = null;
+            //string? locationId = null;
+            //var response = instance.GetGoogleBusinessReview(accountId, reviewId, locationId);
+            //Assert.IsType<GetGoogleBusinessReview200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetGoogleBusinessReviews
         /// </summary>
         [Fact]

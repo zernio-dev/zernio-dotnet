@@ -1,11 +1,10 @@
-# Zernio.Model.GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply
+# Zernio.Model.ListInboxReviews200ResponseDataInnerPhotosInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **string** | Business owner reply | [optional] 
-**UpdateTime** | **DateTime** |  | [optional] 
+**Url** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
