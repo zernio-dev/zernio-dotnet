@@ -36,10 +36,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        UpdateYoutubeDefaultPlaylist200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
+        /// <returns>AddMessageReaction200Response</returns>
+        AddMessageReaction200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
 
         /// <summary>
         /// Add reaction
@@ -49,10 +49,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
+        /// <returns>ApiResponse of AddMessageReaction200Response</returns>
+        ApiResponse<AddMessageReaction200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
         /// <summary>
         /// Create conversation
         /// </summary>
@@ -269,10 +269,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        UpdateYoutubeDefaultPlaylist200Response RemoveMessageReaction(string conversationId, string messageId, string accountId);
+        /// <returns>RemoveMessageReaction200Response</returns>
+        RemoveMessageReaction200Response RemoveMessageReaction(string conversationId, string messageId, string accountId);
 
         /// <summary>
         /// Remove reaction
@@ -282,10 +282,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId);
+        /// <returns>ApiResponse of RemoveMessageReaction200Response</returns>
+        ApiResponse<RemoveMessageReaction200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId);
         /// <summary>
         /// Search conversations
         /// </summary>
@@ -430,11 +430,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of AddMessageReaction200Response</returns>
+        System.Threading.Tasks.Task<AddMessageReaction200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add reaction
@@ -444,11 +444,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (AddMessageReaction200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddMessageReaction200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create conversation
         /// </summary>
@@ -681,11 +681,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of RemoveMessageReaction200Response</returns>
+        System.Threading.Tasks.Task<RemoveMessageReaction200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Remove reaction
@@ -695,11 +695,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (RemoveMessageReaction200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveMessageReaction200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search conversations
         /// </summary>
@@ -1055,12 +1055,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        public UpdateYoutubeDefaultPlaylist200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+        /// <returns>AddMessageReaction200Response</returns>
+        public AddMessageReaction200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+            Zernio.Client.ApiResponse<AddMessageReaction200Response> localVarResponse = AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
             return localVarResponse.Data;
         }
 
@@ -1069,10 +1069,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+        /// <returns>ApiResponse of AddMessageReaction200Response</returns>
+        public Zernio.Client.ApiResponse<AddMessageReaction200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -1115,7 +1115,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<AddMessageReaction200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1131,13 +1131,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of AddMessageReaction200Response</returns>
+        public async System.Threading.Tasks.Task<AddMessageReaction200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await AddMessageReactionWithHttpInfoAsync(conversationId, messageId, addMessageReactionRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AddMessageReaction200Response> localVarResponse = await AddMessageReactionWithHttpInfoAsync(conversationId, messageId, addMessageReactionRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1146,11 +1146,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (AddMessageReaction200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddMessageReaction200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -1196,7 +1196,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AddMessageReaction200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2486,12 +2486,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        public UpdateYoutubeDefaultPlaylist200Response RemoveMessageReaction(string conversationId, string messageId, string accountId)
+        /// <returns>RemoveMessageReaction200Response</returns>
+        public RemoveMessageReaction200Response RemoveMessageReaction(string conversationId, string messageId, string accountId)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+            Zernio.Client.ApiResponse<RemoveMessageReaction200Response> localVarResponse = RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
             return localVarResponse.Data;
         }
 
@@ -2500,10 +2500,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId)
+        /// <returns>ApiResponse of RemoveMessageReaction200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveMessageReaction200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -2545,7 +2545,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<RemoveMessageReaction200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2561,13 +2561,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of RemoveMessageReaction200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveMessageReaction200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await RemoveMessageReactionWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<RemoveMessageReaction200Response> localVarResponse = await RemoveMessageReactionWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2576,11 +2576,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
-        /// <param name="messageId">The platform message ID</param>
+        /// <param name="messageId">The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (RemoveMessageReaction200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveMessageReaction200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -2625,7 +2625,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveMessageReaction200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

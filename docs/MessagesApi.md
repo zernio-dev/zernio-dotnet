@@ -22,7 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="addmessagereaction"></a>
 # **AddMessageReaction**
-> UpdateYoutubeDefaultPlaylist200Response AddMessageReaction (string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+> AddMessageReaction200Response AddMessageReaction (string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
 
 Add reaction
 
@@ -53,13 +53,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | The conversation ID
-            var messageId = "messageId_example";  // string | The platform message ID to react to
+            var messageId = "messageId_example";  // string | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
             var addMessageReactionRequest = new AddMessageReactionRequest(); // AddMessageReactionRequest | 
 
             try
             {
                 // Add reaction
-                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.AddMessageReaction(conversationId, messageId, addMessageReactionRequest);
+                AddMessageReaction200Response result = apiInstance.AddMessageReaction(conversationId, messageId, addMessageReactionRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -80,7 +80,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add reaction
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+    ApiResponse<AddMessageReaction200Response> response = apiInstance.AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -98,12 +98,12 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **conversationId** | **string** | The conversation ID |  |
-| **messageId** | **string** | The platform message ID to react to |  |
+| **messageId** | **string** | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) |  |
 | **addMessageReactionRequest** | [**AddMessageReactionRequest**](AddMessageReactionRequest.md) |  |  |
 
 ### Return type
 
-[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+[**AddMessageReaction200Response**](AddMessageReaction200Response.md)
 
 ### Authorization
 
@@ -118,11 +118,11 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Reaction added |  -  |
+| **200** | The platform accepted the reaction request. This does not guarantee the reaction was placed: the platform never confirms what it acted on. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **404** | Account or conversation not found |  -  |
+| **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -981,7 +981,7 @@ catch (ApiException e)
 
 <a id="removemessagereaction"></a>
 # **RemoveMessageReaction**
-> UpdateYoutubeDefaultPlaylist200Response RemoveMessageReaction (string conversationId, string messageId, string accountId)
+> RemoveMessageReaction200Response RemoveMessageReaction (string conversationId, string messageId, string accountId)
 
 Remove reaction
 
@@ -1012,13 +1012,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | The conversation ID
-            var messageId = "messageId_example";  // string | The platform message ID
+            var messageId = "messageId_example";  // string | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
             var accountId = "accountId_example";  // string | Social account ID
 
             try
             {
                 // Remove reaction
-                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.RemoveMessageReaction(conversationId, messageId, accountId);
+                RemoveMessageReaction200Response result = apiInstance.RemoveMessageReaction(conversationId, messageId, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1039,7 +1039,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove reaction
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+    ApiResponse<RemoveMessageReaction200Response> response = apiInstance.RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1057,12 +1057,12 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **conversationId** | **string** | The conversation ID |  |
-| **messageId** | **string** | The platform message ID |  |
+| **messageId** | **string** | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) |  |
 | **accountId** | **string** | Social account ID |  |
 
 ### Return type
 
-[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+[**RemoveMessageReaction200Response**](RemoveMessageReaction200Response.md)
 
 ### Authorization
 
@@ -1077,11 +1077,11 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Reaction removed |  -  |
+| **200** | The platform accepted the removal request. This does not guarantee a reaction was removed: the platform never confirms what it acted on, and a reaction placed by the other participant cannot be removed (platform rule). Check &#x60;fromMe&#x60; on GET /messages to know who placed a reaction. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **404** | Account or conversation not found |  -  |
+| **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

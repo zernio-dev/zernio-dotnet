@@ -65,7 +65,7 @@ namespace Zernio.Test.Api
             //string messageId = null;
             //AddMessageReactionRequest addMessageReactionRequest = null;
             //var response = instance.AddMessageReaction(conversationId, messageId, addMessageReactionRequest);
-            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
+            //Assert.IsType<AddMessageReaction200Response>(response);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Zernio.Test.Api
             //string messageId = null;
             //string accountId = null;
             //var response = instance.RemoveMessageReaction(conversationId, messageId, accountId);
-            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
+            //Assert.IsType<RemoveMessageReaction200Response>(response);
         }
 
         /// <summary>

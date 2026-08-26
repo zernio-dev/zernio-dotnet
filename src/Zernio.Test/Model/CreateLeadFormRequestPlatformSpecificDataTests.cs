@@ -137,12 +137,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ThankYouEnableMessenger'
+        /// </summary>
+        [Fact]
+        public void ThankYouEnableMessengerTest()
+        {
+            // TODO unit test for the property 'ThankYouEnableMessenger'
+        }
+
+        /// <summary>
         /// Test the property 'IsOptimizedForQuality'
         /// </summary>
         [Fact]
         public void IsOptimizedForQualityTest()
         {
             // TODO unit test for the property 'IsOptimizedForQuality'
+        }
+
+        /// <summary>
+        /// Test the property 'IsPhoneSmsVerifyEnabled'
+        /// </summary>
+        [Fact]
+        public void IsPhoneSmsVerifyEnabledTest()
+        {
+            // TODO unit test for the property 'IsPhoneSmsVerifyEnabled'
         }
 
         /// <summary>

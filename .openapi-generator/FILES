@@ -51,6 +51,7 @@ docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
 docs/AddDiscordMemberRole200Response.md
+docs/AddMessageReaction200Response.md
 docs/AddMessageReactionRequest.md
 docs/AddTrackingTagSharedAccount201Response.md
 docs/AddTrackingTagSharedAccountRequest.md
@@ -1189,6 +1190,7 @@ docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
 docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
+docs/RemoveMessageReaction200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
@@ -1894,6 +1896,7 @@ src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
 src/Zernio.Test/Model/AddDiscordMemberRole200ResponseTests.cs
+src/Zernio.Test/Model/AddMessageReaction200ResponseTests.cs
 src/Zernio.Test/Model/AddMessageReactionRequestTests.cs
 src/Zernio.Test/Model/AddTrackingTagSharedAccount201ResponseTests.cs
 src/Zernio.Test/Model/AddTrackingTagSharedAccountRequestTests.cs
@@ -2996,6 +2999,7 @@ src/Zernio.Test/Model/RemediatePhoneNumberRequestTests.cs
 src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
 src/Zernio.Test/Model/RemoveConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/RemoveDiscordMemberRole200ResponseTests.cs
+src/Zernio.Test/Model/RemoveMessageReaction200ResponseTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompanies200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTests.cs
@@ -3699,6 +3703,7 @@ src/Zernio/Model/AddConversionAssociations200Response.cs
 src/Zernio/Model/AddConversionAssociations200ResponseFailedInner.cs
 src/Zernio/Model/AddConversionAssociationsRequest.cs
 src/Zernio/Model/AddDiscordMemberRole200Response.cs
+src/Zernio/Model/AddMessageReaction200Response.cs
 src/Zernio/Model/AddMessageReactionRequest.cs
 src/Zernio/Model/AddTrackingTagSharedAccount201Response.cs
 src/Zernio/Model/AddTrackingTagSharedAccountRequest.cs
@@ -4801,6 +4806,7 @@ src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInnerOneOf.cs
 src/Zernio/Model/RemoveBookmark200Response.cs
 src/Zernio/Model/RemoveConversionAssociations200Response.cs
 src/Zernio/Model/RemoveDiscordMemberRole200Response.cs
+src/Zernio/Model/RemoveMessageReaction200Response.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompanies200Response.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequest.cs

@@ -50,11 +50,13 @@ namespace Zernio.Model
         /// <param name="thankYouButtonText">thankYouButtonText.</param>
         /// <param name="thankYouButtonType">thankYouButtonType.</param>
         /// <param name="thankYouWebsiteUrl">thankYouWebsiteUrl.</param>
+        /// <param name="thankYouEnableMessenger">Adds a &#39;Continue in Messenger&#39; option to the thank-you page (Meta thank_you_page.enable_messenger), so the lead can carry on chatting with the Page. Set thankYouButtonType to MESSAGE_BUSINESS or P2B_MESSENGER to make the chat the primary button. (default to false).</param>
         /// <param name="isOptimizedForQuality">Set true for a higher-intent form (adds a review step before submit)..</param>
+        /// <param name="isPhoneSmsVerifyEnabled">Requires the lead to verify their phone number over SMS before the form submits (Meta is_phone_sms_verify_enabled). Only meaningful on a form with a PHONE question. Meta can restrict this parameter to apps holding a capability: when it does, the create fails with a 422 naming platformSpecificData.isPhoneSmsVerifyEnabled, and the toggle then has to be set in Meta&#39;s form builder. (default to false).</param>
         /// <param name="blockDisplayForNonTargetedViewer">blockDisplayForNonTargetedViewer.</param>
         /// <param name="questionPageCustomHeadline">questionPageCustomHeadline.</param>
         /// <param name="contextCard">contextCard.</param>
-        public MetaLeadFormPlatformData(List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default, bool blockDisplayForNonTargetedViewer = default, string questionPageCustomHeadline = default, MetaLeadFormPlatformDataContextCard contextCard = default)
+        public MetaLeadFormPlatformData(List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool thankYouEnableMessenger = false, bool isOptimizedForQuality = default, bool isPhoneSmsVerifyEnabled = false, bool blockDisplayForNonTargetedViewer = default, string questionPageCustomHeadline = default, MetaLeadFormPlatformDataContextCard contextCard = default)
         {
             // to ensure "questions" is required (not null)
             if (questions == null)
@@ -70,7 +72,9 @@ namespace Zernio.Model
             this.ThankYouButtonText = thankYouButtonText;
             this.ThankYouButtonType = thankYouButtonType;
             this.ThankYouWebsiteUrl = thankYouWebsiteUrl;
+            this.ThankYouEnableMessenger = thankYouEnableMessenger;
             this.IsOptimizedForQuality = isOptimizedForQuality;
+            this.IsPhoneSmsVerifyEnabled = isPhoneSmsVerifyEnabled;
             this.BlockDisplayForNonTargetedViewer = blockDisplayForNonTargetedViewer;
             this.QuestionPageCustomHeadline = questionPageCustomHeadline;
             this.ContextCard = contextCard;
@@ -137,11 +141,25 @@ namespace Zernio.Model
         public string ThankYouWebsiteUrl { get; set; }
 
         /// <summary>
+        /// Adds a &#39;Continue in Messenger&#39; option to the thank-you page (Meta thank_you_page.enable_messenger), so the lead can carry on chatting with the Page. Set thankYouButtonType to MESSAGE_BUSINESS or P2B_MESSENGER to make the chat the primary button.
+        /// </summary>
+        /// <value>Adds a &#39;Continue in Messenger&#39; option to the thank-you page (Meta thank_you_page.enable_messenger), so the lead can carry on chatting with the Page. Set thankYouButtonType to MESSAGE_BUSINESS or P2B_MESSENGER to make the chat the primary button.</value>
+        [DataMember(Name = "thankYouEnableMessenger", EmitDefaultValue = true)]
+        public bool ThankYouEnableMessenger { get; set; }
+
+        /// <summary>
         /// Set true for a higher-intent form (adds a review step before submit).
         /// </summary>
         /// <value>Set true for a higher-intent form (adds a review step before submit).</value>
         [DataMember(Name = "isOptimizedForQuality", EmitDefaultValue = true)]
         public bool IsOptimizedForQuality { get; set; }
+
+        /// <summary>
+        /// Requires the lead to verify their phone number over SMS before the form submits (Meta is_phone_sms_verify_enabled). Only meaningful on a form with a PHONE question. Meta can restrict this parameter to apps holding a capability: when it does, the create fails with a 422 naming platformSpecificData.isPhoneSmsVerifyEnabled, and the toggle then has to be set in Meta&#39;s form builder.
+        /// </summary>
+        /// <value>Requires the lead to verify their phone number over SMS before the form submits (Meta is_phone_sms_verify_enabled). Only meaningful on a form with a PHONE question. Meta can restrict this parameter to apps holding a capability: when it does, the create fails with a 422 naming platformSpecificData.isPhoneSmsVerifyEnabled, and the toggle then has to be set in Meta&#39;s form builder.</value>
+        [DataMember(Name = "isPhoneSmsVerifyEnabled", EmitDefaultValue = true)]
+        public bool IsPhoneSmsVerifyEnabled { get; set; }
 
         /// <summary>
         /// Gets or Sets BlockDisplayForNonTargetedViewer
@@ -178,7 +196,9 @@ namespace Zernio.Model
             sb.Append("  ThankYouButtonText: ").Append(ThankYouButtonText).Append("\n");
             sb.Append("  ThankYouButtonType: ").Append(ThankYouButtonType).Append("\n");
             sb.Append("  ThankYouWebsiteUrl: ").Append(ThankYouWebsiteUrl).Append("\n");
+            sb.Append("  ThankYouEnableMessenger: ").Append(ThankYouEnableMessenger).Append("\n");
             sb.Append("  IsOptimizedForQuality: ").Append(IsOptimizedForQuality).Append("\n");
+            sb.Append("  IsPhoneSmsVerifyEnabled: ").Append(IsPhoneSmsVerifyEnabled).Append("\n");
             sb.Append("  BlockDisplayForNonTargetedViewer: ").Append(BlockDisplayForNonTargetedViewer).Append("\n");
             sb.Append("  QuestionPageCustomHeadline: ").Append(QuestionPageCustomHeadline).Append("\n");
             sb.Append("  ContextCard: ").Append(ContextCard).Append("\n");
