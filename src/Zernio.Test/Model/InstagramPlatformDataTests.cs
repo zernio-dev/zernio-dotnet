@@ -128,6 +128,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MuteAudio'
+        /// </summary>
+        [Fact]
+        public void MuteAudioTest()
+        {
+            // TODO unit test for the property 'MuteAudio'
+        }
+
+        /// <summary>
         /// Test the property 'ThumbOffset'
         /// </summary>
         [Fact]
