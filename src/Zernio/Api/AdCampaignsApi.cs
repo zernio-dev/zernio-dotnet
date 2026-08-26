@@ -29,6 +29,29 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Attach extension assets to a Google Search campaign
+        /// </summary>
+        /// <remarks>
+        /// Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <returns>AttachCampaignAssets201Response</returns>
+        AttachCampaignAssets201Response AttachCampaignAssets(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest);
+
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign
+        /// </summary>
+        /// <remarks>
+        /// Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <returns>ApiResponse of AttachCampaignAssets201Response</returns>
+        ApiResponse<AttachCampaignAssets201Response> AttachCampaignAssetsWithHttpInfo(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest);
+        /// <summary>
         /// Boost post as ad
         /// </summary>
         /// <remarks>
@@ -649,6 +672,31 @@ namespace Zernio.Api
     public interface IAdCampaignsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign
+        /// </summary>
+        /// <remarks>
+        /// Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AttachCampaignAssets201Response</returns>
+        System.Threading.Tasks.Task<AttachCampaignAssets201Response> AttachCampaignAssetsAsync(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign
+        /// </summary>
+        /// <remarks>
+        /// Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AttachCampaignAssets201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AttachCampaignAssets201Response>> AttachCampaignAssetsWithHttpInfoAsync(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Boost post as ad
         /// </summary>
@@ -1516,6 +1564,149 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <returns>AttachCampaignAssets201Response</returns>
+        public AttachCampaignAssets201Response AttachCampaignAssets(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest)
+        {
+            Zernio.Client.ApiResponse<AttachCampaignAssets201Response> localVarResponse = AttachCampaignAssetsWithHttpInfo(campaignId, attachCampaignAssetsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <returns>ApiResponse of AttachCampaignAssets201Response</returns>
+        public Zernio.Client.ApiResponse<AttachCampaignAssets201Response> AttachCampaignAssetsWithHttpInfo(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->AttachCampaignAssets");
+
+            // verify the required parameter 'attachCampaignAssetsRequest' is set
+            if (attachCampaignAssetsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'attachCampaignAssetsRequest' when calling AdCampaignsApi->AttachCampaignAssets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = attachCampaignAssetsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AttachCampaignAssets201Response>("/v1/ads/campaigns/{campaignId}/assets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AttachCampaignAssets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AttachCampaignAssets201Response</returns>
+        public async System.Threading.Tasks.Task<AttachCampaignAssets201Response> AttachCampaignAssetsAsync(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AttachCampaignAssets201Response> localVarResponse = await AttachCampaignAssetsWithHttpInfoAsync(campaignId, attachCampaignAssetsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Attach extension assets to a Google Search campaign Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="attachCampaignAssetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AttachCampaignAssets201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AttachCampaignAssets201Response>> AttachCampaignAssetsWithHttpInfoAsync(string campaignId, AttachCampaignAssetsRequest attachCampaignAssetsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->AttachCampaignAssets");
+
+            // verify the required parameter 'attachCampaignAssetsRequest' is set
+            if (attachCampaignAssetsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'attachCampaignAssetsRequest' when calling AdCampaignsApi->AttachCampaignAssets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = attachCampaignAssetsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AttachCampaignAssets201Response>("/v1/ads/campaigns/{campaignId}/assets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AttachCampaignAssets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>

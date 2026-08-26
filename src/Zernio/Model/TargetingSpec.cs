@@ -115,8 +115,8 @@ namespace Zernio.Model
         /// <param name="metros">DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;)..</param>
         /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured only where the capability map allows radius (Meta)..</param>
         /// <param name="excludedLocations">excludedLocations.</param>
-        /// <param name="ageMin">ageMin.</param>
-        /// <param name="ageMax">ageMax.</param>
+        /// <param name="ageMin">Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 &#x3D; 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there..</param>
+        /// <param name="ageMax">Maximum age. Same per-platform application and clamping as ageMin..</param>
         /// <param name="gender">Restrict by gender. &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X..</param>
         /// <param name="incomeTier">Normalized household-income tier (ZIP/percentile based). Meta and TikTok express all four. Google maps only &#x60;top_10&#x60; (its INCOME_RANGE_90_UP); other tiers on Google, and any income tier on LinkedIn / X / Pinterest, are rejected. On Meta, income/zip targeting requires the relevant &#x60;specialAdCategories&#x60; to be unset (housing/employment/credit ads cannot use it). .</param>
         /// <param name="languages">Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;) for a specific one. Unknown codes are rejected..</param>
@@ -201,14 +201,16 @@ namespace Zernio.Model
         public TargetingSpecExcludedLocations ExcludedLocations { get; set; }
 
         /// <summary>
-        /// Gets or Sets AgeMin
+        /// Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 &#x3D; 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there.
         /// </summary>
+        /// <value>Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 &#x3D; 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there.</value>
         [DataMember(Name = "ageMin", EmitDefaultValue = false)]
         public int AgeMin { get; set; }
 
         /// <summary>
-        /// Gets or Sets AgeMax
+        /// Maximum age. Same per-platform application and clamping as ageMin.
         /// </summary>
+        /// <value>Maximum age. Same per-platform application and clamping as ageMin.</value>
         [DataMember(Name = "ageMax", EmitDefaultValue = false)]
         public int AgeMax { get; set; }
 

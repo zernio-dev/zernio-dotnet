@@ -84,6 +84,10 @@ docs/ArchiveLeadForm200Response.md
 docs/AssignGoogleBusinessLocation200Response.md
 docs/AssignGoogleBusinessLocation200ResponseAccount.md
 docs/AssignGoogleBusinessLocationRequest.md
+docs/AttachCampaignAssets201Response.md
+docs/AttachCampaignAssetsRequest.md
+docs/AttachCampaignAssetsRequestSitelinksInner.md
+docs/AttachCampaignAssetsRequestStructuredSnippetsInner.md
 docs/AttachNumberToSipTrunk200Response.md
 docs/AttachNumberToSipTrunkRequest.md
 docs/BatchGetGoogleBusinessReviews200Response.md
@@ -328,6 +332,7 @@ docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestSitelinksInner.md
+docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
 docs/CreateStandaloneAdRequestTracking.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
@@ -1929,6 +1934,10 @@ src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
+src/Zernio.Test/Model/AttachCampaignAssets201ResponseTests.cs
+src/Zernio.Test/Model/AttachCampaignAssetsRequestSitelinksInnerTests.cs
+src/Zernio.Test/Model/AttachCampaignAssetsRequestStructuredSnippetsInnerTests.cs
+src/Zernio.Test/Model/AttachCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunkRequestTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInnerTests.cs
@@ -2163,6 +2172,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestSitelinksInnerTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTrackingTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
@@ -3737,6 +3747,10 @@ src/Zernio/Model/ArchiveLeadForm200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
+src/Zernio/Model/AttachCampaignAssets201Response.cs
+src/Zernio/Model/AttachCampaignAssetsRequest.cs
+src/Zernio/Model/AttachCampaignAssetsRequestSitelinksInner.cs
+src/Zernio/Model/AttachCampaignAssetsRequestStructuredSnippetsInner.cs
 src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
 src/Zernio/Model/AttachNumberToSipTrunkRequest.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200Response.cs
@@ -3972,6 +3986,7 @@ src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestSitelinksInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestStructuredSnippetsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTracking.cs
 src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs

@@ -695,6 +695,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Callouts'
+        /// </summary>
+        [Fact]
+        public void CalloutsTest()
+        {
+            // TODO unit test for the property 'Callouts'
+        }
+
+        /// <summary>
+        /// Test the property 'StructuredSnippets'
+        /// </summary>
+        [Fact]
+        public void StructuredSnippetsTest()
+        {
+            // TODO unit test for the property 'StructuredSnippets'
+        }
+
+        /// <summary>
         /// Test the property 'AdvantageAudience'
         /// </summary>
         [Fact]

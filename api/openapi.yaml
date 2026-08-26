@@ -28733,6 +28733,54 @@ paths:
       - linkedin
       - pinterest
       - x
+  /v1/ads/campaigns/{campaignId}/assets:
+    post:
+      description: |-
+        Attach sitelinks, callouts and/or structured snippets to an already-existing Google
+        Search campaign — the same builders POST /v1/ads/create uses, but without rebuilding
+        the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.
+
+        Google-only. Other platforms have no equivalent extension surface and return 501.
+
+        Approval status is Google-async; poll `asset.policy_summary` after review. Assets
+        stay in the account library even if the campaign is later deleted.
+      operationId: attachCampaignAssets
+      parameters:
+      - description: Numeric Google platform campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/attachCampaignAssets_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/attachCampaignAssets_201_response"
+          description: Assets attached
+        "400":
+          description: "Invalid input, or Google rejected the assets"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Google Ads
+      security:
+      - bearerAuth: []
+      summary: Attach extension assets to a Google Search campaign
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
   /v1/ads/campaigns/{campaignId}/analytics:
     get:
       description: |
@@ -51209,10 +51257,17 @@ components:
         excludedLocations:
           $ref: "#/components/schemas/TargetingSpec_excludedLocations"
         ageMin:
+          description: "Minimum age. Applied on Meta, TikTok and Pinterest; ignored\
+            \ on Google, LinkedIn and X. Each platform clamps to its own range: Meta\
+            \ and Pinterest effectively cap at 65 (65 = 65+), TikTok maps up to 100.\
+            \ Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18\
+            \ there."
           maximum: 100
           minimum: 13
           type: integer
         ageMax:
+          description: Maximum age. Same per-platform application and clamping as
+            ageMin.
           maximum: 100
           minimum: 13
           type: integer
@@ -84525,6 +84580,111 @@ components:
         message:
           description: Human-readable summary (present only when skipped)
           type: string
+    attachCampaignAssets_request_sitelinks_inner:
+      properties:
+        text:
+          maxLength: 25
+          minLength: 1
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        description1:
+          maxLength: 35
+          minLength: 1
+          type: string
+        description2:
+          maxLength: 35
+          minLength: 1
+          type: string
+      required:
+      - linkUrl
+      - text
+    attachCampaignAssets_request_structuredSnippets_inner:
+      properties:
+        header:
+          enum:
+          - Amenities
+          - Brands
+          - Courses
+          - Degree programs
+          - Destinations
+          - Featured hotels
+          - Insurance coverage
+          - Models
+          - Neighborhoods
+          - Service catalog
+          - Shows
+          - Styles
+          - Types
+          type: string
+        values:
+          items:
+            maxLength: 25
+            minLength: 1
+            type: string
+          maxItems: 10
+          minItems: 3
+          type: array
+      required:
+      - header
+      - values
+    attachCampaignAssets_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads SocialAccount id — resolves the customer
+            id + refresh token.
+          type: string
+        sitelinks:
+          description: See POST /v1/ads/create sitelinks — same shape.
+          items:
+            $ref: "#/components/schemas/attachCampaignAssets_request_sitelinks_inner"
+          maxItems: 20
+          minItems: 2
+          type: array
+        callouts:
+          items:
+            maxLength: 25
+            minLength: 1
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        structuredSnippets:
+          items:
+            $ref: "#/components/schemas/attachCampaignAssets_request_structuredSnippets_inner"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+    attachCampaignAssets_201_response:
+      example:
+        sitelinkAssetResourceNames:
+        - sitelinkAssetResourceNames
+        - sitelinkAssetResourceNames
+        campaignId: campaignId
+        structuredSnippetAssetResourceNames:
+        - structuredSnippetAssetResourceNames
+        - structuredSnippetAssetResourceNames
+        calloutAssetResourceNames:
+        - calloutAssetResourceNames
+        - calloutAssetResourceNames
+      properties:
+        campaignId:
+          type: string
+        sitelinkAssetResourceNames:
+          items:
+            type: string
+          type: array
+        calloutAssetResourceNames:
+          items:
+            type: string
+          type: array
+        structuredSnippetAssetResourceNames:
+          items:
+            type: string
+          type: array
     getCampaignAnalytics_202_response:
       allOf:
       - $ref: "#/components/schemas/CampaignAnalyticsResponse"
@@ -87747,6 +87907,36 @@ components:
       required:
       - linkUrl
       - text
+    createStandaloneAd_request_structuredSnippets_inner:
+      properties:
+        header:
+          description: One of Google's 13 predefined snippet headers.
+          enum:
+          - Amenities
+          - Brands
+          - Courses
+          - Degree programs
+          - Destinations
+          - Featured hotels
+          - Insurance coverage
+          - Models
+          - Neighborhoods
+          - Service catalog
+          - Shows
+          - Styles
+          - Types
+          type: string
+        values:
+          items:
+            maxLength: 25
+            minLength: 1
+            type: string
+          maxItems: 10
+          minItems: 3
+          type: array
+      required:
+      - header
+      - values
     createStandaloneAd_request_attributionSpec_inner:
       properties:
         eventType:
@@ -88567,6 +88757,31 @@ components:
             $ref: "#/components/schemas/createStandaloneAd_request_sitelinks_inner"
           maxItems: 20
           minItems: 2
+          type: array
+        callouts:
+          description: |
+            Google Search only. Short callout texts (max 25 chars each) that appear as
+            non-clickable annotations under the ad, e.g. "Free shipping", "24/7 support".
+            Each becomes one Asset (`callout_asset`) plus a CampaignAsset link with
+            field_type CALLOUT. Response's creative.callouts[] echoes each input plus
+            its Google resourceName.
+          items:
+            maxLength: 25
+            minLength: 1
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        structuredSnippets:
+          description: |
+            Google Search only. Structured snippets — one header from Google's
+            predefined list plus 3-10 values (max 25 chars each). Each becomes one
+            Asset (`structured_snippet_asset`) plus a CampaignAsset link with
+            field_type STRUCTURED_SNIPPET.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_structuredSnippets_inner"
+          maxItems: 20
+          minItems: 1
           type: array
         advantageAudience:
           description: "Meta only. Controls the Advantage audience feature (targeting_automation).\
@@ -98113,6 +98328,9 @@ components:
     AdTreeCampaign_optimizationGoal:
       anyOf:
       - type: string
+      - items:
+          type: string
+        type: array
       description: "A single string when every ad set shares one optimization goal;\
         \ a JSON array of the distinct goals when ad sets differ (never a comma-joined\
         \ string); array element order is not guaranteed, treat it as an unordered\
@@ -98120,7 +98338,6 @@ components:
         \ VALUE, LEAD_GENERATION. LinkedIn: the campaign optimizationTargetType (e.g.\
         \ MAX_CLICK, MAX_IMPRESSION, NONE); `NONE` with a manual costType is a campaign\
         \ LinkedIn will not deliver."
-      items: {}
     AdTreeCampaign_promotedObject:
       description: Meta promoted object at campaign level (conversion event details)
       example:

@@ -47,6 +47,18 @@ namespace Zernio.Model
             ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdTreeCampaignOptimizationGoal" /> class
+        /// with the <see cref="List{String}" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of List&lt;string&gt;.</param>
+        public AdTreeCampaignOptimizationGoal(List<string> actualInstance)
+        {
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -61,13 +73,17 @@ namespace Zernio.Model
             }
             set
             {
-                if (value.GetType() == typeof(string))
+                if (value.GetType() == typeof(List<string>))
+                {
+                    _actualInstance = value;
+                }
+                else if (value.GetType() == typeof(string))
                 {
                     _actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: string");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: List<string>, string");
                 }
             }
         }
@@ -80,6 +96,16 @@ namespace Zernio.Model
         public string GetString()
         {
             return (string)ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `List&lt;string&gt;`. If the actual instance is not `List&lt;string&gt;`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of List&lt;string&gt;</returns>
+        public List<string> GetList()
+        {
+            return (List<string>)ActualInstance;
         }
 
         /// <summary>
@@ -116,6 +142,18 @@ namespace Zernio.Model
             if (string.IsNullOrEmpty(jsonString))
             {
                 return newAdTreeCampaignOptimizationGoal;
+            }
+
+            try
+            {
+                newAdTreeCampaignOptimizationGoal = new AdTreeCampaignOptimizationGoal(JsonConvert.DeserializeObject<List<string>>(jsonString, AdTreeCampaignOptimizationGoal.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newAdTreeCampaignOptimizationGoal;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<string>: {1}", jsonString, exception.ToString()));
             }
 
             try

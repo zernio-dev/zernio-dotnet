@@ -55,6 +55,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AttachCampaignAssets
+        /// </summary>
+        [Fact]
+        public void AttachCampaignAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //AttachCampaignAssetsRequest attachCampaignAssetsRequest = null;
+            //var response = instance.AttachCampaignAssets(campaignId, attachCampaignAssetsRequest);
+            //Assert.IsType<AttachCampaignAssets201Response>(response);
+        }
+
+        /// <summary>
         /// Test BoostPost
         /// </summary>
         [Fact]
