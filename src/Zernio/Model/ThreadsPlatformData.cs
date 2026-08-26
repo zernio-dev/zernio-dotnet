@@ -37,10 +37,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ThreadsPlatformData" /> class.
         /// </summary>
         /// <param name="topicTag">Topic tag for post categorization and discoverability on Threads. Must be 1-50 characters, cannot contain periods (.) or ampersands (&amp;). Overrides auto-extraction from content hashtags when provided..</param>
+        /// <param name="firstComment">Optional first comment to post immediately after publishing, as a reply to the published post. With threadItems, it replies to the root post. Up to 500 characters (the Threads post limit). The reply is itself a Threads post, so it consumes one of the 250 posts a profile may publish per 24 hours..</param>
         /// <param name="threadItems">Complete sequence of posts in a Threads thread. The first item becomes the root post, subsequent items are chained as replies. When threadItems is provided, the top-level content field is used only for display and search purposes, it is NOT published. You must include your first post as threadItems[0]. .</param>
-        public ThreadsPlatformData(string topicTag = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default)
+        public ThreadsPlatformData(string topicTag = default, string firstComment = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default)
         {
             this.TopicTag = topicTag;
+            this.FirstComment = firstComment;
             this.ThreadItems = threadItems;
         }
 
@@ -50,6 +52,13 @@ namespace Zernio.Model
         /// <value>Topic tag for post categorization and discoverability on Threads. Must be 1-50 characters, cannot contain periods (.) or ampersands (&amp;). Overrides auto-extraction from content hashtags when provided.</value>
         [DataMember(Name = "topic_tag", EmitDefaultValue = false)]
         public string TopicTag { get; set; }
+
+        /// <summary>
+        /// Optional first comment to post immediately after publishing, as a reply to the published post. With threadItems, it replies to the root post. Up to 500 characters (the Threads post limit). The reply is itself a Threads post, so it consumes one of the 250 posts a profile may publish per 24 hours.
+        /// </summary>
+        /// <value>Optional first comment to post immediately after publishing, as a reply to the published post. With threadItems, it replies to the root post. Up to 500 characters (the Threads post limit). The reply is itself a Threads post, so it consumes one of the 250 posts a profile may publish per 24 hours.</value>
+        [DataMember(Name = "firstComment", EmitDefaultValue = false)]
+        public string FirstComment { get; set; }
 
         /// <summary>
         /// Complete sequence of posts in a Threads thread. The first item becomes the root post, subsequent items are chained as replies. When threadItems is provided, the top-level content field is used only for display and search purposes, it is NOT published. You must include your first post as threadItems[0]. 
@@ -67,6 +76,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ThreadsPlatformData {\n");
             sb.Append("  TopicTag: ").Append(TopicTag).Append("\n");
+            sb.Append("  FirstComment: ").Append(FirstComment).Append("\n");
             sb.Append("  ThreadItems: ").Append(ThreadItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -98,6 +108,12 @@ namespace Zernio.Model
             if (this.TopicTag != null && this.TopicTag.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for TopicTag, length must be greater than 1.", new [] { "TopicTag" });
+            }
+
+            // FirstComment (string) maxLength
+            if (this.FirstComment != null && this.FirstComment.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for FirstComment, length must be less than 500.", new [] { "FirstComment" });
             }
 
             yield break;

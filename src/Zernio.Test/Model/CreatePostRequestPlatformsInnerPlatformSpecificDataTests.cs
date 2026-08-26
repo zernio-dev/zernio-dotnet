@@ -164,6 +164,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'FirstComment'
+        /// </summary>
+        [Fact]
+        public void FirstCommentTest()
+        {
+            // TODO unit test for the property 'FirstComment'
+        }
+
+        /// <summary>
         /// Test the property 'ContentType'
         /// </summary>
         [Fact]
@@ -179,15 +188,6 @@ namespace Zernio.Test.Model
         public void TitleTest()
         {
             // TODO unit test for the property 'Title'
-        }
-
-        /// <summary>
-        /// Test the property 'FirstComment'
-        /// </summary>
-        [Fact]
-        public void FirstCommentTest()
-        {
-            // TODO unit test for the property 'FirstComment'
         }
 
         /// <summary>

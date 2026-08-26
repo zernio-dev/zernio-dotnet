@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'FirstComment'
+        /// </summary>
+        [Fact]
+        public void FirstCommentTest()
+        {
+            // TODO unit test for the property 'FirstComment'
+        }
+
+        /// <summary>
         /// Test the property 'ThreadItems'
         /// </summary>
         [Fact]
