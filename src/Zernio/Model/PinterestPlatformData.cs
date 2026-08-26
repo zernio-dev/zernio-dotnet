@@ -38,16 +38,20 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="title">Pin title. Defaults to first line of content or \&quot;Pin\&quot;. Must be ≤ 100 characters..</param>
         /// <param name="boardId">Target Pinterest board ID. If omitted, the first available board is used..</param>
+        /// <param name="boardSectionId">Target section inside the board. Optional; the pin lands on the board itself when omitted. Pinterest rejects the pin if the section does not belong to boardId, so send both together..</param>
         /// <param name="link">Destination link (pin URL).</param>
         /// <param name="coverImageUrl">Optional cover image for video pins.</param>
         /// <param name="coverImageKeyFrameTime">Optional key frame time in seconds for derived video cover.</param>
-        public PinterestPlatformData(string title = default, string boardId = default, string link = default, string coverImageUrl = default, int coverImageKeyFrameTime = default)
+        /// <param name="isAiGenerated">When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection. (default to false).</param>
+        public PinterestPlatformData(string title = default, string boardId = default, string boardSectionId = default, string link = default, string coverImageUrl = default, int coverImageKeyFrameTime = default, bool isAiGenerated = false)
         {
             this.Title = title;
             this.BoardId = boardId;
+            this.BoardSectionId = boardSectionId;
             this.Link = link;
             this.CoverImageUrl = coverImageUrl;
             this.CoverImageKeyFrameTime = coverImageKeyFrameTime;
+            this.IsAiGenerated = isAiGenerated;
         }
 
         /// <summary>
@@ -63,6 +67,13 @@ namespace Zernio.Model
         /// <value>Target Pinterest board ID. If omitted, the first available board is used.</value>
         [DataMember(Name = "boardId", EmitDefaultValue = false)]
         public string BoardId { get; set; }
+
+        /// <summary>
+        /// Target section inside the board. Optional; the pin lands on the board itself when omitted. Pinterest rejects the pin if the section does not belong to boardId, so send both together.
+        /// </summary>
+        /// <value>Target section inside the board. Optional; the pin lands on the board itself when omitted. Pinterest rejects the pin if the section does not belong to boardId, so send both together.</value>
+        [DataMember(Name = "boardSectionId", EmitDefaultValue = false)]
+        public string BoardSectionId { get; set; }
 
         /// <summary>
         /// Destination link (pin URL)
@@ -86,6 +97,13 @@ namespace Zernio.Model
         public int CoverImageKeyFrameTime { get; set; }
 
         /// <summary>
+        /// When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection.
+        /// </summary>
+        /// <value>When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection.</value>
+        [DataMember(Name = "isAiGenerated", EmitDefaultValue = true)]
+        public bool IsAiGenerated { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,9 +113,11 @@ namespace Zernio.Model
             sb.Append("class PinterestPlatformData {\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  BoardId: ").Append(BoardId).Append("\n");
+            sb.Append("  BoardSectionId: ").Append(BoardSectionId).Append("\n");
             sb.Append("  Link: ").Append(Link).Append("\n");
             sb.Append("  CoverImageUrl: ").Append(CoverImageUrl).Append("\n");
             sb.Append("  CoverImageKeyFrameTime: ").Append(CoverImageKeyFrameTime).Append("\n");
+            sb.Append("  IsAiGenerated: ").Append(IsAiGenerated).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

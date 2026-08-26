@@ -344,6 +344,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BoardSectionId'
+        /// </summary>
+        [Fact]
+        public void BoardSectionIdTest()
+        {
+            // TODO unit test for the property 'BoardSectionId'
+        }
+
+        /// <summary>
         /// Test the property 'Link'
         /// </summary>
         [Fact]

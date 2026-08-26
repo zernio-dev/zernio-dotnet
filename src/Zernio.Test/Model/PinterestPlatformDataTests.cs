@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BoardSectionId'
+        /// </summary>
+        [Fact]
+        public void BoardSectionIdTest()
+        {
+            // TODO unit test for the property 'BoardSectionId'
+        }
+
+        /// <summary>
         /// Test the property 'Link'
         /// </summary>
         [Fact]
@@ -98,6 +107,15 @@ namespace Zernio.Test.Model
         public void CoverImageKeyFrameTimeTest()
         {
             // TODO unit test for the property 'CoverImageKeyFrameTime'
+        }
+
+        /// <summary>
+        /// Test the property 'IsAiGenerated'
+        /// </summary>
+        [Fact]
+        public void IsAiGeneratedTest()
+        {
+            // TODO unit test for the property 'IsAiGenerated'
         }
     }
 }
