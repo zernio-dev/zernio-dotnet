@@ -8,7 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="getwhatsapplibrarytemplate"></a>
 # **GetWhatsAppLibraryTemplate**
-> GetWhatsAppLibraryTemplate200Response GetWhatsAppLibraryTemplate (string accountId, string name)
+> GetWhatsAppLibraryTemplate200Response GetWhatsAppLibraryTemplate (string accountId, string name, string? language = null)
 
 Look up a library template
 
@@ -40,11 +40,12 @@ namespace Example
             var apiInstance = new WhatsAppTemplatesApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | WhatsApp social account ID
             var name = "name_example";  // string | Exact library template name
+            var language = "language_example";  // string? | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional) 
 
             try
             {
                 // Look up a library template
-                GetWhatsAppLibraryTemplate200Response result = apiInstance.GetWhatsAppLibraryTemplate(accountId, name);
+                GetWhatsAppLibraryTemplate200Response result = apiInstance.GetWhatsAppLibraryTemplate(accountId, name, language);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -65,7 +66,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Look up a library template
-    ApiResponse<GetWhatsAppLibraryTemplate200Response> response = apiInstance.GetWhatsAppLibraryTemplateWithHttpInfo(accountId, name);
+    ApiResponse<GetWhatsAppLibraryTemplate200Response> response = apiInstance.GetWhatsAppLibraryTemplateWithHttpInfo(accountId, name, language);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -84,6 +85,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | WhatsApp social account ID |  |
 | **name** | **string** | Exact library template name |  |
+| **language** | **string?** | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. | [optional]  |
 
 ### Return type
 

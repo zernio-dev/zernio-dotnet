@@ -37,8 +37,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>GetWhatsAppLibraryTemplate200Response</returns>
-        GetWhatsAppLibraryTemplate200Response GetWhatsAppLibraryTemplate(string accountId, string name);
+        GetWhatsAppLibraryTemplate200Response GetWhatsAppLibraryTemplate(string accountId, string name, string? language = default);
 
         /// <summary>
         /// Look up a library template
@@ -49,8 +50,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppLibraryTemplate200Response</returns>
-        ApiResponse<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateWithHttpInfo(string accountId, string name);
+        ApiResponse<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateWithHttpInfo(string accountId, string name, string? language = default);
         #endregion Synchronous Operations
     }
 
@@ -69,9 +71,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppLibraryTemplate200Response</returns>
-        System.Threading.Tasks.Task<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateAsync(string accountId, string name, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateAsync(string accountId, string name, string? language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Look up a library template
@@ -82,9 +85,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppLibraryTemplate200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppLibraryTemplate200Response>> GetWhatsAppLibraryTemplateWithHttpInfoAsync(string accountId, string name, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppLibraryTemplate200Response>> GetWhatsAppLibraryTemplateWithHttpInfoAsync(string accountId, string name, string? language = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -304,10 +308,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>GetWhatsAppLibraryTemplate200Response</returns>
-        public GetWhatsAppLibraryTemplate200Response GetWhatsAppLibraryTemplate(string accountId, string name)
+        public GetWhatsAppLibraryTemplate200Response GetWhatsAppLibraryTemplate(string accountId, string name, string? language = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response> localVarResponse = GetWhatsAppLibraryTemplateWithHttpInfo(accountId, name);
+            Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response> localVarResponse = GetWhatsAppLibraryTemplateWithHttpInfo(accountId, name, language);
             return localVarResponse.Data;
         }
 
@@ -317,8 +322,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppLibraryTemplate200Response</returns>
-        public Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateWithHttpInfo(string accountId, string name)
+        public Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateWithHttpInfo(string accountId, string name, string? language = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -346,6 +352,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -372,11 +382,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppLibraryTemplate200Response</returns>
-        public async System.Threading.Tasks.Task<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateAsync(string accountId, string name, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetWhatsAppLibraryTemplate200Response> GetWhatsAppLibraryTemplateAsync(string accountId, string name, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response> localVarResponse = await GetWhatsAppLibraryTemplateWithHttpInfoAsync(accountId, name, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response> localVarResponse = await GetWhatsAppLibraryTemplateWithHttpInfoAsync(accountId, name, language, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -386,9 +397,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="name">Exact library template name</param>
+        /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppLibraryTemplate200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response>> GetWhatsAppLibraryTemplateWithHttpInfoAsync(string accountId, string name, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppLibraryTemplate200Response>> GetWhatsAppLibraryTemplateWithHttpInfoAsync(string accountId, string name, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -418,6 +430,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

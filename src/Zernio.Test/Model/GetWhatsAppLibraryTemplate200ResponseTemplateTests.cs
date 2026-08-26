@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AvailableLanguages'
+        /// </summary>
+        [Fact]
+        public void AvailableLanguagesTest()
+        {
+            // TODO unit test for the property 'AvailableLanguages'
+        }
+
+        /// <summary>
         /// Test the property 'Buttons'
         /// </summary>
         [Fact]

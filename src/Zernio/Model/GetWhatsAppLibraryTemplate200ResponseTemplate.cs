@@ -41,14 +41,16 @@ namespace Zernio.Model
         /// <param name="category">category.</param>
         /// <param name="body">body.</param>
         /// <param name="bodyParams">bodyParams.</param>
+        /// <param name="availableLanguages">availableLanguages.</param>
         /// <param name="buttons">buttons.</param>
-        public GetWhatsAppLibraryTemplate200ResponseTemplate(string name = default, string language = default, string category = default, string body = default, List<string> bodyParams = default, List<GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner> buttons = default)
+        public GetWhatsAppLibraryTemplate200ResponseTemplate(string name = default, string language = default, string category = default, string body = default, List<string> bodyParams = default, List<string> availableLanguages = default, List<GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner> buttons = default)
         {
             this.Name = name;
             this.Language = language;
             this.Category = category;
             this.Body = body;
             this.BodyParams = bodyParams;
+            this.AvailableLanguages = availableLanguages;
             this.Buttons = buttons;
         }
 
@@ -83,6 +85,12 @@ namespace Zernio.Model
         public List<string> BodyParams { get; set; }
 
         /// <summary>
+        /// Gets or Sets AvailableLanguages
+        /// </summary>
+        [DataMember(Name = "availableLanguages", EmitDefaultValue = false)]
+        public List<string> AvailableLanguages { get; set; }
+
+        /// <summary>
         /// Gets or Sets Buttons
         /// </summary>
         [DataMember(Name = "buttons", EmitDefaultValue = false)]
@@ -101,6 +109,7 @@ namespace Zernio.Model
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  BodyParams: ").Append(BodyParams).Append("\n");
+            sb.Append("  AvailableLanguages: ").Append(AvailableLanguages).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

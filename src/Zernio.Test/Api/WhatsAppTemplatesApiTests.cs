@@ -63,7 +63,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
             //string name = null;
-            //var response = instance.GetWhatsAppLibraryTemplate(accountId, name);
+            //string? language = null;
+            //var response = instance.GetWhatsAppLibraryTemplate(accountId, name, language);
             //Assert.IsType<GetWhatsAppLibraryTemplate200Response>(response);
         }
     }
