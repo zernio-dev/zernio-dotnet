@@ -113,7 +113,7 @@ namespace Zernio.Model
         /// <param name="cities">City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits; both must be set together or both omitted. &#x60;radius&#x60; is only honoured on platforms whose capability map allows city radius (Meta)..</param>
         /// <param name="zips">Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;). Supported on Meta, Google, TikTok, Pinterest, X..</param>
         /// <param name="metros">DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;)..</param>
-        /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured only where the capability map allows radius (Meta)..</param>
+        /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support..</param>
         /// <param name="excludedLocations">excludedLocations.</param>
         /// <param name="ageMin">Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 &#x3D; 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there..</param>
         /// <param name="ageMax">Maximum age. Same per-platform application and clamping as ageMin..</param>
@@ -188,9 +188,9 @@ namespace Zernio.Model
         public List<BoostPostRequestTargetingRegionsInner> Metros { get; set; }
 
         /// <summary>
-        /// Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured only where the capability map allows radius (Meta).
+        /// Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support.
         /// </summary>
-        /// <value>Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured only where the capability map allows radius (Meta).</value>
+        /// <value>Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support.</value>
         [DataMember(Name = "customLocations", EmitDefaultValue = false)]
         public List<TargetingSpecCustomLocationsInner> CustomLocations { get; set; }
 
