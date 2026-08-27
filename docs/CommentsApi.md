@@ -456,7 +456,7 @@ catch (ApiException e)
 
 Like comment
 
-Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code `linkedin_reconnect_required`. 
+Like or upvote a comment on a post. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below). For Bluesky, the cid (content identifier) is required in the request body. For LinkedIn, pass the composite comment URN returned by the comments endpoints as commentId; an optional reactionType picks the reaction (defaults to LIKE), and accounts connected before the social-feed scopes were requested get a 403 with code `linkedin_reconnect_required`.  Instagram is in LIMITED RELEASE and not generally available: the call needs `instagram_manage_engagement`, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code `PLATFORM_BETA_RESTRICTED` for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers comments and replies on feed posts, reels and carousels. Only an account connected through Facebook Login can be granted `instagram_manage_engagement`: an Instagram Login connection returns a 400 with code `instagram_likes_require_facebook_login`, and an account whose token predates the permission returns a 403 with code `reconnect_required`. Content from private accounts cannot be liked. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
 
 ### Example
 ```csharp
@@ -551,7 +551,7 @@ catch (ApiException e)
 | **200** | Comment liked |  -  |
 | **400** | Platform does not support liking comments |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or the account is missing the platform permission |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -561,7 +561,7 @@ catch (ApiException e)
 
 Like post
 
-Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. Instagram, Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at `POST /v1/accounts/{accountId}/reddit-vote`, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec's `accountId` and the brand post's ID. `postId` accepts either a Zernio post ID or the platform's native post ID. A Zernio post ID resolves to the entry for `accountId`, falling back to the post's single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the `w_member_social_feed` / `w_organization_social_feed` scopes, which are not retroactive: accounts connected before those were requested get a 403 with code `linkedin_reconnect_required` until the user reconnects the account. YouTube spends 50 quota units per call. 
+Like (or react to) a post as a connected account. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release (see below). Threads, TikTok and Pinterest expose no like endpoint in their APIs and return 400. Reddit returns 400 too, pointing at `POST /v1/accounts/{accountId}/reddit-vote`, which covers upvote, downvote and clear on both posts and comments.  The account does not have to be the one that published the post, which is what makes executive engagement possible: pass an exec's `accountId` and the brand post's ID. `postId` accepts either a Zernio post ID or the platform's native post ID. A Zernio post ID resolves to the entry for `accountId`, falling back to the post's single entry on the same platform (two entries on that platform is a 400, so pass the native ID).  LinkedIn requires the `w_member_social_feed` / `w_organization_social_feed` scopes, which are not retroactive: accounts connected before those were requested get a 403 with code `linkedin_reconnect_required` until the user reconnects the account. YouTube spends 50 quota units per call.  Instagram is in LIMITED RELEASE and not generally available: the call needs `instagram_manage_engagement`, which Meta has so far granted this app only under Standard Access, so it works for app admins, developers and testers of our Meta app and returns a 403 with code `PLATFORM_BETA_RESTRICTED` for every other account. That restriction lifts when Meta App Review grants Advanced Access; the constraints below apply once it does.  Instagram covers feed images, reels and carousels (stories and private-account media are not likeable). Only an account connected through Facebook Login can be granted `instagram_manage_engagement`: an Instagram Login connection returns a 400 with code `instagram_likes_require_facebook_login`, and an account whose token predates the permission returns a 403 with code `reconnect_required`. Instagram also enforces a burst limit of 50 like or unlike calls per 5 seconds per Instagram account, and exceeding it locks that account out of the like API for an hour, so pace bulk loops. 
 
 ### Example
 ```csharp
@@ -1204,7 +1204,7 @@ catch (ApiException e)
 
 Unlike comment
 
-Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn. For Bluesky, the likeUri query parameter is required. 
+Remove a like from a comment. Supported platforms: Facebook, Twitter/X, Bluesky, Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query parameter is required. Instagram has the same limited release, Facebook Login, `instagram_manage_engagement` and burst-limit constraints as liking. 
 
 ### Example
 ```csharp
@@ -1301,7 +1301,7 @@ catch (ApiException e)
 | **200** | Comment unliked |  -  |
 | **400** | Platform does not support unliking comments |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or the account is missing the platform permission |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1311,7 +1311,7 @@ catch (ApiException e)
 
 Unlike post
 
-Remove this account's like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky. On YouTube this clears the rating. For Bluesky, `likeUri` (returned when the post was liked) is required. Reddit uses `POST /v1/accounts/{accountId}/reddit-vote` with `direction: 0`. 
+Remove this account's like from a post. Supported platforms: LinkedIn, Twitter/X, Facebook, YouTube, Bluesky, and Instagram in limited release. On YouTube this clears the rating. Instagram has the same limited release, Facebook Login, `instagram_manage_engagement` and burst-limit constraints as liking. For Bluesky, `likeUri` (returned when the post was liked) is required. Reddit uses `POST /v1/accounts/{accountId}/reddit-vote` with `direction: 0`. 
 
 ### Example
 ```csharp
