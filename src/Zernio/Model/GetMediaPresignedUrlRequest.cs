@@ -33,144 +33,12 @@ namespace Zernio.Model
     [DataContract(Name = "getMediaPresignedUrl_request")]
     public partial class GetMediaPresignedUrlRequest : IValidatableObject
     {
-        /// <summary>
-        /// MIME type of the file
-        /// </summary>
-        /// <value>MIME type of the file</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ContentTypeEnum
-        {
-            /// <summary>
-            /// Enum ImageJpeg for value: image/jpeg
-            /// </summary>
-            [EnumMember(Value = "image/jpeg")]
-            ImageJpeg = 1,
-
-            /// <summary>
-            /// Enum ImageJpg for value: image/jpg
-            /// </summary>
-            [EnumMember(Value = "image/jpg")]
-            ImageJpg = 2,
-
-            /// <summary>
-            /// Enum ImagePng for value: image/png
-            /// </summary>
-            [EnumMember(Value = "image/png")]
-            ImagePng = 3,
-
-            /// <summary>
-            /// Enum ImageWebp for value: image/webp
-            /// </summary>
-            [EnumMember(Value = "image/webp")]
-            ImageWebp = 4,
-
-            /// <summary>
-            /// Enum ImageGif for value: image/gif
-            /// </summary>
-            [EnumMember(Value = "image/gif")]
-            ImageGif = 5,
-
-            /// <summary>
-            /// Enum VideoMp4 for value: video/mp4
-            /// </summary>
-            [EnumMember(Value = "video/mp4")]
-            VideoMp4 = 6,
-
-            /// <summary>
-            /// Enum VideoMpeg for value: video/mpeg
-            /// </summary>
-            [EnumMember(Value = "video/mpeg")]
-            VideoMpeg = 7,
-
-            /// <summary>
-            /// Enum VideoQuicktime for value: video/quicktime
-            /// </summary>
-            [EnumMember(Value = "video/quicktime")]
-            VideoQuicktime = 8,
-
-            /// <summary>
-            /// Enum VideoAvi for value: video/avi
-            /// </summary>
-            [EnumMember(Value = "video/avi")]
-            VideoAvi = 9,
-
-            /// <summary>
-            /// Enum VideoXMsvideo for value: video/x-msvideo
-            /// </summary>
-            [EnumMember(Value = "video/x-msvideo")]
-            VideoXMsvideo = 10,
-
-            /// <summary>
-            /// Enum VideoWebm for value: video/webm
-            /// </summary>
-            [EnumMember(Value = "video/webm")]
-            VideoWebm = 11,
-
-            /// <summary>
-            /// Enum VideoXM4v for value: video/x-m4v
-            /// </summary>
-            [EnumMember(Value = "video/x-m4v")]
-            VideoXM4v = 12,
-
-            /// <summary>
-            /// Enum ApplicationPdf for value: application/pdf
-            /// </summary>
-            [EnumMember(Value = "application/pdf")]
-            ApplicationPdf = 13,
-
-            /// <summary>
-            /// Enum AudioMpeg for value: audio/mpeg
-            /// </summary>
-            [EnumMember(Value = "audio/mpeg")]
-            AudioMpeg = 14,
-
-            /// <summary>
-            /// Enum AudioMp4 for value: audio/mp4
-            /// </summary>
-            [EnumMember(Value = "audio/mp4")]
-            AudioMp4 = 15,
-
-            /// <summary>
-            /// Enum AudioAac for value: audio/aac
-            /// </summary>
-            [EnumMember(Value = "audio/aac")]
-            AudioAac = 16,
-
-            /// <summary>
-            /// Enum AudioOgg for value: audio/ogg
-            /// </summary>
-            [EnumMember(Value = "audio/ogg")]
-            AudioOgg = 17,
-
-            /// <summary>
-            /// Enum AudioWav for value: audio/wav
-            /// </summary>
-            [EnumMember(Value = "audio/wav")]
-            AudioWav = 18,
-
-            /// <summary>
-            /// Enum AudioWebm for value: audio/webm
-            /// </summary>
-            [EnumMember(Value = "audio/webm")]
-            AudioWebm = 19,
-
-            /// <summary>
-            /// Enum AudioXM4a for value: audio/x-m4a
-            /// </summary>
-            [EnumMember(Value = "audio/x-m4a")]
-            AudioXM4a = 20
-        }
-
 
         /// <summary>
-        /// MIME type of the file
+        /// Gets or Sets ContentType
         /// </summary>
-        /// <value>MIME type of the file</value>
-        /*
-        <example>video/mp4</example>
-        */
         [DataMember(Name = "contentType", IsRequired = true, EmitDefaultValue = true)]
-        public ContentTypeEnum ContentType { get; set; }
+        public MediaContentType ContentType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetMediaPresignedUrlRequest" /> class.
         /// </summary>
@@ -180,9 +48,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetMediaPresignedUrlRequest" /> class.
         /// </summary>
         /// <param name="filename">Name of the file to upload (required).</param>
-        /// <param name="contentType">MIME type of the file (required).</param>
+        /// <param name="contentType">contentType (required).</param>
         /// <param name="size">Optional file size in bytes for pre-validation (max 5GB).</param>
-        public GetMediaPresignedUrlRequest(string filename = default, ContentTypeEnum contentType = default, int size = default)
+        public GetMediaPresignedUrlRequest(string filename = default, MediaContentType contentType = default, int size = default)
         {
             // to ensure "filename" is required (not null)
             if (filename == null)

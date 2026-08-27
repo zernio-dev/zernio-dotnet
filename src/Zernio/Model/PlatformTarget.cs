@@ -176,7 +176,7 @@ namespace Zernio.Model
         /// <param name="customContent">Platform-specific text override. When set, this content is used instead of the top-level post content for this platform. Useful for tailoring captions per platform (e.g. keeping tweets under 280 characters)..</param>
         /// <param name="customMedia">customMedia.</param>
         /// <param name="scheduledFor">Optional per-platform scheduled time override (uses post.scheduledFor when omitted).</param>
-        /// <param name="platformSpecificData">platformSpecificData.</param>
+        /// <param name="platformSpecificData">The platform-specific options stored on this target, echoed back as they were sent. Typed per platform on the way in (see the *PlatformData schemas on the request body); free-form on the way out, because a response is not guaranteed to match exactly one of those variants and generated clients that pick a variant by structure reject the entire response when it doesn&#39;t. Zernio&#39;s internal publishing state (snapshots, container ids, publish stage) is never returned here, and the key is omitted rather than sent as an empty object..</param>
         /// <param name="status">Platform-specific status: pending, publishing, published, failed.</param>
         /// <param name="platformPostId">The native post ID on the platform (populated after successful publish).</param>
         /// <param name="platformPostUrl">Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads); the TikTok reconcile cron backfills it later..</param>
@@ -187,7 +187,7 @@ namespace Zernio.Model
         /// <param name="errorMessage">Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed..</param>
         /// <param name="errorCategory">Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown.</param>
         /// <param name="errorSource">Who caused the error: user (fix content/reconnect), platform (outage/API change), system (Zernio issue, rare).</param>
-        public PlatformTarget(string platform = default, PlatformTargetAccountId accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, PlatformTargetPlatformSpecificData platformSpecificData = default, string status = default, string platformPostId = default, string platformPostUrl = default, DateTime publishedAt = default, DateTime? removedFromPlatformAt = default, bool isTrialReel = default, TrialGraduationStrategyEnum? trialGraduationStrategy = default, string errorMessage = default, ErrorCategoryEnum? errorCategory = default, ErrorSourceEnum? errorSource = default)
+        public PlatformTarget(string platform = default, PlatformTargetAccountId accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, Dictionary<string, Object> platformSpecificData = default, string status = default, string platformPostId = default, string platformPostUrl = default, DateTime publishedAt = default, DateTime? removedFromPlatformAt = default, bool isTrialReel = default, TrialGraduationStrategyEnum? trialGraduationStrategy = default, string errorMessage = default, ErrorCategoryEnum? errorCategory = default, ErrorSourceEnum? errorSource = default)
         {
             this.Platform = platform;
             this.AccountId = accountId;
@@ -244,10 +244,11 @@ namespace Zernio.Model
         public DateTime ScheduledFor { get; set; }
 
         /// <summary>
-        /// Gets or Sets PlatformSpecificData
+        /// The platform-specific options stored on this target, echoed back as they were sent. Typed per platform on the way in (see the *PlatformData schemas on the request body); free-form on the way out, because a response is not guaranteed to match exactly one of those variants and generated clients that pick a variant by structure reject the entire response when it doesn&#39;t. Zernio&#39;s internal publishing state (snapshots, container ids, publish stage) is never returned here, and the key is omitted rather than sent as an empty object.
         /// </summary>
+        /// <value>The platform-specific options stored on this target, echoed back as they were sent. Typed per platform on the way in (see the *PlatformData schemas on the request body); free-form on the way out, because a response is not guaranteed to match exactly one of those variants and generated clients that pick a variant by structure reject the entire response when it doesn&#39;t. Zernio&#39;s internal publishing state (snapshots, container ids, publish stage) is never returned here, and the key is omitted rather than sent as an empty object.</value>
         [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
-        public PlatformTargetPlatformSpecificData PlatformSpecificData { get; set; }
+        public Dictionary<string, Object> PlatformSpecificData { get; set; }
 
         /// <summary>
         /// Platform-specific status: pending, publishing, published, failed

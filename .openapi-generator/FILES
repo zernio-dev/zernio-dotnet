@@ -1093,6 +1093,7 @@ docs/LogsApi.md
 docs/LookupSmsNumber200Response.md
 docs/MarkConversationRead200Response.md
 docs/MediaApi.md
+docs/MediaContentType.md
 docs/MediaItem.md
 docs/MediaUploadResponse.md
 docs/MentionsApi.md
@@ -1132,7 +1133,6 @@ docs/PinterestPlatformData.md
 docs/PlatformAnalytics.md
 docs/PlatformTarget.md
 docs/PlatformTargetAccountId.md
-docs/PlatformTargetPlatformSpecificData.md
 docs/Post.md
 docs/PostAnalytics.md
 docs/PostCreateResponse.md
@@ -2918,6 +2918,7 @@ src/Zernio.Test/Model/ListWorkflows200ResponseTests.cs
 src/Zernio.Test/Model/ListWorkflows200ResponseWorkflowsInnerTests.cs
 src/Zernio.Test/Model/LookupSmsNumber200ResponseTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
+src/Zernio.Test/Model/MediaContentTypeTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
@@ -2952,7 +2953,6 @@ src/Zernio.Test/Model/PinDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/PinterestPlatformDataTests.cs
 src/Zernio.Test/Model/PlatformAnalyticsTests.cs
 src/Zernio.Test/Model/PlatformTargetAccountIdTests.cs
-src/Zernio.Test/Model/PlatformTargetPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/PlatformTargetTests.cs
 src/Zernio.Test/Model/PostAnalyticsTests.cs
 src/Zernio.Test/Model/PostCreateResponseTests.cs
@@ -4732,6 +4732,7 @@ src/Zernio/Model/ListWorkflows200Response.cs
 src/Zernio/Model/ListWorkflows200ResponseWorkflowsInner.cs
 src/Zernio/Model/LookupSmsNumber200Response.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
+src/Zernio/Model/MediaContentType.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
@@ -4767,7 +4768,6 @@ src/Zernio/Model/PinterestPlatformData.cs
 src/Zernio/Model/PlatformAnalytics.cs
 src/Zernio/Model/PlatformTarget.cs
 src/Zernio/Model/PlatformTargetAccountId.cs
-src/Zernio/Model/PlatformTargetPlatformSpecificData.cs
 src/Zernio/Model/Post.cs
 src/Zernio/Model/PostAnalytics.cs
 src/Zernio/Model/PostCreateResponse.cs
