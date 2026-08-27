@@ -209,6 +209,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**CreateStandaloneAd**](docs/AdCampaignsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
 *AdCampaignsApi* | [**DeleteAd**](docs/AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdCampaignsApi* | [**DeleteAdCampaign**](docs/AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
+*AdCampaignsApi* | [**DeleteAdSet**](docs/AdCampaignsApi.md#deleteadset) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
 *AdCampaignsApi* | [**DuplicateAd**](docs/AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**DuplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**DuplicateAdSet**](docs/AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
@@ -1103,6 +1104,7 @@ Class | Method | HTTP request | Description
  - [Model.DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [Model.DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
  - [Model.DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
+ - [Model.DeleteAdSet200Response](docs/DeleteAdSet200Response.md)
  - [Model.DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
  - [Model.DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [Model.DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)

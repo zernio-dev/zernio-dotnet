@@ -186,6 +186,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DeleteAdCampaign200Response</returns>
         ApiResponse<DeleteAdCampaign200Response> DeleteAdCampaignWithHttpInfo(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest);
         /// <summary>
+        /// Delete an ad set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <returns>DeleteAdSet200Response</returns>
+        DeleteAdSet200Response DeleteAdSet(string adSetId);
+
+        /// <summary>
+        /// Delete an ad set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <returns>ApiResponse of DeleteAdSet200Response</returns>
+        ApiResponse<DeleteAdSet200Response> DeleteAdSetWithHttpInfo(string adSetId);
+        /// <summary>
         /// Duplicate an ad
         /// </summary>
         /// <remarks>
@@ -843,6 +864,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteAdCampaign200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteAdCampaign200Response>> DeleteAdCampaignWithHttpInfoAsync(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete an ad set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdSet200Response</returns>
+        System.Threading.Tasks.Task<DeleteAdSet200Response> DeleteAdSetAsync(string adSetId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete an ad set
+        /// </summary>
+        /// <remarks>
+        /// Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdSet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteAdSet200Response>> DeleteAdSetWithHttpInfoAsync(string adSetId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Duplicate an ad
         /// </summary>
@@ -2525,6 +2569,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete an ad set Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <returns>DeleteAdSet200Response</returns>
+        public DeleteAdSet200Response DeleteAdSet(string adSetId)
+        {
+            Zernio.Client.ApiResponse<DeleteAdSet200Response> localVarResponse = DeleteAdSetWithHttpInfo(adSetId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete an ad set Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <returns>ApiResponse of DeleteAdSet200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteAdSet200Response> DeleteAdSetWithHttpInfo(string adSetId)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->DeleteAdSet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteAdSet200Response>("/v1/ads/ad-sets/{adSetId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete an ad set Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdSet200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteAdSet200Response> DeleteAdSetAsync(string adSetId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteAdSet200Response> localVarResponse = await DeleteAdSetWithHttpInfoAsync(adSetId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete an ad set Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked &#x60;status: cancelled&#x60;.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to &#x60;PENDING_DELETION&#x60;, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdSet200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteAdSet200Response>> DeleteAdSetWithHttpInfoAsync(string adSetId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->DeleteAdSet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteAdSet200Response>("/v1/ads/ad-sets/{adSetId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdSet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateStandaloneAd**](AdCampaignsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad |
 | [**DeleteAd**](AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**DeleteAdCampaign**](AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
+| [**DeleteAdSet**](AdCampaignsApi.md#deleteadset) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
 | [**DuplicateAd**](AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**DuplicateAdCampaign**](AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**DuplicateAdSet**](AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
@@ -744,6 +745,107 @@ catch (ApiException e)
 | **200** | Campaign deleted |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Campaign not found |  -  |
+| **501** | Operation not supported on this platform |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteadset"></a>
+# **DeleteAdSet**
+> DeleteAdSet200Response DeleteAdSet (string adSetId)
+
+Delete an ad set
+
+Deletes the ad set on the platform, cascading to its ads only (never the campaign). Locally, every Ad document under the ad set is marked `status: cancelled`.  Delete is soft on platforms that have no hard delete: LinkedIn moves the campaign to `PENDING_DELETION`, Pinterest archives the ad group, and X soft-flags the line item. Google removes the ad group. All remain readable for reporting. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteAdSetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var adSetId = "adSetId_example";  // string | Platform ad set ID
+
+            try
+            {
+                // Delete an ad set
+                DeleteAdSet200Response result = apiInstance.DeleteAdSet(adSetId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.DeleteAdSet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteAdSetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete an ad set
+    ApiResponse<DeleteAdSet200Response> response = apiInstance.DeleteAdSetWithHttpInfo(adSetId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.DeleteAdSetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adSetId** | **string** | Platform ad set ID |  |
+
+### Return type
+
+[**DeleteAdSet200Response**](DeleteAdSet200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad set deleted |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad set not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

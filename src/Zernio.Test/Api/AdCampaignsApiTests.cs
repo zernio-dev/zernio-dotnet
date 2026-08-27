@@ -144,6 +144,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DeleteAdSet
+        /// </summary>
+        [Fact]
+        public void DeleteAdSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //var response = instance.DeleteAdSet(adSetId);
+            //Assert.IsType<DeleteAdSet200Response>(response);
+        }
+
+        /// <summary>
         /// Test DuplicateAd
         /// </summary>
         [Fact]

@@ -389,6 +389,7 @@ docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
 docs/DeleteAdCreative200Response.md
+docs/DeleteAdSet200Response.md
 docs/DeleteAdVideo200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
@@ -2230,6 +2231,7 @@ src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaignRequestTests.cs
 src/Zernio.Test/Model/DeleteAdCreative200ResponseTests.cs
+src/Zernio.Test/Model/DeleteAdSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdVideo200ResponseTests.cs
 src/Zernio.Test/Model/DeleteDiscordScheduledEvent200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessMedia200ResponseTests.cs
@@ -4044,6 +4046,7 @@ src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
 src/Zernio/Model/DeleteAdCampaignRequest.cs
 src/Zernio/Model/DeleteAdCreative200Response.cs
+src/Zernio/Model/DeleteAdSet200Response.cs
 src/Zernio/Model/DeleteAdVideo200Response.cs
 src/Zernio/Model/DeleteDiscordScheduledEvent200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessMedia200Response.cs
