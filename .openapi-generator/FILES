@@ -283,6 +283,7 @@ docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md
 docs/CreatePhoneNumberPortInRequest.md
 docs/CreatePhoneNumberPortInRequestEndUser.md
 docs/CreatePhoneNumberPortInRequestRequirementsInner.md
+docs/CreatePhoneNumberStockWatchRequest.md
 docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
 docs/CreatePinterestBoardRequest.md
@@ -1024,6 +1025,7 @@ docs/ListPhoneNumberCountries200ResponseCountriesInner.md
 docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md
 docs/ListPhoneNumberPortIns200Response.md
 docs/ListPhoneNumberPortIns200ResponseOrdersInner.md
+docs/ListPhoneNumberStockWatches200Response.md
 docs/ListPhoneNumbers200Response.md
 docs/ListPhoneNumbers200ResponseConnectedInner.md
 docs/ListPhoneNumbers200ResponseNumbersInner.md
@@ -1131,6 +1133,7 @@ docs/OnWhatsAppNumberVerificationRequiredRequest.md
 docs/Pagination.md
 docs/PauseWorkflow200Response.md
 docs/Pending.md
+docs/PhoneNumberStockWatch.md
 docs/PhoneNumbersApi.md
 docs/PinDiscordMessage200Response.md
 docs/PinterestPlatformData.md
@@ -1713,6 +1716,9 @@ docs/WebhookPayloadMessageSentMessage.md
 docs/WebhookPayloadMessageSentMessageAttachmentsInner.md
 docs/WebhookPayloadMessageSentMessageSender.md
 docs/WebhookPayloadMessageSentMetadata.md
+docs/WebhookPayloadPhoneNumberStockAvailable.md
+docs/WebhookPayloadPhoneNumberStockAvailableStock.md
+docs/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.md
 docs/WebhookPayloadPost.md
 docs/WebhookPayloadPostPlatform.md
 docs/WebhookPayloadPostPlatformAccount.md
@@ -2135,6 +2141,7 @@ src/Zernio.Test/Model/CreatePhoneNumberPortIn201ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestEndUserTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestRequirementsInnerTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestTests.cs
+src/Zernio.Test/Model/CreatePhoneNumberStockWatchRequestTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
 src/Zernio.Test/Model/CreatePinterestBoardRequestTests.cs
@@ -2861,6 +2868,7 @@ src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInne
 src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumberPortIns200ResponseOrdersInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumberPortIns200ResponseTests.cs
+src/Zernio.Test/Model/ListPhoneNumberStockWatches200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseConnectedInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseSandboxTemplateTests.cs
@@ -2963,6 +2971,7 @@ src/Zernio.Test/Model/OnWhatsAppNumberVerificationRequiredRequestTests.cs
 src/Zernio.Test/Model/PaginationTests.cs
 src/Zernio.Test/Model/PauseWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/PendingTests.cs
+src/Zernio.Test/Model/PhoneNumberStockWatchTests.cs
 src/Zernio.Test/Model/PinDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/PinterestPlatformDataTests.cs
 src/Zernio.Test/Model/PlatformAnalyticsTests.cs
@@ -3526,6 +3535,9 @@ src/Zernio.Test/Model/WebhookPayloadMessageSentMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMetadataTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageTests.cs
+src/Zernio.Test/Model/WebhookPayloadPhoneNumberStockAvailableStockTests.cs
+src/Zernio.Test/Model/WebhookPayloadPhoneNumberStockAvailableStockTypesInnerTests.cs
+src/Zernio.Test/Model/WebhookPayloadPhoneNumberStockAvailableTests.cs
 src/Zernio.Test/Model/WebhookPayloadPostPlatformAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadPostPlatformPlatformTests.cs
 src/Zernio.Test/Model/WebhookPayloadPostPlatformPostPlatformsInnerTests.cs
@@ -3959,6 +3971,7 @@ src/Zernio/Model/CreatePhoneNumberPortIn201ResponseOrdersInner.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequest.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequestEndUser.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequestRequirementsInner.cs
+src/Zernio/Model/CreatePhoneNumberStockWatchRequest.cs
 src/Zernio/Model/CreatePinterestBoard201Response.cs
 src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
 src/Zernio/Model/CreatePinterestBoardRequest.cs
@@ -4685,6 +4698,7 @@ src/Zernio/Model/ListPhoneNumberCountries200ResponseCountriesInner.cs
 src/Zernio/Model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.cs
 src/Zernio/Model/ListPhoneNumberPortIns200Response.cs
 src/Zernio/Model/ListPhoneNumberPortIns200ResponseOrdersInner.cs
+src/Zernio/Model/ListPhoneNumberStockWatches200Response.cs
 src/Zernio/Model/ListPhoneNumbers200Response.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseConnectedInner.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseNumbersInner.cs
@@ -4787,6 +4801,7 @@ src/Zernio/Model/OnWhatsAppNumberVerificationRequiredRequest.cs
 src/Zernio/Model/Pagination.cs
 src/Zernio/Model/PauseWorkflow200Response.cs
 src/Zernio/Model/Pending.cs
+src/Zernio/Model/PhoneNumberStockWatch.cs
 src/Zernio/Model/PinDiscordMessage200Response.cs
 src/Zernio/Model/PinterestPlatformData.cs
 src/Zernio/Model/PlatformAnalytics.cs
@@ -5351,6 +5366,9 @@ src/Zernio/Model/WebhookPayloadMessageSentMessage.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessageAttachmentsInner.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessageSender.cs
 src/Zernio/Model/WebhookPayloadMessageSentMetadata.cs
+src/Zernio/Model/WebhookPayloadPhoneNumberStockAvailable.cs
+src/Zernio/Model/WebhookPayloadPhoneNumberStockAvailableStock.cs
+src/Zernio/Model/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.cs
 src/Zernio/Model/WebhookPayloadPost.cs
 src/Zernio/Model/WebhookPayloadPostPlatform.cs
 src/Zernio/Model/WebhookPayloadPostPlatformAccount.cs

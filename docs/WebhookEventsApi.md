@@ -22,6 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnMessageRead**](WebhookEventsApi.md#onmessageread) | **POST** /message.read | Message read event |
 | [**OnMessageReceived**](WebhookEventsApi.md#onmessagereceived) | **POST** /message.received | Message received event |
 | [**OnMessageSent**](WebhookEventsApi.md#onmessagesent) | **POST** /message.sent | Message sent event |
+| [**OnPhoneNumberStockAvailable**](WebhookEventsApi.md#onphonenumberstockavailable) | **POST** /phone_number.stock_available | Phone-number stock available event |
 | [**OnPostCancelled**](WebhookEventsApi.md#onpostcancelled) | **POST** /post.cancelled | Post cancelled event |
 | [**OnPostExternalCreated**](WebhookEventsApi.md#onpostexternalcreated) | **POST** /post.external.created | External post created event |
 | [**OnPostExternalDeleted**](WebhookEventsApi.md#onpostexternaldeleted) | **POST** /post.external.deleted | External post deleted event |
@@ -1725,6 +1726,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadMessageSent** | [**WebhookPayloadMessageSent**](WebhookPayloadMessageSent.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onphonenumberstockavailable"></a>
+# **OnPhoneNumberStockAvailable**
+> void OnPhoneNumberStockAvailable (WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable)
+
+Phone-number stock available event
+
+Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnPhoneNumberStockAvailableExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadPhoneNumberStockAvailable = new WebhookPayloadPhoneNumberStockAvailable(); // WebhookPayloadPhoneNumberStockAvailable | 
+
+            try
+            {
+                // Phone-number stock available event
+                apiInstance.OnPhoneNumberStockAvailable(webhookPayloadPhoneNumberStockAvailable);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnPhoneNumberStockAvailable: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnPhoneNumberStockAvailableWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Phone-number stock available event
+    apiInstance.OnPhoneNumberStockAvailableWithHttpInfo(webhookPayloadPhoneNumberStockAvailable);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnPhoneNumberStockAvailableWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadPhoneNumberStockAvailable** | [**WebhookPayloadPhoneNumberStockAvailable**](WebhookPayloadPhoneNumberStockAvailable.md) |  |  |
 
 ### Return type
 

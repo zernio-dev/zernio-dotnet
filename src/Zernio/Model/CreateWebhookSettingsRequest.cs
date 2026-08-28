@@ -322,16 +322,22 @@ namespace Zernio.Model
             WhatsappNumberKycSubmitted = 47,
 
             /// <summary>
+            /// Enum PhoneNumberStockAvailable for value: phone_number.stock_available
+            /// </summary>
+            [EnumMember(Value = "phone_number.stock_available")]
+            PhoneNumberStockAvailable = 48,
+
+            /// <summary>
             /// Enum VerificationApproved for value: verification.approved
             /// </summary>
             [EnumMember(Value = "verification.approved")]
-            VerificationApproved = 48,
+            VerificationApproved = 49,
 
             /// <summary>
             /// Enum VerificationFailed for value: verification.failed
             /// </summary>
             [EnumMember(Value = "verification.failed")]
-            VerificationFailed = 49
+            VerificationFailed = 50
         }
 
         /// <summary>

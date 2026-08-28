@@ -9,6 +9,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**CheckPhoneNumberPortability**](PhoneNumbersApi.md#checkphonenumberportability) | **POST** /v1/phone-numbers/port-in/check | Check portability |
 | [**CreatePhoneNumberKycLink**](PhoneNumbersApi.md#createphonenumberkyclink) | **POST** /v1/phone-numbers/kyc/share | Create a hosted KYC link |
 | [**CreatePhoneNumberPortIn**](PhoneNumbersApi.md#createphonenumberportin) | **POST** /v1/phone-numbers/port-in | Port numbers in |
+| [**CreatePhoneNumberStockWatch**](PhoneNumbersApi.md#createphonenumberstockwatch) | **POST** /v1/phone-numbers/stock-watches | Watch an out-of-stock country |
+| [**DeletePhoneNumberStockWatch**](PhoneNumbersApi.md#deletephonenumberstockwatch) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country |
 | [**GetPhoneNumber**](PhoneNumbersApi.md#getphonenumber) | **GET** /v1/phone-numbers/{id} | Get phone number |
 | [**GetPhoneNumberKycForm**](PhoneNumbersApi.md#getphonenumberkycform) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
 | [**GetPhoneNumberPortInOrderRequirements**](PhoneNumbersApi.md#getphonenumberportinorderrequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements |
@@ -16,6 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetPhoneNumberRemediation**](PhoneNumbersApi.md#getphonenumberremediation) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements |
 | [**ListPhoneNumberCountries**](PhoneNumbersApi.md#listphonenumbercountries) | **GET** /v1/phone-numbers/countries | List offerable number countries |
 | [**ListPhoneNumberPortIns**](PhoneNumbersApi.md#listphonenumberportins) | **GET** /v1/phone-numbers/port-in | List port-in orders |
+| [**ListPhoneNumberStockWatches**](PhoneNumbersApi.md#listphonenumberstockwatches) | **GET** /v1/phone-numbers/stock-watches | List stock watches |
 | [**ListPhoneNumbers**](PhoneNumbersApi.md#listphonenumbers) | **GET** /v1/phone-numbers | List phone numbers |
 | [**PurchasePhoneNumber**](PhoneNumbersApi.md#purchasephonenumber) | **POST** /v1/phone-numbers/purchase | Purchase phone number |
 | [**ReleasePhoneNumber**](PhoneNumbersApi.md#releasephonenumber) | **DELETE** /v1/phone-numbers/{id} | Release phone number |
@@ -534,6 +537,207 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **409** | A number is already provisioned, or already in an in-flight port |  -  |
 | **422** | A number is not portable (reason included), numbers span multiple non-US/CA countries, or every split order failed to submit |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createphonenumberstockwatch"></a>
+# **CreatePhoneNumberStockWatch**
+> PhoneNumberStockWatch CreatePhoneNumberStockWatch (CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest)
+
+Watch an out-of-stock country
+
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the `phone_number.stock_available` webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreatePhoneNumberStockWatchExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var createPhoneNumberStockWatchRequest = new CreatePhoneNumberStockWatchRequest(); // CreatePhoneNumberStockWatchRequest | 
+
+            try
+            {
+                // Watch an out-of-stock country
+                PhoneNumberStockWatch result = apiInstance.CreatePhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.CreatePhoneNumberStockWatch: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreatePhoneNumberStockWatchWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Watch an out-of-stock country
+    ApiResponse<PhoneNumberStockWatch> response = apiInstance.CreatePhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.CreatePhoneNumberStockWatchWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createPhoneNumberStockWatchRequest** | [**CreatePhoneNumberStockWatchRequest**](CreatePhoneNumberStockWatchRequest.md) |  |  |
+
+### Return type
+
+[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Watch created. |  -  |
+| **200** | A watch for this country already existed; returned unchanged. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletephonenumberstockwatch"></a>
+# **DeletePhoneNumberStockWatch**
+> DeleteSmsSenderId200Response DeletePhoneNumberStockWatch (string id)
+
+Stop watching a country
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeletePhoneNumberStockWatchExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+
+            try
+            {
+                // Stop watching a country
+                DeleteSmsSenderId200Response result = apiInstance.DeletePhoneNumberStockWatch(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.DeletePhoneNumberStockWatch: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeletePhoneNumberStockWatchWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Stop watching a country
+    ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.DeletePhoneNumberStockWatchWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.DeletePhoneNumberStockWatchWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Watch deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Stock watch not found (code stock_watch_not_found). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1228,6 +1432,98 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Porting orders |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listphonenumberstockwatches"></a>
+# **ListPhoneNumberStockWatches**
+> ListPhoneNumberStockWatches200Response ListPhoneNumberStockWatches ()
+
+List stock watches
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListPhoneNumberStockWatchesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // List stock watches
+                ListPhoneNumberStockWatches200Response result = apiInstance.ListPhoneNumberStockWatches();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.ListPhoneNumberStockWatches: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListPhoneNumberStockWatchesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List stock watches
+    ApiResponse<ListPhoneNumberStockWatches200Response> response = apiInstance.ListPhoneNumberStockWatchesWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.ListPhoneNumberStockWatchesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ListPhoneNumberStockWatches200Response**](ListPhoneNumberStockWatches200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The caller&#39;s active watches, oldest first. |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -138,6 +138,45 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreatePhoneNumberPortIn201Response</returns>
         ApiResponse<CreatePhoneNumberPortIn201Response> CreatePhoneNumberPortInWithHttpInfo(CreatePhoneNumberPortInRequest createPhoneNumberPortInRequest);
         /// <summary>
+        /// Watch an out-of-stock country
+        /// </summary>
+        /// <remarks>
+        /// Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <returns>PhoneNumberStockWatch</returns>
+        PhoneNumberStockWatch CreatePhoneNumberStockWatch(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest);
+
+        /// <summary>
+        /// Watch an out-of-stock country
+        /// </summary>
+        /// <remarks>
+        /// Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <returns>ApiResponse of PhoneNumberStockWatch</returns>
+        ApiResponse<PhoneNumberStockWatch> CreatePhoneNumberStockWatchWithHttpInfo(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest);
+        /// <summary>
+        /// Stop watching a country
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DeleteSmsSenderId200Response</returns>
+        DeleteSmsSenderId200Response DeletePhoneNumberStockWatch(string id);
+
+        /// <summary>
+        /// Stop watching a country
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DeleteSmsSenderId200Response</returns>
+        ApiResponse<DeleteSmsSenderId200Response> DeletePhoneNumberStockWatchWithHttpInfo(string id);
+        /// <summary>
         /// Get phone number
         /// </summary>
         /// <remarks>
@@ -284,6 +323,22 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListPhoneNumberPortIns200Response</returns>
         ApiResponse<ListPhoneNumberPortIns200Response> ListPhoneNumberPortInsWithHttpInfo();
+        /// <summary>
+        /// List stock watches
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListPhoneNumberStockWatches200Response</returns>
+        ListPhoneNumberStockWatches200Response ListPhoneNumberStockWatches();
+
+        /// <summary>
+        /// List stock watches
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListPhoneNumberStockWatches200Response</returns>
+        ApiResponse<ListPhoneNumberStockWatches200Response> ListPhoneNumberStockWatchesWithHttpInfo();
         /// <summary>
         /// List phone numbers
         /// </summary>
@@ -710,6 +765,52 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreatePhoneNumberPortIn201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreatePhoneNumberPortIn201Response>> CreatePhoneNumberPortInWithHttpInfoAsync(CreatePhoneNumberPortInRequest createPhoneNumberPortInRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Watch an out-of-stock country
+        /// </summary>
+        /// <remarks>
+        /// Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PhoneNumberStockWatch</returns>
+        System.Threading.Tasks.Task<PhoneNumberStockWatch> CreatePhoneNumberStockWatchAsync(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Watch an out-of-stock country
+        /// </summary>
+        /// <remarks>
+        /// Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PhoneNumberStockWatch)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PhoneNumberStockWatch>> CreatePhoneNumberStockWatchWithHttpInfoAsync(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Stop watching a country
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteSmsSenderId200Response</returns>
+        System.Threading.Tasks.Task<DeleteSmsSenderId200Response> DeletePhoneNumberStockWatchAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Stop watching a country
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteSmsSenderId200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteSmsSenderId200Response>> DeletePhoneNumberStockWatchWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get phone number
         /// </summary>
         /// <remarks>
@@ -870,6 +971,27 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListPhoneNumberPortIns200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListPhoneNumberPortIns200Response>> ListPhoneNumberPortInsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List stock watches
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListPhoneNumberStockWatches200Response</returns>
+        System.Threading.Tasks.Task<ListPhoneNumberStockWatches200Response> ListPhoneNumberStockWatchesAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List stock watches
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListPhoneNumberStockWatches200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListPhoneNumberStockWatches200Response>> ListPhoneNumberStockWatchesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List phone numbers
         /// </summary>
@@ -2072,6 +2194,262 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Watch an out-of-stock country Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <returns>PhoneNumberStockWatch</returns>
+        public PhoneNumberStockWatch CreatePhoneNumberStockWatch(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest)
+        {
+            Zernio.Client.ApiResponse<PhoneNumberStockWatch> localVarResponse = CreatePhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Watch an out-of-stock country Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <returns>ApiResponse of PhoneNumberStockWatch</returns>
+        public Zernio.Client.ApiResponse<PhoneNumberStockWatch> CreatePhoneNumberStockWatchWithHttpInfo(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest)
+        {
+            // verify the required parameter 'createPhoneNumberStockWatchRequest' is set
+            if (createPhoneNumberStockWatchRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createPhoneNumberStockWatchRequest' when calling PhoneNumbersApi->CreatePhoneNumberStockWatch");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createPhoneNumberStockWatchRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<PhoneNumberStockWatch>("/v1/phone-numbers/stock-watches", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreatePhoneNumberStockWatch", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Watch an out-of-stock country Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PhoneNumberStockWatch</returns>
+        public async System.Threading.Tasks.Task<PhoneNumberStockWatch> CreatePhoneNumberStockWatchAsync(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<PhoneNumberStockWatch> localVarResponse = await CreatePhoneNumberStockWatchWithHttpInfoAsync(createPhoneNumberStockWatchRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Watch an out-of-stock country Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 countries can be watched at once. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createPhoneNumberStockWatchRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PhoneNumberStockWatch)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PhoneNumberStockWatch>> CreatePhoneNumberStockWatchWithHttpInfoAsync(CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createPhoneNumberStockWatchRequest' is set
+            if (createPhoneNumberStockWatchRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createPhoneNumberStockWatchRequest' when calling PhoneNumbersApi->CreatePhoneNumberStockWatch");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createPhoneNumberStockWatchRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PhoneNumberStockWatch>("/v1/phone-numbers/stock-watches", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreatePhoneNumberStockWatch", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Stop watching a country 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>DeleteSmsSenderId200Response</returns>
+        public DeleteSmsSenderId200Response DeletePhoneNumberStockWatch(string id)
+        {
+            Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> localVarResponse = DeletePhoneNumberStockWatchWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Stop watching a country 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <returns>ApiResponse of DeleteSmsSenderId200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> DeletePhoneNumberStockWatchWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling PhoneNumbersApi->DeletePhoneNumberStockWatch");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteSmsSenderId200Response>("/v1/phone-numbers/stock-watches/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeletePhoneNumberStockWatch", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Stop watching a country 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteSmsSenderId200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteSmsSenderId200Response> DeletePhoneNumberStockWatchAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> localVarResponse = await DeletePhoneNumberStockWatchWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Stop watching a country 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteSmsSenderId200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteSmsSenderId200Response>> DeletePhoneNumberStockWatchWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling PhoneNumbersApi->DeletePhoneNumberStockWatch");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteSmsSenderId200Response>("/v1/phone-numbers/stock-watches/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeletePhoneNumberStockWatch", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2950,6 +3328,119 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListPhoneNumberPortIns", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List stock watches 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListPhoneNumberStockWatches200Response</returns>
+        public ListPhoneNumberStockWatches200Response ListPhoneNumberStockWatches()
+        {
+            Zernio.Client.ApiResponse<ListPhoneNumberStockWatches200Response> localVarResponse = ListPhoneNumberStockWatchesWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List stock watches 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListPhoneNumberStockWatches200Response</returns>
+        public Zernio.Client.ApiResponse<ListPhoneNumberStockWatches200Response> ListPhoneNumberStockWatchesWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListPhoneNumberStockWatches200Response>("/v1/phone-numbers/stock-watches", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListPhoneNumberStockWatches", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List stock watches 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListPhoneNumberStockWatches200Response</returns>
+        public async System.Threading.Tasks.Task<ListPhoneNumberStockWatches200Response> ListPhoneNumberStockWatchesAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListPhoneNumberStockWatches200Response> localVarResponse = await ListPhoneNumberStockWatchesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List stock watches 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListPhoneNumberStockWatches200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListPhoneNumberStockWatches200Response>> ListPhoneNumberStockWatchesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListPhoneNumberStockWatches200Response>("/v1/phone-numbers/stock-watches", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListPhoneNumberStockWatches", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

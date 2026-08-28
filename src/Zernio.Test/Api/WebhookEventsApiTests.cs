@@ -253,6 +253,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnPhoneNumberStockAvailable
+        /// </summary>
+        [Fact]
+        public void OnPhoneNumberStockAvailableTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadPhoneNumberStockAvailable webhookPayloadPhoneNumberStockAvailable = null;
+            //instance.OnPhoneNumberStockAvailable(webhookPayloadPhoneNumberStockAvailable);
+        }
+
+        /// <summary>
         /// Test OnPostCancelled
         /// </summary>
         [Fact]

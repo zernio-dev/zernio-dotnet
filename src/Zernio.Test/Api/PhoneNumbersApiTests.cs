@@ -117,6 +117,30 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreatePhoneNumberStockWatch
+        /// </summary>
+        [Fact]
+        public void CreatePhoneNumberStockWatchTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = null;
+            //var response = instance.CreatePhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
+            //Assert.IsType<PhoneNumberStockWatch>(response);
+        }
+
+        /// <summary>
+        /// Test DeletePhoneNumberStockWatch
+        /// </summary>
+        [Fact]
+        public void DeletePhoneNumberStockWatchTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.DeletePhoneNumberStockWatch(id);
+            //Assert.IsType<DeleteSmsSenderId200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetPhoneNumber
         /// </summary>
         [Fact]
@@ -198,6 +222,17 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.ListPhoneNumberPortIns();
             //Assert.IsType<ListPhoneNumberPortIns200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListPhoneNumberStockWatches
+        /// </summary>
+        [Fact]
+        public void ListPhoneNumberStockWatchesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.ListPhoneNumberStockWatches();
+            //Assert.IsType<ListPhoneNumberStockWatches200Response>(response);
         }
 
         /// <summary>
