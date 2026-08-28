@@ -28,37 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateWhatsAppTemplateRequest
+    /// UpdateWhatsAppTemplateByIdRequest
     /// </summary>
-    [DataContract(Name = "updateWhatsAppTemplate_request")]
-    public partial class UpdateWhatsAppTemplateRequest : IValidatableObject
+    [DataContract(Name = "updateWhatsAppTemplateById_request")]
+    public partial class UpdateWhatsAppTemplateByIdRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateByIdRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpdateWhatsAppTemplateRequest() { }
+        protected UpdateWhatsAppTemplateByIdRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateByIdRequest" /> class.
         /// </summary>
         /// <param name="accountId">WhatsApp social account ID (required).</param>
-        /// <param name="language">Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400..</param>
         /// <param name="components">Updated template components (required).</param>
-        public UpdateWhatsAppTemplateRequest(string accountId = default, string language = default, List<WhatsAppTemplateComponent> components = default)
+        public UpdateWhatsAppTemplateByIdRequest(string accountId = default, List<WhatsAppTemplateComponent> components = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
             {
-                throw new ArgumentNullException("accountId is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
+                throw new ArgumentNullException("accountId is a required property for UpdateWhatsAppTemplateByIdRequest and cannot be null");
             }
             this.AccountId = accountId;
             // to ensure "components" is required (not null)
             if (components == null)
             {
-                throw new ArgumentNullException("components is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
+                throw new ArgumentNullException("components is a required property for UpdateWhatsAppTemplateByIdRequest and cannot be null");
             }
             this.Components = components;
-            this.Language = language;
         }
 
         /// <summary>
@@ -67,13 +65,6 @@ namespace Zernio.Model
         /// <value>WhatsApp social account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
-
-        /// <summary>
-        /// Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.
-        /// </summary>
-        /// <value>Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.</value>
-        [DataMember(Name = "language", EmitDefaultValue = false)]
-        public string Language { get; set; }
 
         /// <summary>
         /// Updated template components
@@ -89,9 +80,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateWhatsAppTemplateRequest {\n");
+            sb.Append("class UpdateWhatsAppTemplateByIdRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

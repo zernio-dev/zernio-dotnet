@@ -28,55 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateWhatsAppTemplate200ResponseTemplate
+    /// UpdateWhatsAppTemplateById200Response
     /// </summary>
-    [DataContract(Name = "updateWhatsAppTemplate_200_response_template")]
-    public partial class UpdateWhatsAppTemplate200ResponseTemplate : IValidatableObject
+    [DataContract(Name = "updateWhatsAppTemplateById_200_response")]
+    public partial class UpdateWhatsAppTemplateById200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplate200ResponseTemplate" /> class.
+        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateById200Response" /> class.
         /// </summary>
-        /// <param name="id">Meta id of the edited variant..</param>
-        /// <param name="name">name.</param>
-        /// <param name="language">The variant that was edited..</param>
-        /// <param name="status">Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead..</param>
-        public UpdateWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string language = default, string status = default)
+        /// <param name="success">success.</param>
+        /// <param name="template">template.</param>
+        public UpdateWhatsAppTemplateById200Response(bool success = default, UpdateWhatsAppTemplateById200ResponseTemplate template = default)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Language = language;
-            this.Status = status;
+            this.Success = success;
+            this.Template = template;
         }
 
         /// <summary>
-        /// Meta id of the edited variant.
+        /// Gets or Sets Success
         /// </summary>
-        /// <value>Meta id of the edited variant.</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string Id { get; set; }
+        [DataMember(Name = "success", EmitDefaultValue = true)]
+        public bool Success { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets Template
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The variant that was edited.
-        /// </summary>
-        /// <value>The variant that was edited.</value>
-        [DataMember(Name = "language", EmitDefaultValue = false)]
-        public string Language { get; set; }
-
-        /// <summary>
-        /// Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.
-        /// </summary>
-        /// <value>Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.</value>
-        /*
-        <example>PENDING</example>
-        */
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
+        [DataMember(Name = "template", EmitDefaultValue = false)]
+        public UpdateWhatsAppTemplateById200ResponseTemplate Template { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,11 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateWhatsAppTemplate200ResponseTemplate {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Language: ").Append(Language).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("class UpdateWhatsAppTemplateById200Response {\n");
+            sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

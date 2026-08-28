@@ -28,59 +28,53 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateWhatsAppTemplateRequest
+    /// UpdateWhatsAppTemplateById200ResponseTemplate
     /// </summary>
-    [DataContract(Name = "updateWhatsAppTemplate_request")]
-    public partial class UpdateWhatsAppTemplateRequest : IValidatableObject
+    [DataContract(Name = "updateWhatsAppTemplateById_200_response_template")]
+    public partial class UpdateWhatsAppTemplateById200ResponseTemplate : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateById200ResponseTemplate" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdateWhatsAppTemplateRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateRequest" /> class.
-        /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
-        /// <param name="language">Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400..</param>
-        /// <param name="components">Updated template components (required).</param>
-        public UpdateWhatsAppTemplateRequest(string accountId = default, string language = default, List<WhatsAppTemplateComponent> components = default)
+        /// <param name="id">id.</param>
+        /// <param name="name">name.</param>
+        /// <param name="language">language.</param>
+        /// <param name="status">Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead..</param>
+        public UpdateWhatsAppTemplateById200ResponseTemplate(string id = default, string name = default, string language = default, string status = default)
         {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
-            }
-            this.AccountId = accountId;
-            // to ensure "components" is required (not null)
-            if (components == null)
-            {
-                throw new ArgumentNullException("components is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
-            }
-            this.Components = components;
+            this.Id = id;
+            this.Name = name;
             this.Language = language;
+            this.Status = status;
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// Gets or Sets Id
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountId { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
-        /// Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.
+        /// Gets or Sets Name
         /// </summary>
-        /// <value>Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Language
+        /// </summary>
         [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 
         /// <summary>
-        /// Updated template components
+        /// Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.
         /// </summary>
-        /// <value>Updated template components</value>
-        [DataMember(Name = "components", IsRequired = true, EmitDefaultValue = true)]
-        public List<WhatsAppTemplateComponent> Components { get; set; }
+        /// <value>Approval state read back from Meta after the update, normally PENDING. If the state cannot be read back, the last known status is returned instead.</value>
+        /*
+        <example>PENDING</example>
+        */
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public string Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,10 +83,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateWhatsAppTemplateRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("class UpdateWhatsAppTemplateById200ResponseTemplate {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
-            sb.Append("  Components: ").Append(Components).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,59 +28,71 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateWhatsAppTemplateRequest
+    /// DeleteWhatsAppTemplate200Response
     /// </summary>
-    [DataContract(Name = "updateWhatsAppTemplate_request")]
-    public partial class UpdateWhatsAppTemplateRequest : IValidatableObject
+    [DataContract(Name = "deleteWhatsAppTemplate_200_response")]
+    public partial class DeleteWhatsAppTemplate200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateRequest" /> class.
+        /// Whether the whole family or one variant was deleted.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdateWhatsAppTemplateRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateWhatsAppTemplateRequest" /> class.
-        /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
-        /// <param name="language">Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400..</param>
-        /// <param name="components">Updated template components (required).</param>
-        public UpdateWhatsAppTemplateRequest(string accountId = default, string language = default, List<WhatsAppTemplateComponent> components = default)
+        /// <value>Whether the whole family or one variant was deleted.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ScopeEnum
         {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
-            }
-            this.AccountId = accountId;
-            // to ensure "components" is required (not null)
-            if (components == null)
-            {
-                throw new ArgumentNullException("components is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
-            }
-            this.Components = components;
+            /// <summary>
+            /// Enum AllLanguages for value: all_languages
+            /// </summary>
+            [EnumMember(Value = "all_languages")]
+            AllLanguages = 1,
+
+            /// <summary>
+            /// Enum Language for value: language
+            /// </summary>
+            [EnumMember(Value = "language")]
+            Language = 2
+        }
+
+
+        /// <summary>
+        /// Whether the whole family or one variant was deleted.
+        /// </summary>
+        /// <value>Whether the whole family or one variant was deleted.</value>
+        [DataMember(Name = "scope", EmitDefaultValue = false)]
+        public ScopeEnum? Scope { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteWhatsAppTemplate200Response" /> class.
+        /// </summary>
+        /// <param name="success">success.</param>
+        /// <param name="scope">Whether the whole family or one variant was deleted..</param>
+        /// <param name="language">The deleted variant; only when scope is language..</param>
+        /// <param name="message">message.</param>
+        public DeleteWhatsAppTemplate200Response(bool success = default, ScopeEnum? scope = default, string language = default, string message = default)
+        {
+            this.Success = success;
+            this.Scope = scope;
             this.Language = language;
+            this.Message = message;
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// Gets or Sets Success
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountId { get; set; }
+        [DataMember(Name = "success", EmitDefaultValue = true)]
+        public bool Success { get; set; }
 
         /// <summary>
-        /// Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.
+        /// The deleted variant; only when scope is language.
         /// </summary>
-        /// <value>Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400.</value>
+        /// <value>The deleted variant; only when scope is language.</value>
         [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 
         /// <summary>
-        /// Updated template components
+        /// Gets or Sets Message
         /// </summary>
-        /// <value>Updated template components</value>
-        [DataMember(Name = "components", IsRequired = true, EmitDefaultValue = true)]
-        public List<WhatsAppTemplateComponent> Components { get; set; }
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,10 +101,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateWhatsAppTemplateRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("class DeleteWhatsAppTemplate200Response {\n");
+            sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  Scope: ").Append(Scope).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
-            sb.Append("  Components: ").Append(Components).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

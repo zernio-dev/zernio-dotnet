@@ -36,13 +36,15 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetWhatsAppTemplate200ResponseTemplate" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
+        /// <param name="id">Meta template id. Unique per language variant; usable on /v1/whatsapp/templates/id/{templateId}..</param>
         /// <param name="name">name.</param>
         /// <param name="status">status.</param>
         /// <param name="category">category.</param>
-        /// <param name="language">language.</param>
+        /// <param name="language">The variant actually returned..</param>
         /// <param name="components">components.</param>
-        public GetWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default, List<Object> components = default)
+        /// <param name="rejectedReason">Only when status is REJECTED..</param>
+        /// <param name="qualityScore">Post-approval quality (GREEN/YELLOW/RED), when Meta reports one..</param>
+        public GetWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default, List<Object> components = default, string rejectedReason = default, Object qualityScore = default)
         {
             this.Id = id;
             this.Name = name;
@@ -50,11 +52,14 @@ namespace Zernio.Model
             this.Category = category;
             this.Language = language;
             this.Components = components;
+            this.RejectedReason = rejectedReason;
+            this.QualityScore = qualityScore;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Meta template id. Unique per language variant; usable on /v1/whatsapp/templates/id/{templateId}.
         /// </summary>
+        /// <value>Meta template id. Unique per language variant; usable on /v1/whatsapp/templates/id/{templateId}.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -77,8 +82,9 @@ namespace Zernio.Model
         public string Category { get; set; }
 
         /// <summary>
-        /// Gets or Sets Language
+        /// The variant actually returned.
         /// </summary>
+        /// <value>The variant actually returned.</value>
         [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 
@@ -87,6 +93,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "components", EmitDefaultValue = false)]
         public List<Object> Components { get; set; }
+
+        /// <summary>
+        /// Only when status is REJECTED.
+        /// </summary>
+        /// <value>Only when status is REJECTED.</value>
+        [DataMember(Name = "rejected_reason", EmitDefaultValue = false)]
+        public string RejectedReason { get; set; }
+
+        /// <summary>
+        /// Post-approval quality (GREEN/YELLOW/RED), when Meta reports one.
+        /// </summary>
+        /// <value>Post-approval quality (GREEN/YELLOW/RED), when Meta reports one.</value>
+        [DataMember(Name = "quality_score", EmitDefaultValue = false)]
+        public Object QualityScore { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,6 +122,8 @@ namespace Zernio.Model
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
+            sb.Append("  RejectedReason: ").Append(RejectedReason).Append("\n");
+            sb.Append("  QualityScore: ").Append(QualityScore).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

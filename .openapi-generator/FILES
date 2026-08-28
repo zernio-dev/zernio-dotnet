@@ -402,6 +402,8 @@ docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteValueRuleSet200Response.md
+docs/DeleteWhatsAppTemplate200Response.md
+docs/DeleteWhatsAppTemplateById200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DetachNumberFromSipTrunk200Response.md
 docs/DialVoiceWebCall200Response.md
@@ -808,6 +810,8 @@ docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
 docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
+docs/GetWhatsAppTemplate409Response.md
+docs/GetWhatsAppTemplate409ResponseDetails.md
 docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
 docs/GetWhatsappBusinessUsername200Response.md
@@ -1575,6 +1579,9 @@ docs/UpdateWhatsAppFlowRequest.md
 docs/UpdateWhatsAppGroupChatRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
+docs/UpdateWhatsAppTemplateById200Response.md
+docs/UpdateWhatsAppTemplateById200ResponseTemplate.md
+docs/UpdateWhatsAppTemplateByIdRequest.md
 docs/UpdateWhatsAppTemplateRequest.md
 docs/UpdateWorkflow200Response.md
 docs/UpdateWorkflow200ResponseWorkflow.md
@@ -2264,6 +2271,8 @@ src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteValueRuleSet200ResponseTests.cs
+src/Zernio.Test/Model/DeleteWhatsAppTemplate200ResponseTests.cs
+src/Zernio.Test/Model/DeleteWhatsAppTemplateById200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/DetachNumberFromSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCall200ResponseTests.cs
@@ -2661,6 +2670,8 @@ src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberRemediation200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTemplateTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppTemplate409ResponseDetailsTests.cs
+src/Zernio.Test/Model/GetWhatsAppTemplate409ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplates200ResponseTemplatesInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplates200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsappBusinessUsername200ResponseTests.cs
@@ -3406,6 +3417,9 @@ src/Zernio.Test/Model/UpdateWhatsAppFlowRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppGroupChatRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppTemplate200ResponseTemplateTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppTemplate200ResponseTests.cs
+src/Zernio.Test/Model/UpdateWhatsAppTemplateById200ResponseTemplateTests.cs
+src/Zernio.Test/Model/UpdateWhatsAppTemplateById200ResponseTests.cs
+src/Zernio.Test/Model/UpdateWhatsAppTemplateByIdRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppTemplateRequestTests.cs
 src/Zernio.Test/Model/UpdateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWorkflow200ResponseWorkflowTests.cs
@@ -4099,6 +4113,8 @@ src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteValueRuleSet200Response.cs
+src/Zernio/Model/DeleteWhatsAppTemplate200Response.cs
+src/Zernio/Model/DeleteWhatsAppTemplateById200Response.cs
 src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/DetachNumberFromSipTrunk200Response.cs
 src/Zernio/Model/DialVoiceWebCall200Response.cs
@@ -4496,6 +4512,8 @@ src/Zernio/Model/GetWhatsAppNumberKycForm200ResponseFieldsInner.cs
 src/Zernio/Model/GetWhatsAppNumberRemediation200Response.cs
 src/Zernio/Model/GetWhatsAppTemplate200Response.cs
 src/Zernio/Model/GetWhatsAppTemplate200ResponseTemplate.cs
+src/Zernio/Model/GetWhatsAppTemplate409Response.cs
+src/Zernio/Model/GetWhatsAppTemplate409ResponseDetails.cs
 src/Zernio/Model/GetWhatsAppTemplates200Response.cs
 src/Zernio/Model/GetWhatsAppTemplates200ResponseTemplatesInner.cs
 src/Zernio/Model/GetWhatsappBusinessUsername200Response.cs
@@ -5241,6 +5259,9 @@ src/Zernio/Model/UpdateWhatsAppFlowRequest.cs
 src/Zernio/Model/UpdateWhatsAppGroupChatRequest.cs
 src/Zernio/Model/UpdateWhatsAppTemplate200Response.cs
 src/Zernio/Model/UpdateWhatsAppTemplate200ResponseTemplate.cs
+src/Zernio/Model/UpdateWhatsAppTemplateById200Response.cs
+src/Zernio/Model/UpdateWhatsAppTemplateById200ResponseTemplate.cs
+src/Zernio/Model/UpdateWhatsAppTemplateByIdRequest.cs
 src/Zernio/Model/UpdateWhatsAppTemplateRequest.cs
 src/Zernio/Model/UpdateWorkflow200Response.cs
 src/Zernio/Model/UpdateWorkflow200ResponseWorkflow.cs

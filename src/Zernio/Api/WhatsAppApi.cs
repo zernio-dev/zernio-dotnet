@@ -212,25 +212,50 @@ namespace Zernio.Api
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name. 
+        /// Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
-        /// <returns>UnpublishPost200Response</returns>
-        UnpublishPost200Response DeleteWhatsAppTemplate(string templateName, string accountId);
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
+        /// <returns>DeleteWhatsAppTemplate200Response</returns>
+        DeleteWhatsAppTemplate200Response DeleteWhatsAppTemplate(string templateName, string accountId, string? language = default);
 
         /// <summary>
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name. 
+        /// Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
-        /// <returns>ApiResponse of UnpublishPost200Response</returns>
-        ApiResponse<UnpublishPost200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId);
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
+        /// <returns>ApiResponse of DeleteWhatsAppTemplate200Response</returns>
+        ApiResponse<DeleteWhatsAppTemplate200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default);
+        /// <summary>
+        /// Delete template by id
+        /// </summary>
+        /// <remarks>
+        /// Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>DeleteWhatsAppTemplateById200Response</returns>
+        DeleteWhatsAppTemplateById200Response DeleteWhatsAppTemplateById(string templateId, string accountId);
+
+        /// <summary>
+        /// Delete template by id
+        /// </summary>
+        /// <remarks>
+        /// Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of DeleteWhatsAppTemplateById200Response</returns>
+        ApiResponse<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId);
         /// <summary>
         /// Delete business username
         /// </summary>
@@ -413,46 +438,77 @@ namespace Zernio.Api
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name. 
+        /// Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>GetWhatsAppTemplate200Response</returns>
-        GetWhatsAppTemplate200Response GetWhatsAppTemplate(string templateName, string accountId);
+        GetWhatsAppTemplate200Response GetWhatsAppTemplate(string templateName, string accountId, string? language = default);
 
         /// <summary>
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name. 
+        /// Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
+        ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default);
+        /// <summary>
+        /// Get template by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsAppTemplate200Response</returns>
+        GetWhatsAppTemplate200Response GetWhatsAppTemplateById(string templateId, string accountId);
+
+        /// <summary>
+        /// Get template by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
-        ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateWithHttpInfo(string templateName, string accountId);
+        ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId);
         /// <summary>
         /// List templates
         /// </summary>
         /// <remarks>
-        /// List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <returns>GetWhatsAppTemplates200Response</returns>
-        GetWhatsAppTemplates200Response GetWhatsAppTemplates(string accountId);
+        GetWhatsAppTemplates200Response GetWhatsAppTemplates(string accountId, string? name = default, string? language = default, string? status = default);
 
         /// <summary>
         /// List templates
         /// </summary>
         /// <remarks>
-        /// List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppTemplates200Response</returns>
-        ApiResponse<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesWithHttpInfo(string accountId);
+        ApiResponse<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesWithHttpInfo(string accountId, string? name = default, string? language = default, string? status = default);
         /// <summary>
         /// Get business username
         /// </summary>
@@ -796,10 +852,10 @@ namespace Zernio.Api
         /// Update template
         /// </summary>
         /// <remarks>
-        /// Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <returns>UpdateWhatsAppTemplate200Response</returns>
         UpdateWhatsAppTemplate200Response UpdateWhatsAppTemplate(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest);
@@ -808,13 +864,36 @@ namespace Zernio.Api
         /// Update template
         /// </summary>
         /// <remarks>
-        /// Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <returns>ApiResponse of UpdateWhatsAppTemplate200Response</returns>
         ApiResponse<UpdateWhatsAppTemplate200Response> UpdateWhatsAppTemplateWithHttpInfo(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest);
+        /// <summary>
+        /// Update template by id
+        /// </summary>
+        /// <remarks>
+        /// Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <returns>UpdateWhatsAppTemplateById200Response</returns>
+        UpdateWhatsAppTemplateById200Response UpdateWhatsAppTemplateById(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest);
+
+        /// <summary>
+        /// Update template by id
+        /// </summary>
+        /// <remarks>
+        /// Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <returns>ApiResponse of UpdateWhatsAppTemplateById200Response</returns>
+        ApiResponse<UpdateWhatsAppTemplateById200Response> UpdateWhatsAppTemplateByIdWithHttpInfo(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest);
         /// <summary>
         /// Upload profile picture
         /// </summary>
@@ -1047,27 +1126,54 @@ namespace Zernio.Api
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name. 
+        /// Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UnpublishPost200Response</returns>
-        System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppTemplateAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of DeleteWhatsAppTemplate200Response</returns>
+        System.Threading.Tasks.Task<DeleteWhatsAppTemplate200Response> DeleteWhatsAppTemplateAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name. 
+        /// Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteWhatsAppTemplate200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteWhatsAppTemplate200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete template by id
+        /// </summary>
+        /// <remarks>
+        /// Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of DeleteWhatsAppTemplateById200Response</returns>
+        System.Threading.Tasks.Task<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete template by id
+        /// </summary>
+        /// <remarks>
+        /// Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteWhatsAppTemplateById200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteWhatsAppTemplateById200Response>> DeleteWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete business username
         /// </summary>
@@ -1266,50 +1372,83 @@ namespace Zernio.Api
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name. 
+        /// Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplate200Response</returns>
-        System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name. 
+        /// Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get template by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppTemplate200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get template by id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List templates
         /// </summary>
         /// <remarks>
-        /// List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplates200Response</returns>
-        System.Threading.Tasks.Task<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesAsync(string accountId, string? name = default, string? language = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List templates
         /// </summary>
         /// <remarks>
-        /// List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplates200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplates200Response>> GetWhatsAppTemplatesWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplates200Response>> GetWhatsAppTemplatesWithHttpInfoAsync(string accountId, string? name = default, string? language = default, string? status = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get business username
         /// </summary>
@@ -1683,10 +1822,10 @@ namespace Zernio.Api
         /// Update template
         /// </summary>
         /// <remarks>
-        /// Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateWhatsAppTemplate200Response</returns>
@@ -1696,14 +1835,39 @@ namespace Zernio.Api
         /// Update template
         /// </summary>
         /// <remarks>
-        /// Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateWhatsAppTemplate200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateWhatsAppTemplate200Response>> UpdateWhatsAppTemplateWithHttpInfoAsync(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update template by id
+        /// </summary>
+        /// <remarks>
+        /// Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateWhatsAppTemplateById200Response</returns>
+        System.Threading.Tasks.Task<UpdateWhatsAppTemplateById200Response> UpdateWhatsAppTemplateByIdAsync(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update template by id
+        /// </summary>
+        /// <remarks>
+        /// Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateWhatsAppTemplateById200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateWhatsAppTemplateById200Response>> UpdateWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Upload profile picture
         /// </summary>
@@ -3055,26 +3219,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name. 
+        /// Delete template Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
-        /// <returns>UnpublishPost200Response</returns>
-        public UnpublishPost200Response DeleteWhatsAppTemplate(string templateName, string accountId)
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
+        /// <returns>DeleteWhatsAppTemplate200Response</returns>
+        public DeleteWhatsAppTemplate200Response DeleteWhatsAppTemplate(string templateName, string accountId, string? language = default)
         {
-            Zernio.Client.ApiResponse<UnpublishPost200Response> localVarResponse = DeleteWhatsAppTemplateWithHttpInfo(templateName, accountId);
+            Zernio.Client.ApiResponse<DeleteWhatsAppTemplate200Response> localVarResponse = DeleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name. 
+        /// Delete template Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
-        /// <returns>ApiResponse of UnpublishPost200Response</returns>
-        public Zernio.Client.ApiResponse<UnpublishPost200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId)
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
+        /// <returns>ApiResponse of DeleteWhatsAppTemplate200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteWhatsAppTemplate200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default)
         {
             // verify the required parameter 'templateName' is set
             if (templateName == null)
@@ -3102,6 +3268,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("templateName", Zernio.Client.ClientUtils.ParameterToString(templateName)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -3111,7 +3281,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<UnpublishPost200Response>("/v1/whatsapp/templates/{templateName}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<DeleteWhatsAppTemplate200Response>("/v1/whatsapp/templates/{templateName}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -3123,28 +3293,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name. 
+        /// Delete template Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UnpublishPost200Response</returns>
-        public async System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppTemplateAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of DeleteWhatsAppTemplate200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteWhatsAppTemplate200Response> DeleteWhatsAppTemplateAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UnpublishPost200Response> localVarResponse = await DeleteWhatsAppTemplateWithHttpInfoAsync(templateName, accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<DeleteWhatsAppTemplate200Response> localVarResponse = await DeleteWhatsAppTemplateWithHttpInfoAsync(templateName, accountId, language, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name. 
+        /// Delete template Permanently delete a message template.  **Without &#x60;language&#x60; this deletes every language variant of the name** (Meta&#39;s own contract for deletion by name). Pass &#x60;language&#x60; to delete one variant only; the response &#x60;scope&#x60; says which happened. Meta keeps a deleted approved template in &#x60;PENDING_DELETION&#x60; for a while and the name cannot be reused for 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UnpublishPost200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (DeleteWhatsAppTemplate200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteWhatsAppTemplate200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'templateName' is set
             if (templateName == null)
@@ -3174,6 +3346,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("templateName", Zernio.Client.ClientUtils.ParameterToString(templateName)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -3184,11 +3360,152 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UnpublishPost200Response>("/v1/whatsapp/templates/{templateName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteWhatsAppTemplate200Response>("/v1/whatsapp/templates/{templateName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteWhatsAppTemplate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete template by id Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>DeleteWhatsAppTemplateById200Response</returns>
+        public DeleteWhatsAppTemplateById200Response DeleteWhatsAppTemplateById(string templateId, string accountId)
+        {
+            Zernio.Client.ApiResponse<DeleteWhatsAppTemplateById200Response> localVarResponse = DeleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete template by id Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of DeleteWhatsAppTemplateById200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'templateId' when calling WhatsAppApi->DeleteWhatsAppTemplateById");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->DeleteWhatsAppTemplateById");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("templateId", Zernio.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteWhatsAppTemplateById200Response>("/v1/whatsapp/templates/id/{templateId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteWhatsAppTemplateById", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete template by id Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteWhatsAppTemplateById200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteWhatsAppTemplateById200Response> localVarResponse = await DeleteWhatsAppTemplateByIdWithHttpInfoAsync(templateId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete template by id Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteWhatsAppTemplateById200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteWhatsAppTemplateById200Response>> DeleteWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'templateId' when calling WhatsAppApi->DeleteWhatsAppTemplateById");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->DeleteWhatsAppTemplateById");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("templateId", Zernio.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteWhatsAppTemplateById200Response>("/v1/whatsapp/templates/id/{templateId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteWhatsAppTemplateById", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4282,26 +4599,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name. 
+        /// Get template Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>GetWhatsAppTemplate200Response</returns>
-        public GetWhatsAppTemplate200Response GetWhatsAppTemplate(string templateName, string accountId)
+        public GetWhatsAppTemplate200Response GetWhatsAppTemplate(string templateName, string accountId, string? language = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = GetWhatsAppTemplateWithHttpInfo(templateName, accountId);
+            Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = GetWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name. 
+        /// Get template Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
-        public Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateWithHttpInfo(string templateName, string accountId)
+        public Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default)
         {
             // verify the required parameter 'templateName' is set
             if (templateName == null)
@@ -4329,6 +4648,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("templateName", Zernio.Client.ClientUtils.ParameterToString(templateName)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -4350,28 +4673,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name. 
+        /// Get template Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplate200Response</returns>
-        public async System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = await GetWhatsAppTemplateWithHttpInfoAsync(templateName, accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = await GetWhatsAppTemplateWithHttpInfoAsync(templateName, accountId, language, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name. 
+        /// Get template Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'templateName' is set
             if (templateName == null)
@@ -4401,6 +4726,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("templateName", Zernio.Client.ClientUtils.ParameterToString(templateName)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -4423,24 +4752,171 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List templates List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// Get template by id Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
         /// <param name="accountId">WhatsApp social account ID</param>
-        /// <returns>GetWhatsAppTemplates200Response</returns>
-        public GetWhatsAppTemplates200Response GetWhatsAppTemplates(string accountId)
+        /// <returns>GetWhatsAppTemplate200Response</returns>
+        public GetWhatsAppTemplate200Response GetWhatsAppTemplateById(string templateId, string accountId)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response> localVarResponse = GetWhatsAppTemplatesWithHttpInfo(accountId);
+            Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = GetWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List templates List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// Get template by id Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'templateId' when calling WhatsAppApi->GetWhatsAppTemplateById");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppTemplateById");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("templateId", Zernio.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppTemplate200Response>("/v1/whatsapp/templates/id/{templateId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppTemplateById", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get template by id Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppTemplate200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> localVarResponse = await GetWhatsAppTemplateByIdWithHttpInfoAsync(templateId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get template by id Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the &#x60;whatsapp.template.status_updated&#x60; webhook carries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'templateId' when calling WhatsAppApi->GetWhatsAppTemplateById");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppTemplateById");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("templateId", Zernio.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppTemplate200Response>("/v1/whatsapp/templates/id/{templateId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppTemplateById", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
+        /// <returns>GetWhatsAppTemplates200Response</returns>
+        public GetWhatsAppTemplates200Response GetWhatsAppTemplates(string accountId, string? name = default, string? language = default, string? status = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response> localVarResponse = GetWhatsAppTemplatesWithHttpInfo(accountId, name, language, status);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppTemplates200Response</returns>
-        public Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesWithHttpInfo(string accountId)
+        public Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesWithHttpInfo(string accountId, string? name = default, string? language = default, string? status = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -4463,6 +4939,18 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
+            if (status != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status", status));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -4484,26 +4972,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List templates List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplates200Response</returns>
-        public async System.Threading.Tasks.Task<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesAsync(string accountId, string? name = default, string? language = default, string? status = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response> localVarResponse = await GetWhatsAppTemplatesWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response> localVarResponse = await GetWhatsAppTemplatesWithHttpInfoAsync(accountId, name, language, status, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List templates List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+        /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
+        /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
+        /// <param name="status"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplates200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response>> GetWhatsAppTemplatesWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppTemplates200Response>> GetWhatsAppTemplatesWithHttpInfoAsync(string accountId, string? name = default, string? language = default, string? status = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -4528,6 +5022,18 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
+            }
+            if (status != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status", status));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -6625,10 +7131,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update template Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update template Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <returns>UpdateWhatsAppTemplate200Response</returns>
         public UpdateWhatsAppTemplate200Response UpdateWhatsAppTemplate(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest)
@@ -6638,10 +7144,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update template Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update template Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <returns>ApiResponse of UpdateWhatsAppTemplate200Response</returns>
         public Zernio.Client.ApiResponse<UpdateWhatsAppTemplate200Response> UpdateWhatsAppTemplateWithHttpInfo(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest)
@@ -6694,10 +7200,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update template Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update template Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateWhatsAppTemplate200Response</returns>
@@ -6708,10 +7214,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update template Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives later on the &#x60;whatsapp.template.status_updated&#x60; webhook. A template already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// Update template Update one variant&#39;s components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass &#x60;language&#x60; to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns &#x60;409 ambiguous_template&#x60; with &#x60;details.languages&#x60;. A bare language (&#x60;es&#x60;) matches a single regional variant (&#x60;es_ES&#x60;); if the family has several regional variants for it, that is also a 409. A full code (&#x60;es_ES&#x60;) must match exactly. Variants in &#x60;PENDING_DELETION&#x60; are not part of the family.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="templateName">Template name</param>
+        /// <param name="templateName">Template name (the family).</param>
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateWhatsAppTemplate200Response)</returns>
@@ -6761,6 +7267,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateWhatsAppTemplate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update template by id Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <returns>UpdateWhatsAppTemplateById200Response</returns>
+        public UpdateWhatsAppTemplateById200Response UpdateWhatsAppTemplateById(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateWhatsAppTemplateById200Response> localVarResponse = UpdateWhatsAppTemplateByIdWithHttpInfo(templateId, updateWhatsAppTemplateByIdRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update template by id Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <returns>ApiResponse of UpdateWhatsAppTemplateById200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateWhatsAppTemplateById200Response> UpdateWhatsAppTemplateByIdWithHttpInfo(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'templateId' when calling WhatsAppApi->UpdateWhatsAppTemplateById");
+
+            // verify the required parameter 'updateWhatsAppTemplateByIdRequest' is set
+            if (updateWhatsAppTemplateByIdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppTemplateByIdRequest' when calling WhatsAppApi->UpdateWhatsAppTemplateById");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("templateId", Zernio.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.Data = updateWhatsAppTemplateByIdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<UpdateWhatsAppTemplateById200Response>("/v1/whatsapp/templates/id/{templateId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppTemplateById", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update template by id Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateWhatsAppTemplateById200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateWhatsAppTemplateById200Response> UpdateWhatsAppTemplateByIdAsync(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateWhatsAppTemplateById200Response> localVarResponse = await UpdateWhatsAppTemplateByIdWithHttpInfoAsync(templateId, updateWhatsAppTemplateByIdRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update template by id Update one variant&#39;s components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in &#x60;APPROVED&#x60;, &#x60;REJECTED&#x60; or &#x60;PAUSED&#x60; state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the &#x60;status&#x60; returned here is normally &#x60;PENDING&#x60;. The final outcome arrives on the &#x60;whatsapp.template.status_updated&#x60; webhook (which carries the variant&#39;s &#x60;templateId&#x60; and &#x60;language&#x60;). A variant already in &#x60;PENDING&#x60; cannot be edited again until Meta finishes reviewing it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">Meta template id (numeric).</param>
+        /// <param name="updateWhatsAppTemplateByIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateWhatsAppTemplateById200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateWhatsAppTemplateById200Response>> UpdateWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'templateId' when calling WhatsAppApi->UpdateWhatsAppTemplateById");
+
+            // verify the required parameter 'updateWhatsAppTemplateByIdRequest' is set
+            if (updateWhatsAppTemplateByIdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppTemplateByIdRequest' when calling WhatsAppApi->UpdateWhatsAppTemplateById");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("templateId", Zernio.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.Data = updateWhatsAppTemplateByIdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateWhatsAppTemplateById200Response>("/v1/whatsapp/templates/id/{templateId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppTemplateById", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

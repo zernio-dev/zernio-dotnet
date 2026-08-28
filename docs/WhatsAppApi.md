@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateWhatsAppTemplate**](WhatsAppApi.md#createwhatsapptemplate) | **POST** /v1/whatsapp/templates | Create template |
 | [**DeleteWhatsAppGroupChat**](WhatsAppApi.md#deletewhatsappgroupchat) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**DeleteWhatsAppTemplate**](WhatsAppApi.md#deletewhatsapptemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
+| [**DeleteWhatsAppTemplateById**](WhatsAppApi.md#deletewhatsapptemplatebyid) | **DELETE** /v1/whatsapp/templates/id/{templateId} | Delete template by id |
 | [**DeleteWhatsappBusinessUsername**](WhatsAppApi.md#deletewhatsappbusinessusername) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username |
 | [**GetWhatsAppBlockStatus**](WhatsAppApi.md#getwhatsappblockstatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
 | [**GetWhatsAppBlockedUsers**](WhatsAppApi.md#getwhatsappblockedusers) | **GET** /v1/whatsapp/block-users | List blocked users |
@@ -22,6 +23,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppGroupChat**](WhatsAppApi.md#getwhatsappgroupchat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info |
 | [**GetWhatsAppMedia**](WhatsAppApi.md#getwhatsappmedia) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media |
 | [**GetWhatsAppTemplate**](WhatsAppApi.md#getwhatsapptemplate) | **GET** /v1/whatsapp/templates/{templateName} | Get template |
+| [**GetWhatsAppTemplateById**](WhatsAppApi.md#getwhatsapptemplatebyid) | **GET** /v1/whatsapp/templates/id/{templateId} | Get template by id |
 | [**GetWhatsAppTemplates**](WhatsAppApi.md#getwhatsapptemplates) | **GET** /v1/whatsapp/templates | List templates |
 | [**GetWhatsappBusinessUsername**](WhatsAppApi.md#getwhatsappbusinessusername) | **GET** /v1/whatsapp/business-profile/username | Get business username |
 | [**GetWhatsappBusinessUsernameSuggestions**](WhatsAppApi.md#getwhatsappbusinessusernamesuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
@@ -39,6 +41,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateWhatsAppDisplayName**](WhatsAppApi.md#updatewhatsappdisplayname) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change |
 | [**UpdateWhatsAppGroupChat**](WhatsAppApi.md#updatewhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings |
 | [**UpdateWhatsAppTemplate**](WhatsAppApi.md#updatewhatsapptemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template |
+| [**UpdateWhatsAppTemplateById**](WhatsAppApi.md#updatewhatsapptemplatebyid) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id |
 | [**UploadWhatsAppProfilePhoto**](WhatsAppApi.md#uploadwhatsappprofilephoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture |
 
 <a id="addwhatsappgroupparticipants"></a>
@@ -859,11 +862,11 @@ catch (ApiException e)
 
 <a id="deletewhatsapptemplate"></a>
 # **DeleteWhatsAppTemplate**
-> UnpublishPost200Response DeleteWhatsAppTemplate (string templateName, string accountId)
+> DeleteWhatsAppTemplate200Response DeleteWhatsAppTemplate (string templateName, string accountId, string? language = null)
 
 Delete template
 
-Permanently delete a message template by name. 
+Permanently delete a message template.  **Without `language` this deletes every language variant of the name** (Meta's own contract for deletion by name). Pass `language` to delete one variant only; the response `scope` says which happened. Meta keeps a deleted approved template in `PENDING_DELETION` for a while and the name cannot be reused for 30 days. 
 
 ### Example
 ```csharp
@@ -889,13 +892,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var templateName = "templateName_example";  // string | Template name
+            var templateName = "templateName_example";  // string | Template name (the family).
             var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var language = "language_example";  // string? | Delete only this language variant (e.g. es). Omit to delete the whole family. (optional) 
 
             try
             {
                 // Delete template
-                UnpublishPost200Response result = apiInstance.DeleteWhatsAppTemplate(templateName, accountId);
+                DeleteWhatsAppTemplate200Response result = apiInstance.DeleteWhatsAppTemplate(templateName, accountId, language);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -916,7 +920,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete template
-    ApiResponse<UnpublishPost200Response> response = apiInstance.DeleteWhatsAppTemplateWithHttpInfo(templateName, accountId);
+    ApiResponse<DeleteWhatsAppTemplate200Response> response = apiInstance.DeleteWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -933,12 +937,13 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **templateName** | **string** | Template name |  |
+| **templateName** | **string** | Template name (the family). |  |
 | **accountId** | **string** | WhatsApp social account ID |  |
+| **language** | **string?** | Delete only this language variant (e.g. es). Omit to delete the whole family. | [optional]  |
 
 ### Return type
 
-[**UnpublishPost200Response**](UnpublishPost200Response.md)
+[**DeleteWhatsAppTemplate200Response**](DeleteWhatsAppTemplate200Response.md)
 
 ### Authorization
 
@@ -954,10 +959,115 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template deleted successfully |  -  |
-| **400** | accountId or template name is required |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **502** | Meta rejected the delete or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+| **404** | Account not found, or (with language) no such variant (code template_not_found). |  -  |
+| **409** | Only with language: a bare code (es) matched several regional variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template). Without language there is no 409: the whole family is deleted. |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletewhatsapptemplatebyid"></a>
+# **DeleteWhatsAppTemplateById**
+> DeleteWhatsAppTemplateById200Response DeleteWhatsAppTemplateById (string templateId, string accountId)
+
+Delete template by id
+
+Delete one language variant by its Meta id. Other languages of the same name are untouched. The name cannot be reused for 30 days once its last variant is deleted. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteWhatsAppTemplateByIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var templateId = "templateId_example";  // string | Meta template id (numeric).
+            var accountId = "accountId_example";  // string | WhatsApp social account ID
+
+            try
+            {
+                // Delete template by id
+                DeleteWhatsAppTemplateById200Response result = apiInstance.DeleteWhatsAppTemplateById(templateId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.DeleteWhatsAppTemplateById: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteWhatsAppTemplateByIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete template by id
+    ApiResponse<DeleteWhatsAppTemplateById200Response> response = apiInstance.DeleteWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.DeleteWhatsAppTemplateByIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **templateId** | **string** | Meta template id (numeric). |  |
+| **accountId** | **string** | WhatsApp social account ID |  |
+
+### Return type
+
+[**DeleteWhatsAppTemplateById200Response**](DeleteWhatsAppTemplateById200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Variant deleted successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1778,11 +1888,11 @@ catch (ApiException e)
 
 <a id="getwhatsapptemplate"></a>
 # **GetWhatsAppTemplate**
-> GetWhatsAppTemplate200Response GetWhatsAppTemplate (string templateName, string accountId)
+> GetWhatsAppTemplate200Response GetWhatsAppTemplate (string templateName, string accountId, string? language = null)
 
 Get template
 
-Retrieve a single message template by name. 
+Retrieve one message template variant by name.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass `language` to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns `409 ambiguous_template` with `details.languages`. A bare language (`es`) matches a single regional variant (`es_ES`); if the family has several regional variants for it, that is also a 409. A full code (`es_ES`) must match exactly. Variants in `PENDING_DELETION` are not part of the family. 
 
 ### Example
 ```csharp
@@ -1808,13 +1918,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var templateName = "templateName_example";  // string | Template name
+            var templateName = "templateName_example";  // string | Template name (the family).
             var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var language = "language_example";  // string? | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional) 
 
             try
             {
                 // Get template
-                GetWhatsAppTemplate200Response result = apiInstance.GetWhatsAppTemplate(templateName, accountId);
+                GetWhatsAppTemplate200Response result = apiInstance.GetWhatsAppTemplate(templateName, accountId, language);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1835,7 +1946,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get template
-    ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.GetWhatsAppTemplateWithHttpInfo(templateName, accountId);
+    ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.GetWhatsAppTemplateWithHttpInfo(templateName, accountId, language);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1852,7 +1963,113 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **templateName** | **string** | Template name |  |
+| **templateName** | **string** | Template name (the family). |  |
+| **accountId** | **string** | WhatsApp social account ID |  |
+| **language** | **string?** | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. | [optional]  |
+
+### Return type
+
+[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Template retrieved successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found, or no template with that name (and language, when given). details.languages lists the family&#39;s languages when the name exists (code template_not_found). |  -  |
+| **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwhatsapptemplatebyid"></a>
+# **GetWhatsAppTemplateById**
+> GetWhatsAppTemplate200Response GetWhatsAppTemplateById (string templateId, string accountId)
+
+Get template by id
+
+Retrieve one template variant by its Meta id, the id every variant of a family has on its own and the one the `whatsapp.template.status_updated` webhook carries. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppTemplateByIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var templateId = "templateId_example";  // string | Meta template id (numeric).
+            var accountId = "accountId_example";  // string | WhatsApp social account ID
+
+            try
+            {
+                // Get template by id
+                GetWhatsAppTemplate200Response result = apiInstance.GetWhatsAppTemplateById(templateId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.GetWhatsAppTemplateById: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppTemplateByIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get template by id
+    ApiResponse<GetWhatsAppTemplate200Response> response = apiInstance.GetWhatsAppTemplateByIdWithHttpInfo(templateId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.GetWhatsAppTemplateByIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **templateId** | **string** | Meta template id (numeric). |  |
 | **accountId** | **string** | WhatsApp social account ID |  |
 
 ### Return type
@@ -1873,20 +2090,20 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
-| **400** | accountId is required |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getwhatsapptemplates"></a>
 # **GetWhatsAppTemplates**
-> GetWhatsAppTemplates200Response GetWhatsAppTemplates (string accountId)
+> GetWhatsAppTemplates200Response GetWhatsAppTemplates (string accountId, string? name = null, string? language = null, string? status = null)
 
 List templates
 
-List all message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. 
+List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta `id`. 
 
 ### Example
 ```csharp
@@ -1913,11 +2130,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var name = "name_example";  // string? | Exact template name; returns every language variant of that family. (optional) 
+            var language = "language_example";  // string? | Exact language code (e.g. en_US). (optional) 
+            var status = "APPROVED";  // string? |  (optional) 
 
             try
             {
                 // List templates
-                GetWhatsAppTemplates200Response result = apiInstance.GetWhatsAppTemplates(accountId);
+                GetWhatsAppTemplates200Response result = apiInstance.GetWhatsAppTemplates(accountId, name, language, status);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1938,7 +2158,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List templates
-    ApiResponse<GetWhatsAppTemplates200Response> response = apiInstance.GetWhatsAppTemplatesWithHttpInfo(accountId);
+    ApiResponse<GetWhatsAppTemplates200Response> response = apiInstance.GetWhatsAppTemplatesWithHttpInfo(accountId, name, language, status);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1956,6 +2176,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | WhatsApp social account ID |  |
+| **name** | **string?** | Exact template name; returns every language variant of that family. | [optional]  |
+| **language** | **string?** | Exact language code (e.g. en_US). | [optional]  |
+| **status** | **string?** |  | [optional]  |
 
 ### Return type
 
@@ -3520,7 +3743,7 @@ catch (ApiException e)
 
 Update template
 
-Update a message template's components. Only certain fields can be updated depending on the template's current approval state. Approved templates can only have components updated.  A successful update sends the template back to Meta for review, so the `status` returned here is normally `PENDING`. The final outcome arrives later on the `whatsapp.template.status_updated` webhook. A template already in `PENDING` cannot be edited again until Meta finishes reviewing it. 
+Update one variant's components. Name, language and category cannot change after creation.  Meta stores one template per **name + language**, so a name identifies a family of variants, each with its own Meta id. Pass `language` to address one variant. Without it, a name with a single variant resolves to that variant; a name with several returns `409 ambiguous_template` with `details.languages`. A bare language (`es`) matches a single regional variant (`es_ES`); if the family has several regional variants for it, that is also a 409. A full code (`es_ES`) must match exactly. Variants in `PENDING_DELETION` are not part of the family.  Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`. The final outcome arrives on the `whatsapp.template.status_updated` webhook (which carries the variant's `templateId` and `language`). A variant already in `PENDING` cannot be edited again until Meta finishes reviewing it. 
 
 ### Example
 ```csharp
@@ -3546,7 +3769,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var templateName = "templateName_example";  // string | Template name
+            var templateName = "templateName_example";  // string | Template name (the family).
             var updateWhatsAppTemplateRequest = new UpdateWhatsAppTemplateRequest(); // UpdateWhatsAppTemplateRequest | 
 
             try
@@ -3590,7 +3813,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **templateName** | **string** | Template name |  |
+| **templateName** | **string** | Template name (the family). |  |
 | **updateWhatsAppTemplateRequest** | [**UpdateWhatsAppTemplateRequest**](UpdateWhatsAppTemplateRequest.md) |  |  |
 
 ### Return type
@@ -3611,10 +3834,115 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
-| **400** | Validation error (missing fields) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | Account not found, or no template with that name (and language, when given) (code template_not_found). |  -  |
+| **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatewhatsapptemplatebyid"></a>
+# **UpdateWhatsAppTemplateById**
+> UpdateWhatsAppTemplateById200Response UpdateWhatsAppTemplateById (string templateId, UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest)
+
+Update template by id
+
+Update one variant's components by its Meta id. Name, language and category cannot change.  Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved template can be edited once per 24 hours and up to 10 times per 30 days. A successful update sends the variant back to Meta for review, so the `status` returned here is normally `PENDING`. The final outcome arrives on the `whatsapp.template.status_updated` webhook (which carries the variant's `templateId` and `language`). A variant already in `PENDING` cannot be edited again until Meta finishes reviewing it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateWhatsAppTemplateByIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var templateId = "templateId_example";  // string | Meta template id (numeric).
+            var updateWhatsAppTemplateByIdRequest = new UpdateWhatsAppTemplateByIdRequest(); // UpdateWhatsAppTemplateByIdRequest | 
+
+            try
+            {
+                // Update template by id
+                UpdateWhatsAppTemplateById200Response result = apiInstance.UpdateWhatsAppTemplateById(templateId, updateWhatsAppTemplateByIdRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.UpdateWhatsAppTemplateById: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateWhatsAppTemplateByIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update template by id
+    ApiResponse<UpdateWhatsAppTemplateById200Response> response = apiInstance.UpdateWhatsAppTemplateByIdWithHttpInfo(templateId, updateWhatsAppTemplateByIdRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.UpdateWhatsAppTemplateByIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **templateId** | **string** | Meta template id (numeric). |  |
+| **updateWhatsAppTemplateByIdRequest** | [**UpdateWhatsAppTemplateByIdRequest**](UpdateWhatsAppTemplateByIdRequest.md) |  |  |
+
+### Return type
+
+[**UpdateWhatsAppTemplateById200Response**](UpdateWhatsAppTemplateById200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Template updated successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found. |  -  |
+| **502** | Meta rejected the update (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

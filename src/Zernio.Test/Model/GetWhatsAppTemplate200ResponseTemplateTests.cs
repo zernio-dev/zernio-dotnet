@@ -108,5 +108,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Components'
         }
+
+        /// <summary>
+        /// Test the property 'RejectedReason'
+        /// </summary>
+        [Fact]
+        public void RejectedReasonTest()
+        {
+            // TODO unit test for the property 'RejectedReason'
+        }
+
+        /// <summary>
+        /// Test the property 'QualityScore'
+        /// </summary>
+        [Fact]
+        public void QualityScoreTest()
+        {
+            // TODO unit test for the property 'QualityScore'
+        }
     }
 }

@@ -165,8 +165,22 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string templateName = null;
             //string accountId = null;
-            //var response = instance.DeleteWhatsAppTemplate(templateName, accountId);
-            //Assert.IsType<UnpublishPost200Response>(response);
+            //string? language = null;
+            //var response = instance.DeleteWhatsAppTemplate(templateName, accountId, language);
+            //Assert.IsType<DeleteWhatsAppTemplate200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteWhatsAppTemplateById
+        /// </summary>
+        [Fact]
+        public void DeleteWhatsAppTemplateByIdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string templateId = null;
+            //string accountId = null;
+            //var response = instance.DeleteWhatsAppTemplateById(templateId, accountId);
+            //Assert.IsType<DeleteWhatsAppTemplateById200Response>(response);
         }
 
         /// <summary>
@@ -279,7 +293,21 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string templateName = null;
             //string accountId = null;
-            //var response = instance.GetWhatsAppTemplate(templateName, accountId);
+            //string? language = null;
+            //var response = instance.GetWhatsAppTemplate(templateName, accountId, language);
+            //Assert.IsType<GetWhatsAppTemplate200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsAppTemplateById
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppTemplateByIdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string templateId = null;
+            //string accountId = null;
+            //var response = instance.GetWhatsAppTemplateById(templateId, accountId);
             //Assert.IsType<GetWhatsAppTemplate200Response>(response);
         }
 
@@ -291,7 +319,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
-            //var response = instance.GetWhatsAppTemplates(accountId);
+            //string? name = null;
+            //string? language = null;
+            //string? status = null;
+            //var response = instance.GetWhatsAppTemplates(accountId, name, language, status);
             //Assert.IsType<GetWhatsAppTemplates200Response>(response);
         }
 
@@ -498,6 +529,19 @@ namespace Zernio.Test.Api
             //UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest = null;
             //var response = instance.UpdateWhatsAppTemplate(templateName, updateWhatsAppTemplateRequest);
             //Assert.IsType<UpdateWhatsAppTemplate200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateWhatsAppTemplateById
+        /// </summary>
+        [Fact]
+        public void UpdateWhatsAppTemplateByIdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string templateId = null;
+            //UpdateWhatsAppTemplateByIdRequest updateWhatsAppTemplateByIdRequest = null;
+            //var response = instance.UpdateWhatsAppTemplateById(templateId, updateWhatsAppTemplateByIdRequest);
+            //Assert.IsType<UpdateWhatsAppTemplateById200Response>(response);
         }
 
         /// <summary>
