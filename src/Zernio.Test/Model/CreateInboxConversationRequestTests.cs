@@ -162,5 +162,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'HeaderMedia'
         }
+
+        /// <summary>
+        /// Test the property 'HeaderLocation'
+        /// </summary>
+        [Fact]
+        public void HeaderLocationTest()
+        {
+            // TODO unit test for the property 'HeaderLocation'
+        }
     }
 }

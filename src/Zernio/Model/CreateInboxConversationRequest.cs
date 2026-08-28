@@ -74,7 +74,8 @@ namespace Zernio.Model
         /// <param name="templateParams">WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here (use headerMedia to override the header asset per send). Buttons that are not dynamic-URL buttons (copy-code, flow) take no value here either; use templateButtonParams..</param>
         /// <param name="templateButtonParams">WhatsApp only. Values for template buttons that carry one at send time, each addressed by the button&#39;s position in the approved template. This is the only way to send a copy-code button&#39;s payload (a Pix payment code, a coupon) or a flow token, because templateParams is a flat array of text variables and covers dynamic URL buttons only. Supplying a button here overrides whatever templateParams would have derived for that same index, so the send never carries one button twice; repeating an index within this array is rejected with 400. Each index must name a button of the matching kind on the approved template, which is also checked before the send and returns 400 (INVALID_TEMPLATE_BUTTON_PARAM) rather than a Meta rejection..</param>
         /// <param name="headerMedia">headerMedia.</param>
-        public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false, string templateName = default, CategoryEnum? category = default, bool linkPreview = true, string templateLanguage = default, List<string> templateParams = default, List<CreateInboxConversationRequestTemplateButtonParamsInner> templateButtonParams = default, CreateInboxConversationRequestHeaderMedia headerMedia = default)
+        /// <param name="headerLocation">headerLocation.</param>
+        public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false, string templateName = default, CategoryEnum? category = default, bool linkPreview = true, string templateLanguage = default, List<string> templateParams = default, List<CreateInboxConversationRequestTemplateButtonParamsInner> templateButtonParams = default, CreateInboxConversationRequestHeaderMedia headerMedia = default, CreateInboxConversationRequestHeaderLocation headerLocation = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -93,6 +94,7 @@ namespace Zernio.Model
             this.TemplateParams = templateParams;
             this.TemplateButtonParams = templateButtonParams;
             this.HeaderMedia = headerMedia;
+            this.HeaderLocation = headerLocation;
         }
 
         /// <summary>
@@ -172,6 +174,12 @@ namespace Zernio.Model
         public CreateInboxConversationRequestHeaderMedia HeaderMedia { get; set; }
 
         /// <summary>
+        /// Gets or Sets HeaderLocation
+        /// </summary>
+        [DataMember(Name = "headerLocation", EmitDefaultValue = false)]
+        public CreateInboxConversationRequestHeaderLocation HeaderLocation { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -191,6 +199,7 @@ namespace Zernio.Model
             sb.Append("  TemplateParams: ").Append(TemplateParams).Append("\n");
             sb.Append("  TemplateButtonParams: ").Append(TemplateButtonParams).Append("\n");
             sb.Append("  HeaderMedia: ").Append(HeaderMedia).Append("\n");
+            sb.Append("  HeaderLocation: ").Append(HeaderLocation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
