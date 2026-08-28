@@ -28,33 +28,89 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Peak counts over the window (Metronome COUNT metrics + live active-number count). Null when &#x60;profileId&#x60; / &#x60;accountId&#x60; is set.
+    /// USD per product family.
     /// </summary>
-    [DataContract(Name = "UsageMetering_peaks")]
-    public partial class UsageMeteringPeaks : IValidatableObject
+    [DataContract(Name = "UsageAttributionSlice_byProduct")]
+    public partial class UsageAttributionSliceByProduct : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsageMeteringPeaks" /> class.
+        /// Initializes a new instance of the <see cref="UsageAttributionSliceByProduct" /> class.
         /// </summary>
         /// <param name="accounts">accounts.</param>
         /// <param name="numbers">numbers.</param>
-        public UsageMeteringPeaks(int accounts = default, int numbers = default)
+        /// <param name="calls">calls.</param>
+        /// <param name="sms">sms.</param>
+        /// <param name="verify">verify.</param>
+        /// <param name="dlc">dlc.</param>
+        /// <param name="xApi">xApi.</param>
+        /// <param name="credits">credits.</param>
+        /// <param name="other">other.</param>
+        public UsageAttributionSliceByProduct(decimal accounts = default, decimal numbers = default, decimal calls = default, decimal sms = default, decimal verify = default, decimal dlc = default, decimal xApi = default, decimal credits = default, decimal other = default)
         {
             this.Accounts = accounts;
             this.Numbers = numbers;
+            this.Calls = calls;
+            this.Sms = sms;
+            this.Verify = verify;
+            this.Dlc = dlc;
+            this.XApi = xApi;
+            this.Credits = credits;
+            this.Other = other;
         }
 
         /// <summary>
         /// Gets or Sets Accounts
         /// </summary>
         [DataMember(Name = "accounts", EmitDefaultValue = false)]
-        public int Accounts { get; set; }
+        public decimal Accounts { get; set; }
 
         /// <summary>
         /// Gets or Sets Numbers
         /// </summary>
         [DataMember(Name = "numbers", EmitDefaultValue = false)]
-        public int Numbers { get; set; }
+        public decimal Numbers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Calls
+        /// </summary>
+        [DataMember(Name = "calls", EmitDefaultValue = false)]
+        public decimal Calls { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sms
+        /// </summary>
+        [DataMember(Name = "sms", EmitDefaultValue = false)]
+        public decimal Sms { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Verify
+        /// </summary>
+        [DataMember(Name = "verify", EmitDefaultValue = false)]
+        public decimal Verify { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Dlc
+        /// </summary>
+        [DataMember(Name = "dlc", EmitDefaultValue = false)]
+        public decimal Dlc { get; set; }
+
+        /// <summary>
+        /// Gets or Sets XApi
+        /// </summary>
+        [DataMember(Name = "xApi", EmitDefaultValue = false)]
+        public decimal XApi { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Credits
+        /// </summary>
+        [DataMember(Name = "credits", EmitDefaultValue = false)]
+        public decimal Credits { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Other
+        /// </summary>
+        [DataMember(Name = "other", EmitDefaultValue = false)]
+        public decimal Other { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +119,16 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UsageMeteringPeaks {\n");
+            sb.Append("class UsageAttributionSliceByProduct {\n");
             sb.Append("  Accounts: ").Append(Accounts).Append("\n");
             sb.Append("  Numbers: ").Append(Numbers).Append("\n");
+            sb.Append("  Calls: ").Append(Calls).Append("\n");
+            sb.Append("  Sms: ").Append(Sms).Append("\n");
+            sb.Append("  Verify: ").Append(Verify).Append("\n");
+            sb.Append("  Dlc: ").Append(Dlc).Append("\n");
+            sb.Append("  XApi: ").Append(XApi).Append("\n");
+            sb.Append("  Credits: ").Append(Credits).Append("\n");
+            sb.Append("  Other: ").Append(Other).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

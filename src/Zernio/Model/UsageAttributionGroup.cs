@@ -28,33 +28,52 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Billable call volumes over the window. Null when &#x60;profileId&#x60; / &#x60;accountId&#x60; is set.
+    /// UsageAttributionGroup
     /// </summary>
-    [DataContract(Name = "UsageMetering_callUsage")]
-    public partial class UsageMeteringCallUsage : IValidatableObject
+    [DataContract(Name = "UsageAttributionGroup")]
+    public partial class UsageAttributionGroup : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsageMeteringCallUsage" /> class.
+        /// Initializes a new instance of the <see cref="UsageAttributionGroup" /> class.
         /// </summary>
-        /// <param name="whatsapp">whatsapp.</param>
-        /// <param name="pstn">pstn.</param>
-        public UsageMeteringCallUsage(UsageMeteringCallUsageWhatsapp whatsapp = default, UsageMeteringCallUsageWhatsapp pstn = default)
+        [JsonConstructorAttribute]
+        protected UsageAttributionGroup() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageAttributionGroup" /> class.
+        /// </summary>
+        /// <param name="byProduct">byProduct.</param>
+        /// <param name="totalUsd">totalUsd.</param>
+        /// <param name="key">Profile id or account id, per &#x60;groupBy&#x60;. (required).</param>
+        public UsageAttributionGroup(UsageAttributionSliceByProduct byProduct = default, decimal totalUsd = default, string key = default)
         {
-            this.Whatsapp = whatsapp;
-            this.Pstn = pstn;
+            // to ensure "key" is required (not null)
+            if (key == null)
+            {
+                throw new ArgumentNullException("key is a required property for UsageAttributionGroup and cannot be null");
+            }
+            this.Key = key;
+            this.ByProduct = byProduct;
+            this.TotalUsd = totalUsd;
         }
 
         /// <summary>
-        /// Gets or Sets Whatsapp
+        /// Gets or Sets ByProduct
         /// </summary>
-        [DataMember(Name = "whatsapp", EmitDefaultValue = false)]
-        public UsageMeteringCallUsageWhatsapp Whatsapp { get; set; }
+        [DataMember(Name = "byProduct", EmitDefaultValue = false)]
+        public UsageAttributionSliceByProduct ByProduct { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pstn
+        /// Gets or Sets TotalUsd
         /// </summary>
-        [DataMember(Name = "pstn", EmitDefaultValue = false)]
-        public UsageMeteringCallUsageWhatsapp Pstn { get; set; }
+        [DataMember(Name = "totalUsd", EmitDefaultValue = false)]
+        public decimal TotalUsd { get; set; }
+
+        /// <summary>
+        /// Profile id or account id, per &#x60;groupBy&#x60;.
+        /// </summary>
+        /// <value>Profile id or account id, per &#x60;groupBy&#x60;.</value>
+        [DataMember(Name = "key", IsRequired = true, EmitDefaultValue = true)]
+        public string Key { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +82,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UsageMeteringCallUsage {\n");
-            sb.Append("  Whatsapp: ").Append(Whatsapp).Append("\n");
-            sb.Append("  Pstn: ").Append(Pstn).Append("\n");
+            sb.Append("class UsageAttributionGroup {\n");
+            sb.Append("  ByProduct: ").Append(ByProduct).Append("\n");
+            sb.Append("  TotalUsd: ").Append(TotalUsd).Append("\n");
+            sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

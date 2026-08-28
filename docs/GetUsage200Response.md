@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **CallUsage** | [**UsageMeteringCallUsage**](UsageMeteringCallUsage.md) |  | [optional] 
 **Period** | [**UsageMeteringPeriod**](UsageMeteringPeriod.md) |  | [optional] 
 **Tax** | [**UsageMeteringTax**](UsageMeteringTax.md) |  | [optional] 
+**Attribution** | [**UsageMeteringAttribution**](UsageMeteringAttribution.md) |  | [optional] 
+**Scope** | [**UsageMeteringScope**](UsageMeteringScope.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

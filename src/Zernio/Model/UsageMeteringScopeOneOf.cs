@@ -28,33 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Billable call volumes over the window. Null when &#x60;profileId&#x60; / &#x60;accountId&#x60; is set.
+    /// UsageMeteringScopeOneOf
     /// </summary>
-    [DataContract(Name = "UsageMetering_callUsage")]
-    public partial class UsageMeteringCallUsage : IValidatableObject
+    [DataContract(Name = "UsageMetering_scope_oneOf")]
+    public partial class UsageMeteringScopeOneOf : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsageMeteringCallUsage" /> class.
+        /// Initializes a new instance of the <see cref="UsageMeteringScopeOneOf" /> class.
         /// </summary>
-        /// <param name="whatsapp">whatsapp.</param>
-        /// <param name="pstn">pstn.</param>
-        public UsageMeteringCallUsage(UsageMeteringCallUsageWhatsapp whatsapp = default, UsageMeteringCallUsageWhatsapp pstn = default)
+        [JsonConstructorAttribute]
+        protected UsageMeteringScopeOneOf() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageMeteringScopeOneOf" /> class.
+        /// </summary>
+        /// <param name="profileId">profileId (required).</param>
+        public UsageMeteringScopeOneOf(string profileId = default)
         {
-            this.Whatsapp = whatsapp;
-            this.Pstn = pstn;
+            // to ensure "profileId" is required (not null)
+            if (profileId == null)
+            {
+                throw new ArgumentNullException("profileId is a required property for UsageMeteringScopeOneOf and cannot be null");
+            }
+            this.ProfileId = profileId;
         }
 
         /// <summary>
-        /// Gets or Sets Whatsapp
+        /// Gets or Sets ProfileId
         /// </summary>
-        [DataMember(Name = "whatsapp", EmitDefaultValue = false)]
-        public UsageMeteringCallUsageWhatsapp Whatsapp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Pstn
-        /// </summary>
-        [DataMember(Name = "pstn", EmitDefaultValue = false)]
-        public UsageMeteringCallUsageWhatsapp Pstn { get; set; }
+        [DataMember(Name = "profileId", IsRequired = true, EmitDefaultValue = true)]
+        public string ProfileId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +65,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UsageMeteringCallUsage {\n");
-            sb.Append("  Whatsapp: ").Append(Whatsapp).Append("\n");
-            sb.Append("  Pstn: ").Append(Pstn).Append("\n");
+            sb.Append("class UsageMeteringScopeOneOf {\n");
+            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

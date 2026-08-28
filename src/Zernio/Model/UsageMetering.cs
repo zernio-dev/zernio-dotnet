@@ -76,7 +76,9 @@ namespace Zernio.Model
         /// <param name="callUsage">callUsage.</param>
         /// <param name="period">period.</param>
         /// <param name="tax">tax.</param>
-        public UsageMetering(bool supported = default, GranularityEnum? granularity = default, List<UsageMeteringDaysInner> days = default, UsageMeteringTotals totals = default, List<UsageMeteringLineItemsInner> lineItems = default, UsageMeteringPeaks peaks = default, UsageMeteringCallUsage callUsage = default, UsageMeteringPeriod period = default, UsageMeteringTax tax = default)
+        /// <param name="attribution">attribution.</param>
+        /// <param name="scope">scope.</param>
+        public UsageMetering(bool supported = default, GranularityEnum? granularity = default, List<UsageMeteringDaysInner> days = default, UsageMeteringTotals totals = default, List<UsageMeteringLineItemsInner> lineItems = default, UsageMeteringPeaks peaks = default, UsageMeteringCallUsage callUsage = default, UsageMeteringPeriod period = default, UsageMeteringTax tax = default, UsageMeteringAttribution attribution = default, UsageMeteringScope scope = default)
         {
             this.Supported = supported;
             this.Granularity = granularity;
@@ -87,6 +89,8 @@ namespace Zernio.Model
             this.CallUsage = callUsage;
             this.Period = period;
             this.Tax = tax;
+            this.Attribution = attribution;
+            this.Scope = scope;
         }
 
         /// <summary>
@@ -141,6 +145,18 @@ namespace Zernio.Model
         public UsageMeteringTax Tax { get; set; }
 
         /// <summary>
+        /// Gets or Sets Attribution
+        /// </summary>
+        [DataMember(Name = "attribution", EmitDefaultValue = false)]
+        public UsageMeteringAttribution Attribution { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Scope
+        /// </summary>
+        [DataMember(Name = "scope", EmitDefaultValue = false)]
+        public UsageMeteringScope Scope { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -157,6 +173,8 @@ namespace Zernio.Model
             sb.Append("  CallUsage: ").Append(CallUsage).Append("\n");
             sb.Append("  Period: ").Append(Period).Append("\n");
             sb.Append("  Tax: ").Append(Tax).Append("\n");
+            sb.Append("  Attribution: ").Append(Attribution).Append("\n");
+            sb.Append("  Scope: ").Append(Scope).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,33 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Billable call volumes over the window. Null when &#x60;profileId&#x60; / &#x60;accountId&#x60; is set.
+    /// UsageAttributionSlice
     /// </summary>
-    [DataContract(Name = "UsageMetering_callUsage")]
-    public partial class UsageMeteringCallUsage : IValidatableObject
+    [DataContract(Name = "UsageAttributionSlice")]
+    public partial class UsageAttributionSlice : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsageMeteringCallUsage" /> class.
+        /// Initializes a new instance of the <see cref="UsageAttributionSlice" /> class.
         /// </summary>
-        /// <param name="whatsapp">whatsapp.</param>
-        /// <param name="pstn">pstn.</param>
-        public UsageMeteringCallUsage(UsageMeteringCallUsageWhatsapp whatsapp = default, UsageMeteringCallUsageWhatsapp pstn = default)
+        /// <param name="byProduct">byProduct.</param>
+        /// <param name="totalUsd">totalUsd.</param>
+        public UsageAttributionSlice(UsageAttributionSliceByProduct byProduct = default, decimal totalUsd = default)
         {
-            this.Whatsapp = whatsapp;
-            this.Pstn = pstn;
+            this.ByProduct = byProduct;
+            this.TotalUsd = totalUsd;
         }
 
         /// <summary>
-        /// Gets or Sets Whatsapp
+        /// Gets or Sets ByProduct
         /// </summary>
-        [DataMember(Name = "whatsapp", EmitDefaultValue = false)]
-        public UsageMeteringCallUsageWhatsapp Whatsapp { get; set; }
+        [DataMember(Name = "byProduct", EmitDefaultValue = false)]
+        public UsageAttributionSliceByProduct ByProduct { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pstn
+        /// Gets or Sets TotalUsd
         /// </summary>
-        [DataMember(Name = "pstn", EmitDefaultValue = false)]
-        public UsageMeteringCallUsageWhatsapp Pstn { get; set; }
+        [DataMember(Name = "totalUsd", EmitDefaultValue = false)]
+        public decimal TotalUsd { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UsageMeteringCallUsage {\n");
-            sb.Append("  Whatsapp: ").Append(Whatsapp).Append("\n");
-            sb.Append("  Pstn: ").Append(Pstn).Append("\n");
+            sb.Append("class UsageAttributionSlice {\n");
+            sb.Append("  ByProduct: ").Append(ByProduct).Append("\n");
+            sb.Append("  TotalUsd: ").Append(TotalUsd).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

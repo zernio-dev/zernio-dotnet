@@ -135,5 +135,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Tax'
         }
+
+        /// <summary>
+        /// Test the property 'Attribution'
+        /// </summary>
+        [Fact]
+        public void AttributionTest()
+        {
+            // TODO unit test for the property 'Attribution'
+        }
+
+        /// <summary>
+        /// Test the property 'Scope'
+        /// </summary>
+        [Fact]
+        public void ScopeTest()
+        {
+            // TODO unit test for the property 'Scope'
+        }
     }
 }

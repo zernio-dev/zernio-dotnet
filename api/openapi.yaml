@@ -4257,6 +4257,20 @@ paths:
         Also served at `GET /v1/usage/daily`. Usage-based accounts only —
         legacy Stripe accounts get `{ "supported": false, "days": [] }`.
 
+        **Attribution (metering mode):** `groupBy=profile|account` adds an
+        `attribution` breakdown of the window's spend per profile or account,
+        assembled from your own records and pro-rated against the invoice so
+        `sum(groups) + unattributed` equals `totals` exactly. `profileId` /
+        `accountId` instead project the whole payload (`days`, `totals`,
+        `lineItems`) onto that one group; `peaks`, `callUsage` and `tax` are
+        then `null` (workspace-level facts). Projected `days` spread the
+        group's period share over each day (usage is attributed per period,
+        not per day). Profile-scoped API keys and members only see their
+        profiles' groups (`attribution.restricted: true`, with `totals`
+        summing the visible groups). Credits, 10DLC fees and Verify are always
+        unattributed. `profileId` / `accountId` on their own do not select
+        metering mode: pair them with `range`.
+
         For per-domain consumption *volumes* use `GET /v1/usage/calls` and
         `GET /v1/usage/sms`. For the billing statement (balance, credits,
         caps, payment status) use `GET /v1/billing`.
@@ -4328,6 +4342,41 @@ paths:
           - day
           - month
           - total
+          type: string
+        style: form
+      - description: "Metering mode. Adds `attribution`: the window's spend split\
+          \ per profile or per account (keys are ids; resolve names via `GET /v1/profiles`\
+          \ / `GET /v1/accounts`)."
+        explode: true
+        in: query
+        name: groupBy
+        required: false
+        schema:
+          enum:
+          - profile
+          - account
+          type: string
+        style: form
+      - description: "Metering mode (pair with `range`). Project the payload onto\
+          \ this profile's attributed share. Mutually exclusive with `accountId`,\
+          \ and `groupBy` (if given) must be `profile`; 404 when the profile is not\
+          \ in your workspace (or outside a scoped key's profiles)."
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Metering mode (pair with `range`). Project the payload onto\
+          \ this account's attributed share. Mutually exclusive with `profileId`,\
+          \ and `groupBy` (if given) must be `account`; 404 when the account is not\
+          \ visible to the caller."
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
           type: string
         style: form
       responses:
@@ -43093,6 +43142,25 @@ components:
           $ref: "#/components/schemas/UsageMetering_period"
         tax:
           $ref: "#/components/schemas/UsageMetering_tax"
+        attribution:
+          $ref: "#/components/schemas/UsageMetering_attribution"
+        scope:
+          $ref: "#/components/schemas/UsageMetering_scope"
+    UsageAttributionGroup:
+      allOf:
+      - $ref: "#/components/schemas/UsageAttributionSlice"
+      - properties:
+          key:
+            description: "Profile id or account id, per `groupBy`."
+            type: string
+        required:
+        - key
+    UsageAttributionSlice:
+      properties:
+        byProduct:
+          $ref: "#/components/schemas/UsageAttributionSlice_byProduct"
+        totalUsd:
+          type: number
     UsageStats:
       description: |
         Plan and usage stats. The response shape depends on `billingSystem`:
@@ -94362,7 +94430,7 @@ components:
           type: number
     UsageMetering_peaks:
       description: Peak counts over the window (Metronome COUNT metrics + live active-number
-        count).
+        count). Null when `profileId` / `accountId` is set.
       properties:
         accounts:
           type: integer
@@ -94375,7 +94443,8 @@ components:
         minutes:
           type: integer
     UsageMetering_callUsage:
-      description: Billable call volumes over the window.
+      description: Billable call volumes over the window. Null when `profileId` /
+        `accountId` is set.
       properties:
         whatsapp:
           $ref: "#/components/schemas/UsageMetering_callUsage_whatsapp"
@@ -94419,6 +94488,69 @@ components:
         reverseCharge:
           description: True for EU/UK B2B reverse charge (0 tax added by design).
           type: boolean
+    UsageMetering_attribution:
+      description: Present with `groupBy`. The window's spend split per profile or
+        account; `sum(groups) + unattributed` equals `totals` per product.
+      properties:
+        groupBy:
+          enum:
+          - profile
+          - account
+          type: string
+        groups:
+          items:
+            $ref: "#/components/schemas/UsageAttributionGroup"
+          type: array
+        unattributed:
+          allOf:
+          - $ref: "#/components/schemas/UsageAttributionSlice"
+          description: "Spend no profile/account can claim: credits, 10DLC fees, Verify,\
+            \ and usage whose record no longer resolves to an account. Zero for a\
+            \ restricted principal."
+        totals:
+          allOf:
+          - $ref: "#/components/schemas/UsageAttributionSlice"
+          description: "The window totals; for a restricted principal, the sum of\
+            \ the visible groups."
+        restricted:
+          description: "True when the caller (profile-scoped API key or member) cannot\
+            \ see every profile: `groups` are filtered, `totals` sum them, `unattributed`\
+            \ is zero, and the top-level `days` / `totals` / `lineItems` are projected\
+            \ onto the visible groups with `peaks`, `callUsage` and `tax` null."
+          type: boolean
+    UsageMetering_scope_oneOf:
+      properties:
+        profileId:
+          type: string
+      required:
+      - profileId
+    UsageMetering_scope:
+      description: "Present with `profileId` / `accountId`: echoes the group the payload\
+        \ was projected onto."
+      oneOf:
+      - $ref: "#/components/schemas/UsageMetering_scope_oneOf"
+      - $ref: "#/components/schemas/deleteInboxReviewReply_request"
+    UsageAttributionSlice_byProduct:
+      description: USD per product family.
+      properties:
+        accounts:
+          type: number
+        numbers:
+          type: number
+        calls:
+          type: number
+        sms:
+          type: number
+        verify:
+          type: number
+        dlc:
+          type: number
+        xApi:
+          type: number
+        credits:
+          type: number
+        other:
+          type: number
     UsageStats_limits:
       description: Plan limits. For Metronome users both fields are `-1` (unlimited).
       example:

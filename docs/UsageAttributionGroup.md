@@ -1,12 +1,12 @@
-# Zernio.Model.UsageMeteringPeaks
-Peak counts over the window (Metronome COUNT metrics + live active-number count). Null when `profileId` / `accountId` is set.
+# Zernio.Model.UsageAttributionGroup
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Accounts** | **int** |  | [optional] 
-**Numbers** | **int** |  | [optional] 
+**ByProduct** | [**UsageAttributionSliceByProduct**](UsageAttributionSliceByProduct.md) |  | [optional] 
+**TotalUsd** | **decimal** |  | [optional] 
+**Key** | **string** | Profile id or account id, per &#x60;groupBy&#x60;. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

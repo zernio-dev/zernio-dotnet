@@ -108,7 +108,10 @@ namespace Zernio.Test.Api
             //DateOnly? from = null;
             //DateOnly? to = null;
             //string? granularity = null;
-            //var response = instance.GetUsage(reconcile, range, from, to, granularity);
+            //string? groupBy = null;
+            //string? profileId = null;
+            //string? accountId = null;
+            //var response = instance.GetUsage(reconcile, range, from, to, granularity, groupBy, profileId, accountId);
             //Assert.IsType<GetUsage200Response>(response);
         }
 

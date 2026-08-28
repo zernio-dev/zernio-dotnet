@@ -1,5 +1,5 @@
 # Zernio.Model.UsageMeteringCallUsage
-Billable call volumes over the window.
+Billable call volumes over the window. Null when `profileId` / `accountId` is set.
 
 ## Properties
 
