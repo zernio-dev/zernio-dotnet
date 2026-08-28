@@ -347,6 +347,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**GetShopifyConnectUrl**](docs/ConnectApi.md#getshopifyconnecturl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
 *ConnectApi* | [**GetSubredditRules**](docs/ConnectApi.md#getsubredditrules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**GetTelegramConnectStatus**](docs/ConnectApi.md#gettelegramconnectstatus) | **GET** /v1/connect/telegram | Generate Telegram code
+*ConnectApi* | [**GetYoutubeCaptions**](docs/ConnectApi.md#getyoutubecaptions) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
 *ConnectApi* | [**GetYoutubePlaylists**](docs/ConnectApi.md#getyoutubeplaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
 *ConnectApi* | [**HandleOAuthCallback**](docs/ConnectApi.md#handleoauthcallback) | **POST** /v1/connect/{platform} | Complete OAuth callback
 *ConnectApi* | [**InitiateTelegramConnect**](docs/ConnectApi.md#initiatetelegramconnect) | **POST** /v1/connect/telegram | Connect Telegram directly
@@ -1524,6 +1525,9 @@ Class | Method | HTTP request | Description
  - [Model.GetYouTubeDemographics412Response](docs/GetYouTubeDemographics412Response.md)
  - [Model.GetYouTubeDemographics412ResponseScopeStatus](docs/GetYouTubeDemographics412ResponseScopeStatus.md)
  - [Model.GetYouTubeVideoRetention404Response](docs/GetYouTubeVideoRetention404Response.md)
+ - [Model.GetYoutubeCaptions200Response](docs/GetYoutubeCaptions200Response.md)
+ - [Model.GetYoutubeCaptions200ResponseAvailableTracksInner](docs/GetYoutubeCaptions200ResponseAvailableTracksInner.md)
+ - [Model.GetYoutubeCaptions200ResponseCuesInner](docs/GetYoutubeCaptions200ResponseCuesInner.md)
  - [Model.GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
  - [Model.GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [Model.GoogleBusinessPlatformData](docs/GoogleBusinessPlatformData.md)

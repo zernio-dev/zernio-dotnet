@@ -363,6 +363,22 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetYoutubeCaptions
+        /// </summary>
+        [Fact]
+        public void GetYoutubeCaptionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string videoId = null;
+            //string? language = null;
+            //string? format = null;
+            //bool? refresh = null;
+            //var response = instance.GetYoutubeCaptions(accountId, videoId, language, format, refresh);
+            //Assert.IsType<GetYoutubeCaptions200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetYoutubePlaylists
         /// </summary>
         [Fact]
