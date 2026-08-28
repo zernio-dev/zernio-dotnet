@@ -39,11 +39,15 @@ namespace Zernio.Model
         /// <param name="messageId">Platform id of the sent message (not returned for Reddit). For WhatsApp this is the raw Meta wamid, the same id delivered as message.platformMessageId on webhooks and delivery-status updates, and the value to pass as replyTo to quote-reply..</param>
         /// <param name="conversationId">Zernio conversation id, echoed so the thread can be read back or replied to. It equals the id the list-conversations endpoint returns for Telegram, WhatsApp, SMS and Slack; for Facebook, Instagram, Bluesky and Reddit that endpoint returns the platform thread id instead, so do not correlate the two by equality. For X (Twitter), when the request addressed the conversation by its Twitter dm_conversation_id, that platform id is echoed back instead. Omitted when the send succeeded but the conversation could not be resolved to a stored record..</param>
         /// <param name="attachments">Echo of the sent attachment with its resolved public URL, when one is available (Facebook, Instagram, Telegram, WhatsApp)..</param>
-        public SendInboxMessage200ResponseData(string messageId = default, string conversationId = default, List<SendInboxMessage200ResponseDataAttachmentsInner> attachments = default)
+        /// <param name="messageIds">Facebook/Instagram only. Present when an attachment and text were both requested: Meta has no single body shape for both, so the send is two Meta messages under the hood. First element &#x3D;&#x3D;&#x3D; messageId (the attachment); second is the follow-up text..</param>
+        /// <param name="partialFailure">partialFailure.</param>
+        public SendInboxMessage200ResponseData(string messageId = default, string conversationId = default, List<SendInboxMessage200ResponseDataAttachmentsInner> attachments = default, List<string> messageIds = default, SendInboxMessage200ResponseDataPartialFailure partialFailure = default)
         {
             this.MessageId = messageId;
             this.ConversationId = conversationId;
             this.Attachments = attachments;
+            this.MessageIds = messageIds;
+            this.PartialFailure = partialFailure;
         }
 
         /// <summary>
@@ -68,6 +72,19 @@ namespace Zernio.Model
         public List<SendInboxMessage200ResponseDataAttachmentsInner> Attachments { get; set; }
 
         /// <summary>
+        /// Facebook/Instagram only. Present when an attachment and text were both requested: Meta has no single body shape for both, so the send is two Meta messages under the hood. First element &#x3D;&#x3D;&#x3D; messageId (the attachment); second is the follow-up text.
+        /// </summary>
+        /// <value>Facebook/Instagram only. Present when an attachment and text were both requested: Meta has no single body shape for both, so the send is two Meta messages under the hood. First element &#x3D;&#x3D;&#x3D; messageId (the attachment); second is the follow-up text.</value>
+        [DataMember(Name = "messageIds", EmitDefaultValue = false)]
+        public List<string> MessageIds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PartialFailure
+        /// </summary>
+        [DataMember(Name = "partialFailure", EmitDefaultValue = false)]
+        public SendInboxMessage200ResponseDataPartialFailure PartialFailure { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -78,6 +95,8 @@ namespace Zernio.Model
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
             sb.Append("  ConversationId: ").Append(ConversationId).Append("\n");
             sb.Append("  Attachments: ").Append(Attachments).Append("\n");
+            sb.Append("  MessageIds: ").Append(MessageIds).Append("\n");
+            sb.Append("  PartialFailure: ").Append(PartialFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
