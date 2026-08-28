@@ -1737,7 +1737,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
-| **422** | Idempotency-Key reused with a different body |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 | **502** | Carrier-side send failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

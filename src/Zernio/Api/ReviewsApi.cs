@@ -94,25 +94,27 @@ namespace Zernio.Api
         /// Reply to review
         /// </summary>
         /// <remarks>
-        /// Post a reply to a review. Requires accountId in request body.
+        /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ReplyToInboxReview200Response</returns>
-        ReplyToInboxReview200Response ReplyToInboxReview(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest);
+        ReplyToInboxReview200Response ReplyToInboxReview(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Reply to review
         /// </summary>
         /// <remarks>
-        /// Post a reply to a review. Requires accountId in request body.
+        /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ReplyToInboxReview200Response</returns>
-        ApiResponse<ReplyToInboxReview200Response> ReplyToInboxReviewWithHttpInfo(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest);
+        ApiResponse<ReplyToInboxReview200Response> ReplyToInboxReviewWithHttpInfo(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default);
         #endregion Synchronous Operations
     }
 
@@ -192,27 +194,29 @@ namespace Zernio.Api
         /// Reply to review
         /// </summary>
         /// <remarks>
-        /// Post a reply to a review. Requires accountId in request body.
+        /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ReplyToInboxReview200Response</returns>
-        System.Threading.Tasks.Task<ReplyToInboxReview200Response> ReplyToInboxReviewAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ReplyToInboxReview200Response> ReplyToInboxReviewAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Reply to review
         /// </summary>
         /// <remarks>
-        /// Post a reply to a review. Requires accountId in request body.
+        /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplyToInboxReview200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ReplyToInboxReview200Response>> ReplyToInboxReviewWithHttpInfoAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ReplyToInboxReview200Response>> ReplyToInboxReviewWithHttpInfoAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -803,26 +807,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to review Post a reply to a review. Requires accountId in request body.
+        /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ReplyToInboxReview200Response</returns>
-        public ReplyToInboxReview200Response ReplyToInboxReview(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest)
+        public ReplyToInboxReview200Response ReplyToInboxReview(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<ReplyToInboxReview200Response> localVarResponse = ReplyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest);
+            Zernio.Client.ApiResponse<ReplyToInboxReview200Response> localVarResponse = ReplyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Reply to review Post a reply to a review. Requires accountId in request body.
+        /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ReplyToInboxReview200Response</returns>
-        public Zernio.Client.ApiResponse<ReplyToInboxReview200Response> ReplyToInboxReviewWithHttpInfo(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest)
+        public Zernio.Client.ApiResponse<ReplyToInboxReview200Response> ReplyToInboxReviewWithHttpInfo(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'reviewId' is set
             if (reviewId == null)
@@ -850,6 +856,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = replyToInboxReviewRequest;
 
             // authentication (bearerAuth) required
@@ -872,28 +882,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to review Post a reply to a review. Requires accountId in request body.
+        /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ReplyToInboxReview200Response</returns>
-        public async System.Threading.Tasks.Task<ReplyToInboxReview200Response> ReplyToInboxReviewAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ReplyToInboxReview200Response> ReplyToInboxReviewAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ReplyToInboxReview200Response> localVarResponse = await ReplyToInboxReviewWithHttpInfoAsync(reviewId, replyToInboxReviewRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ReplyToInboxReview200Response> localVarResponse = await ReplyToInboxReviewWithHttpInfoAsync(reviewId, replyToInboxReviewRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Reply to review Post a reply to a review. Requires accountId in request body.
+        /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
         /// <param name="replyToInboxReviewRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplyToInboxReview200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToInboxReview200Response>> ReplyToInboxReviewWithHttpInfoAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToInboxReview200Response>> ReplyToInboxReviewWithHttpInfoAsync(string reviewId, ReplyToInboxReviewRequest replyToInboxReviewRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'reviewId' is set
             if (reviewId == null)
@@ -923,6 +935,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = replyToInboxReviewRequest;
 
             // authentication (bearerAuth) required

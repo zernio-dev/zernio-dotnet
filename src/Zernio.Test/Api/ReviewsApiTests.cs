@@ -97,7 +97,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string reviewId = null;
             //ReplyToInboxReviewRequest replyToInboxReviewRequest = null;
-            //var response = instance.ReplyToInboxReview(reviewId, replyToInboxReviewRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.ReplyToInboxReview(reviewId, replyToInboxReviewRequest, idempotencyKey);
             //Assert.IsType<ReplyToInboxReview200Response>(response);
         }
     }

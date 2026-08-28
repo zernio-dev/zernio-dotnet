@@ -223,25 +223,27 @@ namespace Zernio.Api
         /// Reply to comment
         /// </summary>
         /// <remarks>
-        /// Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ReplyToInboxPost200Response</returns>
-        ReplyToInboxPost200Response ReplyToInboxPost(string postId, ReplyToInboxPostRequest replyToInboxPostRequest);
+        ReplyToInboxPost200Response ReplyToInboxPost(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Reply to comment
         /// </summary>
         /// <remarks>
-        /// Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ReplyToInboxPost200Response</returns>
-        ApiResponse<ReplyToInboxPost200Response> ReplyToInboxPostWithHttpInfo(string postId, ReplyToInboxPostRequest replyToInboxPostRequest);
+        ApiResponse<ReplyToInboxPost200Response> ReplyToInboxPostWithHttpInfo(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default);
         /// <summary>
         /// Send private reply
         /// </summary>
@@ -587,27 +589,29 @@ namespace Zernio.Api
         /// Reply to comment
         /// </summary>
         /// <remarks>
-        /// Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ReplyToInboxPost200Response</returns>
-        System.Threading.Tasks.Task<ReplyToInboxPost200Response> ReplyToInboxPostAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ReplyToInboxPost200Response> ReplyToInboxPostAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Reply to comment
         /// </summary>
         /// <remarks>
-        /// Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplyToInboxPost200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ReplyToInboxPost200Response>> ReplyToInboxPostWithHttpInfoAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ReplyToInboxPost200Response>> ReplyToInboxPostWithHttpInfoAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Send private reply
         /// </summary>
@@ -2138,26 +2142,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ReplyToInboxPost200Response</returns>
-        public ReplyToInboxPost200Response ReplyToInboxPost(string postId, ReplyToInboxPostRequest replyToInboxPostRequest)
+        public ReplyToInboxPost200Response ReplyToInboxPost(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<ReplyToInboxPost200Response> localVarResponse = ReplyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest);
+            Zernio.Client.ApiResponse<ReplyToInboxPost200Response> localVarResponse = ReplyToInboxPostWithHttpInfo(postId, replyToInboxPostRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ReplyToInboxPost200Response</returns>
-        public Zernio.Client.ApiResponse<ReplyToInboxPost200Response> ReplyToInboxPostWithHttpInfo(string postId, ReplyToInboxPostRequest replyToInboxPostRequest)
+        public Zernio.Client.ApiResponse<ReplyToInboxPost200Response> ReplyToInboxPostWithHttpInfo(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'postId' is set
             if (postId == null)
@@ -2185,6 +2191,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = replyToInboxPostRequest;
 
             // authentication (bearerAuth) required
@@ -2207,28 +2217,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ReplyToInboxPost200Response</returns>
-        public async System.Threading.Tasks.Task<ReplyToInboxPost200Response> ReplyToInboxPostAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ReplyToInboxPost200Response> ReplyToInboxPostAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ReplyToInboxPost200Response> localVarResponse = await ReplyToInboxPostWithHttpInfoAsync(postId, replyToInboxPostRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ReplyToInboxPost200Response> localVarResponse = await ReplyToInboxPostWithHttpInfoAsync(postId, replyToInboxPostRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.
+        /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.</param>
         /// <param name="replyToInboxPostRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplyToInboxPost200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToInboxPost200Response>> ReplyToInboxPostWithHttpInfoAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToInboxPost200Response>> ReplyToInboxPostWithHttpInfoAsync(string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'postId' is set
             if (postId == null)
@@ -2258,6 +2270,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = replyToInboxPostRequest;
 
             // authentication (bearerAuth) required

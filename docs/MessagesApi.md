@@ -1301,7 +1301,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
-| **422** | Idempotency-Key reused with a different body |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
