@@ -23,8 +23,8 @@ Name | Type | Description | Notes
 **CompanySizes** | **List&lt;string&gt;** | LinkedIn B2B only. | [optional] 
 **Seniorities** | **List&lt;string&gt;** | LinkedIn B2B only. | [optional] 
 **JobFunctions** | **List&lt;string&gt;** | LinkedIn B2B only. | [optional] 
-**AudienceInclude** | **List&lt;string&gt;** | Platform audience IDs to include. | [optional] 
-**AudienceExclude** | **List&lt;string&gt;** | Platform audience IDs to exclude. | [optional] 
+**AudienceInclude** | **List&lt;string&gt;** | Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate. | [optional] 
+**AudienceExclude** | **List&lt;string&gt;** | Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

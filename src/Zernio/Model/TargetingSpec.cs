@@ -126,8 +126,8 @@ namespace Zernio.Model
         /// <param name="companySizes">LinkedIn B2B only..</param>
         /// <param name="seniorities">LinkedIn B2B only..</param>
         /// <param name="jobFunctions">LinkedIn B2B only..</param>
-        /// <param name="audienceInclude">Platform audience IDs to include..</param>
-        /// <param name="audienceExclude">Platform audience IDs to exclude..</param>
+        /// <param name="audienceInclude">Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate..</param>
+        /// <param name="audienceExclude">Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate..</param>
         public TargetingSpec(List<string> countries = default, List<BoostPostRequestTargetingRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
         {
             this.Countries = countries;
@@ -264,16 +264,16 @@ namespace Zernio.Model
         public List<string> JobFunctions { get; set; }
 
         /// <summary>
-        /// Platform audience IDs to include.
+        /// Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.
         /// </summary>
-        /// <value>Platform audience IDs to include.</value>
+        /// <value>Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.</value>
         [DataMember(Name = "audienceInclude", EmitDefaultValue = false)]
         public List<string> AudienceInclude { get; set; }
 
         /// <summary>
-        /// Platform audience IDs to exclude.
+        /// Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.
         /// </summary>
-        /// <value>Platform audience IDs to exclude.</value>
+        /// <value>Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.</value>
         [DataMember(Name = "audienceExclude", EmitDefaultValue = false)]
         public List<string> AudienceExclude { get; set; }
 
