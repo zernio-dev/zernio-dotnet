@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest, X/Twitter).</param>
         /// <param name="clicks">clicks.</param>
         /// <param name="views">views.</param>
-        /// <param name="follows">Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms..</param>
+        /// <param name="follows">Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms..</param>
         /// <param name="igReelsAvgWatchTime">Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="igReelsVideoViewTotalTime">Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="reelsSkipRate">Instagram Reels only: the rate of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Passed through exactly as Meta reports it, with no rescaling, so do not assume a 0-1 share. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views..</param>
@@ -52,7 +52,7 @@ namespace Zernio.Model
         /// <param name="videoDurationSeconds">Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio)..</param>
         /// <param name="engagementRate">Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula..</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, decimal reelsSkipRate = default, int reposts = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
+        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int? follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, decimal reelsSkipRate = default, int reposts = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
         {
             this.Impressions = impressions;
             this.Reach = reach;
@@ -146,14 +146,14 @@ namespace Zernio.Model
         public int Views { get; set; }
 
         /// <summary>
-        /// Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms.
+        /// Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms.
         /// </summary>
-        /// <value>Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms.</value>
+        /// <value>Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms.</value>
         /*
         <example>0</example>
         */
-        [DataMember(Name = "follows", EmitDefaultValue = false)]
-        public int Follows { get; set; }
+        [DataMember(Name = "follows", EmitDefaultValue = true)]
+        public int? Follows { get; set; }
 
         /// <summary>
         /// Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms.
