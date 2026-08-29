@@ -126,8 +126,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Assets attached |  -  |
-| **400** | Invalid input, or Google rejected the assets |  -  |
+| **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
 | **401** | Unauthorized |  -  |
+| **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

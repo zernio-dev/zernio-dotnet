@@ -42,10 +42,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio Google Ads SocialAccount id — resolves the customer id + refresh token. (required).</param>
+        /// <param name="customerId">Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one..</param>
         /// <param name="sitelinks">See POST /v1/ads/create sitelinks — same shape..</param>
         /// <param name="callouts">callouts.</param>
         /// <param name="structuredSnippets">structuredSnippets.</param>
-        public AttachCampaignAssetsRequest(string accountId = default, List<AttachCampaignAssetsRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets = default)
+        public AttachCampaignAssetsRequest(string accountId = default, string customerId = default, List<AttachCampaignAssetsRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -53,6 +54,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("accountId is a required property for AttachCampaignAssetsRequest and cannot be null");
             }
             this.AccountId = accountId;
+            this.CustomerId = customerId;
             this.Sitelinks = sitelinks;
             this.Callouts = callouts;
             this.StructuredSnippets = structuredSnippets;
@@ -64,6 +66,13 @@ namespace Zernio.Model
         /// <value>Zernio Google Ads SocialAccount id — resolves the customer id + refresh token.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
+
+        /// <summary>
+        /// Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+        /// </summary>
+        /// <value>Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.</value>
+        [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        public string CustomerId { get; set; }
 
         /// <summary>
         /// See POST /v1/ads/create sitelinks — same shape.
@@ -93,6 +102,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AttachCampaignAssetsRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Sitelinks: ").Append(Sitelinks).Append("\n");
             sb.Append("  Callouts: ").Append(Callouts).Append("\n");
             sb.Append("  StructuredSnippets: ").Append(StructuredSnippets).Append("\n");
