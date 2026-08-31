@@ -47,10 +47,16 @@ namespace Zernio.Model
             ACCOUNTDISCONNECTED = 1,
 
             /// <summary>
+            /// Enum ACCOUNTNOTENABLEDFORPOSTING for value: ACCOUNT_NOT_ENABLED_FOR_POSTING
+            /// </summary>
+            [EnumMember(Value = "ACCOUNT_NOT_ENABLED_FOR_POSTING")]
+            ACCOUNTNOTENABLEDFORPOSTING = 2,
+
+            /// <summary>
             /// Enum PROFILEOVERLIMIT for value: PROFILE_OVER_LIMIT
             /// </summary>
             [EnumMember(Value = "PROFILE_OVER_LIMIT")]
-            PROFILEOVERLIMIT = 2
+            PROFILEOVERLIMIT = 3
         }
 
 
