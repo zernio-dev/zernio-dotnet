@@ -38,10 +38,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="message">message.</param>
         /// <param name="post">post.</param>
-        public PostCreateResponse(string message = default, Post post = default)
+        /// <param name="warnings">Advisory notices about a post that was still created: media truncated for a platform, a recycling caveat, or a field that was ignored because it sat outside platforms[].platformSpecificData. Absent when there are none..</param>
+        public PostCreateResponse(string message = default, Post post = default, List<string> warnings = default)
         {
             this.Message = message;
             this.Post = post;
+            this.Warnings = warnings;
         }
 
         /// <summary>
@@ -57,6 +59,13 @@ namespace Zernio.Model
         public Post Post { get; set; }
 
         /// <summary>
+        /// Advisory notices about a post that was still created: media truncated for a platform, a recycling caveat, or a field that was ignored because it sat outside platforms[].platformSpecificData. Absent when there are none.
+        /// </summary>
+        /// <value>Advisory notices about a post that was still created: media truncated for a platform, a recycling caveat, or a field that was ignored because it sat outside platforms[].platformSpecificData. Absent when there are none.</value>
+        [DataMember(Name = "warnings", EmitDefaultValue = false)]
+        public List<string> Warnings { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -66,6 +75,7 @@ namespace Zernio.Model
             sb.Append("class PostCreateResponse {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Post: ").Append(Post).Append("\n");
+            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
