@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="valid">Count of rows that succeeded (results[].ok &#x3D;&#x3D;&#x3D; true).</param>
         /// <param name="invalid">Count of rows that failed (total - valid).</param>
         /// <param name="results">One entry per CSV data row, in row order..</param>
-        /// <param name="warnings">Top-level advisory warnings (e.g. &#x60;rows_exceed_advisory_limit:500&#x60;). Empty when none..</param>
+        /// <param name="warnings">Top-level advisory warnings, e.g. &#x60;rows_exceed_advisory_limit:500&#x60; or &#x60;unknown_columns:&lt;a,b,c&gt;&#x60; (comma-separated unrecognized CSV column names). Empty when none..</param>
         /// <param name="rateLimitedAccounts">Present only when one or more rows targeted an account currently in cooldown. Lets callers map &#x60;rate_limited:*&#x60; row errors back to structured metadata without parsing the error strings. .</param>
         public BulkUploadResult(int total = default, int valid = default, int invalid = default, List<BulkUploadResultResultsInner> results = default, List<string> warnings = default, List<BulkUploadResultRateLimitedAccountsInner> rateLimitedAccounts = default)
         {
@@ -81,9 +81,9 @@ namespace Zernio.Model
         public List<BulkUploadResultResultsInner> Results { get; set; }
 
         /// <summary>
-        /// Top-level advisory warnings (e.g. &#x60;rows_exceed_advisory_limit:500&#x60;). Empty when none.
+        /// Top-level advisory warnings, e.g. &#x60;rows_exceed_advisory_limit:500&#x60; or &#x60;unknown_columns:&lt;a,b,c&gt;&#x60; (comma-separated unrecognized CSV column names). Empty when none.
         /// </summary>
-        /// <value>Top-level advisory warnings (e.g. &#x60;rows_exceed_advisory_limit:500&#x60;). Empty when none.</value>
+        /// <value>Top-level advisory warnings, e.g. &#x60;rows_exceed_advisory_limit:500&#x60; or &#x60;unknown_columns:&lt;a,b,c&gt;&#x60; (comma-separated unrecognized CSV column names). Empty when none.</value>
         [DataMember(Name = "warnings", EmitDefaultValue = false)]
         public List<string> Warnings { get; set; }
 

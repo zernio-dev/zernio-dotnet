@@ -290,6 +290,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LeadGenFormId'
+        /// </summary>
+        [Fact]
+        public void LeadGenFormIdTest()
+        {
+            // TODO unit test for the property 'LeadGenFormId'
+        }
+
+        /// <summary>
+        /// Test the property 'Status'
+        /// </summary>
+        [Fact]
+        public void StatusTest()
+        {
+            // TODO unit test for the property 'Status'
+        }
+
+        /// <summary>
         /// Test the property 'OptimizationGoal'
         /// </summary>
         [Fact]
