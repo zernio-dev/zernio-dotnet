@@ -638,6 +638,7 @@ Class | Method | HTTP request | Description
 *WebhooksApi* | [**DeleteWebhookSettings**](docs/WebhooksApi.md#deletewebhooksettings) | **DELETE** /v1/webhooks/settings | Delete webhook
 *WebhooksApi* | [**GetWebhookLogs**](docs/WebhooksApi.md#getwebhooklogs) | **GET** /v1/webhooks/logs | List webhook delivery logs
 *WebhooksApi* | [**GetWebhookSettings**](docs/WebhooksApi.md#getwebhooksettings) | **GET** /v1/webhooks/settings | List webhooks
+*WebhooksApi* | [**RedeliverWebhookEvent**](docs/WebhooksApi.md#redeliverwebhookevent) | **POST** /v1/webhooks/logs/redeliver | Redeliver a webhook event
 *WebhooksApi* | [**TestWebhook**](docs/WebhooksApi.md#testwebhook) | **POST** /v1/webhooks/test | Send test webhook
 *WebhooksApi* | [**UpdateWebhookSettings**](docs/WebhooksApi.md#updatewebhooksettings) | **PUT** /v1/webhooks/settings | Update webhook
 *WhatsAppApi* | [**AddWhatsAppGroupParticipants**](docs/WhatsAppApi.md#addwhatsappgroupparticipants) | **POST** /v1/whatsapp/wa-groups/{groupId}/participants | Add participants
@@ -1897,6 +1898,7 @@ Class | Method | HTTP request | Description
  - [Model.RecyclingState](docs/RecyclingState.md)
  - [Model.RedditPlatformData](docs/RedditPlatformData.md)
  - [Model.RedditPost](docs/RedditPost.md)
+ - [Model.RedeliverWebhookEventRequest](docs/RedeliverWebhookEventRequest.md)
  - [Model.RegisterWhatsAppNumber200Response](docs/RegisterWhatsAppNumber200Response.md)
  - [Model.RegisterWhatsAppNumberRequest](docs/RegisterWhatsAppNumberRequest.md)
  - [Model.RejectWhatsAppGroupJoinRequestsRequest](docs/RejectWhatsAppGroupJoinRequestsRequest.md)

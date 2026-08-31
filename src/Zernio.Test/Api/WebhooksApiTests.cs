@@ -107,6 +107,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RedeliverWebhookEvent
+        /// </summary>
+        [Fact]
+        public void RedeliverWebhookEventTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //RedeliverWebhookEventRequest redeliverWebhookEventRequest = null;
+            //var response = instance.RedeliverWebhookEvent(redeliverWebhookEventRequest);
+            //Assert.IsType<UnpublishPost200Response>(response);
+        }
+
+        /// <summary>
         /// Test TestWebhook
         /// </summary>
         [Fact]
