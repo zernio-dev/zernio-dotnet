@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'OriginalType'
+        /// </summary>
+        [Fact]
+        public void OriginalTypeTest()
+        {
+            // TODO unit test for the property 'OriginalType'
+        }
+
+        /// <summary>
         /// Test the property 'Url'
         /// </summary>
         [Fact]

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WebhookPayloadMessageSentMessageSender
+    /// **On this event the sender is your own business, not the person you are talking to.** &#x60;id&#x60; is the Zernio account id and &#x60;name&#x60;, &#x60;username&#x60; and &#x60;picture&#x60; are that connected account&#39;s own profile.  Do not read these to name or update a contact: doing so on an echo relabels the customer&#39;s record with your business name. The other party is &#x60;conversation.participantId&#x60; / &#x60;participantName&#x60; / &#x60;participantUsername&#x60;, which are populated in both directions. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessageSent_message_sender")]
     public partial class WebhookPayloadMessageSentMessageSender : IValidatableObject
@@ -41,11 +41,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessageSender" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
+        /// <param name="id">The Zernio account id of the connected account that sent the message, not a contact id. (required).</param>
         /// <param name="contactId">Always omitted on this event: the sender is the business, not a contact. Use conversation.contactId to join back to the CRM Contact..</param>
-        /// <param name="name">name.</param>
-        /// <param name="username">username.</param>
-        /// <param name="picture">picture.</param>
+        /// <param name="name">Display name of your connected account..</param>
+        /// <param name="username">Username of your connected account..</param>
+        /// <param name="picture">Profile picture of your connected account..</param>
         public WebhookPayloadMessageSentMessageSender(string id = default, string contactId = default, string name = default, string username = default, string picture = default)
         {
             // to ensure "id" is required (not null)
@@ -61,8 +61,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The Zernio account id of the connected account that sent the message, not a contact id.
         /// </summary>
+        /// <value>The Zernio account id of the connected account that sent the message, not a contact id.</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
@@ -74,20 +75,23 @@ namespace Zernio.Model
         public string ContactId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Display name of your connected account.
         /// </summary>
+        /// <value>Display name of your connected account.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Username
+        /// Username of your connected account.
         /// </summary>
+        /// <value>Username of your connected account.</value>
         [DataMember(Name = "username", EmitDefaultValue = false)]
         public string Username { get; set; }
 
         /// <summary>
-        /// Gets or Sets Picture
+        /// Profile picture of your connected account.
         /// </summary>
+        /// <value>Profile picture of your connected account.</value>
         [DataMember(Name = "picture", EmitDefaultValue = false)]
         public string Picture { get; set; }
 

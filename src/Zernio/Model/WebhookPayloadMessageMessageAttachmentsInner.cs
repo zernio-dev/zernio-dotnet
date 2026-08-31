@@ -41,10 +41,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageMessageAttachmentsInner" /> class.
         /// </summary>
-        /// <param name="type">Attachment type (image, video, file, sticker, audio) (required).</param>
-        /// <param name="url">Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule.  (required).</param>
+        /// <param name="type">Attachment type (image, video, file, sticker, audio, share) (required).</param>
+        /// <param name="originalType">Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; all become &#x60;share&#x60;.  Read it before rendering, because &#x60;type: \&quot;share\&quot;&#x60; alone is ambiguous. In particular a story mention arrives as &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; treating an unrecognized type as a generic document shows your agent \&quot;document received\&quot; for what is usually a lead. .</param>
+        /// <param name="url">Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule.  **Webhook attachments carry no &#x60;refreshUrl&#x60;.** That field is stamped only when you read a message back over REST (&#x60;GET /v1/inbox/conversations/{conversationId}/messages&#x60;). On Instagram and Facebook the url above is a signed Meta CDN link that expires, so do not persist it: store the message id and resolve the media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;, which re-mints it on demand. Every value that URL needs is already in this payload: &#x60;message.conversationId&#x60;, &#x60;message.platformMessageId&#x60;, &#x60;account.accountId&#x60;, and the attachment&#39;s zero-based position in this array.  (required).</param>
         /// <param name="payload">Additional attachment metadata.</param>
-        public WebhookPayloadMessageMessageAttachmentsInner(string type = default, string url = default, Object payload = default)
+        public WebhookPayloadMessageMessageAttachmentsInner(string type = default, string originalType = default, string url = default, Object payload = default)
         {
             // to ensure "type" is required (not null)
             if (type == null)
@@ -58,20 +59,28 @@ namespace Zernio.Model
                 throw new ArgumentNullException("url is a required property for WebhookPayloadMessageMessageAttachmentsInner and cannot be null");
             }
             this.Url = url;
+            this.OriginalType = originalType;
             this.Payload = payload;
         }
 
         /// <summary>
-        /// Attachment type (image, video, file, sticker, audio)
+        /// Attachment type (image, video, file, sticker, audio, share)
         /// </summary>
-        /// <value>Attachment type (image, video, file, sticker, audio)</value>
+        /// <value>Attachment type (image, video, file, sticker, audio, share)</value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
-        /// Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule. 
+        /// Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; all become &#x60;share&#x60;.  Read it before rendering, because &#x60;type: \&quot;share\&quot;&#x60; alone is ambiguous. In particular a story mention arrives as &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; treating an unrecognized type as a generic document shows your agent \&quot;document received\&quot; for what is usually a lead. 
         /// </summary>
-        /// <value>Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule. </value>
+        /// <value>Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; all become &#x60;share&#x60;.  Read it before rendering, because &#x60;type: \&quot;share\&quot;&#x60; alone is ambiguous. In particular a story mention arrives as &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; treating an unrecognized type as a generic document shows your agent \&quot;document received\&quot; for what is usually a lead. </value>
+        [DataMember(Name = "originalType", EmitDefaultValue = false)]
+        public string OriginalType { get; set; }
+
+        /// <summary>
+        /// Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule.  **Webhook attachments carry no &#x60;refreshUrl&#x60;.** That field is stamped only when you read a message back over REST (&#x60;GET /v1/inbox/conversations/{conversationId}/messages&#x60;). On Instagram and Facebook the url above is a signed Meta CDN link that expires, so do not persist it: store the message id and resolve the media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;, which re-mints it on demand. Every value that URL needs is already in this payload: &#x60;message.conversationId&#x60;, &#x60;message.platformMessageId&#x60;, &#x60;account.accountId&#x60;, and the attachment&#39;s zero-based position in this array. 
+        /// </summary>
+        /// <value>Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule.  **Webhook attachments carry no &#x60;refreshUrl&#x60;.** That field is stamped only when you read a message back over REST (&#x60;GET /v1/inbox/conversations/{conversationId}/messages&#x60;). On Instagram and Facebook the url above is a signed Meta CDN link that expires, so do not persist it: store the message id and resolve the media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;, which re-mints it on demand. Every value that URL needs is already in this payload: &#x60;message.conversationId&#x60;, &#x60;message.platformMessageId&#x60;, &#x60;account.accountId&#x60;, and the attachment&#39;s zero-based position in this array. </value>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
@@ -91,6 +100,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookPayloadMessageMessageAttachmentsInner {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  OriginalType: ").Append(OriginalType).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");

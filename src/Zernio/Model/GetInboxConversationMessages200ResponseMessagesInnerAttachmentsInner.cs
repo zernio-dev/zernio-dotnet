@@ -87,14 +87,16 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="type">type.</param>
+        /// <param name="originalType">Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own type before normalization: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; become &#x60;share&#x60;. A story mention is &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; render on this field, since &#x60;share&#x60; alone is ambiguous..</param>
         /// <param name="url">Direct media link. On Instagram and Facebook this is a signed Meta CDN url that EXPIRES: use it now, do not store it. Persist &#x60;refreshUrl&#x60; instead..</param>
         /// <param name="refreshUrl">Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely..</param>
         /// <param name="filename">filename.</param>
         /// <param name="previewUrl">previewUrl.</param>
-        public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner(string id = default, TypeEnum? type = default, string url = default, string refreshUrl = default, string filename = default, string previewUrl = default)
+        public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner(string id = default, TypeEnum? type = default, string originalType = default, string url = default, string refreshUrl = default, string filename = default, string previewUrl = default)
         {
             this.Id = id;
             this.Type = type;
+            this.OriginalType = originalType;
             this.Url = url;
             this.RefreshUrl = refreshUrl;
             this.Filename = filename;
@@ -106,6 +108,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own type before normalization: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; become &#x60;share&#x60;. A story mention is &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; render on this field, since &#x60;share&#x60; alone is ambiguous.
+        /// </summary>
+        /// <value>Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own type before normalization: &#x60;ig_reel&#x60; and &#x60;reel&#x60; become &#x60;video&#x60;, while &#x60;ig_post&#x60;, &#x60;post&#x60;, &#x60;ig_story&#x60; and &#x60;story_mention&#x60; become &#x60;share&#x60;. A story mention is &#x60;type: \&quot;share\&quot;&#x60; with &#x60;originalType: \&quot;story_mention\&quot;&#x60;; render on this field, since &#x60;share&#x60; alone is ambiguous.</value>
+        [DataMember(Name = "originalType", EmitDefaultValue = false)]
+        public string OriginalType { get; set; }
 
         /// <summary>
         /// Direct media link. On Instagram and Facebook this is a signed Meta CDN url that EXPIRES: use it now, do not store it. Persist &#x60;refreshUrl&#x60; instead.
@@ -143,6 +152,7 @@ namespace Zernio.Model
             sb.Append("class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  OriginalType: ").Append(OriginalType).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  RefreshUrl: ").Append(RefreshUrl).Append("\n");
             sb.Append("  Filename: ").Append(Filename).Append("\n");

@@ -41,10 +41,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessageAttachmentsInner" /> class.
         /// </summary>
-        /// <param name="type">Attachment type (image, video, file, sticker, audio) (required).</param>
-        /// <param name="url">Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;.  (required).</param>
+        /// <param name="type">Attachment type (image, video, file, sticker, audio, share) (required).</param>
+        /// <param name="originalType">Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it. See the same field on message.received for the full mapping..</param>
+        /// <param name="url">Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;.  As on &#x60;message.received&#x60;, webhook attachments carry no &#x60;refreshUrl&#x60;: that field is stamped only on the REST read. Resolve Instagram and Facebook media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;.  (required).</param>
         /// <param name="payload">Additional attachment metadata.</param>
-        public WebhookPayloadMessageSentMessageAttachmentsInner(string type = default, string url = default, Object payload = default)
+        public WebhookPayloadMessageSentMessageAttachmentsInner(string type = default, string originalType = default, string url = default, Object payload = default)
         {
             // to ensure "type" is required (not null)
             if (type == null)
@@ -58,20 +59,28 @@ namespace Zernio.Model
                 throw new ArgumentNullException("url is a required property for WebhookPayloadMessageSentMessageAttachmentsInner and cannot be null");
             }
             this.Url = url;
+            this.OriginalType = originalType;
             this.Payload = payload;
         }
 
         /// <summary>
-        /// Attachment type (image, video, file, sticker, audio)
+        /// Attachment type (image, video, file, sticker, audio, share)
         /// </summary>
-        /// <value>Attachment type (image, video, file, sticker, audio)</value>
+        /// <value>Attachment type (image, video, file, sticker, audio, share)</value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
-        /// Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;. 
+        /// Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it. See the same field on message.received for the full mapping.
         /// </summary>
-        /// <value>Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;. </value>
+        /// <value>Instagram and Facebook only, and present only when it differs from &#x60;type&#x60;. Meta&#39;s own attachment type before Zernio normalized it. See the same field on message.received for the full mapping.</value>
+        [DataMember(Name = "originalType", EmitDefaultValue = false)]
+        public string OriginalType { get; set; }
+
+        /// <summary>
+        /// Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;.  As on &#x60;message.received&#x60;, webhook attachments carry no &#x60;refreshUrl&#x60;: that field is stamped only on the REST read. Resolve Instagram and Facebook media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;. 
+        /// </summary>
+        /// <value>Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;.  As on &#x60;message.received&#x60;, webhook attachments carry no &#x60;refreshUrl&#x60;: that field is stamped only on the REST read. Resolve Instagram and Facebook media through &#x60;GET /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}?accountId&#x3D;{accountId}&#x60;. </value>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
@@ -91,6 +100,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookPayloadMessageSentMessageAttachmentsInner {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  OriginalType: ").Append(OriginalType).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
