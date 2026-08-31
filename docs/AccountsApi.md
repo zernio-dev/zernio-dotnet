@@ -317,6 +317,7 @@ catch (ApiException e)
 | **200** | Posts list |  -  |
 | **400** | Invalid accountId, platform does not support posts listing, or the account has no access token |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

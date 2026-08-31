@@ -1695,6 +1695,8 @@ Class | Method | HTTP request | Description
  - [Model.ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
  - [Model.ListInboxComments200Response](docs/ListInboxComments200Response.md)
  - [Model.ListInboxComments200ResponseDataInner](docs/ListInboxComments200ResponseDataInner.md)
+ - [Model.ListInboxComments200ResponseMeta](docs/ListInboxComments200ResponseMeta.md)
+ - [Model.ListInboxComments200ResponseMetaFailedAccountsInner](docs/ListInboxComments200ResponseMetaFailedAccountsInner.md)
  - [Model.ListInboxConversationAnalytics200Response](docs/ListInboxConversationAnalytics200Response.md)
  - [Model.ListInboxConversationAnalytics200ResponseItemsInner](docs/ListInboxConversationAnalytics200ResponseItemsInner.md)
  - [Model.ListInboxConversationAnalytics200ResponsePagination](docs/ListInboxConversationAnalytics200ResponsePagination.md)

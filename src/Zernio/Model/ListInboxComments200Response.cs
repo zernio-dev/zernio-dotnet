@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="data">data.</param>
         /// <param name="pagination">pagination.</param>
         /// <param name="meta">meta.</param>
-        public ListInboxComments200Response(List<ListInboxComments200ResponseDataInner> data = default, ListInboxConversations200ResponsePagination pagination = default, ListInboxConversations200ResponseMeta meta = default)
+        public ListInboxComments200Response(List<ListInboxComments200ResponseDataInner> data = default, ListInboxConversations200ResponsePagination pagination = default, ListInboxComments200ResponseMeta meta = default)
         {
             this.Data = data;
             this.Pagination = pagination;
@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// Gets or Sets Meta
         /// </summary>
         [DataMember(Name = "meta", EmitDefaultValue = false)]
-        public ListInboxConversations200ResponseMeta Meta { get; set; }
+        public ListInboxComments200ResponseMeta Meta { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

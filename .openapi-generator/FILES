@@ -986,6 +986,8 @@ docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md
 docs/ListHighDemandPeriods200Response.md
 docs/ListInboxComments200Response.md
 docs/ListInboxComments200ResponseDataInner.md
+docs/ListInboxComments200ResponseMeta.md
+docs/ListInboxComments200ResponseMetaFailedAccountsInner.md
 docs/ListInboxConversationAnalytics200Response.md
 docs/ListInboxConversationAnalytics200ResponseItemsInner.md
 docs/ListInboxConversationAnalytics200ResponsePagination.md
@@ -2840,6 +2842,8 @@ src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksI
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponseTests.cs
 src/Zernio.Test/Model/ListHighDemandPeriods200ResponseTests.cs
 src/Zernio.Test/Model/ListInboxComments200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/ListInboxComments200ResponseMetaFailedAccountsInnerTests.cs
+src/Zernio.Test/Model/ListInboxComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListInboxComments200ResponseTests.cs
 src/Zernio.Test/Model/ListInboxConversationAnalytics200ResponseItemsInnerTests.cs
 src/Zernio.Test/Model/ListInboxConversationAnalytics200ResponsePaginationTests.cs
@@ -4683,6 +4687,8 @@ src/Zernio/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.
 src/Zernio/Model/ListHighDemandPeriods200Response.cs
 src/Zernio/Model/ListInboxComments200Response.cs
 src/Zernio/Model/ListInboxComments200ResponseDataInner.cs
+src/Zernio/Model/ListInboxComments200ResponseMeta.cs
+src/Zernio/Model/ListInboxComments200ResponseMetaFailedAccountsInner.cs
 src/Zernio/Model/ListInboxConversationAnalytics200Response.cs
 src/Zernio/Model/ListInboxConversationAnalytics200ResponseItemsInner.cs
 src/Zernio/Model/ListInboxConversationAnalytics200ResponsePagination.cs
