@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePostRequest" /> class.
         /// </summary>
-        /// <param name="title">title.</param>
+        /// <param name="title">Stored on the post for reference/display only. This field is NOT used as the video title when publishing. To set a YouTube video title, use platformSpecificData.title on the youtube platform target (falls back to the first line of content when omitted)..</param>
         /// <param name="content">Post caption/text. Optional when media is attached, all platforms have customContent, every platform entry is an X Article (platformSpecificData.article), or every platform entry is a LinkedIn text-free reshare (platformSpecificData.reshareUrl with no text). Required for other text-only posts..</param>
         /// <param name="mediaItems">mediaItems.</param>
         /// <param name="platforms">Target platforms and accounts for this post. Required for non-draft posts (returns 400 if empty). Drafts can omit platforms..</param>
@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="isDraft">When true, saves the post as a draft. When none of scheduledFor, publishNow, or queuedFromProfile are provided, the post defaults to draft automatically. (default to false).</param>
         /// <param name="timezone">timezone (default to &quot;UTC&quot;).</param>
         /// <param name="tags">Tags/keywords. YouTube constraints: each tag max 100 chars, combined max 500 chars, duplicates auto-removed..</param>
-        /// <param name="hashtags">hashtags.</param>
+        /// <param name="hashtags">Stored for reference only. Hashtags are NOT automatically appended to the caption when publishing. Include hashtags directly in the content field (platforms like Instagram only support hashtags as caption text). For YouTube keywords, use the tags field instead..</param>
         /// <param name="mentions">Stored for reference only. This field does NOT automatically create @mentions when publishing. For LinkedIn @mentions, use the /v1/accounts/{accountId}/linkedin-mentions endpoint to resolve profile URLs to URNs, then embed the returned mentionFormat directly in the post content field..</param>
         /// <param name="crosspostingEnabled">crosspostingEnabled (default to true).</param>
         /// <param name="metadata">metadata.</param>
@@ -78,8 +78,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Title
+        /// Stored on the post for reference/display only. This field is NOT used as the video title when publishing. To set a YouTube video title, use platformSpecificData.title on the youtube platform target (falls back to the first line of content when omitted).
         /// </summary>
+        /// <value>Stored on the post for reference/display only. This field is NOT used as the video title when publishing. To set a YouTube video title, use platformSpecificData.title on the youtube platform target (falls back to the first line of content when omitted).</value>
         [DataMember(Name = "title", EmitDefaultValue = false)]
         public string Title { get; set; }
 
@@ -136,8 +137,9 @@ namespace Zernio.Model
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets Hashtags
+        /// Stored for reference only. Hashtags are NOT automatically appended to the caption when publishing. Include hashtags directly in the content field (platforms like Instagram only support hashtags as caption text). For YouTube keywords, use the tags field instead.
         /// </summary>
+        /// <value>Stored for reference only. Hashtags are NOT automatically appended to the caption when publishing. Include hashtags directly in the content field (platforms like Instagram only support hashtags as caption text). For YouTube keywords, use the tags field instead.</value>
         [DataMember(Name = "hashtags", EmitDefaultValue = false)]
         public List<string> Hashtags { get; set; }
 
