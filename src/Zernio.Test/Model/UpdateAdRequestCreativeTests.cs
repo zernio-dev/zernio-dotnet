@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Description'
+        /// </summary>
+        [Fact]
+        public void DescriptionTest()
+        {
+            // TODO unit test for the property 'Description'
+        }
+
+        /// <summary>
         /// Test the property 'CallToAction'
         /// </summary>
         [Fact]
@@ -107,6 +116,24 @@ namespace Zernio.Test.Model
         public void VideoUrlTest()
         {
             // TODO unit test for the property 'VideoUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoId'
+        /// </summary>
+        [Fact]
+        public void VideoIdTest()
+        {
+            // TODO unit test for the property 'VideoId'
+        }
+
+        /// <summary>
+        /// Test the property 'ExistingCreativeId'
+        /// </summary>
+        [Fact]
+        public void ExistingCreativeIdTest()
+        {
+            // TODO unit test for the property 'ExistingCreativeId'
         }
     }
 }

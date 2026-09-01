@@ -122,13 +122,16 @@ namespace Zernio.Model
         /// <param name="languages">Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;) for a specific one. Unknown codes are rejected..</param>
         /// <param name="interests">Interest entities from /v1/ads/targeting/search?dimension&#x3D;interest. Each carries the platform&#39;s opaque id..</param>
         /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok..</param>
+        /// <param name="workPositions">Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments..</param>
+        /// <param name="workEmployers">Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer..</param>
+        /// <param name="workIndustries">Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments..</param>
         /// <param name="industries">LinkedIn B2B only. Industry URN id fragments..</param>
         /// <param name="companySizes">LinkedIn B2B only..</param>
         /// <param name="seniorities">LinkedIn B2B only..</param>
         /// <param name="jobFunctions">LinkedIn B2B only..</param>
-        /// <param name="audienceInclude">Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate..</param>
-        /// <param name="audienceExclude">Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate..</param>
-        public TargetingSpec(List<string> countries = default, List<BoostPostRequestTargetingRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
+        /// <param name="audienceInclude">Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400)..</param>
+        /// <param name="audienceExclude">Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400)..</param>
+        public TargetingSpec(List<string> countries = default, List<BoostPostRequestTargetingRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
         {
             this.Countries = countries;
             this.Regions = regions;
@@ -144,6 +147,9 @@ namespace Zernio.Model
             this.Languages = languages;
             this.Interests = interests;
             this.Behaviors = behaviors;
+            this.WorkPositions = workPositions;
+            this.WorkEmployers = workEmployers;
+            this.WorkIndustries = workIndustries;
             this.Industries = industries;
             this.CompanySizes = companySizes;
             this.Seniorities = seniorities;
@@ -236,6 +242,27 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestBehaviorsInner> Behaviors { get; set; }
 
         /// <summary>
+        /// Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments.
+        /// </summary>
+        /// <value>Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments.</value>
+        [DataMember(Name = "workPositions", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestBehaviorsInner> WorkPositions { get; set; }
+
+        /// <summary>
+        /// Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer.
+        /// </summary>
+        /// <value>Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer.</value>
+        [DataMember(Name = "workEmployers", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestBehaviorsInner> WorkEmployers { get; set; }
+
+        /// <summary>
+        /// Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments.
+        /// </summary>
+        /// <value>Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments.</value>
+        [DataMember(Name = "workIndustries", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestBehaviorsInner> WorkIndustries { get; set; }
+
+        /// <summary>
         /// LinkedIn B2B only. Industry URN id fragments.
         /// </summary>
         /// <value>LinkedIn B2B only. Industry URN id fragments.</value>
@@ -264,16 +291,16 @@ namespace Zernio.Model
         public List<string> JobFunctions { get; set; }
 
         /// <summary>
-        /// Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.
+        /// Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400).
         /// </summary>
-        /// <value>Platform audience IDs to include. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.</value>
+        /// <value>Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400).</value>
         [DataMember(Name = "audienceInclude", EmitDefaultValue = false)]
         public List<string> AudienceInclude { get; set; }
 
         /// <summary>
-        /// Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.
+        /// Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400).
         /// </summary>
-        /// <value>Platform audience IDs to exclude. Not supported on any platform (no builder maps it): rejected with a 400 on ad create, boost, and reach estimate.</value>
+        /// <value>Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400).</value>
         [DataMember(Name = "audienceExclude", EmitDefaultValue = false)]
         public List<string> AudienceExclude { get; set; }
 
@@ -299,6 +326,9 @@ namespace Zernio.Model
             sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("  Interests: ").Append(Interests).Append("\n");
             sb.Append("  Behaviors: ").Append(Behaviors).Append("\n");
+            sb.Append("  WorkPositions: ").Append(WorkPositions).Append("\n");
+            sb.Append("  WorkEmployers: ").Append(WorkEmployers).Append("\n");
+            sb.Append("  WorkIndustries: ").Append(WorkIndustries).Append("\n");
             sb.Append("  Industries: ").Append(Industries).Append("\n");
             sb.Append("  CompanySizes: ").Append(CompanySizes).Append("\n");
             sb.Append("  Seniorities: ").Append(Seniorities).Append("\n");

@@ -497,6 +497,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'WorkPositions'
+        /// </summary>
+        [Fact]
+        public void WorkPositionsTest()
+        {
+            // TODO unit test for the property 'WorkPositions'
+        }
+
+        /// <summary>
+        /// Test the property 'WorkEmployers'
+        /// </summary>
+        [Fact]
+        public void WorkEmployersTest()
+        {
+            // TODO unit test for the property 'WorkEmployers'
+        }
+
+        /// <summary>
+        /// Test the property 'WorkIndustries'
+        /// </summary>
+        [Fact]
+        public void WorkIndustriesTest()
+        {
+            // TODO unit test for the property 'WorkIndustries'
+        }
+
+        /// <summary>
         /// Test the property 'IncomeTier'
         /// </summary>
         [Fact]

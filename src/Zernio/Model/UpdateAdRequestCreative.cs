@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Replace the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: requires &#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;, &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;. The   ad&#39;s existing creative is replaced via a new &#x60;/act_X/adcreatives&#x60; upload + ad   update. The old creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. - **LinkedIn**: uploads new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;),   creates a new inline media creative on the same campaign, and pauses the old   creative (best-effort). The old creative is retained for historical reporting. 
+    /// Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset — fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives — those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: uploads new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;),   creates a new inline media creative on the same campaign, and pauses the old   creative (best-effort). The old creative is retained for historical reporting.   &#x60;videoId&#x60; and &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
     /// </summary>
     [DataContract(Name = "updateAd_request_creative")]
     public partial class UpdateAdRequestCreative : IValidatableObject
@@ -36,26 +36,32 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdRequestCreative" /> class.
         /// </summary>
-        /// <param name="headline">Meta only.</param>
+        /// <param name="headline">Meta and LinkedIn (TikTok has no headline slot).</param>
         /// <param name="body">body.</param>
+        /// <param name="description">Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description)..</param>
         /// <param name="callToAction">callToAction.</param>
         /// <param name="linkUrl">linkUrl.</param>
         /// <param name="imageUrl">imageUrl.</param>
         /// <param name="videoUrl">videoUrl.</param>
-        public UpdateAdRequestCreative(string headline = default, string body = default, string callToAction = default, string linkUrl = default, string imageUrl = default, string videoUrl = default)
+        /// <param name="videoId">Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos or GET /v1/ads/videos) instead of re-uploading via videoUrl..</param>
+        /// <param name="existingCreativeId">Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored..</param>
+        public UpdateAdRequestCreative(string headline = default, string body = default, string description = default, string callToAction = default, string linkUrl = default, string imageUrl = default, string videoUrl = default, string videoId = default, string existingCreativeId = default)
         {
             this.Headline = headline;
             this.Body = body;
+            this.Description = description;
             this.CallToAction = callToAction;
             this.LinkUrl = linkUrl;
             this.ImageUrl = imageUrl;
             this.VideoUrl = videoUrl;
+            this.VideoId = videoId;
+            this.ExistingCreativeId = existingCreativeId;
         }
 
         /// <summary>
-        /// Meta only
+        /// Meta and LinkedIn (TikTok has no headline slot)
         /// </summary>
-        /// <value>Meta only</value>
+        /// <value>Meta and LinkedIn (TikTok has no headline slot)</value>
         [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
 
@@ -64,6 +70,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "body", EmitDefaultValue = false)]
         public string Body { get; set; }
+
+        /// <summary>
+        /// Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description).
+        /// </summary>
+        /// <value>Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description).</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets or Sets CallToAction
@@ -90,6 +103,20 @@ namespace Zernio.Model
         public string VideoUrl { get; set; }
 
         /// <summary>
+        /// Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos or GET /v1/ads/videos) instead of re-uploading via videoUrl.
+        /// </summary>
+        /// <value>Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos or GET /v1/ads/videos) instead of re-uploading via videoUrl.</value>
+        [DataMember(Name = "videoId", EmitDefaultValue = false)]
+        public string VideoId { get; set; }
+
+        /// <summary>
+        /// Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored.
+        /// </summary>
+        /// <value>Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored.</value>
+        [DataMember(Name = "existingCreativeId", EmitDefaultValue = false)]
+        public string ExistingCreativeId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -99,10 +126,13 @@ namespace Zernio.Model
             sb.Append("class UpdateAdRequestCreative {\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CallToAction: ").Append(CallToAction).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
+            sb.Append("  VideoId: ").Append(VideoId).Append("\n");
+            sb.Append("  ExistingCreativeId: ").Append(ExistingCreativeId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,6 +153,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Description (string) maxLength
+            if (this.Description != null && this.Description.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 255.", new [] { "Description" });
+            }
+
             yield break;
         }
     }

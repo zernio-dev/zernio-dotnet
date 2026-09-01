@@ -514,13 +514,14 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>AdsListResponse</returns>
-        AdsListResponse ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        AdsListResponse ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List ads
@@ -539,13 +540,14 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of AdsListResponse</returns>
-        ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -1213,6 +1215,7 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
@@ -1220,7 +1223,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AdsListResponse</returns>
-        System.Threading.Tasks.Task<AdsListResponse> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<AdsListResponse> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List ads
@@ -1239,6 +1242,7 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
@@ -1246,7 +1250,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AdsListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -4471,15 +4475,16 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>AdsListResponse</returns>
-        public AdsListResponse ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public AdsListResponse ListAds(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<AdsListResponse> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+            Zernio.Client.ApiResponse<AdsListResponse> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -4497,13 +4502,14 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of AdsListResponse</returns>
-        public Zernio.Client.ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Zernio.Client.ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -4560,6 +4566,10 @@ namespace Zernio.Api
             if (campaignId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adSetId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adSetId", adSetId));
             }
             if (platformAdId != null)
             {
@@ -4615,6 +4625,7 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
@@ -4622,9 +4633,9 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AdsListResponse</returns>
-        public async System.Threading.Tasks.Task<AdsListResponse> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<AdsListResponse> ListAdsAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<AdsListResponse> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AdsListResponse> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4642,6 +4653,7 @@ namespace Zernio.Api
         /// <param name="pageId">Meta only: Facebook Page ID. Returns only ads whose creative is backed by this Page (a Meta ad account serves ads for every Page in the Business Manager). Matches each ad&#39;s &#x60;creative.pageId&#x60;; ads with no page signal (rare IG-only creatives) never match. Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="adSetId">Platform ad set ID (filter ads within an ad set, the /{adset_id}/ads read of an adset-centric dashboard). (optional)</param>
         /// <param name="platformAdId">Meta ad ID. Returns the ad with this platform-side ad ID. (optional)</param>
         /// <param name="effectiveObjectStoryId">Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)</param>
         /// <param name="effectiveInstagramMediaId">Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)</param>
@@ -4649,7 +4661,7 @@ namespace Zernio.Api
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AdsListResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -4708,6 +4720,10 @@ namespace Zernio.Api
             if (campaignId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adSetId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adSetId", adSetId));
             }
             if (platformAdId != null)
             {
