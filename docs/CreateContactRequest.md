@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **IsSubscribed** | **bool** |  | [optional] [default to true]
 **Notes** | **string** |  | [optional] 
 **AccountId** | **string** | Optional. Creates a channel if provided with platform + platformIdentifier | [optional] 
-**Platform** | **string** |  | [optional] 
+**Platform** | **string** | Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported. | [optional] 
 **PlatformIdentifier** | **string** |  | [optional] 
 **DisplayIdentifier** | **string** |  | [optional] 
 

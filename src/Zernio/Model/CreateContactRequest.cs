@@ -34,6 +34,69 @@ namespace Zernio.Model
     public partial class CreateContactRequest : IValidatableObject
     {
         /// <summary>
+        /// Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported.
+        /// </summary>
+        /// <value>Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PlatformEnum
+        {
+            /// <summary>
+            /// Enum Instagram for value: instagram
+            /// </summary>
+            [EnumMember(Value = "instagram")]
+            Instagram = 1,
+
+            /// <summary>
+            /// Enum Facebook for value: facebook
+            /// </summary>
+            [EnumMember(Value = "facebook")]
+            Facebook = 2,
+
+            /// <summary>
+            /// Enum Telegram for value: telegram
+            /// </summary>
+            [EnumMember(Value = "telegram")]
+            Telegram = 3,
+
+            /// <summary>
+            /// Enum Twitter for value: twitter
+            /// </summary>
+            [EnumMember(Value = "twitter")]
+            Twitter = 4,
+
+            /// <summary>
+            /// Enum Bluesky for value: bluesky
+            /// </summary>
+            [EnumMember(Value = "bluesky")]
+            Bluesky = 5,
+
+            /// <summary>
+            /// Enum Reddit for value: reddit
+            /// </summary>
+            [EnumMember(Value = "reddit")]
+            Reddit = 6,
+
+            /// <summary>
+            /// Enum Whatsapp for value: whatsapp
+            /// </summary>
+            [EnumMember(Value = "whatsapp")]
+            Whatsapp = 7,
+
+            /// <summary>
+            /// Enum Slack for value: slack
+            /// </summary>
+            [EnumMember(Value = "slack")]
+            Slack = 8
+        }
+
+
+        /// <summary>
+        /// Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported.
+        /// </summary>
+        /// <value>Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported.</value>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public PlatformEnum? Platform { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateContactRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -49,10 +112,10 @@ namespace Zernio.Model
         /// <param name="isSubscribed">isSubscribed (default to true).</param>
         /// <param name="notes">notes.</param>
         /// <param name="accountId">Optional. Creates a channel if provided with platform + platformIdentifier.</param>
-        /// <param name="platform">platform.</param>
+        /// <param name="platform">Channel platform. Only the enum values support contact channels; any other platform is rejected with code platform_not_supported..</param>
         /// <param name="platformIdentifier">platformIdentifier.</param>
         /// <param name="displayIdentifier">displayIdentifier.</param>
-        public CreateContactRequest(string profileId = default, string name = default, string email = default, string company = default, List<string> tags = default, bool isSubscribed = true, string notes = default, string accountId = default, string platform = default, string platformIdentifier = default, string displayIdentifier = default)
+        public CreateContactRequest(string profileId = default, string name = default, string email = default, string company = default, List<string> tags = default, bool isSubscribed = true, string notes = default, string accountId = default, PlatformEnum? platform = default, string platformIdentifier = default, string displayIdentifier = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -125,12 +188,6 @@ namespace Zernio.Model
         /// <value>Optional. Creates a channel if provided with platform + platformIdentifier</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Platform
-        /// </summary>
-        [DataMember(Name = "platform", EmitDefaultValue = false)]
-        public string Platform { get; set; }
 
         /// <summary>
         /// Gets or Sets PlatformIdentifier

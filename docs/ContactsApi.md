@@ -107,7 +107,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
+| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. An accountId on a platform with no contact channels rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -207,7 +207,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Contact created |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request. Channel fields are all-or-nothing: accountId, platform and platformIdentifier must be sent together (code: missing_required_field). A platform outside the enum does not support contact channels (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Duplicate channel. The platformIdentifier is already bound to a channel on this accountId. |  -  |
 
