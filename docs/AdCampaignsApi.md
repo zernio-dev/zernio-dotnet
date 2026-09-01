@@ -2094,7 +2094,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad updated |  -  |
-| **400** | Invalid status transition or budget below minimum |  -  |
+| **400** | Invalid status transition, budget below minimum, or a LinkedIn creative update without imageUrl or videoUrl |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
