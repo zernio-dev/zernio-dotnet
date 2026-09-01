@@ -96,7 +96,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageMetadata" /> class.
         /// </summary>
-        /// <param name="quotedMessageId">platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). Outgoing quote-replies carry the same field on &#x60;message.sent&#x60;; see WebhookPayloadMessageSent.metadata. .</param>
+        /// <param name="quotedMessageId">platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. .</param>
         /// <param name="quickReplyPayload">Payload from a quick reply tap (Facebook/Instagram Messenger)..</param>
         /// <param name="postbackPayload">Payload from a postback button tap (Facebook/Instagram Messenger)..</param>
         /// <param name="postbackTitle">Title of the tapped postback button (Facebook/Instagram Messenger)..</param>
@@ -141,9 +141,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). Outgoing quote-replies carry the same field on &#x60;message.sent&#x60;; see WebhookPayloadMessageSent.metadata. 
+        /// platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. 
         /// </summary>
-        /// <value>platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). Outgoing quote-replies carry the same field on &#x60;message.sent&#x60;; see WebhookPayloadMessageSent.metadata. </value>
+        /// <value>platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. </value>
         [DataMember(Name = "quotedMessageId", EmitDefaultValue = false)]
         public string QuotedMessageId { get; set; }
 

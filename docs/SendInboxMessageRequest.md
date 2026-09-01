@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **ReplyMarkup** | [**SendInboxMessageRequestReplyMarkup**](SendInboxMessageRequestReplyMarkup.md) |  | [optional] 
 **MessagingType** | **string** | Facebook messaging type. Required when using messageTag. | [optional] 
 **MessageTag** | **string** | Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT. | [optional] 
-**ReplyTo** | **string** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID (both available in message.platformMessageId from webhooks or the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without send-side reply support, including Instagram and Facebook Messenger (Meta&#39;s Send API rejects reply_to on Instagram and does not expose it on Messenger). | [optional] 
+**ReplyTo** | **string** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID (delivered as message.platformMessageId on webhooks, and as &#x60;id&#x60; on each entry of the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Silently ignored on platforms without send-side reply support, including Instagram and Facebook Messenger (Meta&#39;s Send API rejects reply_to on Instagram and does not expose it on Messenger). | [optional] 
 **Location** | [**SendInboxMessageRequestLocation**](SendInboxMessageRequestLocation.md) |  | [optional] 
 **Contacts** | [**List&lt;SendInboxMessageRequestContactsInner&gt;**](SendInboxMessageRequestContactsInner.md) | WhatsApp-only. Send one or more contact cards. | [optional] 
 
