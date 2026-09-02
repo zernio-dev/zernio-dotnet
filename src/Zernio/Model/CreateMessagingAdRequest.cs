@@ -285,8 +285,9 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
+        /// <param name="regionalRegulatedCategories">Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set..</param>
         /// <param name="destination">Where the conversation opens when the ad is tapped. (required).</param>
-        public CreateMessagingAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, DestinationEnum destination = default)
+        public CreateMessagingAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, DestinationEnum destination = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -338,6 +339,7 @@ namespace Zernio.Model
             this.RoasAverageFloor = roasAverageFloor;
             this.DsaBeneficiary = dsaBeneficiary;
             this.DsaPayor = dsaPayor;
+            this.RegionalRegulatedCategories = regionalRegulatedCategories;
         }
 
         /// <summary>
@@ -531,6 +533,13 @@ namespace Zernio.Model
         public string DsaPayor { get; set; }
 
         /// <summary>
+        /// Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set.
+        /// </summary>
+        /// <value>Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV). Forwarded to the ad set.</value>
+        [DataMember(Name = "regionalRegulatedCategories", EmitDefaultValue = false)]
+        public List<string> RegionalRegulatedCategories { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -572,6 +581,7 @@ namespace Zernio.Model
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  DsaBeneficiary: ").Append(DsaBeneficiary).Append("\n");
             sb.Append("  DsaPayor: ").Append(DsaPayor).Append("\n");
+            sb.Append("  RegionalRegulatedCategories: ").Append(RegionalRegulatedCategories).Append("\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

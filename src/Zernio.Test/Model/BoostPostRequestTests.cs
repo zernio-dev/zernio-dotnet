@@ -245,6 +245,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RegionalRegulatedCategories'
+        /// </summary>
+        [Fact]
+        public void RegionalRegulatedCategoriesTest()
+        {
+            // TODO unit test for the property 'RegionalRegulatedCategories'
+        }
+
+        /// <summary>
         /// Test the property 'LinkUrl'
         /// </summary>
         [Fact]

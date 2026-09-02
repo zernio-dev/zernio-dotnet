@@ -360,5 +360,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'DsaPayor'
         }
+
+        /// <summary>
+        /// Test the property 'RegionalRegulatedCategories'
+        /// </summary>
+        [Fact]
+        public void RegionalRegulatedCategoriesTest()
+        {
+            // TODO unit test for the property 'RegionalRegulatedCategories'
+        }
     }
 }
