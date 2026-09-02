@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | 
-**AdAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). | 
+**AccountId** | **string** | Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created. | 
+**AdAccountId** | **string** | Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). | 
 **Name** | **string** |  | 
 **Rules** | [**List&lt;ValueRule&gt;**](ValueRule.md) | Evaluated in order; the first matching rule wins. | 
 

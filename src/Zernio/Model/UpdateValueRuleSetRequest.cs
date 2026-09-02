@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateValueRuleSetRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created. (required).</param>
         /// <param name="name">Required: the update replaces the whole set. (required).</param>
         /// <param name="rules">The COMPLETE rule list. Omitting a rule deletes it on Meta. (required).</param>
         public UpdateValueRuleSetRequest(string accountId = default, string name = default, List<ValueRule> rules = default)
@@ -67,9 +67,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        /// Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created.
         /// </summary>
-        /// <value>Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</value>
+        /// <value>Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

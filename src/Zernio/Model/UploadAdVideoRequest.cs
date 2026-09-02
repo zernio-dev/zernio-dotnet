@@ -41,8 +41,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadAdVideoRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required).</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;). (required).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created. (required).</param>
+        /// <param name="adAccountId">Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). (required).</param>
         /// <param name="videoUrl">Public https URL of the video; downloaded server-side (SSRF-guarded) before chunked upload. Provide exactly one of videoUrl or videoBase64..</param>
         /// <param name="videoBase64">Raw base64 video bytes, or a full data URL (the data:video/...;base64, prefix is stripped). Capped by Vercel&#39;s body limit (~4.5 MB payload). Provide exactly one of videoUrl or videoBase64..</param>
         /// <param name="filename">Optional filename shown alongside the upload session. Applied only when uploading via videoBase64..</param>
@@ -66,16 +66,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        /// Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created.
         /// </summary>
-        /// <value>Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</value>
+        /// <value>Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Meta ad account id (act_&lt;n&gt;).
+        /// Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).
         /// </summary>
-        /// <value>Meta ad account id (act_&lt;n&gt;).</value>
+        /// <value>Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

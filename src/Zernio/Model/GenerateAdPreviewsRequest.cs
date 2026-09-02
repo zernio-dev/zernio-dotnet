@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GenerateAdPreviewsRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token. (required).</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;). (required).</param>
+        /// <param name="adAccountId">Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). (required).</param>
         /// <param name="formats">Meta ad_format values, one preview per format. Defaults to [DESKTOP_FEED_STANDARD]..</param>
         /// <param name="existingCreativeId">Preview an existing ad-account creative by id. Mutually exclusive with creativeSpec..</param>
         /// <param name="creativeSpec">Raw Meta creative spec forwarded verbatim to /generatepreviews. Mutually exclusive with existingCreativeId..</param>
@@ -73,9 +73,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Meta ad account id (act_&lt;n&gt;).
+        /// Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).
         /// </summary>
-        /// <value>Meta ad account id (act_&lt;n&gt;).</value>
+        /// <value>Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

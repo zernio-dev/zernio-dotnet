@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCustomConversionRequest" /> class.
         /// </summary>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;). (required).</param>
+        /// <param name="adAccountId">Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). (required).</param>
         /// <param name="name">Also the reuse key, together with pixelId. (required).</param>
         /// <param name="pixelId">Meta pixel id (event_source_id). From GET /v1/accounts/{accountId}/tracking-tags. (required).</param>
         /// <param name="customEventType">Meta custom_event_type, e.g. LEAD, PURCHASE, OTHER. (required).</param>
@@ -81,9 +81,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta ad account id (act_&lt;n&gt;).
+        /// Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).
         /// </summary>
-        /// <value>Meta ad account id (act_&lt;n&gt;).</value>
+        /// <value>Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

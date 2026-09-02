@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateRfPredictionRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant). (required).</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;). (required).</param>
+        /// <param name="adAccountId">Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). (required).</param>
         /// <param name="budgetAmount">Whole currency units. Exactly one of budgetAmount / reach..</param>
         /// <param name="reach">Target unique reach. Exactly one of budgetAmount / reach..</param>
         /// <param name="startDate">Campaign window start (must be in the future). (required).</param>
@@ -81,9 +81,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Meta ad account id (act_&lt;n&gt;).
+        /// Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).
         /// </summary>
-        /// <value>Meta ad account id (act_&lt;n&gt;).</value>
+        /// <value>Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

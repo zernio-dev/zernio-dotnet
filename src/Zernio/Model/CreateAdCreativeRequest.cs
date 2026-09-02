@@ -88,7 +88,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateAdCreativeRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token and Page. (required).</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;). (required).</param>
+        /// <param name="adAccountId">Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). (required).</param>
         /// <param name="headline">headline (required).</param>
         /// <param name="body">Primary text (required).</param>
         /// <param name="description">Link description below the headline; omitted &#x3D; Meta scrapes the destination&#39;s OG description..</param>
@@ -151,9 +151,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Meta ad account id (act_&lt;n&gt;).
+        /// Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).
         /// </summary>
-        /// <value>Meta ad account id (act_&lt;n&gt;).</value>
+        /// <value>Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

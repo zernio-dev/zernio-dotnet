@@ -254,8 +254,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAdCampaignRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required).</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;). (required).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created. (required).</param>
+        /// <param name="adAccountId">Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="goal">Mapped to the ODAX objective (same mapping as POST /v1/ads/create). (required).</param>
         /// <param name="specialAdCategories">specialAdCategories.</param>
@@ -296,16 +296,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        /// Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created.
         /// </summary>
-        /// <value>Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</value>
+        /// <value>Zernio SocialAccount id (posting or ads variant); its platform decides where the campaign is created.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Meta ad account id (act_&lt;n&gt;).
+        /// Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).
         /// </summary>
-        /// <value>Meta ad account id (act_&lt;n&gt;).</value>
+        /// <value>Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 
