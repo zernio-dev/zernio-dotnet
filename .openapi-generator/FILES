@@ -1727,6 +1727,7 @@ docs/WebhookPayloadMessageMessageSenderInstagramProfile.md
 docs/WebhookPayloadMessageMetadata.md
 docs/WebhookPayloadMessageMetadataOrder.md
 docs/WebhookPayloadMessageMetadataOrderProductItemsInner.md
+docs/WebhookPayloadMessageMetadataQuotedMessage.md
 docs/WebhookPayloadMessageMetadataReferral.md
 docs/WebhookPayloadMessageMetadataReferralAdsContextData.md
 docs/WebhookPayloadMessageMetadataReferredProduct.md
@@ -3565,6 +3566,7 @@ src/Zernio.Test/Model/WebhookPayloadMessageMessageSenderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataOrderProductItemsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataOrderTests.cs
+src/Zernio.Test/Model/WebhookPayloadMessageMetadataQuotedMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferralAdsContextDataTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferralTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferredProductTests.cs
@@ -5419,6 +5421,7 @@ src/Zernio/Model/WebhookPayloadMessageMessageSenderInstagramProfile.cs
 src/Zernio/Model/WebhookPayloadMessageMetadata.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataOrder.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataOrderProductItemsInner.cs
+src/Zernio/Model/WebhookPayloadMessageMetadataQuotedMessage.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataReferral.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataReferralAdsContextData.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataReferredProduct.cs

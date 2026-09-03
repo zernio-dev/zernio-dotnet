@@ -96,7 +96,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageMetadata" /> class.
         /// </summary>
-        /// <param name="quotedMessageId">platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. .</param>
+        /// <param name="quotedMessageId">Raw platform envelope id (WhatsApp &#x60;context.id&#x60;; Instagram and Facebook Messenger &#x60;reply_to.mid&#x60;) of the message this one is a quote-reply to, forwarded verbatim. It may not equal the stored id of that message (see &#x60;quotedMessage.platformMessageId&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. .</param>
+        /// <param name="quotedMessage">quotedMessage.</param>
         /// <param name="quickReplyPayload">Payload from a quick reply tap (Facebook/Instagram Messenger)..</param>
         /// <param name="postbackPayload">Payload from a postback button tap (Facebook/Instagram Messenger)..</param>
         /// <param name="postbackTitle">Title of the tapped postback button (Facebook/Instagram Messenger)..</param>
@@ -116,9 +117,10 @@ namespace Zernio.Model
         /// <param name="referral">referral.</param>
         /// <param name="unsupported">unsupported.</param>
         /// <param name="noRenderableContent">Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, just the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;. .</param>
-        public WebhookPayloadMessageMetadata(string quotedMessageId = default, string quickReplyPayload = default, string postbackPayload = default, string postbackTitle = default, string callbackData = default, InteractiveTypeEnum? interactiveType = default, string interactiveId = default, string buttonPayload = default, string flowResponseJson = default, Dictionary<string, Object> flowResponseData = default, string nfmReplyName = default, WebhookPayloadMessageMetadataOrder order = default, WebhookPayloadMessageMetadataReferredProduct referredProduct = default, List<Dictionary<string, Object>> contacts = default, ContactsOriginEnum? contactsOrigin = default, WebhookPayloadMessageMetadataStoryReply storyReply = default, bool isStoryMention = default, WebhookPayloadMessageMetadataReferral referral = default, WebhookPayloadMessageMetadataUnsupported unsupported = default, bool noRenderableContent = default)
+        public WebhookPayloadMessageMetadata(string quotedMessageId = default, WebhookPayloadMessageMetadataQuotedMessage quotedMessage = default, string quickReplyPayload = default, string postbackPayload = default, string postbackTitle = default, string callbackData = default, InteractiveTypeEnum? interactiveType = default, string interactiveId = default, string buttonPayload = default, string flowResponseJson = default, Dictionary<string, Object> flowResponseData = default, string nfmReplyName = default, WebhookPayloadMessageMetadataOrder order = default, WebhookPayloadMessageMetadataReferredProduct referredProduct = default, List<Dictionary<string, Object>> contacts = default, ContactsOriginEnum? contactsOrigin = default, WebhookPayloadMessageMetadataStoryReply storyReply = default, bool isStoryMention = default, WebhookPayloadMessageMetadataReferral referral = default, WebhookPayloadMessageMetadataUnsupported unsupported = default, bool noRenderableContent = default)
         {
             this.QuotedMessageId = quotedMessageId;
+            this.QuotedMessage = quotedMessage;
             this.QuickReplyPayload = quickReplyPayload;
             this.PostbackPayload = postbackPayload;
             this.PostbackTitle = postbackTitle;
@@ -141,11 +143,17 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. 
+        /// Raw platform envelope id (WhatsApp &#x60;context.id&#x60;; Instagram and Facebook Messenger &#x60;reply_to.mid&#x60;) of the message this one is a quote-reply to, forwarded verbatim. It may not equal the stored id of that message (see &#x60;quotedMessage.platformMessageId&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. 
         /// </summary>
-        /// <value>platformMessageId of the message this one is a quote-reply to. WhatsApp (&#x60;context.id&#x60;), Instagram and Facebook Messenger (&#x60;reply_to.mid&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. </value>
+        /// <value>Raw platform envelope id (WhatsApp &#x60;context.id&#x60;; Instagram and Facebook Messenger &#x60;reply_to.mid&#x60;) of the message this one is a quote-reply to, forwarded verbatim. It may not equal the stored id of that message (see &#x60;quotedMessage.platformMessageId&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId. </value>
         [DataMember(Name = "quotedMessageId", EmitDefaultValue = false)]
         public string QuotedMessageId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets QuotedMessage
+        /// </summary>
+        [DataMember(Name = "quotedMessage", EmitDefaultValue = false)]
+        public WebhookPayloadMessageMetadataQuotedMessage QuotedMessage { get; set; }
 
         /// <summary>
         /// Payload from a quick reply tap (Facebook/Instagram Messenger).
@@ -270,6 +278,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookPayloadMessageMetadata {\n");
             sb.Append("  QuotedMessageId: ").Append(QuotedMessageId).Append("\n");
+            sb.Append("  QuotedMessage: ").Append(QuotedMessage).Append("\n");
             sb.Append("  QuickReplyPayload: ").Append(QuickReplyPayload).Append("\n");
             sb.Append("  PostbackPayload: ").Append(PostbackPayload).Append("\n");
             sb.Append("  PostbackTitle: ").Append(PostbackTitle).Append("\n");

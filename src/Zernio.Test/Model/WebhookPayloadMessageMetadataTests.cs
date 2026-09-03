@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'QuotedMessage'
+        /// </summary>
+        [Fact]
+        public void QuotedMessageTest()
+        {
+            // TODO unit test for the property 'QuotedMessage'
+        }
+
+        /// <summary>
         /// Test the property 'QuickReplyPayload'
         /// </summary>
         [Fact]
