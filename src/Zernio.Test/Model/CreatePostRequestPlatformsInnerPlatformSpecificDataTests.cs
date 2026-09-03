@@ -308,6 +308,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsPaidPartnership'
+        /// </summary>
+        [Fact]
+        public void IsPaidPartnershipTest()
+        {
+            // TODO unit test for the property 'IsPaidPartnership'
+        }
+
+        /// <summary>
+        /// Test the property 'BrandedContentSponsors'
+        /// </summary>
+        [Fact]
+        public void BrandedContentSponsorsTest()
+        {
+            // TODO unit test for the property 'BrandedContentSponsors'
+        }
+
+        /// <summary>
+        /// Test the property 'CommentsEnabled'
+        /// </summary>
+        [Fact]
+        public void CommentsEnabledTest()
+        {
+            // TODO unit test for the property 'CommentsEnabled'
+        }
+
+        /// <summary>
+        /// Test the property 'LocationId'
+        /// </summary>
+        [Fact]
+        public void LocationIdTest()
+        {
+            // TODO unit test for the property 'LocationId'
+        }
+
+        /// <summary>
         /// Test the property 'DocumentTitle'
         /// </summary>
         [Fact]
@@ -431,15 +467,6 @@ namespace Zernio.Test.Model
         public void PlaylistIdTest()
         {
             // TODO unit test for the property 'PlaylistId'
-        }
-
-        /// <summary>
-        /// Test the property 'LocationId'
-        /// </summary>
-        [Fact]
-        public void LocationIdTest()
-        {
-            // TODO unit test for the property 'LocationId'
         }
 
         /// <summary>

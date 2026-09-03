@@ -171,5 +171,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'IsAiGenerated'
         }
+
+        /// <summary>
+        /// Test the property 'IsPaidPartnership'
+        /// </summary>
+        [Fact]
+        public void IsPaidPartnershipTest()
+        {
+            // TODO unit test for the property 'IsPaidPartnership'
+        }
+
+        /// <summary>
+        /// Test the property 'BrandedContentSponsors'
+        /// </summary>
+        [Fact]
+        public void BrandedContentSponsorsTest()
+        {
+            // TODO unit test for the property 'BrandedContentSponsors'
+        }
+
+        /// <summary>
+        /// Test the property 'CommentsEnabled'
+        /// </summary>
+        [Fact]
+        public void CommentsEnabledTest()
+        {
+            // TODO unit test for the property 'CommentsEnabled'
+        }
+
+        /// <summary>
+        /// Test the property 'LocationId'
+        /// </summary>
+        [Fact]
+        public void LocationIdTest()
+        {
+            // TODO unit test for the property 'LocationId'
+        }
     }
 }

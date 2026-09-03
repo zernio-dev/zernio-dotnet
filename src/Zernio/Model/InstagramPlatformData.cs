@@ -70,7 +70,11 @@ namespace Zernio.Model
         /// <param name="instagramThumbnail">Custom cover image URL for Instagram Reels (JPG or PNG, publicly accessible). Overrides thumbOffset when provided. Also accepted as reelCover (alias)..</param>
         /// <param name="reelCover">Alias for instagramThumbnail. If both are provided, instagramThumbnail takes priority..</param>
         /// <param name="isAiGenerated">When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels. (default to false).</param>
-        public InstagramPlatformData(ContentTypeEnum? contentType = default, bool shareToFeed = true, List<string> collaborators = default, string firstComment = default, InstagramPlatformDataTrialParams trialParams = default, List<InstagramPlatformDataUserTagsInner> userTags = default, string audioName = default, InstagramPlatformDataAudioConfiguration audioConfiguration = default, bool muteAudio = false, int thumbOffset = default, string instagramThumbnail = default, string reelCover = default, bool isAiGenerated = false)
+        /// <param name="isPaidPartnership">When true, Instagram shows the \&quot;Paid partnership\&quot; label on the post. Applies to feed posts, Reels, and carousels; not supported on Stories (400). Requires an Instagram account connected via Facebook Login; classic Instagram Login accounts get a 400 (instagram_paid_partnership_requires_facebook_login). Implied when brandedContentSponsors is set. (default to false).</param>
+        /// <param name="brandedContentSponsors">Up to 2 brands to tag as sponsors, each an Instagram username (leading @ optional) or a numeric Instagram user ID. Usernames are resolved at publish time via the Business Discovery API on the publishing account; a sponsor that cannot be resolved (private, personal, or nonexistent account) fails the post with a user error naming it. Sponsors must be professional (Business or Creator) accounts. A brand that has pre-approved the creator shows as \&quot;Paid partnership with @brand\&quot; immediately; otherwise the plain label shows and the brand receives an approval request. Sets isPaidPartnership. Same login and content-type rules as isPaidPartnership..</param>
+        /// <param name="commentsEnabled">When false, comments are turned off on the post right after it is published (Meta exposes this as comment_enabled on the media object). Applies to feed posts, Reels, and carousels; ignored for Stories, which have no comments. Works with both Instagram connection methods. Best-effort: if the toggle fails after a successful publish, the post still succeeds and stays live with comments on. (default to true).</param>
+        /// <param name="locationId">Tags the post with a location. The ID of a Facebook Page that has location data (digits only); it is sent to Instagram as location_id. Applies to feed posts, Reels, and the carousel as a whole; Stories and individual carousel slides are unsupported (a Story with locationId is rejected with a 400). A Page without location data or that does not exist fails the post with a user error at publish time..</param>
+        public InstagramPlatformData(ContentTypeEnum? contentType = default, bool shareToFeed = true, List<string> collaborators = default, string firstComment = default, InstagramPlatformDataTrialParams trialParams = default, List<InstagramPlatformDataUserTagsInner> userTags = default, string audioName = default, InstagramPlatformDataAudioConfiguration audioConfiguration = default, bool muteAudio = false, int thumbOffset = default, string instagramThumbnail = default, string reelCover = default, bool isAiGenerated = false, bool isPaidPartnership = false, List<string> brandedContentSponsors = default, bool commentsEnabled = true, string locationId = default)
         {
             this.ContentType = contentType;
             this.ShareToFeed = shareToFeed;
@@ -85,6 +89,10 @@ namespace Zernio.Model
             this.InstagramThumbnail = instagramThumbnail;
             this.ReelCover = reelCover;
             this.IsAiGenerated = isAiGenerated;
+            this.IsPaidPartnership = isPaidPartnership;
+            this.BrandedContentSponsors = brandedContentSponsors;
+            this.CommentsEnabled = commentsEnabled;
+            this.LocationId = locationId;
         }
 
         /// <summary>
@@ -179,6 +187,46 @@ namespace Zernio.Model
         public bool IsAiGenerated { get; set; }
 
         /// <summary>
+        /// When true, Instagram shows the \&quot;Paid partnership\&quot; label on the post. Applies to feed posts, Reels, and carousels; not supported on Stories (400). Requires an Instagram account connected via Facebook Login; classic Instagram Login accounts get a 400 (instagram_paid_partnership_requires_facebook_login). Implied when brandedContentSponsors is set.
+        /// </summary>
+        /// <value>When true, Instagram shows the \&quot;Paid partnership\&quot; label on the post. Applies to feed posts, Reels, and carousels; not supported on Stories (400). Requires an Instagram account connected via Facebook Login; classic Instagram Login accounts get a 400 (instagram_paid_partnership_requires_facebook_login). Implied when brandedContentSponsors is set.</value>
+        /*
+        <example>true</example>
+        */
+        [DataMember(Name = "isPaidPartnership", EmitDefaultValue = true)]
+        public bool IsPaidPartnership { get; set; }
+
+        /// <summary>
+        /// Up to 2 brands to tag as sponsors, each an Instagram username (leading @ optional) or a numeric Instagram user ID. Usernames are resolved at publish time via the Business Discovery API on the publishing account; a sponsor that cannot be resolved (private, personal, or nonexistent account) fails the post with a user error naming it. Sponsors must be professional (Business or Creator) accounts. A brand that has pre-approved the creator shows as \&quot;Paid partnership with @brand\&quot; immediately; otherwise the plain label shows and the brand receives an approval request. Sets isPaidPartnership. Same login and content-type rules as isPaidPartnership.
+        /// </summary>
+        /// <value>Up to 2 brands to tag as sponsors, each an Instagram username (leading @ optional) or a numeric Instagram user ID. Usernames are resolved at publish time via the Business Discovery API on the publishing account; a sponsor that cannot be resolved (private, personal, or nonexistent account) fails the post with a user error naming it. Sponsors must be professional (Business or Creator) accounts. A brand that has pre-approved the creator shows as \&quot;Paid partnership with @brand\&quot; immediately; otherwise the plain label shows and the brand receives an approval request. Sets isPaidPartnership. Same login and content-type rules as isPaidPartnership.</value>
+        /*
+        <example>[nike, 17841400000000000]</example>
+        */
+        [DataMember(Name = "brandedContentSponsors", EmitDefaultValue = false)]
+        public List<string> BrandedContentSponsors { get; set; }
+
+        /// <summary>
+        /// When false, comments are turned off on the post right after it is published (Meta exposes this as comment_enabled on the media object). Applies to feed posts, Reels, and carousels; ignored for Stories, which have no comments. Works with both Instagram connection methods. Best-effort: if the toggle fails after a successful publish, the post still succeeds and stays live with comments on.
+        /// </summary>
+        /// <value>When false, comments are turned off on the post right after it is published (Meta exposes this as comment_enabled on the media object). Applies to feed posts, Reels, and carousels; ignored for Stories, which have no comments. Works with both Instagram connection methods. Best-effort: if the toggle fails after a successful publish, the post still succeeds and stays live with comments on.</value>
+        /*
+        <example>false</example>
+        */
+        [DataMember(Name = "commentsEnabled", EmitDefaultValue = true)]
+        public bool CommentsEnabled { get; set; }
+
+        /// <summary>
+        /// Tags the post with a location. The ID of a Facebook Page that has location data (digits only); it is sent to Instagram as location_id. Applies to feed posts, Reels, and the carousel as a whole; Stories and individual carousel slides are unsupported (a Story with locationId is rejected with a 400). A Page without location data or that does not exist fails the post with a user error at publish time.
+        /// </summary>
+        /// <value>Tags the post with a location. The ID of a Facebook Page that has location data (digits only); it is sent to Instagram as location_id. Applies to feed posts, Reels, and the carousel as a whole; Stories and individual carousel slides are unsupported (a Story with locationId is rejected with a 400). A Page without location data or that does not exist fails the post with a user error at publish time.</value>
+        /*
+        <example>105890561436614</example>
+        */
+        [DataMember(Name = "locationId", EmitDefaultValue = false)]
+        public string LocationId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -199,6 +247,10 @@ namespace Zernio.Model
             sb.Append("  InstagramThumbnail: ").Append(InstagramThumbnail).Append("\n");
             sb.Append("  ReelCover: ").Append(ReelCover).Append("\n");
             sb.Append("  IsAiGenerated: ").Append(IsAiGenerated).Append("\n");
+            sb.Append("  IsPaidPartnership: ").Append(IsPaidPartnership).Append("\n");
+            sb.Append("  BrandedContentSponsors: ").Append(BrandedContentSponsors).Append("\n");
+            sb.Append("  CommentsEnabled: ").Append(CommentsEnabled).Append("\n");
+            sb.Append("  LocationId: ").Append(LocationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -223,6 +275,15 @@ namespace Zernio.Model
             if (this.ThumbOffset < (int)0)
             {
                 yield return new ValidationResult("Invalid value for ThumbOffset, must be a value greater than or equal to 0.", new [] { "ThumbOffset" });
+            }
+
+            if (this.LocationId != null) {
+                // LocationId (string) pattern
+                Regex regexLocationId = new Regex(@"^[0-9]+$", RegexOptions.CultureInvariant);
+                if (!regexLocationId.Match(this.LocationId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LocationId, must match a pattern of " + regexLocationId, new [] { "LocationId" });
+                }
             }
 
             yield break;
