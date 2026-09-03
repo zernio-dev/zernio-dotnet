@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | [optional] 
 **RegistrantName** | **string** | For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC. | [optional] 
 **TelnyxOrderId** | **string** | Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review. | [optional] 
-**MonthlyCents** | **int** | Per-country monthly price in cents ($2..$25). | [optional] 
+**MonthlyCents** | **int** | What this number bills each month, in cents. Stamped when the number was bought, so an existing number keeps its price when the rate card changes. | [optional] 
 **HostedByZernio** | **bool** | False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them. | [optional] 
 **SipTrunkId** | **string** | SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409. | [optional] 
 **ProfileId** | **Object** |  | [optional] 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **NumberType** | **string** |  | [optional] 
 **Tier** | **int** |  | [optional] 
 **NeedsKyc** | **bool** |  | [optional] 
-**MonthlyCents** | **int** |  | [optional] 
+**MonthlyCents** | **int** | Price a NEW number of this type costs per month, in cents. | [optional] 
 **WhatsappAvailable** | **bool** | Always false for toll_free (WhatsApp does not reliably register toll-free numbers). | [optional] 
 **SmsAvailable** | **bool** |  | [optional] 
 **CallsAvailable** | **bool** |  | [optional] 

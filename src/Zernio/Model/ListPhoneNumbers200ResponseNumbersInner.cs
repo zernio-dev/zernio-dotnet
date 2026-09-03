@@ -109,7 +109,7 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="registrantName">For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC..</param>
         /// <param name="telnyxOrderId">Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review..</param>
-        /// <param name="monthlyCents">Per-country monthly price in cents ($2..$25)..</param>
+        /// <param name="monthlyCents">What this number bills each month, in cents. Stamped when the number was bought, so an existing number keeps its price when the rate card changes..</param>
         /// <param name="hostedByZernio">False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them..</param>
         /// <param name="sipTrunkId">SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409..</param>
         /// <param name="profileId">profileId.</param>
@@ -178,9 +178,9 @@ namespace Zernio.Model
         public string TelnyxOrderId { get; set; }
 
         /// <summary>
-        /// Per-country monthly price in cents ($2..$25).
+        /// What this number bills each month, in cents. Stamped when the number was bought, so an existing number keeps its price when the rate card changes.
         /// </summary>
-        /// <value>Per-country monthly price in cents ($2..$25).</value>
+        /// <value>What this number bills each month, in cents. Stamped when the number was bought, so an existing number keeps its price when the rate card changes.</value>
         [DataMember(Name = "monthlyCents", EmitDefaultValue = false)]
         public int MonthlyCents { get; set; }
 

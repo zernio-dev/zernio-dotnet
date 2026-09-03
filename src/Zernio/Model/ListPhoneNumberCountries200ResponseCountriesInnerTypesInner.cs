@@ -108,7 +108,7 @@ namespace Zernio.Model
         /// <param name="numberType">numberType.</param>
         /// <param name="tier">tier.</param>
         /// <param name="needsKyc">needsKyc.</param>
-        /// <param name="monthlyCents">monthlyCents.</param>
+        /// <param name="monthlyCents">Price a NEW number of this type costs per month, in cents..</param>
         /// <param name="whatsappAvailable">Always false for toll_free (WhatsApp does not reliably register toll-free numbers)..</param>
         /// <param name="smsAvailable">smsAvailable.</param>
         /// <param name="callsAvailable">callsAvailable.</param>
@@ -132,8 +132,9 @@ namespace Zernio.Model
         public bool NeedsKyc { get; set; }
 
         /// <summary>
-        /// Gets or Sets MonthlyCents
+        /// Price a NEW number of this type costs per month, in cents.
         /// </summary>
+        /// <value>Price a NEW number of this type costs per month, in cents.</value>
         [DataMember(Name = "monthlyCents", EmitDefaultValue = false)]
         public int MonthlyCents { get; set; }
 

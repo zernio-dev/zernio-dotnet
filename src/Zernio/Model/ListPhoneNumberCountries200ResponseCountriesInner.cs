@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="code">ISO 3166-1 alpha-2.</param>
         /// <param name="tier">tier.</param>
-        /// <param name="monthlyCents">monthlyCents.</param>
+        /// <param name="monthlyCents">Price a NEW number in this country costs per month, in cents, for the default (first) type. 1.5x the carrier&#39;s monthly cost, rounded up to a whole dollar, minimum $3..</param>
         /// <param name="needsKyc">needsKyc.</param>
         /// <param name="callsAvailable">Regular phone (PSTN) calling on the number, inbound + outbound. Available on every offerable country..</param>
         /// <param name="whatsappAvailable">WhatsApp can be enabled on numbers from this country..</param>
@@ -100,8 +100,9 @@ namespace Zernio.Model
         public string Code { get; set; }
 
         /// <summary>
-        /// Gets or Sets MonthlyCents
+        /// Price a NEW number in this country costs per month, in cents, for the default (first) type. 1.5x the carrier&#39;s monthly cost, rounded up to a whole dollar, minimum $3.
         /// </summary>
+        /// <value>Price a NEW number in this country costs per month, in cents, for the default (first) type. 1.5x the carrier&#39;s monthly cost, rounded up to a whole dollar, minimum $3.</value>
         [DataMember(Name = "monthlyCents", EmitDefaultValue = false)]
         public int MonthlyCents { get; set; }
 
