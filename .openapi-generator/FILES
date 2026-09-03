@@ -68,6 +68,9 @@ docs/AdsListResponse.md
 docs/AdsTimelineResponse.md
 docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
+docs/AnalyticsDeltaEntry.md
+docs/AnalyticsDeltaEntryMetrics.md
+docs/AnalyticsDeltaResponse.md
 docs/AnalyticsListResponse.md
 docs/AnalyticsListResponsePostsInner.md
 docs/AnalyticsListResponsePostsInnerMediaItemsInner.md
@@ -1686,6 +1689,9 @@ docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
 docs/WebhookPayloadAdStatusChangedError.md
 docs/WebhookPayloadAdStatusChangedStatus.md
+docs/WebhookPayloadAnalyticsSynced.md
+docs/WebhookPayloadAnalyticsSyncedAccount.md
+docs/WebhookPayloadAnalyticsSyncedSync.md
 docs/WebhookPayloadCallEnded.md
 docs/WebhookPayloadCallEndedCall.md
 docs/WebhookPayloadCallEndedCallBilling.md
@@ -1950,6 +1956,9 @@ src/Zernio.Test/Model/AdjustConversionsRequestTests.cs
 src/Zernio.Test/Model/AdsListResponseTests.cs
 src/Zernio.Test/Model/AdsTimelineResponseRowsInnerTests.cs
 src/Zernio.Test/Model/AdsTimelineResponseTests.cs
+src/Zernio.Test/Model/AnalyticsDeltaEntryMetricsTests.cs
+src/Zernio.Test/Model/AnalyticsDeltaEntryTests.cs
+src/Zernio.Test/Model/AnalyticsDeltaResponseTests.cs
 src/Zernio.Test/Model/AnalyticsListResponsePostsInnerMediaItemsInnerTests.cs
 src/Zernio.Test/Model/AnalyticsListResponsePostsInnerTests.cs
 src/Zernio.Test/Model/AnalyticsListResponseTests.cs
@@ -3520,6 +3529,9 @@ src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedErrorTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedStatusTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedSyncTests.cs
+src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallEndedCallBillingTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallEndedCallTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallEndedTests.cs
@@ -3795,6 +3807,9 @@ src/Zernio/Model/AdjustConversionsRequestAdjustmentsInnerUser.cs
 src/Zernio/Model/AdsListResponse.cs
 src/Zernio/Model/AdsTimelineResponse.cs
 src/Zernio/Model/AdsTimelineResponseRowsInner.cs
+src/Zernio/Model/AnalyticsDeltaEntry.cs
+src/Zernio/Model/AnalyticsDeltaEntryMetrics.cs
+src/Zernio/Model/AnalyticsDeltaResponse.cs
 src/Zernio/Model/AnalyticsListResponse.cs
 src/Zernio/Model/AnalyticsListResponsePostsInner.cs
 src/Zernio/Model/AnalyticsListResponsePostsInnerMediaItemsInner.cs
@@ -5366,6 +5381,9 @@ src/Zernio/Model/WebhookPayloadAdStatusChangedAccount.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAdObject.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedError.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedStatus.cs
+src/Zernio/Model/WebhookPayloadAnalyticsSynced.cs
+src/Zernio/Model/WebhookPayloadAnalyticsSyncedAccount.cs
+src/Zernio/Model/WebhookPayloadAnalyticsSyncedSync.cs
 src/Zernio/Model/WebhookPayloadCallEnded.cs
 src/Zernio/Model/WebhookPayloadCallEndedCall.cs
 src/Zernio/Model/WebhookPayloadCallEndedCallBilling.cs

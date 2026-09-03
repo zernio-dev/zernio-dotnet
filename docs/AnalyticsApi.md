@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetAnalytics**](AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics |
+| [**GetAnalyticsDelta**](AnalyticsApi.md#getanalyticsdelta) | **GET** /v1/analytics/delta | Analytics changed since a cursor |
 | [**GetBestTimeToPost**](AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post |
 | [**GetContentDecay**](AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay |
 | [**GetDailyMetrics**](AnalyticsApi.md#getdailymetrics) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
@@ -152,6 +153,117 @@ catch (ApiException e)
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
 | **500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getanalyticsdelta"></a>
+# **GetAnalyticsDelta**
+> AnalyticsDeltaResponse GetAnalyticsDelta (string? cursor = null, int? limit = null, string? platform = null, string? profileId = null)
+
+Analytics changed since a cursor
+
+Cursor feed of the analytics snapshots that CHANGED, across every account you can read, in one paginated stream. Built for integrations that would otherwise call `GET /v1/analytics` once per connected account. Each page carries changes from many accounts at once, so your call count scales with how much actually changed rather than with how many accounts you have. Measured against a fleet of roughly 1,600 connected accounts: about 1,599 per-account analytics calls an hour became about 205 delta calls an hour, a 7.8x reduction.  **Bootstrap once, then stay in sync.** Load your baseline from `GET /v1/analytics`, which is the historical endpoint. This one is a rolling 7-day change log and cannot replay history. Then call this endpoint with NO `cursor`: it answers with an empty `data` array plus the feed's current position in `nextCursor`. Send that `nextCursor` back on the next call and you receive everything written since. `nextCursor` is present on every response, empty pages included, so you always have something to advance with.  **Ordering.** Entries come back oldest first, in the order the feed received them. That order is NOT `syncedAt`: `syncedAt` is stamped when an account's sync cycle started, and a slow cycle writes its rows after a faster cycle that started later, so `syncedAt` can go backwards between consecutive entries. Do not sort, filter or resume on it. The cursor is the only stable position, and it is opaque: pass it back verbatim, and do not parse, construct or compare cursors.  **`hasMore: false` does not mean the feed ended.** This stream has no end and `nextCursor` is never null. `hasMore: true` means more changes are already waiting, so call again straight away. `hasMore: false` means you are caught up: keep the cursor and poll again on your normal interval.  **The newest changes settle before they are served.** The feed deliberately holds back its last few seconds of writes, so that a row can never become visible behind a cursor you have already advanced past. A read issued the instant an `analytics.synced` webhook lands will therefore often return an empty page for that account. Do not read an empty page as \"nothing changed\": poll again with the SAME cursor you just used rather than advancing.  **Repeats inside one instant.** A sync cycle occasionally records the same post twice at the same feed position. When that happens the feed delivers one of those rows, not both. Measured over a day of production traffic, about 1.3% of rows fall in such a group and 99.4% of those groups are identical rows, so this is far more often deduplication than loss. Metrics are absolute values rather than increments, so a later entry for the same post supersedes an earlier one.  **Retention is 7 days.** Changes older than that leave the feed. A cursor older than 6 days is rejected with a `400` (a day of margin, because expiry is lazy). Recover by re-bootstrapping from `GET /v1/analytics` and taking a fresh cursor from a call to this endpoint with no `cursor`. A consumer that polls at least daily never reaches this.  Pairs with the `analytics.synced` webhook, so changes can be read on notification instead of on a timer. That event carries no cursor of its own: keep using the `nextCursor` this endpoint gave you.  Requires the same analytics access as `GET /v1/analytics`, and shares the stricter per-second rate-limit window applied to analytics endpoints. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAnalyticsDeltaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var cursor = v1.WyIyMDI2LTA5LTAxIDE3OjEyOjA0IiwiNjVmMWMwYTllMmI1YWYwMDEyYWIzNGNkIl0;  // string? | Opaque cursor from a previous response's `nextCursor`. Omit it to start from now: the response is then an empty page carrying the feed's current position. Rejected with a `400` when malformed, or when older than the retention window.  (optional) 
+            var limit = 50;  // int? | Page size. Out-of-range values are a 400, never a silent clamp. (optional)  (default to 50)
+            var platform = "platform_example";  // string? | Filter to a single platform (for example \"youtube\"). Omit for every platform. (optional) 
+            var profileId = "\"all\"";  // string? | Filter by profile ID (default \"all\"). Must be a valid profile ID or \"all\". (optional)  (default to "all")
+
+            try
+            {
+                // Analytics changed since a cursor
+                AnalyticsDeltaResponse result = apiInstance.GetAnalyticsDelta(cursor, limit, platform, profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetAnalyticsDelta: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAnalyticsDeltaWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Analytics changed since a cursor
+    ApiResponse<AnalyticsDeltaResponse> response = apiInstance.GetAnalyticsDeltaWithHttpInfo(cursor, limit, platform, profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetAnalyticsDeltaWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **cursor** | **string?** | Opaque cursor from a previous response&#39;s &#x60;nextCursor&#x60;. Omit it to start from now: the response is then an empty page carrying the feed&#39;s current position. Rejected with a &#x60;400&#x60; when malformed, or when older than the retention window.  | [optional]  |
+| **limit** | **int?** | Page size. Out-of-range values are a 400, never a silent clamp. | [optional] [default to 50] |
+| **platform** | **string?** | Filter to a single platform (for example \&quot;youtube\&quot;). Omit for every platform. | [optional]  |
+| **profileId** | **string?** | Filter by profile ID (default \&quot;all\&quot;). Must be a valid profile ID or \&quot;all\&quot;. | [optional] [default to &quot;all&quot;] |
+
+### Return type
+
+[**AnalyticsDeltaResponse**](AnalyticsDeltaResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of changed analytics |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The caller cannot read the requested profile, the API key is scoped to other profiles, or the profile sits outside the plan&#39;s profile limit (&#x60;code&#x60; &#x60;PROFILE_OVER_LIMIT&#x60;).  |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Internal server error |  -  |
+| **503** | The delta feed is temporarily unavailable, for example in the minutes between an application release and the analytics store catching up with it. Nothing is wrong with the request: retry it unchanged, honouring &#x60;Retry-After&#x60;. The feed answers this rather than an empty page, because an empty page is indistinguishable from \&quot;nothing changed\&quot; and would advance you past a window you never received.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

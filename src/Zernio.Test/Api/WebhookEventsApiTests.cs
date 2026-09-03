@@ -99,6 +99,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnAnalyticsSynced
+        /// </summary>
+        [Fact]
+        public void OnAnalyticsSyncedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadAnalyticsSynced webhookPayloadAnalyticsSynced = null;
+            //instance.OnAnalyticsSynced(webhookPayloadAnalyticsSynced);
+        }
+
+        /// <summary>
         /// Test OnCallEnded
         /// </summary>
         [Fact]

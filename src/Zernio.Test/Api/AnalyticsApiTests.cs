@@ -77,6 +77,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAnalyticsDelta
+        /// </summary>
+        [Fact]
+        public void GetAnalyticsDeltaTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string? cursor = null;
+            //int? limit = null;
+            //string? platform = null;
+            //string? profileId = null;
+            //var response = instance.GetAnalyticsDelta(cursor, limit, platform, profileId);
+            //Assert.IsType<AnalyticsDeltaResponse>(response);
+        }
+
+        /// <summary>
         /// Test GetBestTimeToPost
         /// </summary>
         [Fact]

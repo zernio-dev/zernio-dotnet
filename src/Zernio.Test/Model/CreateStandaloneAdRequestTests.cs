@@ -596,6 +596,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RegionalRegulationIdentities'
+        /// </summary>
+        [Fact]
+        public void RegionalRegulationIdentitiesTest()
+        {
+            // TODO unit test for the property 'RegionalRegulationIdentities'
+        }
+
+        /// <summary>
         /// Test the property 'EndDate'
         /// </summary>
         [Fact]
