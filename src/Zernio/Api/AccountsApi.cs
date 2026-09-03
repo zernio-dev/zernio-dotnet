@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Disconnect account
         /// </summary>
         /// <remarks>
-        /// Disconnects and removes a connected social account.
+        /// Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -43,7 +43,7 @@ namespace Zernio.Api
         /// Disconnect account
         /// </summary>
         /// <remarks>
-        /// Disconnects and removes a connected social account.
+        /// Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -371,7 +371,7 @@ namespace Zernio.Api
         /// Disconnect account
         /// </summary>
         /// <remarks>
-        /// Disconnects and removes a connected social account.
+        /// Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -383,7 +383,7 @@ namespace Zernio.Api
         /// Disconnect account
         /// </summary>
         /// <remarks>
-        /// Disconnects and removes a connected social account.
+        /// Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -939,7 +939,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disconnect account Disconnects and removes a connected social account.
+        /// Disconnect account Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -951,7 +951,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disconnect account Disconnects and removes a connected social account.
+        /// Disconnect account Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1000,7 +1000,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disconnect account Disconnects and removes a connected social account.
+        /// Disconnect account Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1013,7 +1013,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disconnect account Disconnects and removes a connected social account.
+        /// Disconnect account Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

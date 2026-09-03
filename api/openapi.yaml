@@ -6774,7 +6774,9 @@ paths:
       x-resource-group: analytics
   /v1/accounts/{accountId}:
     delete:
-      description: Disconnects and removes a connected social account.
+      description: "Disconnects and removes a connected social account. Repeating\
+        \ the call for an account already disconnected returns 404, the account stays\
+        \ in its 1h grace window and the disconnect is not re-run."
       operationId: deleteAccount
       parameters:
       - explode: false

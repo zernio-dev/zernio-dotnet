@@ -25,7 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Disconnect account
 
-Disconnects and removes a connected social account.
+Disconnects and removes a connected social account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
 
 ### Example
 ```csharp
