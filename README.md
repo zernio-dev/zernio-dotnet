@@ -703,11 +703,13 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**GetWhatsAppFlow**](docs/WhatsAppFlowsApi.md#getwhatsappflow) | **GET** /v1/whatsapp/flows/{flowId} | Get flow
 *WhatsAppFlowsApi* | [**GetWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#getwhatsappflowjson) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
 *WhatsAppFlowsApi* | [**GetWhatsAppFlowPreview**](docs/WhatsAppFlowsApi.md#getwhatsappflowpreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**GetWhatsAppFlowsEncryptionKey**](docs/WhatsAppFlowsApi.md#getwhatsappflowsencryptionkey) | **GET** /v1/whatsapp/flows/encryption-key | Get Flows encryption key status
 *WhatsAppFlowsApi* | [**ListWhatsAppFlowResponses**](docs/WhatsAppFlowsApi.md#listwhatsappflowresponses) | **GET** /v1/whatsapp/flow-responses | List flow responses
 *WhatsAppFlowsApi* | [**ListWhatsAppFlowVersions**](docs/WhatsAppFlowsApi.md#listwhatsappflowversions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
 *WhatsAppFlowsApi* | [**ListWhatsAppFlows**](docs/WhatsAppFlowsApi.md#listwhatsappflows) | **GET** /v1/whatsapp/flows | List flows
 *WhatsAppFlowsApi* | [**PublishWhatsAppFlow**](docs/WhatsAppFlowsApi.md#publishwhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow
 *WhatsAppFlowsApi* | [**SendWhatsAppFlowMessage**](docs/WhatsAppFlowsApi.md#sendwhatsappflowmessage) | **POST** /v1/whatsapp/flows/send | Send flow message
+*WhatsAppFlowsApi* | [**SetWhatsAppFlowsEncryptionKey**](docs/WhatsAppFlowsApi.md#setwhatsappflowsencryptionkey) | **POST** /v1/whatsapp/flows/encryption-key | Register a Flows encryption key
 *WhatsAppFlowsApi* | [**UpdateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updatewhatsappflow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**UploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadwhatsappflowjson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppPhoneNumbersApi* | [**CheckWhatsAppNumberAvailability**](docs/WhatsAppPhoneNumbersApi.md#checkwhatsappnumberavailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check country availability
@@ -1514,6 +1516,7 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppFlowJson200Response](docs/GetWhatsAppFlowJson200Response.md)
  - [Model.GetWhatsAppFlowJson200ResponseAssetsInner](docs/GetWhatsAppFlowJson200ResponseAssetsInner.md)
  - [Model.GetWhatsAppFlowPreview200Response](docs/GetWhatsAppFlowPreview200Response.md)
+ - [Model.GetWhatsAppFlowsEncryptionKey200Response](docs/GetWhatsAppFlowsEncryptionKey200Response.md)
  - [Model.GetWhatsAppGroupChat200Response](docs/GetWhatsAppGroupChat200Response.md)
  - [Model.GetWhatsAppGroupChat200ResponseGroup](docs/GetWhatsAppGroupChat200ResponseGroup.md)
  - [Model.GetWhatsAppGroupChat200ResponseGroupParticipantsInner](docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md)
@@ -2090,6 +2093,7 @@ Class | Method | HTTP request | Description
  - [Model.SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [Model.SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [Model.SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [Model.SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [Model.SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
  - [Model.SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
  - [Model.ShareSmsRegistration200Response](docs/ShareSmsRegistration200Response.md)

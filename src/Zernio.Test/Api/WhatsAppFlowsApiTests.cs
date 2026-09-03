@@ -134,6 +134,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppFlowsEncryptionKey
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppFlowsEncryptionKeyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetWhatsAppFlowsEncryptionKey(accountId);
+            //Assert.IsType<GetWhatsAppFlowsEncryptionKey200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListWhatsAppFlowResponses
         /// </summary>
         [Fact]
@@ -195,6 +207,18 @@ namespace Zernio.Test.Api
             //SendWhatsAppFlowMessageRequest sendWhatsAppFlowMessageRequest = null;
             //var response = instance.SendWhatsAppFlowMessage(sendWhatsAppFlowMessageRequest);
             //Assert.IsType<SendWhatsAppFlowMessage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SetWhatsAppFlowsEncryptionKey
+        /// </summary>
+        [Fact]
+        public void SetWhatsAppFlowsEncryptionKeyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SetWhatsAppFlowsEncryptionKeyRequest setWhatsAppFlowsEncryptionKeyRequest = null;
+            //var response = instance.SetWhatsAppFlowsEncryptionKey(setWhatsAppFlowsEncryptionKeyRequest);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 
         /// <summary>

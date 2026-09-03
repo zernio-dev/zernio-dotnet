@@ -798,6 +798,7 @@ docs/GetWhatsAppFlow200ResponseFlowPreview.md
 docs/GetWhatsAppFlowJson200Response.md
 docs/GetWhatsAppFlowJson200ResponseAssetsInner.md
 docs/GetWhatsAppFlowPreview200Response.md
+docs/GetWhatsAppFlowsEncryptionKey200Response.md
 docs/GetWhatsAppGroupChat200Response.md
 docs/GetWhatsAppGroupChat200ResponseGroup.md
 docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md
@@ -1393,6 +1394,7 @@ docs/SetMessengerMenuRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SetWhatsAppFlowsEncryptionKeyRequest.md
 docs/SetWhatsappBusinessUsername200Response.md
 docs/SetWhatsappBusinessUsernameRequest.md
 docs/ShareSmsRegistration200Response.md
@@ -2668,6 +2670,7 @@ src/Zernio.Test/Model/GetWhatsAppFlow200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlowJson200ResponseAssetsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlowJson200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlowPreview200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppFlowsEncryptionKey200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseGroupTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseTests.cs
@@ -3244,6 +3247,7 @@ src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
+src/Zernio.Test/Model/SetWhatsAppFlowsEncryptionKeyRequestTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsername200ResponseTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/ShareSmsRegistration200ResponseTests.cs
@@ -4520,6 +4524,7 @@ src/Zernio/Model/GetWhatsAppFlow200ResponseFlowPreview.cs
 src/Zernio/Model/GetWhatsAppFlowJson200Response.cs
 src/Zernio/Model/GetWhatsAppFlowJson200ResponseAssetsInner.cs
 src/Zernio/Model/GetWhatsAppFlowPreview200Response.cs
+src/Zernio/Model/GetWhatsAppFlowsEncryptionKey200Response.cs
 src/Zernio/Model/GetWhatsAppGroupChat200Response.cs
 src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroup.cs
 src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.cs
@@ -5096,6 +5101,7 @@ src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
+src/Zernio/Model/SetWhatsAppFlowsEncryptionKeyRequest.cs
 src/Zernio/Model/SetWhatsappBusinessUsername200Response.cs
 src/Zernio/Model/SetWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/ShareSmsRegistration200Response.cs
