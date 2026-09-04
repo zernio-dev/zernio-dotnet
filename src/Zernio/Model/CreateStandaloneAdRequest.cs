@@ -797,7 +797,7 @@ namespace Zernio.Model
         /// <param name="placementAssets">placementAssets.</param>
         /// <param name="audienceId">Custom audience ID for targeting.</param>
         /// <param name="campaignType">Google only (default to CampaignTypeEnum.Display).</param>
-        /// <param name="keywords">Google Search only. BROAD-match keywords on the new ad group (first 20)..</param>
+        /// <param name="keywords">Google Search only. BROAD-match keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.keywords, which also sets match types..</param>
         /// <param name="negativeKeywords">Google Search only; other platforms return 400. BROAD-match negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords..</param>
         /// <param name="additionalHeadlines">Google Search RSA only. Extra headlines..</param>
         /// <param name="additionalDescriptions">Google Search RSA only. Extra descriptions..</param>
@@ -1372,9 +1372,9 @@ namespace Zernio.Model
         public string AudienceId { get; set; }
 
         /// <summary>
-        /// Google Search only. BROAD-match keywords on the new ad group (first 20).
+        /// Google Search only. BROAD-match keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.keywords, which also sets match types.
         /// </summary>
-        /// <value>Google Search only. BROAD-match keywords on the new ad group (first 20).</value>
+        /// <value>Google Search only. BROAD-match keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.keywords, which also sets match types.</value>
         [DataMember(Name = "keywords", EmitDefaultValue = false)]
         public List<string> Keywords { get; set; }
 

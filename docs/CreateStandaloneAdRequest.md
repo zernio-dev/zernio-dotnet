@@ -78,7 +78,7 @@ Name | Type | Description | Notes
 **PlacementAssets** | [**CreateStandaloneAdRequestPlacementAssets**](CreateStandaloneAdRequestPlacementAssets.md) |  | [optional] 
 **AudienceId** | **string** | Custom audience ID for targeting | [optional] 
 **CampaignType** | **string** | Google only | [optional] [default to CampaignTypeEnum.Display]
-**Keywords** | **List&lt;string&gt;** | Google Search only. BROAD-match keywords on the new ad group (first 20). | [optional] 
+**Keywords** | **List&lt;string&gt;** | Google Search only. BROAD-match keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.keywords, which also sets match types. | [optional] 
 **NegativeKeywords** | **List&lt;string&gt;** | Google Search only; other platforms return 400. BROAD-match negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords. | [optional] 
 **AdditionalHeadlines** | **List&lt;string&gt;** | Google Search RSA only. Extra headlines. | [optional] 
 **AdditionalDescriptions** | **List&lt;string&gt;** | Google Search RSA only. Extra descriptions. | [optional] 
