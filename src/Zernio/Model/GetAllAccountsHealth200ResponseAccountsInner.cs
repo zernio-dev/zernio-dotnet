@@ -79,7 +79,8 @@ namespace Zernio.Model
         /// <param name="tokenExpiresAt">tokenExpiresAt.</param>
         /// <param name="needsReconnect">needsReconnect.</param>
         /// <param name="issues">issues.</param>
-        public GetAllAccountsHealth200ResponseAccountsInner(string accountId = default, string platform = default, string username = default, string displayName = default, string profileId = default, StatusEnum? status = default, bool canPost = default, bool canFetchAnalytics = default, bool tokenValid = default, DateTime tokenExpiresAt = default, bool needsReconnect = default, List<string> issues = default)
+        /// <param name="messagingRestriction">messagingRestriction.</param>
+        public GetAllAccountsHealth200ResponseAccountsInner(string accountId = default, string platform = default, string username = default, string displayName = default, string profileId = default, StatusEnum? status = default, bool canPost = default, bool canFetchAnalytics = default, bool tokenValid = default, DateTime tokenExpiresAt = default, bool needsReconnect = default, List<string> issues = default, GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
@@ -93,6 +94,7 @@ namespace Zernio.Model
             this.TokenExpiresAt = tokenExpiresAt;
             this.NeedsReconnect = needsReconnect;
             this.Issues = issues;
+            this.MessagingRestriction = messagingRestriction;
         }
 
         /// <summary>
@@ -162,6 +164,12 @@ namespace Zernio.Model
         public List<string> Issues { get; set; }
 
         /// <summary>
+        /// Gets or Sets MessagingRestriction
+        /// </summary>
+        [DataMember(Name = "messagingRestriction", EmitDefaultValue = false)]
+        public GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction MessagingRestriction { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -181,6 +189,7 @@ namespace Zernio.Model
             sb.Append("  TokenExpiresAt: ").Append(TokenExpiresAt).Append("\n");
             sb.Append("  NeedsReconnect: ").Append(NeedsReconnect).Append("\n");
             sb.Append("  Issues: ").Append(Issues).Append("\n");
+            sb.Append("  MessagingRestriction: ").Append(MessagingRestriction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

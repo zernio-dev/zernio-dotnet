@@ -162,5 +162,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Issues'
         }
+
+        /// <summary>
+        /// Test the property 'MessagingRestriction'
+        /// </summary>
+        [Fact]
+        public void MessagingRestrictionTest()
+        {
+            // TODO unit test for the property 'MessagingRestriction'
+        }
     }
 }

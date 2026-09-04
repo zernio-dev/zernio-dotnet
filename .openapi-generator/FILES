@@ -540,6 +540,7 @@ docs/GetAdsSearchTerms200ResponsePaging.md
 docs/GetAdsTimeline202Response.md
 docs/GetAllAccountsHealth200Response.md
 docs/GetAllAccountsHealth200ResponseAccountsInner.md
+docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md
 docs/GetAllAccountsHealth200ResponseSummary.md
 docs/GetAnalytics200Response.md
 docs/GetAnalytics400Response.md
@@ -1369,7 +1370,6 @@ docs/SendInboxMessageRequestTemplate.md
 docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
-docs/SendPrivateReplyToComment400Response.md
 docs/SendPrivateReplyToCommentRequest.md
 docs/SendPrivateReplyToCommentRequestButtonsInner.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
@@ -2410,6 +2410,7 @@ src/Zernio.Test/Model/GetAdsSearchTerms200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/GetAdsSearchTerms200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdsSearchTerms200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline202ResponseTests.cs
+src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestrictionTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseSummaryTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseTests.cs
@@ -3223,7 +3224,6 @@ src/Zernio.Test/Model/SendInboxMessageRequestTemplateElementsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestTemplateTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToComment200ResponseTests.cs
-src/Zernio.Test/Model/SendPrivateReplyToComment400ResponseTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1Tests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2Tests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOfTests.cs
@@ -4266,6 +4266,7 @@ src/Zernio/Model/GetAdsSearchTerms200ResponsePaging.cs
 src/Zernio/Model/GetAdsTimeline202Response.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInner.cs
+src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseSummary.cs
 src/Zernio/Model/GetAnalytics200Response.cs
 src/Zernio/Model/GetAnalytics400Response.cs
@@ -5077,7 +5078,6 @@ src/Zernio/Model/SendInboxMessageRequestTemplate.cs
 src/Zernio/Model/SendInboxMessageRequestTemplateElementsInner.cs
 src/Zernio/Model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.cs
 src/Zernio/Model/SendPrivateReplyToComment200Response.cs
-src/Zernio/Model/SendPrivateReplyToComment400Response.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequest.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInner.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf.cs

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **TokenExpiresAt** | **DateTime** |  | [optional] 
 **NeedsReconnect** | **bool** |  | [optional] 
 **Issues** | **List&lt;string&gt;** |  | [optional] 
+**MessagingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

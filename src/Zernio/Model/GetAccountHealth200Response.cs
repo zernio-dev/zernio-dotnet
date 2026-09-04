@@ -78,8 +78,9 @@ namespace Zernio.Model
         /// <param name="permissions">permissions.</param>
         /// <param name="issues">List of issues found.</param>
         /// <param name="recommendations">Actionable recommendations to fix issues.</param>
+        /// <param name="messagingRestriction">messagingRestriction.</param>
         /// <param name="platformConnection">platformConnection.</param>
-        public GetAccountHealth200Response(string accountId = default, string platform = default, string username = default, string displayName = default, StatusEnum? status = default, GetAccountHealth200ResponseTokenStatus tokenStatus = default, GetAccountHealth200ResponsePermissions permissions = default, List<string> issues = default, List<string> recommendations = default, GetAccountHealth200ResponsePlatformConnection platformConnection = default)
+        public GetAccountHealth200Response(string accountId = default, string platform = default, string username = default, string displayName = default, StatusEnum? status = default, GetAccountHealth200ResponseTokenStatus tokenStatus = default, GetAccountHealth200ResponsePermissions permissions = default, List<string> issues = default, List<string> recommendations = default, GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction messagingRestriction = default, GetAccountHealth200ResponsePlatformConnection platformConnection = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
@@ -90,6 +91,7 @@ namespace Zernio.Model
             this.Permissions = permissions;
             this.Issues = issues;
             this.Recommendations = recommendations;
+            this.MessagingRestriction = messagingRestriction;
             this.PlatformConnection = platformConnection;
         }
 
@@ -144,6 +146,12 @@ namespace Zernio.Model
         public List<string> Recommendations { get; set; }
 
         /// <summary>
+        /// Gets or Sets MessagingRestriction
+        /// </summary>
+        [DataMember(Name = "messagingRestriction", EmitDefaultValue = false)]
+        public GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction MessagingRestriction { get; set; }
+
+        /// <summary>
         /// Gets or Sets PlatformConnection
         /// </summary>
         [DataMember(Name = "platformConnection", EmitDefaultValue = false)]
@@ -166,6 +174,7 @@ namespace Zernio.Model
             sb.Append("  Permissions: ").Append(Permissions).Append("\n");
             sb.Append("  Issues: ").Append(Issues).Append("\n");
             sb.Append("  Recommendations: ").Append(Recommendations).Append("\n");
+            sb.Append("  MessagingRestriction: ").Append(MessagingRestriction).Append("\n");
             sb.Append("  PlatformConnection: ").Append(PlatformConnection).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

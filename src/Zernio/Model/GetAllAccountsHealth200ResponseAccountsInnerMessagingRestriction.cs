@@ -28,46 +28,49 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendPrivateReplyToComment400Response
+    /// Observed from Meta&#39;s own error subcodes on our own sends (2534122, 1893063, 2534029), not a live probe. Set on the first refused send and cleared when a later send succeeds, so it lags reality by one send in each direction.
     /// </summary>
-    [DataContract(Name = "sendPrivateReplyToComment_400_response")]
-    public partial class SendPrivateReplyToComment400Response : IValidatableObject
+    [DataContract(Name = "getAllAccountsHealth_200_response_accounts_inner_messagingRestriction")]
+    public partial class GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction : IValidatableObject
     {
         /// <summary>
-        /// Defines Code
+        /// Initializes a new instance of the <see cref="GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CodeEnum
+        /// <param name="subcode">subcode.</param>
+        /// <param name="message">message.</param>
+        /// <param name="firstSeenAt">firstSeenAt.</param>
+        /// <param name="lastSeenAt">lastSeenAt.</param>
+        public GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction(int subcode = default, string message = default, DateTime firstSeenAt = default, DateTime lastSeenAt = default)
         {
-            /// <summary>
-            /// Enum PLATFORMLIMITATION for value: PLATFORM_LIMITATION
-            /// </summary>
-            [EnumMember(Value = "PLATFORM_LIMITATION")]
-            PLATFORMLIMITATION = 1
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public CodeEnum? Code { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendPrivateReplyToComment400Response" /> class.
-        /// </summary>
-        /// <param name="error">error.</param>
-        /// <param name="code">code.</param>
-        public SendPrivateReplyToComment400Response(string error = default, CodeEnum? code = default)
-        {
-            this.Error = error;
-            this.Code = code;
+            this.Subcode = subcode;
+            this.Message = message;
+            this.FirstSeenAt = firstSeenAt;
+            this.LastSeenAt = lastSeenAt;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Gets or Sets Subcode
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        [DataMember(Name = "subcode", EmitDefaultValue = false)]
+        public int Subcode { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Message
+        /// </summary>
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FirstSeenAt
+        /// </summary>
+        [DataMember(Name = "firstSeenAt", EmitDefaultValue = false)]
+        public DateTime FirstSeenAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LastSeenAt
+        /// </summary>
+        [DataMember(Name = "lastSeenAt", EmitDefaultValue = false)]
+        public DateTime LastSeenAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -76,9 +79,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendPrivateReplyToComment400Response {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("class GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction {\n");
+            sb.Append("  Subcode: ").Append(Subcode).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  FirstSeenAt: ").Append(FirstSeenAt).Append("\n");
+            sb.Append("  LastSeenAt: ").Append(LastSeenAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
