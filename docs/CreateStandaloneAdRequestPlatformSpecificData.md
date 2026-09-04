@@ -1,5 +1,5 @@
 # Zernio.Model.CreateStandaloneAdRequestPlatformSpecificData
-Platform-specific options. The platform is derived from `accountId`; sending options for a different platform returns a 400. LinkedIn (campaign bidding and delivery controls) and Meta (the bid trio) have options today.  **Meta**: `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root — the preferred home going forward. Sending the bid fields in BOTH places returns a 400 (`mutually_exclusive_fields`), and sending any of them in `adSetId` attach mode is a 400 too (the ad set already has its bid). 
+Platform-specific options. The platform is derived from `accountId`; sending options for a different platform returns a 400. LinkedIn (campaign bidding and delivery controls) and Meta (the bid trio) have options today.  **Meta**: `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root — the preferred home going forward. Sending the bid fields in BOTH places returns a 400 (`mutually_exclusive_fields`), and sending any of them in `adSetId` attach mode is a 400 too (the ad set already has its bid). `dailyMinSpendTarget` / `lifetimeMinSpendTarget` set the new ad set's minimum spend and live here only; they are rejected in `adSetId` attach mode as well. 
 
 ## Properties
 
@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **BidStrategy** | **BidStrategy** |  | [optional] 
 **BidAmount** | **decimal** | Whole currency units (USD: 5 &#x3D; $5.00). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. May also be sent alone, WITHOUT bidStrategy, to set the cap on an ad set joining a COST_CAP / LOWEST_COST_WITH_BID_CAP campaign (the strategy is inherited from the campaign). On POST /v1/ads/create that shape requires existingCampaignId and is a 400 otherwise; on POST /v1/ads/boost it is promoted to LOWEST_COST_WITH_BID_CAP. | [optional] 
 **RoasAverageFloor** | **decimal** | Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required when bidStrategy is LOWEST_COST_WITH_MIN_ROAS; sending it without bidStrategy is a 400. | [optional] 
+**DailyMinSpendTarget** | **decimal** | Meta daily_min_spend_target on the ad set being created: the least it should spend per day, in whole currency units. It reserves a share of a CAMPAIGN budget, so it requires budgetLevel campaign or an existingCampaignId whose campaign has the budget (Advantage campaign budget / CBO); with an ad-set budget it is a 400, because Meta rejects a spend limit on an ad set that owns its budget. A target, not a guarantee. Mutually exclusive with lifetimeMinSpendTarget: the flavour must match the campaign budget type. Rejected with 400 on POST /v1/ads/boost and in adSetId attach mode: use PUT /v1/ads/ad-sets/{adSetId} for an ad set that already exists. | [optional] 
+**LifetimeMinSpendTarget** | **decimal** | Meta lifetime_min_spend_target: the lifetime-budget flavour of dailyMinSpendTarget, in whole currency units. Same rules and same rejections. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

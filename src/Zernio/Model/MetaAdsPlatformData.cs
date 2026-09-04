@@ -45,11 +45,15 @@ namespace Zernio.Model
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">Whole currency units (USD: 5 &#x3D; $5.00). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. May also be sent alone, WITHOUT bidStrategy, to set the cap on an ad set joining a COST_CAP / LOWEST_COST_WITH_BID_CAP campaign (the strategy is inherited from the campaign). On POST /v1/ads/create that shape requires existingCampaignId and is a 400 otherwise; on POST /v1/ads/boost it is promoted to LOWEST_COST_WITH_BID_CAP..</param>
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required when bidStrategy is LOWEST_COST_WITH_MIN_ROAS; sending it without bidStrategy is a 400..</param>
-        public MetaAdsPlatformData(BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default)
+        /// <param name="dailyMinSpendTarget">Meta daily_min_spend_target on the ad set being created: the least it should spend per day, in whole currency units. It reserves a share of a CAMPAIGN budget, so it requires budgetLevel campaign or an existingCampaignId whose campaign has the budget (Advantage campaign budget / CBO); with an ad-set budget it is a 400, because Meta rejects a spend limit on an ad set that owns its budget. A target, not a guarantee. Mutually exclusive with lifetimeMinSpendTarget: the flavour must match the campaign budget type. Rejected with 400 on POST /v1/ads/boost and in adSetId attach mode: use PUT /v1/ads/ad-sets/{adSetId} for an ad set that already exists..</param>
+        /// <param name="lifetimeMinSpendTarget">Meta lifetime_min_spend_target: the lifetime-budget flavour of dailyMinSpendTarget, in whole currency units. Same rules and same rejections..</param>
+        public MetaAdsPlatformData(BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, decimal dailyMinSpendTarget = default, decimal lifetimeMinSpendTarget = default)
         {
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.DailyMinSpendTarget = dailyMinSpendTarget;
+            this.LifetimeMinSpendTarget = lifetimeMinSpendTarget;
         }
 
         /// <summary>
@@ -67,6 +71,20 @@ namespace Zernio.Model
         public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
+        /// Meta daily_min_spend_target on the ad set being created: the least it should spend per day, in whole currency units. It reserves a share of a CAMPAIGN budget, so it requires budgetLevel campaign or an existingCampaignId whose campaign has the budget (Advantage campaign budget / CBO); with an ad-set budget it is a 400, because Meta rejects a spend limit on an ad set that owns its budget. A target, not a guarantee. Mutually exclusive with lifetimeMinSpendTarget: the flavour must match the campaign budget type. Rejected with 400 on POST /v1/ads/boost and in adSetId attach mode: use PUT /v1/ads/ad-sets/{adSetId} for an ad set that already exists.
+        /// </summary>
+        /// <value>Meta daily_min_spend_target on the ad set being created: the least it should spend per day, in whole currency units. It reserves a share of a CAMPAIGN budget, so it requires budgetLevel campaign or an existingCampaignId whose campaign has the budget (Advantage campaign budget / CBO); with an ad-set budget it is a 400, because Meta rejects a spend limit on an ad set that owns its budget. A target, not a guarantee. Mutually exclusive with lifetimeMinSpendTarget: the flavour must match the campaign budget type. Rejected with 400 on POST /v1/ads/boost and in adSetId attach mode: use PUT /v1/ads/ad-sets/{adSetId} for an ad set that already exists.</value>
+        [DataMember(Name = "dailyMinSpendTarget", EmitDefaultValue = false)]
+        public decimal DailyMinSpendTarget { get; set; }
+
+        /// <summary>
+        /// Meta lifetime_min_spend_target: the lifetime-budget flavour of dailyMinSpendTarget, in whole currency units. Same rules and same rejections.
+        /// </summary>
+        /// <value>Meta lifetime_min_spend_target: the lifetime-budget flavour of dailyMinSpendTarget, in whole currency units. Same rules and same rejections.</value>
+        [DataMember(Name = "lifetimeMinSpendTarget", EmitDefaultValue = false)]
+        public decimal LifetimeMinSpendTarget { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -77,6 +95,8 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  DailyMinSpendTarget: ").Append(DailyMinSpendTarget).Append("\n");
+            sb.Append("  LifetimeMinSpendTarget: ").Append(LifetimeMinSpendTarget).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

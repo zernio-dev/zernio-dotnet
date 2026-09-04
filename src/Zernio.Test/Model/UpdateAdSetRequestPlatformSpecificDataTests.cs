@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'DailyMinSpendTarget'
+        /// </summary>
+        [Fact]
+        public void DailyMinSpendTargetTest()
+        {
+            // TODO unit test for the property 'DailyMinSpendTarget'
+        }
+
+        /// <summary>
+        /// Test the property 'LifetimeMinSpendTarget'
+        /// </summary>
+        [Fact]
+        public void LifetimeMinSpendTargetTest()
+        {
+            // TODO unit test for the property 'LifetimeMinSpendTarget'
+        }
+
+        /// <summary>
         /// Test the property 'PromotedObject'
         /// </summary>
         [Fact]
