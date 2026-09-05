@@ -111,10 +111,12 @@ namespace Zernio.Model
         /// <param name="endReason">endReason.</param>
         /// <param name="hangupCause">Raw carrier hangup cause behind endReason (e.g. normal_clearing, call_rejected, not_found). Null when the carrier reported none..</param>
         /// <param name="sipHangupCause">SIP response code that ended the call when SIP-signalled (e.g. &#39;403&#39;, &#39;486&#39;, &#39;603&#39;). endReason collapses all three to &#39;rejected&#39;, so this is what separates a refused destination from a busy line. Null on non-SIP legs..</param>
+        /// <param name="isVoicemail">True when the inbound call was handled by voicemail, whether scheduled or because the forward did not connect..</param>
+        /// <param name="callErrors">Failures recorded on the call up to hangup (bridge failed, dial failed, recording error). Empty on a clean call. &#x60;message&#x60; is free-form diagnostic text and is not stable, do not parse it. &#x60;code&#x60; is 0 unless a provider code is known. Errors the carrier reports after hangup appear only on GET /v1/calls/{id}..</param>
         /// <param name="recordingUrl">recordingUrl.</param>
         /// <param name="recordingExpiresAt">recordingExpiresAt.</param>
         /// <param name="billing">billing.</param>
-        public WebhookPayloadCallEndedCall(string id = default, string metaCallId = default, string accountId = default, string phoneNumberId = default, DirectionEnum? direction = default, string from = default, string to = default, DateTime startedAt = default, DateTime endedAt = default, int durationSeconds = default, EndReasonEnum? endReason = default, string hangupCause = default, string sipHangupCause = default, string recordingUrl = default, DateTime recordingExpiresAt = default, WebhookPayloadCallEndedCallBilling billing = default)
+        public WebhookPayloadCallEndedCall(string id = default, string metaCallId = default, string accountId = default, string phoneNumberId = default, DirectionEnum? direction = default, string from = default, string to = default, DateTime startedAt = default, DateTime endedAt = default, int durationSeconds = default, EndReasonEnum? endReason = default, string hangupCause = default, string sipHangupCause = default, bool isVoicemail = default, List<CallRecordCallErrorsInner> callErrors = default, string recordingUrl = default, DateTime recordingExpiresAt = default, WebhookPayloadCallEndedCallBilling billing = default)
         {
             this.Id = id;
             this.MetaCallId = metaCallId;
@@ -129,6 +131,8 @@ namespace Zernio.Model
             this.EndReason = endReason;
             this.HangupCause = hangupCause;
             this.SipHangupCause = sipHangupCause;
+            this.IsVoicemail = isVoicemail;
+            this.CallErrors = callErrors;
             this.RecordingUrl = recordingUrl;
             this.RecordingExpiresAt = recordingExpiresAt;
             this.Billing = billing;
@@ -203,6 +207,20 @@ namespace Zernio.Model
         public string SipHangupCause { get; set; }
 
         /// <summary>
+        /// True when the inbound call was handled by voicemail, whether scheduled or because the forward did not connect.
+        /// </summary>
+        /// <value>True when the inbound call was handled by voicemail, whether scheduled or because the forward did not connect.</value>
+        [DataMember(Name = "isVoicemail", EmitDefaultValue = true)]
+        public bool IsVoicemail { get; set; }
+
+        /// <summary>
+        /// Failures recorded on the call up to hangup (bridge failed, dial failed, recording error). Empty on a clean call. &#x60;message&#x60; is free-form diagnostic text and is not stable, do not parse it. &#x60;code&#x60; is 0 unless a provider code is known. Errors the carrier reports after hangup appear only on GET /v1/calls/{id}.
+        /// </summary>
+        /// <value>Failures recorded on the call up to hangup (bridge failed, dial failed, recording error). Empty on a clean call. &#x60;message&#x60; is free-form diagnostic text and is not stable, do not parse it. &#x60;code&#x60; is 0 unless a provider code is known. Errors the carrier reports after hangup appear only on GET /v1/calls/{id}.</value>
+        [DataMember(Name = "callErrors", EmitDefaultValue = false)]
+        public List<CallRecordCallErrorsInner> CallErrors { get; set; }
+
+        /// <summary>
         /// Gets or Sets RecordingUrl
         /// </summary>
         [DataMember(Name = "recordingUrl", EmitDefaultValue = false)]
@@ -241,6 +259,8 @@ namespace Zernio.Model
             sb.Append("  EndReason: ").Append(EndReason).Append("\n");
             sb.Append("  HangupCause: ").Append(HangupCause).Append("\n");
             sb.Append("  SipHangupCause: ").Append(SipHangupCause).Append("\n");
+            sb.Append("  IsVoicemail: ").Append(IsVoicemail).Append("\n");
+            sb.Append("  CallErrors: ").Append(CallErrors).Append("\n");
             sb.Append("  RecordingUrl: ").Append(RecordingUrl).Append("\n");
             sb.Append("  RecordingExpiresAt: ").Append(RecordingExpiresAt).Append("\n");
             sb.Append("  Billing: ").Append(Billing).Append("\n");

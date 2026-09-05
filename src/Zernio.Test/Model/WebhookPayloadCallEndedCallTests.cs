@@ -173,6 +173,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsVoicemail'
+        /// </summary>
+        [Fact]
+        public void IsVoicemailTest()
+        {
+            // TODO unit test for the property 'IsVoicemail'
+        }
+
+        /// <summary>
+        /// Test the property 'CallErrors'
+        /// </summary>
+        [Fact]
+        public void CallErrorsTest()
+        {
+            // TODO unit test for the property 'CallErrors'
+        }
+
+        /// <summary>
         /// Test the property 'RecordingUrl'
         /// </summary>
         [Fact]
