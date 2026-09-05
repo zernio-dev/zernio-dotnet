@@ -423,7 +423,7 @@ namespace Zernio.Model
         /// <param name="events">Events subscribed to.</param>
         /// <param name="isActive">Whether webhook delivery is enabled.</param>
         /// <param name="lastFiredAt">Timestamp of last successful webhook delivery.</param>
-        /// <param name="failureCount">Consecutive delivery failures (resets on success, webhook disabled at 10).</param>
+        /// <param name="failureCount">Consecutive terminal delivery failures (resets to 0 on any successful delivery). Auto-disable only triggers when the endpoint has had no successful delivery within a 3-day window AND either reaches 20 consecutive terminal failures or has been failing continuously for 3 days; any success within that window keeps the endpoint enabled regardless of the count..</param>
         /// <param name="customHeaders">Custom headers included in webhook requests.</param>
         /// <param name="disabledResourceGroups">Resource groups this subscription does not receive (opt-out denylist, same vocabulary and same semantics as the field on API keys). Absent or empty means the subscription receives every event listed in &#x60;events&#x60;, which is how every subscription created before this field existed behaves. An event whose group is listed here is dropped before delivery even when it is still present in &#x60;events&#x60;, and the same check runs on every replay path (test fire, redelivery, dead-letter requeue). Editing the denylist applies to every event emitted afterwards; events already queued when the edit landed can still be delivered for up to five minutes after they were enqueued..</param>
         public Webhook(string id = default, string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, DateTime lastFiredAt = default, int failureCount = default, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
@@ -490,9 +490,9 @@ namespace Zernio.Model
         public DateTime LastFiredAt { get; set; }
 
         /// <summary>
-        /// Consecutive delivery failures (resets on success, webhook disabled at 10)
+        /// Consecutive terminal delivery failures (resets to 0 on any successful delivery). Auto-disable only triggers when the endpoint has had no successful delivery within a 3-day window AND either reaches 20 consecutive terminal failures or has been failing continuously for 3 days; any success within that window keeps the endpoint enabled regardless of the count.
         /// </summary>
-        /// <value>Consecutive delivery failures (resets on success, webhook disabled at 10)</value>
+        /// <value>Consecutive terminal delivery failures (resets to 0 on any successful delivery). Auto-disable only triggers when the endpoint has had no successful delivery within a 3-day window AND either reaches 20 consecutive terminal failures or has been failing continuously for 3 days; any success within that window keeps the endpoint enabled regardless of the count.</value>
         [DataMember(Name = "failureCount", EmitDefaultValue = false)]
         public int FailureCount { get; set; }
 
