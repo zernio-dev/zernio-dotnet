@@ -796,6 +796,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListPinterestBoardsForSelection200Response</returns>
         ApiResponse<ListPinterestBoardsForSelection200Response> ListPinterestBoardsForSelectionWithHttpInfo(string xConnectToken, string profileId, string tempToken);
         /// <summary>
+        /// List Slack channels for the channel picker
+        /// </summary>
+        /// <remarks>
+        /// Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <returns>ListSlackChannels200Response</returns>
+        ListSlackChannels200Response ListSlackChannels(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default);
+
+        /// <summary>
+        /// List Slack channels for the channel picker
+        /// </summary>
+        /// <remarks>
+        /// Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <returns>ApiResponse of ListSlackChannels200Response</returns>
+        ApiResponse<ListSlackChannels200Response> ListSlackChannelsWithHttpInfo(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default);
+        /// <summary>
         /// List Snapchat profiles
         /// </summary>
         /// <remarks>
@@ -1999,6 +2026,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListPinterestBoardsForSelection200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListPinterestBoardsForSelection200Response>> ListPinterestBoardsForSelectionWithHttpInfoAsync(string xConnectToken, string profileId, string tempToken, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Slack channels for the channel picker
+        /// </summary>
+        /// <remarks>
+        /// Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListSlackChannels200Response</returns>
+        System.Threading.Tasks.Task<ListSlackChannels200Response> ListSlackChannelsAsync(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Slack channels for the channel picker
+        /// </summary>
+        /// <remarks>
+        /// Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListSlackChannels200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListSlackChannels200Response>> ListSlackChannelsWithHttpInfoAsync(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Snapchat profiles
         /// </summary>
@@ -7309,6 +7365,169 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListPinterestBoardsForSelection", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Slack channels for the channel picker Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <returns>ListSlackChannels200Response</returns>
+        public ListSlackChannels200Response ListSlackChannels(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default)
+        {
+            Zernio.Client.ApiResponse<ListSlackChannels200Response> localVarResponse = ListSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Slack channels for the channel picker Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <returns>ApiResponse of ListSlackChannels200Response</returns>
+        public Zernio.Client.ApiResponse<ListSlackChannels200Response> ListSlackChannelsWithHttpInfo(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default)
+        {
+            // verify the required parameter 'profileId' is set
+            if (profileId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling ConnectApi->ListSlackChannels");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            if (pendingDataToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pendingDataToken", pendingDataToken));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (redirectUrl != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "redirect_url", redirectUrl));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListSlackChannels200Response>("/v1/connect/slack", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListSlackChannels", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Slack channels for the channel picker Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListSlackChannels200Response</returns>
+        public async System.Threading.Tasks.Task<ListSlackChannels200Response> ListSlackChannelsAsync(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListSlackChannels200Response> localVarResponse = await ListSlackChannelsWithHttpInfoAsync(profileId, pendingDataToken, accountId, redirectUrl, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Slack channels for the channel picker Serves the channel picker of the Slack connect flow. Slack&#39;s OAuth installs the bot into a workspace, not a channel, so after the redirect the caller lists the workspace&#39;s channels here and finalizes one with &#x60;POST /v1/connect/slack&#x60;. Served by a dedicated route that shadows &#x60;GET /v1/connect/{platform}&#x60; for &#x60;slack&#x60;.  Send exactly one of &#x60;pendingDataToken&#x60; (first connect: the nonce from the OAuth redirect, bound to the same &#x60;profileId&#x60;) or &#x60;accountId&#x60; (add another channel to a workspace already connected: the existing Slack account&#39;s workspace token is reused, no re-OAuth). With neither, the endpoint behaves like &#x60;GET /v1/connect/{platform}&#x60; and returns &#x60;authUrl&#x60; and &#x60;state&#x60; to start the OAuth flow.  Channels are read live from Slack (&#x60;conversations.list&#x60;, public and private, archived excluded, up to 2,000). &#x60;isMember&#x60; says whether the Zernio bot is already in the channel: a public channel is joined automatically on finalize, a private one must be invited (&#x60;/invite @Zernio&#x60;) first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="profileId">Zernio profile the channel account will belong to. Must match the profile the OAuth flow was started on when &#x60;pendingDataToken&#x60; is used.</param>
+        /// <param name="pendingDataToken">Nonce from the OAuth redirect (first connect). (optional)</param>
+        /// <param name="accountId">Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. (optional)</param>
+        /// <param name="redirectUrl">Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListSlackChannels200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListSlackChannels200Response>> ListSlackChannelsWithHttpInfoAsync(string profileId, string? pendingDataToken = default, string? accountId = default, string? redirectUrl = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'profileId' is set
+            if (profileId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling ConnectApi->ListSlackChannels");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            if (pendingDataToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pendingDataToken", pendingDataToken));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (redirectUrl != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "redirect_url", redirectUrl));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListSlackChannels200Response>("/v1/connect/slack", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListSlackChannels", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

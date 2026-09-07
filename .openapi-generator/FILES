@@ -157,6 +157,9 @@ docs/CampaignAnalyticsResponseAnalyticsDailyInner.md
 docs/CampaignAnalyticsResponseCampaign.md
 docs/CancelBroadcast200Response.md
 docs/CancelPhoneNumberPortIn200Response.md
+docs/ChannelPicker.md
+docs/ChannelPickerChannelsInner.md
+docs/ChannelPickerTeam.md
 docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
 docs/CheckPhoneNumberPortability200Response.md
@@ -298,6 +301,8 @@ docs/CreatePhoneNumberStockWatchRequest.md
 docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
 docs/CreatePinterestBoardRequest.md
+docs/CreatePost200Response.md
+docs/CreatePost200ResponseTiktokInner.md
 docs/CreatePost403Response.md
 docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
@@ -1069,6 +1074,7 @@ docs/ListSequences200ResponseSequencesInner.md
 docs/ListSipTrunks200Response.md
 docs/ListSipTrunks200ResponseTrunksInner.md
 docs/ListSipTrunks200ResponseTrunksInnerTermination.md
+docs/ListSlackChannels200Response.md
 docs/ListSlackMembers200Response.md
 docs/ListSlackMembers200ResponseMembersInner.md
 docs/ListSmsOptOuts200Response.md
@@ -1429,6 +1435,7 @@ docs/SocialAccountProfileId.md
 docs/StartGoogleBusinessVerification200Response.md
 docs/StartGoogleBusinessVerification200ResponseVerification.md
 docs/StartGoogleBusinessVerificationRequest.md
+docs/StartOAuth.md
 docs/StartSmsRegistration200Response.md
 docs/StartSmsRegistrationRequest.md
 docs/StartSmsRegistrationRequestBrand.md
@@ -2067,6 +2074,9 @@ src/Zernio.Test/Model/CampaignAnalyticsResponseCampaignTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CancelPhoneNumberPortIn200ResponseTests.cs
+src/Zernio.Test/Model/ChannelPickerChannelsInnerTests.cs
+src/Zernio.Test/Model/ChannelPickerTeamTests.cs
+src/Zernio.Test/Model/ChannelPickerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseResultsInnerTests.cs
@@ -2202,6 +2212,8 @@ src/Zernio.Test/Model/CreatePhoneNumberStockWatchRequestTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
 src/Zernio.Test/Model/CreatePinterestBoardRequestTests.cs
+src/Zernio.Test/Model/CreatePost200ResponseTests.cs
+src/Zernio.Test/Model/CreatePost200ResponseTiktokInnerTests.cs
 src/Zernio.Test/Model/CreatePost403ResponseTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseTests.cs
@@ -2958,6 +2970,7 @@ src/Zernio.Test/Model/ListSequences200ResponseTests.cs
 src/Zernio.Test/Model/ListSipTrunks200ResponseTests.cs
 src/Zernio.Test/Model/ListSipTrunks200ResponseTrunksInnerTerminationTests.cs
 src/Zernio.Test/Model/ListSipTrunks200ResponseTrunksInnerTests.cs
+src/Zernio.Test/Model/ListSlackChannels200ResponseTests.cs
 src/Zernio.Test/Model/ListSlackMembers200ResponseMembersInnerTests.cs
 src/Zernio.Test/Model/ListSlackMembers200ResponseTests.cs
 src/Zernio.Test/Model/ListSmsOptOuts200ResponseOptOutsInnerTests.cs
@@ -3303,6 +3316,7 @@ src/Zernio.Test/Model/SocialAccountTests.cs
 src/Zernio.Test/Model/StartGoogleBusinessVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartGoogleBusinessVerification200ResponseVerificationTests.cs
 src/Zernio.Test/Model/StartGoogleBusinessVerificationRequestTests.cs
+src/Zernio.Test/Model/StartOAuthTests.cs
 src/Zernio.Test/Model/StartSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestBrandTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestCampaignTests.cs
@@ -3943,6 +3957,9 @@ src/Zernio/Model/CampaignAnalyticsResponseAnalyticsDailyInner.cs
 src/Zernio/Model/CampaignAnalyticsResponseCampaign.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelPhoneNumberPortIn200Response.cs
+src/Zernio/Model/ChannelPicker.cs
+src/Zernio/Model/ChannelPickerChannelsInner.cs
+src/Zernio/Model/ChannelPickerTeam.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200Response.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortability200Response.cs
@@ -4078,6 +4095,8 @@ src/Zernio/Model/CreatePhoneNumberStockWatchRequest.cs
 src/Zernio/Model/CreatePinterestBoard201Response.cs
 src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
 src/Zernio/Model/CreatePinterestBoardRequest.cs
+src/Zernio/Model/CreatePost200Response.cs
+src/Zernio/Model/CreatePost200ResponseTiktokInner.cs
 src/Zernio/Model/CreatePost403Response.cs
 src/Zernio/Model/CreatePost409Response.cs
 src/Zernio/Model/CreatePost409ResponseDetails.cs
@@ -4834,6 +4853,7 @@ src/Zernio/Model/ListSequences200ResponseSequencesInner.cs
 src/Zernio/Model/ListSipTrunks200Response.cs
 src/Zernio/Model/ListSipTrunks200ResponseTrunksInner.cs
 src/Zernio/Model/ListSipTrunks200ResponseTrunksInnerTermination.cs
+src/Zernio/Model/ListSlackChannels200Response.cs
 src/Zernio/Model/ListSlackMembers200Response.cs
 src/Zernio/Model/ListSlackMembers200ResponseMembersInner.cs
 src/Zernio/Model/ListSmsOptOuts200Response.cs
@@ -5179,6 +5199,7 @@ src/Zernio/Model/SocialAccountProfileId.cs
 src/Zernio/Model/StartGoogleBusinessVerification200Response.cs
 src/Zernio/Model/StartGoogleBusinessVerification200ResponseVerification.cs
 src/Zernio/Model/StartGoogleBusinessVerificationRequest.cs
+src/Zernio/Model/StartOAuth.cs
 src/Zernio/Model/StartSmsRegistration200Response.cs
 src/Zernio/Model/StartSmsRegistrationRequest.cs
 src/Zernio/Model/StartSmsRegistrationRequestBrand.cs

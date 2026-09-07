@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <param name="userId">ID of the account owner the webhook belongs to.</param>
         /// <param name="webhookId">ID of the webhook configuration that produced this delivery.</param>
         /// <param name="webhookName">Name of the webhook configuration at delivery time.</param>
-        /// <param name="eventId">Stable webhook event ID (correlates to the delivered payload).</param>
+        /// <param name="eventId">Stable webhook event ID: the payload &#x60;id&#x60;, also sent as the X-Zernio-Event-Id header. Shared by every attempt and redelivery of the same event..</param>
         /// <param name="varEvent">Event type that triggered the delivery (e.g. post.published).</param>
         /// <param name="url">Destination URL the webhook was delivered to.</param>
         /// <param name="status">Delivery outcome.</param>
@@ -117,9 +117,9 @@ namespace Zernio.Model
         public string WebhookName { get; set; }
 
         /// <summary>
-        /// Stable webhook event ID (correlates to the delivered payload)
+        /// Stable webhook event ID: the payload &#x60;id&#x60;, also sent as the X-Zernio-Event-Id header. Shared by every attempt and redelivery of the same event.
         /// </summary>
-        /// <value>Stable webhook event ID (correlates to the delivered payload)</value>
+        /// <value>Stable webhook event ID: the payload &#x60;id&#x60;, also sent as the X-Zernio-Event-Id header. Shared by every attempt and redelivery of the same event.</value>
         [DataMember(Name = "eventId", EmitDefaultValue = false)]
         public string EventId { get; set; }
 

@@ -484,6 +484,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListSlackChannels
+        /// </summary>
+        [Fact]
+        public void ListSlackChannelsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string profileId = null;
+            //string? pendingDataToken = null;
+            //string? accountId = null;
+            //string? redirectUrl = null;
+            //var response = instance.ListSlackChannels(profileId, pendingDataToken, accountId, redirectUrl);
+            //Assert.IsType<ListSlackChannels200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListSnapchatProfiles
         /// </summary>
         [Fact]

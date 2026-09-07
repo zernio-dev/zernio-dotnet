@@ -77,7 +77,7 @@ namespace Zernio.Test.Api
             //CreatePostRequest createPostRequest = null;
             //Guid? xRequestId = null;
             //var response = instance.CreatePost(createPostRequest, xRequestId);
-            //Assert.IsType<PostCreateResponse>(response);
+            //Assert.IsType<CreatePost200Response>(response);
         }
 
         /// <summary>

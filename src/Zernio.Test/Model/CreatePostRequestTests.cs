@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'DryRun'
+        /// </summary>
+        [Fact]
+        public void DryRunTest()
+        {
+            // TODO unit test for the property 'DryRun'
+        }
+
+        /// <summary>
         /// Test the property 'Timezone'
         /// </summary>
         [Fact]

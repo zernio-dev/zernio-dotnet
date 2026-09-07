@@ -60,8 +60,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
-        /// <returns>PostCreateResponse</returns>
-        PostCreateResponse CreatePost(CreatePostRequest createPostRequest, Guid? xRequestId = default);
+        /// <returns>CreatePost200Response</returns>
+        CreatePost200Response CreatePost(CreatePostRequest createPostRequest, Guid? xRequestId = default);
 
         /// <summary>
         /// Create post
@@ -72,8 +72,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
-        /// <returns>ApiResponse of PostCreateResponse</returns>
-        ApiResponse<PostCreateResponse> CreatePostWithHttpInfo(CreatePostRequest createPostRequest, Guid? xRequestId = default);
+        /// <returns>ApiResponse of CreatePost200Response</returns>
+        ApiResponse<CreatePost200Response> CreatePostWithHttpInfo(CreatePostRequest createPostRequest, Guid? xRequestId = default);
         /// <summary>
         /// Delete post
         /// </summary>
@@ -318,8 +318,8 @@ namespace Zernio.Api
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PostCreateResponse</returns>
-        System.Threading.Tasks.Task<PostCreateResponse> CreatePostAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of CreatePost200Response</returns>
+        System.Threading.Tasks.Task<CreatePost200Response> CreatePostAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create post
@@ -331,8 +331,8 @@ namespace Zernio.Api
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PostCreateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PostCreateResponse>> CreatePostWithHttpInfoAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (CreatePost200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreatePost200Response>> CreatePostWithHttpInfoAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete post
         /// </summary>
@@ -907,10 +907,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
-        /// <returns>PostCreateResponse</returns>
-        public PostCreateResponse CreatePost(CreatePostRequest createPostRequest, Guid? xRequestId = default)
+        /// <returns>CreatePost200Response</returns>
+        public CreatePost200Response CreatePost(CreatePostRequest createPostRequest, Guid? xRequestId = default)
         {
-            Zernio.Client.ApiResponse<PostCreateResponse> localVarResponse = CreatePostWithHttpInfo(createPostRequest, xRequestId);
+            Zernio.Client.ApiResponse<CreatePost200Response> localVarResponse = CreatePostWithHttpInfo(createPostRequest, xRequestId);
             return localVarResponse.Data;
         }
 
@@ -920,8 +920,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
-        /// <returns>ApiResponse of PostCreateResponse</returns>
-        public Zernio.Client.ApiResponse<PostCreateResponse> CreatePostWithHttpInfo(CreatePostRequest createPostRequest, Guid? xRequestId = default)
+        /// <returns>ApiResponse of CreatePost200Response</returns>
+        public Zernio.Client.ApiResponse<CreatePost200Response> CreatePostWithHttpInfo(CreatePostRequest createPostRequest, Guid? xRequestId = default)
         {
             // verify the required parameter 'createPostRequest' is set
             if (createPostRequest == null)
@@ -958,7 +958,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<PostCreateResponse>("/v1/posts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreatePost200Response>("/v1/posts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -976,10 +976,10 @@ namespace Zernio.Api
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PostCreateResponse</returns>
-        public async System.Threading.Tasks.Task<PostCreateResponse> CreatePostAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of CreatePost200Response</returns>
+        public async System.Threading.Tasks.Task<CreatePost200Response> CreatePostAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<PostCreateResponse> localVarResponse = await CreatePostWithHttpInfoAsync(createPostRequest, xRequestId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CreatePost200Response> localVarResponse = await CreatePostWithHttpInfoAsync(createPostRequest, xRequestId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -990,8 +990,8 @@ namespace Zernio.Api
         /// <param name="createPostRequest"></param>
         /// <param name="xRequestId">Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PostCreateResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PostCreateResponse>> CreatePostWithHttpInfoAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (CreatePost200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreatePost200Response>> CreatePostWithHttpInfoAsync(CreatePostRequest createPostRequest, Guid? xRequestId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createPostRequest' is set
             if (createPostRequest == null)
@@ -1031,7 +1031,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<PostCreateResponse>("/v1/posts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreatePost200Response>("/v1/posts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

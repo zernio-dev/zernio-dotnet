@@ -123,7 +123,7 @@ catch (ApiException e)
 
 <a id="createpost"></a>
 # **CreatePost**
-> PostCreateResponse CreatePost (CreatePostRequest createPostRequest, Guid? xRequestId = null)
+> CreatePost200Response CreatePost (CreatePostRequest createPostRequest, Guid? xRequestId = null)
 
 Create post
 
@@ -159,7 +159,7 @@ namespace Example
             try
             {
                 // Create post
-                PostCreateResponse result = apiInstance.CreatePost(createPostRequest, xRequestId);
+                CreatePost200Response result = apiInstance.CreatePost(createPostRequest, xRequestId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -180,7 +180,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create post
-    ApiResponse<PostCreateResponse> response = apiInstance.CreatePostWithHttpInfo(createPostRequest, xRequestId);
+    ApiResponse<CreatePost200Response> response = apiInstance.CreatePostWithHttpInfo(createPostRequest, xRequestId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -202,7 +202,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**PostCreateResponse**](PostCreateResponse.md)
+[**CreatePost200Response**](CreatePost200Response.md)
 
 ### Authorization
 
@@ -217,6 +217,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | dryRun preview (TikTok only): nothing was created. Deliberately carries no numeric cap detail, only a per-account go/no-go and a reason. |  -  |
 | **201** | Post created |  -  |
 | **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |

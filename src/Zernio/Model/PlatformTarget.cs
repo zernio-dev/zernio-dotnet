@@ -177,7 +177,7 @@ namespace Zernio.Model
         /// <param name="customMedia">customMedia.</param>
         /// <param name="scheduledFor">Optional per-platform scheduled time override (uses post.scheduledFor when omitted).</param>
         /// <param name="platformSpecificData">The platform-specific options stored on this target, echoed back as they were sent. Typed per platform on the way in (see the *PlatformData schemas on the request body); free-form on the way out, because a response is not guaranteed to match exactly one of those variants and generated clients that pick a variant by structure reject the entire response when it doesn&#39;t. Zernio&#39;s internal publishing state (snapshots, container ids, publish stage) is never returned here, and the key is omitted rather than sent as an empty object..</param>
-        /// <param name="status">Platform-specific status: pending, publishing, published, failed.</param>
+        /// <param name="status">Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via DELETE /v1/posts/{postId}/unpublish).</param>
         /// <param name="platformPostId">The native post ID on the platform (populated after successful publish).</param>
         /// <param name="platformPostUrl">Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads); the TikTok reconcile cron backfills it later..</param>
         /// <param name="publishedAt">Timestamp when the post was published to this platform.</param>
@@ -251,9 +251,9 @@ namespace Zernio.Model
         public Dictionary<string, Object> PlatformSpecificData { get; set; }
 
         /// <summary>
-        /// Platform-specific status: pending, publishing, published, failed
+        /// Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via DELETE /v1/posts/{postId}/unpublish)
         /// </summary>
-        /// <value>Platform-specific status: pending, publishing, published, failed</value>
+        /// <value>Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via DELETE /v1/posts/{postId}/unpublish)</value>
         /*
         <example>pending</example>
         */

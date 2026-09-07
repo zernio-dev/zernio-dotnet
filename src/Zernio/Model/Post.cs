@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class Post : IValidatableObject
     {
         /// <summary>
-        /// Defines Status
+        /// &#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts.
         /// </summary>
+        /// <value>&#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -64,22 +65,29 @@ namespace Zernio.Model
             Published = 4,
 
             /// <summary>
-            /// Enum Failed for value: failed
-            /// </summary>
-            [EnumMember(Value = "failed")]
-            Failed = 5,
-
-            /// <summary>
             /// Enum Partial for value: partial
             /// </summary>
             [EnumMember(Value = "partial")]
-            Partial = 6
+            Partial = 5,
+
+            /// <summary>
+            /// Enum Failed for value: failed
+            /// </summary>
+            [EnumMember(Value = "failed")]
+            Failed = 6,
+
+            /// <summary>
+            /// Enum Cancelled for value: cancelled
+            /// </summary>
+            [EnumMember(Value = "cancelled")]
+            Cancelled = 7
         }
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// &#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts.
         /// </summary>
+        /// <value>&#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -124,7 +132,7 @@ namespace Zernio.Model
         /// <param name="platforms">platforms.</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="timezone">timezone.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">&#x60;cancelled&#x60; is set by DELETE /v1/posts/{postId}/unpublish once every platform entry has been removed from its platform (a post with published entries left becomes &#x60;partial&#x60;); cancelled posts can be edited and rescheduled like drafts..</param>
         /// <param name="tags">YouTube constraints: each tag max 100 chars, combined max 500 chars, duplicates removed..</param>
         /// <param name="hashtags">Stored for reference only. Hashtags are NOT automatically appended to the caption when publishing. Include hashtags directly in the content field (platforms like Instagram only support hashtags as caption text). For YouTube keywords, use the tags field instead..</param>
         /// <param name="mentions">Stored for reference only. This field does NOT automatically create @mentions when publishing. For LinkedIn @mentions, use the /v1/accounts/{accountId}/linkedin-mentions endpoint to resolve profile URLs to URNs, then embed the returned mentionFormat directly in the post content field..</param>

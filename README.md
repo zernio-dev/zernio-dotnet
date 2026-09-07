@@ -364,6 +364,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**ListInstagramPages**](docs/ConnectApi.md#listinstagrampages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account
 *ConnectApi* | [**ListLinkedInOrganizations**](docs/ConnectApi.md#listlinkedinorganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
 *ConnectApi* | [**ListPinterestBoardsForSelection**](docs/ConnectApi.md#listpinterestboardsforselection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
+*ConnectApi* | [**ListSlackChannels**](docs/ConnectApi.md#listslackchannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker
 *ConnectApi* | [**ListSnapchatProfiles**](docs/ConnectApi.md#listsnapchatprofiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**ListWhatsAppPhoneNumbers**](docs/ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
 *ConnectApi* | [**SelectFacebookPage**](docs/ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
@@ -896,6 +897,9 @@ Class | Method | HTTP request | Description
  - [Model.CampaignAnalyticsResponseCampaign](docs/CampaignAnalyticsResponseCampaign.md)
  - [Model.CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [Model.CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
+ - [Model.ChannelPicker](docs/ChannelPicker.md)
+ - [Model.ChannelPickerChannelsInner](docs/ChannelPickerChannelsInner.md)
+ - [Model.ChannelPickerTeam](docs/ChannelPickerTeam.md)
  - [Model.CheckPhoneNumberAvailability200Response](docs/CheckPhoneNumberAvailability200Response.md)
  - [Model.CheckPhoneNumberAvailability200ResponseAreaOptionsInner](docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md)
  - [Model.CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
@@ -1031,6 +1035,8 @@ Class | Method | HTTP request | Description
  - [Model.CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
  - [Model.CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [Model.CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
+ - [Model.CreatePost200Response](docs/CreatePost200Response.md)
+ - [Model.CreatePost200ResponseTiktokInner](docs/CreatePost200ResponseTiktokInner.md)
  - [Model.CreatePost403Response](docs/CreatePost403Response.md)
  - [Model.CreatePost409Response](docs/CreatePost409Response.md)
  - [Model.CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
@@ -1787,6 +1793,7 @@ Class | Method | HTTP request | Description
  - [Model.ListSipTrunks200Response](docs/ListSipTrunks200Response.md)
  - [Model.ListSipTrunks200ResponseTrunksInner](docs/ListSipTrunks200ResponseTrunksInner.md)
  - [Model.ListSipTrunks200ResponseTrunksInnerTermination](docs/ListSipTrunks200ResponseTrunksInnerTermination.md)
+ - [Model.ListSlackChannels200Response](docs/ListSlackChannels200Response.md)
  - [Model.ListSlackMembers200Response](docs/ListSlackMembers200Response.md)
  - [Model.ListSlackMembers200ResponseMembersInner](docs/ListSlackMembers200ResponseMembersInner.md)
  - [Model.ListSmsOptOuts200Response](docs/ListSmsOptOuts200Response.md)
@@ -2132,6 +2139,7 @@ Class | Method | HTTP request | Description
  - [Model.StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
  - [Model.StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [Model.StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
+ - [Model.StartOAuth](docs/StartOAuth.md)
  - [Model.StartSmsRegistration200Response](docs/StartSmsRegistration200Response.md)
  - [Model.StartSmsRegistrationRequest](docs/StartSmsRegistrationRequest.md)
  - [Model.StartSmsRegistrationRequestBrand](docs/StartSmsRegistrationRequestBrand.md)
