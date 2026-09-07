@@ -28,34 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetTikTokCreatorInfo200ResponsePostingLimits
+    /// Per-interaction descriptors for the comment, duet and stitch toggles. Each key matches the tiktokSettings field of the same name on the create-post request. allow_duet and allow_stitch are null when mediaType is photo, because TikTok does not apply duet or stitch to photo posts.
     /// </summary>
-    [DataContract(Name = "getTikTokCreatorInfo_200_response_postingLimits")]
-    public partial class GetTikTokCreatorInfo200ResponsePostingLimits : IValidatableObject
+    [DataContract(Name = "getTikTokCreatorInfo_200_response_postingLimits_interactionSettings")]
+    public partial class GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTikTokCreatorInfo200ResponsePostingLimits" /> class.
+        /// Initializes a new instance of the <see cref="GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings" /> class.
         /// </summary>
-        /// <param name="maxVideoDurationSec">Maximum video duration in seconds.</param>
-        /// <param name="interactionSettings">interactionSettings.</param>
-        public GetTikTokCreatorInfo200ResponsePostingLimits(int maxVideoDurationSec = default, GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings interactionSettings = default)
+        /// <param name="allowComment">allowComment.</param>
+        /// <param name="allowDuet">allowDuet.</param>
+        /// <param name="allowStitch">allowStitch.</param>
+        public GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings(GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment allowComment = default, GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet allowDuet = default, GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch allowStitch = default)
         {
-            this.MaxVideoDurationSec = maxVideoDurationSec;
-            this.InteractionSettings = interactionSettings;
+            this.AllowComment = allowComment;
+            this.AllowDuet = allowDuet;
+            this.AllowStitch = allowStitch;
         }
 
         /// <summary>
-        /// Maximum video duration in seconds
+        /// Gets or Sets AllowComment
         /// </summary>
-        /// <value>Maximum video duration in seconds</value>
-        [DataMember(Name = "maxVideoDurationSec", EmitDefaultValue = false)]
-        public int MaxVideoDurationSec { get; set; }
+        [DataMember(Name = "allow_comment", EmitDefaultValue = false)]
+        public GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment AllowComment { get; set; }
 
         /// <summary>
-        /// Gets or Sets InteractionSettings
+        /// Gets or Sets AllowDuet
         /// </summary>
-        [DataMember(Name = "interactionSettings", EmitDefaultValue = false)]
-        public GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings InteractionSettings { get; set; }
+        [DataMember(Name = "allow_duet", EmitDefaultValue = false)]
+        public GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet AllowDuet { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AllowStitch
+        /// </summary>
+        [DataMember(Name = "allow_stitch", EmitDefaultValue = false)]
+        public GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch AllowStitch { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,9 +71,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetTikTokCreatorInfo200ResponsePostingLimits {\n");
-            sb.Append("  MaxVideoDurationSec: ").Append(MaxVideoDurationSec).Append("\n");
-            sb.Append("  InteractionSettings: ").Append(InteractionSettings).Append("\n");
+            sb.Append("class GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings {\n");
+            sb.Append("  AllowComment: ").Append(AllowComment).Append("\n");
+            sb.Append("  AllowDuet: ").Append(AllowDuet).Append("\n");
+            sb.Append("  AllowStitch: ").Append(AllowStitch).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
