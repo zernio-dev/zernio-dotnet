@@ -34,6 +34,93 @@ namespace Zernio.Model
     public partial class CreateTrackingTagRequest : IValidatableObject
     {
         /// <summary>
+        /// OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately.
+        /// </summary>
+        /// <value>OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DefaultEventTypeEnum
+        {
+            /// <summary>
+            /// Enum OrderCreated for value: order_created
+            /// </summary>
+            [EnumMember(Value = "order_created")]
+            OrderCreated = 1,
+
+            /// <summary>
+            /// Enum LeadCreated for value: lead_created
+            /// </summary>
+            [EnumMember(Value = "lead_created")]
+            LeadCreated = 2,
+
+            /// <summary>
+            /// Enum ItemsAdded for value: items_added
+            /// </summary>
+            [EnumMember(Value = "items_added")]
+            ItemsAdded = 3,
+
+            /// <summary>
+            /// Enum ContentsViewed for value: contents_viewed
+            /// </summary>
+            [EnumMember(Value = "contents_viewed")]
+            ContentsViewed = 4,
+
+            /// <summary>
+            /// Enum CheckoutStarted for value: checkout_started
+            /// </summary>
+            [EnumMember(Value = "checkout_started")]
+            CheckoutStarted = 5,
+
+            /// <summary>
+            /// Enum RegistrationCompleted for value: registration_completed
+            /// </summary>
+            [EnumMember(Value = "registration_completed")]
+            RegistrationCompleted = 6,
+
+            /// <summary>
+            /// Enum SubscriptionCreated for value: subscription_created
+            /// </summary>
+            [EnumMember(Value = "subscription_created")]
+            SubscriptionCreated = 7,
+
+            /// <summary>
+            /// Enum TrialStarted for value: trial_started
+            /// </summary>
+            [EnumMember(Value = "trial_started")]
+            TrialStarted = 8,
+
+            /// <summary>
+            /// Enum AppointmentScheduled for value: appointment_scheduled
+            /// </summary>
+            [EnumMember(Value = "appointment_scheduled")]
+            AppointmentScheduled = 9,
+
+            /// <summary>
+            /// Enum PageViewed for value: page_viewed
+            /// </summary>
+            [EnumMember(Value = "page_viewed")]
+            PageViewed = 10,
+
+            /// <summary>
+            /// Enum AppInstalled for value: app_installed
+            /// </summary>
+            [EnumMember(Value = "app_installed")]
+            AppInstalled = 11,
+
+            /// <summary>
+            /// Enum AppOpened for value: app_opened
+            /// </summary>
+            [EnumMember(Value = "app_opened")]
+            AppOpened = 12
+        }
+
+
+        /// <summary>
+        /// OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately.
+        /// </summary>
+        /// <value>OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately.</value>
+        [DataMember(Name = "defaultEventType", EmitDefaultValue = false)]
+        public DefaultEventTypeEnum? DefaultEventType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateTrackingTagRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -43,7 +130,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="adAccountId">Meta ad account id, e.g. &#x60;act_123456789&#x60;. Required by this endpoint but ignored for OpenAI Ads. (required).</param>
         /// <param name="name">name (required).</param>
-        public CreateTrackingTagRequest(string adAccountId = default, string name = default)
+        /// <param name="defaultEventType">OpenAI Ads only (ignored by Meta). When set, also provisions a standard conversion event setting wired to the new pixel, so &#x60;goal: conversions&#x60; ad creates on &#x60;POST /v1/ads/create&#x60; have an event to reference immediately..</param>
+        public CreateTrackingTagRequest(string adAccountId = default, string name = default, DefaultEventTypeEnum? defaultEventType = default)
         {
             // to ensure "adAccountId" is required (not null)
             if (adAccountId == null)
@@ -57,6 +145,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for CreateTrackingTagRequest and cannot be null");
             }
             this.Name = name;
+            this.DefaultEventType = defaultEventType;
         }
 
         /// <summary>
@@ -82,6 +171,7 @@ namespace Zernio.Model
             sb.Append("class CreateTrackingTagRequest {\n");
             sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  DefaultEventType: ").Append(DefaultEventType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -72,5 +72,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Name'
         }
+
+        /// <summary>
+        /// Test the property 'DefaultEventType'
+        /// </summary>
+        [Fact]
+        public void DefaultEventTypeTest()
+        {
+            // TODO unit test for the property 'DefaultEventType'
+        }
     }
 }
