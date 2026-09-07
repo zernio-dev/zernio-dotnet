@@ -45,6 +45,7 @@ namespace Zernio.Model
         /// <param name="cpm">Cost per 1000 impressions.</param>
         /// <param name="engagement">engagement.</param>
         /// <param name="conversions">Count of conversion events over the requested date range. FRACTIONAL: attribution splits one conversion across touchpoints and Google additionally reports modeled conversions, so values like 0.347 are normal. Meta: events matching the campaign&#39;s promoted_object.custom_event_type (PURCHASE, LEAD, etc.). Google: the account&#39;s tracked conversions. X and LinkedIn: their reported website/lead conversions (added 2026-07). 0 for non-conversion campaigns or when no events have fired..</param>
+        /// <param name="allConversions">All conversions, including actions excluded from the Conversions column (Google metrics.all_conversions). 0 on platforms without the concept..</param>
         /// <param name="costPerConversion">Derived spend / conversions in the same currency as spend. 0 when conversions is 0..</param>
         /// <param name="actions">Per-action-type counts summed over the date range, keyed by the platform&#39;s action-type names. Meta: raw Insights action_type keys (link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped, ...) — both engagement and conversion events. TikTok: pixel conversions (purchase, add_to_cart, initiate_checkout, view_content, complete_payment, lead) plus the paid-engagement family (follow, post_reaction for paid likes, comment, share) — follow is how FOLLOWERS-goal campaigns report their result. X: conversion types (purchase, sign_up, site_visit, download, custom). LinkedIn: conversion types (post_click, post_view, lead_gen). Google returns {} (its per-action names aren&#39;t synced per ad). Empty object when no actions are reported. NOTE: keys differ by platform, so branch on the ad&#39;s platform when interpreting them..</param>
         /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}..</param>
@@ -71,7 +72,7 @@ namespace Zernio.Model
         /// <param name="engagementBreakdown">engagementBreakdown.</param>
         /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
         /// <param name="date">date.</param>
-        public CampaignAnalyticsResponseAnalyticsDailyInner(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, Dictionary<string, decimal> costPerAction = default, int outboundClicks = default, decimal outboundClicksCtr = default, int inlineLinkClicks = default, decimal inlineLinkClickCtr = default, int uniqueClicks = default, decimal uniqueCtr = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default, DateOnly date = default)
+        public CampaignAnalyticsResponseAnalyticsDailyInner(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal allConversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, Dictionary<string, decimal> costPerAction = default, int outboundClicks = default, decimal outboundClicksCtr = default, int inlineLinkClicks = default, decimal inlineLinkClickCtr = default, int uniqueClicks = default, decimal uniqueCtr = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default, DateOnly date = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -82,6 +83,7 @@ namespace Zernio.Model
             this.Cpm = cpm;
             this.Engagement = engagement;
             this.Conversions = conversions;
+            this.AllConversions = allConversions;
             this.CostPerConversion = costPerConversion;
             this.Actions = actions;
             this.ActionValues = actionValues;
@@ -168,6 +170,13 @@ namespace Zernio.Model
         /// <value>Count of conversion events over the requested date range. FRACTIONAL: attribution splits one conversion across touchpoints and Google additionally reports modeled conversions, so values like 0.347 are normal. Meta: events matching the campaign&#39;s promoted_object.custom_event_type (PURCHASE, LEAD, etc.). Google: the account&#39;s tracked conversions. X and LinkedIn: their reported website/lead conversions (added 2026-07). 0 for non-conversion campaigns or when no events have fired.</value>
         [DataMember(Name = "conversions", EmitDefaultValue = false)]
         public decimal Conversions { get; set; }
+
+        /// <summary>
+        /// All conversions, including actions excluded from the Conversions column (Google metrics.all_conversions). 0 on platforms without the concept.
+        /// </summary>
+        /// <value>All conversions, including actions excluded from the Conversions column (Google metrics.all_conversions). 0 on platforms without the concept.</value>
+        [DataMember(Name = "allConversions", EmitDefaultValue = false)]
+        public decimal AllConversions { get; set; }
 
         /// <summary>
         /// Derived spend / conversions in the same currency as spend. 0 when conversions is 0.
@@ -374,6 +383,7 @@ namespace Zernio.Model
             sb.Append("  Cpm: ").Append(Cpm).Append("\n");
             sb.Append("  Engagement: ").Append(Engagement).Append("\n");
             sb.Append("  Conversions: ").Append(Conversions).Append("\n");
+            sb.Append("  AllConversions: ").Append(AllConversions).Append("\n");
             sb.Append("  CostPerConversion: ").Append(CostPerConversion).Append("\n");
             sb.Append("  Actions: ").Append(Actions).Append("\n");
             sb.Append("  ActionValues: ").Append(ActionValues).Append("\n");

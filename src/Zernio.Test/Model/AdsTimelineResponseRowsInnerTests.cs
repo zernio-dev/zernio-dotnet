@@ -146,6 +146,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AllConversions'
+        /// </summary>
+        [Fact]
+        public void AllConversionsTest()
+        {
+            // TODO unit test for the property 'AllConversions'
+        }
+
+        /// <summary>
         /// Test the property 'CostPerConversion'
         /// </summary>
         [Fact]
