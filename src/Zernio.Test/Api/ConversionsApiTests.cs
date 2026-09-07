@@ -81,6 +81,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateConversionAction
+        /// </summary>
+        [Fact]
+        public void CreateConversionActionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateConversionActionRequest createConversionActionRequest = null;
+            //var response = instance.CreateConversionAction(createConversionActionRequest);
+            //Assert.IsType<CreateConversionAction201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateConversionDestination
         /// </summary>
         [Fact]
@@ -148,6 +160,20 @@ namespace Zernio.Test.Api
             //string destinationId = null;
             //var response = instance.GetConversionsQuality(accountId, destinationId);
             //Assert.IsType<GetConversionsQuality200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListConversionActions
+        /// </summary>
+        [Fact]
+        public void ListConversionActionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //string? type = null;
+            //var response = instance.ListConversionActions(accountId, customerId, type);
+            //Assert.IsType<ListConversionActions200Response>(response);
         }
 
         /// <summary>

@@ -48,6 +48,9 @@ docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignOptimizationGoal.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
+docs/AddAccountCallouts201Response.md
+docs/AddAccountCallouts201ResponseCalloutsInner.md
+docs/AddAccountCalloutsRequest.md
 docs/AddAdKeywords201Response.md
 docs/AddAdKeywordsRequest.md
 docs/AddAdKeywordsRequestKeywordsInner.md
@@ -130,7 +133,6 @@ docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
 docs/BoostPostRequestTargetingCustomLocationsInner.md
-docs/BoostPostRequestTargetingRegionsInner.md
 docs/BoostPostRequestTracking.md
 docs/BoostPostRequestTrackingUrlTagsInner.md
 docs/BroadcastsApi.md
@@ -203,6 +205,8 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
+docs/ConversionAction.md
+docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
 docs/ConversionEvent.md
 docs/ConversionEventItemsInner.md
@@ -223,6 +227,8 @@ docs/CreateAdInsightsReport202Response.md
 docs/CreateAdInsightsReportRequest.md
 docs/CreateAdInsightsReportRequestFilteringInner.md
 docs/CreateAdInsightsReportRequestTimeIncrement.md
+docs/CreateAdSet201Response.md
+docs/CreateAdSetRequest.md
 docs/CreateApiKey201Response.md
 docs/CreateApiKeyRequest.md
 docs/CreateBlog201Response.md
@@ -248,6 +254,8 @@ docs/CreateContact200Response.md
 docs/CreateContact200ResponseChannel.md
 docs/CreateContact200ResponseContact.md
 docs/CreateContactRequest.md
+docs/CreateConversionAction201Response.md
+docs/CreateConversionActionRequest.md
 docs/CreateConversionDestination201Response.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateConversionDestinationRequestValue.md
@@ -570,6 +578,10 @@ docs/GetCallsUsage200Response.md
 docs/GetCallsUsage200ResponseGroupsInner.md
 docs/GetCallsUsage200ResponseTotals.md
 docs/GetCampaignAnalytics202Response.md
+docs/GetCampaignTargeting200Response.md
+docs/GetCampaignTargeting200ResponseDevicesInner.md
+docs/GetCampaignTargeting200ResponseLanguagesInner.md
+docs/GetCampaignTargeting200ResponseLocationsInner.md
 docs/GetCommentAutomation200Response.md
 docs/GetCommentAutomation200ResponseAutomation.md
 docs/GetCommentAutomation200ResponseLogsInner.md
@@ -939,6 +951,8 @@ docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
 docs/LinkedInPlatformDataPoll.md
+docs/ListAccountCallouts200Response.md
+docs/ListAccountCallouts200ResponseCalloutsInner.md
 docs/ListAccountGroups200Response.md
 docs/ListAccountGroups200ResponseGroupsInner.md
 docs/ListAdAccounts200Response.md
@@ -954,6 +968,8 @@ docs/ListAdCreatives200Response.md
 docs/ListAdImages200Response.md
 docs/ListAdKeywords200Response.md
 docs/ListAdLabels200Response.md
+docs/ListAdSets200Response.md
+docs/ListAdSets200ResponseAdSetsInner.md
 docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
@@ -981,6 +997,7 @@ docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
 docs/ListContacts200ResponsePagination.md
+docs/ListConversionActions200Response.md
 docs/ListConversionAssociations200Response.md
 docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
@@ -1236,6 +1253,8 @@ docs/RemediatePhoneNumber200ResponsePhoneNumber.md
 docs/RemediatePhoneNumberRequest.md
 docs/RemediatePhoneNumberRequestDocumentsInner.md
 docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
+docs/RemoveAccountCallout200Response.md
+docs/RemoveAccountCalloutRequest.md
 docs/RemoveAdKeyword200Response.md
 docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
@@ -1535,6 +1554,14 @@ docs/UpdateBroadcastRequest.md
 docs/UpdateBroadcastRequestMessage.md
 docs/UpdateBroadcastRequestTemplate.md
 docs/UpdateBroadcastRequestTemplateVariableMappingValue.md
+docs/UpdateCampaignTargeting200Response.md
+docs/UpdateCampaignTargetingRequest.md
+docs/UpdateCampaignTargetingRequestTargeting.md
+docs/UpdateCampaignTargetingRequestTargetingDevicesInner.md
+docs/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf.md
+docs/UpdateCampaignTargetingRequestTargetingLocations.md
+docs/UpdateCampaignTargetingRequestTargetingLocationsOneOf.md
+docs/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.md
 docs/UpdateCommentAutomation200Response.md
 docs/UpdateCommentAutomation200ResponseAutomation.md
 docs/UpdateCommentAutomationRequest.md
@@ -1969,6 +1996,9 @@ src/Zernio.Test/Model/AdTreeCampaignOptimizationGoalTests.cs
 src/Zernio.Test/Model/AdTreeCampaignPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeCampaignTests.cs
 src/Zernio.Test/Model/AdTreeResponseTests.cs
+src/Zernio.Test/Model/AddAccountCallouts201ResponseCalloutsInnerTests.cs
+src/Zernio.Test/Model/AddAccountCallouts201ResponseTests.cs
+src/Zernio.Test/Model/AddAccountCalloutsRequestTests.cs
 src/Zernio.Test/Model/AddAdKeywords201ResponseTests.cs
 src/Zernio.Test/Model/AddAdKeywordsRequestKeywordsInnerAnyOfTests.cs
 src/Zernio.Test/Model/AddAdKeywordsRequestKeywordsInnerTests.cs
@@ -2047,7 +2077,6 @@ src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCitiesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCustomLocationsInnerTests.cs
-src/Zernio.Test/Model/BoostPostRequestTargetingRegionsInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingTests.cs
 src/Zernio.Test/Model/BoostPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestTrackingTests.cs
@@ -2115,6 +2144,8 @@ src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignupRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
+src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
+src/Zernio.Test/Model/ConversionActionTests.cs
 src/Zernio.Test/Model/ConversionDestinationTests.cs
 src/Zernio.Test/Model/ConversionEventItemsInnerTests.cs
 src/Zernio.Test/Model/ConversionEventTests.cs
@@ -2134,6 +2165,8 @@ src/Zernio.Test/Model/CreateAdInsightsReport202ResponseTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestFilteringInnerTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestTimeIncrementTests.cs
+src/Zernio.Test/Model/CreateAdSet201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdSetRequestTests.cs
 src/Zernio.Test/Model/CreateApiKey201ResponseTests.cs
 src/Zernio.Test/Model/CreateApiKeyRequestTests.cs
 src/Zernio.Test/Model/CreateBlog201ResponseTests.cs
@@ -2159,6 +2192,8 @@ src/Zernio.Test/Model/CreateContact200ResponseChannelTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseTests.cs
 src/Zernio.Test/Model/CreateContactRequestTests.cs
+src/Zernio.Test/Model/CreateConversionAction201ResponseTests.cs
+src/Zernio.Test/Model/CreateConversionActionRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestination201ResponseTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestValueTests.cs
@@ -2471,6 +2506,10 @@ src/Zernio.Test/Model/GetCallsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseTotalsTests.cs
 src/Zernio.Test/Model/GetCampaignAnalytics202ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignTargeting200ResponseDevicesInnerTests.cs
+src/Zernio.Test/Model/GetCampaignTargeting200ResponseLanguagesInnerTests.cs
+src/Zernio.Test/Model/GetCampaignTargeting200ResponseLocationsInnerTests.cs
+src/Zernio.Test/Model/GetCampaignTargeting200ResponseTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseAutomationTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseTests.cs
@@ -2835,6 +2874,8 @@ src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerTests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataPollTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataTests.cs
+src/Zernio.Test/Model/ListAccountCallouts200ResponseCalloutsInnerTests.cs
+src/Zernio.Test/Model/ListAccountCallouts200ResponseTests.cs
 src/Zernio.Test/Model/ListAccountGroups200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/ListAccountGroups200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerTests.cs
@@ -2850,6 +2891,8 @@ src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdImages200ResponseTests.cs
 src/Zernio.Test/Model/ListAdKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
+src/Zernio.Test/Model/ListAdSets200ResponseAdSetsInnerTests.cs
+src/Zernio.Test/Model/ListAdSets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
 src/Zernio.Test/Model/ListAdVideos200ResponseTests.cs
 src/Zernio.Test/Model/ListAds202ResponseTests.cs
@@ -2877,6 +2920,7 @@ src/Zernio.Test/Model/ListContacts200ResponseContactsInnerTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseFiltersTests.cs
 src/Zernio.Test/Model/ListContacts200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseTests.cs
+src/Zernio.Test/Model/ListConversionActions200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionAssociations200ResponseAssociationsInnerTests.cs
 src/Zernio.Test/Model/ListConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerTests.cs
@@ -3121,6 +3165,8 @@ src/Zernio.Test/Model/RemediatePhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestTests.cs
+src/Zernio.Test/Model/RemoveAccountCallout200ResponseTests.cs
+src/Zernio.Test/Model/RemoveAccountCalloutRequestTests.cs
 src/Zernio.Test/Model/RemoveAdKeyword200ResponseTests.cs
 src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
 src/Zernio.Test/Model/RemoveConversionAssociations200ResponseTests.cs
@@ -3414,6 +3460,14 @@ src/Zernio.Test/Model/UpdateBroadcastRequestMessageTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestTemplateTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOfTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTests.cs
 src/Zernio.Test/Model/UpdateCommentAutomation200ResponseAutomationTests.cs
 src/Zernio.Test/Model/UpdateCommentAutomation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCommentAutomationRequestTests.cs
@@ -3852,6 +3906,9 @@ src/Zernio/Model/AdTreeCampaignCampaignBudget.cs
 src/Zernio/Model/AdTreeCampaignOptimizationGoal.cs
 src/Zernio/Model/AdTreeCampaignPromotedObject.cs
 src/Zernio/Model/AdTreeResponse.cs
+src/Zernio/Model/AddAccountCallouts201Response.cs
+src/Zernio/Model/AddAccountCallouts201ResponseCalloutsInner.cs
+src/Zernio/Model/AddAccountCalloutsRequest.cs
 src/Zernio/Model/AddAdKeywords201Response.cs
 src/Zernio/Model/AddAdKeywordsRequest.cs
 src/Zernio/Model/AddAdKeywordsRequestKeywordsInner.cs
@@ -3932,7 +3989,6 @@ src/Zernio/Model/BoostPostRequestSchedule.cs
 src/Zernio/Model/BoostPostRequestTargeting.cs
 src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
 src/Zernio/Model/BoostPostRequestTargetingCustomLocationsInner.cs
-src/Zernio/Model/BoostPostRequestTargetingRegionsInner.cs
 src/Zernio/Model/BoostPostRequestTracking.cs
 src/Zernio/Model/BoostPostRequestTrackingUrlTagsInner.cs
 src/Zernio/Model/BulkCreateContacts200Response.cs
@@ -3998,6 +4054,8 @@ src/Zernio/Model/ConnectWhatsAppEmbeddedSignupRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
 src/Zernio/Model/ConnectedApp.cs
+src/Zernio/Model/ConversionAction.cs
+src/Zernio/Model/ConversionActionTagSnippetsInner.cs
 src/Zernio/Model/ConversionDestination.cs
 src/Zernio/Model/ConversionEvent.cs
 src/Zernio/Model/ConversionEventItemsInner.cs
@@ -4017,6 +4075,8 @@ src/Zernio/Model/CreateAdInsightsReport202Response.cs
 src/Zernio/Model/CreateAdInsightsReportRequest.cs
 src/Zernio/Model/CreateAdInsightsReportRequestFilteringInner.cs
 src/Zernio/Model/CreateAdInsightsReportRequestTimeIncrement.cs
+src/Zernio/Model/CreateAdSet201Response.cs
+src/Zernio/Model/CreateAdSetRequest.cs
 src/Zernio/Model/CreateApiKey201Response.cs
 src/Zernio/Model/CreateApiKeyRequest.cs
 src/Zernio/Model/CreateBlog201Response.cs
@@ -4042,6 +4102,8 @@ src/Zernio/Model/CreateContact200Response.cs
 src/Zernio/Model/CreateContact200ResponseChannel.cs
 src/Zernio/Model/CreateContact200ResponseContact.cs
 src/Zernio/Model/CreateContactRequest.cs
+src/Zernio/Model/CreateConversionAction201Response.cs
+src/Zernio/Model/CreateConversionActionRequest.cs
 src/Zernio/Model/CreateConversionDestination201Response.cs
 src/Zernio/Model/CreateConversionDestinationRequest.cs
 src/Zernio/Model/CreateConversionDestinationRequestValue.cs
@@ -4354,6 +4416,10 @@ src/Zernio/Model/GetCallsUsage200Response.cs
 src/Zernio/Model/GetCallsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetCallsUsage200ResponseTotals.cs
 src/Zernio/Model/GetCampaignAnalytics202Response.cs
+src/Zernio/Model/GetCampaignTargeting200Response.cs
+src/Zernio/Model/GetCampaignTargeting200ResponseDevicesInner.cs
+src/Zernio/Model/GetCampaignTargeting200ResponseLanguagesInner.cs
+src/Zernio/Model/GetCampaignTargeting200ResponseLocationsInner.cs
 src/Zernio/Model/GetCommentAutomation200Response.cs
 src/Zernio/Model/GetCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/GetCommentAutomation200ResponseLogsInner.cs
@@ -4718,6 +4784,8 @@ src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.cs
 src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.cs
 src/Zernio/Model/LinkedInPlatformData.cs
 src/Zernio/Model/LinkedInPlatformDataPoll.cs
+src/Zernio/Model/ListAccountCallouts200Response.cs
+src/Zernio/Model/ListAccountCallouts200ResponseCalloutsInner.cs
 src/Zernio/Model/ListAccountGroups200Response.cs
 src/Zernio/Model/ListAccountGroups200ResponseGroupsInner.cs
 src/Zernio/Model/ListAdAccounts200Response.cs
@@ -4733,6 +4801,8 @@ src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdImages200Response.cs
 src/Zernio/Model/ListAdKeywords200Response.cs
 src/Zernio/Model/ListAdLabels200Response.cs
+src/Zernio/Model/ListAdSets200Response.cs
+src/Zernio/Model/ListAdSets200ResponseAdSetsInner.cs
 src/Zernio/Model/ListAdStudies200Response.cs
 src/Zernio/Model/ListAdVideos200Response.cs
 src/Zernio/Model/ListAds202Response.cs
@@ -4760,6 +4830,7 @@ src/Zernio/Model/ListContacts200Response.cs
 src/Zernio/Model/ListContacts200ResponseContactsInner.cs
 src/Zernio/Model/ListContacts200ResponseFilters.cs
 src/Zernio/Model/ListContacts200ResponsePagination.cs
+src/Zernio/Model/ListConversionActions200Response.cs
 src/Zernio/Model/ListConversionAssociations200Response.cs
 src/Zernio/Model/ListConversionAssociations200ResponseAssociationsInner.cs
 src/Zernio/Model/ListConversionDestinations200Response.cs
@@ -5004,6 +5075,8 @@ src/Zernio/Model/RemediatePhoneNumber200ResponsePhoneNumber.cs
 src/Zernio/Model/RemediatePhoneNumberRequest.cs
 src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInner.cs
 src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInnerOneOf.cs
+src/Zernio/Model/RemoveAccountCallout200Response.cs
+src/Zernio/Model/RemoveAccountCalloutRequest.cs
 src/Zernio/Model/RemoveAdKeyword200Response.cs
 src/Zernio/Model/RemoveBookmark200Response.cs
 src/Zernio/Model/RemoveConversionAssociations200Response.cs
@@ -5297,6 +5370,14 @@ src/Zernio/Model/UpdateBroadcastRequest.cs
 src/Zernio/Model/UpdateBroadcastRequestMessage.cs
 src/Zernio/Model/UpdateBroadcastRequestTemplate.cs
 src/Zernio/Model/UpdateBroadcastRequestTemplateVariableMappingValue.cs
+src/Zernio/Model/UpdateCampaignTargeting200Response.cs
+src/Zernio/Model/UpdateCampaignTargetingRequest.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargeting.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargetingDevicesInner.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocations.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOf.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.cs
 src/Zernio/Model/UpdateCommentAutomation200Response.cs
 src/Zernio/Model/UpdateCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/UpdateCommentAutomationRequest.cs

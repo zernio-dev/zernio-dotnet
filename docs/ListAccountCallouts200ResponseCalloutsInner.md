@@ -1,0 +1,12 @@
+# Zernio.Model.ListAccountCallouts200ResponseCalloutsInner
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**AssetId** | **string** |  | [optional] 
+**Text** | **string** |  | [optional] 
+**Status** | **string** | customer_asset.status, e.g. ENABLED, REMOVED, PAUSED. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

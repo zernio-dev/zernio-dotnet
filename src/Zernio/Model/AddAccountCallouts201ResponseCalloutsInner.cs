@@ -28,43 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// BoostPostRequestTargetingRegionsInner
+    /// AddAccountCallouts201ResponseCalloutsInner
     /// </summary>
-    [DataContract(Name = "boostPost_request_targeting_regions_inner")]
-    public partial class BoostPostRequestTargetingRegionsInner : IValidatableObject
+    [DataContract(Name = "addAccountCallouts_201_response_callouts_inner")]
+    public partial class AddAccountCallouts201ResponseCalloutsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BoostPostRequestTargetingRegionsInner" /> class.
+        /// Initializes a new instance of the <see cref="AddAccountCallouts201ResponseCalloutsInner" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected BoostPostRequestTargetingRegionsInner() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BoostPostRequestTargetingRegionsInner" /> class.
-        /// </summary>
-        /// <param name="key">key (required).</param>
-        /// <param name="name">name.</param>
-        public BoostPostRequestTargetingRegionsInner(string key = default, string name = default)
+        /// <param name="assetId">assetId.</param>
+        /// <param name="text">text.</param>
+        public AddAccountCallouts201ResponseCalloutsInner(string assetId = default, string text = default)
         {
-            // to ensure "key" is required (not null)
-            if (key == null)
-            {
-                throw new ArgumentNullException("key is a required property for BoostPostRequestTargetingRegionsInner and cannot be null");
-            }
-            this.Key = key;
-            this.Name = name;
+            this.AssetId = assetId;
+            this.Text = text;
         }
 
         /// <summary>
-        /// Gets or Sets Key
+        /// Gets or Sets AssetId
         /// </summary>
-        [DataMember(Name = "key", IsRequired = true, EmitDefaultValue = true)]
-        public string Key { get; set; }
+        [DataMember(Name = "assetId", EmitDefaultValue = false)]
+        public string AssetId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets Text
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
+        [DataMember(Name = "text", EmitDefaultValue = false)]
+        public string Text { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BoostPostRequestTargetingRegionsInner {\n");
-            sb.Append("  Key: ").Append(Key).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class AddAccountCallouts201ResponseCalloutsInner {\n");
+            sb.Append("  AssetId: ").Append(AssetId).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -105,7 +105,7 @@ namespace Zernio.Model
         /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed..</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
         /// <param name="advantageAudience">Meta only. 0 &#x3D; disabled (default), 1 &#x3D; enabled..</param>
-        public BoostPostRequestTargeting(int ageMin = default, int ageMax = default, GenderEnum? gender = default, List<string> languages = default, List<string> countries = default, List<BoostPostRequestTargetingRegionsInner> regions = default, List<BoostPostRequestTargetingCitiesInner> cities = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<BoostPostRequestTargetingCustomLocationsInner> customLocations = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
+        public BoostPostRequestTargeting(int ageMin = default, int ageMax = default, GenderEnum? gender = default, List<string> languages = default, List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<BoostPostRequestTargetingCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<BoostPostRequestTargetingCustomLocationsInner> customLocations = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
         {
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
@@ -152,7 +152,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region.</value>
         [DataMember(Name = "regions", EmitDefaultValue = false)]
-        public List<BoostPostRequestTargetingRegionsInner> Regions { get; set; }
+        public List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> Regions { get; set; }
 
         /// <summary>
         /// City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits (both set together, Meta only).
@@ -166,14 +166,14 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;).</value>
         [DataMember(Name = "zips", EmitDefaultValue = false)]
-        public List<BoostPostRequestTargetingRegionsInner> Zips { get; set; }
+        public List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> Zips { get; set; }
 
         /// <summary>
         /// DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;).
         /// </summary>
         /// <value>DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;).</value>
         [DataMember(Name = "metros", EmitDefaultValue = false)]
-        public List<BoostPostRequestTargetingRegionsInner> Metros { get; set; }
+        public List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> Metros { get; set; }
 
         /// <summary>
         /// Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed.

@@ -55,6 +55,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AddAccountCallouts
+        /// </summary>
+        [Fact]
+        public void AddAccountCalloutsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //AddAccountCalloutsRequest addAccountCalloutsRequest = null;
+            //var response = instance.AddAccountCallouts(addAccountCalloutsRequest);
+            //Assert.IsType<AddAccountCallouts201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateCustomConversion
         /// </summary>
         [Fact]
@@ -190,6 +202,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAccountCallouts
+        /// </summary>
+        [Fact]
+        public void ListAccountCalloutsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //var response = instance.ListAccountCallouts(accountId, customerId);
+            //Assert.IsType<ListAccountCallouts200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]
@@ -302,6 +327,18 @@ namespace Zernio.Test.Api
             //string? after = null;
             //var response = instance.ListValueRuleSets(accountId, adAccountId, limit, after);
             //Assert.IsType<ListValueRuleSets200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveAccountCallout
+        /// </summary>
+        [Fact]
+        public void RemoveAccountCalloutTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //RemoveAccountCalloutRequest removeAccountCalloutRequest = null;
+            //var response = instance.RemoveAccountCallout(removeAccountCalloutRequest);
+            //Assert.IsType<RemoveAccountCallout200Response>(response);
         }
 
         /// <summary>

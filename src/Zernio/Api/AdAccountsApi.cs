@@ -29,6 +29,27 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Add account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <returns>AddAccountCallouts201Response</returns>
+        AddAccountCallouts201Response AddAccountCallouts(AddAccountCalloutsRequest addAccountCalloutsRequest);
+
+        /// <summary>
+        /// Add account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <returns>ApiResponse of AddAccountCallouts201Response</returns>
+        ApiResponse<AddAccountCallouts201Response> AddAccountCalloutsWithHttpInfo(AddAccountCalloutsRequest addAccountCalloutsRequest);
+        /// <summary>
         /// Create or reuse a custom conversion
         /// </summary>
         /// <remarks>
@@ -269,6 +290,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetValueRuleSet200Response</returns>
         ApiResponse<GetValueRuleSet200Response> GetValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId);
         /// <summary>
+        /// List account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <returns>ListAccountCallouts200Response</returns>
+        ListAccountCallouts200Response ListAccountCallouts(string accountId, string? customerId = default);
+
+        /// <summary>
+        /// List account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <returns>ApiResponse of ListAccountCallouts200Response</returns>
+        ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? customerId = default);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -475,6 +519,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListValueRuleSets200Response</returns>
         ApiResponse<ListValueRuleSets200Response> ListValueRuleSetsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default);
         /// <summary>
+        /// Remove an account-level callout extension
+        /// </summary>
+        /// <remarks>
+        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>RemoveAccountCallout200Response</returns>
+        RemoveAccountCallout200Response RemoveAccountCallout(RemoveAccountCalloutRequest removeAccountCalloutRequest);
+
+        /// <summary>
+        /// Remove an account-level callout extension
+        /// </summary>
+        /// <remarks>
+        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
+        ApiResponse<RemoveAccountCallout200Response> RemoveAccountCalloutWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest);
+        /// <summary>
         /// Update ad account settings
         /// </summary>
         /// <remarks>
@@ -527,6 +592,29 @@ namespace Zernio.Api
     public interface IAdAccountsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Add account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAccountCallouts201Response</returns>
+        System.Threading.Tasks.Task<AddAccountCallouts201Response> AddAccountCalloutsAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Add account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAccountCallouts201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddAccountCallouts201Response>> AddAccountCalloutsWithHttpInfoAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create or reuse a custom conversion
         /// </summary>
@@ -788,6 +876,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetValueRuleSet200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetValueRuleSet200Response>> GetValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAccountCallouts200Response</returns>
+        System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List account-level callout extensions
+        /// </summary>
+        /// <remarks>
+        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAccountCallouts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -1009,6 +1122,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListValueRuleSets200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListValueRuleSets200Response>> ListValueRuleSetsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove an account-level callout extension
+        /// </summary>
+        /// <remarks>
+        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAccountCallout200Response</returns>
+        System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountCalloutAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove an account-level callout extension
+        /// </summary>
+        /// <remarks>
+        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveAccountCallout200Response>> RemoveAccountCalloutWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad account settings
         /// </summary>
@@ -1268,6 +1404,135 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <returns>AddAccountCallouts201Response</returns>
+        public AddAccountCallouts201Response AddAccountCallouts(AddAccountCalloutsRequest addAccountCalloutsRequest)
+        {
+            Zernio.Client.ApiResponse<AddAccountCallouts201Response> localVarResponse = AddAccountCalloutsWithHttpInfo(addAccountCalloutsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <returns>ApiResponse of AddAccountCallouts201Response</returns>
+        public Zernio.Client.ApiResponse<AddAccountCallouts201Response> AddAccountCalloutsWithHttpInfo(AddAccountCalloutsRequest addAccountCalloutsRequest)
+        {
+            // verify the required parameter 'addAccountCalloutsRequest' is set
+            if (addAccountCalloutsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAccountCalloutsRequest' when calling AdAccountsApi->AddAccountCallouts");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAccountCalloutsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AddAccountCallouts201Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAccountCallouts201Response</returns>
+        public async System.Threading.Tasks.Task<AddAccountCallouts201Response> AddAccountCalloutsAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AddAccountCallouts201Response> localVarResponse = await AddAccountCalloutsWithHttpInfoAsync(addAccountCalloutsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAccountCallouts201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddAccountCallouts201Response>> AddAccountCalloutsWithHttpInfoAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'addAccountCalloutsRequest' is set
+            if (addAccountCalloutsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAccountCalloutsRequest' when calling AdAccountsApi->AddAccountCallouts");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAccountCalloutsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AddAccountCallouts201Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -2741,6 +3006,145 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <returns>ListAccountCallouts200Response</returns>
+        public ListAccountCallouts200Response ListAccountCallouts(string accountId, string? customerId = default)
+        {
+            Zernio.Client.ApiResponse<ListAccountCallouts200Response> localVarResponse = ListAccountCalloutsWithHttpInfo(accountId, customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <returns>ApiResponse of ListAccountCallouts200Response</returns>
+        public Zernio.Client.ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? customerId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAccountCallouts");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAccountCallouts200Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAccountCallouts200Response</returns>
+        public async System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAccountCallouts200Response> localVarResponse = await ListAccountCalloutsWithHttpInfoAsync(accountId, customerId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAccountCallouts200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAccountCallouts");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAccountCallouts200Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List ad accounts Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3986,6 +4390,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListValueRuleSets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>RemoveAccountCallout200Response</returns>
+        public RemoveAccountCallout200Response RemoveAccountCallout(RemoveAccountCalloutRequest removeAccountCalloutRequest)
+        {
+            Zernio.Client.ApiResponse<RemoveAccountCallout200Response> localVarResponse = RemoveAccountCalloutWithHttpInfo(removeAccountCalloutRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveAccountCallout200Response> RemoveAccountCalloutWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest)
+        {
+            // verify the required parameter 'removeAccountCalloutRequest' is set
+            if (removeAccountCalloutRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'removeAccountCalloutRequest' when calling AdAccountsApi->RemoveAccountCallout");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = removeAccountCalloutRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveAccountCallout200Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAccountCallout", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAccountCallout200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountCalloutAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveAccountCallout200Response> localVarResponse = await RemoveAccountCalloutWithHttpInfoAsync(removeAccountCalloutRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveAccountCallout200Response>> RemoveAccountCalloutWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'removeAccountCalloutRequest' is set
+            if (removeAccountCalloutRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'removeAccountCalloutRequest' when calling AdAccountsApi->RemoveAccountCallout");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = removeAccountCalloutRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveAccountCallout200Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAccountCallout", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

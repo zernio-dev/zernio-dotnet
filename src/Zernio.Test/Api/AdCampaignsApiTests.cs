@@ -118,6 +118,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAdSet
+        /// </summary>
+        [Fact]
+        public void CreateAdSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdSetRequest createAdSetRequest = null;
+            //string? idempotencyKey = null;
+            //var response = instance.CreateAdSet(createAdSetRequest, idempotencyKey);
+            //Assert.IsType<CreateAdSet201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateStandaloneAd
         /// </summary>
         [Fact]
@@ -280,6 +293,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetCampaignTargeting
+        /// </summary>
+        [Fact]
+        public void GetCampaignTargetingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //string? platform = null;
+            //var response = instance.GetCampaignTargeting(campaignId, platform);
+            //Assert.IsType<GetCampaignTargeting200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdCampaigns
         /// </summary>
         [Fact]
@@ -324,6 +350,20 @@ namespace Zernio.Test.Api
             //string? search = null;
             //var response = instance.ListAdKeywords(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
             //Assert.IsType<ListAdKeywords200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdSets
+        /// </summary>
+        [Fact]
+        public void ListAdSetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string? accountId = null;
+            //string? campaignId = null;
+            //string? platform = null;
+            //var response = instance.ListAdSets(accountId, campaignId, platform);
+            //Assert.IsType<ListAdSets200Response>(response);
         }
 
         /// <summary>
@@ -480,6 +520,19 @@ namespace Zernio.Test.Api
             //UpdateAdKeywordRequest updateAdKeywordRequest = null;
             //var response = instance.UpdateAdStatus(adId, updateAdKeywordRequest);
             //Assert.IsType<UpdateAdStatus200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateCampaignTargeting
+        /// </summary>
+        [Fact]
+        public void UpdateCampaignTargetingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //UpdateCampaignTargetingRequest updateCampaignTargetingRequest = null;
+            //var response = instance.UpdateCampaignTargeting(campaignId, updateCampaignTargetingRequest);
+            //Assert.IsType<UpdateCampaignTargeting200Response>(response);
         }
     }
 }

@@ -75,6 +75,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AdjustConversions200Response</returns>
         ApiResponse<AdjustConversions200Response> AdjustConversionsWithHttpInfo(AdjustConversionsRequest adjustConversionsRequest);
         /// <summary>
+        /// Create a website conversion action
+        /// </summary>
+        /// <remarks>
+        /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <returns>CreateConversionAction201Response</returns>
+        CreateConversionAction201Response CreateConversionAction(CreateConversionActionRequest createConversionActionRequest);
+
+        /// <summary>
+        /// Create a website conversion action
+        /// </summary>
+        /// <remarks>
+        /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <returns>ApiResponse of CreateConversionAction201Response</returns>
+        ApiResponse<CreateConversionAction201Response> CreateConversionActionWithHttpInfo(CreateConversionActionRequest createConversionActionRequest);
+        /// <summary>
         /// Create a conversion destination
         /// </summary>
         /// <remarks>
@@ -201,6 +222,31 @@ namespace Zernio.Api
         /// <param name="destinationId">Meta pixel/dataset ID.</param>
         /// <returns>ApiResponse of GetConversionsQuality200Response</returns>
         ApiResponse<GetConversionsQuality200Response> GetConversionsQualityWithHttpInfo(string accountId, string destinationId);
+        /// <summary>
+        /// List conversion actions and their tag snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <returns>ListConversionActions200Response</returns>
+        ListConversionActions200Response ListConversionActions(string accountId, string? customerId = default, string? type = default);
+
+        /// <summary>
+        /// List conversion actions and their tag snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <returns>ApiResponse of ListConversionActions200Response</returns>
+        ApiResponse<ListConversionActions200Response> ListConversionActionsWithHttpInfo(string accountId, string? customerId = default, string? type = default);
         /// <summary>
         /// List associated campaigns
         /// </summary>
@@ -380,6 +426,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AdjustConversions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AdjustConversions200Response>> AdjustConversionsWithHttpInfoAsync(AdjustConversionsRequest adjustConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create a website conversion action
+        /// </summary>
+        /// <remarks>
+        /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionAction201Response</returns>
+        System.Threading.Tasks.Task<CreateConversionAction201Response> CreateConversionActionAsync(CreateConversionActionRequest createConversionActionRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a website conversion action
+        /// </summary>
+        /// <remarks>
+        /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionAction201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateConversionAction201Response>> CreateConversionActionWithHttpInfoAsync(CreateConversionActionRequest createConversionActionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Create a conversion destination
         /// </summary>
         /// <remarks>
@@ -516,6 +585,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConversionsQuality200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionsQuality200Response>> GetConversionsQualityWithHttpInfoAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List conversion actions and their tag snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListConversionActions200Response</returns>
+        System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List conversion actions and their tag snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListConversionActions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListConversionActions200Response>> ListConversionActionsWithHttpInfoAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List associated campaigns
         /// </summary>
@@ -1138,6 +1234,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("AdjustConversions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <returns>CreateConversionAction201Response</returns>
+        public CreateConversionAction201Response CreateConversionAction(CreateConversionActionRequest createConversionActionRequest)
+        {
+            Zernio.Client.ApiResponse<CreateConversionAction201Response> localVarResponse = CreateConversionActionWithHttpInfo(createConversionActionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <returns>ApiResponse of CreateConversionAction201Response</returns>
+        public Zernio.Client.ApiResponse<CreateConversionAction201Response> CreateConversionActionWithHttpInfo(CreateConversionActionRequest createConversionActionRequest)
+        {
+            // verify the required parameter 'createConversionActionRequest' is set
+            if (createConversionActionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createConversionActionRequest' when calling ConversionsApi->CreateConversionAction");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createConversionActionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateConversionAction201Response>("/v1/ads/conversions/actions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateConversionAction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionAction201Response</returns>
+        public async System.Threading.Tasks.Task<CreateConversionAction201Response> CreateConversionActionAsync(CreateConversionActionRequest createConversionActionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateConversionAction201Response> localVarResponse = await CreateConversionActionWithHttpInfoAsync(createConversionActionRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createConversionActionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionAction201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateConversionAction201Response>> CreateConversionActionWithHttpInfoAsync(CreateConversionActionRequest createConversionActionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createConversionActionRequest' is set
+            if (createConversionActionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createConversionActionRequest' when calling ConversionsApi->CreateConversionAction");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createConversionActionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateConversionAction201Response>("/v1/ads/conversions/actions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateConversionAction", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1921,6 +2146,157 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetConversionsQuality", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <returns>ListConversionActions200Response</returns>
+        public ListConversionActions200Response ListConversionActions(string accountId, string? customerId = default, string? type = default)
+        {
+            Zernio.Client.ApiResponse<ListConversionActions200Response> localVarResponse = ListConversionActionsWithHttpInfo(accountId, customerId, type);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <returns>ApiResponse of ListConversionActions200Response</returns>
+        public Zernio.Client.ApiResponse<ListConversionActions200Response> ListConversionActionsWithHttpInfo(string accountId, string? customerId = default, string? type = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConversionsApi->ListConversionActions");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListConversionActions200Response>("/v1/ads/conversions/actions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListConversionActions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListConversionActions200Response</returns>
+        public async System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListConversionActions200Response> localVarResponse = await ListConversionActionsWithHttpInfoAsync(accountId, customerId, type, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
+        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListConversionActions200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListConversionActions200Response>> ListConversionActionsWithHttpInfoAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConversionsApi->ListConversionActions");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListConversionActions200Response>("/v1/ads/conversions/actions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListConversionActions", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
