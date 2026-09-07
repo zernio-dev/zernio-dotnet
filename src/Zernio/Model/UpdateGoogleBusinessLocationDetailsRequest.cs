@@ -37,7 +37,10 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateGoogleBusinessLocationDetailsRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpdateGoogleBusinessLocationDetailsRequest() { }
+        protected UpdateGoogleBusinessLocationDetailsRequest()
+        {
+            this.AdditionalProperties = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateGoogleBusinessLocationDetailsRequest" /> class.
         /// </summary>
@@ -64,6 +67,7 @@ namespace Zernio.Model
             this.PhoneNumbers = phoneNumbers;
             this.Categories = categories;
             this.ServiceItems = serviceItems;
+            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -117,6 +121,12 @@ namespace Zernio.Model
         public List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> ServiceItems { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -132,6 +142,7 @@ namespace Zernio.Model
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  Categories: ").Append(Categories).Append("\n");
             sb.Append("  ServiceItems: ").Append(ServiceItems).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
