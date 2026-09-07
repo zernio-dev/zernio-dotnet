@@ -34,6 +34,45 @@ namespace Zernio.Model
     public partial class PhoneNumberStockWatch : IValidatableObject
     {
         /// <summary>
+        /// The watched number type, or null when the watch covers every type in the country.
+        /// </summary>
+        /// <value>The watched number type, or null when the watch covers every type in the country.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum NumberTypeEnum
+        {
+            /// <summary>
+            /// Enum Local for value: local
+            /// </summary>
+            [EnumMember(Value = "local")]
+            Local = 1,
+
+            /// <summary>
+            /// Enum Mobile for value: mobile
+            /// </summary>
+            [EnumMember(Value = "mobile")]
+            Mobile = 2,
+
+            /// <summary>
+            /// Enum National for value: national
+            /// </summary>
+            [EnumMember(Value = "national")]
+            National = 3,
+
+            /// <summary>
+            /// Enum TollFree for value: toll_free
+            /// </summary>
+            [EnumMember(Value = "toll_free")]
+            TollFree = 4
+        }
+
+
+        /// <summary>
+        /// The watched number type, or null when the watch covers every type in the country.
+        /// </summary>
+        /// <value>The watched number type, or null when the watch covers every type in the country.</value>
+        [DataMember(Name = "numberType", IsRequired = true, EmitDefaultValue = true)]
+        public NumberTypeEnum NumberType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="PhoneNumberStockWatch" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -44,8 +83,9 @@ namespace Zernio.Model
         /// <param name="id">id (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2. (required).</param>
         /// <param name="countryName">countryName (required).</param>
+        /// <param name="numberType">The watched number type, or null when the watch covers every type in the country. (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
-        public PhoneNumberStockWatch(string id = default, string country = default, string countryName = default, DateTime createdAt = default)
+        public PhoneNumberStockWatch(string id = default, string country = default, string countryName = default, NumberTypeEnum numberType = default, DateTime createdAt = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -65,6 +105,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("countryName is a required property for PhoneNumberStockWatch and cannot be null");
             }
             this.CountryName = countryName;
+            this.NumberType = numberType;
             this.CreatedAt = createdAt;
         }
 
@@ -104,6 +145,7 @@ namespace Zernio.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CountryName: ").Append(CountryName).Append("\n");
+            sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

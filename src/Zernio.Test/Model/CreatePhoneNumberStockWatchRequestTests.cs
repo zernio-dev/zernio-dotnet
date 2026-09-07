@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Country'
         }
+
+        /// <summary>
+        /// Test the property 'NumberType'
+        /// </summary>
+        [Fact]
+        public void NumberTypeTest()
+        {
+            // TODO unit test for the property 'NumberType'
+        }
     }
 }

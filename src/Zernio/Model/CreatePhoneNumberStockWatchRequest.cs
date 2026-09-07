@@ -34,6 +34,45 @@ namespace Zernio.Model
     public partial class CreatePhoneNumberStockWatchRequest : IValidatableObject
     {
         /// <summary>
+        /// Narrow the watch to one number type. Omit to be notified when any type in the country is back.
+        /// </summary>
+        /// <value>Narrow the watch to one number type. Omit to be notified when any type in the country is back.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum NumberTypeEnum
+        {
+            /// <summary>
+            /// Enum Local for value: local
+            /// </summary>
+            [EnumMember(Value = "local")]
+            Local = 1,
+
+            /// <summary>
+            /// Enum Mobile for value: mobile
+            /// </summary>
+            [EnumMember(Value = "mobile")]
+            Mobile = 2,
+
+            /// <summary>
+            /// Enum National for value: national
+            /// </summary>
+            [EnumMember(Value = "national")]
+            National = 3,
+
+            /// <summary>
+            /// Enum TollFree for value: toll_free
+            /// </summary>
+            [EnumMember(Value = "toll_free")]
+            TollFree = 4
+        }
+
+
+        /// <summary>
+        /// Narrow the watch to one number type. Omit to be notified when any type in the country is back.
+        /// </summary>
+        /// <value>Narrow the watch to one number type. Omit to be notified when any type in the country is back.</value>
+        [DataMember(Name = "numberType", EmitDefaultValue = false)]
+        public NumberTypeEnum? NumberType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreatePhoneNumberStockWatchRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -42,7 +81,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreatePhoneNumberStockWatchRequest" /> class.
         /// </summary>
         /// <param name="country">ISO 3166-1 alpha-2 code of a country listed by GET /v1/phone-numbers/countries. (required).</param>
-        public CreatePhoneNumberStockWatchRequest(string country = default)
+        /// <param name="numberType">Narrow the watch to one number type. Omit to be notified when any type in the country is back..</param>
+        public CreatePhoneNumberStockWatchRequest(string country = default, NumberTypeEnum? numberType = default)
         {
             // to ensure "country" is required (not null)
             if (country == null)
@@ -50,6 +90,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("country is a required property for CreatePhoneNumberStockWatchRequest and cannot be null");
             }
             this.Country = country;
+            this.NumberType = numberType;
         }
 
         /// <summary>
@@ -68,6 +109,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreatePhoneNumberStockWatchRequest {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
