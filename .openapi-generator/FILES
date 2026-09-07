@@ -29,6 +29,7 @@ docs/AdDailyMetrics.md
 docs/AdEngagementCounts.md
 docs/AdFunnelCounts.md
 docs/AdInsightsApi.md
+docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
 docs/AdReviewStatus.md
@@ -1274,6 +1275,8 @@ docs/ScheduleBroadcast200ResponseBroadcast.md
 docs/ScheduleBroadcastRequest.md
 docs/SearchAdInterests200Response.md
 docs/SearchAdInterests200ResponseInterestsInner.md
+docs/SearchAdLibrary200Response.md
+docs/SearchAdLibrary200ResponsePaging.md
 docs/SearchAdTargeting200Response.md
 docs/SearchAdTargeting200ResponseResultsInner.md
 docs/SearchAvailablePhoneNumbers200Response.md
@@ -1855,6 +1858,7 @@ src/Zernio.Test/Api/AdAudiencesApiTests.cs
 src/Zernio.Test/Api/AdCampaignsApiTests.cs
 src/Zernio.Test/Api/AdCreativesApiTests.cs
 src/Zernio.Test/Api/AdInsightsApiTests.cs
+src/Zernio.Test/Api/AdLibraryApiTests.cs
 src/Zernio.Test/Api/AdTargetingApiTests.cs
 src/Zernio.Test/Api/AnalyticsApiTests.cs
 src/Zernio.Test/Api/BlogsApiTests.cs
@@ -3135,6 +3139,8 @@ src/Zernio.Test/Model/ScheduleBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/ScheduleBroadcastRequestTests.cs
 src/Zernio.Test/Model/SearchAdInterests200ResponseInterestsInnerTests.cs
 src/Zernio.Test/Model/SearchAdInterests200ResponseTests.cs
+src/Zernio.Test/Model/SearchAdLibrary200ResponsePagingTests.cs
+src/Zernio.Test/Model/SearchAdLibrary200ResponseTests.cs
 src/Zernio.Test/Model/SearchAdTargeting200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/SearchAdTargeting200ResponseTests.cs
 src/Zernio.Test/Model/SearchAvailablePhoneNumbers200ResponseNumbersInnerTests.cs
@@ -3698,6 +3704,7 @@ src/Zernio/Api/AdAudiencesApi.cs
 src/Zernio/Api/AdCampaignsApi.cs
 src/Zernio/Api/AdCreativesApi.cs
 src/Zernio/Api/AdInsightsApi.cs
+src/Zernio/Api/AdLibraryApi.cs
 src/Zernio/Api/AdTargetingApi.cs
 src/Zernio/Api/AnalyticsApi.cs
 src/Zernio/Api/BlogsApi.cs
@@ -4996,6 +5003,8 @@ src/Zernio/Model/ScheduleBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/ScheduleBroadcastRequest.cs
 src/Zernio/Model/SearchAdInterests200Response.cs
 src/Zernio/Model/SearchAdInterests200ResponseInterestsInner.cs
+src/Zernio/Model/SearchAdLibrary200Response.cs
+src/Zernio/Model/SearchAdLibrary200ResponsePaging.cs
 src/Zernio/Model/SearchAdTargeting200Response.cs
 src/Zernio/Model/SearchAdTargeting200ResponseResultsInner.cs
 src/Zernio/Model/SearchAvailablePhoneNumbers200Response.cs
