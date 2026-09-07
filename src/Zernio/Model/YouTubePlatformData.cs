@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Videos under 3 min auto-detected as Shorts. Custom thumbnails for regular videos only. Scheduled videos are uploaded immediately with the specified visibility.
+    /// Videos under 3 min auto-detected as Shorts. Custom thumbnails for regular videos only. Scheduled videos are uploaded immediately with the specified visibility. There is no description field here: the video description comes from the post content, or from customContent on this platform target when set, and is truncated to 5000 characters.
     /// </summary>
     [DataContract(Name = "YouTubePlatformData")]
     public partial class YouTubePlatformData : IValidatableObject
