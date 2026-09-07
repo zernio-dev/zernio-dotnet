@@ -848,6 +848,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PortfolioBidStrategyId'
+        /// </summary>
+        [Fact]
+        public void PortfolioBidStrategyIdTest()
+        {
+            // TODO unit test for the property 'PortfolioBidStrategyId'
+        }
+
+        /// <summary>
         /// Test the property 'ValueRuleSetId'
         /// </summary>
         [Fact]

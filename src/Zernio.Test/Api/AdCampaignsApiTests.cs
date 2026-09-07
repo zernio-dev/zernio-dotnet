@@ -131,6 +131,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateBidStrategy
+        /// </summary>
+        [Fact]
+        public void CreateBidStrategyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateBidStrategyRequest createBidStrategyRequest = null;
+            //var response = instance.CreateBidStrategy(createBidStrategyRequest);
+            //Assert.IsType<CreateBidStrategy201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateStandaloneAd
         /// </summary>
         [Fact]
@@ -293,6 +305,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetCampaignBidding
+        /// </summary>
+        [Fact]
+        public void GetCampaignBiddingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //string accountId = null;
+            //string platform = null;
+            //string? customerId = null;
+            //var response = instance.GetCampaignBidding(campaignId, accountId, platform, customerId);
+            //Assert.IsType<GetCampaignBidding200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetCampaignTargeting
         /// </summary>
         [Fact]
@@ -391,6 +418,21 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             //Assert.IsType<AdsListResponse>(response);
+        }
+
+        /// <summary>
+        /// Test ListBidStrategies
+        /// </summary>
+        [Fact]
+        public void ListBidStrategiesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //var response = instance.ListBidStrategies(accountId, customerId, fromDate, toDate);
+            //Assert.IsType<ListBidStrategies200Response>(response);
         }
 
         /// <summary>
@@ -520,6 +562,19 @@ namespace Zernio.Test.Api
             //UpdateAdKeywordRequest updateAdKeywordRequest = null;
             //var response = instance.UpdateAdStatus(adId, updateAdKeywordRequest);
             //Assert.IsType<UpdateAdStatus200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateBidStrategy
+        /// </summary>
+        [Fact]
+        public void UpdateBidStrategyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string strategyId = null;
+            //UpdateBidStrategyRequest updateBidStrategyRequest = null;
+            //var response = instance.UpdateBidStrategy(strategyId, updateBidStrategyRequest);
+            //Assert.IsType<UpdateBidStrategy200Response>(response);
         }
 
         /// <summary>

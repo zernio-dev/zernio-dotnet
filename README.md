@@ -212,6 +212,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**BulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
 *AdCampaignsApi* | [**CreateAdCampaign**](docs/AdCampaignsApi.md#createadcampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign
 *AdCampaignsApi* | [**CreateAdSet**](docs/AdCampaignsApi.md#createadset) | **POST** /v1/ads/ad-sets | Create a standalone ad group
+*AdCampaignsApi* | [**CreateBidStrategy**](docs/AdCampaignsApi.md#createbidstrategy) | **POST** /v1/ads/bid-strategies | Create a Google Ads portfolio bid strategy
 *AdCampaignsApi* | [**CreateStandaloneAd**](docs/AdCampaignsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
 *AdCampaignsApi* | [**DeleteAd**](docs/AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdCampaignsApi* | [**DeleteAdCampaign**](docs/AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
@@ -223,11 +224,13 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**GetAdSetDetails**](docs/AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase
 *AdCampaignsApi* | [**GetAdTree**](docs/AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**GetAdsTimeline**](docs/AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics
+*AdCampaignsApi* | [**GetCampaignBidding**](docs/AdCampaignsApi.md#getcampaignbidding) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign's current bidding
 *AdCampaignsApi* | [**GetCampaignTargeting**](docs/AdCampaignsApi.md#getcampaigntargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign's device, location, and language targeting
 *AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**ListAdKeywords**](docs/AdCampaignsApi.md#listadkeywords) | **GET** /v1/ads/keywords | List Search keywords
 *AdCampaignsApi* | [**ListAdSets**](docs/AdCampaignsApi.md#listadsets) | **GET** /v1/ads/ad-sets | List ad sets
 *AdCampaignsApi* | [**ListAds**](docs/AdCampaignsApi.md#listads) | **GET** /v1/ads | List ads
+*AdCampaignsApi* | [**ListBidStrategies**](docs/AdCampaignsApi.md#listbidstrategies) | **GET** /v1/ads/bid-strategies | List Google Ads portfolio bid strategies
 *AdCampaignsApi* | [**ListCampaignNegativeKeywords**](docs/AdCampaignsApi.md#listcampaignnegativekeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords
 *AdCampaignsApi* | [**RemoveAdKeyword**](docs/AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
 *AdCampaignsApi* | [**ReplaceCampaignNegativeKeywords**](docs/AdCampaignsApi.md#replacecampaignnegativekeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords
@@ -238,6 +241,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**UpdateAdSet**](docs/AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**UpdateAdSetStatus**](docs/AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdCampaignsApi* | [**UpdateAdStatus**](docs/AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
+*AdCampaignsApi* | [**UpdateBidStrategy**](docs/AdCampaignsApi.md#updatebidstrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update a Google Ads portfolio bid strategy
 *AdCampaignsApi* | [**UpdateCampaignTargeting**](docs/AdCampaignsApi.md#updatecampaigntargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign's device, location, or language targeting
 *AdCreativesApi* | [**CreateAdCreative**](docs/AdCreativesApi.md#createadcreative) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**DeleteAdCreative**](docs/AdCreativesApi.md#deleteadcreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
@@ -906,6 +910,9 @@ Class | Method | HTTP request | Description
  - [Model.CampaignAnalyticsResponseAnalytics](docs/CampaignAnalyticsResponseAnalytics.md)
  - [Model.CampaignAnalyticsResponseAnalyticsDailyInner](docs/CampaignAnalyticsResponseAnalyticsDailyInner.md)
  - [Model.CampaignAnalyticsResponseCampaign](docs/CampaignAnalyticsResponseCampaign.md)
+ - [Model.CampaignBidding](docs/CampaignBidding.md)
+ - [Model.CampaignBiddingBidSpec](docs/CampaignBiddingBidSpec.md)
+ - [Model.CampaignBiddingPortfolio](docs/CampaignBiddingPortfolio.md)
  - [Model.CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [Model.CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
  - [Model.ChannelPicker](docs/ChannelPicker.md)
@@ -974,6 +981,9 @@ Class | Method | HTTP request | Description
  - [Model.CreateAdSetRequest](docs/CreateAdSetRequest.md)
  - [Model.CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [Model.CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
+ - [Model.CreateBidStrategy201Response](docs/CreateBidStrategy201Response.md)
+ - [Model.CreateBidStrategy201ResponseStrategy](docs/CreateBidStrategy201ResponseStrategy.md)
+ - [Model.CreateBidStrategyRequest](docs/CreateBidStrategyRequest.md)
  - [Model.CreateBlog201Response](docs/CreateBlog201Response.md)
  - [Model.CreateBlogArticle201Response](docs/CreateBlogArticle201Response.md)
  - [Model.CreateBlogArticleRequest](docs/CreateBlogArticleRequest.md)
@@ -1311,6 +1321,7 @@ Class | Method | HTTP request | Description
  - [Model.GetCallsUsage200ResponseGroupsInner](docs/GetCallsUsage200ResponseGroupsInner.md)
  - [Model.GetCallsUsage200ResponseTotals](docs/GetCallsUsage200ResponseTotals.md)
  - [Model.GetCampaignAnalytics202Response](docs/GetCampaignAnalytics202Response.md)
+ - [Model.GetCampaignBidding200Response](docs/GetCampaignBidding200Response.md)
  - [Model.GetCampaignTargeting200Response](docs/GetCampaignTargeting200Response.md)
  - [Model.GetCampaignTargeting200ResponseDevicesInner](docs/GetCampaignTargeting200ResponseDevicesInner.md)
  - [Model.GetCampaignTargeting200ResponseLanguagesInner](docs/GetCampaignTargeting200ResponseLanguagesInner.md)
@@ -1703,6 +1714,7 @@ Class | Method | HTTP request | Description
  - [Model.ListAds202Response](docs/ListAds202Response.md)
  - [Model.ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [Model.ListApiKeys200Response](docs/ListApiKeys200Response.md)
+ - [Model.ListBidStrategies200Response](docs/ListBidStrategies200Response.md)
  - [Model.ListBlogArticles200Response](docs/ListBlogArticles200Response.md)
  - [Model.ListBlogs200Response](docs/ListBlogs200Response.md)
  - [Model.ListBroadcastRecipients200Response](docs/ListBroadcastRecipients200Response.md)
@@ -1912,6 +1924,7 @@ Class | Method | HTTP request | Description
  - [Model.PlatformAnalytics](docs/PlatformAnalytics.md)
  - [Model.PlatformTarget](docs/PlatformTarget.md)
  - [Model.PlatformTargetAccountId](docs/PlatformTargetAccountId.md)
+ - [Model.PortfolioBidStrategy](docs/PortfolioBidStrategy.md)
  - [Model.Post](docs/Post.md)
  - [Model.PostAnalytics](docs/PostAnalytics.md)
  - [Model.PostCreateResponse](docs/PostCreateResponse.md)
@@ -2243,6 +2256,8 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
  - [Model.UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)
  - [Model.UpdateAdRequestTargeting](docs/UpdateAdRequestTargeting.md)
+ - [Model.UpdateAdRequestTargetingDevicesInner](docs/UpdateAdRequestTargetingDevicesInner.md)
+ - [Model.UpdateAdRequestTargetingDevicesInnerOneOf](docs/UpdateAdRequestTargetingDevicesInnerOneOf.md)
  - [Model.UpdateAdRequestTargetingInterestsInner](docs/UpdateAdRequestTargetingInterestsInner.md)
  - [Model.UpdateAdRequestTargetingKeywordsInner](docs/UpdateAdRequestTargetingKeywordsInner.md)
  - [Model.UpdateAdRequestTargetingKeywordsInnerOneOf](docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md)
@@ -2256,6 +2271,9 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [Model.UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [Model.UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)
+ - [Model.UpdateBidStrategy200Response](docs/UpdateBidStrategy200Response.md)
+ - [Model.UpdateBidStrategy200ResponseStrategy](docs/UpdateBidStrategy200ResponseStrategy.md)
+ - [Model.UpdateBidStrategyRequest](docs/UpdateBidStrategyRequest.md)
  - [Model.UpdateBlogArticleRequest](docs/UpdateBlogArticleRequest.md)
  - [Model.UpdateBlogRequest](docs/UpdateBlogRequest.md)
  - [Model.UpdateBlueskySettingsRequest](docs/UpdateBlueskySettingsRequest.md)

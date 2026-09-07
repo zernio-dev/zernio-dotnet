@@ -67,8 +67,9 @@ namespace Zernio.Model
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">bidAmount.</param>
         /// <param name="roasAverageFloor">roasAverageFloor.</param>
+        /// <param name="portfolioBidStrategyId">Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet)..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, Object platformSpecificData = default)
+        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, Object platformSpecificData = default)
         {
             this.Updated = updated;
             this.Budget = budget;
@@ -76,6 +77,7 @@ namespace Zernio.Model
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.PortfolioBidStrategyId = portfolioBidStrategyId;
             this.PlatformSpecificData = platformSpecificData;
         }
 
@@ -105,6 +107,13 @@ namespace Zernio.Model
         public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
+        /// Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet).
+        /// </summary>
+        /// <value>Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet).</value>
+        [DataMember(Name = "portfolioBidStrategyId", EmitDefaultValue = false)]
+        public string PortfolioBidStrategyId { get; set; }
+
+        /// <summary>
         /// Gets or Sets PlatformSpecificData
         /// </summary>
         [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
@@ -124,6 +133,7 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  PortfolioBidStrategyId: ").Append(PortfolioBidStrategyId).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -68,9 +68,9 @@ namespace Zernio.Model
         public PlatformEnum Platform { get; set; }
 
         /// <summary>
-        /// **Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy.
+        /// **Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead.
         /// </summary>
-        /// <value>**Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy.</value>
+        /// <value>**Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead.</value>
         [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
         public BidStrategy? BidStrategy { get; set; }
         /// <summary>
@@ -83,19 +83,21 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="platform">Required: platform campaign IDs are not globally unique. (required).</param>
         /// <param name="accountId">**Meta only.** Zernio SocialAccount id owning the ad account. Needed only for an EMPTY campaign (zero ads); ignored otherwise..</param>
-        /// <param name="bidStrategy">**Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy..</param>
+        /// <param name="bidStrategy">**Meta + Google.** On Meta, the campaign default that ad sets inherit unless they override it. On Google, the campaign&#39;s own bidding strategy. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead..</param>
         /// <param name="bidAmount">**Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both..</param>
         /// <param name="roasAverageFloor">**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS..</param>
+        /// <param name="portfolioBidStrategyId">**Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy..</param>
         /// <param name="budget">budget.</param>
         /// <param name="name">**Meta only.** Rename the campaign..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaignRequest(PlatformEnum platform = default, string accountId = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, UpdateAdCampaignRequestBudget budget = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
+        public UpdateAdCampaignRequest(PlatformEnum platform = default, string accountId = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, UpdateAdCampaignRequestBudget budget = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
         {
             this.Platform = platform;
             this.AccountId = accountId;
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.PortfolioBidStrategyId = portfolioBidStrategyId;
             this.Budget = budget;
             this.Name = name;
             this.PlatformSpecificData = platformSpecificData;
@@ -121,6 +123,13 @@ namespace Zernio.Model
         /// <value>**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.</value>
         [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
         public decimal RoasAverageFloor { get; set; }
+
+        /// <summary>
+        /// **Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy.
+        /// </summary>
+        /// <value>**Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy.</value>
+        [DataMember(Name = "portfolioBidStrategyId", EmitDefaultValue = false)]
+        public string PortfolioBidStrategyId { get; set; }
 
         /// <summary>
         /// Gets or Sets Budget
@@ -154,6 +163,7 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  PortfolioBidStrategyId: ").Append(PortfolioBidStrategyId).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
@@ -177,6 +187,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.PortfolioBidStrategyId != null) {
+                // PortfolioBidStrategyId (string) pattern
+                Regex regexPortfolioBidStrategyId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexPortfolioBidStrategyId.Match(this.PortfolioBidStrategyId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PortfolioBidStrategyId, must match a pattern of " + regexPortfolioBidStrategyId, new [] { "PortfolioBidStrategyId" });
+                }
+            }
+
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 255)
             {

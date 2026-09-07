@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Devices'
+        /// </summary>
+        [Fact]
+        public void DevicesTest()
+        {
+            // TODO unit test for the property 'Devices'
+        }
+
+        /// <summary>
         /// Test the property 'AgeMin'
         /// </summary>
         [Fact]

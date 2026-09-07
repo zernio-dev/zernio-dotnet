@@ -120,7 +120,7 @@ namespace Zernio.Api
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -132,7 +132,7 @@ namespace Zernio.Api
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -162,6 +162,27 @@ namespace Zernio.Api
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. Only 2xx responses are stored, so a request that failed with a 4xx can be retried with a corrected body under the SAME key. (optional)</param>
         /// <returns>ApiResponse of CreateAdSet201Response</returns>
         ApiResponse<CreateAdSet201Response> CreateAdSetWithHttpInfo(CreateAdSetRequest createAdSetRequest, string? idempotencyKey = default);
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <returns>CreateBidStrategy201Response</returns>
+        CreateBidStrategy201Response CreateBidStrategy(CreateBidStrategyRequest createBidStrategyRequest);
+
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <returns>ApiResponse of CreateBidStrategy201Response</returns>
+        ApiResponse<CreateBidStrategy201Response> CreateBidStrategyWithHttpInfo(CreateBidStrategyRequest createBidStrategyRequest);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -454,6 +475,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AdsTimelineResponse</returns>
         ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
         /// <summary>
+        /// Read a campaign&#39;s current bidding
+        /// </summary>
+        /// <remarks>
+        /// Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <returns>GetCampaignBidding200Response</returns>
+        GetCampaignBidding200Response GetCampaignBidding(string campaignId, string accountId, string platform, string? customerId = default);
+
+        /// <summary>
+        /// Read a campaign&#39;s current bidding
+        /// </summary>
+        /// <remarks>
+        /// Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <returns>ApiResponse of GetCampaignBidding200Response</returns>
+        ApiResponse<GetCampaignBidding200Response> GetCampaignBiddingWithHttpInfo(string campaignId, string accountId, string platform, string? customerId = default);
+        /// <summary>
         /// Read a Google campaign&#39;s device, location, and language targeting
         /// </summary>
         /// <remarks>
@@ -641,6 +689,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AdsListResponse</returns>
         ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
+        /// List Google Ads portfolio bid strategies
+        /// </summary>
+        /// <remarks>
+        /// Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <returns>ListBidStrategies200Response</returns>
+        ListBidStrategies200Response ListBidStrategies(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+
+        /// <summary>
+        /// List Google Ads portfolio bid strategies
+        /// </summary>
+        /// <remarks>
+        /// Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <returns>ApiResponse of ListBidStrategies200Response</returns>
+        ApiResponse<ListBidStrategies200Response> ListBidStrategiesWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        /// <summary>
         /// List campaign-level negative keywords
         /// </summary>
         /// <remarks>
@@ -711,7 +786,7 @@ namespace Zernio.Api
         /// Update ad
         /// </summary>
         /// <remarks>
-        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -723,7 +798,7 @@ namespace Zernio.Api
         /// Update ad
         /// </summary>
         /// <remarks>
-        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -734,7 +809,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -746,7 +821,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -868,6 +943,29 @@ namespace Zernio.Api
         /// <param name="updateAdKeywordRequest"></param>
         /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
         ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdKeywordRequest updateAdKeywordRequest);
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <returns>UpdateBidStrategy200Response</returns>
+        UpdateBidStrategy200Response UpdateBidStrategy(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest);
+
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <returns>ApiResponse of UpdateBidStrategy200Response</returns>
+        ApiResponse<UpdateBidStrategy200Response> UpdateBidStrategyWithHttpInfo(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest);
         /// <summary>
         /// Edit a Google campaign&#39;s device, location, or language targeting
         /// </summary>
@@ -1000,7 +1098,7 @@ namespace Zernio.Api
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -1013,7 +1111,7 @@ namespace Zernio.Api
         /// Create a standalone campaign
         /// </summary>
         /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -1046,6 +1144,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateAdSet201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateAdSet201Response>> CreateAdSetWithHttpInfoAsync(CreateAdSetRequest createAdSetRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateBidStrategy201Response</returns>
+        System.Threading.Tasks.Task<CreateBidStrategy201Response> CreateBidStrategyAsync(CreateBidStrategyRequest createBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateBidStrategy201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateBidStrategy201Response>> CreateBidStrategyWithHttpInfoAsync(CreateBidStrategyRequest createBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -1360,6 +1481,35 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AdsTimelineResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Read a campaign&#39;s current bidding
+        /// </summary>
+        /// <remarks>
+        /// Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetCampaignBidding200Response</returns>
+        System.Threading.Tasks.Task<GetCampaignBidding200Response> GetCampaignBiddingAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Read a campaign&#39;s current bidding
+        /// </summary>
+        /// <remarks>
+        /// Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetCampaignBidding200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetCampaignBidding200Response>> GetCampaignBiddingWithHttpInfoAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Read a Google campaign&#39;s device, location, and language targeting
         /// </summary>
         /// <remarks>
@@ -1557,6 +1707,35 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AdsListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List Google Ads portfolio bid strategies
+        /// </summary>
+        /// <remarks>
+        /// Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListBidStrategies200Response</returns>
+        System.Threading.Tasks.Task<ListBidStrategies200Response> ListBidStrategiesAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Google Ads portfolio bid strategies
+        /// </summary>
+        /// <remarks>
+        /// Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListBidStrategies200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListBidStrategies200Response>> ListBidStrategiesWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List campaign-level negative keywords
         /// </summary>
         /// <remarks>
@@ -1633,7 +1812,7 @@ namespace Zernio.Api
         /// Update ad
         /// </summary>
         /// <remarks>
-        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -1646,7 +1825,7 @@ namespace Zernio.Api
         /// Update ad
         /// </summary>
         /// <remarks>
-        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -1658,7 +1837,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -1671,7 +1850,7 @@ namespace Zernio.Api
         /// Update a campaign
         /// </summary>
         /// <remarks>
-        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -1804,6 +1983,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateBidStrategy200Response</returns>
+        System.Threading.Tasks.Task<UpdateBidStrategy200Response> UpdateBidStrategyAsync(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy
+        /// </summary>
+        /// <remarks>
+        /// Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateBidStrategy200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateBidStrategy200Response>> UpdateBidStrategyWithHttpInfoAsync(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Edit a Google campaign&#39;s device, location, or language targeting
         /// </summary>
@@ -2585,7 +2789,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -2598,7 +2802,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -2653,7 +2857,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -2667,7 +2871,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; / &#x60;bidStrategy&#x60; are Meta-only (400 elsewhere). Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
+        /// Create a standalone campaign Creates a campaign WITHOUT its first ad set / ad, on the platform of the given &#x60;accountId&#x60;. Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. Platform notes: on Meta a budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget), and &#x60;specialAdCategories&#x60; is Meta-only (400 elsewhere); &#x60;bidStrategy&#x60; is Meta and Google (400 elsewhere), and Google also accepts &#x60;portfolioBidStrategyId&#x60; instead. Google, X and OpenAI require a budget (422 without one; OpenAI accepts only &#x60;budgetType: lifetime&#x60;, Google only &#x60;budgetType: daily&#x60;). LinkedIn creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there; it comes back &#x60;status: DRAFT&#x60;. TikTok campaigns are created without a status and report &#x60;ENABLE&#x60;. Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60; where the platform supports it.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCampaignRequest"></param>
@@ -2860,6 +3064,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateAdSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <returns>CreateBidStrategy201Response</returns>
+        public CreateBidStrategy201Response CreateBidStrategy(CreateBidStrategyRequest createBidStrategyRequest)
+        {
+            Zernio.Client.ApiResponse<CreateBidStrategy201Response> localVarResponse = CreateBidStrategyWithHttpInfo(createBidStrategyRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <returns>ApiResponse of CreateBidStrategy201Response</returns>
+        public Zernio.Client.ApiResponse<CreateBidStrategy201Response> CreateBidStrategyWithHttpInfo(CreateBidStrategyRequest createBidStrategyRequest)
+        {
+            // verify the required parameter 'createBidStrategyRequest' is set
+            if (createBidStrategyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createBidStrategyRequest' when calling AdCampaignsApi->CreateBidStrategy");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createBidStrategyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateBidStrategy201Response>("/v1/ads/bid-strategies", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateBidStrategy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateBidStrategy201Response</returns>
+        public async System.Threading.Tasks.Task<CreateBidStrategy201Response> CreateBidStrategyAsync(CreateBidStrategyRequest createBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateBidStrategy201Response> localVarResponse = await CreateBidStrategyWithHttpInfoAsync(createBidStrategyRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Google Ads portfolio bid strategy Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateBidStrategy201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateBidStrategy201Response>> CreateBidStrategyWithHttpInfoAsync(CreateBidStrategyRequest createBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createBidStrategyRequest' is set
+            if (createBidStrategyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createBidStrategyRequest' when calling AdCampaignsApi->CreateBidStrategy");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createBidStrategyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateBidStrategy201Response>("/v1/ads/bid-strategies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateBidStrategy", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4634,6 +4967,173 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Read a campaign&#39;s current bidding Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <returns>GetCampaignBidding200Response</returns>
+        public GetCampaignBidding200Response GetCampaignBidding(string campaignId, string accountId, string platform, string? customerId = default)
+        {
+            Zernio.Client.ApiResponse<GetCampaignBidding200Response> localVarResponse = GetCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read a campaign&#39;s current bidding Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <returns>ApiResponse of GetCampaignBidding200Response</returns>
+        public Zernio.Client.ApiResponse<GetCampaignBidding200Response> GetCampaignBiddingWithHttpInfo(string campaignId, string accountId, string platform, string? customerId = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->GetCampaignBidding");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetCampaignBidding");
+
+            // verify the required parameter 'platform' is set
+            if (platform == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'platform' when calling AdCampaignsApi->GetCampaignBidding");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetCampaignBidding200Response>("/v1/ads/campaigns/{campaignId}/bidding", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCampaignBidding", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read a campaign&#39;s current bidding Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetCampaignBidding200Response</returns>
+        public async System.Threading.Tasks.Task<GetCampaignBidding200Response> GetCampaignBiddingAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetCampaignBidding200Response> localVarResponse = await GetCampaignBiddingWithHttpInfoAsync(campaignId, accountId, platform, customerId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read a campaign&#39;s current bidding Live read of the campaign&#39;s bidding strategy on Google, for pre-filling the bid strategy block before a PUT to /v1/ads/campaigns/{campaignId}. Google Ads only; &#x60;platform&#x60; is required and rejected when it is anything else, since a &#x60;campaignId&#x60; is not globally unique.  Maps Google&#39;s bidding strategy onto the same triplet PUT accepts: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (Maximize Conversions, no target), &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; (Target CPA), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; (Target ROAS), &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; (Maximize Clicks with a CPC ceiling). A campaign on a portfolio strategy returns &#x60;portfolio&#x60; (id + name) and &#x60;bidSpec.portfolioBidStrategyId&#x60; instead of the triplet. Anything else (Manual CPC, Target Impression Share, ...) returns &#x60;bidSpec: null&#x60;; show &#x60;biddingStrategyType&#x60; as-is. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Numeric Google platform campaign id.</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
+        /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetCampaignBidding200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetCampaignBidding200Response>> GetCampaignBiddingWithHttpInfoAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->GetCampaignBidding");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetCampaignBidding");
+
+            // verify the required parameter 'platform' is set
+            if (platform == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'platform' when calling AdCampaignsApi->GetCampaignBidding");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetCampaignBidding200Response>("/v1/ads/campaigns/{campaignId}/bidding", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCampaignBidding", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Read a Google campaign&#39;s device, location, and language targeting Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the live campaign state so an integrator can build an editor around it. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5753,6 +6253,169 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List Google Ads portfolio bid strategies Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <returns>ListBidStrategies200Response</returns>
+        public ListBidStrategies200Response ListBidStrategies(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        {
+            Zernio.Client.ApiResponse<ListBidStrategies200Response> localVarResponse = ListBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Google Ads portfolio bid strategies Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <returns>ApiResponse of ListBidStrategies200Response</returns>
+        public Zernio.Client.ApiResponse<ListBidStrategies200Response> ListBidStrategiesWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->ListBidStrategies");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListBidStrategies200Response>("/v1/ads/bid-strategies", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListBidStrategies", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Google Ads portfolio bid strategies Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListBidStrategies200Response</returns>
+        public async System.Threading.Tasks.Task<ListBidStrategies200Response> ListBidStrategiesAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListBidStrategies200Response> localVarResponse = await ListBidStrategiesWithHttpInfoAsync(accountId, customerId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Google Ads portfolio bid strategies Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource live. Draws on the shared Google Ads operations budget.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
+        /// <param name="toDate">Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListBidStrategies200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListBidStrategies200Response>> ListBidStrategiesWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->ListBidStrategies");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListBidStrategies200Response>("/v1/ads/bid-strategies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListBidStrategies", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List campaign-level negative keywords Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -6162,7 +6825,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -6175,7 +6838,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -6231,7 +6894,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -6245,7 +6908,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
+        /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;   — each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -6305,7 +6968,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -6318,7 +6981,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -6374,7 +7037,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -6388,7 +7051,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Google maps the shared enum onto its own strategies: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; to Maximize Clicks, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; to Maximize Clicks with a max CPC (&#x60;bidAmount&#x60;), &#x60;COST_CAP&#x60; to Target CPA (&#x60;bidAmount&#x60;), &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; to Target ROAS (&#x60;roasAverageFloor&#x60;). A campaign on a PORTFOLIO bidding strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+        /// Update a campaign Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |- --|- --|- --|- --| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 — ad-set level | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | 501 | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Platform campaign ID</param>
@@ -7156,6 +7819,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAdStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <returns>UpdateBidStrategy200Response</returns>
+        public UpdateBidStrategy200Response UpdateBidStrategy(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateBidStrategy200Response> localVarResponse = UpdateBidStrategyWithHttpInfo(strategyId, updateBidStrategyRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <returns>ApiResponse of UpdateBidStrategy200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateBidStrategy200Response> UpdateBidStrategyWithHttpInfo(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest)
+        {
+            // verify the required parameter 'strategyId' is set
+            if (strategyId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'strategyId' when calling AdCampaignsApi->UpdateBidStrategy");
+
+            // verify the required parameter 'updateBidStrategyRequest' is set
+            if (updateBidStrategyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateBidStrategyRequest' when calling AdCampaignsApi->UpdateBidStrategy");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("strategyId", Zernio.Client.ClientUtils.ParameterToString(strategyId)); // path parameter
+            localVarRequestOptions.Data = updateBidStrategyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<UpdateBidStrategy200Response>("/v1/ads/bid-strategies/{strategyId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateBidStrategy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateBidStrategy200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateBidStrategy200Response> UpdateBidStrategyAsync(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateBidStrategy200Response> localVarResponse = await UpdateBidStrategyWithHttpInfoAsync(strategyId, updateBidStrategyRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a Google Ads portfolio bid strategy Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="strategyId">Numeric Google Ads bid strategy id.</param>
+        /// <param name="updateBidStrategyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateBidStrategy200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateBidStrategy200Response>> UpdateBidStrategyWithHttpInfoAsync(string strategyId, UpdateBidStrategyRequest updateBidStrategyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'strategyId' is set
+            if (strategyId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'strategyId' when calling AdCampaignsApi->UpdateBidStrategy");
+
+            // verify the required parameter 'updateBidStrategyRequest' is set
+            if (updateBidStrategyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateBidStrategyRequest' when calling AdCampaignsApi->UpdateBidStrategy");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("strategyId", Zernio.Client.ClientUtils.ParameterToString(strategyId)); // path parameter
+            localVarRequestOptions.Data = updateBidStrategyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateBidStrategy200Response>("/v1/ads/bid-strategies/{strategyId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateBidStrategy", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

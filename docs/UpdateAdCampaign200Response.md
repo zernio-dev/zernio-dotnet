@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **BidStrategy** | **BidStrategy** |  | [optional] 
 **BidAmount** | **decimal** |  | [optional] 
 **RoasAverageFloor** | **decimal** |  | [optional] 
+**PortfolioBidStrategyId** | **string** | Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet). | [optional] 
 **PlatformSpecificData** | **Object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

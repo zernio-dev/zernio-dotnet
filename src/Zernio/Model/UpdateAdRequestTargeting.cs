@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta + TikTok (demographics/interests), Google (keyword edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
+    /// Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
     /// </summary>
     [DataContract(Name = "updateAd_request_targeting")]
     public partial class UpdateAdRequestTargeting : IValidatableObject
@@ -62,15 +62,17 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="keywords">Google only. The FULL new set of positive keywords for the ad group; live keywords not listed are removed. Entries are strings (BROAD) or { text, matchType } with matchType exact | phrase | broad. Mirrored to GET /v1/ads/keywords immediately..</param>
         /// <param name="negativeKeywords">Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords..</param>
+        /// <param name="devices">Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }..</param>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
         /// <param name="countries">countries.</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
         /// <param name="advantageAudience">Meta only. Omit to preserve the existing setting on update. 0 &#x3D; disabled, 1 &#x3D; enabled..</param>
-        public UpdateAdRequestTargeting(List<UpdateAdRequestTargetingKeywordsInner> keywords = default, List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = default, int ageMin = default, int ageMax = default, List<string> countries = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
+        public UpdateAdRequestTargeting(List<UpdateAdRequestTargetingKeywordsInner> keywords = default, List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = default, List<UpdateAdRequestTargetingDevicesInner> devices = default, int ageMin = default, int ageMax = default, List<string> countries = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
         {
             this.Keywords = keywords;
             this.NegativeKeywords = negativeKeywords;
+            this.Devices = devices;
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
             this.Countries = countries;
@@ -91,6 +93,13 @@ namespace Zernio.Model
         /// <value>Google only. Same declarative contract as keywords, for the ad group&#39;s negative keywords.</value>
         [DataMember(Name = "negativeKeywords", EmitDefaultValue = false)]
         public List<UpdateAdRequestTargetingKeywordsInner> NegativeKeywords { get; set; }
+
+        /// <summary>
+        /// Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }.
+        /// </summary>
+        /// <value>Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }.</value>
+        [DataMember(Name = "devices", EmitDefaultValue = false)]
+        public List<UpdateAdRequestTargetingDevicesInner> Devices { get; set; }
 
         /// <summary>
         /// Gets or Sets AgeMin
@@ -127,6 +136,7 @@ namespace Zernio.Model
             sb.Append("class UpdateAdRequestTargeting {\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  NegativeKeywords: ").Append(NegativeKeywords).Append("\n");
+            sb.Append("  Devices: ").Append(Devices).Append("\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");

@@ -157,6 +157,9 @@ docs/CampaignAnalyticsResponse.md
 docs/CampaignAnalyticsResponseAnalytics.md
 docs/CampaignAnalyticsResponseAnalyticsDailyInner.md
 docs/CampaignAnalyticsResponseCampaign.md
+docs/CampaignBidding.md
+docs/CampaignBiddingBidSpec.md
+docs/CampaignBiddingPortfolio.md
 docs/CancelBroadcast200Response.md
 docs/CancelPhoneNumberPortIn200Response.md
 docs/ChannelPicker.md
@@ -231,6 +234,9 @@ docs/CreateAdSet201Response.md
 docs/CreateAdSetRequest.md
 docs/CreateApiKey201Response.md
 docs/CreateApiKeyRequest.md
+docs/CreateBidStrategy201Response.md
+docs/CreateBidStrategy201ResponseStrategy.md
+docs/CreateBidStrategyRequest.md
 docs/CreateBlog201Response.md
 docs/CreateBlogArticle201Response.md
 docs/CreateBlogArticleRequest.md
@@ -578,6 +584,7 @@ docs/GetCallsUsage200Response.md
 docs/GetCallsUsage200ResponseGroupsInner.md
 docs/GetCallsUsage200ResponseTotals.md
 docs/GetCampaignAnalytics202Response.md
+docs/GetCampaignBidding200Response.md
 docs/GetCampaignTargeting200Response.md
 docs/GetCampaignTargeting200ResponseDevicesInner.md
 docs/GetCampaignTargeting200ResponseLanguagesInner.md
@@ -975,6 +982,7 @@ docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
+docs/ListBidStrategies200Response.md
 docs/ListBlogArticles200Response.md
 docs/ListBlogs200Response.md
 docs/ListBroadcastRecipients200Response.md
@@ -1190,6 +1198,7 @@ docs/PinterestPlatformData.md
 docs/PlatformAnalytics.md
 docs/PlatformTarget.md
 docs/PlatformTargetAccountId.md
+docs/PortfolioBidStrategy.md
 docs/Post.md
 docs/PostAnalytics.md
 docs/PostCreateResponse.md
@@ -1532,6 +1541,8 @@ docs/UpdateAdRequest.md
 docs/UpdateAdRequestBudget.md
 docs/UpdateAdRequestCreative.md
 docs/UpdateAdRequestTargeting.md
+docs/UpdateAdRequestTargetingDevicesInner.md
+docs/UpdateAdRequestTargetingDevicesInnerOneOf.md
 docs/UpdateAdRequestTargetingInterestsInner.md
 docs/UpdateAdRequestTargetingKeywordsInner.md
 docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md
@@ -1545,6 +1556,9 @@ docs/UpdateAdStatus200Response.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
+docs/UpdateBidStrategy200Response.md
+docs/UpdateBidStrategy200ResponseStrategy.md
+docs/UpdateBidStrategyRequest.md
 docs/UpdateBlogArticleRequest.md
 docs/UpdateBlogRequest.md
 docs/UpdateBlueskySettingsRequest.md
@@ -2101,6 +2115,9 @@ src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsDailyInnerTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseCampaignTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseTests.cs
+src/Zernio.Test/Model/CampaignBiddingBidSpecTests.cs
+src/Zernio.Test/Model/CampaignBiddingPortfolioTests.cs
+src/Zernio.Test/Model/CampaignBiddingTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CancelPhoneNumberPortIn200ResponseTests.cs
 src/Zernio.Test/Model/ChannelPickerChannelsInnerTests.cs
@@ -2169,6 +2186,9 @@ src/Zernio.Test/Model/CreateAdSet201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdSetRequestTests.cs
 src/Zernio.Test/Model/CreateApiKey201ResponseTests.cs
 src/Zernio.Test/Model/CreateApiKeyRequestTests.cs
+src/Zernio.Test/Model/CreateBidStrategy201ResponseStrategyTests.cs
+src/Zernio.Test/Model/CreateBidStrategy201ResponseTests.cs
+src/Zernio.Test/Model/CreateBidStrategyRequestTests.cs
 src/Zernio.Test/Model/CreateBlog201ResponseTests.cs
 src/Zernio.Test/Model/CreateBlogArticle201ResponseTests.cs
 src/Zernio.Test/Model/CreateBlogArticleRequestImageTests.cs
@@ -2506,6 +2526,7 @@ src/Zernio.Test/Model/GetCallsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseTotalsTests.cs
 src/Zernio.Test/Model/GetCampaignAnalytics202ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignBidding200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseDevicesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseLanguagesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseLocationsInnerTests.cs
@@ -2898,6 +2919,7 @@ src/Zernio.Test/Model/ListAdVideos200ResponseTests.cs
 src/Zernio.Test/Model/ListAds202ResponseTests.cs
 src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
 src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
+src/Zernio.Test/Model/ListBidStrategies200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogArticles200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogs200ResponseTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseRecipientsInnerTests.cs
@@ -3107,6 +3129,7 @@ src/Zernio.Test/Model/PinterestPlatformDataTests.cs
 src/Zernio.Test/Model/PlatformAnalyticsTests.cs
 src/Zernio.Test/Model/PlatformTargetAccountIdTests.cs
 src/Zernio.Test/Model/PlatformTargetTests.cs
+src/Zernio.Test/Model/PortfolioBidStrategyTests.cs
 src/Zernio.Test/Model/PostAnalyticsTests.cs
 src/Zernio.Test/Model/PostCreateResponseTests.cs
 src/Zernio.Test/Model/PostDeleteResponseTests.cs
@@ -3436,6 +3459,8 @@ src/Zernio.Test/Model/UpdateAdKeyword200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdKeywordRequestTests.cs
 src/Zernio.Test/Model/UpdateAdRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdRequestCreativeTests.cs
+src/Zernio.Test/Model/UpdateAdRequestTargetingDevicesInnerOneOfTests.cs
+src/Zernio.Test/Model/UpdateAdRequestTargetingDevicesInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingInterestsInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingKeywordsInnerOneOfTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingKeywordsInnerTests.cs
@@ -3451,6 +3476,9 @@ src/Zernio.Test/Model/UpdateAdStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestUrlTagsInnerTests.cs
+src/Zernio.Test/Model/UpdateBidStrategy200ResponseStrategyTests.cs
+src/Zernio.Test/Model/UpdateBidStrategy200ResponseTests.cs
+src/Zernio.Test/Model/UpdateBidStrategyRequestTests.cs
 src/Zernio.Test/Model/UpdateBlogArticleRequestTests.cs
 src/Zernio.Test/Model/UpdateBlogRequestTests.cs
 src/Zernio.Test/Model/UpdateBlueskySettingsRequestTests.cs
@@ -4011,6 +4039,9 @@ src/Zernio/Model/CampaignAnalyticsResponse.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalytics.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalyticsDailyInner.cs
 src/Zernio/Model/CampaignAnalyticsResponseCampaign.cs
+src/Zernio/Model/CampaignBidding.cs
+src/Zernio/Model/CampaignBiddingBidSpec.cs
+src/Zernio/Model/CampaignBiddingPortfolio.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelPhoneNumberPortIn200Response.cs
 src/Zernio/Model/ChannelPicker.cs
@@ -4079,6 +4110,9 @@ src/Zernio/Model/CreateAdSet201Response.cs
 src/Zernio/Model/CreateAdSetRequest.cs
 src/Zernio/Model/CreateApiKey201Response.cs
 src/Zernio/Model/CreateApiKeyRequest.cs
+src/Zernio/Model/CreateBidStrategy201Response.cs
+src/Zernio/Model/CreateBidStrategy201ResponseStrategy.cs
+src/Zernio/Model/CreateBidStrategyRequest.cs
 src/Zernio/Model/CreateBlog201Response.cs
 src/Zernio/Model/CreateBlogArticle201Response.cs
 src/Zernio/Model/CreateBlogArticleRequest.cs
@@ -4416,6 +4450,7 @@ src/Zernio/Model/GetCallsUsage200Response.cs
 src/Zernio/Model/GetCallsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetCallsUsage200ResponseTotals.cs
 src/Zernio/Model/GetCampaignAnalytics202Response.cs
+src/Zernio/Model/GetCampaignBidding200Response.cs
 src/Zernio/Model/GetCampaignTargeting200Response.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseDevicesInner.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseLanguagesInner.cs
@@ -4808,6 +4843,7 @@ src/Zernio/Model/ListAdVideos200Response.cs
 src/Zernio/Model/ListAds202Response.cs
 src/Zernio/Model/ListAdsBusinessCenters200Response.cs
 src/Zernio/Model/ListApiKeys200Response.cs
+src/Zernio/Model/ListBidStrategies200Response.cs
 src/Zernio/Model/ListBlogArticles200Response.cs
 src/Zernio/Model/ListBlogs200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200Response.cs
@@ -5017,6 +5053,7 @@ src/Zernio/Model/PinterestPlatformData.cs
 src/Zernio/Model/PlatformAnalytics.cs
 src/Zernio/Model/PlatformTarget.cs
 src/Zernio/Model/PlatformTargetAccountId.cs
+src/Zernio/Model/PortfolioBidStrategy.cs
 src/Zernio/Model/Post.cs
 src/Zernio/Model/PostAnalytics.cs
 src/Zernio/Model/PostCreateResponse.cs
@@ -5348,6 +5385,8 @@ src/Zernio/Model/UpdateAdRequest.cs
 src/Zernio/Model/UpdateAdRequestBudget.cs
 src/Zernio/Model/UpdateAdRequestCreative.cs
 src/Zernio/Model/UpdateAdRequestTargeting.cs
+src/Zernio/Model/UpdateAdRequestTargetingDevicesInner.cs
+src/Zernio/Model/UpdateAdRequestTargetingDevicesInnerOneOf.cs
 src/Zernio/Model/UpdateAdRequestTargetingInterestsInner.cs
 src/Zernio/Model/UpdateAdRequestTargetingKeywordsInner.cs
 src/Zernio/Model/UpdateAdRequestTargetingKeywordsInnerOneOf.cs
@@ -5361,6 +5400,9 @@ src/Zernio/Model/UpdateAdStatus200Response.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequest.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestCreative.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestUrlTagsInner.cs
+src/Zernio/Model/UpdateBidStrategy200Response.cs
+src/Zernio/Model/UpdateBidStrategy200ResponseStrategy.cs
+src/Zernio/Model/UpdateBidStrategyRequest.cs
 src/Zernio/Model/UpdateBlogArticleRequest.cs
 src/Zernio/Model/UpdateBlogRequest.cs
 src/Zernio/Model/UpdateBlueskySettingsRequest.cs

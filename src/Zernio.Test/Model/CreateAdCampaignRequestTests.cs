@@ -153,5 +153,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'RoasAverageFloor'
         }
+
+        /// <summary>
+        /// Test the property 'PortfolioBidStrategyId'
+        /// </summary>
+        [Fact]
+        public void PortfolioBidStrategyIdTest()
+        {
+            // TODO unit test for the property 'PortfolioBidStrategyId'
+        }
     }
 }
