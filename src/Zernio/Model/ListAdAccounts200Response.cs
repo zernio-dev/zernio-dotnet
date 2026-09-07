@@ -37,9 +37,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListAdAccounts200Response" /> class.
         /// </summary>
         /// <param name="accounts">accounts.</param>
-        public ListAdAccounts200Response(List<ListAdAccounts200ResponseAccountsInner> accounts = default)
+        /// <param name="cachedAt">Google only. When this list was fetched from Google. Null when it was never served from cache, or on other platforms..</param>
+        /// <param name="stale">Google only. True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read. Absent on other platforms..</param>
+        public ListAdAccounts200Response(List<ListAdAccounts200ResponseAccountsInner> accounts = default, DateTime? cachedAt = default, bool stale = default)
         {
             this.Accounts = accounts;
+            this.CachedAt = cachedAt;
+            this.Stale = stale;
         }
 
         /// <summary>
@@ -47,6 +51,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "accounts", EmitDefaultValue = false)]
         public List<ListAdAccounts200ResponseAccountsInner> Accounts { get; set; }
+
+        /// <summary>
+        /// Google only. When this list was fetched from Google. Null when it was never served from cache, or on other platforms.
+        /// </summary>
+        /// <value>Google only. When this list was fetched from Google. Null when it was never served from cache, or on other platforms.</value>
+        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
+        public DateTime? CachedAt { get; set; }
+
+        /// <summary>
+        /// Google only. True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read. Absent on other platforms.
+        /// </summary>
+        /// <value>Google only. True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read. Absent on other platforms.</value>
+        [DataMember(Name = "stale", EmitDefaultValue = true)]
+        public bool Stale { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +75,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListAdAccounts200Response {\n");
             sb.Append("  Accounts: ").Append(Accounts).Append("\n");
+            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
+            sb.Append("  Stale: ").Append(Stale).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

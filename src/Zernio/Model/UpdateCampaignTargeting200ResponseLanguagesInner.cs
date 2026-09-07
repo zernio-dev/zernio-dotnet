@@ -28,43 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListCampaignNegativeKeywords200Response
+    /// UpdateCampaignTargeting200ResponseLanguagesInner
     /// </summary>
-    [DataContract(Name = "listCampaignNegativeKeywords_200_response")]
-    public partial class ListCampaignNegativeKeywords200Response : IValidatableObject
+    [DataContract(Name = "updateCampaignTargeting_200_response_languages_inner")]
+    public partial class UpdateCampaignTargeting200ResponseLanguagesInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListCampaignNegativeKeywords200Response" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaignTargeting200ResponseLanguagesInner" /> class.
         /// </summary>
-        /// <param name="keywords">keywords.</param>
-        /// <param name="cachedAt">When this list was fetched from Google. Null when it was never served from cache..</param>
-        /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
-        public ListCampaignNegativeKeywords200Response(List<ListCampaignNegativeKeywords200ResponseKeywordsInner> keywords = default, DateTime? cachedAt = default, bool stale = default)
+        /// <param name="code">code.</param>
+        /// <param name="id">id.</param>
+        /// <param name="name">name.</param>
+        public UpdateCampaignTargeting200ResponseLanguagesInner(string code = default, string id = default, string name = default)
         {
-            this.Keywords = keywords;
-            this.CachedAt = cachedAt;
-            this.Stale = stale;
+            this.Code = code;
+            this.Id = id;
+            this.Name = name;
         }
 
         /// <summary>
-        /// Gets or Sets Keywords
+        /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<ListCampaignNegativeKeywords200ResponseKeywordsInner> Keywords { get; set; }
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public string Code { get; set; }
 
         /// <summary>
-        /// When this list was fetched from Google. Null when it was never served from cache.
+        /// Gets or Sets Id
         /// </summary>
-        /// <value>When this list was fetched from Google. Null when it was never served from cache.</value>
-        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
-        public DateTime? CachedAt { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
-        /// True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+        /// Gets or Sets Name
         /// </summary>
-        /// <value>True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.</value>
-        [DataMember(Name = "stale", EmitDefaultValue = true)]
-        public bool Stale { get; set; }
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,10 +71,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListCampaignNegativeKeywords200Response {\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
-            sb.Append("  Stale: ").Append(Stale).Append("\n");
+            sb.Append("class UpdateCampaignTargeting200ResponseLanguagesInner {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

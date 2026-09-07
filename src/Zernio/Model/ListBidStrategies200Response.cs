@@ -39,11 +39,15 @@ namespace Zernio.Model
         /// <param name="customerId">customerId.</param>
         /// <param name="currency">Account currency code; money fields are in this currency&#39;s units..</param>
         /// <param name="strategies">strategies.</param>
-        public ListBidStrategies200Response(string customerId = default, string currency = default, List<PortfolioBidStrategy> strategies = default)
+        /// <param name="cachedAt">When this data was fetched from Google. Null when it was never served from cache..</param>
+        /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
+        public ListBidStrategies200Response(string customerId = default, string currency = default, List<PortfolioBidStrategy> strategies = default, DateTime? cachedAt = default, bool stale = default)
         {
             this.CustomerId = customerId;
             this.Currency = currency;
             this.Strategies = strategies;
+            this.CachedAt = cachedAt;
+            this.Stale = stale;
         }
 
         /// <summary>
@@ -66,6 +70,20 @@ namespace Zernio.Model
         public List<PortfolioBidStrategy> Strategies { get; set; }
 
         /// <summary>
+        /// When this data was fetched from Google. Null when it was never served from cache.
+        /// </summary>
+        /// <value>When this data was fetched from Google. Null when it was never served from cache.</value>
+        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
+        public DateTime? CachedAt { get; set; }
+
+        /// <summary>
+        /// True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+        /// </summary>
+        /// <value>True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.</value>
+        [DataMember(Name = "stale", EmitDefaultValue = true)]
+        public bool Stale { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -76,6 +94,8 @@ namespace Zernio.Model
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Strategies: ").Append(Strategies).Append("\n");
+            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
+            sb.Append("  Stale: ").Append(Stale).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

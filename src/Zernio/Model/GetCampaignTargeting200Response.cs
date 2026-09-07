@@ -39,11 +39,15 @@ namespace Zernio.Model
         /// <param name="devices">devices.</param>
         /// <param name="locations">locations.</param>
         /// <param name="languages">languages.</param>
-        public GetCampaignTargeting200Response(List<GetCampaignTargeting200ResponseDevicesInner> devices = default, List<GetCampaignTargeting200ResponseLocationsInner> locations = default, List<GetCampaignTargeting200ResponseLanguagesInner> languages = default)
+        /// <param name="cachedAt">When this targeting was fetched from Google. Null when it was never served from cache..</param>
+        /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
+        public GetCampaignTargeting200Response(List<GetCampaignTargeting200ResponseDevicesInner> devices = default, List<GetCampaignTargeting200ResponseLocationsInner> locations = default, List<GetCampaignTargeting200ResponseLanguagesInner> languages = default, DateTime? cachedAt = default, bool stale = default)
         {
             this.Devices = devices;
             this.Locations = locations;
             this.Languages = languages;
+            this.CachedAt = cachedAt;
+            this.Stale = stale;
         }
 
         /// <summary>
@@ -65,6 +69,20 @@ namespace Zernio.Model
         public List<GetCampaignTargeting200ResponseLanguagesInner> Languages { get; set; }
 
         /// <summary>
+        /// When this targeting was fetched from Google. Null when it was never served from cache.
+        /// </summary>
+        /// <value>When this targeting was fetched from Google. Null when it was never served from cache.</value>
+        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
+        public DateTime? CachedAt { get; set; }
+
+        /// <summary>
+        /// True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+        /// </summary>
+        /// <value>True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.</value>
+        [DataMember(Name = "stale", EmitDefaultValue = true)]
+        public bool Stale { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -75,6 +93,8 @@ namespace Zernio.Model
             sb.Append("  Devices: ").Append(Devices).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
             sb.Append("  Languages: ").Append(Languages).Append("\n");
+            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
+            sb.Append("  Stale: ").Append(Stale).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

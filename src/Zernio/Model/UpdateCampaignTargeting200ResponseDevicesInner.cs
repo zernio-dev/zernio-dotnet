@@ -28,43 +28,73 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListCampaignNegativeKeywords200Response
+    /// UpdateCampaignTargeting200ResponseDevicesInner
     /// </summary>
-    [DataContract(Name = "listCampaignNegativeKeywords_200_response")]
-    public partial class ListCampaignNegativeKeywords200Response : IValidatableObject
+    [DataContract(Name = "updateCampaignTargeting_200_response_devices_inner")]
+    public partial class UpdateCampaignTargeting200ResponseDevicesInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListCampaignNegativeKeywords200Response" /> class.
+        /// Defines Device
         /// </summary>
-        /// <param name="keywords">keywords.</param>
-        /// <param name="cachedAt">When this list was fetched from Google. Null when it was never served from cache..</param>
-        /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
-        public ListCampaignNegativeKeywords200Response(List<ListCampaignNegativeKeywords200ResponseKeywordsInner> keywords = default, DateTime? cachedAt = default, bool stale = default)
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DeviceEnum
         {
-            this.Keywords = keywords;
-            this.CachedAt = cachedAt;
-            this.Stale = stale;
+            /// <summary>
+            /// Enum MOBILE for value: MOBILE
+            /// </summary>
+            [EnumMember(Value = "MOBILE")]
+            MOBILE = 1,
+
+            /// <summary>
+            /// Enum DESKTOP for value: DESKTOP
+            /// </summary>
+            [EnumMember(Value = "DESKTOP")]
+            DESKTOP = 2,
+
+            /// <summary>
+            /// Enum TABLET for value: TABLET
+            /// </summary>
+            [EnumMember(Value = "TABLET")]
+            TABLET = 3,
+
+            /// <summary>
+            /// Enum CONNECTEDTV for value: CONNECTED_TV
+            /// </summary>
+            [EnumMember(Value = "CONNECTED_TV")]
+            CONNECTEDTV = 4
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Device
+        /// </summary>
+        [DataMember(Name = "device", EmitDefaultValue = false)]
+        public DeviceEnum? Device { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCampaignTargeting200ResponseDevicesInner" /> class.
+        /// </summary>
+        /// <param name="device">device.</param>
+        /// <param name="included">included.</param>
+        /// <param name="bidModifier">Always null on this read; see GET&#39;s description..</param>
+        public UpdateCampaignTargeting200ResponseDevicesInner(DeviceEnum? device = default, bool included = default, decimal? bidModifier = default)
+        {
+            this.Device = device;
+            this.Included = included;
+            this.BidModifier = bidModifier;
         }
 
         /// <summary>
-        /// Gets or Sets Keywords
+        /// Gets or Sets Included
         /// </summary>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<ListCampaignNegativeKeywords200ResponseKeywordsInner> Keywords { get; set; }
+        [DataMember(Name = "included", EmitDefaultValue = true)]
+        public bool Included { get; set; }
 
         /// <summary>
-        /// When this list was fetched from Google. Null when it was never served from cache.
+        /// Always null on this read; see GET&#39;s description.
         /// </summary>
-        /// <value>When this list was fetched from Google. Null when it was never served from cache.</value>
-        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
-        public DateTime? CachedAt { get; set; }
-
-        /// <summary>
-        /// True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
-        /// </summary>
-        /// <value>True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.</value>
-        [DataMember(Name = "stale", EmitDefaultValue = true)]
-        public bool Stale { get; set; }
+        /// <value>Always null on this read; see GET&#39;s description.</value>
+        [DataMember(Name = "bidModifier", EmitDefaultValue = true)]
+        public decimal? BidModifier { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,10 +103,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListCampaignNegativeKeywords200Response {\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
-            sb.Append("  Stale: ").Append(Stale).Append("\n");
+            sb.Append("class UpdateCampaignTargeting200ResponseDevicesInner {\n");
+            sb.Append("  Device: ").Append(Device).Append("\n");
+            sb.Append("  Included: ").Append(Included).Append("\n");
+            sb.Append("  BidModifier: ").Append(BidModifier).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -72,5 +72,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Updated'
         }
+
+        /// <summary>
+        /// Test the property 'Devices'
+        /// </summary>
+        [Fact]
+        public void DevicesTest()
+        {
+            // TODO unit test for the property 'Devices'
+        }
+
+        /// <summary>
+        /// Test the property 'Locations'
+        /// </summary>
+        [Fact]
+        public void LocationsTest()
+        {
+            // TODO unit test for the property 'Locations'
+        }
+
+        /// <summary>
+        /// Test the property 'Languages'
+        /// </summary>
+        [Fact]
+        public void LanguagesTest()
+        {
+            // TODO unit test for the property 'Languages'
+        }
     }
 }

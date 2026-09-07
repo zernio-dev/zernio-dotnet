@@ -63,10 +63,16 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="updated">Which targeting fields were applied..</param>
-        public UpdateCampaignTargeting200Response(string campaignId = default, List<UpdatedEnum> updated = default)
+        /// <param name="devices">devices.</param>
+        /// <param name="locations">locations.</param>
+        /// <param name="languages">languages.</param>
+        public UpdateCampaignTargeting200Response(string campaignId = default, List<UpdatedEnum> updated = default, List<UpdateCampaignTargeting200ResponseDevicesInner> devices = default, List<GetCampaignTargeting200ResponseLocationsInner> locations = default, List<UpdateCampaignTargeting200ResponseLanguagesInner> languages = default)
         {
             this.CampaignId = campaignId;
             this.Updated = updated;
+            this.Devices = devices;
+            this.Locations = locations;
+            this.Languages = languages;
         }
 
         /// <summary>
@@ -83,6 +89,24 @@ namespace Zernio.Model
         public List<UpdateCampaignTargeting200Response.UpdatedEnum> Updated { get; set; }
 
         /// <summary>
+        /// Gets or Sets Devices
+        /// </summary>
+        [DataMember(Name = "devices", EmitDefaultValue = false)]
+        public List<UpdateCampaignTargeting200ResponseDevicesInner> Devices { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Locations
+        /// </summary>
+        [DataMember(Name = "locations", EmitDefaultValue = false)]
+        public List<GetCampaignTargeting200ResponseLocationsInner> Locations { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Languages
+        /// </summary>
+        [DataMember(Name = "languages", EmitDefaultValue = false)]
+        public List<UpdateCampaignTargeting200ResponseLanguagesInner> Languages { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -92,6 +116,9 @@ namespace Zernio.Model
             sb.Append("class UpdateCampaignTargeting200Response {\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
+            sb.Append("  Devices: ").Append(Devices).Append("\n");
+            sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

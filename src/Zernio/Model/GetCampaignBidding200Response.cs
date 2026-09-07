@@ -67,13 +67,17 @@ namespace Zernio.Model
         /// <param name="biddingStrategyType">Google&#39;s raw enum: MAXIMIZE_CONVERSIONS, TARGET_CPA, MAXIMIZE_CONVERSION_VALUE, TARGET_ROAS, TARGET_SPEND, MANUAL_CPC, TARGET_IMPRESSION_SHARE, or another Google adds later..</param>
         /// <param name="bidSpec">bidSpec.</param>
         /// <param name="portfolio">portfolio.</param>
+        /// <param name="cachedAt">When this data was fetched from Google. Null when it was never served from cache..</param>
+        /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
         /// <param name="campaignId">campaignId.</param>
-        public GetCampaignBidding200Response(ChannelEnum? channel = default, string biddingStrategyType = default, CampaignBiddingBidSpec bidSpec = default, CampaignBiddingPortfolio portfolio = default, string campaignId = default)
+        public GetCampaignBidding200Response(ChannelEnum? channel = default, string biddingStrategyType = default, CampaignBiddingBidSpec bidSpec = default, CampaignBiddingPortfolio portfolio = default, DateTime cachedAt = default, bool stale = default, string campaignId = default)
         {
             this.Channel = channel;
             this.BiddingStrategyType = biddingStrategyType;
             this.BidSpec = bidSpec;
             this.Portfolio = portfolio;
+            this.CachedAt = cachedAt;
+            this.Stale = stale;
             this.CampaignId = campaignId;
         }
 
@@ -97,6 +101,20 @@ namespace Zernio.Model
         public CampaignBiddingPortfolio Portfolio { get; set; }
 
         /// <summary>
+        /// When this data was fetched from Google. Null when it was never served from cache.
+        /// </summary>
+        /// <value>When this data was fetched from Google. Null when it was never served from cache.</value>
+        [DataMember(Name = "cachedAt", EmitDefaultValue = false)]
+        public DateTime CachedAt { get; set; }
+
+        /// <summary>
+        /// True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+        /// </summary>
+        /// <value>True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.</value>
+        [DataMember(Name = "stale", EmitDefaultValue = true)]
+        public bool Stale { get; set; }
+
+        /// <summary>
         /// Gets or Sets CampaignId
         /// </summary>
         [DataMember(Name = "campaignId", EmitDefaultValue = false)]
@@ -114,6 +132,8 @@ namespace Zernio.Model
             sb.Append("  BiddingStrategyType: ").Append(BiddingStrategyType).Append("\n");
             sb.Append("  BidSpec: ").Append(BidSpec).Append("\n");
             sb.Append("  Portfolio: ").Append(Portfolio).Append("\n");
+            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
+            sb.Append("  Stale: ").Append(Stale).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
