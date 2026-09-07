@@ -740,6 +740,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CampaignNegativeKeywords'
+        /// </summary>
+        [Fact]
+        public void CampaignNegativeKeywordsTest()
+        {
+            // TODO unit test for the property 'CampaignNegativeKeywords'
+        }
+
+        /// <summary>
         /// Test the property 'AdditionalHeadlines'
         /// </summary>
         [Fact]

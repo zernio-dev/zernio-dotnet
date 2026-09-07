@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**AddAdKeywords**](AdCampaignsApi.md#addadkeywords) | **POST** /v1/ads/keywords | Add Search keywords to an ad group |
 | [**AttachCampaignAssets**](AdCampaignsApi.md#attachcampaignassets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign |
 | [**BoostPost**](AdCampaignsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**BulkUpdateAdCampaignStatus**](AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns |
@@ -22,12 +23,118 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdCampaigns**](AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**ListAdKeywords**](AdCampaignsApi.md#listadkeywords) | **GET** /v1/ads/keywords | List Search keywords |
 | [**ListAds**](AdCampaignsApi.md#listads) | **GET** /v1/ads | List ads |
+| [**ListCampaignNegativeKeywords**](AdCampaignsApi.md#listcampaignnegativekeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
+| [**RemoveAdKeyword**](AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
+| [**ReplaceCampaignNegativeKeywords**](AdCampaignsApi.md#replacecampaignnegativekeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
 | [**UpdateAd**](AdCampaignsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad |
 | [**UpdateAdCampaign**](AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**UpdateAdCampaignStatus**](AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
+| [**UpdateAdKeyword**](AdCampaignsApi.md#updateadkeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
 | [**UpdateAdSet**](AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**UpdateAdSetStatus**](AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
 | [**UpdateAdStatus**](AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
+
+<a id="addadkeywords"></a>
+# **AddAdKeywords**
+> AddAdKeywords201Response AddAdKeywords (AddAdKeywordsRequest addAdKeywordsRequest)
+
+Add Search keywords to an ad group
+
+Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on `PUT /v1/ads/{adId}`, `keywords`/`negativeKeywords` in `platformSpecificData`, which replaces the set). Set `negative: true` to add ad-group-level negatives instead of positive keywords. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AddAdKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var addAdKeywordsRequest = new AddAdKeywordsRequest(); // AddAdKeywordsRequest | 
+
+            try
+            {
+                // Add Search keywords to an ad group
+                AddAdKeywords201Response result = apiInstance.AddAdKeywords(addAdKeywordsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.AddAdKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AddAdKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add Search keywords to an ad group
+    ApiResponse<AddAdKeywords201Response> response = apiInstance.AddAdKeywordsWithHttpInfo(addAdKeywordsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.AddAdKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **addAdKeywordsRequest** | [**AddAdKeywordsRequest**](AddAdKeywordsRequest.md) |  |  |
+
+### Return type
+
+[**AddAdKeywords201Response**](AddAdKeywords201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Keywords added |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The ad group (\&quot;adSetId\&quot;) was not found for this account. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="attachcampaignassets"></a>
 # **AttachCampaignAssets**
@@ -2002,6 +2109,316 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listcampaignnegativekeywords"></a>
+# **ListCampaignNegativeKeywords**
+> ListCampaignNegativeKeywords200Response ListCampaignNegativeKeywords (string campaignId, string? platform = null)
+
+List campaign-level negative keywords
+
+Returns the campaign-level negative keywords (`campaign_criterion.negative`), distinct from the ad-group-level negatives under `GET /v1/ads/keywords`. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not `platform` was passed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCampaignNegativeKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Platform campaign ID
+            var platform = "facebook";  // string? | Optional and NOT authoritative: the resolved campaign's own platform decides 200 vs 501, never this hint. (optional) 
+
+            try
+            {
+                // List campaign-level negative keywords
+                ListCampaignNegativeKeywords200Response result = apiInstance.ListCampaignNegativeKeywords(campaignId, platform);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ListCampaignNegativeKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCampaignNegativeKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List campaign-level negative keywords
+    ApiResponse<ListCampaignNegativeKeywords200Response> response = apiInstance.ListCampaignNegativeKeywordsWithHttpInfo(campaignId, platform);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ListCampaignNegativeKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Platform campaign ID |  |
+| **platform** | **string?** | Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. | [optional]  |
+
+### Return type
+
+[**ListCampaignNegativeKeywords200Response**](ListCampaignNegativeKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="removeadkeyword"></a>
+# **RemoveAdKeyword**
+> RemoveAdKeyword200Response RemoveAdKeyword (string keywordId)
+
+Remove a Search keyword
+
+Removes one keyword criterion (positive or negative) from its ad group (M.140).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RemoveAdKeywordExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var keywordId = "keywordId_example";  // string | Zernio keyword ID (not the Google criterion ID)
+
+            try
+            {
+                // Remove a Search keyword
+                RemoveAdKeyword200Response result = apiInstance.RemoveAdKeyword(keywordId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.RemoveAdKeyword: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveAdKeywordWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a Search keyword
+    ApiResponse<RemoveAdKeyword200Response> response = apiInstance.RemoveAdKeywordWithHttpInfo(keywordId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.RemoveAdKeywordWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **keywordId** | **string** | Zernio keyword ID (not the Google criterion ID) |  |
+
+### Return type
+
+[**RemoveAdKeyword200Response**](RemoveAdKeyword200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Keyword not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="replacecampaignnegativekeywords"></a>
+# **ReplaceCampaignNegativeKeywords**
+> ReplaceCampaignNegativeKeywords200Response ReplaceCampaignNegativeKeywords (string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest)
+
+Replace campaign-level negative keywords
+
+Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one `create`/`remove` mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not `platform` was sent. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReplaceCampaignNegativeKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Platform campaign ID
+            var replaceCampaignNegativeKeywordsRequest = new ReplaceCampaignNegativeKeywordsRequest(); // ReplaceCampaignNegativeKeywordsRequest | 
+
+            try
+            {
+                // Replace campaign-level negative keywords
+                ReplaceCampaignNegativeKeywords200Response result = apiInstance.ReplaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ReplaceCampaignNegativeKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReplaceCampaignNegativeKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Replace campaign-level negative keywords
+    ApiResponse<ReplaceCampaignNegativeKeywords200Response> response = apiInstance.ReplaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ReplaceCampaignNegativeKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Platform campaign ID |  |
+| **replaceCampaignNegativeKeywordsRequest** | [**ReplaceCampaignNegativeKeywordsRequest**](ReplaceCampaignNegativeKeywordsRequest.md) |  |  |
+
+### Return type
+
+[**ReplaceCampaignNegativeKeywords200Response**](ReplaceCampaignNegativeKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords replaced |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updatead"></a>
 # **UpdateAd**
 > UpdateAd200Response UpdateAd (string adId, UpdateAdRequest updateAdRequest)
@@ -2318,6 +2735,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="updateadkeyword"></a>
+# **UpdateAdKeyword**
+> UpdateAdKeyword200Response UpdateAdKeyword (string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest)
+
+Pause or enable a Search keyword
+
+Changes `ad_group_criterion.status` for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdKeywordExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var keywordId = "keywordId_example";  // string | Zernio keyword ID (not the Google criterion ID)
+            var updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+
+            try
+            {
+                // Pause or enable a Search keyword
+                UpdateAdKeyword200Response result = apiInstance.UpdateAdKeyword(keywordId, updateAdKeywordRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.UpdateAdKeyword: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdKeywordWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Pause or enable a Search keyword
+    ApiResponse<UpdateAdKeyword200Response> response = apiInstance.UpdateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.UpdateAdKeywordWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **keywordId** | **string** | Zernio keyword ID (not the Google criterion ID) |  |
+| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md) |  |  |
+
+### Return type
+
+[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Keyword not found |  -  |
+| **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updateadset"></a>
 # **UpdateAdSet**
 > UpdateAdSet200Response UpdateAdSet (string adSetId, UpdateAdSetRequest updateAdSetRequest)
@@ -2531,7 +3052,7 @@ catch (ApiException e)
 
 <a id="updateadstatus"></a>
 # **UpdateAdStatus**
-> UpdateAdStatus200Response UpdateAdStatus (string adId, UpdateAdStatusRequest updateAdStatusRequest)
+> UpdateAdStatus200Response UpdateAdStatus (string adId, UpdateAdKeywordRequest updateAdKeywordRequest)
 
 Pause or resume a single ad
 
@@ -2562,12 +3083,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
-            var updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
+            var updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
 
             try
             {
                 // Pause or resume a single ad
-                UpdateAdStatus200Response result = apiInstance.UpdateAdStatus(adId, updateAdStatusRequest);
+                UpdateAdStatus200Response result = apiInstance.UpdateAdStatus(adId, updateAdKeywordRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2588,7 +3109,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Pause or resume a single ad
-    ApiResponse<UpdateAdStatus200Response> response = apiInstance.UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
+    ApiResponse<UpdateAdStatus200Response> response = apiInstance.UpdateAdStatusWithHttpInfo(adId, updateAdKeywordRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2606,7 +3127,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. |  |
-| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md) |  |  |
+| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md) |  |  |
 
 ### Return type
 

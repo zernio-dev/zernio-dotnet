@@ -203,6 +203,7 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**ListAdAudiences**](docs/AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences
 *AdAudiencesApi* | [**ReplaceAdAudienceCompanies**](docs/AdAudiencesApi.md#replaceadaudiencecompanies) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**UpdateAdAudience**](docs/AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignsApi* | [**AddAdKeywords**](docs/AdCampaignsApi.md#addadkeywords) | **POST** /v1/ads/keywords | Add Search keywords to an ad group
 *AdCampaignsApi* | [**AttachCampaignAssets**](docs/AdCampaignsApi.md#attachcampaignassets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign
 *AdCampaignsApi* | [**BoostPost**](docs/AdCampaignsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
 *AdCampaignsApi* | [**BulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
@@ -221,9 +222,13 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**ListAdKeywords**](docs/AdCampaignsApi.md#listadkeywords) | **GET** /v1/ads/keywords | List Search keywords
 *AdCampaignsApi* | [**ListAds**](docs/AdCampaignsApi.md#listads) | **GET** /v1/ads | List ads
+*AdCampaignsApi* | [**ListCampaignNegativeKeywords**](docs/AdCampaignsApi.md#listcampaignnegativekeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords
+*AdCampaignsApi* | [**RemoveAdKeyword**](docs/AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
+*AdCampaignsApi* | [**ReplaceCampaignNegativeKeywords**](docs/AdCampaignsApi.md#replacecampaignnegativekeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords
 *AdCampaignsApi* | [**UpdateAd**](docs/AdCampaignsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad
 *AdCampaignsApi* | [**UpdateAdCampaign**](docs/AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
 *AdCampaignsApi* | [**UpdateAdCampaignStatus**](docs/AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
+*AdCampaignsApi* | [**UpdateAdKeyword**](docs/AdCampaignsApi.md#updateadkeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword
 *AdCampaignsApi* | [**UpdateAdSet**](docs/AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**UpdateAdSetStatus**](docs/AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdCampaignsApi* | [**UpdateAdStatus**](docs/AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
@@ -769,6 +774,8 @@ Class | Method | HTTP request | Description
  - [Model.AdDailyMetrics](docs/AdDailyMetrics.md)
  - [Model.AdEngagementCounts](docs/AdEngagementCounts.md)
  - [Model.AdFunnelCounts](docs/AdFunnelCounts.md)
+ - [Model.AdKeyword](docs/AdKeyword.md)
+ - [Model.AdKeywordMetrics](docs/AdKeywordMetrics.md)
  - [Model.AdMetrics](docs/AdMetrics.md)
  - [Model.AdPromotedObject](docs/AdPromotedObject.md)
  - [Model.AdReviewStatus](docs/AdReviewStatus.md)
@@ -784,6 +791,10 @@ Class | Method | HTTP request | Description
  - [Model.AdTreeCampaignOptimizationGoal](docs/AdTreeCampaignOptimizationGoal.md)
  - [Model.AdTreeCampaignPromotedObject](docs/AdTreeCampaignPromotedObject.md)
  - [Model.AdTreeResponse](docs/AdTreeResponse.md)
+ - [Model.AddAdKeywords201Response](docs/AddAdKeywords201Response.md)
+ - [Model.AddAdKeywordsRequest](docs/AddAdKeywordsRequest.md)
+ - [Model.AddAdKeywordsRequestKeywordsInner](docs/AddAdKeywordsRequestKeywordsInner.md)
+ - [Model.AddAdKeywordsRequestKeywordsInnerAnyOf](docs/AddAdKeywordsRequestKeywordsInnerAnyOf.md)
  - [Model.AddBroadcastRecipients200Response](docs/AddBroadcastRecipients200Response.md)
  - [Model.AddBroadcastRecipientsRequest](docs/AddBroadcastRecipientsRequest.md)
  - [Model.AddConversionAssociations200Response](docs/AddConversionAssociations200Response.md)
@@ -1605,6 +1616,7 @@ Class | Method | HTTP request | Description
  - [Model.InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [Model.InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [Model.InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
+ - [Model.KeywordEntry](docs/KeywordEntry.md)
  - [Model.LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [Model.LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
  - [Model.LikePost200Response](docs/LikePost200Response.md)
@@ -1654,7 +1666,6 @@ Class | Method | HTTP request | Description
  - [Model.ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
  - [Model.ListAdImages200Response](docs/ListAdImages200Response.md)
  - [Model.ListAdKeywords200Response](docs/ListAdKeywords200Response.md)
- - [Model.ListAdKeywords200ResponseKeywordsInner](docs/ListAdKeywords200ResponseKeywordsInner.md)
  - [Model.ListAdLabels200Response](docs/ListAdLabels200Response.md)
  - [Model.ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [Model.ListAdVideos200Response](docs/ListAdVideos200Response.md)
@@ -1670,6 +1681,8 @@ Class | Method | HTTP request | Description
  - [Model.ListBroadcasts200ResponseBroadcastsInner](docs/ListBroadcasts200ResponseBroadcastsInner.md)
  - [Model.ListCalls200Response](docs/ListCalls200Response.md)
  - [Model.ListCalls200ResponseCallsInner](docs/ListCalls200ResponseCallsInner.md)
+ - [Model.ListCampaignNegativeKeywords200Response](docs/ListCampaignNegativeKeywords200Response.md)
+ - [Model.ListCampaignNegativeKeywords200ResponseKeywordsInner](docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md)
  - [Model.ListCommentAutomationLogs200Response](docs/ListCommentAutomationLogs200Response.md)
  - [Model.ListCommentAutomationLogs200ResponseMisses](docs/ListCommentAutomationLogs200ResponseMisses.md)
  - [Model.ListCommentAutomationLogs200ResponseMissesSamplesInner](docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md)
@@ -1924,6 +1937,7 @@ Class | Method | HTTP request | Description
  - [Model.RemediatePhoneNumberRequest](docs/RemediatePhoneNumberRequest.md)
  - [Model.RemediatePhoneNumberRequestDocumentsInner](docs/RemediatePhoneNumberRequestDocumentsInner.md)
  - [Model.RemediatePhoneNumberRequestDocumentsInnerOneOf](docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md)
+ - [Model.RemoveAdKeyword200Response](docs/RemoveAdKeyword200Response.md)
  - [Model.RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [Model.RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [Model.RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
@@ -1932,6 +1946,8 @@ Class | Method | HTTP request | Description
  - [Model.ReplaceAdAudienceCompanies200Response](docs/ReplaceAdAudienceCompanies200Response.md)
  - [Model.ReplaceAdAudienceCompaniesRequest](docs/ReplaceAdAudienceCompaniesRequest.md)
  - [Model.ReplaceAdAudienceCompaniesRequestCompaniesInner](docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md)
+ - [Model.ReplaceCampaignNegativeKeywords200Response](docs/ReplaceCampaignNegativeKeywords200Response.md)
+ - [Model.ReplaceCampaignNegativeKeywordsRequest](docs/ReplaceCampaignNegativeKeywordsRequest.md)
  - [Model.ReplyToGoogleBusinessReview200Response](docs/ReplyToGoogleBusinessReview200Response.md)
  - [Model.ReplyToGoogleBusinessReviewRequest](docs/ReplyToGoogleBusinessReviewRequest.md)
  - [Model.ReplyToInboxPost200Response](docs/ReplyToInboxPost200Response.md)
@@ -2185,6 +2201,8 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
  - [Model.UpdateAdCreative200Response](docs/UpdateAdCreative200Response.md)
  - [Model.UpdateAdCreativeRequest](docs/UpdateAdCreativeRequest.md)
+ - [Model.UpdateAdKeyword200Response](docs/UpdateAdKeyword200Response.md)
+ - [Model.UpdateAdKeywordRequest](docs/UpdateAdKeywordRequest.md)
  - [Model.UpdateAdRequest](docs/UpdateAdRequest.md)
  - [Model.UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
  - [Model.UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)
@@ -2199,7 +2217,6 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAdSetRequestPlatformSpecificDataPromotedObject](docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md)
  - [Model.UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [Model.UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
- - [Model.UpdateAdStatusRequest](docs/UpdateAdStatusRequest.md)
  - [Model.UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [Model.UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [Model.UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)

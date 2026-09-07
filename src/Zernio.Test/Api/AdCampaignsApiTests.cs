@@ -55,6 +55,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AddAdKeywords
+        /// </summary>
+        [Fact]
+        public void AddAdKeywordsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //AddAdKeywordsRequest addAdKeywordsRequest = null;
+            //var response = instance.AddAdKeywords(addAdKeywordsRequest);
+            //Assert.IsType<AddAdKeywords201Response>(response);
+        }
+
+        /// <summary>
         /// Test AttachCampaignAssets
         /// </summary>
         [Fact]
@@ -342,6 +354,44 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListCampaignNegativeKeywords
+        /// </summary>
+        [Fact]
+        public void ListCampaignNegativeKeywordsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //string? platform = null;
+            //var response = instance.ListCampaignNegativeKeywords(campaignId, platform);
+            //Assert.IsType<ListCampaignNegativeKeywords200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveAdKeyword
+        /// </summary>
+        [Fact]
+        public void RemoveAdKeywordTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string keywordId = null;
+            //var response = instance.RemoveAdKeyword(keywordId);
+            //Assert.IsType<RemoveAdKeyword200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ReplaceCampaignNegativeKeywords
+        /// </summary>
+        [Fact]
+        public void ReplaceCampaignNegativeKeywordsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest = null;
+            //var response = instance.ReplaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest);
+            //Assert.IsType<ReplaceCampaignNegativeKeywords200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAd
         /// </summary>
         [Fact]
@@ -381,6 +431,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test UpdateAdKeyword
+        /// </summary>
+        [Fact]
+        public void UpdateAdKeywordTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string keywordId = null;
+            //UpdateAdKeywordRequest updateAdKeywordRequest = null;
+            //var response = instance.UpdateAdKeyword(keywordId, updateAdKeywordRequest);
+            //Assert.IsType<UpdateAdKeyword200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdSet
         /// </summary>
         [Fact]
@@ -414,8 +477,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string adId = null;
-            //UpdateAdStatusRequest updateAdStatusRequest = null;
-            //var response = instance.UpdateAdStatus(adId, updateAdStatusRequest);
+            //UpdateAdKeywordRequest updateAdKeywordRequest = null;
+            //var response = instance.UpdateAdStatus(adId, updateAdKeywordRequest);
             //Assert.IsType<UpdateAdStatus200Response>(response);
         }
     }

@@ -28,33 +28,25 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200Response
+    /// ListCampaignNegativeKeywords200Response
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response")]
-    public partial class ListAdKeywords200Response : IValidatableObject
+    [DataContract(Name = "listCampaignNegativeKeywords_200_response")]
+    public partial class ListCampaignNegativeKeywords200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200Response" /> class.
+        /// Initializes a new instance of the <see cref="ListCampaignNegativeKeywords200Response" /> class.
         /// </summary>
         /// <param name="keywords">keywords.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListAdKeywords200Response(List<AdKeyword> keywords = default, Pagination pagination = default)
+        public ListCampaignNegativeKeywords200Response(List<ListCampaignNegativeKeywords200ResponseKeywordsInner> keywords = default)
         {
             this.Keywords = keywords;
-            this.Pagination = pagination;
         }
 
         /// <summary>
         /// Gets or Sets Keywords
         /// </summary>
         [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<AdKeyword> Keywords { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Pagination
-        /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
+        public List<ListCampaignNegativeKeywords200ResponseKeywordsInner> Keywords { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +55,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200Response {\n");
+            sb.Append("class ListCampaignNegativeKeywords200Response {\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

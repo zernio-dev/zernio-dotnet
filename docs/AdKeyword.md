@@ -1,4 +1,4 @@
-# Zernio.Model.ListAdKeywords200ResponseKeywordsInner
+# Zernio.Model.AdKeyword
 
 ## Properties
 
@@ -19,7 +19,9 @@ Name | Type | Description | Notes
 **MatchType** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **Negative** | **bool** |  | [optional] 
+**QualityScore** | **int?** | Google Quality Score, 1-10. Null when unrated. | [optional] 
 **SyncedAt** | **DateTime?** |  | [optional] 
+**Metrics** | [**AdKeywordMetrics**](AdKeywordMetrics.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

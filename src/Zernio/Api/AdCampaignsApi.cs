@@ -29,6 +29,27 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Add Search keywords to an ad group
+        /// </summary>
+        /// <remarks>
+        /// Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <returns>AddAdKeywords201Response</returns>
+        AddAdKeywords201Response AddAdKeywords(AddAdKeywordsRequest addAdKeywordsRequest);
+
+        /// <summary>
+        /// Add Search keywords to an ad group
+        /// </summary>
+        /// <remarks>
+        /// Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <returns>ApiResponse of AddAdKeywords201Response</returns>
+        ApiResponse<AddAdKeywords201Response> AddAdKeywordsWithHttpInfo(AddAdKeywordsRequest addAdKeywordsRequest);
+        /// <summary>
         /// Attach extension assets to a Google Search campaign
         /// </summary>
         /// <remarks>
@@ -549,6 +570,73 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AdsListResponse</returns>
         ApiResponse<AdsListResponse> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
+        /// List campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <returns>ListCampaignNegativeKeywords200Response</returns>
+        ListCampaignNegativeKeywords200Response ListCampaignNegativeKeywords(string campaignId, string? platform = default);
+
+        /// <summary>
+        /// List campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <returns>ApiResponse of ListCampaignNegativeKeywords200Response</returns>
+        ApiResponse<ListCampaignNegativeKeywords200Response> ListCampaignNegativeKeywordsWithHttpInfo(string campaignId, string? platform = default);
+        /// <summary>
+        /// Remove a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <returns>RemoveAdKeyword200Response</returns>
+        RemoveAdKeyword200Response RemoveAdKeyword(string keywordId);
+
+        /// <summary>
+        /// Remove a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <returns>ApiResponse of RemoveAdKeyword200Response</returns>
+        ApiResponse<RemoveAdKeyword200Response> RemoveAdKeywordWithHttpInfo(string keywordId);
+        /// <summary>
+        /// Replace campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <returns>ReplaceCampaignNegativeKeywords200Response</returns>
+        ReplaceCampaignNegativeKeywords200Response ReplaceCampaignNegativeKeywords(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest);
+
+        /// <summary>
+        /// Replace campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <returns>ApiResponse of ReplaceCampaignNegativeKeywords200Response</returns>
+        ApiResponse<ReplaceCampaignNegativeKeywords200Response> ReplaceCampaignNegativeKeywordsWithHttpInfo(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest);
+        /// <summary>
         /// Update ad
         /// </summary>
         /// <remarks>
@@ -618,6 +706,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAdCampaignStatus200Response</returns>
         ApiResponse<UpdateAdCampaignStatus200Response> UpdateAdCampaignStatusWithHttpInfo(string campaignId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest);
         /// <summary>
+        /// Pause or enable a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <returns>UpdateAdKeyword200Response</returns>
+        UpdateAdKeyword200Response UpdateAdKeyword(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest);
+
+        /// <summary>
+        /// Pause or enable a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <returns>ApiResponse of UpdateAdKeyword200Response</returns>
+        ApiResponse<UpdateAdKeyword200Response> UpdateAdKeywordWithHttpInfo(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest);
+        /// <summary>
         /// Update an ad set
         /// </summary>
         /// <remarks>
@@ -671,9 +782,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <returns>UpdateAdStatus200Response</returns>
-        UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdStatusRequest updateAdStatusRequest);
+        UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdKeywordRequest updateAdKeywordRequest);
 
         /// <summary>
         /// Pause or resume a single ad
@@ -683,9 +794,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
-        ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdStatusRequest updateAdStatusRequest);
+        ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdKeywordRequest updateAdKeywordRequest);
         #endregion Synchronous Operations
     }
 
@@ -695,6 +806,29 @@ namespace Zernio.Api
     public interface IAdCampaignsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Add Search keywords to an ad group
+        /// </summary>
+        /// <remarks>
+        /// Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAdKeywords201Response</returns>
+        System.Threading.Tasks.Task<AddAdKeywords201Response> AddAdKeywordsAsync(AddAdKeywordsRequest addAdKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Add Search keywords to an ad group
+        /// </summary>
+        /// <remarks>
+        /// Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAdKeywords201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddAdKeywords201Response>> AddAdKeywordsWithHttpInfoAsync(AddAdKeywordsRequest addAdKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Attach extension assets to a Google Search campaign
         /// </summary>
@@ -1252,6 +1386,79 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AdsListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AdsListResponse>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? pageId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? platformAdId = default, string? effectiveObjectStoryId = default, string? effectiveInstagramMediaId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListCampaignNegativeKeywords200Response</returns>
+        System.Threading.Tasks.Task<ListCampaignNegativeKeywords200Response> ListCampaignNegativeKeywordsAsync(string campaignId, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListCampaignNegativeKeywords200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListCampaignNegativeKeywords200Response>> ListCampaignNegativeKeywordsWithHttpInfoAsync(string campaignId, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAdKeyword200Response</returns>
+        System.Threading.Tasks.Task<RemoveAdKeyword200Response> RemoveAdKeywordAsync(string keywordId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAdKeyword200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveAdKeyword200Response>> RemoveAdKeywordWithHttpInfoAsync(string keywordId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Replace campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplaceCampaignNegativeKeywords200Response</returns>
+        System.Threading.Tasks.Task<ReplaceCampaignNegativeKeywords200Response> ReplaceCampaignNegativeKeywordsAsync(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Replace campaign-level negative keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplaceCampaignNegativeKeywords200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplaceCampaignNegativeKeywords200Response>> ReplaceCampaignNegativeKeywordsWithHttpInfoAsync(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update ad
         /// </summary>
         /// <remarks>
@@ -1327,6 +1534,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateAdCampaignStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdCampaignStatus200Response>> UpdateAdCampaignStatusWithHttpInfoAsync(string campaignId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Pause or enable a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdKeyword200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdKeyword200Response> UpdateAdKeywordAsync(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pause or enable a Search keyword
+        /// </summary>
+        /// <remarks>
+        /// Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdKeyword200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdKeyword200Response>> UpdateAdKeywordWithHttpInfoAsync(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update an ad set
         /// </summary>
         /// <remarks>
@@ -1384,10 +1616,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateAdStatus200Response</returns>
-        System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Pause or resume a single ad
@@ -1397,10 +1629,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1612,6 +1844,135 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Add Search keywords to an ad group Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <returns>AddAdKeywords201Response</returns>
+        public AddAdKeywords201Response AddAdKeywords(AddAdKeywordsRequest addAdKeywordsRequest)
+        {
+            Zernio.Client.ApiResponse<AddAdKeywords201Response> localVarResponse = AddAdKeywordsWithHttpInfo(addAdKeywordsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add Search keywords to an ad group Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <returns>ApiResponse of AddAdKeywords201Response</returns>
+        public Zernio.Client.ApiResponse<AddAdKeywords201Response> AddAdKeywordsWithHttpInfo(AddAdKeywordsRequest addAdKeywordsRequest)
+        {
+            // verify the required parameter 'addAdKeywordsRequest' is set
+            if (addAdKeywordsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAdKeywordsRequest' when calling AdCampaignsApi->AddAdKeywords");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAdKeywordsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AddAdKeywords201Response>("/v1/ads/keywords", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAdKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add Search keywords to an ad group Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAdKeywords201Response</returns>
+        public async System.Threading.Tasks.Task<AddAdKeywords201Response> AddAdKeywordsAsync(AddAdKeywordsRequest addAdKeywordsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AddAdKeywords201Response> localVarResponse = await AddAdKeywordsWithHttpInfoAsync(addAdKeywordsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add Search keywords to an ad group Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAdKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAdKeywords201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddAdKeywords201Response>> AddAdKeywordsWithHttpInfoAsync(AddAdKeywordsRequest addAdKeywordsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'addAdKeywordsRequest' is set
+            if (addAdKeywordsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAdKeywordsRequest' when calling AdCampaignsApi->AddAdKeywords");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAdKeywordsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AddAdKeywords201Response>("/v1/ads/keywords", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAdKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -4767,6 +5128,415 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List campaign-level negative keywords Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <returns>ListCampaignNegativeKeywords200Response</returns>
+        public ListCampaignNegativeKeywords200Response ListCampaignNegativeKeywords(string campaignId, string? platform = default)
+        {
+            Zernio.Client.ApiResponse<ListCampaignNegativeKeywords200Response> localVarResponse = ListCampaignNegativeKeywordsWithHttpInfo(campaignId, platform);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List campaign-level negative keywords Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <returns>ApiResponse of ListCampaignNegativeKeywords200Response</returns>
+        public Zernio.Client.ApiResponse<ListCampaignNegativeKeywords200Response> ListCampaignNegativeKeywordsWithHttpInfo(string campaignId, string? platform = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->ListCampaignNegativeKeywords");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListCampaignNegativeKeywords200Response>("/v1/ads/campaigns/{campaignId}/negative-keywords", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListCampaignNegativeKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List campaign-level negative keywords Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListCampaignNegativeKeywords200Response</returns>
+        public async System.Threading.Tasks.Task<ListCampaignNegativeKeywords200Response> ListCampaignNegativeKeywordsAsync(string campaignId, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListCampaignNegativeKeywords200Response> localVarResponse = await ListCampaignNegativeKeywordsWithHttpInfoAsync(campaignId, platform, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List campaign-level negative keywords Returns the campaign-level negative keywords (&#x60;campaign_criterion.negative&#x60;), distinct from the ad-group-level negatives under &#x60;GET /v1/ads/keywords&#x60;. Read live from Google on every call (not synced to Postgres), and gated by the shared Google Ads operations budget like every other on-demand Google surface.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was passed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="platform">Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListCampaignNegativeKeywords200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListCampaignNegativeKeywords200Response>> ListCampaignNegativeKeywordsWithHttpInfoAsync(string campaignId, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->ListCampaignNegativeKeywords");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListCampaignNegativeKeywords200Response>("/v1/ads/campaigns/{campaignId}/negative-keywords", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListCampaignNegativeKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a Search keyword Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <returns>RemoveAdKeyword200Response</returns>
+        public RemoveAdKeyword200Response RemoveAdKeyword(string keywordId)
+        {
+            Zernio.Client.ApiResponse<RemoveAdKeyword200Response> localVarResponse = RemoveAdKeywordWithHttpInfo(keywordId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a Search keyword Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <returns>ApiResponse of RemoveAdKeyword200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveAdKeyword200Response> RemoveAdKeywordWithHttpInfo(string keywordId)
+        {
+            // verify the required parameter 'keywordId' is set
+            if (keywordId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'keywordId' when calling AdCampaignsApi->RemoveAdKeyword");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("keywordId", Zernio.Client.ClientUtils.ParameterToString(keywordId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveAdKeyword200Response>("/v1/ads/keywords/{keywordId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAdKeyword", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a Search keyword Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAdKeyword200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveAdKeyword200Response> RemoveAdKeywordAsync(string keywordId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveAdKeyword200Response> localVarResponse = await RemoveAdKeywordWithHttpInfoAsync(keywordId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a Search keyword Removes one keyword criterion (positive or negative) from its ad group (M.140).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAdKeyword200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveAdKeyword200Response>> RemoveAdKeywordWithHttpInfoAsync(string keywordId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'keywordId' is set
+            if (keywordId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'keywordId' when calling AdCampaignsApi->RemoveAdKeyword");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("keywordId", Zernio.Client.ClientUtils.ParameterToString(keywordId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveAdKeyword200Response>("/v1/ads/keywords/{keywordId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAdKeyword", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace campaign-level negative keywords Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <returns>ReplaceCampaignNegativeKeywords200Response</returns>
+        public ReplaceCampaignNegativeKeywords200Response ReplaceCampaignNegativeKeywords(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest)
+        {
+            Zernio.Client.ApiResponse<ReplaceCampaignNegativeKeywords200Response> localVarResponse = ReplaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace campaign-level negative keywords Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <returns>ApiResponse of ReplaceCampaignNegativeKeywords200Response</returns>
+        public Zernio.Client.ApiResponse<ReplaceCampaignNegativeKeywords200Response> ReplaceCampaignNegativeKeywordsWithHttpInfo(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->ReplaceCampaignNegativeKeywords");
+
+            // verify the required parameter 'replaceCampaignNegativeKeywordsRequest' is set
+            if (replaceCampaignNegativeKeywordsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replaceCampaignNegativeKeywordsRequest' when calling AdCampaignsApi->ReplaceCampaignNegativeKeywords");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = replaceCampaignNegativeKeywordsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<ReplaceCampaignNegativeKeywords200Response>("/v1/ads/campaigns/{campaignId}/negative-keywords", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplaceCampaignNegativeKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace campaign-level negative keywords Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplaceCampaignNegativeKeywords200Response</returns>
+        public async System.Threading.Tasks.Task<ReplaceCampaignNegativeKeywords200Response> ReplaceCampaignNegativeKeywordsAsync(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplaceCampaignNegativeKeywords200Response> localVarResponse = await ReplaceCampaignNegativeKeywordsWithHttpInfoAsync(campaignId, replaceCampaignNegativeKeywordsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace campaign-level negative keywords Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="replaceCampaignNegativeKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplaceCampaignNegativeKeywords200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplaceCampaignNegativeKeywords200Response>> ReplaceCampaignNegativeKeywordsWithHttpInfoAsync(string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->ReplaceCampaignNegativeKeywords");
+
+            // verify the required parameter 'replaceCampaignNegativeKeywordsRequest' is set
+            if (replaceCampaignNegativeKeywordsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replaceCampaignNegativeKeywordsRequest' when calling AdCampaignsApi->ReplaceCampaignNegativeKeywords");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = replaceCampaignNegativeKeywordsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<ReplaceCampaignNegativeKeywords200Response>("/v1/ads/campaigns/{campaignId}/negative-keywords", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplaceCampaignNegativeKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update ad Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style — &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, and KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60; — each list you send becomes the FULL new set of its   kind on the ad group (criteria not in the list are removed); a kind left out is   untouched. Any other &#x60;targeting&#x60; field returns 400: Google cannot mutate broad   targeting post-create without recreating the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (geo countries only, applied to the   LinkedIn Campaign via PARTIAL_UPDATE), and creative (uploads new media, creates a   replacement inline creative on the same campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5196,6 +5966,149 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Pause or enable a Search keyword Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <returns>UpdateAdKeyword200Response</returns>
+        public UpdateAdKeyword200Response UpdateAdKeyword(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAdKeyword200Response> localVarResponse = UpdateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or enable a Search keyword Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <returns>ApiResponse of UpdateAdKeyword200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdKeyword200Response> UpdateAdKeywordWithHttpInfo(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest)
+        {
+            // verify the required parameter 'keywordId' is set
+            if (keywordId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'keywordId' when calling AdCampaignsApi->UpdateAdKeyword");
+
+            // verify the required parameter 'updateAdKeywordRequest' is set
+            if (updateAdKeywordRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdKeywordRequest' when calling AdCampaignsApi->UpdateAdKeyword");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("keywordId", Zernio.Client.ClientUtils.ParameterToString(keywordId)); // path parameter
+            localVarRequestOptions.Data = updateAdKeywordRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<UpdateAdKeyword200Response>("/v1/ads/keywords/{keywordId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdKeyword", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pause or enable a Search keyword Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdKeyword200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdKeyword200Response> UpdateAdKeywordAsync(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdKeyword200Response> localVarResponse = await UpdateAdKeywordWithHttpInfoAsync(keywordId, updateAdKeywordRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or enable a Search keyword Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="keywordId">Zernio keyword ID (not the Google criterion ID)</param>
+        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdKeyword200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdKeyword200Response>> UpdateAdKeywordWithHttpInfoAsync(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'keywordId' is set
+            if (keywordId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'keywordId' when calling AdCampaignsApi->UpdateAdKeyword");
+
+            // verify the required parameter 'updateAdKeywordRequest' is set
+            if (updateAdKeywordRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdKeywordRequest' when calling AdCampaignsApi->UpdateAdKeyword");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("keywordId", Zernio.Client.ClientUtils.ParameterToString(keywordId)); // path parameter
+            localVarRequestOptions.Data = updateAdKeywordRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateAdKeyword200Response>("/v1/ads/keywords/{keywordId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdKeyword", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update an ad set Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, and Meta-only post-launch delivery settings via &#x60;platformSpecificData&#x60;. At least one updatable field is required.  Value rule sets (Meta only, see &#x60;/v1/ads/value-rule-sets&#x60;): - ATTACH or REPLACE: send &#x60;valueRuleSetId&#x60;. Attachment is driven by the id&#39;s   presence, so &#x60;valueRulesApplied: true&#x60; is optional. Sending a different id   replaces the previous association; there is no separate replace call. - DETACH: send &#x60;valueRulesApplied: false&#x60; and OMIT &#x60;valueRuleSetId&#x60;. - Sending &#x60;valueRulesApplied: false&#x60; TOGETHER with &#x60;valueRuleSetId&#x60; returns 400   &#x60;mutually_exclusive_fields&#x60;. This is deliberate: Meta attaches the rule set   whenever &#x60;value_rule_set_id&#x60; is present, even with &#x60;value_rules_applied&#x60; false,   so echoing stored state while asking to detach would silently keep the bid   adjustments live. - Eligibility: only ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta   rejects the rest server-side. - Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;. Meta   does not document &#x60;value_rules_applied&#x60; as a readable ad-set field, so the   boolean cannot be read back.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS). - Meta only: send &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; to change the cap amount on an ad set   under a COST_CAP / LOWEST_COST_WITH_BID_CAP parent campaign, leaving the strategy itself   (inherited from the campaign) untouched. &#x60;roasAverageFloor&#x60; without &#x60;bidStrategy&#x60; is   rejected (it has no meaning outside LOWEST_COST_WITH_MIN_ROAS).  Delivery settings are validated by Meta against the campaign objective; incompatible combinations (e.g. a billingEvent the optimization goal doesn&#39;t allow) surface as 400s from Meta.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5486,11 +6399,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <returns>UpdateAdStatus200Response</returns>
-        public UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdStatusRequest updateAdStatusRequest)
+        public UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdKeywordRequest updateAdKeywordRequest)
         {
-            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
+            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = UpdateAdStatusWithHttpInfo(adId, updateAdKeywordRequest);
             return localVarResponse.Data;
         }
 
@@ -5499,17 +6412,17 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdStatusRequest updateAdStatusRequest)
+        public Zernio.Client.ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdKeywordRequest updateAdKeywordRequest)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdCampaignsApi->UpdateAdStatus");
 
-            // verify the required parameter 'updateAdStatusRequest' is set
-            if (updateAdStatusRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdStatusRequest' when calling AdCampaignsApi->UpdateAdStatus");
+            // verify the required parameter 'updateAdKeywordRequest' is set
+            if (updateAdKeywordRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdKeywordRequest' when calling AdCampaignsApi->UpdateAdStatus");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -5529,7 +6442,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
-            localVarRequestOptions.Data = updateAdStatusRequest;
+            localVarRequestOptions.Data = updateAdKeywordRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -5555,12 +6468,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateAdStatus200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = await UpdateAdStatusWithHttpInfoAsync(adId, updateAdStatusRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = await UpdateAdStatusWithHttpInfoAsync(adId, updateAdKeywordRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -5569,18 +6482,18 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="updateAdKeywordRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdCampaignsApi->UpdateAdStatus");
 
-            // verify the required parameter 'updateAdStatusRequest' is set
-            if (updateAdStatusRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdStatusRequest' when calling AdCampaignsApi->UpdateAdStatus");
+            // verify the required parameter 'updateAdKeywordRequest' is set
+            if (updateAdKeywordRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdKeywordRequest' when calling AdCampaignsApi->UpdateAdStatus");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -5602,7 +6515,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
-            localVarRequestOptions.Data = updateAdStatusRequest;
+            localVarRequestOptions.Data = updateAdKeywordRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required

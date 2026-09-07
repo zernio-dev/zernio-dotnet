@@ -1,4 +1,4 @@
-# Zernio.Model.UpdateAdStatusRequest
+# Zernio.Model.UpdateAdKeywordRequest
 
 ## Properties
 

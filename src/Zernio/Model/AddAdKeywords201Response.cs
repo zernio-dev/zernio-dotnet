@@ -28,20 +28,18 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200Response
+    /// AddAdKeywords201Response
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response")]
-    public partial class ListAdKeywords200Response : IValidatableObject
+    [DataContract(Name = "addAdKeywords_201_response")]
+    public partial class AddAdKeywords201Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200Response" /> class.
+        /// Initializes a new instance of the <see cref="AddAdKeywords201Response" /> class.
         /// </summary>
         /// <param name="keywords">keywords.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListAdKeywords200Response(List<AdKeyword> keywords = default, Pagination pagination = default)
+        public AddAdKeywords201Response(List<AdKeyword> keywords = default)
         {
             this.Keywords = keywords;
-            this.Pagination = pagination;
         }
 
         /// <summary>
@@ -51,21 +49,14 @@ namespace Zernio.Model
         public List<AdKeyword> Keywords { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
-        /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200Response {\n");
+            sb.Append("class AddAdKeywords201Response {\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

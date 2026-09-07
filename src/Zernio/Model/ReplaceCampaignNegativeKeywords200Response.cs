@@ -28,33 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200Response
+    /// ReplaceCampaignNegativeKeywords200Response
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response")]
-    public partial class ListAdKeywords200Response : IValidatableObject
+    [DataContract(Name = "replaceCampaignNegativeKeywords_200_response")]
+    public partial class ReplaceCampaignNegativeKeywords200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200Response" /> class.
+        /// Initializes a new instance of the <see cref="ReplaceCampaignNegativeKeywords200Response" /> class.
         /// </summary>
-        /// <param name="keywords">keywords.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListAdKeywords200Response(List<AdKeyword> keywords = default, Pagination pagination = default)
+        /// <param name="created">Negative criteria newly created on Google.</param>
+        /// <param name="removed">Negative criteria removed from Google.</param>
+        /// <param name="keywords">The full negative-keyword set after the replace.</param>
+        public ReplaceCampaignNegativeKeywords200Response(int created = default, int removed = default, List<ListCampaignNegativeKeywords200ResponseKeywordsInner> keywords = default)
         {
+            this.Created = created;
+            this.Removed = removed;
             this.Keywords = keywords;
-            this.Pagination = pagination;
         }
 
         /// <summary>
-        /// Gets or Sets Keywords
+        /// Negative criteria newly created on Google
         /// </summary>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<AdKeyword> Keywords { get; set; }
+        /// <value>Negative criteria newly created on Google</value>
+        [DataMember(Name = "created", EmitDefaultValue = false)]
+        public int Created { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
+        /// Negative criteria removed from Google
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
+        /// <value>Negative criteria removed from Google</value>
+        [DataMember(Name = "removed", EmitDefaultValue = false)]
+        public int Removed { get; set; }
+
+        /// <summary>
+        /// The full negative-keyword set after the replace
+        /// </summary>
+        /// <value>The full negative-keyword set after the replace</value>
+        [DataMember(Name = "keywords", EmitDefaultValue = false)]
+        public List<ListCampaignNegativeKeywords200ResponseKeywordsInner> Keywords { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +74,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200Response {\n");
+            sb.Append("class ReplaceCampaignNegativeKeywords200Response {\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  Removed: ").Append(Removed).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

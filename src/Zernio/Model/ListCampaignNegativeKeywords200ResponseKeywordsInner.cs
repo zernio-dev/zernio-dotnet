@@ -28,33 +28,66 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200Response
+    /// ListCampaignNegativeKeywords200ResponseKeywordsInner
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response")]
-    public partial class ListAdKeywords200Response : IValidatableObject
+    [DataContract(Name = "listCampaignNegativeKeywords_200_response_keywords_inner")]
+    public partial class ListCampaignNegativeKeywords200ResponseKeywordsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200Response" /> class.
+        /// Defines MatchType
         /// </summary>
-        /// <param name="keywords">keywords.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListAdKeywords200Response(List<AdKeyword> keywords = default, Pagination pagination = default)
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MatchTypeEnum
         {
-            this.Keywords = keywords;
-            this.Pagination = pagination;
+            /// <summary>
+            /// Enum Exact for value: exact
+            /// </summary>
+            [EnumMember(Value = "exact")]
+            Exact = 1,
+
+            /// <summary>
+            /// Enum Phrase for value: phrase
+            /// </summary>
+            [EnumMember(Value = "phrase")]
+            Phrase = 2,
+
+            /// <summary>
+            /// Enum Broad for value: broad
+            /// </summary>
+            [EnumMember(Value = "broad")]
+            Broad = 3
+        }
+
+
+        /// <summary>
+        /// Gets or Sets MatchType
+        /// </summary>
+        [DataMember(Name = "matchType", EmitDefaultValue = false)]
+        public MatchTypeEnum? MatchType { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListCampaignNegativeKeywords200ResponseKeywordsInner" /> class.
+        /// </summary>
+        /// <param name="criterionId">criterionId.</param>
+        /// <param name="text">text.</param>
+        /// <param name="matchType">matchType.</param>
+        public ListCampaignNegativeKeywords200ResponseKeywordsInner(string criterionId = default, string text = default, MatchTypeEnum? matchType = default)
+        {
+            this.CriterionId = criterionId;
+            this.Text = text;
+            this.MatchType = matchType;
         }
 
         /// <summary>
-        /// Gets or Sets Keywords
+        /// Gets or Sets CriterionId
         /// </summary>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<AdKeyword> Keywords { get; set; }
+        [DataMember(Name = "criterionId", EmitDefaultValue = false)]
+        public string CriterionId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
+        /// Gets or Sets Text
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
+        [DataMember(Name = "text", EmitDefaultValue = false)]
+        public string Text { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +96,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200Response {\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
+            sb.Append("class ListCampaignNegativeKeywords200ResponseKeywordsInner {\n");
+            sb.Append("  CriterionId: ").Append(CriterionId).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("  MatchType: ").Append(MatchType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

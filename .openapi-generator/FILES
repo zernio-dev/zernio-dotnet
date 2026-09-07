@@ -29,6 +29,8 @@ docs/AdDailyMetrics.md
 docs/AdEngagementCounts.md
 docs/AdFunnelCounts.md
 docs/AdInsightsApi.md
+docs/AdKeyword.md
+docs/AdKeywordMetrics.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
@@ -46,6 +48,10 @@ docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignOptimizationGoal.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
+docs/AddAdKeywords201Response.md
+docs/AddAdKeywordsRequest.md
+docs/AddAdKeywordsRequestKeywordsInner.md
+docs/AddAdKeywordsRequestKeywordsInnerAnyOf.md
 docs/AddBroadcastRecipients200Response.md
 docs/AddBroadcastRecipientsRequest.md
 docs/AddConversionAssociations200Response.md
@@ -890,6 +896,7 @@ docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InvitesApi.md
+docs/KeywordEntry.md
 docs/LeadGenApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
@@ -941,7 +948,6 @@ docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAdCreatives200Response.md
 docs/ListAdImages200Response.md
 docs/ListAdKeywords200Response.md
-docs/ListAdKeywords200ResponseKeywordsInner.md
 docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
@@ -957,6 +963,8 @@ docs/ListBroadcasts200Response.md
 docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCalls200Response.md
 docs/ListCalls200ResponseCallsInner.md
+docs/ListCampaignNegativeKeywords200Response.md
+docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
 docs/ListCommentAutomationLogs200Response.md
 docs/ListCommentAutomationLogs200ResponseMisses.md
 docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
@@ -1222,6 +1230,7 @@ docs/RemediatePhoneNumber200ResponsePhoneNumber.md
 docs/RemediatePhoneNumberRequest.md
 docs/RemediatePhoneNumberRequestDocumentsInner.md
 docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
+docs/RemoveAdKeyword200Response.md
 docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
@@ -1230,6 +1239,8 @@ docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
 docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md
+docs/ReplaceCampaignNegativeKeywords200Response.md
+docs/ReplaceCampaignNegativeKeywordsRequest.md
 docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
@@ -1489,6 +1500,8 @@ docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
 docs/UpdateAdCreative200Response.md
 docs/UpdateAdCreativeRequest.md
+docs/UpdateAdKeyword200Response.md
+docs/UpdateAdKeywordRequest.md
 docs/UpdateAdRequest.md
 docs/UpdateAdRequestBudget.md
 docs/UpdateAdRequestCreative.md
@@ -1503,7 +1516,6 @@ docs/UpdateAdSetRequestPlatformSpecificData.md
 docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
-docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
@@ -1932,6 +1944,8 @@ src/Zernio.Test/Model/AdCreativeTests.cs
 src/Zernio.Test/Model/AdDailyMetricsTests.cs
 src/Zernio.Test/Model/AdEngagementCountsTests.cs
 src/Zernio.Test/Model/AdFunnelCountsTests.cs
+src/Zernio.Test/Model/AdKeywordMetricsTests.cs
+src/Zernio.Test/Model/AdKeywordTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
 src/Zernio.Test/Model/AdPromotedObjectTests.cs
 src/Zernio.Test/Model/AdReviewStatusTests.cs
@@ -1948,6 +1962,10 @@ src/Zernio.Test/Model/AdTreeCampaignOptimizationGoalTests.cs
 src/Zernio.Test/Model/AdTreeCampaignPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeCampaignTests.cs
 src/Zernio.Test/Model/AdTreeResponseTests.cs
+src/Zernio.Test/Model/AddAdKeywords201ResponseTests.cs
+src/Zernio.Test/Model/AddAdKeywordsRequestKeywordsInnerAnyOfTests.cs
+src/Zernio.Test/Model/AddAdKeywordsRequestKeywordsInnerTests.cs
+src/Zernio.Test/Model/AddAdKeywordsRequestTests.cs
 src/Zernio.Test/Model/AddBroadcastRecipients200ResponseTests.cs
 src/Zernio.Test/Model/AddBroadcastRecipientsRequestTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
@@ -2769,6 +2787,7 @@ src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
+src/Zernio.Test/Model/KeywordEntryTests.cs
 src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/LikeInboxCommentRequestTests.cs
 src/Zernio.Test/Model/LikePost200ResponseTests.cs
@@ -2817,7 +2836,6 @@ src/Zernio.Test/Model/ListAdCatalogs200ResponseCatalogsInnerTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdImages200ResponseTests.cs
-src/Zernio.Test/Model/ListAdKeywords200ResponseKeywordsInnerTests.cs
 src/Zernio.Test/Model/ListAdKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
@@ -2834,6 +2852,8 @@ src/Zernio.Test/Model/ListBroadcasts200ResponseBroadcastsInnerTests.cs
 src/Zernio.Test/Model/ListBroadcasts200ResponseTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseCallsInnerTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseTests.cs
+src/Zernio.Test/Model/ListCampaignNegativeKeywords200ResponseKeywordsInnerTests.cs
+src/Zernio.Test/Model/ListCampaignNegativeKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesSamplesInnerTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseTests.cs
@@ -3088,6 +3108,7 @@ src/Zernio.Test/Model/RemediatePhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestTests.cs
+src/Zernio.Test/Model/RemoveAdKeyword200ResponseTests.cs
 src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
 src/Zernio.Test/Model/RemoveConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/RemoveDiscordMemberRole200ResponseTests.cs
@@ -3096,6 +3117,8 @@ src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompanies200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestTests.cs
+src/Zernio.Test/Model/ReplaceCampaignNegativeKeywords200ResponseTests.cs
+src/Zernio.Test/Model/ReplaceCampaignNegativeKeywordsRequestTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseDataTests.cs
@@ -3349,6 +3372,8 @@ src/Zernio.Test/Model/UpdateAdCampaignStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCreativeRequestTests.cs
+src/Zernio.Test/Model/UpdateAdKeyword200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdKeywordRequestTests.cs
 src/Zernio.Test/Model/UpdateAdRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingInterestsInnerTests.cs
@@ -3363,7 +3388,6 @@ src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdStatus200ResponseTests.cs
-src/Zernio.Test/Model/UpdateAdStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestUrlTagsInnerTests.cs
@@ -3797,6 +3821,8 @@ src/Zernio/Model/AdCreative.cs
 src/Zernio/Model/AdDailyMetrics.cs
 src/Zernio/Model/AdEngagementCounts.cs
 src/Zernio/Model/AdFunnelCounts.cs
+src/Zernio/Model/AdKeyword.cs
+src/Zernio/Model/AdKeywordMetrics.cs
 src/Zernio/Model/AdMetrics.cs
 src/Zernio/Model/AdPromotedObject.cs
 src/Zernio/Model/AdReviewStatus.cs
@@ -3812,6 +3838,10 @@ src/Zernio/Model/AdTreeCampaignCampaignBudget.cs
 src/Zernio/Model/AdTreeCampaignOptimizationGoal.cs
 src/Zernio/Model/AdTreeCampaignPromotedObject.cs
 src/Zernio/Model/AdTreeResponse.cs
+src/Zernio/Model/AddAdKeywords201Response.cs
+src/Zernio/Model/AddAdKeywordsRequest.cs
+src/Zernio/Model/AddAdKeywordsRequestKeywordsInner.cs
+src/Zernio/Model/AddAdKeywordsRequestKeywordsInnerAnyOf.cs
 src/Zernio/Model/AddBroadcastRecipients200Response.cs
 src/Zernio/Model/AddBroadcastRecipientsRequest.cs
 src/Zernio/Model/AddConversionAssociations200Response.cs
@@ -4633,6 +4663,7 @@ src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
+src/Zernio/Model/KeywordEntry.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
 src/Zernio/Model/LikeInboxCommentRequest.cs
 src/Zernio/Model/LikePost200Response.cs
@@ -4682,7 +4713,6 @@ src/Zernio/Model/ListAdCatalogs200ResponseCatalogsInner.cs
 src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdImages200Response.cs
 src/Zernio/Model/ListAdKeywords200Response.cs
-src/Zernio/Model/ListAdKeywords200ResponseKeywordsInner.cs
 src/Zernio/Model/ListAdLabels200Response.cs
 src/Zernio/Model/ListAdStudies200Response.cs
 src/Zernio/Model/ListAdVideos200Response.cs
@@ -4698,6 +4728,8 @@ src/Zernio/Model/ListBroadcasts200Response.cs
 src/Zernio/Model/ListBroadcasts200ResponseBroadcastsInner.cs
 src/Zernio/Model/ListCalls200Response.cs
 src/Zernio/Model/ListCalls200ResponseCallsInner.cs
+src/Zernio/Model/ListCampaignNegativeKeywords200Response.cs
+src/Zernio/Model/ListCampaignNegativeKeywords200ResponseKeywordsInner.cs
 src/Zernio/Model/ListCommentAutomationLogs200Response.cs
 src/Zernio/Model/ListCommentAutomationLogs200ResponseMisses.cs
 src/Zernio/Model/ListCommentAutomationLogs200ResponseMissesSamplesInner.cs
@@ -4952,6 +4984,7 @@ src/Zernio/Model/RemediatePhoneNumber200ResponsePhoneNumber.cs
 src/Zernio/Model/RemediatePhoneNumberRequest.cs
 src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInner.cs
 src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInnerOneOf.cs
+src/Zernio/Model/RemoveAdKeyword200Response.cs
 src/Zernio/Model/RemoveBookmark200Response.cs
 src/Zernio/Model/RemoveConversionAssociations200Response.cs
 src/Zernio/Model/RemoveDiscordMemberRole200Response.cs
@@ -4960,6 +4993,8 @@ src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompanies200Response.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequestCompaniesInner.cs
+src/Zernio/Model/ReplaceCampaignNegativeKeywords200Response.cs
+src/Zernio/Model/ReplaceCampaignNegativeKeywordsRequest.cs
 src/Zernio/Model/ReplyToGoogleBusinessReview200Response.cs
 src/Zernio/Model/ReplyToGoogleBusinessReviewRequest.cs
 src/Zernio/Model/ReplyToInboxPost200Response.cs
@@ -5213,6 +5248,8 @@ src/Zernio/Model/UpdateAdCampaignStatus200Response.cs
 src/Zernio/Model/UpdateAdCampaignStatusRequest.cs
 src/Zernio/Model/UpdateAdCreative200Response.cs
 src/Zernio/Model/UpdateAdCreativeRequest.cs
+src/Zernio/Model/UpdateAdKeyword200Response.cs
+src/Zernio/Model/UpdateAdKeywordRequest.cs
 src/Zernio/Model/UpdateAdRequest.cs
 src/Zernio/Model/UpdateAdRequestBudget.cs
 src/Zernio/Model/UpdateAdRequestCreative.cs
@@ -5227,7 +5264,6 @@ src/Zernio/Model/UpdateAdSetRequestPlatformSpecificData.cs
 src/Zernio/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
 src/Zernio/Model/UpdateAdStatus200Response.cs
-src/Zernio/Model/UpdateAdStatusRequest.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequest.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestCreative.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestUrlTagsInner.cs

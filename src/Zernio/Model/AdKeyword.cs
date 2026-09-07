@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200ResponseKeywordsInner
+    /// AdKeyword
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response_keywords_inner")]
-    public partial class ListAdKeywords200ResponseKeywordsInner : IValidatableObject
+    [DataContract(Name = "AdKeyword")]
+    public partial class AdKeyword : IValidatableObject
     {
         /// <summary>
         /// Defines Platform
@@ -115,7 +115,7 @@ namespace Zernio.Model
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200ResponseKeywordsInner" /> class.
+        /// Initializes a new instance of the <see cref="AdKeyword" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="accountId">Social account ID owning the sync.</param>
@@ -132,8 +132,10 @@ namespace Zernio.Model
         /// <param name="matchType">matchType.</param>
         /// <param name="status">status.</param>
         /// <param name="negative">negative.</param>
+        /// <param name="qualityScore">Google Quality Score, 1-10. Null when unrated..</param>
         /// <param name="syncedAt">syncedAt.</param>
-        public ListAdKeywords200ResponseKeywordsInner(string id = default, string accountId = default, string profileId = default, PlatformEnum? platform = default, string adAccountId = default, string campaignId = default, string campaignName = default, string campaignStatus = default, string adSetId = default, string adSetName = default, string adSetStatus = default, string keyword = default, MatchTypeEnum? matchType = default, StatusEnum? status = default, bool negative = default, DateTime? syncedAt = default)
+        /// <param name="metrics">metrics.</param>
+        public AdKeyword(string id = default, string accountId = default, string profileId = default, PlatformEnum? platform = default, string adAccountId = default, string campaignId = default, string campaignName = default, string campaignStatus = default, string adSetId = default, string adSetName = default, string adSetStatus = default, string keyword = default, MatchTypeEnum? matchType = default, StatusEnum? status = default, bool negative = default, int? qualityScore = default, DateTime? syncedAt = default, AdKeywordMetrics metrics = default)
         {
             this.Id = id;
             this.AccountId = accountId;
@@ -150,7 +152,9 @@ namespace Zernio.Model
             this.MatchType = matchType;
             this.Status = status;
             this.Negative = negative;
+            this.QualityScore = qualityScore;
             this.SyncedAt = syncedAt;
+            this.Metrics = metrics;
         }
 
         /// <summary>
@@ -229,10 +233,23 @@ namespace Zernio.Model
         public bool Negative { get; set; }
 
         /// <summary>
+        /// Google Quality Score, 1-10. Null when unrated.
+        /// </summary>
+        /// <value>Google Quality Score, 1-10. Null when unrated.</value>
+        [DataMember(Name = "qualityScore", EmitDefaultValue = true)]
+        public int? QualityScore { get; set; }
+
+        /// <summary>
         /// Gets or Sets SyncedAt
         /// </summary>
         [DataMember(Name = "syncedAt", EmitDefaultValue = true)]
         public DateTime? SyncedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Metrics
+        /// </summary>
+        [DataMember(Name = "metrics", EmitDefaultValue = false)]
+        public AdKeywordMetrics Metrics { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -241,7 +258,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200ResponseKeywordsInner {\n");
+            sb.Append("class AdKeyword {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
@@ -257,7 +274,9 @@ namespace Zernio.Model
             sb.Append("  MatchType: ").Append(MatchType).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Negative: ").Append(Negative).Append("\n");
+            sb.Append("  QualityScore: ").Append(QualityScore).Append("\n");
             sb.Append("  SyncedAt: ").Append(SyncedAt).Append("\n");
+            sb.Append("  Metrics: ").Append(Metrics).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

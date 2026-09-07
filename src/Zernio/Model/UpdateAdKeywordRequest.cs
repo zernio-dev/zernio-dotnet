@@ -28,33 +28,49 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200Response
+    /// UpdateAdKeywordRequest
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response")]
-    public partial class ListAdKeywords200Response : IValidatableObject
+    [DataContract(Name = "updateAdKeyword_request")]
+    public partial class UpdateAdKeywordRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200Response" /> class.
+        /// Defines Status
         /// </summary>
-        /// <param name="keywords">keywords.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListAdKeywords200Response(List<AdKeyword> keywords = default, Pagination pagination = default)
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
         {
-            this.Keywords = keywords;
-            this.Pagination = pagination;
+            /// <summary>
+            /// Enum Active for value: active
+            /// </summary>
+            [EnumMember(Value = "active")]
+            Active = 1,
+
+            /// <summary>
+            /// Enum Paused for value: paused
+            /// </summary>
+            [EnumMember(Value = "paused")]
+            Paused = 2
         }
 
-        /// <summary>
-        /// Gets or Sets Keywords
-        /// </summary>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<AdKeyword> Keywords { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
+        /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
+        [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
+        public StatusEnum Status { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateAdKeywordRequest" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected UpdateAdKeywordRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateAdKeywordRequest" /> class.
+        /// </summary>
+        /// <param name="status">status (required).</param>
+        public UpdateAdKeywordRequest(StatusEnum status = default)
+        {
+            this.Status = status;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +79,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200Response {\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
+            sb.Append("class UpdateAdKeywordRequest {\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

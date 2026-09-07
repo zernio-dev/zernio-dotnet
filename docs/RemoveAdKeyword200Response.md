@@ -1,11 +1,11 @@
-# Zernio.Model.ListAdKeywords200Response
+# Zernio.Model.RemoveAdKeyword200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Keywords** | [**List&lt;AdKeyword&gt;**](AdKeyword.md) |  | [optional] 
-**Pagination** | [**Pagination**](Pagination.md) |  | [optional] 
+**Removed** | **bool** | Always true on success | [optional] 
+**KeywordId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

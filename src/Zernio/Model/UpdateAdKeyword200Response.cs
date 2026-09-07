@@ -28,49 +28,25 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateAdStatusRequest
+    /// UpdateAdKeyword200Response
     /// </summary>
-    [DataContract(Name = "updateAdStatus_request")]
-    public partial class UpdateAdStatusRequest : IValidatableObject
+    [DataContract(Name = "updateAdKeyword_200_response")]
+    public partial class UpdateAdKeyword200Response : IValidatableObject
     {
         /// <summary>
-        /// Defines Status
+        /// Initializes a new instance of the <see cref="UpdateAdKeyword200Response" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        /// <param name="keyword">keyword.</param>
+        public UpdateAdKeyword200Response(AdKeyword keyword = default)
         {
-            /// <summary>
-            /// Enum Active for value: active
-            /// </summary>
-            [EnumMember(Value = "active")]
-            Active = 1,
-
-            /// <summary>
-            /// Enum Paused for value: paused
-            /// </summary>
-            [EnumMember(Value = "paused")]
-            Paused = 2
+            this.Keyword = keyword;
         }
 
-
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or Sets Keyword
         /// </summary>
-        [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
-        public StatusEnum Status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateAdStatusRequest" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdateAdStatusRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateAdStatusRequest" /> class.
-        /// </summary>
-        /// <param name="status">status (required).</param>
-        public UpdateAdStatusRequest(StatusEnum status = default)
-        {
-            this.Status = status;
-        }
+        [DataMember(Name = "keyword", EmitDefaultValue = false)]
+        public AdKeyword Keyword { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,8 +55,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateAdStatusRequest {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("class UpdateAdKeyword200Response {\n");
+            sb.Append("  Keyword: ").Append(Keyword).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,33 +28,34 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdKeywords200Response
+    /// RemoveAdKeyword200Response
     /// </summary>
-    [DataContract(Name = "listAdKeywords_200_response")]
-    public partial class ListAdKeywords200Response : IValidatableObject
+    [DataContract(Name = "removeAdKeyword_200_response")]
+    public partial class RemoveAdKeyword200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdKeywords200Response" /> class.
+        /// Initializes a new instance of the <see cref="RemoveAdKeyword200Response" /> class.
         /// </summary>
-        /// <param name="keywords">keywords.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListAdKeywords200Response(List<AdKeyword> keywords = default, Pagination pagination = default)
+        /// <param name="removed">Always true on success.</param>
+        /// <param name="keywordId">keywordId.</param>
+        public RemoveAdKeyword200Response(bool removed = default, string keywordId = default)
         {
-            this.Keywords = keywords;
-            this.Pagination = pagination;
+            this.Removed = removed;
+            this.KeywordId = keywordId;
         }
 
         /// <summary>
-        /// Gets or Sets Keywords
+        /// Always true on success
         /// </summary>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
-        public List<AdKeyword> Keywords { get; set; }
+        /// <value>Always true on success</value>
+        [DataMember(Name = "removed", EmitDefaultValue = true)]
+        public bool Removed { get; set; }
 
         /// <summary>
-        /// Gets or Sets Pagination
+        /// Gets or Sets KeywordId
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
+        [DataMember(Name = "keywordId", EmitDefaultValue = false)]
+        public string KeywordId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +64,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdKeywords200Response {\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
+            sb.Append("class RemoveAdKeyword200Response {\n");
+            sb.Append("  Removed: ").Append(Removed).Append("\n");
+            sb.Append("  KeywordId: ").Append(KeywordId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
