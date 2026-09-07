@@ -1159,6 +1159,8 @@ docs/PostAnalytics.md
 docs/PostCreateResponse.md
 docs/PostDeleteResponse.md
 docs/PostGetResponse.md
+docs/PostPublishIncompleteResponse.md
+docs/PostPublishIncompleteResponsePlatformResultsInner.md
 docs/PostRetryResponse.md
 docs/PostUpdateResponse.md
 docs/PostUserId.md
@@ -1247,6 +1249,7 @@ docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
+docs/RetryPost207Response.md
 docs/RetweetPost200Response.md
 docs/RetweetPostRequest.md
 docs/ReuseSmsRegistrationForNumber200Response.md
@@ -3019,6 +3022,8 @@ src/Zernio.Test/Model/PostAnalyticsTests.cs
 src/Zernio.Test/Model/PostCreateResponseTests.cs
 src/Zernio.Test/Model/PostDeleteResponseTests.cs
 src/Zernio.Test/Model/PostGetResponseTests.cs
+src/Zernio.Test/Model/PostPublishIncompleteResponsePlatformResultsInnerTests.cs
+src/Zernio.Test/Model/PostPublishIncompleteResponseTests.cs
 src/Zernio.Test/Model/PostRetryResponseTests.cs
 src/Zernio.Test/Model/PostTests.cs
 src/Zernio.Test/Model/PostUpdateResponseTests.cs
@@ -3103,6 +3108,7 @@ src/Zernio.Test/Model/RespondToSmsRegistrationReview200ResponseTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
+src/Zernio.Test/Model/RetryPost207ResponseTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
 src/Zernio.Test/Model/RetweetPostRequestTests.cs
 src/Zernio.Test/Model/ReuseSmsRegistrationForNumber200ResponseTests.cs
@@ -4874,6 +4880,8 @@ src/Zernio/Model/PostAnalytics.cs
 src/Zernio/Model/PostCreateResponse.cs
 src/Zernio/Model/PostDeleteResponse.cs
 src/Zernio/Model/PostGetResponse.cs
+src/Zernio/Model/PostPublishIncompleteResponse.cs
+src/Zernio/Model/PostPublishIncompleteResponsePlatformResultsInner.cs
 src/Zernio/Model/PostRetryResponse.cs
 src/Zernio/Model/PostUpdateResponse.cs
 src/Zernio/Model/PostUserId.cs
@@ -4957,6 +4965,7 @@ src/Zernio/Model/RespondToSmsRegistrationReview200Response.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequest.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
+src/Zernio/Model/RetryPost207Response.cs
 src/Zernio/Model/RetweetPost200Response.cs
 src/Zernio/Model/RetweetPostRequest.cs
 src/Zernio/Model/ReuseSmsRegistrationForNumber200Response.cs
