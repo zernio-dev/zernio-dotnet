@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class SendInboxMessage400Response : IValidatableObject
     {
         /// <summary>
-        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
+        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
         /// </summary>
-        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.</value>
+        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CodeEnum
         {
@@ -50,21 +50,39 @@ namespace Zernio.Model
             /// Enum MISSINGPARTICIPANT for value: MISSING_PARTICIPANT
             /// </summary>
             [EnumMember(Value = "MISSING_PARTICIPANT")]
-            MISSINGPARTICIPANT = 2
+            MISSINGPARTICIPANT = 2,
+
+            /// <summary>
+            /// Enum DIRECTSENDNOTELIGIBLE for value: DIRECT_SEND_NOT_ELIGIBLE
+            /// </summary>
+            [EnumMember(Value = "DIRECT_SEND_NOT_ELIGIBLE")]
+            DIRECTSENDNOTELIGIBLE = 3,
+
+            /// <summary>
+            /// Enum DIRECTSENDLIMITED for value: DIRECT_SEND_LIMITED
+            /// </summary>
+            [EnumMember(Value = "DIRECT_SEND_LIMITED")]
+            DIRECTSENDLIMITED = 4,
+
+            /// <summary>
+            /// Enum DIRECTSENDBLOCKED for value: DIRECT_SEND_BLOCKED
+            /// </summary>
+            [EnumMember(Value = "DIRECT_SEND_BLOCKED")]
+            DIRECTSENDBLOCKED = 5
         }
 
 
         /// <summary>
-        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
+        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
         /// </summary>
-        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.</value>
+        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.</value>
         [DataMember(Name = "code", EmitDefaultValue = false)]
         public CodeEnum? Code { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessage400Response" /> class.
         /// </summary>
         /// <param name="error">error.</param>
-        /// <param name="code">Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to..</param>
+        /// <param name="code">Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own..</param>
         /// <param name="platformError">platformError.</param>
         public SendInboxMessage400Response(string error = default, CodeEnum? code = default, SendInboxMessage400ResponsePlatformError platformError = default)
         {

@@ -43,7 +43,49 @@ namespace Zernio.Model
             /// Enum PLATFORMNOTSUPPORTED for value: PLATFORM_NOT_SUPPORTED
             /// </summary>
             [EnumMember(Value = "PLATFORM_NOT_SUPPORTED")]
-            PLATFORMNOTSUPPORTED = 1
+            PLATFORMNOTSUPPORTED = 1,
+
+            /// <summary>
+            /// Enum PLATFORMLIMITATION for value: PLATFORM_LIMITATION
+            /// </summary>
+            [EnumMember(Value = "PLATFORM_LIMITATION")]
+            PLATFORMLIMITATION = 2,
+
+            /// <summary>
+            /// Enum TEMPLATEREQUIRED for value: TEMPLATE_REQUIRED
+            /// </summary>
+            [EnumMember(Value = "TEMPLATE_REQUIRED")]
+            TEMPLATEREQUIRED = 3,
+
+            /// <summary>
+            /// Enum INVALIDTEMPLATEPARAMS for value: INVALID_TEMPLATE_PARAMS
+            /// </summary>
+            [EnumMember(Value = "INVALID_TEMPLATE_PARAMS")]
+            INVALIDTEMPLATEPARAMS = 4,
+
+            /// <summary>
+            /// Enum INVALIDTEMPLATEBUTTONPARAM for value: INVALID_TEMPLATE_BUTTON_PARAM
+            /// </summary>
+            [EnumMember(Value = "INVALID_TEMPLATE_BUTTON_PARAM")]
+            INVALIDTEMPLATEBUTTONPARAM = 5,
+
+            /// <summary>
+            /// Enum DIRECTSENDNOTELIGIBLE for value: DIRECT_SEND_NOT_ELIGIBLE
+            /// </summary>
+            [EnumMember(Value = "DIRECT_SEND_NOT_ELIGIBLE")]
+            DIRECTSENDNOTELIGIBLE = 6,
+
+            /// <summary>
+            /// Enum DIRECTSENDLIMITED for value: DIRECT_SEND_LIMITED
+            /// </summary>
+            [EnumMember(Value = "DIRECT_SEND_LIMITED")]
+            DIRECTSENDLIMITED = 7,
+
+            /// <summary>
+            /// Enum DIRECTSENDBLOCKED for value: DIRECT_SEND_BLOCKED
+            /// </summary>
+            [EnumMember(Value = "DIRECT_SEND_BLOCKED")]
+            DIRECTSENDBLOCKED = 8
         }
 
 
