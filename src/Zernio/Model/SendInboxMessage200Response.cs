@@ -37,10 +37,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SendInboxMessage200Response" /> class.
         /// </summary>
         /// <param name="success">success.</param>
+        /// <param name="warnings">Present when a successful send ignored replyTo on Instagram or Facebook Messenger. The message was sent without a quote; do not retry it to apply the reply..</param>
         /// <param name="data">data.</param>
-        public SendInboxMessage200Response(bool success = default, SendInboxMessage200ResponseData data = default)
+        public SendInboxMessage200Response(bool success = default, List<SendInboxMessage200ResponseWarningsInner> warnings = default, SendInboxMessage200ResponseData data = default)
         {
             this.Success = success;
+            this.Warnings = warnings;
             this.Data = data;
         }
 
@@ -49,6 +51,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "success", EmitDefaultValue = true)]
         public bool Success { get; set; }
+
+        /// <summary>
+        /// Present when a successful send ignored replyTo on Instagram or Facebook Messenger. The message was sent without a quote; do not retry it to apply the reply.
+        /// </summary>
+        /// <value>Present when a successful send ignored replyTo on Instagram or Facebook Messenger. The message was sent without a quote; do not retry it to apply the reply.</value>
+        [DataMember(Name = "warnings", EmitDefaultValue = false)]
+        public List<SendInboxMessage200ResponseWarningsInner> Warnings { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -65,6 +74,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessage200Response {\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

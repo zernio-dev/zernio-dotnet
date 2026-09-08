@@ -28,77 +28,78 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// MetaLeadFormPlatformDataContextCard
+    /// SendInboxMessage200ResponseWarningsInner
     /// </summary>
-    [DataContract(Name = "MetaLeadFormPlatformData_contextCard")]
-    public partial class MetaLeadFormPlatformDataContextCard : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_200_response_warnings_inner")]
+    public partial class SendInboxMessage200ResponseWarningsInner : IValidatableObject
     {
         /// <summary>
-        /// Defines Style
+        /// Defines Code
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum StyleEnum
+        public enum CodeEnum
         {
             /// <summary>
-            /// Enum LISTSTYLE for value: LIST_STYLE
+            /// Enum IgnoredField for value: ignored_field
             /// </summary>
-            [EnumMember(Value = "LIST_STYLE")]
-            LISTSTYLE = 1,
-
-            /// <summary>
-            /// Enum PARAGRAPHSTYLE for value: PARAGRAPH_STYLE
-            /// </summary>
-            [EnumMember(Value = "PARAGRAPH_STYLE")]
-            PARAGRAPHSTYLE = 2
+            [EnumMember(Value = "ignored_field")]
+            IgnoredField = 1
         }
 
 
         /// <summary>
-        /// Gets or Sets Style
+        /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name = "style", EmitDefaultValue = false)]
-        public StyleEnum? Style { get; set; }
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
+        public CodeEnum Code { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MetaLeadFormPlatformDataContextCard" /> class.
+        /// Defines Param
         /// </summary>
-        /// <param name="title">title.</param>
-        /// <param name="content">content.</param>
-        /// <param name="style">style.</param>
-        /// <param name="buttonText">buttonText.</param>
-        /// <param name="coverPhoto">Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported..</param>
-        public MetaLeadFormPlatformDataContextCard(string title = default, List<string> content = default, StyleEnum? style = default, string buttonText = default, string coverPhoto = default)
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ParamEnum
         {
-            this.Title = title;
-            this.Content = content;
-            this.Style = style;
-            this.ButtonText = buttonText;
-            this.CoverPhoto = coverPhoto;
+            /// <summary>
+            /// Enum ReplyTo for value: replyTo
+            /// </summary>
+            [EnumMember(Value = "replyTo")]
+            ReplyTo = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Param
+        /// </summary>
+        [DataMember(Name = "param", IsRequired = true, EmitDefaultValue = true)]
+        public ParamEnum Param { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendInboxMessage200ResponseWarningsInner" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected SendInboxMessage200ResponseWarningsInner() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendInboxMessage200ResponseWarningsInner" /> class.
+        /// </summary>
+        /// <param name="code">code (required).</param>
+        /// <param name="param">param (required).</param>
+        /// <param name="message">Human-readable explanation of the ignored field. (required).</param>
+        public SendInboxMessage200ResponseWarningsInner(CodeEnum code = default, ParamEnum param = default, string message = default)
+        {
+            this.Code = code;
+            this.Param = param;
+            // to ensure "message" is required (not null)
+            if (message == null)
+            {
+                throw new ArgumentNullException("message is a required property for SendInboxMessage200ResponseWarningsInner and cannot be null");
+            }
+            this.Message = message;
         }
 
         /// <summary>
-        /// Gets or Sets Title
+        /// Human-readable explanation of the ignored field.
         /// </summary>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Content
-        /// </summary>
-        [DataMember(Name = "content", EmitDefaultValue = false)]
-        public List<string> Content { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ButtonText
-        /// </summary>
-        [DataMember(Name = "buttonText", EmitDefaultValue = false)]
-        public string ButtonText { get; set; }
-
-        /// <summary>
-        /// Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported.
-        /// </summary>
-        /// <value>Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported.</value>
-        [DataMember(Name = "coverPhoto", EmitDefaultValue = false)]
-        public string CoverPhoto { get; set; }
+        /// <value>Human-readable explanation of the ignored field.</value>
+        [DataMember(Name = "message", IsRequired = true, EmitDefaultValue = true)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,12 +108,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MetaLeadFormPlatformDataContextCard {\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  Content: ").Append(Content).Append("\n");
-            sb.Append("  Style: ").Append(Style).Append("\n");
-            sb.Append("  ButtonText: ").Append(ButtonText).Append("\n");
-            sb.Append("  CoverPhoto: ").Append(CoverPhoto).Append("\n");
+            sb.Append("class SendInboxMessage200ResponseWarningsInner {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Param: ").Append(Param).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
