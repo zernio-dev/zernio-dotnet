@@ -103,14 +103,16 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="category">category.</param>
         /// <param name="language">language.</param>
+        /// <param name="messageSendTtlSeconds">Only when a custom TTL is set; absent while the category default applies..</param>
         /// <param name="components">components.</param>
-        public GetWhatsAppTemplates200ResponseTemplatesInner(string id = default, string name = default, StatusEnum? status = default, CategoryEnum? category = default, string language = default, List<Object> components = default)
+        public GetWhatsAppTemplates200ResponseTemplatesInner(string id = default, string name = default, StatusEnum? status = default, CategoryEnum? category = default, string language = default, int messageSendTtlSeconds = default, List<Object> components = default)
         {
             this.Id = id;
             this.Name = name;
             this.Status = status;
             this.Category = category;
             this.Language = language;
+            this.MessageSendTtlSeconds = messageSendTtlSeconds;
             this.Components = components;
         }
 
@@ -134,6 +136,13 @@ namespace Zernio.Model
         public string Language { get; set; }
 
         /// <summary>
+        /// Only when a custom TTL is set; absent while the category default applies.
+        /// </summary>
+        /// <value>Only when a custom TTL is set; absent while the category default applies.</value>
+        [DataMember(Name = "message_send_ttl_seconds", EmitDefaultValue = false)]
+        public int MessageSendTtlSeconds { get; set; }
+
+        /// <summary>
         /// Gets or Sets Components
         /// </summary>
         [DataMember(Name = "components", EmitDefaultValue = false)]
@@ -152,6 +161,7 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  MessageSendTtlSeconds: ").Append(MessageSendTtlSeconds).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

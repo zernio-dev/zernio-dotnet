@@ -19533,7 +19533,7 @@ paths:
       x-resource-group: accounts
     patch:
       description: |
-        Update one variant's components. Name, language and category cannot change after creation.
+        Update one variant's components and/or its message_send_ttl_seconds. Name, language and category cannot change after creation.
 
         Meta stores one template per **name + language**, so a name identifies a family of variants,
         each with its own Meta id. Pass `language` to address one variant. Without it, a name with a
@@ -19699,7 +19699,7 @@ paths:
       x-resource-group: accounts
     patch:
       description: |
-        Update one variant's components by its Meta id. Name, language and category cannot change.
+        Update one variant's components and/or its message_send_ttl_seconds by its Meta id. Name, language and category cannot change.
 
         Meta only allows editing templates in `APPROVED`, `REJECTED` or `PAUSED` state; an approved
         template can be edited once per 24 hours and up to 10 times per 30 days. A successful update
@@ -70917,6 +70917,7 @@ components:
         components:
         - "{}"
         - "{}"
+        message_send_ttl_seconds: 0
         name: name
         language: language
         id: id
@@ -70942,6 +70943,10 @@ components:
           type: string
         language:
           type: string
+        message_send_ttl_seconds:
+          description: Only when a custom TTL is set; absent while the category default
+            applies.
+          type: integer
         components:
           items:
             type: object
@@ -70953,6 +70958,7 @@ components:
         - components:
           - "{}"
           - "{}"
+          message_send_ttl_seconds: 0
           name: name
           language: language
           id: id
@@ -70961,6 +70967,7 @@ components:
         - components:
           - "{}"
           - "{}"
+          message_send_ttl_seconds: 0
           name: name
           language: language
           id: id
@@ -71046,6 +71053,14 @@ components:
           items:
             $ref: "#/components/schemas/createWhatsAppTemplate_request_library_template_button_inputs_inner"
           type: array
+        message_send_ttl_seconds:
+          description: "Delivery validity window in seconds: a message not delivered\
+            \ within it is dropped. Range depends on category: AUTHENTICATION 30 to\
+            \ 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days);\
+            \ -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults\
+            \ to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises\
+            \ the template, it clears the TTL (read it back to check)."
+          type: integer
       required:
       - accountId
       - category
@@ -71053,6 +71068,7 @@ components:
       - name
     createWhatsAppTemplate_200_response_template:
       example:
+        message_send_ttl_seconds: 0
         name: name
         language: language
         id: id
@@ -71070,9 +71086,13 @@ components:
           type: string
         language:
           type: string
+        message_send_ttl_seconds:
+          description: Echoed when supplied on the request.
+          type: integer
     createWhatsAppTemplate_200_response:
       example:
         template:
+          message_send_ttl_seconds: 0
           name: name
           language: language
           id: id
@@ -71089,6 +71109,7 @@ components:
         components:
         - "{}"
         - "{}"
+        message_send_ttl_seconds: 0
         rejected_reason: rejected_reason
         quality_score: "{}"
         name: name
@@ -71113,6 +71134,10 @@ components:
           items:
             type: object
           type: array
+        message_send_ttl_seconds:
+          description: Only when a custom TTL is set; absent while the category default
+            applies.
+          type: integer
         rejected_reason:
           description: Only when status is REJECTED.
           type: string
@@ -71126,6 +71151,7 @@ components:
           components:
           - "{}"
           - "{}"
+          message_send_ttl_seconds: 0
           rejected_reason: rejected_reason
           quality_score: "{}"
           name: name
@@ -71207,14 +71233,22 @@ components:
             \ query parameter on PATCH is a 400."
           type: string
         components:
-          description: Updated template components
+          description: Updated template components. Optional when only message_send_ttl_seconds
+            changes; at least one of the two is required.
           items:
             $ref: "#/components/schemas/WhatsAppTemplateComponent"
           minItems: 1
           type: array
+        message_send_ttl_seconds:
+          description: "Delivery validity window in seconds: a message not delivered\
+            \ within it is dropped. Range depends on category: AUTHENTICATION 30 to\
+            \ 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days);\
+            \ -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults\
+            \ to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises\
+            \ the template, it clears the TTL (read it back to check)."
+          type: integer
       required:
       - accountId
-      - components
     updateWhatsAppTemplate_200_response_template:
       example:
         name: name
@@ -71272,14 +71306,22 @@ components:
           description: WhatsApp social account ID
           type: string
         components:
-          description: Updated template components
+          description: Updated template components. Optional when only message_send_ttl_seconds
+            changes; at least one of the two is required.
           items:
             $ref: "#/components/schemas/WhatsAppTemplateComponent"
           minItems: 1
           type: array
+        message_send_ttl_seconds:
+          description: "Delivery validity window in seconds: a message not delivered\
+            \ within it is dropped. Range depends on category: AUTHENTICATION 30 to\
+            \ 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days);\
+            \ -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults\
+            \ to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises\
+            \ the template, it clears the TTL (read it back to check)."
+          type: integer
       required:
       - accountId
-      - components
     updateWhatsAppTemplateById_200_response_template:
       example:
         name: name

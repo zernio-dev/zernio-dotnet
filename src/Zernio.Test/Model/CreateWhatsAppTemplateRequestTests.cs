@@ -135,5 +135,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'LibraryTemplateButtonInputs'
         }
+
+        /// <summary>
+        /// Test the property 'MessageSendTtlSeconds'
+        /// </summary>
+        [Fact]
+        public void MessageSendTtlSecondsTest()
+        {
+            // TODO unit test for the property 'MessageSendTtlSeconds'
+        }
     }
 }

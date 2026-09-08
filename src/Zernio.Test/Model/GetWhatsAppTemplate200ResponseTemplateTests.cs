@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MessageSendTtlSeconds'
+        /// </summary>
+        [Fact]
+        public void MessageSendTtlSecondsTest()
+        {
+            // TODO unit test for the property 'MessageSendTtlSeconds'
+        }
+
+        /// <summary>
         /// Test the property 'RejectedReason'
         /// </summary>
         [Fact]

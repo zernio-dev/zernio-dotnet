@@ -41,13 +41,15 @@ namespace Zernio.Model
         /// <param name="status">APPROVED for library templates, PENDING for custom.</param>
         /// <param name="category">category.</param>
         /// <param name="language">language.</param>
-        public CreateWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default)
+        /// <param name="messageSendTtlSeconds">Echoed when supplied on the request..</param>
+        public CreateWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default, int messageSendTtlSeconds = default)
         {
             this.Id = id;
             this.Name = name;
             this.Status = status;
             this.Category = category;
             this.Language = language;
+            this.MessageSendTtlSeconds = messageSendTtlSeconds;
         }
 
         /// <summary>
@@ -82,6 +84,13 @@ namespace Zernio.Model
         public string Language { get; set; }
 
         /// <summary>
+        /// Echoed when supplied on the request.
+        /// </summary>
+        /// <value>Echoed when supplied on the request.</value>
+        [DataMember(Name = "message_send_ttl_seconds", EmitDefaultValue = false)]
+        public int MessageSendTtlSeconds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -94,6 +103,7 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  MessageSendTtlSeconds: ").Append(MessageSendTtlSeconds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

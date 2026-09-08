@@ -43,8 +43,9 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="accountId">WhatsApp social account ID (required).</param>
         /// <param name="language">Language code of the variant to edit (e.g. en_US, es, pt_BR). Required when the family has several languages. Body only: a language query parameter on PATCH is a 400..</param>
-        /// <param name="components">Updated template components (required).</param>
-        public UpdateWhatsAppTemplateRequest(string accountId = default, string language = default, List<WhatsAppTemplateComponent> components = default)
+        /// <param name="components">Updated template components. Optional when only message_send_ttl_seconds changes; at least one of the two is required..</param>
+        /// <param name="messageSendTtlSeconds">Delivery validity window in seconds: a message not delivered within it is dropped. Range depends on category: AUTHENTICATION 30 to 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days); -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises the template, it clears the TTL (read it back to check)..</param>
+        public UpdateWhatsAppTemplateRequest(string accountId = default, string language = default, List<WhatsAppTemplateComponent> components = default, int messageSendTtlSeconds = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -52,13 +53,9 @@ namespace Zernio.Model
                 throw new ArgumentNullException("accountId is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
             }
             this.AccountId = accountId;
-            // to ensure "components" is required (not null)
-            if (components == null)
-            {
-                throw new ArgumentNullException("components is a required property for UpdateWhatsAppTemplateRequest and cannot be null");
-            }
-            this.Components = components;
             this.Language = language;
+            this.Components = components;
+            this.MessageSendTtlSeconds = messageSendTtlSeconds;
         }
 
         /// <summary>
@@ -76,11 +73,18 @@ namespace Zernio.Model
         public string Language { get; set; }
 
         /// <summary>
-        /// Updated template components
+        /// Updated template components. Optional when only message_send_ttl_seconds changes; at least one of the two is required.
         /// </summary>
-        /// <value>Updated template components</value>
-        [DataMember(Name = "components", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Updated template components. Optional when only message_send_ttl_seconds changes; at least one of the two is required.</value>
+        [DataMember(Name = "components", EmitDefaultValue = false)]
         public List<WhatsAppTemplateComponent> Components { get; set; }
+
+        /// <summary>
+        /// Delivery validity window in seconds: a message not delivered within it is dropped. Range depends on category: AUTHENTICATION 30 to 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days); -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises the template, it clears the TTL (read it back to check).
+        /// </summary>
+        /// <value>Delivery validity window in seconds: a message not delivered within it is dropped. Range depends on category: AUTHENTICATION 30 to 900, UTILITY 30 to 43200 (12h), MARKETING 43200 to 2592000 (30 days); -1 restores the 30-day default on AUTHENTICATION and UTILITY. Meta defaults to 600 for AUTHENTICATION and 30 days otherwise. If Meta later recategorises the template, it clears the TTL (read it back to check).</value>
+        [DataMember(Name = "message_send_ttl_seconds", EmitDefaultValue = false)]
+        public int MessageSendTtlSeconds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,6 +97,7 @@ namespace Zernio.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
+            sb.Append("  MessageSendTtlSeconds: ").Append(MessageSendTtlSeconds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

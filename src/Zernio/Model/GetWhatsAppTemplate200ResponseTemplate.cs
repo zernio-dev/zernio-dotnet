@@ -42,9 +42,10 @@ namespace Zernio.Model
         /// <param name="category">category.</param>
         /// <param name="language">The variant actually returned..</param>
         /// <param name="components">components.</param>
+        /// <param name="messageSendTtlSeconds">Only when a custom TTL is set; absent while the category default applies..</param>
         /// <param name="rejectedReason">Only when status is REJECTED..</param>
         /// <param name="qualityScore">Post-approval quality (GREEN/YELLOW/RED), when Meta reports one..</param>
-        public GetWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default, List<Object> components = default, string rejectedReason = default, Object qualityScore = default)
+        public GetWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default, List<Object> components = default, int messageSendTtlSeconds = default, string rejectedReason = default, Object qualityScore = default)
         {
             this.Id = id;
             this.Name = name;
@@ -52,6 +53,7 @@ namespace Zernio.Model
             this.Category = category;
             this.Language = language;
             this.Components = components;
+            this.MessageSendTtlSeconds = messageSendTtlSeconds;
             this.RejectedReason = rejectedReason;
             this.QualityScore = qualityScore;
         }
@@ -95,6 +97,13 @@ namespace Zernio.Model
         public List<Object> Components { get; set; }
 
         /// <summary>
+        /// Only when a custom TTL is set; absent while the category default applies.
+        /// </summary>
+        /// <value>Only when a custom TTL is set; absent while the category default applies.</value>
+        [DataMember(Name = "message_send_ttl_seconds", EmitDefaultValue = false)]
+        public int MessageSendTtlSeconds { get; set; }
+
+        /// <summary>
         /// Only when status is REJECTED.
         /// </summary>
         /// <value>Only when status is REJECTED.</value>
@@ -122,6 +131,7 @@ namespace Zernio.Model
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
+            sb.Append("  MessageSendTtlSeconds: ").Append(MessageSendTtlSeconds).Append("\n");
             sb.Append("  RejectedReason: ").Append(RejectedReason).Append("\n");
             sb.Append("  QualityScore: ").Append(QualityScore).Append("\n");
             sb.Append("}\n");
