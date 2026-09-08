@@ -8,11 +8,11 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="searchadlibrary"></a>
 # **SearchAdLibrary**
-> SearchAdLibrary200Response SearchAdLibrary (string accountId, string? q = null, string? pageIds = null, string? advertiser = null, string? countries = null, string? adType = null, string? status = null, string? platforms = null, string? mediaType = null, string? languages = null, DateOnly? since = null, DateOnly? until = null, string? searchType = null, string? fields = null, int? limit = null, string? after = null)
+> SearchAdLibrary200Response SearchAdLibrary (string? platform = null, string? accountId = null, string? q = null, string? pageIds = null, string? advertiser = null, string? countries = null, string? adType = null, string? status = null, string? platforms = null, string? mediaType = null, string? languages = null, DateOnly? since = null, DateOnly? until = null, string? searchType = null, string? fields = null, int? limit = null, string? after = null)
 
 Search the public Ad Library
 
-Competitor and market research over the platform's public ad archive, searched with the customer's own connected token (no extra scope): Meta's Ad Library (`GET /ads_archive`) for a `facebook` / `instagram` / `metaads` account, LinkedIn's Ad Library (`GET /rest/adLibrary`) for a `linkedin` / `linkedinads` account. Rows are returned in the platform's raw shape under `data`; `paging.after` is an opaque cursor on both (`null` when exhausted).  **Meta coverage.** Political and social-issue ads are searchable worldwide. Every other ad is in the archive only if it was delivered to the EU or UK within the last year, so a US-only commercial advertiser is invisible. Spend, impressions and demographics are political-only fields and are left out of the default projection; request them via `fields`. Meta serves the archive only to people who confirmed their identity and location at facebook.com/ID: until the Facebook user behind the connection has done so, the call fails with `meta_identity_confirmation_required` (403).  **LinkedIn coverage.** Ads served after June 1 2023, worldwide, kept for a year after their last impression. EU-delivered ads carry impression ranges and the disclosed targeting facets. Pages are capped at 25 ads (`limit` > 25 is a 400); `after` is the next offset.  Which params apply: `q`, `countries`, `since`, `until`, `limit`, `after` on both; `pageIds`, `adType`, `status`, `platforms`, `mediaType`, `languages`, `searchType`, `fields` are Meta-only; `advertiser` is LinkedIn-only. Passing a param the account's platform does not support is a 400 naming the param.
+Competitor and market research over the public ad archives. Meta's Ad Library (`GET /ads_archive`) is searched with Zernio's own developer access, so `platform=meta` needs no connected account at all. LinkedIn's Ad Library (`GET /rest/adLibrary`) runs on a connected `linkedin` / `linkedinads` account, passed as `accountId`. Passing a Meta account as `accountId` also selects Meta. Rows are returned in the platform's raw shape under `data`; `paging.after` is an opaque cursor on both (`null` when exhausted).  **Meta coverage.** Political and social-issue ads are searchable worldwide. Every other ad is in the archive only if it was delivered to the EU or UK within the last year, so a US-only commercial advertiser is invisible. Spend, impressions and demographics are political-only fields and are left out of the default projection; request them via `fields`. All customers share Zernio's Meta quota, so a `429` means back off for a minute.  **LinkedIn coverage.** Ads served after June 1 2023, worldwide, kept for a year after their last impression. EU-delivered ads carry impression ranges and the disclosed targeting facets. Pages are capped at 25 ads (`limit` > 25 is a 400); `after` is the next offset.  Which params apply: `q`, `countries`, `since`, `until`, `limit`, `after` on both; `pageIds`, `adType`, `status`, `platforms`, `mediaType`, `languages`, `searchType`, `fields` are Meta-only; `advertiser` is LinkedIn-only. Passing a param the account's platform does not support is a 400 naming the param.
 
 ### Example
 ```csharp
@@ -38,7 +38,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdLibraryApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Zernio SocialAccount id (facebook / instagram / metaads for Meta, linkedin / linkedinads for LinkedIn). Its token is the one that searches.
+            var platform = "meta";  // string? | Which archive to search. `meta` needs no accountId. Required unless accountId is given. (optional) 
+            var accountId = "accountId_example";  // string? | Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional) 
             var q = "q_example";  // string? | Keyword search. Meta does not translate it, so write it in the ads' language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional) 
             var pageIds = "pageIds_example";  // string? | Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional) 
             var advertiser = "advertiser_example";  // string? | LinkedIn only. Advertiser (Page) name to search. (optional) 
@@ -58,7 +59,7 @@ namespace Example
             try
             {
                 // Search the public Ad Library
-                SearchAdLibrary200Response result = apiInstance.SearchAdLibrary(accountId, q, pageIds, advertiser, countries, adType, status, platforms, mediaType, languages, since, until, searchType, fields, limit, after);
+                SearchAdLibrary200Response result = apiInstance.SearchAdLibrary(platform, accountId, q, pageIds, advertiser, countries, adType, status, platforms, mediaType, languages, since, until, searchType, fields, limit, after);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -79,7 +80,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Search the public Ad Library
-    ApiResponse<SearchAdLibrary200Response> response = apiInstance.SearchAdLibraryWithHttpInfo(accountId, q, pageIds, advertiser, countries, adType, status, platforms, mediaType, languages, since, until, searchType, fields, limit, after);
+    ApiResponse<SearchAdLibrary200Response> response = apiInstance.SearchAdLibraryWithHttpInfo(platform, accountId, q, pageIds, advertiser, countries, adType, status, platforms, mediaType, languages, since, until, searchType, fields, limit, after);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -96,7 +97,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Zernio SocialAccount id (facebook / instagram / metaads for Meta, linkedin / linkedinads for LinkedIn). Its token is the one that searches. |  |
+| **platform** | **string?** | Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. | [optional]  |
+| **accountId** | **string?** | Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. | [optional]  |
 | **q** | **string?** | Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. | [optional]  |
 | **pageIds** | **string?** | Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. | [optional]  |
 | **advertiser** | **string?** | LinkedIn only. Advertiser (Page) name to search. | [optional]  |
@@ -133,9 +135,10 @@ catch (ApiException e)
 | **200** | Archived ads (raw platform shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (legacy plans need the Ads add-on), or, on Meta, &#x60;meta_identity_confirmation_required&#x60;: the Facebook user behind the connection has not confirmed identity and location at facebook.com/ID. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **501** | Only supported on Meta and LinkedIn accounts |  -  |
+| **503** | Meta&#39;s Ad Library is unavailable on Zernio&#39;s side (&#x60;PLATFORM_DISABLED&#x60;); LinkedIn searches are unaffected. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

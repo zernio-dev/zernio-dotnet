@@ -61,7 +61,8 @@ namespace Zernio.Test.Api
         public void SearchAdLibraryTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string accountId = null;
+            //string? platform = null;
+            //string? accountId = null;
             //string? q = null;
             //string? pageIds = null;
             //string? advertiser = null;
@@ -77,7 +78,7 @@ namespace Zernio.Test.Api
             //string? fields = null;
             //int? limit = null;
             //string? after = null;
-            //var response = instance.SearchAdLibrary(accountId, q, pageIds, advertiser, countries, adType, status, platforms, mediaType, languages, since, until, searchType, fields, limit, after);
+            //var response = instance.SearchAdLibrary(platform, accountId, q, pageIds, advertiser, countries, adType, status, platforms, mediaType, languages, since, until, searchType, fields, limit, after);
             //Assert.IsType<SearchAdLibrary200Response>(response);
         }
     }
