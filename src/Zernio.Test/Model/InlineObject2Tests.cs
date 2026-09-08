@@ -63,23 +63,5 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Error'
         }
-
-        /// <summary>
-        /// Test the property 'Code'
-        /// </summary>
-        [Fact]
-        public void CodeTest()
-        {
-            // TODO unit test for the property 'Code'
-        }
-
-        /// <summary>
-        /// Test the property 'RequiredGroup'
-        /// </summary>
-        [Fact]
-        public void RequiredGroupTest()
-        {
-            // TODO unit test for the property 'RequiredGroup'
-        }
     }
 }

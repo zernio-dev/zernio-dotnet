@@ -56,12 +56,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Error'
+        /// Test the property 'Success'
         /// </summary>
         [Fact]
-        public void ErrorTest()
+        public void SuccessTest()
         {
-            // TODO unit test for the property 'Error'
+            // TODO unit test for the property 'Success'
         }
     }
 }

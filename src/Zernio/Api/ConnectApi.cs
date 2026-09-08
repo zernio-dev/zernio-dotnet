@@ -281,7 +281,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -292,7 +292,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -578,25 +578,6 @@ namespace Zernio.Api
         /// <param name="profileId">The profile ID to connect the Telegram account to</param>
         /// <returns>ApiResponse of GetTelegramConnectStatus200Response</returns>
         ApiResponse<GetTelegramConnectStatus200Response> GetTelegramConnectStatusWithHttpInfo(string profileId);
-        /// <summary>
-        /// Get Embedded Signup SDK config
-        /// </summary>
-        /// <remarks>
-        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>GetWhatsAppSdkConfig200Response</returns>
-        GetWhatsAppSdkConfig200Response GetWhatsAppSdkConfig();
-
-        /// <summary>
-        /// Get Embedded Signup SDK config
-        /// </summary>
-        /// <remarks>
-        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of GetWhatsAppSdkConfig200Response</returns>
-        ApiResponse<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigWithHttpInfo();
         /// <summary>
         /// Get a YouTube video transcript
         /// </summary>
@@ -1487,7 +1468,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -1499,7 +1480,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -1810,27 +1791,6 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTelegramConnectStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetTelegramConnectStatus200Response>> GetTelegramConnectStatusWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Get Embedded Signup SDK config
-        /// </summary>
-        /// <remarks>
-        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetWhatsAppSdkConfig200Response</returns>
-        System.Threading.Tasks.Task<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get Embedded Signup SDK config
-        /// </summary>
-        /// <remarks>
-        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetWhatsAppSdkConfig200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppSdkConfig200Response>> GetWhatsAppSdkConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a YouTube video transcript
         /// </summary>
@@ -4226,7 +4186,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4237,7 +4197,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4287,7 +4247,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4299,7 +4259,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -6050,119 +6010,6 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTelegramConnectStatus", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>GetWhatsAppSdkConfig200Response</returns>
-        public GetWhatsAppSdkConfig200Response GetWhatsAppSdkConfig()
-        {
-            Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> localVarResponse = GetWhatsAppSdkConfigWithHttpInfo();
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of GetWhatsAppSdkConfig200Response</returns>
-        public Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigWithHttpInfo()
-        {
-            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<GetWhatsAppSdkConfig200Response>("/v1/connect/whatsapp/sdk-config", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetWhatsAppSdkConfig", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetWhatsAppSdkConfig200Response</returns>
-        public async System.Threading.Tasks.Task<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> localVarResponse = await GetWhatsAppSdkConfigWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetWhatsAppSdkConfig200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response>> GetWhatsAppSdkConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-
-            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppSdkConfig200Response>("/v1/connect/whatsapp/sdk-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetWhatsAppSdkConfig", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

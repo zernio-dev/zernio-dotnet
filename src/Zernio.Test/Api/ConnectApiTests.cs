@@ -363,17 +363,6 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
-        /// Test GetWhatsAppSdkConfig
-        /// </summary>
-        [Fact]
-        public void GetWhatsAppSdkConfigTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.GetWhatsAppSdkConfig();
-            //Assert.IsType<GetWhatsAppSdkConfig200Response>(response);
-        }
-
-        /// <summary>
         /// Test GetYoutubeCaptions
         /// </summary>
         [Fact]

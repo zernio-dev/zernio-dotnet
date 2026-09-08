@@ -46,7 +46,7 @@ namespace Zernio.Model
         /// Gets or Sets Error
         /// </summary>
         /*
-        <example>Not found</example>
+        <example>Unauthorized</example>
         */
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }

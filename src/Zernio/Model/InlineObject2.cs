@@ -34,123 +34,19 @@ namespace Zernio.Model
     public partial class InlineObject2 : IValidatableObject
     {
         /// <summary>
-        /// Defines Code
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CodeEnum
-        {
-            /// <summary>
-            /// Enum InsufficientPermissions for value: insufficient_permissions
-            /// </summary>
-            [EnumMember(Value = "insufficient_permissions")]
-            InsufficientPermissions = 1,
-
-            /// <summary>
-            /// Enum UnclassifiedResource for value: unclassified_resource
-            /// </summary>
-            [EnumMember(Value = "unclassified_resource")]
-            UnclassifiedResource = 2
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public CodeEnum? Code { get; set; }
-        /// <summary>
-        /// The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
-        /// </summary>
-        /// <value>The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum RequiredGroupEnum
-        {
-            /// <summary>
-            /// Enum Publishing for value: publishing
-            /// </summary>
-            [EnumMember(Value = "publishing")]
-            Publishing = 1,
-
-            /// <summary>
-            /// Enum Engagement for value: engagement
-            /// </summary>
-            [EnumMember(Value = "engagement")]
-            Engagement = 2,
-
-            /// <summary>
-            /// Enum Messages for value: messages
-            /// </summary>
-            [EnumMember(Value = "messages")]
-            Messages = 3,
-
-            /// <summary>
-            /// Enum Contacts for value: contacts
-            /// </summary>
-            [EnumMember(Value = "contacts")]
-            Contacts = 4,
-
-            /// <summary>
-            /// Enum Analytics for value: analytics
-            /// </summary>
-            [EnumMember(Value = "analytics")]
-            Analytics = 5,
-
-            /// <summary>
-            /// Enum Ads for value: ads
-            /// </summary>
-            [EnumMember(Value = "ads")]
-            Ads = 6,
-
-            /// <summary>
-            /// Enum Telephony for value: telephony
-            /// </summary>
-            [EnumMember(Value = "telephony")]
-            Telephony = 7,
-
-            /// <summary>
-            /// Enum Accounts for value: accounts
-            /// </summary>
-            [EnumMember(Value = "accounts")]
-            Accounts = 8,
-
-            /// <summary>
-            /// Enum Billing for value: billing
-            /// </summary>
-            [EnumMember(Value = "billing")]
-            Billing = 9,
-
-            /// <summary>
-            /// Enum Webhooks for value: webhooks
-            /// </summary>
-            [EnumMember(Value = "webhooks")]
-            Webhooks = 10
-        }
-
-
-        /// <summary>
-        /// The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.
-        /// </summary>
-        /// <value>The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials.</value>
-        [DataMember(Name = "required_group", EmitDefaultValue = false)]
-        public RequiredGroupEnum? RequiredGroup { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="InlineObject2" /> class.
         /// </summary>
         /// <param name="error">error.</param>
-        /// <param name="code">code.</param>
-        /// <param name="requiredGroup">The resource group the key needs for this operation. Absent on admin-plane and unclassified-path denials..</param>
-        public InlineObject2(string error = default, CodeEnum? code = default, RequiredGroupEnum? requiredGroup = default)
+        public InlineObject2(string error = default)
         {
             this.Error = error;
-            this.Code = code;
-            this.RequiredGroup = requiredGroup;
         }
 
         /// <summary>
         /// Gets or Sets Error
         /// </summary>
         /*
-        <example>This API key has the &#39;messages&#39; resource group disabled. GET /api/v1/inbox/conversations requires it. Create a key with &#39;messages&#39; enabled in the dashboard API keys tab.</example>
+        <example>Not found</example>
         */
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
@@ -164,8 +60,6 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class InlineObject2 {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  RequiredGroup: ").Append(RequiredGroup).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

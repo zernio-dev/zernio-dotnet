@@ -74,39 +74,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Reason'
+        /// Test the property 'RequiredGroup'
         /// </summary>
         [Fact]
-        public void ReasonTest()
+        public void RequiredGroupTest()
         {
-            // TODO unit test for the property 'Reason'
-        }
-
-        /// <summary>
-        /// Test the property 'DocumentationUrl'
-        /// </summary>
-        [Fact]
-        public void DocumentationUrlTest()
-        {
-            // TODO unit test for the property 'DocumentationUrl'
-        }
-
-        /// <summary>
-        /// Test the property 'DashboardUrl'
-        /// </summary>
-        [Fact]
-        public void DashboardUrlTest()
-        {
-            // TODO unit test for the property 'DashboardUrl'
-        }
-
-        /// <summary>
-        /// Test the property 'Details'
-        /// </summary>
-        [Fact]
-        public void DetailsTest()
-        {
-            // TODO unit test for the property 'Details'
+            // TODO unit test for the property 'RequiredGroup'
         }
     }
 }

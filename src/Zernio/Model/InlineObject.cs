@@ -36,20 +36,22 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="InlineObject" /> class.
         /// </summary>
-        /// <param name="error">error.</param>
-        public InlineObject(string error = default)
+        [JsonConstructorAttribute]
+        protected InlineObject() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InlineObject" /> class.
+        /// </summary>
+        /// <param name="success">success (required).</param>
+        public InlineObject(bool success = default)
         {
-            this.Error = error;
+            this.Success = success;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Gets or Sets Success
         /// </summary>
-        /*
-        <example>Unauthorized</example>
-        */
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        [DataMember(Name = "success", IsRequired = true, EmitDefaultValue = true)]
+        public bool Success { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -59,7 +61,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class InlineObject {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
