@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ImageAspectRatio'
+        /// </summary>
+        [Fact]
+        public void ImageAspectRatioTest()
+        {
+            // TODO unit test for the property 'ImageAspectRatio'
+        }
+
+        /// <summary>
         /// Test the property 'Elements'
         /// </summary>
         [Fact]

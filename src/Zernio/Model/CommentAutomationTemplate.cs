@@ -53,6 +53,33 @@ namespace Zernio.Model
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
         /// <summary>
+        /// Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400.
+        /// </summary>
+        /// <value>Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ImageAspectRatioEnum
+        {
+            /// <summary>
+            /// Enum Horizontal for value: horizontal
+            /// </summary>
+            [EnumMember(Value = "horizontal")]
+            Horizontal = 1,
+
+            /// <summary>
+            /// Enum Square for value: square
+            /// </summary>
+            [EnumMember(Value = "square")]
+            Square = 2
+        }
+
+
+        /// <summary>
+        /// Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400.
+        /// </summary>
+        /// <value>Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400.</value>
+        [DataMember(Name = "imageAspectRatio", EmitDefaultValue = false)]
+        public ImageAspectRatioEnum? ImageAspectRatio { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CommentAutomationTemplate" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -61,8 +88,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CommentAutomationTemplate" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
+        /// <param name="imageAspectRatio">Facebook only. How Messenger renders each element imageUrl: horizontal (1.91:1, the default) or square (1:1). Instagram has no such setting, so an Instagram automation carrying it is a 400..</param>
         /// <param name="elements">elements (required).</param>
-        public CommentAutomationTemplate(TypeEnum type = default, List<CommentAutomationTemplateElement> elements = default)
+        public CommentAutomationTemplate(TypeEnum type = default, ImageAspectRatioEnum? imageAspectRatio = default, List<CommentAutomationTemplateElement> elements = default)
         {
             this.Type = type;
             // to ensure "elements" is required (not null)
@@ -71,6 +99,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("elements is a required property for CommentAutomationTemplate and cannot be null");
             }
             this.Elements = elements;
+            this.ImageAspectRatio = imageAspectRatio;
         }
 
         /// <summary>
@@ -88,6 +117,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CommentAutomationTemplate {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ImageAspectRatio: ").Append(ImageAspectRatio).Append("\n");
             sb.Append("  Elements: ").Append(Elements).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
