@@ -79,7 +79,19 @@ namespace Zernio.Model
             /// Enum Whatsapp for value: whatsapp
             /// </summary>
             [EnumMember(Value = "whatsapp")]
-            Whatsapp = 7
+            Whatsapp = 7,
+
+            /// <summary>
+            /// Enum Sms for value: sms
+            /// </summary>
+            [EnumMember(Value = "sms")]
+            Sms = 8,
+
+            /// <summary>
+            /// Enum Slack for value: slack
+            /// </summary>
+            [EnumMember(Value = "slack")]
+            Slack = 9
         }
 
 
