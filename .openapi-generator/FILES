@@ -1572,6 +1572,7 @@ docs/UpdateBroadcastRequestTemplateVariableMappingValue.md
 docs/UpdateCampaignTargeting200Response.md
 docs/UpdateCampaignTargeting200ResponseDevicesInner.md
 docs/UpdateCampaignTargeting200ResponseLanguagesInner.md
+docs/UpdateCampaignTargeting200ResponseLocationsInner.md
 docs/UpdateCampaignTargetingRequest.md
 docs/UpdateCampaignTargetingRequestTargeting.md
 docs/UpdateCampaignTargetingRequestTargetingDevicesInner.md
@@ -3494,6 +3495,7 @@ src/Zernio.Test/Model/UpdateBroadcastRequestTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseDevicesInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseLanguagesInnerTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOfTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerTests.cs
@@ -5422,6 +5424,7 @@ src/Zernio/Model/UpdateBroadcastRequestTemplateVariableMappingValue.cs
 src/Zernio/Model/UpdateCampaignTargeting200Response.cs
 src/Zernio/Model/UpdateCampaignTargeting200ResponseDevicesInner.cs
 src/Zernio/Model/UpdateCampaignTargeting200ResponseLanguagesInner.cs
+src/Zernio/Model/UpdateCampaignTargeting200ResponseLocationsInner.cs
 src/Zernio/Model/UpdateCampaignTargetingRequest.cs
 src/Zernio/Model/UpdateCampaignTargetingRequestTargeting.cs
 src/Zernio/Model/UpdateCampaignTargetingRequestTargetingDevicesInner.cs

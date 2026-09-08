@@ -28,21 +28,21 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetCampaignTargeting200ResponseLocationsInner
+    /// UpdateCampaignTargeting200ResponseLocationsInner
     /// </summary>
-    [DataContract(Name = "getCampaignTargeting_200_response_locations_inner")]
-    public partial class GetCampaignTargeting200ResponseLocationsInner : IValidatableObject
+    [DataContract(Name = "updateCampaignTargeting_200_response_locations_inner")]
+    public partial class UpdateCampaignTargeting200ResponseLocationsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetCampaignTargeting200ResponseLocationsInner" /> class.
+        /// Initializes a new instance of the <see cref="UpdateCampaignTargeting200ResponseLocationsInner" /> class.
         /// </summary>
         /// <param name="geoTargetId">Numeric id from Google&#39;s geoTargetConstants/{id}..</param>
         /// <param name="negative">true &#x3D; excluded location..</param>
-        /// <param name="name">Google&#39;s geo_target_constant.name, e.g. \&quot;United States\&quot;; null when the id could not be resolved..</param>
-        /// <param name="canonicalName">Google&#39;s geo_target_constant.canonical_name, e.g. \&quot;California, United States\&quot;; null when the id could not be resolved..</param>
-        /// <param name="type">Google&#39;s geo_target_constant.target_type, e.g. \&quot;Country\&quot;, \&quot;Region\&quot;, \&quot;City\&quot;; null when the id could not be resolved..</param>
-        /// <param name="countryCode">Google&#39;s geo_target_constant.country_code, an ISO 3166-1 alpha-2 code; null when the id could not be resolved..</param>
-        public GetCampaignTargeting200ResponseLocationsInner(string geoTargetId = default, bool negative = default, string name = default, string canonicalName = default, string type = default, string countryCode = default)
+        /// <param name="name">Google&#39;s geo_target_constant.name; see GET&#39;s description..</param>
+        /// <param name="canonicalName">Google&#39;s geo_target_constant.canonical_name; see GET&#39;s description..</param>
+        /// <param name="type">Google&#39;s geo_target_constant.target_type; see GET&#39;s description..</param>
+        /// <param name="countryCode">Google&#39;s geo_target_constant.country_code; see GET&#39;s description..</param>
+        public UpdateCampaignTargeting200ResponseLocationsInner(string geoTargetId = default, bool negative = default, string name = default, string canonicalName = default, string type = default, string countryCode = default)
         {
             this.GeoTargetId = geoTargetId;
             this.Negative = negative;
@@ -67,30 +67,30 @@ namespace Zernio.Model
         public bool Negative { get; set; }
 
         /// <summary>
-        /// Google&#39;s geo_target_constant.name, e.g. \&quot;United States\&quot;; null when the id could not be resolved.
+        /// Google&#39;s geo_target_constant.name; see GET&#39;s description.
         /// </summary>
-        /// <value>Google&#39;s geo_target_constant.name, e.g. \&quot;United States\&quot;; null when the id could not be resolved.</value>
+        /// <value>Google&#39;s geo_target_constant.name; see GET&#39;s description.</value>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Google&#39;s geo_target_constant.canonical_name, e.g. \&quot;California, United States\&quot;; null when the id could not be resolved.
+        /// Google&#39;s geo_target_constant.canonical_name; see GET&#39;s description.
         /// </summary>
-        /// <value>Google&#39;s geo_target_constant.canonical_name, e.g. \&quot;California, United States\&quot;; null when the id could not be resolved.</value>
+        /// <value>Google&#39;s geo_target_constant.canonical_name; see GET&#39;s description.</value>
         [DataMember(Name = "canonicalName", EmitDefaultValue = true)]
         public string CanonicalName { get; set; }
 
         /// <summary>
-        /// Google&#39;s geo_target_constant.target_type, e.g. \&quot;Country\&quot;, \&quot;Region\&quot;, \&quot;City\&quot;; null when the id could not be resolved.
+        /// Google&#39;s geo_target_constant.target_type; see GET&#39;s description.
         /// </summary>
-        /// <value>Google&#39;s geo_target_constant.target_type, e.g. \&quot;Country\&quot;, \&quot;Region\&quot;, \&quot;City\&quot;; null when the id could not be resolved.</value>
+        /// <value>Google&#39;s geo_target_constant.target_type; see GET&#39;s description.</value>
         [DataMember(Name = "type", EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
-        /// Google&#39;s geo_target_constant.country_code, an ISO 3166-1 alpha-2 code; null when the id could not be resolved.
+        /// Google&#39;s geo_target_constant.country_code; see GET&#39;s description.
         /// </summary>
-        /// <value>Google&#39;s geo_target_constant.country_code, an ISO 3166-1 alpha-2 code; null when the id could not be resolved.</value>
+        /// <value>Google&#39;s geo_target_constant.country_code; see GET&#39;s description.</value>
         [DataMember(Name = "countryCode", EmitDefaultValue = true)]
         public string CountryCode { get; set; }
 
@@ -101,7 +101,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetCampaignTargeting200ResponseLocationsInner {\n");
+            sb.Append("class UpdateCampaignTargeting200ResponseLocationsInner {\n");
             sb.Append("  GeoTargetId: ").Append(GeoTargetId).Append("\n");
             sb.Append("  Negative: ").Append(Negative).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");

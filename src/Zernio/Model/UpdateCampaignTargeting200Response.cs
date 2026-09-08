@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <param name="devices">devices.</param>
         /// <param name="locations">locations.</param>
         /// <param name="languages">languages.</param>
-        public UpdateCampaignTargeting200Response(string campaignId = default, List<UpdatedEnum> updated = default, List<UpdateCampaignTargeting200ResponseDevicesInner> devices = default, List<GetCampaignTargeting200ResponseLocationsInner> locations = default, List<UpdateCampaignTargeting200ResponseLanguagesInner> languages = default)
+        public UpdateCampaignTargeting200Response(string campaignId = default, List<UpdatedEnum> updated = default, List<UpdateCampaignTargeting200ResponseDevicesInner> devices = default, List<UpdateCampaignTargeting200ResponseLocationsInner> locations = default, List<UpdateCampaignTargeting200ResponseLanguagesInner> languages = default)
         {
             this.CampaignId = campaignId;
             this.Updated = updated;
@@ -98,7 +98,7 @@ namespace Zernio.Model
         /// Gets or Sets Locations
         /// </summary>
         [DataMember(Name = "locations", EmitDefaultValue = false)]
-        public List<GetCampaignTargeting200ResponseLocationsInner> Locations { get; set; }
+        public List<UpdateCampaignTargeting200ResponseLocationsInner> Locations { get; set; }
 
         /// <summary>
         /// Gets or Sets Languages

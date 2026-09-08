@@ -65,7 +65,7 @@ namespace Zernio.Model
         /// <param name="content">content.</param>
         /// <param name="style">style.</param>
         /// <param name="buttonText">buttonText.</param>
-        /// <param name="coverPhoto">Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported..</param>
+        /// <param name="coverPhoto">Direct public JPEG or PNG image URL, up to 5 MB. Uploaded as an unpublished Page photo and attached to the form. Redirects, Ad Image hashes and IDs are not supported..</param>
         public MetaLeadFormPlatformDataContextCard(string title = default, List<string> content = default, StyleEnum? style = default, string buttonText = default, string coverPhoto = default)
         {
             this.Title = title;
@@ -94,9 +94,9 @@ namespace Zernio.Model
         public string ButtonText { get; set; }
 
         /// <summary>
-        /// Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported.
+        /// Direct public JPEG or PNG image URL, up to 5 MB. Uploaded as an unpublished Page photo and attached to the form. Redirects, Ad Image hashes and IDs are not supported.
         /// </summary>
-        /// <value>Direct public JPEG or PNG image URL, up to 5 MB. Redirects, Ad Image hashes and IDs are not supported.</value>
+        /// <value>Direct public JPEG or PNG image URL, up to 5 MB. Uploaded as an unpublished Page photo and attached to the form. Redirects, Ad Image hashes and IDs are not supported.</value>
         [DataMember(Name = "coverPhoto", EmitDefaultValue = false)]
         public string CoverPhoto { get; set; }
 
