@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | The Instagram social account ID | 
+**AccountId** | **string** | The Instagram account ID | 
 **MediaId** | **string** | The ID of the media the account was mentioned in | 
 **CommentId** | **string** | The mentioning comment&#39;s ID. Omit for a caption mention. | [optional] 
 **Message** | **string** | The reply text | 

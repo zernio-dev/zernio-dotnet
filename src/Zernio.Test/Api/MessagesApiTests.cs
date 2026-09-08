@@ -244,6 +244,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test SetConversationThreadControl
+        /// </summary>
+        [Fact]
+        public void SetConversationThreadControlTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string conversationId = null;
+            //SetConversationThreadControlRequest setConversationThreadControlRequest = null;
+            //var response = instance.SetConversationThreadControl(conversationId, setConversationThreadControlRequest);
+            //Assert.IsType<SetConversationThreadControl200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateInboxConversation
         /// </summary>
         [Fact]

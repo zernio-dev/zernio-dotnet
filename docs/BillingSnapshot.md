@@ -1,5 +1,5 @@
 # Zernio.Model.BillingSnapshot
-Account billing state — plan, cycle, balance, spend caps, and payment / access status. Returned by `GET /v1/billing`. 
+Account billing state: plan, cycle, balance, spend caps, and payment / access status. Returned by `GET /v1/billing`. 
 
 ## Properties
 

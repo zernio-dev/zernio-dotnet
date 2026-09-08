@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | WhatsApp social account ID | 
+**AccountId** | **string** | WhatsApp account ID | 
 **BusinessPublicKey** | **string** | RSA public key in PEM format. Rejected if it is a private key or not a valid RSA public key PEM. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

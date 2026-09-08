@@ -29,25 +29,25 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Assign GBP location to another profile
+        /// Assign Google Business Profile location to another profile
         /// </summary>
         /// <remarks>
-        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <returns>AssignGoogleBusinessLocation200Response</returns>
         AssignGoogleBusinessLocation200Response AssignGoogleBusinessLocation(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest);
 
         /// <summary>
-        /// Assign GBP location to another profile
+        /// Assign Google Business Profile location to another profile
         /// </summary>
         /// <remarks>
-        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <returns>ApiResponse of AssignGoogleBusinessLocation200Response</returns>
         ApiResponse<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationWithHttpInfo(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest);
@@ -120,13 +120,13 @@ namespace Zernio.Api
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -138,13 +138,13 @@ namespace Zernio.Api
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -281,7 +281,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -292,7 +292,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -376,7 +376,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetFacebookPages200Response</returns>
         ApiResponse<GetFacebookPages200Response> GetFacebookPagesWithHttpInfo(string accountId, bool? refresh = default);
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
         /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
@@ -390,7 +390,7 @@ namespace Zernio.Api
         GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default, int? limit = default);
 
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
         /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
@@ -427,7 +427,7 @@ namespace Zernio.Api
         /// Get pending OAuth data
         /// </summary>
         /// <remarks>
-        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -438,7 +438,7 @@ namespace Zernio.Api
         /// Get pending OAuth data
         /// </summary>
         /// <remarks>
-        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -579,6 +579,25 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetTelegramConnectStatus200Response</returns>
         ApiResponse<GetTelegramConnectStatus200Response> GetTelegramConnectStatusWithHttpInfo(string profileId);
         /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>GetWhatsAppSdkConfig200Response</returns>
+        GetWhatsAppSdkConfig200Response GetWhatsAppSdkConfig();
+
+        /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of GetWhatsAppSdkConfig200Response</returns>
+        ApiResponse<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigWithHttpInfo();
+        /// <summary>
         /// Get a YouTube video transcript
         /// </summary>
         /// <remarks>
@@ -632,7 +651,7 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -644,7 +663,7 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -696,10 +715,10 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListFacebookPages200Response</returns>
         ApiResponse<ListFacebookPages200Response> ListFacebookPagesWithHttpInfo(string profileId, string tempToken);
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
-        /// For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -711,10 +730,10 @@ namespace Zernio.Api
         ListGoogleBusinessLocations200Response ListGoogleBusinessLocations(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default);
 
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
-        /// For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -751,7 +770,7 @@ namespace Zernio.Api
         /// List LinkedIn orgs
         /// </summary>
         /// <remarks>
-        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -763,7 +782,7 @@ namespace Zernio.Api
         /// List LinkedIn orgs
         /// </summary>
         /// <remarks>
-        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -894,10 +913,10 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SelectFacebookPage200Response</returns>
         ApiResponse<SelectFacebookPage200Response> SelectFacebookPageWithHttpInfo(SelectFacebookPageRequest selectFacebookPageRequest);
         /// <summary>
-        /// Select GBP location
+        /// Select Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -905,10 +924,10 @@ namespace Zernio.Api
         SelectGoogleBusinessLocation200Response SelectGoogleBusinessLocation(SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest);
 
         /// <summary>
-        /// Select GBP location
+        /// Select Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -1047,10 +1066,10 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateFacebookPage200Response</returns>
         ApiResponse<UpdateFacebookPage200Response> UpdateFacebookPageWithHttpInfo(string accountId, UpdateFacebookPageRequest updateFacebookPageRequest);
         /// <summary>
-        /// Update GBP location
+        /// Update Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Switch which GBP location is active for a connected account.
+        /// Switch which Google Business Profile location is active for a connected account.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1059,10 +1078,10 @@ namespace Zernio.Api
         UpdateGmbLocation200Response UpdateGmbLocation(string accountId, UpdateGmbLocationRequest updateGmbLocationRequest);
 
         /// <summary>
-        /// Update GBP location
+        /// Update Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Switch which GBP location is active for a connected account.
+        /// Switch which Google Business Profile location is active for a connected account.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1194,26 +1213,26 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Assign GBP location to another profile
+        /// Assign Google Business Profile location to another profile
         /// </summary>
         /// <remarks>
-        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AssignGoogleBusinessLocation200Response</returns>
         System.Threading.Tasks.Task<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationAsync(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Assign GBP location to another profile
+        /// Assign Google Business Profile location to another profile
         /// </summary>
         /// <remarks>
-        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AssignGoogleBusinessLocation200Response)</returns>
@@ -1293,13 +1312,13 @@ namespace Zernio.Api
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -1312,13 +1331,13 @@ namespace Zernio.Api
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -1468,7 +1487,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -1480,7 +1499,7 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -1571,7 +1590,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetFacebookPages200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetFacebookPages200Response>> GetFacebookPagesWithHttpInfoAsync(string accountId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
         /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
@@ -1586,7 +1605,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
         /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
@@ -1626,7 +1645,7 @@ namespace Zernio.Api
         /// Get pending OAuth data
         /// </summary>
         /// <remarks>
-        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -1638,7 +1657,7 @@ namespace Zernio.Api
         /// Get pending OAuth data
         /// </summary>
         /// <remarks>
-        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -1792,6 +1811,27 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetTelegramConnectStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetTelegramConnectStatus200Response>> GetTelegramConnectStatusWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppSdkConfig200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppSdkConfig200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppSdkConfig200Response>> GetWhatsAppSdkConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get a YouTube video transcript
         /// </summary>
         /// <remarks>
@@ -1849,7 +1889,7 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -1862,7 +1902,7 @@ namespace Zernio.Api
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
-        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -1919,10 +1959,10 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListFacebookPages200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListFacebookPages200Response>> ListFacebookPagesWithHttpInfoAsync(string profileId, string tempToken, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
-        /// For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -1935,10 +1975,10 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List GBP locations
+        /// List Google Business Profile locations
         /// </summary>
         /// <remarks>
-        /// For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -1978,7 +2018,7 @@ namespace Zernio.Api
         /// List LinkedIn orgs
         /// </summary>
         /// <remarks>
-        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -1991,7 +2031,7 @@ namespace Zernio.Api
         /// List LinkedIn orgs
         /// </summary>
         /// <remarks>
-        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -2133,10 +2173,10 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (SelectFacebookPage200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SelectFacebookPage200Response>> SelectFacebookPageWithHttpInfoAsync(SelectFacebookPageRequest selectFacebookPageRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Select GBP location
+        /// Select Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -2145,10 +2185,10 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<SelectGoogleBusinessLocation200Response> SelectGoogleBusinessLocationAsync(SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Select GBP location
+        /// Select Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -2300,10 +2340,10 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateFacebookPage200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateFacebookPage200Response>> UpdateFacebookPageWithHttpInfoAsync(string accountId, UpdateFacebookPageRequest updateFacebookPageRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Update GBP location
+        /// Update Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Switch which GBP location is active for a connected account.
+        /// Switch which Google Business Profile location is active for a connected account.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -2313,10 +2353,10 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<UpdateGmbLocation200Response> UpdateGmbLocationAsync(string accountId, UpdateGmbLocationRequest updateGmbLocationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Update GBP location
+        /// Update Google Business Profile location
         /// </summary>
         /// <remarks>
-        /// Switch which GBP location is active for a connected account.
+        /// Switch which Google Business Profile location is active for a connected account.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -2663,10 +2703,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Assign Google Business Profile location to another profile Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <returns>AssignGoogleBusinessLocation200Response</returns>
         public AssignGoogleBusinessLocation200Response AssignGoogleBusinessLocation(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest)
@@ -2676,10 +2716,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Assign Google Business Profile location to another profile Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <returns>ApiResponse of AssignGoogleBusinessLocation200Response</returns>
         public Zernio.Client.ApiResponse<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationWithHttpInfo(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest)
@@ -2732,10 +2772,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Assign Google Business Profile location to another profile Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AssignGoogleBusinessLocation200Response</returns>
@@ -2746,10 +2786,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// Assign Google Business Profile location to another profile Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected Google Business Profile account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="accountId">A source connected Google Business Profile account whose OAuth grant is reused.</param>
         /// <param name="assignGoogleBusinessLocationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AssignGoogleBusinessLocation200Response)</returns>
@@ -3203,13 +3243,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -3222,13 +3262,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -3307,13 +3347,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -3327,13 +3367,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): the ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true. When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. </param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
-        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. Note that on the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
+        /// <param name="redirectUrl">Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="force">Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  (optional, default to false)</param>
         /// <param name="adAccountId">Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
@@ -4186,7 +4226,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4197,7 +4237,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4247,7 +4287,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4259,7 +4299,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Finish a WhatsApp connection started with Meta&#39;s Embedded Signup in your own page (Facebook JavaScript SDK). The code never passes through a &#x60;redirect_url&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it.  The flow: call &#x60;GET /v1/connect/whatsapp/sdk-config&#x60;, run &#x60;FB.login&#x60; with that &#x60;configId&#x60;, &#x60;response_type: &#39;code&#39;&#x60;, &#x60;override_default_response_type: true&#x60; and &#x60;extras: { sessionInfoVersion: &#39;3&#39; }&#x60;, read &#x60;waba_id&#x60; and &#x60;phone_number_id&#x60; from the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event Meta posts to your window, then send the &#x60;code&#x60; from the login response here together with those ids.  Always forward &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60;: Zernio connects exactly that number and no picker is shown. Without them Zernio falls back to the first number of the first WhatsApp Business Account the token can reach, which may not be the one the user picked.  The Zernio Meta app must list the domain that hosts the popup before &#x60;FB.login&#x60; will open there. Available on request: send the domains to support. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
@@ -4784,7 +4824,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
+        /// List Google Business Profile locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4799,7 +4839,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
+        /// List Google Business Profile locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4863,7 +4903,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
+        /// List Google Business Profile locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4879,7 +4919,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
+        /// List Google Business Profile locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -5074,7 +5114,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -5086,7 +5126,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -5135,7 +5175,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -5148,7 +5188,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
+        /// Get pending OAuth data Fetch pending OAuth data for headless mode using the pendingDataToken from the redirect URL.  **Scope**: This endpoint is used for LinkedIn organizations, Google Business Profile locations, Slack channels, Snapchat profiles, and Pinterest boards, where the selection list is too large to fit in URL params. The redirect carries a &#x60;pendingDataToken&#x60; instead of the full payload; the response includes the corresponding selection array (e.g. &#x60;boards&#x60; for Pinterest). WhatsApp, Facebook and other platforms pass selection state directly via URL query params on the redirect (&#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;step&#x60;), no pending record is created, so this endpoint will return 404 for those flows. Use the platform-specific selection endpoint instead (e.g. &#x60;/v1/connect/whatsapp/select-phone-number&#x60;).  Reading the token does not consume it, so this fetch is repeatable until the token expires 1 hour after issuance. Completing the platform selection deletes the pending record, so the token stops working from then on. No authentication required. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The pending data token from the OAuth redirect URL (pendingDataToken parameter)</param>
@@ -6017,6 +6057,119 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>GetWhatsAppSdkConfig200Response</returns>
+        public GetWhatsAppSdkConfig200Response GetWhatsAppSdkConfig()
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> localVarResponse = GetWhatsAppSdkConfigWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of GetWhatsAppSdkConfig200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppSdkConfig200Response>("/v1/connect/whatsapp/sdk-config", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppSdkConfig", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppSdkConfig200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> localVarResponse = await GetWhatsAppSdkConfigWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The public values needed to run Meta&#39;s Embedded Signup inside your own page with the Facebook JavaScript SDK instead of the redirect flow: pass &#x60;appId&#x60; and &#x60;graphApiVersion&#x60; to &#x60;FB.init&#x60;, and &#x60;configId&#x60; as &#x60;config_id&#x60; to &#x60;FB.login&#x60;. The popup then reports the WhatsApp Business Account and phone number the user picked through the &#x60;WA_EMBEDDED_SIGNUP&#x60; message event, and you finish the connection with &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. Because the number comes back from the popup, the user never sees a second number picker.  Available on request: &#x60;FB.login&#x60; only opens on HTTPS domains listed in the Zernio Meta app, so send the domains that will host the popup to support before going live. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppSdkConfig200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response>> GetWhatsAppSdkConfigWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppSdkConfig200Response>("/v1/connect/whatsapp/sdk-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppSdkConfig", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get a YouTube video transcript Returns the caption track YouTube already holds for one of the connected channel&#39;s own videos, as plain text plus timed cues. Use it instead of downloading and transcribing the video yourself.  Auto-generated (ASR) tracks are included: YouTube serves them to the channel owner, which is what the connected account is. Uploaded tracks win over auto-generated ones when both exist for a language.  Caching: we store the transcript on first read and serve it from there afterwards, so you do not need to cache it yourself. A cached read costs no YouTube quota and does not call YouTube at all. &#x60;source&#x60; tells you which happened (&#x60;youtube&#x60; on the first read, &#x60;cache&#x60; after). Pass &#x60;refresh&#x3D;true&#x60; only when the captions actually changed on YouTube, since that re-downloads.  Notes: - Only videos owned by this connected channel. Anything else returns 404. - &#x60;contentDetails.caption&#x60; in YouTube&#39;s own API reads &#x60;false&#x60; on videos that DO have a serving auto-generated track, so it is not a usable availability signal. Call this endpoint and handle the 404. - YouTube generates auto-captions only for videos with recognisable speech, and can take a few hours after upload to publish them. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -6321,7 +6474,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -6333,7 +6486,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -6389,7 +6542,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -6402,7 +6555,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
+        /// Complete OAuth callback Exchange the OAuth authorization code for tokens and connect the account to the specified profile.  Facebook, Google Business Profile, Snapchat and WhatsApp are not accepted here: their account identity is a destination chosen after OAuth, which this single-shot exchange cannot do. Connect them through the redirect flow from &#x60;GET /v1/connect/{platform}&#x60;, or, for WhatsApp Embedded Signup, through &#x60;POST /v1/connect/whatsapp/embedded-signup&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Social platform to complete the connect for. Discord, Slack and Telegram are absent because they are served by their own dedicated routes, documented separately. </param>
@@ -6742,7 +6895,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// List Google Business Profile locations For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -6758,7 +6911,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// List Google Business Profile locations For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -6831,7 +6984,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// List Google Business Profile locations For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -6848,7 +7001,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+        /// List Google Business Profile locations For headless flows. Returns the list of Google Business Profile locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
@@ -7076,7 +7229,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -7089,7 +7242,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -7144,7 +7297,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -7158,7 +7311,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, just the tempToken from OAuth.
+        /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
@@ -7982,7 +8135,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Select GBP location Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Select Google Business Profile location Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -7994,7 +8147,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Select GBP location Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Select Google Business Profile location Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -8049,7 +8202,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Select GBP location Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Select Google Business Profile location Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -8062,7 +8215,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Select GBP location Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
+        /// Select Google Business Profile location Complete the headless Google Business Profile flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="selectGoogleBusinessLocationRequest"></param>
@@ -8945,7 +9098,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update GBP location Switch which GBP location is active for a connected account.
+        /// Update Google Business Profile location Switch which Google Business Profile location is active for a connected account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -8958,7 +9111,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update GBP location Switch which GBP location is active for a connected account.
+        /// Update Google Business Profile location Switch which Google Business Profile location is active for a connected account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -9014,7 +9167,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update GBP location Switch which GBP location is active for a connected account.
+        /// Update Google Business Profile location Switch which Google Business Profile location is active for a connected account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -9028,7 +9181,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update GBP location Switch which GBP location is active for a connected account.
+        /// Update Google Business Profile location Switch which Google Business Profile location is active for a connected account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

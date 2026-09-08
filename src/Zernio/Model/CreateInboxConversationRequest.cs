@@ -62,11 +62,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateInboxConversationRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID to send from (required).</param>
+        /// <param name="accountId">The account ID to send from (required).</param>
         /// <param name="participantId">Recipient identifier. For X this is the numeric user ID; for WhatsApp and SMS, the recipient phone number in international format (digits, country code included); for Slack, the workspace member id (e.g. U01ABCDEF). Provide either this or participantUsername..</param>
-        /// <param name="participantUsername">Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId..</param>
+        /// <param name="participantUsername">Recipient handle/username, an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId..</param>
         /// <param name="message">Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required. Required when category is set (a Direct Send utility message is a text message)..</param>
-        /// <param name="skipDmCheck">X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
+        /// <param name="skipDmCheck">X only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
         /// <param name="templateName">WhatsApp only. Name of the approved template to start the conversation with. Required for WhatsApp unless category is used instead (Direct Send). Cannot be combined with category..</param>
         /// <param name="category">WhatsApp only (Meta Direct Send). Combined with message and without templateName, starts the conversation with a business-initiated UTILITY message and no pre-approved template; Meta matches or auto-creates a template asynchronously. The WhatsApp Business Account must be eligible for Direct Send, otherwise the send fails with an error telling you to use an approved message template instead. Cannot be combined with templateName (templates are already categorized at creation). Utility messages only; marketing content is not allowed under this category. Accepted on the JSON body only, not on multipart requests..</param>
         /// <param name="linkPreview">WhatsApp only. Set false to send the Direct Send (category: &#39;utility&#39;) text message without a link-preview thumbnail for the first URL in the text. Defaults to true, which is how every WhatsApp text has been sent to date. Does not apply to template sends. Accepted on the JSON body only, not on multipart requests. (default to true).</param>
@@ -98,9 +98,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID to send from
+        /// The account ID to send from
         /// </summary>
-        /// <value>The social account ID to send from</value>
+        /// <value>The account ID to send from</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
@@ -112,9 +112,9 @@ namespace Zernio.Model
         public string ParticipantId { get; set; }
 
         /// <summary>
-        /// Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.
+        /// Recipient handle/username, an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.
         /// </summary>
-        /// <value>Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.</value>
+        /// <value>Recipient handle/username, an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.</value>
         [DataMember(Name = "participantUsername", EmitDefaultValue = false)]
         public string ParticipantUsername { get; set; }
 
@@ -126,9 +126,9 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
-        /// X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
+        /// X only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
         /// </summary>
-        /// <value>X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.</value>
+        /// <value>X only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.</value>
         [DataMember(Name = "skipDmCheck", EmitDefaultValue = true)]
         public bool SkipDmCheck { get; set; }
 

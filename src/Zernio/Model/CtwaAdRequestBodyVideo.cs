@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="url">Public URL of the video to upload. Provide either &#x60;url&#x60; or &#x60;id&#x60;..</param>
         /// <param name="id">Reuse a video already uploaded to this ad account (list them with GET /v1/ads/videos) instead of re-uploading. Wins over &#x60;url&#x60;. Provide either &#x60;url&#x60; or &#x60;id&#x60;..</param>
-        /// <param name="thumbnailUrl">OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field to control the poster frame exactly. .</param>
+        /// <param name="thumbnailUrl">OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable). Retry, or supply this field to control the poster frame exactly. .</param>
         public CtwaAdRequestBodyVideo(string url = default, string id = default, string thumbnailUrl = default)
         {
             this.Url = url;
@@ -61,9 +61,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field to control the poster frame exactly. 
+        /// OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable). Retry, or supply this field to control the poster frame exactly. 
         /// </summary>
-        /// <value>OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable) — retry, or supply this field to control the poster frame exactly. </value>
+        /// <value>OPTIONAL: when omitted, the poster is auto-generated from Meta&#39;s own preferred video thumbnail. When Meta produces no candidate the request fails with a 502 platform_error (reason: video_thumbnail_unavailable). Retry, or supply this field to control the poster frame exactly. </value>
         [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
         public string ThumbnailUrl { get; set; }
 

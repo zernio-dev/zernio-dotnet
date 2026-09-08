@@ -17,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SearchInboxConversations**](MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations |
 | [**SendInboxMessage**](MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**SendTypingIndicator**](MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
+| [**SetConversationThreadControl**](MessagesApi.md#setconversationthreadcontrol) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent |
 | [**UpdateInboxConversation**](MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status |
 | [**UploadMediaDirect**](MessagesApi.md#uploadmediadirect) | **POST** /v1/media/upload-direct | Upload media file |
 
@@ -132,7 +133,7 @@ catch (ApiException e)
 
 Create conversation
 
-Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  Supported platforms: X/Twitter, Bluesky, Reddit, WhatsApp, SMS, and Slack. Other platforms return PLATFORM_NOT_SUPPORTED.  Slack: pass a workspace member id as participantId (list them with GET /v1/accounts/{accountId}/slack-members). Zernio opens the DM channel with that member and sends the message; the thread then behaves like any other Slack conversation in the inbox. The member must belong to the connected workspace.  WhatsApp: this is the endpoint for sending an approved template message to a phone number. Provide templateName, templateLanguage, and templateParams (variable values for the text header, body and dynamic URL buttons, in that order), with the recipient phone in participantId. A template is required because WhatsApp does not permit freeform messages to open a conversation; a missing template returns TEMPLATE_REQUIRED. Templates with media headers (image, video, document) are handled automatically: Zernio reads the approved template definition and fills the header at send time with the template's approved sample asset. To send a DIFFERENT asset per message (e.g. a distinct invoice PDF for each recipient), pass the headerMedia field with a public link (or a Meta media id); it overrides the sample for that send. A template whose approved header format is LOCATION has no header asset to reconstruct at all: Meta only accepts the location at send time, so pass headerLocation (latitude and longitude required) whenever such a template is sent; headerMedia and headerLocation cannot both be supplied. A button that carries its own value at send time (a copy-code button holding a Pix payment code or a coupon, a flow token) is sent with templateButtonParams, addressed by the button's index; templateParams covers text variables and dynamic URL buttons only. Calling this for a number you already have a thread with simply sends the template into that thread, which also makes it the way to re-engage a contact after the 24-hour customer-service window has closed. Once the recipient replies (opening the 24h window), send freeform messages with the send-message endpoint (POST /v1/inbox/conversations/{conversationId}/messages). Template fields are accepted on the JSON body only, not on multipart requests. Alternatively, WhatsApp Business Accounts eligible for Meta Direct Send can open a conversation with a business-initiated utility text message and no template: pass category: 'utility' together with message (and no templateName). See the category field below.  DM eligibility (X/Twitter): Before sending, the endpoint checks if the recipient accepts DMs from your account (via the receives_your_dm field). If not, a 422 error with code DM_NOT_ALLOWED is returned. You can skip this check with skipDmCheck: true if you have already verified eligibility.  X API tier requirement: DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  Rate limits (X/Twitter only): X's DM API enforces 200 requests per 15 minutes, 1,000 per 24 hours per connected X account, and 15,000 per 24 hours per X developer app (shared across all DM endpoints). These limits do NOT apply to other platforms. WhatsApp sends are governed by Meta's per-number messaging tiers (unique business-initiated conversations per 24 hours) and per-number throughput instead. 
+Start a direct message conversation with a user. If a conversation with that recipient already exists, the message is added to the existing thread.  Supported platforms: X, Bluesky, Reddit, WhatsApp, SMS, and Slack. Other platforms return PLATFORM_NOT_SUPPORTED.  **Slack.** Pass a workspace member id as participantId (list them with GET /v1/accounts/{accountId}/slack-members). Zernio opens the DM channel with that member and sends the message; the thread then behaves like any other Slack conversation in the inbox. The member must belong to the connected workspace.  **WhatsApp.** This is the endpoint for sending an approved template message to a phone number. Provide templateName, templateLanguage, and templateParams (variable values for the text header, body and dynamic URL buttons, in that order), with the recipient phone in participantId. A template is required because WhatsApp does not permit freeform messages to open a conversation; a missing template returns TEMPLATE_REQUIRED.  - Templates with media headers (image, video, document) are handled automatically: Zernio reads the approved template definition and fills the header at send time with the template's approved sample asset. To send a DIFFERENT asset per message (e.g. a distinct invoice PDF for each recipient), pass the headerMedia field with a public link (or a Meta media id); it overrides the sample for that send. - A template whose approved header format is LOCATION has no header asset to reconstruct at all: Meta only accepts the location at send time, so pass headerLocation (latitude and longitude required) whenever such a template is sent; headerMedia and headerLocation cannot both be supplied. - A button that carries its own value at send time (a copy-code button holding a Pix payment code or a coupon, a flow token) is sent with templateButtonParams, addressed by the button's index; templateParams covers text variables and dynamic URL buttons only. - Template fields are accepted on the JSON body only, not on multipart requests.  For a number you already have a thread with, this sends the template into that thread, which also makes it the way to re-engage a contact after the 24-hour customer-service window has closed. Once the recipient replies (opening the 24h window), send freeform messages with the send-message endpoint (POST /v1/inbox/conversations/{conversationId}/messages).  Alternatively, WhatsApp Business Accounts eligible for Meta Direct Send can open a conversation with a business-initiated utility text message and no template: pass category: 'utility' together with message (and no templateName). See the category field below.  **DM eligibility (X).** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the receives_your_dm field). If not, a 422 error with code DM_NOT_ALLOWED is returned. You can skip this check with skipDmCheck: true if you have already verified eligibility.  **X API tier requirement.** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits (X only).** X's DM API enforces 200 requests per 15 minutes, 1,000 per 24 hours per connected X account, and 15,000 per 24 hours per X developer app (shared across all DM endpoints). These limits do NOT apply to other platforms. WhatsApp sends are governed by Meta's per-number messaging tiers (unique business-initiated conversations per 24 hours) and per-number throughput instead. 
 
 ### Example
 ```csharp
@@ -225,7 +226,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
 | **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
-| **422** | Recipient does not accept DMs from this account (X/Twitter), or does not accept private messages from you (Reddit) |  -  |
+| **422** | Recipient does not accept DMs from this account (X), or does not accept direct messages from you (Reddit) |  -  |
 | **429** | X API rate limit exceeded, or Reddit rate limit reached for this account |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -236,7 +237,7 @@ catch (ApiException e)
 
 Delete message
 
-Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot's own messages anytime, others if admin) - X/Twitter: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender's view only - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
+Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot's own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender's view only - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
 
 ### Example
 ```csharp
@@ -264,7 +265,7 @@ namespace Example
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | The conversation ID
             var messageId = "messageId_example";  // string | The platform message ID to delete
-            var accountId = "accountId_example";  // string | Social account ID
+            var accountId = "accountId_example";  // string | Account ID
 
             try
             {
@@ -309,7 +310,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **conversationId** | **string** | The conversation ID |  |
 | **messageId** | **string** | The platform message ID to delete |  |
-| **accountId** | **string** | Social account ID |  |
+| **accountId** | **string** | Account ID |  |
 
 ### Return type
 
@@ -474,7 +475,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
-            var accountId = "accountId_example";  // string | The social account ID
+            var accountId = "accountId_example";  // string | The account ID
 
             try
             {
@@ -518,7 +519,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **conversationId** | **string** | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. |  |
-| **accountId** | **string** | The social account ID |  |
+| **accountId** | **string** | The account ID |  |
 
 ### Return type
 
@@ -550,7 +551,7 @@ catch (ApiException e)
 
 List messages
 
-Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass `pagination.nextCursor` from a prior response back as the `cursor` query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to `asc` (oldest first, chat style). For the \"show me the latest messages\" pattern, pass `?sortOrder=desc&limit=N`. Twitter, Instagram, Telegram, WhatsApp and Reddit honor the requested order from the local message store. For Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field `sortOrderApplied` tells you what was actually applied.  Reddit threads are paginated client-side because Reddit's API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit's inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Instagram and Facebook conversations include history from before the account was connected, replayed from Meta. That replay covers the 500 most recent messages per conversation: a longer thread keeps its newest 500 and older messages are not retrievable. Messages that arrived after the account was connected are unaffected. Replayed messages are stored as already read and emit no webhooks.  Twitter/X limitation: X's encrypted \"X Chat\" messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call `POST /v1/inbox/conversations/{conversationId}/read`. 
+Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass `pagination.nextCursor` from a prior response back as the `cursor` query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to `asc` (oldest first, chat style). For the \"show me the latest messages\" pattern, pass `?sortOrder=desc&limit=N`. X, Instagram, Telegram, WhatsApp and Reddit honor the requested order from the local message store. For Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter, so sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field `sortOrderApplied` tells you what was actually applied.  Reddit threads are paginated client-side because Reddit's API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit's inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Instagram and Facebook conversations include history from before the account was connected, replayed from Meta. That replay covers the 500 most recent messages per conversation: a longer thread keeps its newest 500 and older messages are not retrievable. Messages that arrived after the account was connected are unaffected. Replayed messages are stored as already read and emit no webhooks.  X limitation: X's encrypted \"X Chat\" messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call `POST /v1/inbox/conversations/{conversationId}/read`. 
 
 ### Example
 ```csharp
@@ -577,10 +578,10 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
-            var accountId = "accountId_example";  // string | Social account ID
+            var accountId = "accountId_example";  // string | Account ID
             var limit = 100;  // int? | Number of messages to return per page. Default 100, max 100. (optional)  (default to 100)
             var cursor = "cursor_example";  // string? | Opaque pagination cursor. Pass `pagination.nextCursor` from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. (optional) 
-            var sortOrder = "asc";  // string? | Order of returned messages. Default `asc` (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See `sortOrderApplied` in the response.  (optional)  (default to asc)
+            var sortOrder = "asc";  // string? | Order of returned messages. Default `asc` (oldest first, chat style). X, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected. Pages always walk newest→oldest. See `sortOrderApplied` in the response.  (optional)  (default to asc)
 
             try
             {
@@ -624,10 +625,10 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **conversationId** | **string** | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. |  |
-| **accountId** | **string** | Social account ID |  |
+| **accountId** | **string** | Account ID |  |
 | **limit** | **int?** | Number of messages to return per page. Default 100, max 100. | [optional] [default to 100] |
 | **cursor** | **string?** | Opaque pagination cursor. Pass &#x60;pagination.nextCursor&#x60; from a prior response verbatim: a cursor we cannot parse returns 400 rather than silently restarting from the first page. | [optional]  |
-| **sortOrder** | **string?** | Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). Twitter, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected — pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  | [optional] [default to asc] |
+| **sortOrder** | **string?** | Order of returned messages. Default &#x60;asc&#x60; (oldest first, chat style). X, Instagram, Telegram, WhatsApp and Reddit honor this order across cursor pages. For Facebook and Bluesky, only intra-page ordering is affected. Pages always walk newest→oldest. See &#x60;sortOrderApplied&#x60; in the response.  | [optional] [default to asc] |
 
 ### Return type
 
@@ -659,7 +660,7 @@ catch (ApiException e)
 
 Resolve message attachment
 
-Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the `url` on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message's media from Meta and persists it before answering. The message id never expires, so this URL is the one to store. It is returned ready-made on each attachment as `refreshUrl` when you read a message over REST.  **Webhook payloads do not carry `refreshUrl`**, so a webhook-driven integration builds this URL itself. Every piece is in the event: `message.conversationId`, `message.platformMessageId`, the attachment's zero-based position, and `account.accountId`. Note that **`accountId` is a required query parameter**; omitting it returns `400` `missing_required_field`, which is the same requirement `GET /v1/whatsapp/media/{mediaId}` has.  By default it responds `302` to the live media url, so it can be used directly as an `<img src>` on a browser session. API-key integrators should pass `?format=json` and read `url` off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and `404` otherwise. 
+Resolve one attachment on a message to a media url that works right now.  Instagram and Facebook sign DM media urls per request and expire them, so the `url` on a message is a snapshot: it works when you read the message and stops working later. This endpoint checks the stored url and, when it has gone stale, re-mints the message's media from Meta and persists it before answering. The message id never expires, so this URL is the one to store. It is returned ready-made on each attachment as `refreshUrl` when you read a message over REST.  **Webhook payloads do not carry `refreshUrl`**, so a webhook-driven integration builds this URL itself. Every piece is in the event: `message.conversationId`, `message.platformMessageId`, the attachment's zero-based position, and `account.accountId`. **`accountId` is a required query parameter**; omitting it returns `400` `missing_required_field`, which is the same requirement `GET /v1/whatsapp/media/{mediaId}` has.  By default it responds `302` to the live media url, so it can be used directly as an `<img src>` on a browser session. API-key integrators should pass `?format=json` and read `url` off the body, since a browser cannot attach an Authorization header to an image request.  Only Instagram and Facebook media can be re-minted. On other platforms the stored url is returned as-is when it still resolves, and `404` otherwise. 
 
 ### Example
 ```csharp
@@ -688,7 +689,7 @@ namespace Example
             var conversationId = "conversationId_example";  // string | The conversation ID (Zernio id or platform conversation id)
             var messageId = "messageId_example";  // string | The message id as returned by the list-messages endpoint (the platform message id)
             var index = 56;  // int | Zero-based position of the attachment in the message's attachments array
-            var accountId = "accountId_example";  // string | Social account ID. Required: without it the request returns 400 missing_required_field.
+            var accountId = "accountId_example";  // string | Account ID. Required: without it the request returns 400 missing_required_field.
             var format = "redirect";  // string? | `redirect` (default) answers 302 to the media; `json` returns the url in the body (optional)  (default to redirect)
 
             try
@@ -735,7 +736,7 @@ catch (ApiException e)
 | **conversationId** | **string** | The conversation ID (Zernio id or platform conversation id) |  |
 | **messageId** | **string** | The message id as returned by the list-messages endpoint (the platform message id) |  |
 | **index** | **int** | Zero-based position of the attachment in the message&#39;s attachments array |  |
-| **accountId** | **string** | Social account ID. Required: without it the request returns 400 missing_required_field. |  |
+| **accountId** | **string** | Account ID. Required: without it the request returns 400 missing_required_field. |  |
 | **format** | **string?** | &#x60;redirect&#x60; (default) answers 302 to the media; &#x60;json&#x60; returns the url in the body | [optional] [default to redirect] |
 
 ### Return type
@@ -770,7 +771,7 @@ catch (ApiException e)
 
 List conversations
 
-Fetch conversations (DMs) from all connected messaging accounts in a single API call. Supports filtering by profile and platform. Results are aggregated and deduplicated. Supported platforms: Facebook, Instagram, Twitter/X, Bluesky, Reddit, Telegram.  Twitter/X limitation: X has replaced traditional DMs with encrypted \"X Chat\" for many accounts. Messages sent or received through encrypted X Chat are not accessible via X's API (the /2/dm_events endpoint only returns legacy unencrypted DMs). This means some Twitter/X conversations may show only outgoing messages or appear empty. This is an X platform limitation that affects all third-party applications. See X's docs on encrypted messaging for more details.  Instagram and Facebook pre-connect history: when one of these accounts is connected, Zernio replays the DM history the account already holds on Meta, so conversations that began before the account was connected appear here. Up to 500 conversations per account are replayed. The replay runs in the background and can finish after a listing you have already taken, and replayed conversations keep their original lastMessageAt, so they sort into date order rather than appearing at the top. If you mirror this endpoint into your own store, re-run the sweep rather than relying on a single pass at connect time. Replayed history emits no webhooks and is stored as already read, so it never affects unread counts. Threads that Meta refuses to serve are skipped, and an account whose Instagram \"connected tools\" message access is turned off is not replayed at all. 
+Fetch conversations (DMs) from all connected messaging accounts in a single API call. Supports filtering by profile and platform. Results are aggregated and deduplicated.  Supported platforms: Facebook, Instagram, X, Bluesky, Reddit, Telegram.  **X limitation.** X has replaced traditional DMs with encrypted \"X Chat\" for many accounts. Messages sent or received through encrypted X Chat are not accessible via X's API (the /2/dm_events endpoint only returns legacy unencrypted DMs). This means some X conversations may show only outgoing messages or appear empty. This is an X platform limitation that affects all third-party applications. See X's docs on encrypted messaging for more details.  **Instagram and Facebook pre-connect history.** When one of these accounts is connected, Zernio replays the DM history the account already holds on Meta, so conversations that began before the account was connected appear here. Up to 500 conversations per account are replayed.  - The replay runs in the background and can finish after a listing you have already taken, and replayed conversations keep their original lastMessageAt, so they sort into date order rather than appearing at the top. If you mirror this endpoint into your own store, re-run the sweep rather than relying on a single pass at connect time. - Replayed history emits no webhooks and is stored as already read, so it never affects unread counts. - Threads that Meta refuses to serve are skipped, and an account whose Instagram \"connected tools\" message access is turned off is not replayed at all. 
 
 ### Example
 ```csharp
@@ -802,7 +803,7 @@ namespace Example
             var sortOrder = "asc";  // string? | Sort order by updated time (optional)  (default to desc)
             var limit = 50;  // int? | Maximum number of conversations to return (optional)  (default to 50)
             var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
-            var accountId = "accountId_example";  // string? | Filter by specific social account ID (optional) 
+            var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
 
             try
             {
@@ -851,7 +852,7 @@ catch (ApiException e)
 | **sortOrder** | **string?** | Sort order by updated time | [optional] [default to desc] |
 | **limit** | **int?** | Maximum number of conversations to return | [optional] [default to 50] |
 | **cursor** | **string?** | Pagination cursor for next page | [optional]  |
-| **accountId** | **string?** | Filter by specific social account ID | [optional]  |
+| **accountId** | **string?** | Filter by specific account ID | [optional]  |
 
 ### Return type
 
@@ -1013,7 +1014,7 @@ namespace Example
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | The conversation ID
             var messageId = "messageId_example";  // string | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook)
-            var accountId = "accountId_example";  // string | Social account ID
+            var accountId = "accountId_example";  // string | Account ID
 
             try
             {
@@ -1058,7 +1059,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **conversationId** | **string** | The conversation ID |  |
 | **messageId** | **string** | The platform message ID (as returned by GET /messages) or the Zernio message ID (as returned by the reaction webhook) |  |
-| **accountId** | **string** | Social account ID |  |
+| **accountId** | **string** | Account ID |  |
 
 ### Return type
 
@@ -1091,7 +1092,7 @@ catch (ApiException e)
 
 Search conversations
 
-Search your conversations two ways at once, and get back the matching conversations, most-recent match first:  - Message text: matches words inside message bodies. Case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Each hit carries up to 3 most-recent matching messages. With direction=outgoing you can collect examples of how you write to customers, for example to teach an AI agent your tone of voice. - Contact identity: matches the participant's name, username, or phone number as a case-insensitive substring. These hits have matchCount 0 and an empty matches array.  A conversation that matches both ways is returned once, carrying its message matches.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook, Instagram, Twitter/X and Reddit. Bluesky conversations are fetched live from the platform and cannot be searched; those accounts are listed in meta.accountsSkipped. 
+Search your conversations two ways at once, and get back the matching conversations, most-recent match first:  - Message text: matches words inside message bodies. Case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Each hit carries up to 3 most-recent matching messages. With direction=outgoing you can collect examples of how you write to customers, for example to teach an AI agent your tone of voice. - Contact identity: matches the participant's name, username, or phone number as a case-insensitive substring. These hits have matchCount 0 and an empty matches array.  A conversation that matches both ways is returned once, carrying its message matches.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook, Instagram, X and Reddit. Bluesky conversations are fetched live from the platform and cannot be searched; those accounts are listed in meta.accountsSkipped. 
 
 ### Example
 ```csharp
@@ -1121,7 +1122,7 @@ namespace Example
             var direction = "incoming";  // string? | Only match messages sent to you (incoming) or by you (outgoing). Contact-identity matching is not applied when this is set. (optional) 
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
             var platform = "facebook";  // string? | Filter by platform (searchable platforms only) (optional) 
-            var accountId = "accountId_example";  // string? | Filter by specific social account ID (optional) 
+            var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
             var limit = 20;  // int? | Maximum number of conversations to return (optional)  (default to 20)
             var cursor = "cursor_example";  // string? | Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. (optional) 
 
@@ -1170,7 +1171,7 @@ catch (ApiException e)
 | **direction** | **string?** | Only match messages sent to you (incoming) or by you (outgoing). Contact-identity matching is not applied when this is set. | [optional]  |
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
 | **platform** | **string?** | Filter by platform (searchable platforms only) | [optional]  |
-| **accountId** | **string?** | Filter by specific social account ID | [optional]  |
+| **accountId** | **string?** | Filter by specific account ID | [optional]  |
 | **limit** | **int?** | Maximum number of conversations to return | [optional] [default to 20] |
 | **cursor** | **string?** | Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional]  |
 
@@ -1410,6 +1411,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="setconversationthreadcontrol"></a>
+# **SetConversationThreadControl**
+> SetConversationThreadControl200Response SetConversationThreadControl (string conversationId, SetConversationThreadControlRequest setConversationThreadControlRequest)
+
+Hand a conversation to or from Meta Business Agent
+
+WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta's thread control: - `release`: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - `take`: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number's escalation partner; other apps take control by sending a message. - `pass`: transfer control to the number's configured escalation partner, or to the agent with `target: ai_agent`.  The conversation's `threadControl` follows the result; a `conversation.control_changed` webhook fires when Meta later reports the change. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SetConversationThreadControlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var conversationId = "conversationId_example";  // string | The conversation ID
+            var setConversationThreadControlRequest = new SetConversationThreadControlRequest(); // SetConversationThreadControlRequest | 
+
+            try
+            {
+                // Hand a conversation to or from Meta Business Agent
+                SetConversationThreadControl200Response result = apiInstance.SetConversationThreadControl(conversationId, setConversationThreadControlRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.SetConversationThreadControl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SetConversationThreadControlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Hand a conversation to or from Meta Business Agent
+    ApiResponse<SetConversationThreadControl200Response> response = apiInstance.SetConversationThreadControlWithHttpInfo(conversationId, setConversationThreadControlRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.SetConversationThreadControlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **conversationId** | **string** | The conversation ID |  |
+| **setConversationThreadControlRequest** | [**SetConversationThreadControlRequest**](SetConversationThreadControlRequest.md) |  |  |
+
+### Return type
+
+[**SetConversationThreadControl200Response**](SetConversationThreadControl200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Control transferred |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updateinboxconversation"></a>
 # **UpdateInboxConversation**
 > UpdateInboxConversation200Response UpdateInboxConversation (string conversationId, UpdateInboxConversationRequest updateInboxConversationRequest)
@@ -1519,7 +1624,7 @@ catch (ApiException e)
 
 Upload media file
 
-Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as attachmentUrl when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike /v1/media/upload (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as attachmentUrl when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike /v1/media/upload (which uses upload tokens for end-user flows), this endpoint takes your API key in the Authorization header, for programmatic use. 
 
 ### Example
 ```csharp

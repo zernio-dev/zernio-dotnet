@@ -96,7 +96,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateWhatsAppFlowRequest" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="name">New flow name.</param>
         /// <param name="categories">categories.</param>
         /// <param name="endpointUri">HTTPS-only data exchange endpoint for the flow. Settable only while the flow is in DRAFT, and the flow&#39;s uploaded Flow JSON must declare data_api_version \&quot;3.0\&quot; for the endpoint to be used..</param>
@@ -114,9 +114,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

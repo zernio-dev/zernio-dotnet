@@ -134,7 +134,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetLinkedInBidPricingRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio social account ID (LinkedIn). (required).</param>
+        /// <param name="accountId">Zernio account ID (LinkedIn). (required).</param>
         /// <param name="adAccountId">LinkedIn ad account ID (numeric). (required).</param>
         /// <param name="spec">Same targeting spec used by POST /v1/ads/create. (required).</param>
         /// <param name="campaignType">Defaults to SPONSORED_UPDATES..</param>
@@ -174,9 +174,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio social account ID (LinkedIn).
+        /// Zernio account ID (LinkedIn).
         /// </summary>
-        /// <value>Zernio social account ID (LinkedIn).</value>
+        /// <value>Zernio account ID (LinkedIn).</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

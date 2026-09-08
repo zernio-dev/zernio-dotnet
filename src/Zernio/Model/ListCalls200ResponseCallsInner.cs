@@ -219,7 +219,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListCalls200ResponseCallsInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
-        /// <param name="accountId">Owning social account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access..</param>
+        /// <param name="accountId">Owning account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access..</param>
         /// <param name="conversationId">Inbox conversation with the counterparty, when one exists..</param>
         /// <param name="contactId">CRM Contact for the counterparty, when resolved..</param>
         /// <param name="channel">channel.</param>
@@ -242,7 +242,7 @@ namespace Zernio.Model
         /// <param name="transferredAt">When the call was blind-transferred (POST /v1/voice/calls/{id}/transfer)..</param>
         /// <param name="durationSeconds">durationSeconds.</param>
         /// <param name="endReason">endReason.</param>
-        /// <param name="hangupCause">Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit) — the actual motive when endReason is a coarse bucket..</param>
+        /// <param name="hangupCause">Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit). The actual motive when endReason is a coarse bucket..</param>
         /// <param name="sipHangupCause">SIP response code that ended the call, when SIP-signalled (e.g. &#39;403&#39;, &#39;488&#39;). The real failure reason for SIP legs..</param>
         /// <param name="callErrors">Per-call failure log (dial failed, bridge failed, recording error)..</param>
         /// <param name="recordingUrl">May be expired. Resolve a fresh playable URL via GET /v1/calls/{id}/recording (any channel)..</param>
@@ -297,9 +297,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Owning social account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access.
+        /// Owning account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access.
         /// </summary>
-        /// <value>Owning social account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access.</value>
+        /// <value>Owning account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -411,9 +411,9 @@ namespace Zernio.Model
         public int DurationSeconds { get; set; }
 
         /// <summary>
-        /// Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit) — the actual motive when endReason is a coarse bucket.
+        /// Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit). The actual motive when endReason is a coarse bucket.
         /// </summary>
-        /// <value>Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit) — the actual motive when endReason is a coarse bucket.</value>
+        /// <value>Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit). The actual motive when endReason is a coarse bucket.</value>
         [DataMember(Name = "hangupCause", EmitDefaultValue = false)]
         public string HangupCause { get; set; }
 

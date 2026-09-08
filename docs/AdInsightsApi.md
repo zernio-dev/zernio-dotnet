@@ -212,7 +212,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
-| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -314,7 +314,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
-| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -544,7 +544,7 @@ catch (ApiException e)
 
 Google Ads search terms report
 
-The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google's `search_term_view`, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google's `search_term_view`, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
 ### Example
 ```csharp
@@ -1020,7 +1020,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
-            var objectId = "objectId_example";  // string? | Meta only (required there): insights node — act_<n>, campaign id, ad set id or ad id. (optional) 
+            var objectId = "objectId_example";  // string? | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id). (optional) 
             var query = "query_example";  // string? | Google only (required there): the GAQL SELECT statement to run. (optional) 
             var customerId = "customerId_example";  // string? | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional) 
             var pageToken = "pageToken_example";  // string? | Google only: cursor from paging.nextPageToken of the previous page. (optional) 
@@ -1081,7 +1081,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. |  |
-| **objectId** | **string?** | Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. | [optional]  |
+| **objectId** | **string?** | Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional]  |
 | **query** | **string?** | Google only (required there): the GAQL SELECT statement to run. | [optional]  |
 | **customerId** | **string?** | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional]  |
 | **pageToken** | **string?** | Google only: cursor from paging.nextPageToken of the previous page. | [optional]  |
@@ -1118,7 +1118,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Insight rows (raw platform shape) |  -  |
-| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL) — message carries the platform&#39;s error |  -  |
+| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |

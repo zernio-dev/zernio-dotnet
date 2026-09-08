@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EditInboxMessageRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID (required).</param>
+        /// <param name="accountId">Account ID (required).</param>
         /// <param name="text">New message text.</param>
         /// <param name="replyMarkup">replyMarkup.</param>
         public EditInboxMessageRequest(string accountId = default, string text = default, EditInboxMessageRequestReplyMarkup replyMarkup = default)
@@ -57,9 +57,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadWhatsAppProfilePhotoRequest1" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="url">Publicly reachable https URL of the image (JPEG or PNG, max 5MB, recommended 640x640). Fetched server-side; must resolve directly without redirects. (required).</param>
         public UploadWhatsAppProfilePhotoRequest1(string accountId = default, string url = default)
         {
@@ -60,9 +60,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

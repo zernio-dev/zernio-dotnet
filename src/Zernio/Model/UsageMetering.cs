@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Billed spend by product family over a window, from Metronome&#39;s invoice breakdown (the CHARGE view). Returned by &#x60;GET /v1/usage&#x60;. 
+    /// Billed spend by product family over a window, from the usage-based invoice breakdown (the CHARGE view). Returned by &#x60;GET /v1/usage&#x60;. 
     /// </summary>
     [DataContract(Name = "UsageMetering")]
     public partial class UsageMetering : IValidatableObject
@@ -67,7 +67,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UsageMetering" /> class.
         /// </summary>
-        /// <param name="supported">False for legacy Stripe accounts (no Metronome invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero..</param>
+        /// <param name="supported">False for legacy Stripe accounts (no usage-based invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero..</param>
         /// <param name="granularity">granularity.</param>
         /// <param name="days">One row per bucket. Empty when &#x60;granularity&#x3D;total&#x60;. &#x60;date&#x60; is a UTC date (month buckets use the 1st)..</param>
         /// <param name="totals">totals.</param>
@@ -94,9 +94,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// False for legacy Stripe accounts (no Metronome invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero.
+        /// False for legacy Stripe accounts (no usage-based invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero.
         /// </summary>
-        /// <value>False for legacy Stripe accounts (no Metronome invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero.</value>
+        /// <value>False for legacy Stripe accounts (no usage-based invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero.</value>
         [DataMember(Name = "supported", EmitDefaultValue = true)]
         public bool Supported { get; set; }
 

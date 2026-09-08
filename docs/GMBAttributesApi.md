@@ -41,7 +41,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new GMBAttributesApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var locationId = "locationId_example";  // string? | GBP location ID (e.g. \"6257659026299438786\"). If omitted, uses the account's stored selectedLocationId. Mutually exclusive with categoryName.  (optional) 
+            var locationId = "locationId_example";  // string? | Google Business Profile location ID (e.g. \"6257659026299438786\"). If omitted, uses the account's stored selectedLocationId. Mutually exclusive with categoryName.  (optional) 
             var categoryName = "categoryName_example";  // string? | Category resource name, must start with \"categories/\" (e.g. \"categories/gcid:plumber\"). Required together with regionCode. Mutually exclusive with locationId.  (optional) 
             var regionCode = "regionCode_example";  // string? | BCP-47 region code (e.g. \"US\", \"ES\"). Required when categoryName is provided.  (optional) 
             var languageCode = "languageCode_example";  // string? | BCP-47 language code for display names (e.g. \"en\", \"es\"). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional) 
@@ -90,7 +90,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **locationId** | **string?** | GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  | [optional]  |
+| **locationId** | **string?** | Google Business Profile location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  | [optional]  |
 | **categoryName** | **string?** | Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  | [optional]  |
 | **regionCode** | **string?** | BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  | [optional]  |
 | **languageCode** | **string?** | BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  | [optional]  |
@@ -127,7 +127,7 @@ catch (ApiException e)
 
 Get attributes
 
-Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
+Returns Google Business Profile location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
 
 ### Example
 ```csharp

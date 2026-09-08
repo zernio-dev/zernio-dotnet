@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SetWhatsAppFlowsEncryptionKeyRequest" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="businessPublicKey">RSA public key in PEM format. Rejected if it is a private key or not a valid RSA public key PEM. (required).</param>
         public SetWhatsAppFlowsEncryptionKeyRequest(string accountId = default, string businessPublicKey = default)
         {
@@ -60,9 +60,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

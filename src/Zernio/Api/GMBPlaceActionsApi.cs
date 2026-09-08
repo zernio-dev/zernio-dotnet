@@ -57,7 +57,7 @@ namespace Zernio.Api
         /// Delete action link
         /// </summary>
         /// <remarks>
-        /// Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -70,7 +70,7 @@ namespace Zernio.Api
         /// Delete action link
         /// </summary>
         /// <remarks>
-        /// Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -170,7 +170,7 @@ namespace Zernio.Api
         /// Delete action link
         /// </summary>
         /// <remarks>
-        /// Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -184,7 +184,7 @@ namespace Zernio.Api
         /// Delete action link
         /// </summary>
         /// <remarks>
-        /// Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -618,7 +618,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -632,7 +632,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -692,7 +692,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -707,7 +707,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
+        /// Delete action link Deletes a place action link (e.g. booking or ordering URL) from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

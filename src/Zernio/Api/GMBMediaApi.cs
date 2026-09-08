@@ -57,7 +57,7 @@ namespace Zernio.Api
         /// Delete photo
         /// </summary>
         /// <remarks>
-        /// Deletes a photo or media item from a GBP location.
+        /// Deletes a photo or media item from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -70,7 +70,7 @@ namespace Zernio.Api
         /// Delete photo
         /// </summary>
         /// <remarks>
-        /// Deletes a photo or media item from a GBP location.
+        /// Deletes a photo or media item from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -145,7 +145,7 @@ namespace Zernio.Api
         /// Delete photo
         /// </summary>
         /// <remarks>
-        /// Deletes a photo or media item from a GBP location.
+        /// Deletes a photo or media item from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -159,7 +159,7 @@ namespace Zernio.Api
         /// Delete photo
         /// </summary>
         /// <remarks>
-        /// Deletes a photo or media item from a GBP location.
+        /// Deletes a photo or media item from a Google Business Profile location.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -566,7 +566,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete photo Deletes a photo or media item from a GBP location.
+        /// Delete photo Deletes a photo or media item from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -580,7 +580,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete photo Deletes a photo or media item from a GBP location.
+        /// Delete photo Deletes a photo or media item from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -640,7 +640,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete photo Deletes a photo or media item from a GBP location.
+        /// Delete photo Deletes a photo or media item from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -655,7 +655,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete photo Deletes a photo or media item from a GBP location.
+        /// Delete photo Deletes a photo or media item from a Google Business Profile location.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

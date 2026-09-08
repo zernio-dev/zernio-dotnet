@@ -847,7 +847,7 @@ catch (ApiException e)
 
 Get calling config for a number
 
-The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (`GET /v1/whatsapp/calling?accountId=`) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (`GET /v1/whatsapp/calling?accountId=`) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
 
 ### Example
 ```csharp
@@ -974,7 +974,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1017,7 +1017,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -1140,7 +1140,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | No active call permission — send a permission request first. |  -  |
+| **409** | No active call permission. Send a permission request first. |  -  |
 | **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
 

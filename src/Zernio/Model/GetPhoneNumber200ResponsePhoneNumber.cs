@@ -109,7 +109,7 @@ namespace Zernio.Model
         /// <param name="country">country.</param>
         /// <param name="metaPreverifiedId">metaPreverifiedId.</param>
         /// <param name="metaVerificationStatus">metaVerificationStatus.</param>
-        /// <param name="onfidoVerificationUrl">For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise..</param>
+        /// <param name="onfidoVerificationUrl">For a regulated number with an Onfido ID step: the link to forward to the end user. Appears once the order is placed; null otherwise..</param>
         /// <param name="endUserFirstName">endUserFirstName.</param>
         /// <param name="endUserLastName">endUserLastName.</param>
         /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
@@ -162,9 +162,9 @@ namespace Zernio.Model
         public string MetaVerificationStatus { get; set; }
 
         /// <summary>
-        /// For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.
+        /// For a regulated number with an Onfido ID step: the link to forward to the end user. Appears once the order is placed; null otherwise.
         /// </summary>
-        /// <value>For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.</value>
+        /// <value>For a regulated number with an Onfido ID step: the link to forward to the end user. Appears once the order is placed; null otherwise.</value>
         [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = true)]
         public string OnfidoVerificationUrl { get; set; }
 

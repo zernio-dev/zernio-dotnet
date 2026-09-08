@@ -41,9 +41,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio Google Ads SocialAccount id — resolves the customer id + refresh token. (required).</param>
+        /// <param name="accountId">Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token. (required).</param>
         /// <param name="customerId">Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one..</param>
-        /// <param name="sitelinks">See POST /v1/ads/create sitelinks — same shape..</param>
+        /// <param name="sitelinks">See POST /v1/ads/create sitelinks, same shape..</param>
         /// <param name="callouts">callouts.</param>
         /// <param name="structuredSnippets">structuredSnippets.</param>
         public AttachCampaignAssetsRequest(string accountId = default, string customerId = default, List<AttachCampaignAssetsRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets = default)
@@ -61,9 +61,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio Google Ads SocialAccount id — resolves the customer id + refresh token.
+        /// Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token.
         /// </summary>
-        /// <value>Zernio Google Ads SocialAccount id — resolves the customer id + refresh token.</value>
+        /// <value>Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
@@ -75,9 +75,9 @@ namespace Zernio.Model
         public string CustomerId { get; set; }
 
         /// <summary>
-        /// See POST /v1/ads/create sitelinks — same shape.
+        /// See POST /v1/ads/create sitelinks, same shape.
         /// </summary>
-        /// <value>See POST /v1/ads/create sitelinks — same shape.</value>
+        /// <value>See POST /v1/ads/create sitelinks, same shape.</value>
         [DataMember(Name = "sitelinks", EmitDefaultValue = false)]
         public List<AttachCampaignAssetsRequestSitelinksInner> Sitelinks { get; set; }
 

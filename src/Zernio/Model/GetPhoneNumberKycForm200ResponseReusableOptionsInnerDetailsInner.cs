@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="label">label.</param>
         /// <param name="value">value.</param>
-        /// <param name="documentId">Present on document rows — the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId} streams it (auth-scoped, inline PDF)..</param>
+        /// <param name="documentId">Present on document rows: the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId} streams it (auth-scoped, inline PDF)..</param>
         public GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner(string label = default, string value = default, string documentId = default)
         {
             this.Label = label;
@@ -59,9 +59,9 @@ namespace Zernio.Model
         public string Value { get; set; }
 
         /// <summary>
-        /// Present on document rows — the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId} streams it (auth-scoped, inline PDF).
+        /// Present on document rows: the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId} streams it (auth-scoped, inline PDF).
         /// </summary>
-        /// <value>Present on document rows — the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId} streams it (auth-scoped, inline PDF).</value>
+        /// <value>Present on document rows: the Telnyx document id. GET /v1/whatsapp/phone-numbers/kyc/document/{documentId} streams it (auth-scoped, inline PDF).</value>
         [DataMember(Name = "documentId", EmitDefaultValue = false)]
         public string DocumentId { get; set; }
 

@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetGoogleBusinessLocationDetails200ResponseLocation" /> class.
         /// </summary>
-        /// <param name="name">Business name as set in GBP.</param>
+        /// <param name="name">Business name as set in Google Business Profile.</param>
         /// <param name="placeId">Google Maps Place ID for this location.</param>
         /// <param name="reviewUrl">Public \&quot;write a review\&quot; URL Google generates for this place.</param>
         /// <param name="mapsUri">Public Google Maps URL for this location.</param>
@@ -51,9 +51,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Business name as set in GBP
+        /// Business name as set in Google Business Profile
         /// </summary>
-        /// <value>Business name as set in GBP</value>
+        /// <value>Business name as set in Google Business Profile</value>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 

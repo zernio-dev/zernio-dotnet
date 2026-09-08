@@ -53,7 +53,7 @@ namespace Zernio.Api
         /// Follow a user
         /// </summary>
         /// <remarks>
-        /// Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -64,7 +64,7 @@ namespace Zernio.Api
         /// Follow a user
         /// </summary>
         /// <remarks>
-        /// Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -77,7 +77,7 @@ namespace Zernio.Api
         /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <returns>GetTweet200Response</returns>
         GetTweet200Response GetTweet(string accountId, string id);
@@ -89,7 +89,7 @@ namespace Zernio.Api
         /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <returns>ApiResponse of GetTweet200Response</returns>
         ApiResponse<GetTweet200Response> GetTweetWithHttpInfo(string accountId, string id);
@@ -141,10 +141,10 @@ namespace Zernio.Api
         /// Search recent tweets
         /// </summary>
         /// <remarks>
-        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -160,10 +160,10 @@ namespace Zernio.Api
         /// Search recent tweets
         /// </summary>
         /// <remarks>
-        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -201,11 +201,11 @@ namespace Zernio.Api
         /// Unfollow a user
         /// </summary>
         /// <remarks>
-        /// Unfollow a user on X/Twitter. 
+        /// Unfollow a user on X. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <returns>UnfollowUser200Response</returns>
         UnfollowUser200Response UnfollowUser(string accountId, string targetUserId);
 
@@ -213,11 +213,11 @@ namespace Zernio.Api
         /// Unfollow a user
         /// </summary>
         /// <remarks>
-        /// Unfollow a user on X/Twitter. 
+        /// Unfollow a user on X. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <returns>ApiResponse of UnfollowUser200Response</returns>
         ApiResponse<UnfollowUser200Response> UnfollowUserWithHttpInfo(string accountId, string targetUserId);
         #endregion Synchronous Operations
@@ -256,7 +256,7 @@ namespace Zernio.Api
         /// Follow a user
         /// </summary>
         /// <remarks>
-        /// Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -268,7 +268,7 @@ namespace Zernio.Api
         /// Follow a user
         /// </summary>
         /// <remarks>
-        /// Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -282,7 +282,7 @@ namespace Zernio.Api
         /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTweet200Response</returns>
@@ -295,7 +295,7 @@ namespace Zernio.Api
         /// Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTweet200Response)</returns>
@@ -352,10 +352,10 @@ namespace Zernio.Api
         /// Search recent tweets
         /// </summary>
         /// <remarks>
-        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -372,10 +372,10 @@ namespace Zernio.Api
         /// Search recent tweets
         /// </summary>
         /// <remarks>
-        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -416,11 +416,11 @@ namespace Zernio.Api
         /// Unfollow a user
         /// </summary>
         /// <remarks>
-        /// Unfollow a user on X/Twitter. 
+        /// Unfollow a user on X. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnfollowUser200Response</returns>
         System.Threading.Tasks.Task<UnfollowUser200Response> UnfollowUserAsync(string accountId, string targetUserId, System.Threading.CancellationToken cancellationToken = default);
@@ -429,11 +429,11 @@ namespace Zernio.Api
         /// Unfollow a user
         /// </summary>
         /// <remarks>
-        /// Unfollow a user on X/Twitter. 
+        /// Unfollow a user on X. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnfollowUser200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnfollowUser200Response>> UnfollowUserWithHttpInfoAsync(string accountId, string targetUserId, System.Threading.CancellationToken cancellationToken = default);
@@ -780,7 +780,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Follow a user Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -792,7 +792,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Follow a user Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -842,7 +842,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Follow a user Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -855,7 +855,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Follow a user Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+        /// Follow a user Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="followUserRequest"></param>
@@ -912,7 +912,7 @@ namespace Zernio.Api
         /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <returns>GetTweet200Response</returns>
         public GetTweet200Response GetTweet(string accountId, string id)
@@ -925,7 +925,7 @@ namespace Zernio.Api
         /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <returns>ApiResponse of GetTweet200Response</returns>
         public Zernio.Client.ApiResponse<GetTweet200Response> GetTweetWithHttpInfo(string accountId, string id)
@@ -980,7 +980,7 @@ namespace Zernio.Api
         /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTweet200Response</returns>
@@ -994,7 +994,7 @@ namespace Zernio.Api
         /// Look up a tweet Resolve a single tweet by ID or URL into its text, author and public metrics.  Use this to render a post you are referencing, e.g. the tweet quoted by a quote-style post. Unlike &#x60;/v1/twitter/search&#x60; this is not limited to the last 7 days and works for any tweet visible to the connected account.  Billed as an X posts read ($0.005). Repeat lookups of the same tweet within the same UTC day are charged once. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID whose X token is used for the lookup</param>
+        /// <param name="accountId">The account ID whose X token is used for the lookup</param>
         /// <param name="id">Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTweet200Response)</returns>
@@ -1320,10 +1320,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -1340,10 +1340,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -1430,10 +1430,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -1451,10 +1451,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The social account ID</param>
+        /// <param name="accountId">The account ID</param>
         /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
         /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
         /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
@@ -1686,11 +1686,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unfollow a user Unfollow a user on X/Twitter. 
+        /// Unfollow a user Unfollow a user on X. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <returns>UnfollowUser200Response</returns>
         public UnfollowUser200Response UnfollowUser(string accountId, string targetUserId)
         {
@@ -1699,11 +1699,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unfollow a user Unfollow a user on X/Twitter. 
+        /// Unfollow a user Unfollow a user on X. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <returns>ApiResponse of UnfollowUser200Response</returns>
         public Zernio.Client.ApiResponse<UnfollowUser200Response> UnfollowUserWithHttpInfo(string accountId, string targetUserId)
         {
@@ -1754,11 +1754,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unfollow a user Unfollow a user on X/Twitter. 
+        /// Unfollow a user Unfollow a user on X. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnfollowUser200Response</returns>
         public async System.Threading.Tasks.Task<UnfollowUser200Response> UnfollowUserAsync(string accountId, string targetUserId, System.Threading.CancellationToken cancellationToken = default)
@@ -1768,11 +1768,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unfollow a user Unfollow a user on X/Twitter. 
+        /// Unfollow a user Unfollow a user on X. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="targetUserId">The Twitter ID of the user to unfollow</param>
+        /// <param name="targetUserId">The X ID of the user to unfollow</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnfollowUser200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UnfollowUser200Response>> UnfollowUserWithHttpInfoAsync(string accountId, string targetUserId, System.Threading.CancellationToken cancellationToken = default)

@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateInboxConversationRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID (required).</param>
+        /// <param name="accountId">Account ID (required).</param>
         /// <param name="status">status (required).</param>
         public UpdateInboxConversationRequest(string accountId = default, StatusEnum status = default)
         {
@@ -80,9 +80,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

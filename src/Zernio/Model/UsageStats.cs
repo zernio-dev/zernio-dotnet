@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Plan and usage stats. The response shape depends on &#x60;billingSystem&#x60;:   * Stripe users (default): per-period counters like &#x60;usage.uploads&#x60; and     &#x60;usage.profiles&#x60; are returned, scoped by the plan&#39;s &#x60;limits&#x60;.   * Metronome users (usage-based): &#x60;limits&#x60; are unlimited (-1). The     &#x60;usage&#x60; block carries connected-account and per-X-operation counts,     and the &#x60;spend&#x60; block carries current-period costs plus the X cap. 
+    /// Plan and usage stats. The response shape depends on &#x60;billingSystem&#x60;:   * Stripe users (default): per-period counters like &#x60;usage.uploads&#x60; and     &#x60;usage.profiles&#x60; are returned, scoped by the plan&#39;s &#x60;limits&#x60;.   * Usage-based billing users: &#x60;limits&#x60; are unlimited (-1). The     &#x60;usage&#x60; block carries connected-account and per-X-operation counts,     and the &#x60;spend&#x60; block carries current-period costs plus the X cap. 
     /// </summary>
     [DataContract(Name = "UsageStats")]
     public partial class UsageStats : IValidatableObject
@@ -96,7 +96,7 @@ namespace Zernio.Model
         /// <param name="hasAccess">True if the account is in good standing. False for past-due/unpaid/paused subscriptions..</param>
         /// <param name="customerId">Stripe customer ID, when present..</param>
         /// <param name="isInvitedUser">True if this is a team member; limits/usage reflect the account owner..</param>
-        /// <param name="autoUpgradeEnabled">Stripe-only. Always false for Metronome users..</param>
+        /// <param name="autoUpgradeEnabled">Stripe-only. Always false for accounts on usage-based billing..</param>
         /// <param name="limits">limits.</param>
         /// <param name="usage">usage.</param>
         /// <param name="spend">spend.</param>
@@ -157,9 +157,9 @@ namespace Zernio.Model
         public bool IsInvitedUser { get; set; }
 
         /// <summary>
-        /// Stripe-only. Always false for Metronome users.
+        /// Stripe-only. Always false for accounts on usage-based billing.
         /// </summary>
-        /// <value>Stripe-only. Always false for Metronome users.</value>
+        /// <value>Stripe-only. Always false for accounts on usage-based billing.</value>
         [DataMember(Name = "autoUpgradeEnabled", EmitDefaultValue = true)]
         public bool AutoUpgradeEnabled { get; set; }
 

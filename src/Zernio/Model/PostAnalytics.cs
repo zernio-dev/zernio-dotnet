@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="likes">likes.</param>
         /// <param name="comments">comments.</param>
         /// <param name="shares">shares.</param>
-        /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest, X/Twitter).</param>
+        /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest, X).</param>
         /// <param name="clicks">clicks.</param>
         /// <param name="views">views.</param>
         /// <param name="follows">Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms..</param>
@@ -118,9 +118,9 @@ namespace Zernio.Model
         public int Shares { get; set; }
 
         /// <summary>
-        /// Number of saves/bookmarks (Instagram, Pinterest, X/Twitter)
+        /// Number of saves/bookmarks (Instagram, Pinterest, X)
         /// </summary>
-        /// <value>Number of saves/bookmarks (Instagram, Pinterest, X/Twitter)</value>
+        /// <value>Number of saves/bookmarks (Instagram, Pinterest, X)</value>
         /*
         <example>0</example>
         */

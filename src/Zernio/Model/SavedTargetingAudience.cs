@@ -61,7 +61,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SavedTargetingAudience" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="accountId">Social account ID on the target ad platform. (required).</param>
+        /// <param name="accountId">Account ID on the target ad platform. (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="description">description.</param>
         /// <param name="spec">The targeting spec to store. (required).</param>
@@ -90,9 +90,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID on the target ad platform.
+        /// Account ID on the target ad platform.
         /// </summary>
-        /// <value>Social account ID on the target ad platform.</value>
+        /// <value>Account ID on the target ad platform.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

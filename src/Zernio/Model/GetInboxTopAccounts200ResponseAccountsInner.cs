@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="total">total.</param>
         /// <param name="conversations">conversations.</param>
         /// <param name="medianResponseSeconds">medianResponseSeconds.</param>
-        /// <param name="repliedCount">Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as &#39;—&#39; instead of &#39;0s&#39;.</param>
+        /// <param name="repliedCount">Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as an em dash instead of &#39;0s&#39;.</param>
         public GetInboxTopAccounts200ResponseAccountsInner(string accountId = default, string platform = default, string displayName = default, string username = default, int received = default, int sent = default, int total = default, int conversations = default, int medianResponseSeconds = default, int repliedCount = default)
         {
             this.AccountId = accountId;
@@ -116,9 +116,9 @@ namespace Zernio.Model
         public int MedianResponseSeconds { get; set; }
 
         /// <summary>
-        /// Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as &#39;—&#39; instead of &#39;0s&#39;
+        /// Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as an em dash instead of &#39;0s&#39;
         /// </summary>
-        /// <value>Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as &#39;—&#39; instead of &#39;0s&#39;</value>
+        /// <value>Distinguishes &#39;instant replies&#39; from &#39;no replies at all&#39; so a zero medianResponseSeconds with repliedCount&#x3D;0 renders as an em dash instead of &#39;0s&#39;</value>
         [DataMember(Name = "repliedCount", EmitDefaultValue = false)]
         public int RepliedCount { get; set; }
 

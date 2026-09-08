@@ -57,7 +57,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
         UpdateYoutubeDefaultPlaylist200Response DeleteWhatsAppFlow(string flowId, string accountId);
 
@@ -69,7 +69,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
         ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsAppFlowWithHttpInfo(string flowId, string accountId);
         /// <summary>
@@ -103,7 +103,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <returns>GetWhatsAppFlow200Response</returns>
         GetWhatsAppFlow200Response GetWhatsAppFlow(string flowId, string accountId, string? fields = default);
@@ -116,7 +116,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppFlow200Response</returns>
         ApiResponse<GetWhatsAppFlow200Response> GetWhatsAppFlowWithHttpInfo(string flowId, string accountId, string? fields = default);
@@ -128,7 +128,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppFlowJson200Response</returns>
         GetWhatsAppFlowJson200Response GetWhatsAppFlowJson(string flowId, string accountId);
 
@@ -140,7 +140,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppFlowJson200Response</returns>
         ApiResponse<GetWhatsAppFlowJson200Response> GetWhatsAppFlowJsonWithHttpInfo(string flowId, string accountId);
         /// <summary>
@@ -151,7 +151,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <returns>GetWhatsAppFlowPreview200Response</returns>
         GetWhatsAppFlowPreview200Response GetWhatsAppFlowPreview(string flowId, string accountId, bool? invalidate = default);
@@ -164,7 +164,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppFlowPreview200Response</returns>
         ApiResponse<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewWithHttpInfo(string flowId, string accountId, bool? invalidate = default);
@@ -175,7 +175,7 @@ namespace Zernio.Api
         /// Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppFlowsEncryptionKey200Response</returns>
         GetWhatsAppFlowsEncryptionKey200Response GetWhatsAppFlowsEncryptionKey(string accountId);
 
@@ -186,17 +186,17 @@ namespace Zernio.Api
         /// Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppFlowsEncryptionKey200Response</returns>
         ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> GetWhatsAppFlowsEncryptionKeyWithHttpInfo(string accountId);
         /// <summary>
         /// List flow responses
         /// </summary>
         /// <remarks>
-        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <returns>ListWhatsAppFlowResponses200Response</returns>
@@ -206,10 +206,10 @@ namespace Zernio.Api
         /// List flow responses
         /// </summary>
         /// <remarks>
-        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <returns>ApiResponse of ListWhatsAppFlowResponses200Response</returns>
@@ -218,11 +218,11 @@ namespace Zernio.Api
         /// List flow versions
         /// </summary>
         /// <remarks>
-        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ListWhatsAppFlowVersions200Response</returns>
         ListWhatsAppFlowVersions200Response ListWhatsAppFlowVersions(string flowId, string accountId);
 
@@ -230,11 +230,11 @@ namespace Zernio.Api
         /// List flow versions
         /// </summary>
         /// <remarks>
-        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of ListWhatsAppFlowVersions200Response</returns>
         ApiResponse<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsWithHttpInfo(string flowId, string accountId);
         /// <summary>
@@ -244,7 +244,7 @@ namespace Zernio.Api
         /// List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ListWhatsAppFlows200Response</returns>
         ListWhatsAppFlows200Response ListWhatsAppFlows(string accountId);
 
@@ -255,7 +255,7 @@ namespace Zernio.Api
         /// List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of ListWhatsAppFlows200Response</returns>
         ApiResponse<ListWhatsAppFlows200Response> ListWhatsAppFlowsWithHttpInfo(string accountId);
         /// <summary>
@@ -409,7 +409,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
         System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsAppFlowAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -422,7 +422,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWhatsAppFlowWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -459,7 +459,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlow200Response</returns>
@@ -473,7 +473,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlow200Response)</returns>
@@ -486,7 +486,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlowJson200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppFlowJson200Response> GetWhatsAppFlowJsonAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -499,7 +499,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowJson200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppFlowJson200Response>> GetWhatsAppFlowJsonWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -511,7 +511,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlowPreview200Response</returns>
@@ -525,7 +525,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowPreview200Response)</returns>
@@ -537,7 +537,7 @@ namespace Zernio.Api
         /// Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlowsEncryptionKey200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppFlowsEncryptionKey200Response> GetWhatsAppFlowsEncryptionKeyAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -549,7 +549,7 @@ namespace Zernio.Api
         /// Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowsEncryptionKey200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppFlowsEncryptionKey200Response>> GetWhatsAppFlowsEncryptionKeyWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -557,10 +557,10 @@ namespace Zernio.Api
         /// List flow responses
         /// </summary>
         /// <remarks>
-        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -571,10 +571,10 @@ namespace Zernio.Api
         /// List flow responses
         /// </summary>
         /// <remarks>
-        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -584,11 +584,11 @@ namespace Zernio.Api
         /// List flow versions
         /// </summary>
         /// <remarks>
-        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppFlowVersions200Response</returns>
         System.Threading.Tasks.Task<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -597,11 +597,11 @@ namespace Zernio.Api
         /// List flow versions
         /// </summary>
         /// <remarks>
-        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppFlowVersions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppFlowVersions200Response>> ListWhatsAppFlowVersionsWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -612,7 +612,7 @@ namespace Zernio.Api
         /// List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppFlows200Response</returns>
         System.Threading.Tasks.Task<ListWhatsAppFlows200Response> ListWhatsAppFlowsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -624,7 +624,7 @@ namespace Zernio.Api
         /// List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppFlows200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppFlows200Response>> ListWhatsAppFlowsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1096,7 +1096,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
         public UpdateYoutubeDefaultPlaylist200Response DeleteWhatsAppFlow(string flowId, string accountId)
         {
@@ -1109,7 +1109,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
         public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsAppFlowWithHttpInfo(string flowId, string accountId)
         {
@@ -1164,7 +1164,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
         public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsAppFlowAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1178,7 +1178,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWhatsAppFlowWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1380,7 +1380,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <returns>GetWhatsAppFlow200Response</returns>
         public GetWhatsAppFlow200Response GetWhatsAppFlow(string flowId, string accountId, string? fields = default)
@@ -1394,7 +1394,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppFlow200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppFlow200Response> GetWhatsAppFlowWithHttpInfo(string flowId, string accountId, string? fields = default)
@@ -1454,7 +1454,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlow200Response</returns>
@@ -1469,7 +1469,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="fields">Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlow200Response)</returns>
@@ -1533,7 +1533,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppFlowJson200Response</returns>
         public GetWhatsAppFlowJson200Response GetWhatsAppFlowJson(string flowId, string accountId)
         {
@@ -1546,7 +1546,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppFlowJson200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppFlowJson200Response> GetWhatsAppFlowJsonWithHttpInfo(string flowId, string accountId)
         {
@@ -1601,7 +1601,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlowJson200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppFlowJson200Response> GetWhatsAppFlowJsonAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1615,7 +1615,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowJson200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppFlowJson200Response>> GetWhatsAppFlowJsonWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1674,7 +1674,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <returns>GetWhatsAppFlowPreview200Response</returns>
         public GetWhatsAppFlowPreview200Response GetWhatsAppFlowPreview(string flowId, string accountId, bool? invalidate = default)
@@ -1688,7 +1688,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppFlowPreview200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewWithHttpInfo(string flowId, string accountId, bool? invalidate = default)
@@ -1748,7 +1748,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlowPreview200Response</returns>
@@ -1763,7 +1763,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowPreview200Response)</returns>
@@ -1826,7 +1826,7 @@ namespace Zernio.Api
         /// Get Flows encryption key status Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppFlowsEncryptionKey200Response</returns>
         public GetWhatsAppFlowsEncryptionKey200Response GetWhatsAppFlowsEncryptionKey(string accountId)
         {
@@ -1838,7 +1838,7 @@ namespace Zernio.Api
         /// Get Flows encryption key status Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppFlowsEncryptionKey200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppFlowsEncryptionKey200Response> GetWhatsAppFlowsEncryptionKeyWithHttpInfo(string accountId)
         {
@@ -1887,7 +1887,7 @@ namespace Zernio.Api
         /// Get Flows encryption key status Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppFlowsEncryptionKey200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppFlowsEncryptionKey200Response> GetWhatsAppFlowsEncryptionKeyAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1900,7 +1900,7 @@ namespace Zernio.Api
         /// Get Flows encryption key status Read the RSA business public key registered on the phone number for WhatsApp Flows endpoint encryption. Only one key is active per phone number at a time. Flows that use flow_action: data_exchange (an endpoint-backed flow) stop working at runtime until the endpoint serves the matching private key, and Meta rejects publish with error code 139002 (\&quot;Missing Flows Signed Public Key\&quot;) when no key is registered. &#x60;registered&#x60; reflects whether a key is present, never &#x60;signatureStatus&#x60; alone: Meta reports an unregistered key as MISMATCH rather than a null/absent value. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowsEncryptionKey200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppFlowsEncryptionKey200Response>> GetWhatsAppFlowsEncryptionKeyWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1950,10 +1950,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <returns>ListWhatsAppFlowResponses200Response</returns>
@@ -1964,10 +1964,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <returns>ApiResponse of ListWhatsAppFlowResponses200Response</returns>
@@ -2023,10 +2023,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2038,10 +2038,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60;, which matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="flowId">Scope to responses for this flow (optional)</param>
         /// <param name="limit">Max responses to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2101,11 +2101,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ListWhatsAppFlowVersions200Response</returns>
         public ListWhatsAppFlowVersions200Response ListWhatsAppFlowVersions(string flowId, string accountId)
         {
@@ -2114,11 +2114,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of ListWhatsAppFlowVersions200Response</returns>
         public Zernio.Client.ApiResponse<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsWithHttpInfo(string flowId, string accountId)
         {
@@ -2169,11 +2169,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppFlowVersions200Response</returns>
         public async System.Threading.Tasks.Task<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2183,11 +2183,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns only itself as version 1. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppFlowVersions200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppFlowVersions200Response>> ListWhatsAppFlowVersionsWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2245,7 +2245,7 @@ namespace Zernio.Api
         /// List flows List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ListWhatsAppFlows200Response</returns>
         public ListWhatsAppFlows200Response ListWhatsAppFlows(string accountId)
         {
@@ -2257,7 +2257,7 @@ namespace Zernio.Api
         /// List flows List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of ListWhatsAppFlows200Response</returns>
         public Zernio.Client.ApiResponse<ListWhatsAppFlows200Response> ListWhatsAppFlowsWithHttpInfo(string accountId)
         {
@@ -2306,7 +2306,7 @@ namespace Zernio.Api
         /// List flows List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppFlows200Response</returns>
         public async System.Threading.Tasks.Task<ListWhatsAppFlows200Response> ListWhatsAppFlowsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2319,7 +2319,7 @@ namespace Zernio.Api
         /// List flows List all WhatsApp Flows for the Business Account (WABA) associated with the given account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppFlows200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppFlows200Response>> ListWhatsAppFlowsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)

@@ -61,9 +61,9 @@ namespace Zernio.Model
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
-        /// The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+        /// The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
         /// </summary>
-        /// <value>The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
+        /// <value>The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlacementEnum
         {
@@ -82,9 +82,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+        /// The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
         /// </summary>
-        /// <value>The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
+        /// <value>The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
         [DataMember(Name = "placement", IsRequired = true, EmitDefaultValue = true)]
         public PlacementEnum Placement { get; set; }
         /// <summary>
@@ -96,15 +96,15 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdComments200ResponseMeta" /> class.
         /// </summary>
         /// <param name="platform">Which side these comments are on (same as &#x60;placement&#x60;). (required).</param>
-        /// <param name="placement">The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got. (required).</param>
+        /// <param name="placement">The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got. (required).</param>
         /// <param name="adId">Internal Zernio ad ID. (required).</param>
         /// <param name="platformAdId">Meta ad ID. (required).</param>
         /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side. (required).</param>
-        /// <param name="facebookAccountId">Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible)..</param>
+        /// <param name="facebookAccountId">Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible)..</param>
         /// <param name="instagramUserId">Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id)..</param>
         /// <param name="instagramPermalink">Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url)..</param>
-        /// <param name="instagramAccountId">Instagram-only. The connected Instagram SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete..</param>
-        /// <param name="accountId">Social account ID (ads SocialAccount). (required).</param>
+        /// <param name="instagramAccountId">Instagram-only. The connected Instagram SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete..</param>
+        /// <param name="accountId">Account ID (ads SocialAccount). (required).</param>
         /// <param name="lastUpdated">lastUpdated (required).</param>
         public GetAdComments200ResponseMeta(PlatformEnum platform = default, PlacementEnum placement = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string facebookAccountId = default, string instagramUserId = default, string instagramPermalink = default, string instagramAccountId = default, string accountId = default, DateTime lastUpdated = default)
         {
@@ -163,9 +163,9 @@ namespace Zernio.Model
         public string EffectiveStoryId { get; set; }
 
         /// <summary>
-        /// Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
+        /// Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
         /// </summary>
-        /// <value>Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).</value>
+        /// <value>Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).</value>
         [DataMember(Name = "facebookAccountId", EmitDefaultValue = true)]
         public string FacebookAccountId { get; set; }
 
@@ -184,16 +184,16 @@ namespace Zernio.Model
         public string InstagramPermalink { get; set; }
 
         /// <summary>
-        /// Instagram-only. The connected Instagram SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.
+        /// Instagram-only. The connected Instagram SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.
         /// </summary>
-        /// <value>Instagram-only. The connected Instagram SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.</value>
+        /// <value>Instagram-only. The connected Instagram SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.</value>
         [DataMember(Name = "instagramAccountId", EmitDefaultValue = false)]
         public string InstagramAccountId { get; set; }
 
         /// <summary>
-        /// Social account ID (ads SocialAccount).
+        /// Account ID (ads SocialAccount).
         /// </summary>
-        /// <value>Social account ID (ads SocialAccount).</value>
+        /// <value>Account ID (ads SocialAccount).</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

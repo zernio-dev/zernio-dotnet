@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// Create an alphanumeric sender ID
         /// </summary>
         /// <remarks>
-        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Create an alphanumeric sender ID
         /// </summary>
         /// <remarks>
-        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -76,7 +76,7 @@ namespace Zernio.Api
         /// Deactivate a brand/campaign registration
         /// </summary>
         /// <remarks>
-        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -87,7 +87,7 @@ namespace Zernio.Api
         /// Deactivate a brand/campaign registration
         /// </summary>
         /// <remarks>
-        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -118,7 +118,7 @@ namespace Zernio.Api
         /// Disable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -129,7 +129,7 @@ namespace Zernio.Api
         /// Disable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -139,7 +139,7 @@ namespace Zernio.Api
         /// Enable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -150,7 +150,7 @@ namespace Zernio.Api
         /// Enable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -204,7 +204,7 @@ namespace Zernio.Api
         /// List carrier registrations
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <returns>ListSmsRegistrations200Response</returns>
         ListSmsRegistrations200Response ListSmsRegistrations(bool? includeDeactivated = default);
 
@@ -215,7 +215,7 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <returns>ApiResponse of ListSmsRegistrations200Response</returns>
         ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo(bool? includeDeactivated = default);
         /// <summary>
@@ -280,7 +280,7 @@ namespace Zernio.Api
         /// Request a higher sender ID daily limit
         /// </summary>
         /// <remarks>
-        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -291,7 +291,7 @@ namespace Zernio.Api
         /// Request a higher sender ID daily limit
         /// </summary>
         /// <remarks>
-        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -301,7 +301,7 @@ namespace Zernio.Api
         /// Re-send the sole-prop OTP
         /// </summary>
         /// <remarks>
-        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -312,7 +312,7 @@ namespace Zernio.Api
         /// Re-send the sole-prop OTP
         /// </summary>
         /// <remarks>
-        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -322,7 +322,7 @@ namespace Zernio.Api
         /// Reply to a change request
         /// </summary>
         /// <remarks>
-        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -334,7 +334,7 @@ namespace Zernio.Api
         /// Reply to a change request
         /// </summary>
         /// <remarks>
-        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -431,7 +431,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof for an appeal
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -443,7 +443,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof for an appeal
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -454,7 +454,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -465,7 +465,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -532,7 +532,7 @@ namespace Zernio.Api
         /// Create an alphanumeric sender ID
         /// </summary>
         /// <remarks>
-        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -544,7 +544,7 @@ namespace Zernio.Api
         /// Create an alphanumeric sender ID
         /// </summary>
         /// <remarks>
-        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -555,7 +555,7 @@ namespace Zernio.Api
         /// Deactivate a brand/campaign registration
         /// </summary>
         /// <remarks>
-        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -567,7 +567,7 @@ namespace Zernio.Api
         /// Deactivate a brand/campaign registration
         /// </summary>
         /// <remarks>
-        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -601,7 +601,7 @@ namespace Zernio.Api
         /// Disable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -613,7 +613,7 @@ namespace Zernio.Api
         /// Disable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -624,7 +624,7 @@ namespace Zernio.Api
         /// Enable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -636,7 +636,7 @@ namespace Zernio.Api
         /// Enable SMS on a number
         /// </summary>
         /// <remarks>
-        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -698,7 +698,7 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListSmsRegistrations200Response</returns>
         System.Threading.Tasks.Task<ListSmsRegistrations200Response> ListSmsRegistrationsAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default);
@@ -710,7 +710,7 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListSmsRegistrations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default);
@@ -785,7 +785,7 @@ namespace Zernio.Api
         /// Request a higher sender ID daily limit
         /// </summary>
         /// <remarks>
-        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -797,7 +797,7 @@ namespace Zernio.Api
         /// Request a higher sender ID daily limit
         /// </summary>
         /// <remarks>
-        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -808,7 +808,7 @@ namespace Zernio.Api
         /// Re-send the sole-prop OTP
         /// </summary>
         /// <remarks>
-        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -820,7 +820,7 @@ namespace Zernio.Api
         /// Re-send the sole-prop OTP
         /// </summary>
         /// <remarks>
-        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -831,7 +831,7 @@ namespace Zernio.Api
         /// Reply to a change request
         /// </summary>
         /// <remarks>
-        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -844,7 +844,7 @@ namespace Zernio.Api
         /// Reply to a change request
         /// </summary>
         /// <remarks>
-        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -950,7 +950,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof for an appeal
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -963,7 +963,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof for an appeal
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -975,7 +975,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -987,7 +987,7 @@ namespace Zernio.Api
         /// Upload opt-in form proof
         /// </summary>
         /// <remarks>
-        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -1376,7 +1376,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -1388,7 +1388,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -1438,7 +1438,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -1451,7 +1451,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;), a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSmsSenderIdRequest"></param>
@@ -1505,7 +1505,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1517,7 +1517,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1566,7 +1566,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1579,7 +1579,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+        /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1759,7 +1759,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1771,7 +1771,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1820,7 +1820,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1833,7 +1833,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+        /// Disable SMS on a number Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1886,7 +1886,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -1898,7 +1898,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -1947,7 +1947,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -1960,7 +1960,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+        /// Enable SMS on a number Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -2282,7 +2282,7 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <returns>ListSmsRegistrations200Response</returns>
         public ListSmsRegistrations200Response ListSmsRegistrations(bool? includeDeactivated = default)
         {
@@ -2294,7 +2294,7 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <returns>ApiResponse of ListSmsRegistrations200Response</returns>
         public Zernio.Client.ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo(bool? includeDeactivated = default)
         {
@@ -2342,7 +2342,7 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListSmsRegistrations200Response</returns>
         public async System.Threading.Tasks.Task<ListSmsRegistrations200Response> ListSmsRegistrationsAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2355,7 +2355,7 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListSmsRegistrations200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2773,7 +2773,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Request a higher sender ID daily limit Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -2785,7 +2785,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Request a higher sender ID daily limit Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -2835,7 +2835,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Request a higher sender ID daily limit Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -2848,7 +2848,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// Request a higher sender ID daily limit Asks support to raise the team&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
@@ -2902,7 +2902,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2914,7 +2914,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2963,7 +2963,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2976,7 +2976,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+        /// Re-send the sole-prop OTP Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3029,7 +3029,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3042,7 +3042,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3098,7 +3098,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3112,7 +3112,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3698,7 +3698,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3711,7 +3711,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3767,7 +3767,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3781,7 +3781,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+        /// Upload opt-in form proof for an appeal Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot;. The registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3841,7 +3841,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -3853,7 +3853,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -3903,7 +3903,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
@@ -3916,7 +3916,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>

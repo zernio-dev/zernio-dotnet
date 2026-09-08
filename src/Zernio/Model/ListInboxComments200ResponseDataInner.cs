@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class ListInboxComments200ResponseDataInner : IValidatableObject
     {
         /// <summary>
-        /// Which side of the ad this row&#39;s comments are on — only on ad rows.
+        /// Which side of the ad this row&#39;s comments are on, only on ad rows.
         /// </summary>
-        /// <value>Which side of the ad this row&#39;s comments are on — only on ad rows.</value>
+        /// <value>Which side of the ad this row&#39;s comments are on, only on ad rows.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlacementEnum
         {
@@ -55,9 +55,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Which side of the ad this row&#39;s comments are on — only on ad rows.
+        /// Which side of the ad this row&#39;s comments are on, only on ad rows.
         /// </summary>
-        /// <value>Which side of the ad this row&#39;s comments are on — only on ad rows.</value>
+        /// <value>Which side of the ad this row&#39;s comments are on, only on ad rows.</value>
         [DataMember(Name = "placement", EmitDefaultValue = false)]
         public PlacementEnum? Placement { get; set; }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="accountUsername">accountUsername.</param>
-        /// <param name="content">The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here..</param>
+        /// <param name="content">The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption. The creative text isn&#39;t exposed here..</param>
         /// <param name="picture">Post media thumbnail. On ad rows this is the ad creative thumbnail..</param>
         /// <param name="permalink">Public URL of the post. On ad rows: the Facebook dark-post URL (facebook placement) or the IG media permalink (instagram placement); may be null when unknown..</param>
         /// <param name="createdTime">createdTime.</param>
@@ -76,8 +76,8 @@ namespace Zernio.Model
         /// <param name="cid">Bluesky content identifier.</param>
         /// <param name="subreddit">Reddit subreddit name.</param>
         /// <param name="isAd">True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the placement (facebook &#x3D; the Page dark post / instagram &#x3D; the IG media), &#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;, and the thread is at GET /v1/ads/{adId}/comments?placement&#x3D;{placement}..</param>
-        /// <param name="adId">Internal Zernio ad id — only on ad rows..</param>
-        /// <param name="placement">Which side of the ad this row&#39;s comments are on — only on ad rows..</param>
+        /// <param name="adId">Internal Zernio ad id, only on ad rows..</param>
+        /// <param name="placement">Which side of the ad this row&#39;s comments are on, only on ad rows..</param>
         public ListInboxComments200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string content = default, string picture = default, string permalink = default, DateTime createdTime = default, int commentCount = default, int likeCount = default, string cid = default, string subreddit = default, bool isAd = default, string adId = default, PlacementEnum? placement = default)
         {
             this.Id = id;
@@ -122,9 +122,9 @@ namespace Zernio.Model
         public string AccountUsername { get; set; }
 
         /// <summary>
-        /// The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here.
+        /// The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption. The creative text isn&#39;t exposed here.
         /// </summary>
-        /// <value>The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here.</value>
+        /// <value>The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption. The creative text isn&#39;t exposed here.</value>
         [DataMember(Name = "content", EmitDefaultValue = false)]
         public string Content { get; set; }
 
@@ -183,9 +183,9 @@ namespace Zernio.Model
         public bool IsAd { get; set; }
 
         /// <summary>
-        /// Internal Zernio ad id — only on ad rows.
+        /// Internal Zernio ad id, only on ad rows.
         /// </summary>
-        /// <value>Internal Zernio ad id — only on ad rows.</value>
+        /// <value>Internal Zernio ad id, only on ad rows.</value>
         [DataMember(Name = "adId", EmitDefaultValue = false)]
         public string AdId { get; set; }
 

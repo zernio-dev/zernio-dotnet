@@ -41,11 +41,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectWhatsAppEmbeddedSignupRequest" /> class.
         /// </summary>
-        /// <param name="code">Authorization code from the WA_EMBEDDED_SIGNUP postMessage (required).</param>
+        /// <param name="code">Authorization code from the FB.login response (authResponse.code) (required).</param>
         /// <param name="profileId">profileId (required).</param>
-        /// <param name="wabaId">WhatsApp Business Account id, when the SDK reported one.</param>
-        /// <param name="phoneNumberId">phoneNumberId.</param>
-        /// <param name="isCoexistence">Number is also live in the WhatsApp Business app.</param>
+        /// <param name="wabaId">waba_id from the WA_EMBEDDED_SIGNUP message event.</param>
+        /// <param name="phoneNumberId">phone_number_id from the WA_EMBEDDED_SIGNUP message event. With wabaId it skips the number picker..</param>
+        /// <param name="isCoexistence">Set when the popup ended with the FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING event, so the number stays live in the WhatsApp Business app.</param>
         /// <param name="expectedPhoneNumber">Rejects the connect when Meta returns a different number.</param>
         public ConnectWhatsAppEmbeddedSignupRequest(string code = default, string profileId = default, string wabaId = default, string phoneNumberId = default, bool isCoexistence = default, string expectedPhoneNumber = default)
         {
@@ -68,9 +68,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Authorization code from the WA_EMBEDDED_SIGNUP postMessage
+        /// Authorization code from the FB.login response (authResponse.code)
         /// </summary>
-        /// <value>Authorization code from the WA_EMBEDDED_SIGNUP postMessage</value>
+        /// <value>Authorization code from the FB.login response (authResponse.code)</value>
         [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
         public string Code { get; set; }
 
@@ -81,22 +81,23 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// WhatsApp Business Account id, when the SDK reported one
+        /// waba_id from the WA_EMBEDDED_SIGNUP message event
         /// </summary>
-        /// <value>WhatsApp Business Account id, when the SDK reported one</value>
+        /// <value>waba_id from the WA_EMBEDDED_SIGNUP message event</value>
         [DataMember(Name = "wabaId", EmitDefaultValue = false)]
         public string WabaId { get; set; }
 
         /// <summary>
-        /// Gets or Sets PhoneNumberId
+        /// phone_number_id from the WA_EMBEDDED_SIGNUP message event. With wabaId it skips the number picker.
         /// </summary>
+        /// <value>phone_number_id from the WA_EMBEDDED_SIGNUP message event. With wabaId it skips the number picker.</value>
         [DataMember(Name = "phoneNumberId", EmitDefaultValue = false)]
         public string PhoneNumberId { get; set; }
 
         /// <summary>
-        /// Number is also live in the WhatsApp Business app
+        /// Set when the popup ended with the FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING event, so the number stays live in the WhatsApp Business app
         /// </summary>
-        /// <value>Number is also live in the WhatsApp Business app</value>
+        /// <value>Set when the popup ended with the FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING event, so the number stays live in the WhatsApp Business app</value>
         [DataMember(Name = "isCoexistence", EmitDefaultValue = true)]
         public bool IsCoexistence { get; set; }
 

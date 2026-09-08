@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// <param name="reach">Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted)..</param>
         /// <param name="clicks">clicks.</param>
         /// <param name="engagement">engagement.</param>
-        /// <param name="ctr">Click-through rate as a percentage (0–100)..</param>
+        /// <param name="ctr">Click-through rate as a percentage (0 to 100)..</param>
         /// <param name="cpc">Cost per click in native currency..</param>
         /// <param name="cpm">Cost per 1000 impressions in native currency..</param>
         /// <param name="conversions">Sum of conversion events over the range. Fractional values are normal (attribution splitting + Google modeled conversions). Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07)..</param>
@@ -111,9 +111,9 @@ namespace Zernio.Model
         public int Engagement { get; set; }
 
         /// <summary>
-        /// Click-through rate as a percentage (0–100).
+        /// Click-through rate as a percentage (0 to 100).
         /// </summary>
-        /// <value>Click-through rate as a percentage (0–100).</value>
+        /// <value>Click-through rate as a percentage (0 to 100).</value>
         [DataMember(Name = "ctr", EmitDefaultValue = false)]
         public decimal Ctr { get; set; }
 

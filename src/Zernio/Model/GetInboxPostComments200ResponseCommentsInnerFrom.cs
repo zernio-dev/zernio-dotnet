@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class GetInboxPostComments200ResponseCommentsInnerFrom : IValidatableObject
     {
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X comments.
+        /// X verified badge type. Only present for X comments.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X comments.</value>
+        /// <value>X verified badge type. Only present for X comments.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum VerifiedTypeEnum
         {
@@ -67,9 +67,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X comments.
+        /// X verified badge type. Only present for X comments.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X comments.</value>
+        /// <value>X verified badge type. Only present for X comments.</value>
         [DataMember(Name = "verifiedType", EmitDefaultValue = true)]
         public VerifiedTypeEnum? VerifiedType { get; set; }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Zernio.Model
         /// <param name="username">username.</param>
         /// <param name="picture">picture.</param>
         /// <param name="isOwner">isOwner.</param>
-        /// <param name="verifiedType">X/Twitter verified badge type. Only present for Twitter/X comments..</param>
+        /// <param name="verifiedType">X verified badge type. Only present for X comments..</param>
         public GetInboxPostComments200ResponseCommentsInnerFrom(string id = default, string name = default, string username = default, string picture = default, bool isOwner = default, VerifiedTypeEnum? verifiedType = default)
         {
             this.Id = id;

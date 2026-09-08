@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="available">available.</param>
         /// <param name="fromPhoneNumber">fromPhoneNumber.</param>
-        /// <param name="details">Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails..</param>
+        /// <param name="details">Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort. May be empty if the provider lookup fails..</param>
         /// <param name="options">One entry per distinct approved verification, newest first..</param>
         public GetPhoneNumberKycForm200ResponseReusable(bool available = default, string fromPhoneNumber = default, List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> details = default, List<GetPhoneNumberKycForm200ResponseReusableOptionsInner> options = default)
         {
@@ -61,9 +61,9 @@ namespace Zernio.Model
         public string FromPhoneNumber { get; set; }
 
         /// <summary>
-        /// Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.
+        /// Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort. May be empty if the provider lookup fails.
         /// </summary>
-        /// <value>Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.</value>
+        /// <value>Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort. May be empty if the provider lookup fails.</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
         public List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> Details { get; set; }
 

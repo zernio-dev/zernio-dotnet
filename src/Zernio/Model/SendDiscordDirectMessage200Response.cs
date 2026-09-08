@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="messageId">Discord message snowflake ID.</param>
         /// <param name="channelId">DM channel snowflake (Discord auto-creates one per recipient pair).</param>
-        /// <param name="url">Direct link to the message — uses Discord&#39;s @me path for DMs.</param>
+        /// <param name="url">Direct link to the message, using Discord&#39;s @me path for DMs.</param>
         /// <param name="timestamp">timestamp.</param>
         /// <param name="recipient">recipient.</param>
         /// <param name="account">account.</param>
@@ -67,9 +67,9 @@ namespace Zernio.Model
         public string ChannelId { get; set; }
 
         /// <summary>
-        /// Direct link to the message — uses Discord&#39;s @me path for DMs
+        /// Direct link to the message, using Discord&#39;s @me path for DMs
         /// </summary>
-        /// <value>Direct link to the message — uses Discord&#39;s @me path for DMs</value>
+        /// <value>Direct link to the message, using Discord&#39;s @me path for DMs</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

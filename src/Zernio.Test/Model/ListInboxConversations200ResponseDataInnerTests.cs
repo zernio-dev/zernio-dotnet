@@ -164,6 +164,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ThreadControl'
+        /// </summary>
+        [Fact]
+        public void ThreadControlTest()
+        {
+            // TODO unit test for the property 'ThreadControl'
+        }
+
+        /// <summary>
         /// Test the property 'Url'
         /// </summary>
         [Fact]

@@ -37,8 +37,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="XApiOperation" /> class.
         /// </summary>
         /// <param name="operation">Internal operation key. Matches keys in &#x60;xApiCallsByOperation&#x60;..</param>
-        /// <param name="eventType">Metronome &#x60;event_type&#x60; emitted when this operation runs..</param>
-        /// <param name="displayName">Human-readable label shown on Metronome invoices..</param>
+        /// <param name="eventType">Metering &#x60;event_type&#x60; emitted when this operation runs..</param>
+        /// <param name="displayName">Human-readable label shown on invoices..</param>
         /// <param name="pricePerCallUsd">pricePerCallUsd.</param>
         /// <param name="pricePerCallCents">Per-call price in cents. Fractional values are intentional..</param>
         /// <param name="tier">Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards. .</param>
@@ -65,9 +65,9 @@ namespace Zernio.Model
         public string Operation { get; set; }
 
         /// <summary>
-        /// Metronome &#x60;event_type&#x60; emitted when this operation runs.
+        /// Metering &#x60;event_type&#x60; emitted when this operation runs.
         /// </summary>
-        /// <value>Metronome &#x60;event_type&#x60; emitted when this operation runs.</value>
+        /// <value>Metering &#x60;event_type&#x60; emitted when this operation runs.</value>
         /*
         <example>x_posts_read</example>
         */
@@ -75,9 +75,9 @@ namespace Zernio.Model
         public string EventType { get; set; }
 
         /// <summary>
-        /// Human-readable label shown on Metronome invoices.
+        /// Human-readable label shown on invoices.
         /// </summary>
-        /// <value>Human-readable label shown on Metronome invoices.</value>
+        /// <value>Human-readable label shown on invoices.</value>
         /*
         <example>X API: Posts Read</example>
         */

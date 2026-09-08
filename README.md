@@ -283,8 +283,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**GetFacebookPostEarnings**](docs/AnalyticsApi.md#getfacebookpostearnings) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings
 *AnalyticsApi* | [**GetFacebookPostReactions**](docs/AnalyticsApi.md#getfacebookpostreactions) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions
 *AnalyticsApi* | [**GetFollowerStats**](docs/AnalyticsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats
-*AnalyticsApi* | [**GetGoogleBusinessPerformance**](docs/AnalyticsApi.md#getgooglebusinessperformance) | **GET** /v1/analytics/googlebusiness/performance | Get GBP performance metrics
-*AnalyticsApi* | [**GetGoogleBusinessSearchKeywords**](docs/AnalyticsApi.md#getgooglebusinesssearchkeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get GBP search keywords
+*AnalyticsApi* | [**GetGoogleBusinessPerformance**](docs/AnalyticsApi.md#getgooglebusinessperformance) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics
+*AnalyticsApi* | [**GetGoogleBusinessSearchKeywords**](docs/AnalyticsApi.md#getgooglebusinesssearchkeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords
 *AnalyticsApi* | [**GetInstagramAccountInsights**](docs/AnalyticsApi.md#getinstagramaccountinsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram insights
 *AnalyticsApi* | [**GetInstagramDemographics**](docs/AnalyticsApi.md#getinstagramdemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram demographics
 *AnalyticsApi* | [**GetInstagramFollowerHistory**](docs/AnalyticsApi.md#getinstagramfollowerhistory) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history
@@ -342,7 +342,7 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**UnhideInboxComment**](docs/CommentsApi.md#unhideinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**UnlikeInboxComment**](docs/CommentsApi.md#unlikeinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *CommentsApi* | [**UnlikePost**](docs/CommentsApi.md#unlikepost) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post
-*ConnectApi* | [**AssignGoogleBusinessLocation**](docs/ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile
+*ConnectApi* | [**AssignGoogleBusinessLocation**](docs/ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile
 *ConnectApi* | [**CompleteTelegramConnect**](docs/ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**CompleteWhatsAppPhoneSelection**](docs/ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
 *ConnectApi* | [**ConfigureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
@@ -357,7 +357,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**CreatePinterestBoard**](docs/ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**GetConnectUrl**](docs/ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**GetFacebookPages**](docs/ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
-*ConnectApi* | [**GetGmbLocations**](docs/ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List GBP locations
+*ConnectApi* | [**GetGmbLocations**](docs/ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
 *ConnectApi* | [**GetLinkedInOrganizations**](docs/ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
 *ConnectApi* | [**GetPendingOAuthData**](docs/ConnectApi.md#getpendingoauthdata) | **GET** /v1/connect/pending-data | Get pending OAuth data
 *ConnectApi* | [**GetPinterestBoards**](docs/ConnectApi.md#getpinterestboards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards
@@ -366,12 +366,13 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**GetShopifyConnectUrl**](docs/ConnectApi.md#getshopifyconnecturl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
 *ConnectApi* | [**GetSubredditRules**](docs/ConnectApi.md#getsubredditrules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**GetTelegramConnectStatus**](docs/ConnectApi.md#gettelegramconnectstatus) | **GET** /v1/connect/telegram | Generate Telegram code
+*ConnectApi* | [**GetWhatsAppSdkConfig**](docs/ConnectApi.md#getwhatsappsdkconfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**GetYoutubeCaptions**](docs/ConnectApi.md#getyoutubecaptions) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
 *ConnectApi* | [**GetYoutubePlaylists**](docs/ConnectApi.md#getyoutubeplaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
 *ConnectApi* | [**HandleOAuthCallback**](docs/ConnectApi.md#handleoauthcallback) | **POST** /v1/connect/{platform} | Complete OAuth callback
 *ConnectApi* | [**InitiateTelegramConnect**](docs/ConnectApi.md#initiatetelegramconnect) | **POST** /v1/connect/telegram | Connect Telegram directly
 *ConnectApi* | [**ListFacebookPages**](docs/ConnectApi.md#listfacebookpages) | **GET** /v1/connect/facebook/select-page | List Facebook pages
-*ConnectApi* | [**ListGoogleBusinessLocations**](docs/ConnectApi.md#listgooglebusinesslocations) | **GET** /v1/connect/googlebusiness/locations | List GBP locations
+*ConnectApi* | [**ListGoogleBusinessLocations**](docs/ConnectApi.md#listgooglebusinesslocations) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations
 *ConnectApi* | [**ListInstagramPages**](docs/ConnectApi.md#listinstagrampages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account
 *ConnectApi* | [**ListLinkedInOrganizations**](docs/ConnectApi.md#listlinkedinorganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
 *ConnectApi* | [**ListPinterestBoardsForSelection**](docs/ConnectApi.md#listpinterestboardsforselection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
@@ -379,14 +380,14 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**ListSnapchatProfiles**](docs/ConnectApi.md#listsnapchatprofiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**ListWhatsAppPhoneNumbers**](docs/ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
 *ConnectApi* | [**SelectFacebookPage**](docs/ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
-*ConnectApi* | [**SelectGoogleBusinessLocation**](docs/ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select GBP location
+*ConnectApi* | [**SelectGoogleBusinessLocation**](docs/ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location
 *ConnectApi* | [**SelectInstagramAccount**](docs/ConnectApi.md#selectinstagramaccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect
 *ConnectApi* | [**SelectLinkedInOrganization**](docs/ConnectApi.md#selectlinkedinorganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org
 *ConnectApi* | [**SelectPinterestBoard**](docs/ConnectApi.md#selectpinterestboard) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board
 *ConnectApi* | [**SelectSnapchatProfile**](docs/ConnectApi.md#selectsnapchatprofile) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile
 *ConnectApi* | [**SetRedditPostFlair**](docs/ConnectApi.md#setredditpostflair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair
 *ConnectApi* | [**UpdateFacebookPage**](docs/ConnectApi.md#updatefacebookpage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
-*ConnectApi* | [**UpdateGmbLocation**](docs/ConnectApi.md#updategmblocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update GBP location
+*ConnectApi* | [**UpdateGmbLocation**](docs/ConnectApi.md#updategmblocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update Google Business Profile location
 *ConnectApi* | [**UpdateLinkedInOrganization**](docs/ConnectApi.md#updatelinkedinorganization) | **PUT** /v1/accounts/{accountId}/linkedin-organization | Switch LinkedIn account type
 *ConnectApi* | [**UpdatePinterestBoards**](docs/ConnectApi.md#updatepinterestboards) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board
 *ConnectApi* | [**UpdateRedditSubreddits**](docs/ConnectApi.md#updateredditsubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
@@ -508,6 +509,7 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**SearchInboxConversations**](docs/MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations
 *MessagesApi* | [**SendInboxMessage**](docs/MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
 *MessagesApi* | [**SendTypingIndicator**](docs/MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
+*MessagesApi* | [**SetConversationThreadControl**](docs/MessagesApi.md#setconversationthreadcontrol) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent
 *MessagesApi* | [**UpdateInboxConversation**](docs/MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
 *MessagesApi* | [**UploadMediaDirect**](docs/MessagesApi.md#uploadmediadirect) | **POST** /v1/media/upload-direct | Upload media file
 *MessagingAdsApi* | [**CreateCallAd**](docs/MessagingAdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad
@@ -627,7 +629,7 @@ Class | Method | HTTP request | Description
 *UsageApi* | [**GetSmsUsage**](docs/UsageApi.md#getsmsusage) | **GET** /v1/usage/sms | SMS usage (volumes)
 *UsageApi* | [**GetUsage**](docs/UsageApi.md#getusage) | **GET** /v1/usage | Usage snapshot (default) or billed-spend metering (with params)
 *UsageApi* | [**GetUsageStats**](docs/UsageApi.md#getusagestats) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status)
-*UsageApi* | [**GetXApiPricing**](docs/UsageApi.md#getxapipricing) | **GET** /v1/billing/x-pricing | Get X/Twitter API pricing table
+*UsageApi* | [**GetXApiPricing**](docs/UsageApi.md#getxapipricing) | **GET** /v1/billing/x-pricing | Get X API pricing table
 *UsersApi* | [**GetUser**](docs/UsersApi.md#getuser) | **GET** /v1/users/{userId} | Get user
 *UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **GET** /v1/users | List users
 *ValidateApi* | [**ValidateMedia**](docs/ValidateApi.md#validatemedia) | **POST** /v1/tools/validate/media | Validate media URL
@@ -956,6 +958,7 @@ Class | Method | HTTP request | Description
  - [Model.Connected](docs/Connected.md)
  - [Model.ConnectedAccount](docs/ConnectedAccount.md)
  - [Model.ConnectedApp](docs/ConnectedApp.md)
+ - [Model.Conversation](docs/Conversation.md)
  - [Model.ConversionAction](docs/ConversionAction.md)
  - [Model.ConversionActionTagSnippetsInner](docs/ConversionActionTagSnippetsInner.md)
  - [Model.ConversionDestination](docs/ConversionDestination.md)
@@ -1585,6 +1588,7 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppNumberKycForm200Response](docs/GetWhatsAppNumberKycForm200Response.md)
  - [Model.GetWhatsAppNumberKycForm200ResponseFieldsInner](docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md)
  - [Model.GetWhatsAppNumberRemediation200Response](docs/GetWhatsAppNumberRemediation200Response.md)
+ - [Model.GetWhatsAppSdkConfig200Response](docs/GetWhatsAppSdkConfig200Response.md)
  - [Model.GetWhatsAppTemplate200Response](docs/GetWhatsAppTemplate200Response.md)
  - [Model.GetWhatsAppTemplate200ResponseTemplate](docs/GetWhatsAppTemplate200ResponseTemplate.md)
  - [Model.GetWhatsAppTemplate409Response](docs/GetWhatsAppTemplate409Response.md)
@@ -2162,6 +2166,9 @@ Class | Method | HTTP request | Description
  - [Model.SendWhatsAppFlowMessageRequestHeader](docs/SendWhatsAppFlowMessageRequestHeader.md)
  - [Model.SetCommentModerationRequest](docs/SetCommentModerationRequest.md)
  - [Model.SetContactFieldValueRequest](docs/SetContactFieldValueRequest.md)
+ - [Model.SetConversationThreadControl200Response](docs/SetConversationThreadControl200Response.md)
+ - [Model.SetConversationThreadControl200ResponseControl](docs/SetConversationThreadControl200ResponseControl.md)
+ - [Model.SetConversationThreadControlRequest](docs/SetConversationThreadControlRequest.md)
  - [Model.SetInstagramIceBreakersRequest](docs/SetInstagramIceBreakersRequest.md)
  - [Model.SetInstagramIceBreakersRequestIceBreakersInner](docs/SetInstagramIceBreakersRequestIceBreakersInner.md)
  - [Model.SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
@@ -2494,6 +2501,8 @@ Class | Method | HTTP request | Description
  - [Model.WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
  - [Model.WebhookPayloadCommentCommentAuthorInstagramProfile](docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md)
  - [Model.WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
+ - [Model.WebhookPayloadConversationControlChanged](docs/WebhookPayloadConversationControlChanged.md)
+ - [Model.WebhookPayloadConversationControlChangedControl](docs/WebhookPayloadConversationControlChangedControl.md)
  - [Model.WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
  - [Model.WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
  - [Model.WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)

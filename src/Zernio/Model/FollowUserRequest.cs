@@ -41,8 +41,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FollowUserRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
-        /// <param name="targetUserId">The Twitter ID of the user to follow (required).</param>
+        /// <param name="accountId">The account ID (required).</param>
+        /// <param name="targetUserId">The X ID of the user to follow (required).</param>
         public FollowUserRequest(string accountId = default, string targetUserId = default)
         {
             // to ensure "accountId" is required (not null)
@@ -60,16 +60,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The account ID
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// The Twitter ID of the user to follow
+        /// The X ID of the user to follow
         /// </summary>
-        /// <value>The Twitter ID of the user to follow</value>
+        /// <value>The X ID of the user to follow</value>
         [DataMember(Name = "targetUserId", IsRequired = true, EmitDefaultValue = true)]
         public string TargetUserId { get; set; }
 

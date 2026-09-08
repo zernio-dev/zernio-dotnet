@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ReviewWebhookReview" /> class.
         /// </summary>
-        /// <param name="id">Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business). (required).</param>
+        /// <param name="id">Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business Profile). (required).</param>
         /// <param name="platform">Platform the review originated on. Currently Google Business Profile only. (required).</param>
         /// <param name="rating">Star rating the reviewer gave. (required).</param>
         /// <param name="text">Review text content. May be empty if the reviewer left only a rating. (required).</param>
@@ -98,9 +98,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business).
+        /// Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business Profile).
         /// </summary>
-        /// <value>Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business).</value>
+        /// <value>Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business Profile).</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 

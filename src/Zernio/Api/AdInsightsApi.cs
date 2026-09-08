@@ -149,7 +149,7 @@ namespace Zernio.Api
         /// Google Ads search terms report
         /// </summary>
         /// <remarks>
-        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -166,7 +166,7 @@ namespace Zernio.Api
         /// Google Ads search terms report
         /// </summary>
         /// <remarks>
-        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -277,7 +277,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -306,7 +306,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -466,7 +466,7 @@ namespace Zernio.Api
         /// Google Ads search terms report
         /// </summary>
         /// <remarks>
-        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -484,7 +484,7 @@ namespace Zernio.Api
         /// Google Ads search terms report
         /// </summary>
         /// <remarks>
-        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -602,7 +602,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -632,7 +632,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -1582,7 +1582,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -1600,7 +1600,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -1679,7 +1679,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -1698,7 +1698,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics — the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Google Ads search terms report The actual search queries that triggered your ads, with matched-keyword status and spend metrics, the raw material for wasted-spend analysis and negative-keyword lists. Reads Google&#39;s &#x60;search_term_view&#x60;, cached for the quota window; defaults to the last 30 days. Rows are ordered by cost, descending. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
@@ -2336,7 +2336,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -2366,7 +2366,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -2505,7 +2505,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
@@ -2536,7 +2536,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
-        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
         /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>

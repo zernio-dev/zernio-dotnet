@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListSipTrunks200Response" /> class.
         /// </summary>
         /// <param name="trunks">trunks.</param>
-        /// <param name="enabled">Whether this workspace can create SIP trunks. Managing existing trunks always works..</param>
+        /// <param name="enabled">Whether this team can create SIP trunks. Managing existing trunks always works..</param>
         public ListSipTrunks200Response(List<ListSipTrunks200ResponseTrunksInner> trunks = default, bool enabled = default)
         {
             this.Trunks = trunks;
@@ -51,9 +51,9 @@ namespace Zernio.Model
         public List<ListSipTrunks200ResponseTrunksInner> Trunks { get; set; }
 
         /// <summary>
-        /// Whether this workspace can create SIP trunks. Managing existing trunks always works.
+        /// Whether this team can create SIP trunks. Managing existing trunks always works.
         /// </summary>
-        /// <value>Whether this workspace can create SIP trunks. Managing existing trunks always works.</value>
+        /// <value>Whether this team can create SIP trunks. Managing existing trunks always works.</value>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 

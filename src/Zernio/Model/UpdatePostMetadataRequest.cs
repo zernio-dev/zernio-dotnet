@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="platform">The platform to update metadata on (required).</param>
         /// <param name="videoId">YouTube video ID (required for direct mode, ignored for post-based mode).</param>
-        /// <param name="accountId">Zernio social account ID (required for direct mode, ignored for post-based mode).</param>
+        /// <param name="accountId">Zernio account ID (required for direct mode, ignored for post-based mode).</param>
         /// <param name="title">New video title (max 100 characters for YouTube).</param>
         /// <param name="description">New video description.</param>
         /// <param name="tags">Array of keyword tags (max 500 characters combined for YouTube).</param>
@@ -131,9 +131,9 @@ namespace Zernio.Model
         public string VideoId { get; set; }
 
         /// <summary>
-        /// Zernio social account ID (required for direct mode, ignored for post-based mode)
+        /// Zernio account ID (required for direct mode, ignored for post-based mode)
         /// </summary>
-        /// <value>Zernio social account ID (required for direct mode, ignored for post-based mode)</value>
+        /// <value>Zernio account ID (required for direct mode, ignored for post-based mode)</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

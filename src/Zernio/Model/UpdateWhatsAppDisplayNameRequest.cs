@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateWhatsAppDisplayNameRequest" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="displayName">New display name (must follow WhatsApp naming guidelines) (required).</param>
         public UpdateWhatsAppDisplayNameRequest(string accountId = default, string displayName = default)
         {
@@ -60,9 +60,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

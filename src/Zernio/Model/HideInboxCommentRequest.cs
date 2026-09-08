@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="HideInboxCommentRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
+        /// <param name="accountId">The account ID (required).</param>
         public HideInboxCommentRequest(string accountId = default)
         {
             // to ensure "accountId" is required (not null)
@@ -53,9 +53,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The account ID
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

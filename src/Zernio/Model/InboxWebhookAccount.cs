@@ -41,9 +41,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="InboxWebhookAccount" /> class.
         /// </summary>
-        /// <param name="id">Social account ID (required).</param>
-        /// <param name="accountId">Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility..</param>
-        /// <param name="profileId">Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile..</param>
+        /// <param name="id">Account ID (required).</param>
+        /// <param name="accountId">Account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility..</param>
+        /// <param name="profileId">Zernio profile ID this account belongs to. Use it to route or filter inbox webhooks by profile. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="username">username (required).</param>
         /// <param name="displayName">displayName.</param>
@@ -73,23 +73,23 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.
+        /// Account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.
         /// </summary>
-        /// <value>Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.</value>
+        /// <value>Account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.
+        /// Zernio profile ID this account belongs to. Use it to route or filter inbox webhooks by profile. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.
         /// </summary>
-        /// <value>Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.</value>
+        /// <value>Zernio profile ID this account belongs to. Use it to route or filter inbox webhooks by profile. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.</value>
         [DataMember(Name = "profileId", EmitDefaultValue = false)]
         public string ProfileId { get; set; }
 

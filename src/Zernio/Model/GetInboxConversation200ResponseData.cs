@@ -59,9 +59,9 @@ namespace Zernio.Model
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X conversations.
+        /// X verified badge type. Only present for X conversations.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X conversations.</value>
+        /// <value>X verified badge type. Only present for X conversations.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ParticipantVerifiedTypeEnum
         {
@@ -92,9 +92,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X conversations.
+        /// X verified badge type. Only present for X conversations.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X conversations.</value>
+        /// <value>X verified badge type. Only present for X conversations.</value>
         [DataMember(Name = "participantVerifiedType", EmitDefaultValue = true)]
         public ParticipantVerifiedTypeEnum? ParticipantVerifiedType { get; set; }
         /// <summary>
@@ -107,7 +107,7 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="participantName">participantName.</param>
         /// <param name="participantId">participantId.</param>
-        /// <param name="participantVerifiedType">X/Twitter verified badge type. Only present for Twitter/X conversations..</param>
+        /// <param name="participantVerifiedType">X verified badge type. Only present for X conversations..</param>
         /// <param name="lastMessage">lastMessage.</param>
         /// <param name="lastMessageAt">lastMessageAt.</param>
         /// <param name="updatedTime">updatedTime.</param>

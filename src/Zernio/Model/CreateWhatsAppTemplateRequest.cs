@@ -113,7 +113,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateWhatsAppTemplateRequest" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="name">Template name (lowercase, letters/numbers/underscores, must start with a letter) (required).</param>
         /// <param name="category">Template category (required).</param>
         /// <param name="language">Template language code (e.g., en_US) (required).</param>
@@ -153,9 +153,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

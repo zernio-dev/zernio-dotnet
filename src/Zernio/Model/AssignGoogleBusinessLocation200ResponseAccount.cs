@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// <param name="displayName">displayName.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="selectedLocationName">Human-readable location display name (e.g. \&quot;Snap Fitness Dianella\&quot;), NOT a resource name. Do not use it to build API paths..</param>
-        /// <param name="selectedLocationId">Bare GBP location id (digits only). Combine with the GBP account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames..</param>
+        /// <param name="selectedLocationId">Bare Google Business Profile location id (digits only). Combine with the Google Business Profile account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames..</param>
         public AssignGoogleBusinessLocation200ResponseAccount(string accountId = default, string platform = default, string username = default, string displayName = default, bool isActive = default, string selectedLocationName = default, string selectedLocationId = default)
         {
             this.AccountId = accountId;
@@ -92,9 +92,9 @@ namespace Zernio.Model
         public string SelectedLocationName { get; set; }
 
         /// <summary>
-        /// Bare GBP location id (digits only). Combine with the GBP account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames.
+        /// Bare Google Business Profile location id (digits only). Combine with the Google Business Profile account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames.
         /// </summary>
-        /// <value>Bare GBP location id (digits only). Combine with the GBP account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames.</value>
+        /// <value>Bare Google Business Profile location id (digits only). Combine with the Google Business Profile account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames.</value>
         [DataMember(Name = "selectedLocationId", EmitDefaultValue = false)]
         public string SelectedLocationId { get; set; }
 

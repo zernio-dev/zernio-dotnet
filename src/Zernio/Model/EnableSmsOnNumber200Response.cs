@@ -68,7 +68,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="EnableSmsOnNumber200Response" /> class.
         /// </summary>
         /// <param name="enabled">enabled.</param>
-        /// <param name="id">The SMS social account ID (present when enabled)..</param>
+        /// <param name="id">The SMS account ID (present when enabled)..</param>
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="isActive">False for US numbers until their registration is approved..</param>
         /// <param name="country">country.</param>
@@ -106,9 +106,9 @@ namespace Zernio.Model
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// The SMS social account ID (present when enabled).
+        /// The SMS account ID (present when enabled).
         /// </summary>
-        /// <value>The SMS social account ID (present when enabled).</value>
+        /// <value>The SMS account ID (present when enabled).</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 

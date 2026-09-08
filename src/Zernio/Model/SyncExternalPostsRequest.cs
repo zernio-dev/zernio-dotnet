@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SyncExternalPostsRequest" /> class.
         /// </summary>
         /// <param name="accountId">SocialAccount ID whose posts to sync. Must be connected to Zernio. (required).</param>
-        /// <param name="url">The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to just refresh and return the account&#39;s recent posts..</param>
+        /// <param name="url">The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to refresh and return the account&#39;s recent posts..</param>
         /// <param name="postId">The platform post/media/video id to locate, as an alternative to &#x60;url&#x60;. Optional..</param>
         public SyncExternalPostsRequest(string accountId = default, string url = default, string postId = default)
         {
@@ -64,9 +64,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to just refresh and return the account&#39;s recent posts.
+        /// The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to refresh and return the account&#39;s recent posts.
         /// </summary>
-        /// <value>The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to just refresh and return the account&#39;s recent posts.</value>
+        /// <value>The post URL to locate. Optional. Provide &#x60;url&#x60; or &#x60;postId&#x60; to return a specific post; omit both to refresh and return the account&#39;s recent posts.</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

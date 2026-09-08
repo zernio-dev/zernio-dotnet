@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | WhatsApp social account ID | 
+**AccountId** | **string** | WhatsApp account ID | 
 **Subject** | **string** | Group name (max 128 characters) | 
 **Description** | **string** | Group description (max 2048 characters) | [optional] 
 **JoinApprovalMode** | **string** | Whether users need approval to join via invite link | [optional] 

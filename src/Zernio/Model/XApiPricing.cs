@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Canonical X/Twitter API pricing table. Zernio passes X API costs through at exact rates with zero markup, so every call you make has a known per-unit price. Use this payload alongside &#x60;/v1/usage-stats&#x60; (which returns per-operation call counts via &#x60;xApiCallsByOperation&#x60;) to compute exact cost attribution by X action. 
+    /// Canonical X API pricing table. Zernio passes X API costs through at exact rates with zero markup, so every call you make has a known per-unit price. Use this payload alongside &#x60;/v1/usage-stats&#x60; (which returns per-operation call counts via &#x60;xApiCallsByOperation&#x60;) to compute exact cost attribution by X action. 
     /// </summary>
     [DataContract(Name = "XApiPricing")]
     public partial class XApiPricing : IValidatableObject
@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="XApiPricing" /> class.
         /// </summary>
         /// <param name="currency">currency.</param>
-        /// <param name="markup">Always 0% — Zernio does not mark up X API rates..</param>
+        /// <param name="markup">Always 0%, because Zernio does not mark up X API rates..</param>
         /// <param name="source">source.</param>
         /// <param name="lastVerified">Date the prices were last verified against X&#39;s published rates..</param>
         /// <param name="tiers">Rollup of operations grouped by their per-call price..</param>
@@ -62,9 +62,9 @@ namespace Zernio.Model
         public string Currency { get; set; }
 
         /// <summary>
-        /// Always 0% — Zernio does not mark up X API rates.
+        /// Always 0%, because Zernio does not mark up X API rates.
         /// </summary>
-        /// <value>Always 0% — Zernio does not mark up X API rates.</value>
+        /// <value>Always 0%, because Zernio does not mark up X API rates.</value>
         /*
         <example>0%</example>
         */

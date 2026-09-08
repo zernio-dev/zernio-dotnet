@@ -121,7 +121,7 @@ catch (ApiException e)
 
 Follow a user
 
-Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
+Follow a user on X. Requires the follows.write OAuth scope. For protected accounts, a follow request is sent instead (pending_follow will be true). 
 
 ### Example
 ```csharp
@@ -249,7 +249,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TwitterEngagementApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The social account ID whose X token is used for the lookup
+            var accountId = "accountId_example";  // string | The account ID whose X token is used for the lookup
             var id = "id_example";  // string | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
 
             try
@@ -293,7 +293,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The social account ID whose X token is used for the lookup |  |
+| **accountId** | **string** | The account ID whose X token is used for the lookup |  |
 | **id** | **string** | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) |  |
 
 ### Return type
@@ -535,7 +535,7 @@ catch (ApiException e)
 
 Search recent tweets
 
-Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X's search operators (`from:user`, `-is:retweet`, `is:reply`, `lang:en`, `\"exact phrase\"`, `conversation_id:123`, boolean `OR`, ...). Note that standalone operators like `is:` / `has:` / `lang:` must be combined with a keyword or `from:` clause.  To reply to a found tweet, pass its `id` as the twitter platform entry's `platformSpecificData.replyToTweetId` when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X's search operators (`from:user`, `-is:retweet`, `is:reply`, `lang:en`, `\"exact phrase\"`, `conversation_id:123`, boolean `OR`, ...). Standalone operators like `is:` / `has:` / `lang:` must be combined with a keyword or `from:` clause.  To reply to a found tweet, pass its `id` as the twitter platform entry's `platformSpecificData.replyToTweetId` when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
 
 ### Example
 ```csharp
@@ -561,7 +561,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TwitterEngagementApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The social account ID
+            var accountId = "accountId_example";  // string | The account ID
             var query = "query_example";  // string | X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.
             var limit = 10;  // int? | Results per page. X requires a minimum of 10; values below 10 are rejected. (optional)  (default to 10)
             var sinceId = "sinceId_example";  // string? | Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional) 
@@ -612,7 +612,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The social account ID |  |
+| **accountId** | **string** | The account ID |  |
 | **query** | **string** | X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. |  |
 | **limit** | **int?** | Results per page. X requires a minimum of 10; values below 10 are rejected. | [optional] [default to 10] |
 | **sinceId** | **string?** | Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. | [optional]  |
@@ -759,7 +759,7 @@ catch (ApiException e)
 
 Unfollow a user
 
-Unfollow a user on X/Twitter. 
+Unfollow a user on X. 
 
 ### Example
 ```csharp
@@ -786,7 +786,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TwitterEngagementApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var targetUserId = "targetUserId_example";  // string | The Twitter ID of the user to unfollow
+            var targetUserId = "targetUserId_example";  // string | The X ID of the user to unfollow
 
             try
             {
@@ -830,7 +830,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **targetUserId** | **string** | The Twitter ID of the user to unfollow |  |
+| **targetUserId** | **string** | The X ID of the user to unfollow |  |
 
 ### Return type
 

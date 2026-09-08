@@ -6,7 +6,7 @@ A reusable, stored TargetingSpec. No member upload step, no adAccountId, the spe
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**AccountId** | **string** | Social account ID on the target ad platform. | 
+**AccountId** | **string** | Account ID on the target ad platform. | 
 **Name** | **string** |  | 
 **Description** | **string** |  | [optional] 
 **Spec** | [**TargetingSpec**](TargetingSpec.md) | The targeting spec to store. | 

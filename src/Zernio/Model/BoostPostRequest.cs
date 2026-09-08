@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class BoostPostRequest : IValidatableObject
     {
         /// <summary>
-        /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+        /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
         /// </summary>
-        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
+        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GoalEnum
         {
@@ -85,15 +85,15 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+        /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
         /// </summary>
-        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
+        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
         [DataMember(Name = "goal", IsRequired = true, EmitDefaultValue = true)]
         public GoalEnum Goal { get; set; }
         /// <summary>
-        /// Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
+        /// Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
         /// </summary>
-        /// <value>Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.</value>
+        /// <value>Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DestinationTypeEnum
         {
@@ -130,9 +130,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
+        /// Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.
         /// </summary>
-        /// <value>Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.</value>
+        /// <value>Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this.</value>
         [DataMember(Name = "destinationType", EmitDefaultValue = false)]
         public DestinationTypeEnum? DestinationType { get; set; }
 
@@ -223,14 +223,14 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="postId">Zernio post ID (provide this or platformPostId).</param>
         /// <param name="platformPostId">Platform post ID (alternative to postId).</param>
-        /// <param name="accountId">Social account ID (required).</param>
+        /// <param name="accountId">Account ID (required).</param>
         /// <param name="adAccountId">Platform ad account ID (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. (required).</param>
+        /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. (required).</param>
         /// <param name="adSetId">Meta only. Attach the boosted post to this existing ad set instead of creating a campaign. The ad set then owns budget, schedule and targeting; sending those too is a 400..</param>
         /// <param name="budget">budget.</param>
         /// <param name="instagramAccountId">Meta only. Instagram identity the ad runs AS (creative.instagram_user_id), overriding the account linked to the Page. Live-verified against a Page-post creative..</param>
-        /// <param name="destinationType">Meta only. Ad-set destination_type — where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this..</param>
+        /// <param name="destinationType">Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Lead ads force ON_AD and ignore this..</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency. Meta only. Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is)..</param>
         /// <param name="schedule">schedule.</param>
         /// <param name="targeting">targeting.</param>
@@ -245,8 +245,8 @@ namespace Zernio.Model
         /// <param name="regionalRegulatedCategories">Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. BRAZIL_REGULATION, SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV). Forwarded to the ad set..</param>
         /// <param name="regionalRegulationIdentities">Meta only. Beneficiary/payer entity IDs for regionalRegulatedCategories. Values are numeric IDs from Meta verification. Keys vary by category (e.g. universal_beneficiary / universal_payer for BRAZIL_REGULATION and THAILAND_UNIVERSAL). If omitted, Meta uses Ads Manager defaults when configured..</param>
         /// <param name="linkUrl">Destination URL for the CTA button. Send it together with &#x60;callToAction&#x60;.  **Meta**: adds a top-level &#x60;call_to_action&#x60; to the post-reference creative. This is what gives a &#x60;traffic&#x60; boost a clickable destination without replacing the creative and losing the post&#39;s social proof. Ignored when &#x60;leadGenFormId&#x60; is set, which supplies its own destination. Live-verified against a Page-post creative.  **TikTok**: maps to &#x60;landing_page_url&#x60; on the Spark Ad creative (&#x60;AdcreateCreatives.landing_page_url&#x60;); Spark Ads have no clickable destination without it.  Ignored on LinkedIn / Pinterest / X / Google, which infer the destination from the boosted post. .</param>
-        /// <param name="callToAction">CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. .</param>
-        /// <param name="sparkAuthCode">TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. .</param>
+        /// <param name="callToAction">CTA button label. Send it together with &#x60;linkUrl&#x60;: a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. .</param>
+        /// <param name="sparkAuthCode">TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads: the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. .</param>
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         /// <param name="leadGenFormId">Lead Gen form ID to attach to the boosted ad&#39;s creative. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;. On Meta this is the leadgen_forms ID (create one via POST /v1/ads/lead-forms). On LinkedIn this is the adForm ID (create one via POST /v1/ads/lead-forms with a LinkedIn account); the creative&#39;s &#x60;leadgenCallToAction.destination&#x60; is set to &#x60;urn:li:adForm:{id}&#x60;. Ignored for other goals..</param>
@@ -317,9 +317,9 @@ namespace Zernio.Model
         public string PlatformPostId { get; set; }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
@@ -449,16 +449,16 @@ namespace Zernio.Model
         public string LinkUrl { get; set; }
 
         /// <summary>
-        /// CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
+        /// CTA button label. Send it together with &#x60;linkUrl&#x60;: a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. 
         /// </summary>
-        /// <value>CTA button label. Send it together with &#x60;linkUrl&#x60; — a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. </value>
+        /// <value>CTA button label. Send it together with &#x60;linkUrl&#x60;: a CTA without a destination produces a button that goes nowhere, so sending one alone is a 400.  **Meta**: the CTA enum of POST /v1/ads/create plus &#x60;VIEW_INSTAGRAM_PROFILE&#x60;, which is accepted on boost only. For that value &#x60;linkUrl&#x60; is typically the Instagram profile URL.  **TikTok**: pass-through to &#x60;call_to_action&#x60; on the Spark Ad creative; the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot;. </value>
         [DataMember(Name = "callToAction", EmitDefaultValue = false)]
         public string CallToAction { get; set; }
 
         /// <summary>
-        /// TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. 
+        /// TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads: the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. 
         /// </summary>
-        /// <value>TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. </value>
+        /// <value>TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads: the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. </value>
         [DataMember(Name = "sparkAuthCode", EmitDefaultValue = false)]
         public string SparkAuthCode { get; set; }
 

@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class XApiOperationTriggeredByInner : IValidatableObject
     {
         /// <summary>
-        /// When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed 
+        /// When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed 
         /// </summary>
-        /// <value>When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed </value>
+        /// <value>When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MeteringEnum
         {
@@ -67,16 +67,16 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed 
+        /// When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed 
         /// </summary>
-        /// <value>When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed </value>
+        /// <value>When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed </value>
         [DataMember(Name = "metering", EmitDefaultValue = false)]
         public MeteringEnum? Metering { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="XApiOperationTriggeredByInner" /> class.
         /// </summary>
         /// <param name="method">Zernio platform method name..</param>
-        /// <param name="metering">When the method actually bills the user:   * &#x60;always&#x60; — every call is metered   * &#x60;analytics_optin&#x60; — only when the X account has analytics enabled   * &#x60;inbox_optin&#x60; — only when the X account has inbox sync enabled   * &#x60;absorbed&#x60; — Zernio eats the cost, never billed .</param>
+        /// <param name="metering">When the method actually bills the user:   * &#x60;always&#x60;: every call is metered   * &#x60;analytics_optin&#x60;: only when the X account has analytics enabled   * &#x60;inbox_optin&#x60;: only when the X account has inbox sync enabled   * &#x60;absorbed&#x60;: Zernio eats the cost, never billed .</param>
         public XApiOperationTriggeredByInner(string method = default, MeteringEnum? metering = default)
         {
             this.Method = method;

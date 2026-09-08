@@ -38,7 +38,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppTemplatesApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var name = "name_example";  // string | Exact library template name
             var language = "language_example";  // string? | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional) 
 
@@ -83,7 +83,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **name** | **string** | Exact library template name |  |
 | **language** | **string?** | Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. | [optional]  |
 

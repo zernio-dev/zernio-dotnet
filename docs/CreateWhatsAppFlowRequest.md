@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | WhatsApp social account ID | 
+**AccountId** | **string** | WhatsApp account ID | 
 **Name** | **string** | Flow display name | 
 **Categories** | **List&lt;CreateWhatsAppFlowRequest.CategoriesEnum&gt;** | Flow categories | 
 **CloneFlowId** | **string** | Optional: ID of an existing flow to clone the Flow JSON from | [optional] 

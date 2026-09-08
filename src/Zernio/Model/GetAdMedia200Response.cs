@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdMedia200Response" /> class.
         /// </summary>
         /// <param name="adId">adId.</param>
-        /// <param name="platform">&#39;facebook&#39; or &#39;instagram&#39; — only Meta is supported for now..</param>
+        /// <param name="platform">&#39;facebook&#39; or &#39;instagram&#39;. Only Meta is supported for now..</param>
         /// <param name="media">media.</param>
         public GetAdMedia200Response(string adId = default, string platform = default, List<GetAdMedia200ResponseMediaInner> media = default)
         {
@@ -53,9 +53,9 @@ namespace Zernio.Model
         public string AdId { get; set; }
 
         /// <summary>
-        /// &#39;facebook&#39; or &#39;instagram&#39; — only Meta is supported for now.
+        /// &#39;facebook&#39; or &#39;instagram&#39;. Only Meta is supported for now.
         /// </summary>
-        /// <value>&#39;facebook&#39; or &#39;instagram&#39; — only Meta is supported for now.</value>
+        /// <value>&#39;facebook&#39; or &#39;instagram&#39;. Only Meta is supported for now.</value>
         [DataMember(Name = "platform", EmitDefaultValue = false)]
         public string Platform { get; set; }
 

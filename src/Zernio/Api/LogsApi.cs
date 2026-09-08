@@ -45,7 +45,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -71,7 +71,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -105,7 +105,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -132,7 +132,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -368,7 +368,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -395,7 +395,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -518,7 +518,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
@@ -546,7 +546,7 @@ namespace Zernio.Api
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
         /// <param name="accountId">Filter by connected account ID (optional)</param>
         /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
-        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="requestId">Correlation ID. Returns every log spawned by a single API request (optional)</param>
         /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
         /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
         /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>

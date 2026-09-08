@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Summary of the analytics sync cycle that just completed.
+    /// Summary of the analytics sync cycle that completed.
     /// </summary>
     [DataContract(Name = "WebhookPayloadAnalyticsSynced_sync")]
     public partial class WebhookPayloadAnalyticsSyncedSync : IValidatableObject

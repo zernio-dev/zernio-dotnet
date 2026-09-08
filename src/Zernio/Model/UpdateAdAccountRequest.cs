@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdAccountRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account) (required).</param>
+        /// <param name="accountId">Account ID (metaads, or a facebook/instagram posting account) (required).</param>
         /// <param name="adAccountId">Meta ad account ID (act_...) (required).</param>
         /// <param name="defaultDsaBeneficiary">Legal entity benefiting from ads on this ad account (required).</param>
         /// <param name="defaultDsaPayor">Legal entity paying for ads on this ad account. Defaults to defaultDsaBeneficiary when omitted..</param>
@@ -69,9 +69,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID (metaads, or a facebook/instagram posting account)
+        /// Account ID (metaads, or a facebook/instagram posting account)
         /// </summary>
-        /// <value>Social account ID (metaads, or a facebook/instagram posting account)</value>
+        /// <value>Account ID (metaads, or a facebook/instagram posting account)</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

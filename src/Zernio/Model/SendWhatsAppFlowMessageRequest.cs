@@ -68,7 +68,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendWhatsAppFlowMessageRequest" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="to">Recipient phone number (E.164 format, e.g. +1234567890) (required).</param>
         /// <param name="flowId">Published flow ID (required).</param>
         /// <param name="flowCta">CTA button text (e.g. &#39;Book Now&#39;, &#39;Sign Up&#39;) (required).</param>
@@ -120,9 +120,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

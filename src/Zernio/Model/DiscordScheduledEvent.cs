@@ -28,15 +28,15 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints. Fields below are the subset Zernio consumes — Discord may return more (e.g. creator, image hash) which we pass through verbatim. 
+    /// Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints. Fields below are the subset Zernio consumes. Discord may return more (e.g. creator, image hash) which we pass through verbatim. 
     /// </summary>
     [DataContract(Name = "DiscordScheduledEvent")]
     public partial class DiscordScheduledEvent : IValidatableObject
     {
         /// <summary>
-        /// Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
+        /// Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events.
         /// </summary>
-        /// <value>Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.</value>
+        /// <value>Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events.</value>
         public enum PrivacyLevelEnum
         {
             /// <summary>
@@ -47,9 +47,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
+        /// Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events.
         /// </summary>
-        /// <value>Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.</value>
+        /// <value>Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events.</value>
         [DataMember(Name = "privacy_level", EmitDefaultValue = false)]
         public PrivacyLevelEnum? PrivacyLevel { get; set; }
         /// <summary>
@@ -126,7 +126,7 @@ namespace Zernio.Model
         /// <param name="description">description.</param>
         /// <param name="scheduledStartTime">scheduledStartTime.</param>
         /// <param name="scheduledEndTime">Required for external events; optional for voice/stage..</param>
-        /// <param name="privacyLevel">Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events..</param>
+        /// <param name="privacyLevel">Always 2 (GUILD_ONLY). Discord deprecated PUBLIC events..</param>
         /// <param name="status">1&#x3D;SCHEDULED, 2&#x3D;ACTIVE, 3&#x3D;COMPLETED, 4&#x3D;CANCELED.</param>
         /// <param name="entityType">1&#x3D;STAGE_INSTANCE, 2&#x3D;VOICE, 3&#x3D;EXTERNAL.</param>
         /// <param name="entityId">entityId.</param>

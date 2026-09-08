@@ -6,7 +6,7 @@ One changed analytics snapshot. Metrics are the absolute values recorded at `syn
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PostId** | **string** | External post ID. The same identifier as &#x60;posts[]._id&#x60; in GET /v1/analytics. | 
-**AccountId** | **string** | Social account this post was published through | 
+**AccountId** | **string** | Account this post was published through | 
 **ProfileId** | **string** | Profile the account belongs to | 
 **Platform** | **string** |  | 
 **PlatformPostId** | **string** | Platform-side post ID (for example the YouTube video ID) | 

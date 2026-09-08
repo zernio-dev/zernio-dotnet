@@ -41,9 +41,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendPrivateReplyToCommentRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (Instagram or Facebook) (required).</param>
+        /// <param name="accountId">The account ID (Instagram or Facebook) (required).</param>
         /// <param name="message">The message text to send as a private DM (required).</param>
-        /// <param name="quickReplies">Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land — use &#x60;buttons&#x60; instead for cold reach. .</param>
+        /// <param name="quickReplies">Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land. Use &#x60;buttons&#x60; instead for cold reach. .</param>
         /// <param name="buttons">Optional 1-3 inline buttons rendered as part of the same message bubble via Meta&#39;s button_template. Visible in the Instagram Message Requests folder (unlike quick replies). Mutually exclusive with &#x60;quickReplies&#x60;. .</param>
         public SendPrivateReplyToCommentRequest(string accountId = default, string message = default, List<SendPrivateReplyToCommentRequestQuickRepliesInner> quickReplies = default, List<SendPrivateReplyToCommentRequestButtonsInner> buttons = default)
         {
@@ -64,9 +64,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID (Instagram or Facebook)
+        /// The account ID (Instagram or Facebook)
         /// </summary>
-        /// <value>The social account ID (Instagram or Facebook)</value>
+        /// <value>The account ID (Instagram or Facebook)</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
@@ -78,9 +78,9 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
-        /// Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land — use &#x60;buttons&#x60; instead for cold reach. 
+        /// Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land. Use &#x60;buttons&#x60; instead for cold reach. 
         /// </summary>
-        /// <value>Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land — use &#x60;buttons&#x60; instead for cold reach. </value>
+        /// <value>Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land. Use &#x60;buttons&#x60; instead for cold reach. </value>
         [DataMember(Name = "quickReplies", EmitDefaultValue = false)]
         public List<SendPrivateReplyToCommentRequestQuickRepliesInner> QuickReplies { get; set; }
 

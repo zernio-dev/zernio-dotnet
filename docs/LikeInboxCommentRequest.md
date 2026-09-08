@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | The social account ID | 
+**AccountId** | **string** | The account ID | 
 **ReactionType** | **string** | (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms. | [optional] 
 **Cid** | **string** | (Bluesky only) Content identifier for the comment | [optional] 
 

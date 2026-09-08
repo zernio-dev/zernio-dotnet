@@ -1,5 +1,5 @@
 # Zernio.Model.UpdateAdTrackingTagsRequestCreative
-Meta only. OPTIONAL — omit to preserve the existing creative verbatim (default). Provide it only to rebuild the creative explicitly, or for creatives whose object_story_spec Meta strips.
+Meta only. OPTIONAL: omit to preserve the existing creative verbatim (default). Provide it only to rebuild the creative explicitly, or for creatives whose object_story_spec Meta strips.
 
 ## Properties
 

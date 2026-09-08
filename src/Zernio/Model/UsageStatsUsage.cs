@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Per-period usage counts. Fields present depend on &#x60;billingSystem&#x60;: Stripe returns &#x60;uploads&#x60; / &#x60;profiles&#x60; / &#x60;lastReset&#x60;; Metronome returns &#x60;connectedAccounts&#x60; / &#x60;xApiCalls&#x60; / &#x60;xApiCallsByOperation&#x60;. 
+    /// Per-period usage counts. Fields present depend on &#x60;billingSystem&#x60;: Stripe returns &#x60;uploads&#x60; / &#x60;profiles&#x60; / &#x60;lastReset&#x60;; usage-based billing returns &#x60;connectedAccounts&#x60; / &#x60;xApiCalls&#x60; / &#x60;xApiCallsByOperation&#x60;. 
     /// </summary>
     [DataContract(Name = "UsageStats_usage")]
     public partial class UsageStatsUsage : IValidatableObject
@@ -39,9 +39,9 @@ namespace Zernio.Model
         /// <param name="uploads">Stripe users only. Uploads consumed in the current period..</param>
         /// <param name="profiles">Stripe users only. Profiles currently owned..</param>
         /// <param name="lastReset">Stripe users only..</param>
-        /// <param name="connectedAccounts">Metronome users only. Accounts currently connected across the team..</param>
+        /// <param name="connectedAccounts">Usage-based billing only. Accounts currently connected across the team..</param>
         /// <param name="xApiCalls">xApiCalls.</param>
-        /// <param name="xApiCallsByOperation">Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. .</param>
+        /// <param name="xApiCallsByOperation">Usage-based billing only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source: it covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. .</param>
         public UsageStatsUsage(int uploads = default, int profiles = default, DateTime lastReset = default, int connectedAccounts = default, UsageStatsUsageXApiCalls xApiCalls = default, Dictionary<string, int> xApiCallsByOperation = default)
         {
             this.Uploads = uploads;
@@ -74,9 +74,9 @@ namespace Zernio.Model
         public DateTime LastReset { get; set; }
 
         /// <summary>
-        /// Metronome users only. Accounts currently connected across the team.
+        /// Usage-based billing only. Accounts currently connected across the team.
         /// </summary>
-        /// <value>Metronome users only. Accounts currently connected across the team.</value>
+        /// <value>Usage-based billing only. Accounts currently connected across the team.</value>
         [DataMember(Name = "connectedAccounts", EmitDefaultValue = false)]
         public int ConnectedAccounts { get; set; }
 
@@ -88,9 +88,9 @@ namespace Zernio.Model
         public UsageStatsUsageXApiCalls XApiCalls { get; set; }
 
         /// <summary>
-        /// Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. 
+        /// Usage-based billing only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source: it covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. 
         /// </summary>
-        /// <value>Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. </value>
+        /// <value>Usage-based billing only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source: it covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. </value>
         /*
         <example>{posts_read&#x3D;42, content_create&#x3D;7, content_create_with_url&#x3D;3, dm_interaction_create&#x3D;1}</example>
         */

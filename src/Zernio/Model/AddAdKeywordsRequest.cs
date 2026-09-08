@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AddAdKeywordsRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID (Google Ads) (required).</param>
+        /// <param name="accountId">Account ID (Google Ads) (required).</param>
         /// <param name="adSetId">Google ad group ID to add the keywords to (required).</param>
         /// <param name="keywords">keywords (required).</param>
         /// <param name="negative">Add as ad-group-level negatives instead of positive keywords (default to false).</param>
@@ -69,9 +69,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID (Google Ads)
+        /// Account ID (Google Ads)
         /// </summary>
-        /// <value>Social account ID (Google Ads)</value>
+        /// <value>Account ID (Google Ads)</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

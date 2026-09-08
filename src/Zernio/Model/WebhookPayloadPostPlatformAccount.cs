@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// The connected social account the platform-write went through.
+    /// The connected account the platform-write went through.
     /// </summary>
     [DataContract(Name = "WebhookPayloadPostPlatform_account")]
     public partial class WebhookPayloadPostPlatformAccount : IValidatableObject

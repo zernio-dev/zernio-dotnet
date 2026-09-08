@@ -36,7 +36,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -63,7 +63,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -98,7 +98,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -126,7 +126,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -363,7 +363,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -391,7 +391,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -519,7 +519,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>
@@ -548,7 +548,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Which archive to search. &#x60;meta&#x60; needs no accountId. Required unless accountId is given. (optional)</param>
-        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account just selects the platform. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. Required for LinkedIn (linkedin / linkedinads: its token searches). Optional for Meta, where any facebook / instagram / metaads account only selects the platform. (optional)</param>
         /// <param name="q">Keyword search. Meta does not translate it, so write it in the ads&#39; language. Required unless pageIds (Meta) or advertiser (LinkedIn) is given. (optional)</param>
         /// <param name="pageIds">Meta only. Comma-separated Facebook Page ids (max 10) whose ads to list. (optional)</param>
         /// <param name="advertiser">LinkedIn only. Advertiser (Page) name to search. (optional)</param>

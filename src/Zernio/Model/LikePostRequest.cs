@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LikePostRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account acting as the liker (required).</param>
+        /// <param name="accountId">The account acting as the liker (required).</param>
         /// <param name="reactionType">(LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms..</param>
         /// <param name="cid">(Bluesky only) Content identifier of the post.</param>
         public LikePostRequest(string accountId = default, ReactionTypeEnum? reactionType = default, string cid = default)
@@ -108,9 +108,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account acting as the liker
+        /// The account acting as the liker
         /// </summary>
-        /// <value>The social account acting as the liker</value>
+        /// <value>The account acting as the liker</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

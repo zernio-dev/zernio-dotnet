@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Likes** | **int** |  | [optional] 
 **Comments** | **int** |  | [optional] 
 **Shares** | **int** |  | [optional] 
-**Saves** | **int** | Number of saves/bookmarks (Instagram, Pinterest, X/Twitter) | [optional] 
+**Saves** | **int** | Number of saves/bookmarks (Instagram, Pinterest, X) | [optional] 
 **Clicks** | **int** |  | [optional] 
 **Views** | **int** |  | [optional] 
 **Follows** | **int?** | Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms. | [optional] 

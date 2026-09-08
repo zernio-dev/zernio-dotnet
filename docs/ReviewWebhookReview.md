@@ -5,7 +5,7 @@ Review data shared by review.new and review.updated payloads.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business). | 
+**Id** | **string** | Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business Profile). | 
 **Platform** | **string** | Platform the review originated on. Currently Google Business Profile only. | 
 **Rating** | **int** | Star rating the reviewer gave. | 
 **Text** | **string** | Review text content. May be empty if the reviewer left only a rating. | 

@@ -49,12 +49,12 @@ namespace Zernio.Model
         /// <param name="canReply">canReply.</param>
         /// <param name="canDelete">canDelete.</param>
         /// <param name="canHide">Whether this comment can be hidden (Facebook, Instagram, Threads).</param>
-        /// <param name="canLike">Whether this comment can be liked (Facebook, Twitter/X, Bluesky, Reddit).</param>
+        /// <param name="canLike">Whether this comment can be liked (Facebook, X, Bluesky, Reddit).</param>
         /// <param name="isHidden">Whether the comment is currently hidden.</param>
         /// <param name="isLiked">Whether the current user has liked this comment.</param>
         /// <param name="likeUri">Bluesky like URI for unliking.</param>
         /// <param name="cid">Bluesky content identifier.</param>
-        /// <param name="parentId">ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X/Twitter. On X/Twitter it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting..</param>
+        /// <param name="parentId">ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X. On X it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting..</param>
         /// <param name="rootUri">Bluesky root post URI.</param>
         /// <param name="rootCid">Bluesky root post CID.</param>
         public GetInboxPostComments200ResponseCommentsInner(string id = default, string message = default, DateTime createdTime = default, GetInboxPostComments200ResponseCommentsInnerFrom from = default, int likeCount = default, int replyCount = default, string platform = default, string url = default, List<Object> replies = default, bool repliesHasMore = default, bool canReply = default, bool canDelete = default, bool canHide = default, bool canLike = default, bool isHidden = default, bool isLiked = default, string likeUri = default, string cid = default, string parentId = default, string rootUri = default, string rootCid = default)
@@ -166,9 +166,9 @@ namespace Zernio.Model
         public bool CanHide { get; set; }
 
         /// <summary>
-        /// Whether this comment can be liked (Facebook, Twitter/X, Bluesky, Reddit)
+        /// Whether this comment can be liked (Facebook, X, Bluesky, Reddit)
         /// </summary>
-        /// <value>Whether this comment can be liked (Facebook, Twitter/X, Bluesky, Reddit)</value>
+        /// <value>Whether this comment can be liked (Facebook, X, Bluesky, Reddit)</value>
         [DataMember(Name = "canLike", EmitDefaultValue = true)]
         public bool CanLike { get; set; }
 
@@ -201,9 +201,9 @@ namespace Zernio.Model
         public string Cid { get; set; }
 
         /// <summary>
-        /// ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X/Twitter. On X/Twitter it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting.
+        /// ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X. On X it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting.
         /// </summary>
-        /// <value>ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X/Twitter. On X/Twitter it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting.</value>
+        /// <value>ID of the parent comment. Present on entries inside replies[] for Facebook, Instagram and X. On X it is also present on top-level entries, where it holds the ID of the post replied to. Omitted entirely (key absent, not null) on top-level Facebook and Instagram entries and on every other platform, which express the parent relationship only through replies[] nesting.</value>
         [DataMember(Name = "parentId", EmitDefaultValue = true)]
         public string ParentId { get; set; }
 

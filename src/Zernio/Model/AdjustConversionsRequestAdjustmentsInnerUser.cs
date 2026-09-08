@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ENHANCEMENT only — first-party identifiers (hashed server-side). At least one of email/phone required.
+    /// ENHANCEMENT only. First-party identifiers (hashed server-side). At least one of email/phone required.
     /// </summary>
     [DataContract(Name = "adjustConversions_request_adjustments_inner_user")]
     public partial class AdjustConversionsRequestAdjustmentsInnerUser : IValidatableObject

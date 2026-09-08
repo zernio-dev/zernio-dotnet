@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Account billing state — plan, cycle, balance, spend caps, and payment / access status. Returned by &#x60;GET /v1/billing&#x60;. 
+    /// Account billing state: plan, cycle, balance, spend caps, and payment / access status. Returned by &#x60;GET /v1/billing&#x60;. 
     /// </summary>
     [DataContract(Name = "BillingSnapshot")]
     public partial class BillingSnapshot : IValidatableObject

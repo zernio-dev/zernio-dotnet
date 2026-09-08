@@ -74,7 +74,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListWhatsAppAccountEvents200ResponseEventsInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
-        /// <param name="accountId">WhatsApp social account the event belongs to.</param>
+        /// <param name="accountId">WhatsApp account the event belongs to.</param>
         /// <param name="type">Event kind, e.g. template_approved, template_rejected, account_restricted, account_disconnected.</param>
         /// <param name="severity">severity.</param>
         /// <param name="title">title.</param>
@@ -98,9 +98,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// WhatsApp social account the event belongs to
+        /// WhatsApp account the event belongs to
         /// </summary>
-        /// <value>WhatsApp social account the event belongs to</value>
+        /// <value>WhatsApp account the event belongs to</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="nodes">nodes.</param>
         /// <param name="edges">edges.</param>
         /// <param name="entryNodeId">entryNodeId.</param>
-        /// <param name="accountId">Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. .</param>
+        /// <param name="accountId">Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s team and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. .</param>
         public UpdateWorkflowRequest(string name = default, string description = default, List<WorkflowNode> nodes = default, List<WorkflowEdge> edges = default, string entryNodeId = default, string accountId = default)
         {
             this.Name = name;
@@ -83,9 +83,9 @@ namespace Zernio.Model
         public string EntryNodeId { get; set; }
 
         /// <summary>
-        /// Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. 
+        /// Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s team and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. 
         /// </summary>
-        /// <value>Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. </value>
+        /// <value>Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s team and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. </value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class ListInboxConversations200ResponseDataInner : IValidatableObject
     {
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X conversations.
+        /// X verified badge type. Only present for X conversations.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X conversations.</value>
+        /// <value>X verified badge type. Only present for X conversations.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ParticipantVerifiedTypeEnum
         {
@@ -67,9 +67,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X conversations.
+        /// X verified badge type. Only present for X conversations.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X conversations.</value>
+        /// <value>X verified badge type. Only present for X conversations.</value>
         [DataMember(Name = "participantVerifiedType", EmitDefaultValue = true)]
         public ParticipantVerifiedTypeEnum? ParticipantVerifiedType { get; set; }
         /// <summary>
@@ -98,6 +98,39 @@ namespace Zernio.Model
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
+        /// WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control.
+        /// </summary>
+        /// <value>WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ThreadControlEnum
+        {
+            /// <summary>
+            /// Enum App for value: app
+            /// </summary>
+            [EnumMember(Value = "app")]
+            App = 1,
+
+            /// <summary>
+            /// Enum AiAgent for value: ai_agent
+            /// </summary>
+            [EnumMember(Value = "ai_agent")]
+            AiAgent = 2,
+
+            /// <summary>
+            /// Enum Other for value: other
+            /// </summary>
+            [EnumMember(Value = "other")]
+            Other = 3
+        }
+
+
+        /// <summary>
+        /// WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control.
+        /// </summary>
+        /// <value>WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control.</value>
+        [DataMember(Name = "threadControl", EmitDefaultValue = false)]
+        public ThreadControlEnum? ThreadControl { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ListInboxConversations200ResponseDataInner" /> class.
         /// </summary>
         /// <param name="id">Opaque conversation identifier. Pass it back verbatim to any /v1/inbox/conversations/{conversationId} route; do not assume a fixed format..</param>
@@ -107,15 +140,16 @@ namespace Zernio.Model
         /// <param name="participantId">participantId.</param>
         /// <param name="participantName">participantName.</param>
         /// <param name="participantPicture">participantPicture.</param>
-        /// <param name="participantVerifiedType">X/Twitter verified badge type. Only present for Twitter/X conversations..</param>
+        /// <param name="participantVerifiedType">X verified badge type. Only present for X conversations..</param>
         /// <param name="lastMessage">lastMessage.</param>
         /// <param name="updatedTime">updatedTime.</param>
         /// <param name="status">status.</param>
         /// <param name="unreadCount">Number of unread messages.</param>
+        /// <param name="threadControl">WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control..</param>
         /// <param name="url">Direct link to open the conversation on the platform (if available).</param>
         /// <param name="instagramProfile">instagramProfile.</param>
         /// <param name="metadata">metadata.</param>
-        public ListInboxConversations200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string participantId = default, string participantName = default, string participantPicture = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime updatedTime = default, StatusEnum? status = default, int? unreadCount = default, string url = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default, ListInboxConversations200ResponseDataInnerMetadata metadata = default)
+        public ListInboxConversations200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string participantId = default, string participantName = default, string participantPicture = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime updatedTime = default, StatusEnum? status = default, int? unreadCount = default, ThreadControlEnum? threadControl = default, string url = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default, ListInboxConversations200ResponseDataInnerMetadata metadata = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -129,6 +163,7 @@ namespace Zernio.Model
             this.UpdatedTime = updatedTime;
             this.Status = status;
             this.UnreadCount = unreadCount;
+            this.ThreadControl = threadControl;
             this.Url = url;
             this.InstagramProfile = instagramProfile;
             this.Metadata = metadata;
@@ -235,6 +270,7 @@ namespace Zernio.Model
             sb.Append("  UpdatedTime: ").Append(UpdatedTime).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  UnreadCount: ").Append(UnreadCount).Append("\n");
+            sb.Append("  ThreadControl: ").Append(ThreadControl).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");

@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="PurchaseWhatsAppPhoneNumberRequest" /> class.
         /// </summary>
         /// <param name="profileId">Profile to associate the number with (required).</param>
-        /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.  (default to &quot;US&quot;).</param>
+        /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.  (default to &quot;US&quot;).</param>
         /// <param name="purchaseIntentId">Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. .</param>
         /// <param name="allowMultiple">Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning).  (default to false).</param>
         public PurchaseWhatsAppPhoneNumberRequest(string profileId = default, string country = @"US", string purchaseIntentId = default, bool allowMultiple = false)
@@ -67,9 +67,9 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. 
+        /// ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. 
         /// </summary>
-        /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. </value>
+        /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. </value>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 

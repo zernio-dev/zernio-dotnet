@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Check a verification code
         /// </summary>
         /// <remarks>
-        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Check a verification code
         /// </summary>
         /// <remarks>
-        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -106,7 +106,7 @@ namespace Zernio.Api
         /// Check a verification code
         /// </summary>
         /// <remarks>
-        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -119,7 +119,7 @@ namespace Zernio.Api
         /// Check a verification code
         /// </summary>
         /// <remarks>
-        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -387,7 +387,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -400,7 +400,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -456,7 +456,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>
@@ -470,7 +470,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60; — only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
+        /// Check a verification code Verify the code the user typed. Wrong, expired, and exhausted codes answer 200 with &#x60;valid: false&#x60; and the settled &#x60;status&#x60;. Only an unknown id is a 404. A correct code consumes the verification (single-use, &#x60;status: approved&#x60;) and fires the &#x60;verification.approved&#x60; webhook; the 5th wrong attempt settles it as &#x60;max_attempts_reached&#x60; and fires &#x60;verification.failed&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="verificationId"></param>

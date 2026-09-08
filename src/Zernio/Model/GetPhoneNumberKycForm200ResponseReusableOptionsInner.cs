@@ -36,8 +36,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPhoneNumberKycForm200ResponseReusableOptionsInner" /> class.
         /// </summary>
-        /// <param name="id">Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications)..</param>
-        /// <param name="fromPhoneNumber">Display only — the number this verification was submitted for. Not a selection key..</param>
+        /// <param name="id">Opaque option id. Pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications)..</param>
+        /// <param name="fromPhoneNumber">Display only. The number this verification was submitted for. Not a selection key..</param>
         /// <param name="instant">true &#x3D; group-approved, a new order activates in minutes; false &#x3D; documents are reused but the order still queues for carrier review (1-3 days)..</param>
         /// <param name="details">details.</param>
         public GetPhoneNumberKycForm200ResponseReusableOptionsInner(string id = default, string fromPhoneNumber = default, bool instant = default, List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> details = default)
@@ -49,16 +49,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).
+        /// Opaque option id. Pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).
         /// </summary>
-        /// <value>Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).</value>
+        /// <value>Opaque option id. Pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Display only — the number this verification was submitted for. Not a selection key.
+        /// Display only. The number this verification was submitted for. Not a selection key.
         /// </summary>
-        /// <value>Display only — the number this verification was submitted for. Not a selection key.</value>
+        /// <value>Display only. The number this verification was submitted for. Not a selection key.</value>
         [DataMember(Name = "fromPhoneNumber", EmitDefaultValue = false)]
         public string FromPhoneNumber { get; set; }
 

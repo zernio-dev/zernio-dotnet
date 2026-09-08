@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Named conversion-funnel steps, resolved from the same data as &#x60;actions&#x60; so you never have to parse action-type strings yourself.  Meta reports one event under several action types at once (&#x60;offsite_conversion.fb_pixel_purchase&#x60;, &#x60;omni_purchase&#x60;, &#x60;purchase&#x60;, …). Each field below takes the FIRST family member present rather than summing them, which is what makes these counts safe to add up — summing the raw &#x60;actions&#x60; keys yourself double or triple counts. The same priority order backs &#x60;conversions&#x60;, so a purchase-optimised campaign reports the identical number in &#x60;conversions&#x60; and &#x60;funnel.purchases&#x60;.  Every field is 0 when that step never fired. Populated for Meta ads; other platforms report a different action taxonomy and generally leave these at 0 (read &#x60;actions&#x60; for those). At ad-set and campaign level each step is summed from its per-ad values. 
+    /// Named conversion-funnel steps, resolved from the same data as &#x60;actions&#x60; so you never have to parse action-type strings yourself.  Meta reports one event under several action types at once (&#x60;offsite_conversion.fb_pixel_purchase&#x60;, &#x60;omni_purchase&#x60;, &#x60;purchase&#x60;, …). Each field below takes the FIRST family member present rather than summing them, which is what makes these counts safe to add up. Summing the raw &#x60;actions&#x60; keys yourself double or triple counts. The same priority order backs &#x60;conversions&#x60;, so a purchase-optimised campaign reports the identical number in &#x60;conversions&#x60; and &#x60;funnel.purchases&#x60;.  Every field is 0 when that step never fired. Populated for Meta ads; other platforms report a different action taxonomy and generally leave these at 0 (read &#x60;actions&#x60; for those). At ad-set and campaign level each step is summed from its per-ad values. 
     /// </summary>
     [DataContract(Name = "AdFunnelCounts")]
     public partial class AdFunnelCounts : IValidatableObject
@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AdFunnelCounts" /> class.
         /// </summary>
-        /// <param name="landingPageViews">Landing page views — the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;..</param>
+        /// <param name="landingPageViews">Landing page views: the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;..</param>
         /// <param name="contentViews">Content views (Meta &#x60;ViewContent&#x60; pixel event)..</param>
         /// <param name="searches">On-site searches (Meta &#x60;Search&#x60; pixel event)..</param>
         /// <param name="wishlistAdds">Adds to wishlist (Meta &#x60;AddToWishlist&#x60; pixel event)..</param>
@@ -44,10 +44,10 @@ namespace Zernio.Model
         /// <param name="checkoutsInitiated">Checkouts started (Meta &#x60;InitiateCheckout&#x60; pixel event)..</param>
         /// <param name="paymentInfoAdds">Payment details added at checkout (Meta &#x60;AddPaymentInfo&#x60; pixel event)..</param>
         /// <param name="purchases">Purchases (Meta &#x60;Purchase&#x60; pixel event). Pair with &#x60;purchaseValue&#x60; for revenue..</param>
-        /// <param name="leads">Leads, from either the website pixel or an instant form — whichever the ad uses..</param>
+        /// <param name="leads">Leads, from either the website pixel or an instant form, whichever the ad uses..</param>
         /// <param name="registrationsCompleted">Completed registrations (Meta &#x60;CompleteRegistration&#x60; pixel event)..</param>
         /// <param name="appInstalls">Mobile app installs attributed to the ad..</param>
-        /// <param name="messagingConversationsStarted">Messaging conversations started within 7 days — the headline metric for click-to-WhatsApp and click-to-Messenger ads..</param>
+        /// <param name="messagingConversationsStarted">Messaging conversations started within 7 days, the headline metric for click-to-WhatsApp and click-to-Messenger ads..</param>
         /// <param name="messagingFirstReplies">Messaging threads where the person sent a first reply..</param>
         public AdFunnelCounts(int landingPageViews = default, int contentViews = default, int searches = default, int wishlistAdds = default, int cartAdds = default, int checkoutsInitiated = default, int paymentInfoAdds = default, int purchases = default, int leads = default, int registrationsCompleted = default, int appInstalls = default, int messagingConversationsStarted = default, int messagingFirstReplies = default)
         {
@@ -67,9 +67,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Landing page views — the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;.
+        /// Landing page views: the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;.
         /// </summary>
-        /// <value>Landing page views — the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;.</value>
+        /// <value>Landing page views: the visitor actually loaded the destination, unlike a link click. Meta &#x60;landing_page_view&#x60;.</value>
         [DataMember(Name = "landingPageViews", EmitDefaultValue = false)]
         public int LandingPageViews { get; set; }
 
@@ -123,9 +123,9 @@ namespace Zernio.Model
         public int Purchases { get; set; }
 
         /// <summary>
-        /// Leads, from either the website pixel or an instant form — whichever the ad uses.
+        /// Leads, from either the website pixel or an instant form, whichever the ad uses.
         /// </summary>
-        /// <value>Leads, from either the website pixel or an instant form — whichever the ad uses.</value>
+        /// <value>Leads, from either the website pixel or an instant form, whichever the ad uses.</value>
         [DataMember(Name = "leads", EmitDefaultValue = false)]
         public int Leads { get; set; }
 
@@ -144,9 +144,9 @@ namespace Zernio.Model
         public int AppInstalls { get; set; }
 
         /// <summary>
-        /// Messaging conversations started within 7 days — the headline metric for click-to-WhatsApp and click-to-Messenger ads.
+        /// Messaging conversations started within 7 days, the headline metric for click-to-WhatsApp and click-to-Messenger ads.
         /// </summary>
-        /// <value>Messaging conversations started within 7 days — the headline metric for click-to-WhatsApp and click-to-Messenger ads.</value>
+        /// <value>Messaging conversations started within 7 days, the headline metric for click-to-WhatsApp and click-to-Messenger ads.</value>
         [DataMember(Name = "messagingConversationsStarted", EmitDefaultValue = false)]
         public int MessagingConversationsStarted { get; set; }
 

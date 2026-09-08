@@ -1,5 +1,5 @@
 # Zernio.Model.ConversionDestination
-A discoverable conversion destination on an ad platform — a Meta pixel, Google conversion action, or LinkedIn conversion rule. Returned by `listConversionDestinations`, `getConversionDestination`, `createConversionDestination`, and `updateConversionDestination`. 
+A discoverable conversion destination on an ad platform: a Meta pixel, Google conversion action, or LinkedIn conversion rule. Returned by `listConversionDestinations`, `getConversionDestination`, `createConversionDestination`, and `updateConversionDestination`. 
 
 ## Properties
 

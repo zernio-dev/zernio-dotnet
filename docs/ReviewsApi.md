@@ -14,7 +14,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Delete review reply
 
-Delete a reply to a review (Google Business only). Requires accountId in request body.
+Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
 
 ### Example
 ```csharp
@@ -116,7 +116,7 @@ catch (ApiException e)
 
 List reviews
 
-Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
 
 ### Example
 ```csharp
@@ -151,7 +151,7 @@ namespace Example
             var sortOrder = "asc";  // string? |  (optional)  (default to desc)
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? |  (optional) 
-            var accountId = "accountId_example";  // string? | Filter by specific social account ID (optional) 
+            var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
 
             try
             {
@@ -203,7 +203,7 @@ catch (ApiException e)
 | **sortOrder** | **string?** |  | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** |  | [optional]  |
-| **accountId** | **string?** | Filter by specific social account ID | [optional]  |
+| **accountId** | **string?** | Filter by specific account ID | [optional]  |
 
 ### Return type
 
@@ -260,7 +260,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ReviewsApi(httpClient, config, httpClientHandler);
-            var reviewId = "reviewId_example";  // string | Review ID (URL-encoded for Google Business)
+            var reviewId = "reviewId_example";  // string | Review ID (URL-encoded for Google Business Profile)
             var replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
             var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional) 
 
@@ -305,7 +305,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **reviewId** | **string** | Review ID (URL-encoded for Google Business) |  |
+| **reviewId** | **string** | Review ID (URL-encoded for Google Business Profile) |  |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md) |  |  |
 | **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional]  |
 

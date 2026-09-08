@@ -99,7 +99,7 @@ namespace Zernio.Api
         /// Create a hosted KYC link
         /// </summary>
         /// <remarks>
-        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -110,7 +110,7 @@ namespace Zernio.Api
         /// Create a hosted KYC link
         /// </summary>
         /// <remarks>
-        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -120,7 +120,7 @@ namespace Zernio.Api
         /// Port numbers in
         /// </summary>
         /// <remarks>
-        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -131,7 +131,7 @@ namespace Zernio.Api
         /// Port numbers in
         /// </summary>
         /// <remarks>
-        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -180,7 +180,7 @@ namespace Zernio.Api
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -191,7 +191,7 @@ namespace Zernio.Api
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -245,11 +245,11 @@ namespace Zernio.Api
         /// Country porting requirements
         /// </summary>
         /// <remarks>
-        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <returns>GetPhoneNumberPortInRequirements200Response</returns>
         GetPhoneNumberPortInRequirements200Response GetPhoneNumberPortInRequirements(string country, string? numberType = default);
 
@@ -257,18 +257,18 @@ namespace Zernio.Api
         /// Country porting requirements
         /// </summary>
         /// <remarks>
-        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <returns>ApiResponse of GetPhoneNumberPortInRequirements200Response</returns>
         ApiResponse<GetPhoneNumberPortInRequirements200Response> GetPhoneNumberPortInRequirementsWithHttpInfo(string country, string? numberType = default);
         /// <summary>
         /// Get declined requirements
         /// </summary>
         /// <remarks>
-        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -279,7 +279,7 @@ namespace Zernio.Api
         /// Get declined requirements
         /// </summary>
         /// <remarks>
-        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -346,7 +346,7 @@ namespace Zernio.Api
         /// List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ListPhoneNumbers200Response</returns>
         ListPhoneNumbers200Response ListPhoneNumbers(string? status = default, string? profileId = default);
@@ -358,7 +358,7 @@ namespace Zernio.Api
         /// List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ApiResponse of ListPhoneNumbers200Response</returns>
         ApiResponse<ListPhoneNumbers200Response> ListPhoneNumbersWithHttpInfo(string? status = default, string? profileId = default);
@@ -387,7 +387,7 @@ namespace Zernio.Api
         /// Release phone number
         /// </summary>
         /// <remarks>
-        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -398,7 +398,7 @@ namespace Zernio.Api
         /// Release phone number
         /// </summary>
         /// <remarks>
-        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -408,7 +408,7 @@ namespace Zernio.Api
         /// Resubmit a declined number
         /// </summary>
         /// <remarks>
-        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -420,7 +420,7 @@ namespace Zernio.Api
         /// Resubmit a declined number
         /// </summary>
         /// <remarks>
-        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -431,7 +431,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -443,7 +443,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -531,7 +531,7 @@ namespace Zernio.Api
         /// Submit KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -542,7 +542,7 @@ namespace Zernio.Api
         /// Submit KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -619,7 +619,7 @@ namespace Zernio.Api
         /// View a KYC document on file
         /// </summary>
         /// <remarks>
-        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -630,7 +630,7 @@ namespace Zernio.Api
         /// View a KYC document on file
         /// </summary>
         /// <remarks>
-        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -722,7 +722,7 @@ namespace Zernio.Api
         /// Create a hosted KYC link
         /// </summary>
         /// <remarks>
-        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -734,7 +734,7 @@ namespace Zernio.Api
         /// Create a hosted KYC link
         /// </summary>
         /// <remarks>
-        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -745,7 +745,7 @@ namespace Zernio.Api
         /// Port numbers in
         /// </summary>
         /// <remarks>
-        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -757,7 +757,7 @@ namespace Zernio.Api
         /// Port numbers in
         /// </summary>
         /// <remarks>
-        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -814,7 +814,7 @@ namespace Zernio.Api
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -826,7 +826,7 @@ namespace Zernio.Api
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -885,11 +885,11 @@ namespace Zernio.Api
         /// Country porting requirements
         /// </summary>
         /// <remarks>
-        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetPhoneNumberPortInRequirements200Response</returns>
         System.Threading.Tasks.Task<GetPhoneNumberPortInRequirements200Response> GetPhoneNumberPortInRequirementsAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
@@ -898,11 +898,11 @@ namespace Zernio.Api
         /// Country porting requirements
         /// </summary>
         /// <remarks>
-        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetPhoneNumberPortInRequirements200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetPhoneNumberPortInRequirements200Response>> GetPhoneNumberPortInRequirementsWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
@@ -910,7 +910,7 @@ namespace Zernio.Api
         /// Get declined requirements
         /// </summary>
         /// <remarks>
-        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -922,7 +922,7 @@ namespace Zernio.Api
         /// Get declined requirements
         /// </summary>
         /// <remarks>
-        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -999,7 +999,7 @@ namespace Zernio.Api
         /// List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListPhoneNumbers200Response</returns>
@@ -1012,7 +1012,7 @@ namespace Zernio.Api
         /// List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListPhoneNumbers200Response)</returns>
@@ -1044,7 +1044,7 @@ namespace Zernio.Api
         /// Release phone number
         /// </summary>
         /// <remarks>
-        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -1056,7 +1056,7 @@ namespace Zernio.Api
         /// Release phone number
         /// </summary>
         /// <remarks>
-        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -1067,7 +1067,7 @@ namespace Zernio.Api
         /// Resubmit a declined number
         /// </summary>
         /// <remarks>
-        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1080,7 +1080,7 @@ namespace Zernio.Api
         /// Resubmit a declined number
         /// </summary>
         /// <remarks>
-        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1092,7 +1092,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1105,7 +1105,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1200,7 +1200,7 @@ namespace Zernio.Api
         /// Submit KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -1212,7 +1212,7 @@ namespace Zernio.Api
         /// Submit KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -1296,7 +1296,7 @@ namespace Zernio.Api
         /// View a KYC document on file
         /// </summary>
         /// <remarks>
-        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -1308,7 +1308,7 @@ namespace Zernio.Api
         /// View a KYC document on file
         /// </summary>
         /// <remarks>
-        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -1936,7 +1936,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -1948,7 +1948,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -1998,7 +1998,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -2011,7 +2011,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberKycLinkRequest"></param>
@@ -2065,7 +2065,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -2077,7 +2077,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -2127,7 +2127,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -2140,7 +2140,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first — uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
+        /// Port numbers in Submit a port-in for one or more existing numbers from another carrier. Creates the carrier order(s), attaches the end-user (current account) info plus the LOA and invoice documents, and submits to the losing carrier. The transfer PIN is forwarded to the carrier and never stored. Ported numbers arrive voice-ready (and SMS-ready where the order supports messaging).  Run the portability check (POST /v1/phone-numbers/port-in/check) and upload the two documents (POST /v1/phone-numbers/port-in/documents) first. Uploaded documents must be attached to an order within 30 minutes or the carrier deletes them, so upload right before this call. The carrier may split the numbers into several orders (by country, number type, losing carrier); &#x60;orders&#x60; carries per-order results, and a partial failure still returns 201 with the failed orders&#39; &#x60;error&#x60; set (they stay as cancellable drafts).  Non-US/CA numbers additionally need the country-specific values from GET /v1/phone-numbers/port-in/requirements, passed via &#x60;requirements&#x60;, and must be submitted one country per request. When required information is still missing after submission, the order is kept as a resumable draft whose &#x60;error&#x60; / &#x60;declineReason&#x60; names the gaps. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPhoneNumberPortInRequest"></param>
@@ -2450,7 +2450,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -2462,7 +2462,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -2511,7 +2511,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -2524,7 +2524,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -2843,11 +2843,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <returns>GetPhoneNumberPortInRequirements200Response</returns>
         public GetPhoneNumberPortInRequirements200Response GetPhoneNumberPortInRequirements(string country, string? numberType = default)
         {
@@ -2856,11 +2856,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <returns>ApiResponse of GetPhoneNumberPortInRequirements200Response</returns>
         public Zernio.Client.ApiResponse<GetPhoneNumberPortInRequirements200Response> GetPhoneNumberPortInRequirementsWithHttpInfo(string country, string? numberType = default)
         {
@@ -2910,11 +2910,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetPhoneNumberPortInRequirements200Response</returns>
         public async System.Threading.Tasks.Task<GetPhoneNumberPortInRequirements200Response> GetPhoneNumberPortInRequirementsAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2924,11 +2924,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details — e.g. an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
+        /// Country porting requirements The country-specific information a port-in needs BEYOND the LOA, invoice, and account/address details, such as an ID copy, proof of address, a tax id, or a porting code. Call it after the portability check (which returns each number&#39;s &#x60;countryCode&#x60; and &#x60;phoneNumberType&#x60;), render the fields, and pass the collected values as the create request&#39;s &#x60;requirements&#x60;. US/CA return an empty list. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO country of the numbers being ported (a supported port-in country).</param>
-        /// <param name="numberType">The portability check&#39;s phoneNumberType — requirements differ by type. (optional, default to local)</param>
+        /// <param name="numberType">The portability check&#39;s phoneNumberType. Requirements differ by type. (optional, default to local)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetPhoneNumberPortInRequirements200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetPhoneNumberPortInRequirements200Response>> GetPhoneNumberPortInRequirementsWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2982,7 +2982,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -2994,7 +2994,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -3043,7 +3043,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -3056,7 +3056,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// Get declined requirements For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID.</param>
@@ -3451,7 +3451,7 @@ namespace Zernio.Api
         /// List phone numbers List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ListPhoneNumbers200Response</returns>
         public ListPhoneNumbers200Response ListPhoneNumbers(string? status = default, string? profileId = default)
@@ -3464,7 +3464,7 @@ namespace Zernio.Api
         /// List phone numbers List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ApiResponse of ListPhoneNumbers200Response</returns>
         public Zernio.Client.ApiResponse<ListPhoneNumbers200Response> ListPhoneNumbersWithHttpInfo(string? status = default, string? profileId = default)
@@ -3517,7 +3517,7 @@ namespace Zernio.Api
         /// List phone numbers List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListPhoneNumbers200Response</returns>
@@ -3531,7 +3531,7 @@ namespace Zernio.Api
         /// List phone numbers List all phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) WhatsApp numbers are returned in the separate &#x60;connected&#x60; array; they are not billed and have no provisioning lifecycle. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListPhoneNumbers200Response)</returns>
@@ -3714,7 +3714,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -3726,7 +3726,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -3775,7 +3775,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -3788,7 +3788,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+        /// Release phone number Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID</param>
@@ -3841,7 +3841,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3854,7 +3854,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3910,7 +3910,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3924,7 +3924,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// Resubmit a declined number Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address). Send only the corrected fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3984,7 +3984,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -3997,7 +3997,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4053,7 +4053,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4067,7 +4067,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation, for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4596,7 +4596,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -4608,7 +4608,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -4658,7 +4658,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -4671,7 +4671,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+        /// Submit KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitPhoneNumberKycRequest"></param>
@@ -5138,7 +5138,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -5150,7 +5150,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -5200,7 +5200,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
@@ -5213,7 +5213,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers. Otherwise &#x60;404&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>

@@ -118,7 +118,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="AdKeyword" /> class.
         /// </summary>
         /// <param name="id">id.</param>
-        /// <param name="accountId">Social account ID owning the sync.</param>
+        /// <param name="accountId">Account ID owning the sync.</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="platform">platform.</param>
         /// <param name="adAccountId">Google customer ID.</param>
@@ -164,9 +164,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Social account ID owning the sync
+        /// Account ID owning the sync
         /// </summary>
-        /// <value>Social account ID owning the sync</value>
+        /// <value>Account ID owning the sync</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

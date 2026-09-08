@@ -318,7 +318,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Verification state fetched successfully |  -  |
-| **400** | Not a Google Business account or missing location |  -  |
+| **400** | Not a Google Business Profile account or missing location |  -  |
 | **401** | Unauthorized or token invalid |  -  |
 | **404** | Resource not found |  -  |
 

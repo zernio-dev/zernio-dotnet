@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -43,7 +43,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -125,7 +125,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -137,7 +137,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -427,7 +427,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Create group Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -439,7 +439,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Create group Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -489,7 +489,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Create group Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -502,7 +502,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
+        /// Create group Creates a new account group with a name and a list of account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>

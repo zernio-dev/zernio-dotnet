@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdsSearchTerms200ResponseDataInner" /> class.
         /// </summary>
         /// <param name="searchTerm">searchTerm.</param>
-        /// <param name="status">ADDED / EXCLUDED / ADDED_EXCLUDED / NONE — whether the term is already a keyword or a negative..</param>
+        /// <param name="status">ADDED / EXCLUDED / ADDED_EXCLUDED / NONE: whether the term is already a keyword or a negative..</param>
         /// <param name="matchType">How the term matched (BROAD, PHRASE, EXACT, NEAR_PHRASE, NEAR_EXACT)..</param>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="campaignName">campaignName.</param>
@@ -71,9 +71,9 @@ namespace Zernio.Model
         public string SearchTerm { get; set; }
 
         /// <summary>
-        /// ADDED / EXCLUDED / ADDED_EXCLUDED / NONE — whether the term is already a keyword or a negative.
+        /// ADDED / EXCLUDED / ADDED_EXCLUDED / NONE: whether the term is already a keyword or a negative.
         /// </summary>
-        /// <value>ADDED / EXCLUDED / ADDED_EXCLUDED / NONE — whether the term is already a keyword or a negative.</value>
+        /// <value>ADDED / EXCLUDED / ADDED_EXCLUDED / NONE: whether the term is already a keyword or a negative.</value>
         [DataMember(Name = "status", EmitDefaultValue = true)]
         public string Status { get; set; }
 

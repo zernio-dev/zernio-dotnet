@@ -165,6 +165,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnConversationControlChanged
+        /// </summary>
+        [Fact]
+        public void OnConversationControlChangedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadConversationControlChanged webhookPayloadConversationControlChanged = null;
+            //instance.OnConversationControlChanged(webhookPayloadConversationControlChanged);
+        }
+
+        /// <summary>
         /// Test OnConversationStarted
         /// </summary>
         [Fact]

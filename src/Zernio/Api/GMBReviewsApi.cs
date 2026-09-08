@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// Delete a review reply
         /// </summary>
         /// <remarks>
-        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -67,7 +67,7 @@ namespace Zernio.Api
         /// Delete a review reply
         /// </summary>
         /// <remarks>
-        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -78,7 +78,7 @@ namespace Zernio.Api
         /// Get a review
         /// </summary>
         /// <remarks>
-        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -91,7 +91,7 @@ namespace Zernio.Api
         /// Get a review
         /// </summary>
         /// <remarks>
-        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -103,7 +103,7 @@ namespace Zernio.Api
         /// Get reviews
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -117,7 +117,7 @@ namespace Zernio.Api
         /// Get reviews
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -130,7 +130,7 @@ namespace Zernio.Api
         /// Reply to a review
         /// </summary>
         /// <remarks>
-        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -143,7 +143,7 @@ namespace Zernio.Api
         /// Reply to a review
         /// </summary>
         /// <remarks>
-        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -189,7 +189,7 @@ namespace Zernio.Api
         /// Delete a review reply
         /// </summary>
         /// <remarks>
-        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -202,7 +202,7 @@ namespace Zernio.Api
         /// Delete a review reply
         /// </summary>
         /// <remarks>
-        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -214,7 +214,7 @@ namespace Zernio.Api
         /// Get a review
         /// </summary>
         /// <remarks>
-        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -228,7 +228,7 @@ namespace Zernio.Api
         /// Get a review
         /// </summary>
         /// <remarks>
-        /// Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -241,7 +241,7 @@ namespace Zernio.Api
         /// Get reviews
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -256,7 +256,7 @@ namespace Zernio.Api
         /// Get reviews
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -270,7 +270,7 @@ namespace Zernio.Api
         /// Reply to a review
         /// </summary>
         /// <remarks>
-        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -284,7 +284,7 @@ namespace Zernio.Api
         /// Reply to a review
         /// </summary>
         /// <remarks>
-        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -650,7 +650,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Delete a review reply Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -663,7 +663,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Delete a review reply Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -718,7 +718,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Delete a review reply Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -732,7 +732,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// Delete a review reply Removes the business owner reply from a Google Business Profile review. The review itself remains.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -791,7 +791,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Get a review Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -805,7 +805,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Get a review Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -865,7 +865,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Get a review Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -880,7 +880,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a review Returns one Google Business review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
+        /// Get a review Returns one Google Business Profile review, in the same shape as the entries of GET /v1/accounts/{accountId}/gmb-reviews. The review is read from the account&#39;s selected location unless locationId overrides it, and Google returns 404 for a review id that belongs to another location. Read the review before replying if a human may have answered it already: replies are overwritten in place and Google keeps no history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -944,7 +944,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Get reviews Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -959,7 +959,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Get reviews Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -1023,7 +1023,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Get reviews Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -1039,7 +1039,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Get reviews Returns reviews for a Google Business Profile account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -1107,7 +1107,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -1121,7 +1121,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -1183,7 +1183,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -1198,7 +1198,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business Profile review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). Google keeps no history, so an automated retry silently replaces a reply someone edited by hand in the Google Business Profile UI. Read the review before retrying if a human may have answered it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>

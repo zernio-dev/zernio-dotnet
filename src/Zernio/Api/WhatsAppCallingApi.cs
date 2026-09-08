@@ -223,7 +223,7 @@ namespace Zernio.Api
         /// Get calling config for a number
         /// </summary>
         /// <remarks>
-        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -234,7 +234,7 @@ namespace Zernio.Api
         /// Get calling config for a number
         /// </summary>
         /// <remarks>
-        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -247,7 +247,7 @@ namespace Zernio.Api
         /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppCallingConfig200Response</returns>
         GetWhatsAppCallingConfig200Response GetWhatsAppCallingConfig(string accountId);
 
@@ -258,7 +258,7 @@ namespace Zernio.Api
         /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppCallingConfig200Response</returns>
         ApiResponse<GetWhatsAppCallingConfig200Response> GetWhatsAppCallingConfigWithHttpInfo(string accountId);
         /// <summary>
@@ -634,7 +634,7 @@ namespace Zernio.Api
         /// Get calling config for a number
         /// </summary>
         /// <remarks>
-        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -646,7 +646,7 @@ namespace Zernio.Api
         /// Get calling config for a number
         /// </summary>
         /// <remarks>
-        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -660,7 +660,7 @@ namespace Zernio.Api
         /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCallingConfig200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppCallingConfig200Response> GetWhatsAppCallingConfigAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -672,7 +672,7 @@ namespace Zernio.Api
         /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCallingConfig200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallingConfig200Response>> GetWhatsAppCallingConfigWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -2224,7 +2224,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -2236,7 +2236,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -2285,7 +2285,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -2298,7 +2298,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
@@ -2354,7 +2354,7 @@ namespace Zernio.Api
         /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppCallingConfig200Response</returns>
         public GetWhatsAppCallingConfig200Response GetWhatsAppCallingConfig(string accountId)
         {
@@ -2366,7 +2366,7 @@ namespace Zernio.Api
         /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppCallingConfig200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppCallingConfig200Response> GetWhatsAppCallingConfigWithHttpInfo(string accountId)
         {
@@ -2415,7 +2415,7 @@ namespace Zernio.Api
         /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCallingConfig200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppCallingConfig200Response> GetWhatsAppCallingConfigAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2428,7 +2428,7 @@ namespace Zernio.Api
         /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCallingConfig200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCallingConfig200Response>> GetWhatsAppCallingConfigWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)

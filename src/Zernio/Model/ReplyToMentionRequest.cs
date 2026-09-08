@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ReplyToMentionRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The Instagram social account ID (required).</param>
+        /// <param name="accountId">The Instagram account ID (required).</param>
         /// <param name="mediaId">The ID of the media the account was mentioned in (required).</param>
         /// <param name="commentId">The mentioning comment&#39;s ID. Omit for a caption mention..</param>
         /// <param name="message">The reply text (required).</param>
@@ -69,9 +69,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The Instagram social account ID
+        /// The Instagram account ID
         /// </summary>
-        /// <value>The Instagram social account ID</value>
+        /// <value>The Instagram account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

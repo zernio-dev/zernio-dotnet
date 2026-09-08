@@ -96,7 +96,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateWhatsAppFlowRequest" /> class.
         /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
+        /// <param name="accountId">WhatsApp account ID (required).</param>
         /// <param name="name">Flow display name (required).</param>
         /// <param name="categories">Flow categories (required).</param>
         /// <param name="cloneFlowId">Optional: ID of an existing flow to clone the Flow JSON from.</param>
@@ -128,9 +128,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// WhatsApp account ID
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
+        /// <value>WhatsApp account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

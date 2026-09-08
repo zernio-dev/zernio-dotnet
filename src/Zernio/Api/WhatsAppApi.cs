@@ -36,7 +36,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response AddWhatsAppGroupParticipants(string groupId, string accountId, AddWhatsAppGroupParticipantsRequest addWhatsAppGroupParticipantsRequest);
@@ -49,7 +49,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> AddWhatsAppGroupParticipantsWithHttpInfo(string groupId, string accountId, AddWhatsAppGroupParticipantsRequest addWhatsAppGroupParticipantsRequest);
@@ -61,7 +61,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response ApproveWhatsAppGroupJoinRequests(string groupId, string accountId, ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest);
@@ -74,7 +74,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> ApproveWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId, ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest);
@@ -103,7 +103,7 @@ namespace Zernio.Api
         /// Provision CTWA dataset
         /// </summary>
         /// <remarks>
-        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -114,7 +114,7 @@ namespace Zernio.Api
         /// Provision CTWA dataset
         /// </summary>
         /// <remarks>
-        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -149,7 +149,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>CreateWhatsAppGroupInviteLink200Response</returns>
         CreateWhatsAppGroupInviteLink200Response CreateWhatsAppGroupInviteLink(string groupId, string accountId);
 
@@ -161,7 +161,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of CreateWhatsAppGroupInviteLink200Response</returns>
         ApiResponse<CreateWhatsAppGroupInviteLink200Response> CreateWhatsAppGroupInviteLinkWithHttpInfo(string groupId, string accountId);
         /// <summary>
@@ -193,7 +193,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response DeleteWhatsAppGroupChat(string groupId, string accountId);
 
@@ -205,7 +205,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> DeleteWhatsAppGroupChatWithHttpInfo(string groupId, string accountId);
         /// <summary>
@@ -216,7 +216,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <returns>DeleteWhatsAppTemplate200Response</returns>
         DeleteWhatsAppTemplate200Response DeleteWhatsAppTemplate(string templateName, string accountId, string? language = default);
@@ -229,7 +229,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <returns>ApiResponse of DeleteWhatsAppTemplate200Response</returns>
         ApiResponse<DeleteWhatsAppTemplate200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default);
@@ -241,7 +241,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>DeleteWhatsAppTemplateById200Response</returns>
         DeleteWhatsAppTemplateById200Response DeleteWhatsAppTemplateById(string templateId, string accountId);
 
@@ -253,7 +253,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of DeleteWhatsAppTemplateById200Response</returns>
         ApiResponse<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId);
         /// <summary>
@@ -307,7 +307,7 @@ namespace Zernio.Api
         /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <returns>GetWhatsAppBlockedUsers200Response</returns>
@@ -320,7 +320,7 @@ namespace Zernio.Api
         /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppBlockedUsers200Response</returns>
@@ -332,7 +332,7 @@ namespace Zernio.Api
         /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppBusinessProfile200Response</returns>
         GetWhatsAppBusinessProfile200Response GetWhatsAppBusinessProfile(string accountId);
 
@@ -343,17 +343,17 @@ namespace Zernio.Api
         /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppBusinessProfile200Response</returns>
         ApiResponse<GetWhatsAppBusinessProfile200Response> GetWhatsAppBusinessProfileWithHttpInfo(string accountId);
         /// <summary>
         /// Get CTWA conversions dataset
         /// </summary>
         /// <remarks>
-        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppDataset200Response</returns>
         GetWhatsAppDataset200Response GetWhatsAppDataset(string accountId);
 
@@ -361,10 +361,10 @@ namespace Zernio.Api
         /// Get CTWA conversions dataset
         /// </summary>
         /// <remarks>
-        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppDataset200Response</returns>
         ApiResponse<GetWhatsAppDataset200Response> GetWhatsAppDatasetWithHttpInfo(string accountId);
         /// <summary>
@@ -374,7 +374,7 @@ namespace Zernio.Api
         /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppDisplayName200Response</returns>
         GetWhatsAppDisplayName200Response GetWhatsAppDisplayName(string accountId);
 
@@ -385,7 +385,7 @@ namespace Zernio.Api
         /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppDisplayName200Response</returns>
         ApiResponse<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameWithHttpInfo(string accountId);
         /// <summary>
@@ -396,7 +396,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppGroupChat200Response</returns>
         GetWhatsAppGroupChat200Response GetWhatsAppGroupChat(string groupId, string accountId);
 
@@ -408,7 +408,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppGroupChat200Response</returns>
         ApiResponse<GetWhatsAppGroupChat200Response> GetWhatsAppGroupChatWithHttpInfo(string groupId, string accountId);
         /// <summary>
@@ -442,7 +442,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>GetWhatsAppTemplate200Response</returns>
         GetWhatsAppTemplate200Response GetWhatsAppTemplate(string templateName, string accountId, string? language = default);
@@ -455,7 +455,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
         ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default);
@@ -467,7 +467,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppTemplate200Response</returns>
         GetWhatsAppTemplate200Response GetWhatsAppTemplateById(string templateId, string accountId);
 
@@ -479,7 +479,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
         ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId);
         /// <summary>
@@ -489,7 +489,7 @@ namespace Zernio.Api
         /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -503,7 +503,7 @@ namespace Zernio.Api
         /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -516,7 +516,7 @@ namespace Zernio.Api
         /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsappBusinessUsername200Response</returns>
         GetWhatsappBusinessUsername200Response GetWhatsappBusinessUsername(string accountId);
 
@@ -527,7 +527,7 @@ namespace Zernio.Api
         /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsappBusinessUsername200Response</returns>
         ApiResponse<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameWithHttpInfo(string accountId);
         /// <summary>
@@ -537,7 +537,7 @@ namespace Zernio.Api
         /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsappBusinessUsernameSuggestions200Response</returns>
         GetWhatsappBusinessUsernameSuggestions200Response GetWhatsappBusinessUsernameSuggestions(string accountId);
 
@@ -548,7 +548,7 @@ namespace Zernio.Api
         /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsappBusinessUsernameSuggestions200Response</returns>
         ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsWithHttpInfo(string accountId);
         /// <summary>
@@ -558,7 +558,7 @@ namespace Zernio.Api
         /// Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <returns>ListWhatsAppAccountEvents200Response</returns>
         ListWhatsAppAccountEvents200Response ListWhatsAppAccountEvents(string accountId, int? limit = default);
@@ -570,7 +570,7 @@ namespace Zernio.Api
         /// Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <returns>ApiResponse of ListWhatsAppAccountEvents200Response</returns>
         ApiResponse<ListWhatsAppAccountEvents200Response> ListWhatsAppAccountEventsWithHttpInfo(string accountId, int? limit = default);
@@ -581,7 +581,7 @@ namespace Zernio.Api
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <returns>ListWhatsAppConversions200Response</returns>
         ListWhatsAppConversions200Response ListWhatsAppConversions(string accountId, int? limit = default);
@@ -593,7 +593,7 @@ namespace Zernio.Api
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <returns>ApiResponse of ListWhatsAppConversions200Response</returns>
         ApiResponse<ListWhatsAppConversions200Response> ListWhatsAppConversionsWithHttpInfo(string accountId, int? limit = default);
@@ -604,7 +604,7 @@ namespace Zernio.Api
         /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <returns>ListWhatsAppGroupChats200Response</returns>
@@ -617,7 +617,7 @@ namespace Zernio.Api
         /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <returns>ApiResponse of ListWhatsAppGroupChats200Response</returns>
@@ -630,7 +630,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ListWhatsAppGroupJoinRequests200Response</returns>
         ListWhatsAppGroupJoinRequests200Response ListWhatsAppGroupJoinRequests(string groupId, string accountId);
 
@@ -642,7 +642,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of ListWhatsAppGroupJoinRequests200Response</returns>
         ApiResponse<ListWhatsAppGroupJoinRequests200Response> ListWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId);
         /// <summary>
@@ -676,7 +676,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response RejectWhatsAppGroupJoinRequests(string groupId, string accountId, RejectWhatsAppGroupJoinRequestsRequest rejectWhatsAppGroupJoinRequestsRequest);
@@ -689,7 +689,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> RejectWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId, RejectWhatsAppGroupJoinRequestsRequest rejectWhatsAppGroupJoinRequestsRequest);
@@ -701,7 +701,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response RemoveWhatsAppGroupParticipants(string groupId, string accountId, RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest);
@@ -714,7 +714,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> RemoveWhatsAppGroupParticipantsWithHttpInfo(string groupId, string accountId, RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest);
@@ -831,7 +831,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response UpdateWhatsAppGroupChat(string groupId, string accountId, UpdateWhatsAppGroupChatRequest updateWhatsAppGroupChatRequest);
@@ -844,7 +844,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> UpdateWhatsAppGroupChatWithHttpInfo(string groupId, string accountId, UpdateWhatsAppGroupChatRequest updateWhatsAppGroupChatRequest);
@@ -898,10 +898,10 @@ namespace Zernio.Api
         /// Upload profile picture
         /// </summary>
         /// <remarks>
-        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <returns>UnpublishPost200Response</returns>
         UnpublishPost200Response UploadWhatsAppProfilePhoto(string accountId, FileParameter file);
@@ -910,10 +910,10 @@ namespace Zernio.Api
         /// Upload profile picture
         /// </summary>
         /// <remarks>
-        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> UploadWhatsAppProfilePhotoWithHttpInfo(string accountId, FileParameter file);
@@ -934,7 +934,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -948,7 +948,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -961,7 +961,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -975,7 +975,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -1007,7 +1007,7 @@ namespace Zernio.Api
         /// Provision CTWA dataset
         /// </summary>
         /// <remarks>
-        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -1019,7 +1019,7 @@ namespace Zernio.Api
         /// Provision CTWA dataset
         /// </summary>
         /// <remarks>
-        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -1057,7 +1057,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppGroupInviteLink200Response</returns>
         System.Threading.Tasks.Task<CreateWhatsAppGroupInviteLink200Response> CreateWhatsAppGroupInviteLinkAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1070,7 +1070,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppGroupInviteLink200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateWhatsAppGroupInviteLink200Response>> CreateWhatsAppGroupInviteLinkWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1105,7 +1105,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
         System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppGroupChatAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1118,7 +1118,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppGroupChatWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1130,7 +1130,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteWhatsAppTemplate200Response</returns>
@@ -1144,7 +1144,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteWhatsAppTemplate200Response)</returns>
@@ -1157,7 +1157,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteWhatsAppTemplateById200Response</returns>
         System.Threading.Tasks.Task<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1170,7 +1170,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteWhatsAppTemplateById200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteWhatsAppTemplateById200Response>> DeleteWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1229,7 +1229,7 @@ namespace Zernio.Api
         /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1243,7 +1243,7 @@ namespace Zernio.Api
         /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1256,7 +1256,7 @@ namespace Zernio.Api
         /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBusinessProfile200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppBusinessProfile200Response> GetWhatsAppBusinessProfileAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1268,7 +1268,7 @@ namespace Zernio.Api
         /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBusinessProfile200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppBusinessProfile200Response>> GetWhatsAppBusinessProfileWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1276,10 +1276,10 @@ namespace Zernio.Api
         /// Get CTWA conversions dataset
         /// </summary>
         /// <remarks>
-        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppDataset200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppDataset200Response> GetWhatsAppDatasetAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1288,10 +1288,10 @@ namespace Zernio.Api
         /// Get CTWA conversions dataset
         /// </summary>
         /// <remarks>
-        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppDataset200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppDataset200Response>> GetWhatsAppDatasetWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1302,7 +1302,7 @@ namespace Zernio.Api
         /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppDisplayName200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1314,7 +1314,7 @@ namespace Zernio.Api
         /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppDisplayName200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppDisplayName200Response>> GetWhatsAppDisplayNameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1326,7 +1326,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppGroupChat200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppGroupChat200Response> GetWhatsAppGroupChatAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1339,7 +1339,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppGroupChat200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppGroupChat200Response>> GetWhatsAppGroupChatWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1376,7 +1376,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplate200Response</returns>
@@ -1390,7 +1390,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
@@ -1403,7 +1403,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplate200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1416,7 +1416,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1427,7 +1427,7 @@ namespace Zernio.Api
         /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -1442,7 +1442,7 @@ namespace Zernio.Api
         /// List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -1456,7 +1456,7 @@ namespace Zernio.Api
         /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsappBusinessUsername200Response</returns>
         System.Threading.Tasks.Task<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1468,7 +1468,7 @@ namespace Zernio.Api
         /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsappBusinessUsername200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsappBusinessUsername200Response>> GetWhatsappBusinessUsernameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1479,7 +1479,7 @@ namespace Zernio.Api
         /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsappBusinessUsernameSuggestions200Response</returns>
         System.Threading.Tasks.Task<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1491,7 +1491,7 @@ namespace Zernio.Api
         /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsappBusinessUsernameSuggestions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response>> GetWhatsappBusinessUsernameSuggestionsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1502,7 +1502,7 @@ namespace Zernio.Api
         /// Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppAccountEvents200Response</returns>
@@ -1515,7 +1515,7 @@ namespace Zernio.Api
         /// Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppAccountEvents200Response)</returns>
@@ -1527,7 +1527,7 @@ namespace Zernio.Api
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppConversions200Response</returns>
@@ -1540,7 +1540,7 @@ namespace Zernio.Api
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppConversions200Response)</returns>
@@ -1552,7 +1552,7 @@ namespace Zernio.Api
         /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1566,7 +1566,7 @@ namespace Zernio.Api
         /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1580,7 +1580,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppGroupJoinRequests200Response</returns>
         System.Threading.Tasks.Task<ListWhatsAppGroupJoinRequests200Response> ListWhatsAppGroupJoinRequestsAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1593,7 +1593,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppGroupJoinRequests200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppGroupJoinRequests200Response>> ListWhatsAppGroupJoinRequestsWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -1630,7 +1630,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -1644,7 +1644,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -1657,7 +1657,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -1671,7 +1671,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -1799,7 +1799,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -1813,7 +1813,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -1872,10 +1872,10 @@ namespace Zernio.Api
         /// Upload profile picture
         /// </summary>
         /// <remarks>
-        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -1885,10 +1885,10 @@ namespace Zernio.Api
         /// Upload profile picture
         /// </summary>
         /// <remarks>
-        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -2111,7 +2111,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response AddWhatsAppGroupParticipants(string groupId, string accountId, AddWhatsAppGroupParticipantsRequest addWhatsAppGroupParticipantsRequest)
@@ -2125,7 +2125,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> AddWhatsAppGroupParticipantsWithHttpInfo(string groupId, string accountId, AddWhatsAppGroupParticipantsRequest addWhatsAppGroupParticipantsRequest)
@@ -2187,7 +2187,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -2202,7 +2202,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="addWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -2268,7 +2268,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response ApproveWhatsAppGroupJoinRequests(string groupId, string accountId, ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest)
@@ -2282,7 +2282,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> ApproveWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId, ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest)
@@ -2344,7 +2344,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -2359,7 +2359,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="approveWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -2550,7 +2550,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -2562,7 +2562,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -2612,7 +2612,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -2625,7 +2625,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+        /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
@@ -2812,7 +2812,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>CreateWhatsAppGroupInviteLink200Response</returns>
         public CreateWhatsAppGroupInviteLink200Response CreateWhatsAppGroupInviteLink(string groupId, string accountId)
         {
@@ -2825,7 +2825,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of CreateWhatsAppGroupInviteLink200Response</returns>
         public Zernio.Client.ApiResponse<CreateWhatsAppGroupInviteLink200Response> CreateWhatsAppGroupInviteLinkWithHttpInfo(string groupId, string accountId)
         {
@@ -2880,7 +2880,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppGroupInviteLink200Response</returns>
         public async System.Threading.Tasks.Task<CreateWhatsAppGroupInviteLink200Response> CreateWhatsAppGroupInviteLinkAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2894,7 +2894,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppGroupInviteLink200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateWhatsAppGroupInviteLink200Response>> CreateWhatsAppGroupInviteLinkWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -3082,7 +3082,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response DeleteWhatsAppGroupChat(string groupId, string accountId)
         {
@@ -3095,7 +3095,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> DeleteWhatsAppGroupChatWithHttpInfo(string groupId, string accountId)
         {
@@ -3150,7 +3150,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
         public async System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppGroupChatAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -3164,7 +3164,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UnpublishPost200Response>> DeleteWhatsAppGroupChatWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -3223,7 +3223,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <returns>DeleteWhatsAppTemplate200Response</returns>
         public DeleteWhatsAppTemplate200Response DeleteWhatsAppTemplate(string templateName, string accountId, string? language = default)
@@ -3237,7 +3237,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <returns>ApiResponse of DeleteWhatsAppTemplate200Response</returns>
         public Zernio.Client.ApiResponse<DeleteWhatsAppTemplate200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default)
@@ -3297,7 +3297,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteWhatsAppTemplate200Response</returns>
@@ -3312,7 +3312,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Delete only this language variant (e.g. es). Omit to delete the whole family. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteWhatsAppTemplate200Response)</returns>
@@ -3376,7 +3376,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>DeleteWhatsAppTemplateById200Response</returns>
         public DeleteWhatsAppTemplateById200Response DeleteWhatsAppTemplateById(string templateId, string accountId)
         {
@@ -3389,7 +3389,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of DeleteWhatsAppTemplateById200Response</returns>
         public Zernio.Client.ApiResponse<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId)
         {
@@ -3444,7 +3444,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteWhatsAppTemplateById200Response</returns>
         public async System.Threading.Tasks.Task<DeleteWhatsAppTemplateById200Response> DeleteWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -3458,7 +3458,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteWhatsAppTemplateById200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteWhatsAppTemplateById200Response>> DeleteWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -3786,7 +3786,7 @@ namespace Zernio.Api
         /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <returns>GetWhatsAppBlockedUsers200Response</returns>
@@ -3800,7 +3800,7 @@ namespace Zernio.Api
         /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppBlockedUsers200Response</returns>
@@ -3859,7 +3859,7 @@ namespace Zernio.Api
         /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3874,7 +3874,7 @@ namespace Zernio.Api
         /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Page size. (optional)</param>
         /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3937,7 +3937,7 @@ namespace Zernio.Api
         /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppBusinessProfile200Response</returns>
         public GetWhatsAppBusinessProfile200Response GetWhatsAppBusinessProfile(string accountId)
         {
@@ -3949,7 +3949,7 @@ namespace Zernio.Api
         /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppBusinessProfile200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppBusinessProfile200Response> GetWhatsAppBusinessProfileWithHttpInfo(string accountId)
         {
@@ -3998,7 +3998,7 @@ namespace Zernio.Api
         /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBusinessProfile200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppBusinessProfile200Response> GetWhatsAppBusinessProfileAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4011,7 +4011,7 @@ namespace Zernio.Api
         /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBusinessProfile200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppBusinessProfile200Response>> GetWhatsAppBusinessProfileWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4061,10 +4061,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppDataset200Response</returns>
         public GetWhatsAppDataset200Response GetWhatsAppDataset(string accountId)
         {
@@ -4073,10 +4073,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppDataset200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppDataset200Response> GetWhatsAppDatasetWithHttpInfo(string accountId)
         {
@@ -4122,10 +4122,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppDataset200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppDataset200Response> GetWhatsAppDatasetAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4135,10 +4135,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+        /// Get CTWA conversions dataset Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60;, never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppDataset200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppDataset200Response>> GetWhatsAppDatasetWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4191,7 +4191,7 @@ namespace Zernio.Api
         /// Get display name status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppDisplayName200Response</returns>
         public GetWhatsAppDisplayName200Response GetWhatsAppDisplayName(string accountId)
         {
@@ -4203,7 +4203,7 @@ namespace Zernio.Api
         /// Get display name status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppDisplayName200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameWithHttpInfo(string accountId)
         {
@@ -4252,7 +4252,7 @@ namespace Zernio.Api
         /// Get display name status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppDisplayName200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4265,7 +4265,7 @@ namespace Zernio.Api
         /// Get display name status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppDisplayName200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppDisplayName200Response>> GetWhatsAppDisplayNameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4319,7 +4319,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppGroupChat200Response</returns>
         public GetWhatsAppGroupChat200Response GetWhatsAppGroupChat(string groupId, string accountId)
         {
@@ -4332,7 +4332,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppGroupChat200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppGroupChat200Response> GetWhatsAppGroupChatWithHttpInfo(string groupId, string accountId)
         {
@@ -4387,7 +4387,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppGroupChat200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppGroupChat200Response> GetWhatsAppGroupChatAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4401,7 +4401,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppGroupChat200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppGroupChat200Response>> GetWhatsAppGroupChatWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4603,7 +4603,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>GetWhatsAppTemplate200Response</returns>
         public GetWhatsAppTemplate200Response GetWhatsAppTemplate(string templateName, string accountId, string? language = default)
@@ -4617,7 +4617,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateWithHttpInfo(string templateName, string accountId, string? language = default)
@@ -4677,7 +4677,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplate200Response</returns>
@@ -4692,7 +4692,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name (the family).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="language">Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
@@ -4756,7 +4756,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsAppTemplate200Response</returns>
         public GetWhatsAppTemplate200Response GetWhatsAppTemplateById(string templateId, string accountId)
         {
@@ -4769,7 +4769,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsAppTemplate200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdWithHttpInfo(string templateId, string accountId)
         {
@@ -4824,7 +4824,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppTemplate200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppTemplate200Response> GetWhatsAppTemplateByIdAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4838,7 +4838,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">Meta template id (numeric).</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppTemplate200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppTemplate200Response>> GetWhatsAppTemplateByIdWithHttpInfoAsync(string templateId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -4896,7 +4896,7 @@ namespace Zernio.Api
         /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -4911,7 +4911,7 @@ namespace Zernio.Api
         /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -4975,7 +4975,7 @@ namespace Zernio.Api
         /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -4991,7 +4991,7 @@ namespace Zernio.Api
         /// List templates List message templates for the WhatsApp Business Account (WABA) associated with the given account. Templates are fetched directly from the WhatsApp Cloud API. One entry per **name + language**: a multi-language template appears once per language, each with its own Meta &#x60;id&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact template name; returns every language variant of that family. (optional)</param>
         /// <param name="language">Exact language code (e.g. en_US). (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -5059,7 +5059,7 @@ namespace Zernio.Api
         /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsappBusinessUsername200Response</returns>
         public GetWhatsappBusinessUsername200Response GetWhatsappBusinessUsername(string accountId)
         {
@@ -5071,7 +5071,7 @@ namespace Zernio.Api
         /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsappBusinessUsername200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameWithHttpInfo(string accountId)
         {
@@ -5120,7 +5120,7 @@ namespace Zernio.Api
         /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsappBusinessUsername200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -5133,7 +5133,7 @@ namespace Zernio.Api
         /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsappBusinessUsername200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsappBusinessUsername200Response>> GetWhatsappBusinessUsernameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -5186,7 +5186,7 @@ namespace Zernio.Api
         /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>GetWhatsappBusinessUsernameSuggestions200Response</returns>
         public GetWhatsappBusinessUsernameSuggestions200Response GetWhatsappBusinessUsernameSuggestions(string accountId)
         {
@@ -5198,7 +5198,7 @@ namespace Zernio.Api
         /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of GetWhatsappBusinessUsernameSuggestions200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsWithHttpInfo(string accountId)
         {
@@ -5247,7 +5247,7 @@ namespace Zernio.Api
         /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsappBusinessUsernameSuggestions200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -5260,7 +5260,7 @@ namespace Zernio.Api
         /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsappBusinessUsernameSuggestions200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response>> GetWhatsappBusinessUsernameSuggestionsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -5313,7 +5313,7 @@ namespace Zernio.Api
         /// List account notifications Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <returns>ListWhatsAppAccountEvents200Response</returns>
         public ListWhatsAppAccountEvents200Response ListWhatsAppAccountEvents(string accountId, int? limit = default)
@@ -5326,7 +5326,7 @@ namespace Zernio.Api
         /// List account notifications Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <returns>ApiResponse of ListWhatsAppAccountEvents200Response</returns>
         public Zernio.Client.ApiResponse<ListWhatsAppAccountEvents200Response> ListWhatsAppAccountEventsWithHttpInfo(string accountId, int? limit = default)
@@ -5380,7 +5380,7 @@ namespace Zernio.Api
         /// List account notifications Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppAccountEvents200Response</returns>
@@ -5394,7 +5394,7 @@ namespace Zernio.Api
         /// List account notifications Returns Meta-originated events recorded for a WhatsApp account, newest first: template review outcomes (approved, rejected, paused, category changes) and WABA status changes (restricted, disabled, reinstated, disconnected). Events are captured from Meta webhooks as they happen; the feed starts at the account&#39;s first recorded event and is not backfilled. Complements the push events &#x60;whatsapp.template.status_updated&#x60; and &#x60;account.disconnected&#x60; with a pollable history. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Maximum events to return (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppAccountEvents200Response)</returns>
@@ -5452,7 +5452,7 @@ namespace Zernio.Api
         /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <returns>ListWhatsAppConversions200Response</returns>
         public ListWhatsAppConversions200Response ListWhatsAppConversions(string accountId, int? limit = default)
@@ -5465,7 +5465,7 @@ namespace Zernio.Api
         /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <returns>ApiResponse of ListWhatsAppConversions200Response</returns>
         public Zernio.Client.ApiResponse<ListWhatsAppConversions200Response> ListWhatsAppConversionsWithHttpInfo(string accountId, int? limit = default)
@@ -5519,7 +5519,7 @@ namespace Zernio.Api
         /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppConversions200Response</returns>
@@ -5533,7 +5533,7 @@ namespace Zernio.Api
         /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max events to return (1-200, default 50). (optional, default to 50)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppConversions200Response)</returns>
@@ -5591,7 +5591,7 @@ namespace Zernio.Api
         /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <returns>ListWhatsAppGroupChats200Response</returns>
@@ -5605,7 +5605,7 @@ namespace Zernio.Api
         /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <returns>ApiResponse of ListWhatsAppGroupChats200Response</returns>
@@ -5664,7 +5664,7 @@ namespace Zernio.Api
         /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -5679,7 +5679,7 @@ namespace Zernio.Api
         /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="limit">Max groups to return (optional, default to 25)</param>
         /// <param name="after">Pagination cursor (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -5743,7 +5743,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ListWhatsAppGroupJoinRequests200Response</returns>
         public ListWhatsAppGroupJoinRequests200Response ListWhatsAppGroupJoinRequests(string groupId, string accountId)
         {
@@ -5756,7 +5756,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <returns>ApiResponse of ListWhatsAppGroupJoinRequests200Response</returns>
         public Zernio.Client.ApiResponse<ListWhatsAppGroupJoinRequests200Response> ListWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId)
         {
@@ -5811,7 +5811,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppGroupJoinRequests200Response</returns>
         public async System.Threading.Tasks.Task<ListWhatsAppGroupJoinRequests200Response> ListWhatsAppGroupJoinRequestsAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -5825,7 +5825,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppGroupJoinRequests200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppGroupJoinRequests200Response>> ListWhatsAppGroupJoinRequestsWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -6019,7 +6019,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response RejectWhatsAppGroupJoinRequests(string groupId, string accountId, RejectWhatsAppGroupJoinRequestsRequest rejectWhatsAppGroupJoinRequestsRequest)
@@ -6033,7 +6033,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> RejectWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId, RejectWhatsAppGroupJoinRequestsRequest rejectWhatsAppGroupJoinRequestsRequest)
@@ -6095,7 +6095,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -6110,7 +6110,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="rejectWhatsAppGroupJoinRequestsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -6176,7 +6176,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response RemoveWhatsAppGroupParticipants(string groupId, string accountId, RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest)
@@ -6190,7 +6190,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> RemoveWhatsAppGroupParticipantsWithHttpInfo(string groupId, string accountId, RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest)
@@ -6252,7 +6252,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -6267,7 +6267,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="removeWhatsAppGroupParticipantsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -6978,7 +6978,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response UpdateWhatsAppGroupChat(string groupId, string accountId, UpdateWhatsAppGroupChatRequest updateWhatsAppGroupChatRequest)
@@ -6992,7 +6992,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> UpdateWhatsAppGroupChatWithHttpInfo(string groupId, string accountId, UpdateWhatsAppGroupChatRequest updateWhatsAppGroupChatRequest)
@@ -7054,7 +7054,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -7069,7 +7069,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="updateWhatsAppGroupChatRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
@@ -7417,10 +7417,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <returns>UnpublishPost200Response</returns>
         public UnpublishPost200Response UploadWhatsAppProfilePhoto(string accountId, FileParameter file)
@@ -7430,10 +7430,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         public Zernio.Client.ApiResponse<UnpublishPost200Response> UploadWhatsAppProfilePhotoWithHttpInfo(string accountId, FileParameter file)
@@ -7487,10 +7487,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
@@ -7501,10 +7501,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;). With a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>

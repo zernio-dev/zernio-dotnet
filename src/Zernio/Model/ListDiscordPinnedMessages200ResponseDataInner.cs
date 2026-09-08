@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Raw Discord Message object — see DiscordPlatformData for embed/attachment shapes.
+    /// Raw Discord Message object. See DiscordPlatformData for embed/attachment shapes.
     /// </summary>
     [DataContract(Name = "listDiscordPinnedMessages_200_response_data_inner")]
     public partial class ListDiscordPinnedMessages200ResponseDataInner : IValidatableObject

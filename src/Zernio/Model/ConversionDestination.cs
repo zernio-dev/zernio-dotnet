@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// A discoverable conversion destination on an ad platform — a Meta pixel, Google conversion action, or LinkedIn conversion rule. Returned by &#x60;listConversionDestinations&#x60;, &#x60;getConversionDestination&#x60;, &#x60;createConversionDestination&#x60;, and &#x60;updateConversionDestination&#x60;. 
+    /// A discoverable conversion destination on an ad platform: a Meta pixel, Google conversion action, or LinkedIn conversion rule. Returned by &#x60;listConversionDestinations&#x60;, &#x60;getConversionDestination&#x60;, &#x60;createConversionDestination&#x60;, and &#x60;updateConversionDestination&#x60;. 
     /// </summary>
     [DataContract(Name = "ConversionDestination")]
     public partial class ConversionDestination : IValidatableObject

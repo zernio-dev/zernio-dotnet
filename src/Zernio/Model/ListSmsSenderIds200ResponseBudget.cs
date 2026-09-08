@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Workspace-wide daily sending budget, shared by every sender ID (resets midnight UTC).
+    /// Team-wide daily sending budget, shared by every sender ID (resets midnight UTC).
     /// </summary>
     [DataContract(Name = "listSmsSenderIds_200_response_budget")]
     public partial class ListSmsSenderIds200ResponseBudget : IValidatableObject

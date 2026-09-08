@@ -259,7 +259,7 @@ namespace Zernio.Model
         /// <param name="name">name (required).</param>
         /// <param name="goal">Mapped to the ODAX objective (same mapping as POST /v1/ads/create). (required).</param>
         /// <param name="specialAdCategories">specialAdCategories.</param>
-        /// <param name="budgetAmount">Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents — Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType..</param>
+        /// <param name="budgetAmount">Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType..</param>
         /// <param name="budgetType">budgetType.</param>
         /// <param name="status">status (default to StatusEnum.PAUSED).</param>
         /// <param name="bidStrategy">Campaign bid strategy. Meta stores &#x60;bid_strategy&#x60; alongside the budget, so this REQUIRES &#x60;budgetAmount&#x60; + &#x60;budgetType&#x60; on the same request; sending it without a campaign budget is a 400. A campaign carrying a strategy without its &#x60;bid_amount&#x60; makes every ad set created under it fail with an error that names the ad set (code 100, subcode 1815857), so the bad state is rejected up front rather than accepted. To bid at ad-set level on Meta, set the strategy there instead. On Google: LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling; portfolioBidStrategyId attaches a portfolio strategy instead..</param>
@@ -324,9 +324,9 @@ namespace Zernio.Model
         public List<CreateAdCampaignRequest.SpecialAdCategoriesEnum> SpecialAdCategories { get; set; }
 
         /// <summary>
-        /// Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents — Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType.
+        /// Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType.
         /// </summary>
-        /// <value>Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents — Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType.</value>
+        /// <value>Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType.</value>
         [DataMember(Name = "budgetAmount", EmitDefaultValue = false)]
         public decimal BudgetAmount { get; set; }
 

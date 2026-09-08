@@ -81,7 +81,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="PurchasePhoneNumberRequest" /> class.
         /// </summary>
         /// <param name="profileId">Preferred profile for the number. One number &#x3D; one profile, so when the requested profile already holds a number the API assigns the next free profile instead (or creates one) and returns the actual assignment in &#x60;profileId&#x60; on the response.  (required).</param>
-        /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries.  (default to &quot;US&quot;).</param>
+        /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries.  (default to &quot;US&quot;).</param>
         /// <param name="numberType">Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. .</param>
         /// <param name="areaCode">Area code (national destination code, e.g. 11 for Sao Paulo) the number must be in. Hard constraint: when the area has no deliverable inventory the purchase fails with 409 code AREA_CODE_UNAVAILABLE instead of assigning a number from another area, and later replacements stay in this area too. Omit for any area. Get live options from GET /v1/phone-numbers/availability (areaOptions). .</param>
         /// <param name="connectWhatsapp">A phone number is the unit; WhatsApp is one optional feature. Pass false to buy a STANDALONE number (Calls/SMS only): provisioning skips the Meta pre-verify/OTP steps and the number activates immediately. Omitted defaults to the WhatsApp provisioning path. WhatsApp can be connected to a standalone number later from the connect flow.  (default to true).</param>
@@ -116,9 +116,9 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries. 
+        /// ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries. 
         /// </summary>
-        /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries. </value>
+        /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries. </value>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 

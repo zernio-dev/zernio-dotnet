@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
-**AccountId** | **string** | Social account ID owning the sync | [optional] 
+**AccountId** | **string** | Account ID owning the sync | [optional] 
 **ProfileId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **AdAccountId** | **string** | Google customer ID | [optional] 

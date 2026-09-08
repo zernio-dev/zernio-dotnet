@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendTypingIndicatorRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID (required).</param>
+        /// <param name="accountId">Account ID (required).</param>
         public SendTypingIndicatorRequest(string accountId = default)
         {
             // to ensure "accountId" is required (not null)
@@ -53,9 +53,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

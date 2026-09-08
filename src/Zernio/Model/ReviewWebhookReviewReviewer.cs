@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ReviewWebhookReviewReviewer" /> class.
         /// </summary>
-        /// <param name="id">Platform reviewer ID. Null when the platform does not expose it (common on Google Business anonymous reviews). (required).</param>
+        /// <param name="id">Platform reviewer ID. Null when the platform does not expose it (common on Google Business Profile anonymous reviews). (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="profileImage">profileImage (required).</param>
         public ReviewWebhookReviewReviewer(string id = default, string name = default, string profileImage = default)
@@ -67,9 +67,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Platform reviewer ID. Null when the platform does not expose it (common on Google Business anonymous reviews).
+        /// Platform reviewer ID. Null when the platform does not expose it (common on Google Business Profile anonymous reviews).
         /// </summary>
-        /// <value>Platform reviewer ID. Null when the platform does not expose it (common on Google Business anonymous reviews).</value>
+        /// <value>Platform reviewer ID. Null when the platform does not expose it (common on Google Business Profile anonymous reviews).</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 

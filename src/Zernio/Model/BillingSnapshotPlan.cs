@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="name">name.</param>
         /// <param name="isUsageBased">isUsageBased.</param>
-        /// <param name="isPaid">True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing)..</param>
+        /// <param name="isPaid">True when the key belongs to an account with an active paid billing relationship (Stripe subscription, usage-based billing, or Shopify-managed billing)..</param>
         public BillingSnapshotPlan(string name = default, bool isUsageBased = default, bool isPaid = default)
         {
             this.Name = name;
@@ -59,9 +59,9 @@ namespace Zernio.Model
         public bool IsUsageBased { get; set; }
 
         /// <summary>
-        /// True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing).
+        /// True when the key belongs to an account with an active paid billing relationship (Stripe subscription, usage-based billing, or Shopify-managed billing).
         /// </summary>
-        /// <value>True when the key belongs to an account with an active paid billing relationship (Stripe subscription, Metronome enrollment, or Shopify-managed billing).</value>
+        /// <value>True when the key belongs to an account with an active paid billing relationship (Stripe subscription, usage-based billing, or Shopify-managed billing).</value>
         [DataMember(Name = "isPaid", EmitDefaultValue = true)]
         public bool IsPaid { get; set; }
 

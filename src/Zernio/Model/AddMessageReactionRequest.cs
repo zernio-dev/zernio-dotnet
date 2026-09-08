@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AddMessageReactionRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID (required).</param>
+        /// <param name="accountId">Account ID (required).</param>
         /// <param name="emoji">Emoji character (e.g. \&quot;👍\&quot;, \&quot;❤️\&quot;) (required).</param>
         public AddMessageReactionRequest(string accountId = default, string emoji = default)
         {
@@ -60,9 +60,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

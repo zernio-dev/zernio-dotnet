@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | The social account acting as the liker | 
+**AccountId** | **string** | The account acting as the liker | 
 **ReactionType** | **string** | (LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms. | [optional] 
 **Cid** | **string** | (Bluesky only) Content identifier of the post | [optional] 
 

@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class ExternalPostWebhookPost : IValidatableObject
     {
         /// <summary>
-        /// Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.
+        /// Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events.
         /// </summary>
-        /// <value>Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.</value>
+        /// <value>Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SourceEnum
         {
@@ -49,9 +49,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.
+        /// Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events.
         /// </summary>
-        /// <value>Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events.</value>
+        /// <value>Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events.</value>
         [DataMember(Name = "source", IsRequired = true, EmitDefaultValue = true)]
         public SourceEnum Source { get; set; }
         /// <summary>
@@ -64,7 +64,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Platform-native post ID (NOT a Zernio post ID). (required).</param>
         /// <param name="platform">Platform the post lives on (e.g. \&quot;googlebusiness\&quot;). (required).</param>
-        /// <param name="accountId">Zernio social account ID the post belongs to. (required).</param>
+        /// <param name="accountId">Zernio account ID the post belongs to. (required).</param>
         /// <param name="url">Direct URL to the post on the platform, when available. (required).</param>
         /// <param name="content">Post text. May be empty. (required).</param>
         /// <param name="mediaType">One of image, video, gif, document, text, carousel. (required).</param>
@@ -75,7 +75,7 @@ namespace Zernio.Model
         /// <param name="isAiGenerated">Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it..</param>
         /// <param name="isSharedToFeed">Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it..</param>
         /// <param name="mediaAudioType">Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it..</param>
-        /// <param name="source">Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events. (required).</param>
+        /// <param name="source">Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events. (required).</param>
         /// <param name="deletedAt">Detection time of deletion. Present on post.external.deleted; null/absent otherwise..</param>
         public ExternalPostWebhookPost(string id = default, string platform = default, string accountId = default, string url = default, string content = default, string mediaType = default, List<ExternalPostMediaItem> mediaItems = default, string thumbnailUrl = default, DateTime publishedAt = default, string mediaProductType = default, bool isAiGenerated = default, bool isSharedToFeed = default, string mediaAudioType = default, SourceEnum source = default, DateTime? deletedAt = default)
         {
@@ -151,9 +151,9 @@ namespace Zernio.Model
         public string Platform { get; set; }
 
         /// <summary>
-        /// Zernio social account ID the post belongs to.
+        /// Zernio account ID the post belongs to.
         /// </summary>
-        /// <value>Zernio social account ID the post belongs to.</value>
+        /// <value>Zernio account ID the post belongs to.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

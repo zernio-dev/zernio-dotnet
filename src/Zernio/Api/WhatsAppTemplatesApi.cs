@@ -35,7 +35,7 @@ namespace Zernio.Api
         /// Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>GetWhatsAppLibraryTemplate200Response</returns>
@@ -48,7 +48,7 @@ namespace Zernio.Api
         /// Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppLibraryTemplate200Response</returns>
@@ -69,7 +69,7 @@ namespace Zernio.Api
         /// Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -83,7 +83,7 @@ namespace Zernio.Api
         /// Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -306,7 +306,7 @@ namespace Zernio.Api
         /// Look up a library template Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>GetWhatsAppLibraryTemplate200Response</returns>
@@ -320,7 +320,7 @@ namespace Zernio.Api
         /// Look up a library template Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppLibraryTemplate200Response</returns>
@@ -380,7 +380,7 @@ namespace Zernio.Api
         /// Look up a library template Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -395,7 +395,7 @@ namespace Zernio.Api
         /// Look up a library template Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="accountId">WhatsApp account ID</param>
         /// <param name="name">Exact library template name</param>
         /// <param name="language">Desired language variant (e.g. es, en_US). If the template is not offered in it, the first available variant is returned and named in the response language field. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

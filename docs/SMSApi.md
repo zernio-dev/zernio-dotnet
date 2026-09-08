@@ -136,7 +136,7 @@ catch (ApiException e)
 
 Create an alphanumeric sender ID
 
-Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from` for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as `from` on `POST /v1/sms/messages`.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of workspaces. Creating the same sender ID again is a no-op (re-activates it after a delete). 
+Registers an alphanumeric sender ID (e.g. `ZERNIO`), a branded `from` for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as `from` on `POST /v1/sms/messages`.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected. Names are not exclusive: the same sender ID can be registered by any number of teams. Creating the same sender ID again is a no-op (re-activates it after a delete). 
 
 ### Example
 ```csharp
@@ -228,8 +228,8 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
-| **403** | Workspace is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
-| **409** | Billing setup is incomplete for this workspace (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
+| **403** | The team is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Billing setup is incomplete for this team (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
 | **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -240,7 +240,7 @@ catch (ApiException e)
 
 Deactivate a brand/campaign registration
 
-Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they're registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts (receiving is unaffected) until they're registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
 
 ### Example
 ```csharp
@@ -442,7 +442,7 @@ catch (ApiException e)
 
 Disable SMS on a number
 
-Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later reactivates it, with no re-registration. 
 
 ### Example
 ```csharp
@@ -542,7 +542,7 @@ catch (ApiException e)
 
 Enable SMS on a number
 
-Turns on SMS for one of your numbers. The number's real carrier capability is checked first: some number types can't do SMS at all (`smsCapable: false`), and a number still provisioning at the carrier returns `notReady: true` (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - `alreadyRegistered: true`: a prior registration still covers this   number; SMS was simply reactivated. - `reusable` set: you have an approved registration this number can   join in one click via   `POST /v1/phone-numbers/{id}/sms/reuse-registration`   (no new brand/campaign, no extra carrier fee). - `needsRegistration: true` and no `reusable`: start one via   `POST /v1/sms/registrations`.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+Turns on SMS for one of your numbers. The number's real carrier capability is checked first: some number types can't do SMS at all (`smsCapable: false`), and a number still provisioning at the carrier returns `notReady: true` (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - `alreadyRegistered: true`: a prior registration still covers this   number; SMS was reactivated. - `reusable` set: you have an approved registration this number can   join in one click via   `POST /v1/phone-numbers/{id}/sms/reuse-registration`   (no new brand/campaign, no extra carrier fee). - `needsRegistration: true` and no `reusable`: start one via   `POST /v1/sms/registrations`.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
 
 ### Example
 ```csharp
@@ -869,7 +869,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
-            var includeDeactivated = true;  // bool? | Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional) 
+            var includeDeactivated = true;  // bool? | Deactivated (terminated) registrations are hidden by default. Pass true to include them. (optional) 
 
             try
             {
@@ -912,7 +912,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **includeDeactivated** | **bool?** | Deactivated (terminated) registrations are hidden by default — pass true to include them. | [optional]  |
+| **includeDeactivated** | **bool?** | Deactivated (terminated) registrations are hidden by default. Pass true to include them. | [optional]  |
 
 ### Return type
 
@@ -1024,7 +1024,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The workspace&#39;s sender IDs, newest first. |  -  |
+| **200** | The team&#39;s sender IDs, newest first. |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1235,7 +1235,7 @@ catch (ApiException e)
 
 Request a higher sender ID daily limit
 
-Asks support to raise the workspace's daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+Asks support to raise the team's daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
 
 ### Example
 ```csharp
@@ -1337,7 +1337,7 @@ catch (ApiException e)
 
 Re-send the sole-prop OTP
 
-Re-sends the sole-proprietor verification PIN to the brand's mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+Re-sends the sole-proprietor verification PIN to the brand's mobile number. Use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
 
 ### Example
 ```csharp
@@ -1429,7 +1429,7 @@ catch (ApiException e)
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
-| **429** | A code was just sent — wait a minute before requesting another |  -  |
+| **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1439,7 +1439,7 @@ catch (ApiException e)
 
 Reply to a change request
 
-Replies to a reviewer change request on a registration in `changes_requested` state: a note, hosted document URLs (from `POST /v1/sms/opt-in-proof`), or both, sent together. The registration returns to `requested` (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via `POST /v1/sms/registrations` with `resubmitRequestId` instead. 
+Replies to a reviewer change request on a registration in `changes_requested` state: a note, hosted document URLs (from `POST /v1/sms/opt-in-proof`), or both, sent together. The registration returns to `requested` (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via `POST /v1/sms/registrations` with `resubmitRequestId` instead. 
 
 ### Example
 ```csharp
@@ -1952,7 +1952,7 @@ catch (ApiException e)
 
 Upload opt-in form proof for an appeal
 
-Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can't be verified and ask for a \"link/screenshot of the opt-in form\" — the registry has no attachment field, so include the returned URL inside the `messageFlow` you submit with the appeal (`POST /v1/sms/registrations/{id}/appeal`). 
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can't be verified and ask for a \"link/screenshot of the opt-in form\". The registry has no attachment field, so include the returned URL inside the `messageFlow` you submit with the appeal (`POST /v1/sms/registrations/{id}/appeal`). 
 
 ### Example
 ```csharp
@@ -2055,7 +2055,7 @@ catch (ApiException e)
 
 Upload opt-in form proof
 
-Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign's `messageFlow` (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. `/v1/sms/registrations/{id}/opt-in-proof` is an alias. 
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign's `messageFlow` (the opt-in workflow text). The carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. `/v1/sms/registrations/{id}/opt-in-proof` is an alias. 
 
 ### Example
 ```csharp

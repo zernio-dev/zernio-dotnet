@@ -42,8 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SelectGoogleBusinessLocationRequest" /> class.
         /// </summary>
         /// <param name="profileId">Profile ID from your connection flow (required).</param>
-        /// <param name="locationId">The Google Business location ID selected by the user (required).</param>
-        /// <param name="accountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. .</param>
+        /// <param name="locationId">The Google Business Profile location ID selected by the user (required).</param>
+        /// <param name="accountId">Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. .</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect (pendingDataToken query param). Tokens and profile data are retrieved server-side from this token. (required).</param>
         /// <param name="redirectUrl">Optional custom redirect URL to return to after selection.</param>
         public SelectGoogleBusinessLocationRequest(string profileId = default, string locationId = default, string accountId = default, string pendingDataToken = default, string redirectUrl = default)
@@ -78,16 +78,16 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// The Google Business location ID selected by the user
+        /// The Google Business Profile location ID selected by the user
         /// </summary>
-        /// <value>The Google Business location ID selected by the user</value>
+        /// <value>The Google Business Profile location ID selected by the user</value>
         [DataMember(Name = "locationId", IsRequired = true, EmitDefaultValue = true)]
         public string LocationId { get; set; }
 
         /// <summary>
-        /// Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. 
+        /// Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. 
         /// </summary>
-        /// <value>Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. </value>
+        /// <value>Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. </value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

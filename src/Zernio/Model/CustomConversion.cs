@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="rule">Meta&#39;s rule, parsed back from the string Meta stores..</param>
         /// <param name="customEventType">customEventType.</param>
-        /// <param name="pixelId">Meta&#39;s event_source_id — the pixel the rule reads from..</param>
+        /// <param name="pixelId">Meta&#39;s event_source_id, the pixel the rule reads from..</param>
         /// <param name="isArchived">isArchived.</param>
         public CustomConversion(string id = default, string name = default, Object rule = default, string customEventType = default, string pixelId = default, bool isArchived = default)
         {
@@ -78,9 +78,9 @@ namespace Zernio.Model
         public string CustomEventType { get; set; }
 
         /// <summary>
-        /// Meta&#39;s event_source_id — the pixel the rule reads from.
+        /// Meta&#39;s event_source_id, the pixel the rule reads from.
         /// </summary>
-        /// <value>Meta&#39;s event_source_id — the pixel the rule reads from.</value>
+        /// <value>Meta&#39;s event_source_id, the pixel the rule reads from.</value>
         [DataMember(Name = "pixelId", EmitDefaultValue = true)]
         public string PixelId { get; set; }
 

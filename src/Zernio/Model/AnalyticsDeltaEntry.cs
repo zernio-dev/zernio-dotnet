@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="AnalyticsDeltaEntry" /> class.
         /// </summary>
         /// <param name="postId">External post ID. The same identifier as &#x60;posts[]._id&#x60; in GET /v1/analytics. (required).</param>
-        /// <param name="accountId">Social account this post was published through (required).</param>
+        /// <param name="accountId">Account this post was published through (required).</param>
         /// <param name="profileId">Profile the account belongs to (required).</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="platformPostId">Platform-side post ID (for example the YouTube video ID) (required).</param>
@@ -101,9 +101,9 @@ namespace Zernio.Model
         public string PostId { get; set; }
 
         /// <summary>
-        /// Social account this post was published through
+        /// Account this post was published through
         /// </summary>
-        /// <value>Social account this post was published through</value>
+        /// <value>Account this post was published through</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

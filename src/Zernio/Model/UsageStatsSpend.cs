@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Metronome users only. Current-period spend summary.
+    /// Usage-based billing only. Current-period spend summary.
     /// </summary>
     [DataContract(Name = "UsageStats_spend")]
     public partial class UsageStatsSpend : IValidatableObject
@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="currentPeriodCents">Total current-period spend in cents (all products combined)..</param>
         /// <param name="creditsRemainingCents">Free-tier credit remaining in cents. Applied before any charge..</param>
-        /// <param name="xSpendCents">Current-period X/Twitter API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. .</param>
+        /// <param name="xSpendCents">Current-period X API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. .</param>
         /// <param name="xSpendLimitCents">Monthly X spend cap set by the account owner, or null if no cap. When current X spend hits this cap, analytics and inbox sync are auto-paused for X accounts. Publishing is never blocked by this cap. .</param>
         public UsageStatsSpend(int currentPeriodCents = default, int creditsRemainingCents = default, int xSpendCents = default, int? xSpendLimitCents = default)
         {
@@ -63,9 +63,9 @@ namespace Zernio.Model
         public int CreditsRemainingCents { get; set; }
 
         /// <summary>
-        /// Current-period X/Twitter API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. 
+        /// Current-period X API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. 
         /// </summary>
-        /// <value>Current-period X/Twitter API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. </value>
+        /// <value>Current-period X API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. </value>
         [DataMember(Name = "xSpendCents", EmitDefaultValue = false)]
         public int XSpendCents { get; set; }
 

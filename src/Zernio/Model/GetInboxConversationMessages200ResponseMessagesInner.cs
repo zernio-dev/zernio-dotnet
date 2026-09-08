@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class GetInboxConversationMessages200ResponseMessagesInner : IValidatableObject
     {
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X messages.
+        /// X verified badge type. Only present for X messages.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X messages.</value>
+        /// <value>X verified badge type. Only present for X messages.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SenderVerifiedTypeEnum
         {
@@ -67,9 +67,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// X/Twitter verified badge type. Only present for Twitter/X messages.
+        /// X verified badge type. Only present for X messages.
         /// </summary>
-        /// <value>X/Twitter verified badge type. Only present for Twitter/X messages.</value>
+        /// <value>X verified badge type. Only present for X messages.</value>
         [DataMember(Name = "senderVerifiedType", EmitDefaultValue = true)]
         public SenderVerifiedTypeEnum? SenderVerifiedType { get; set; }
         /// <summary>
@@ -209,7 +209,7 @@ namespace Zernio.Model
         /// <param name="message">message.</param>
         /// <param name="senderId">senderId.</param>
         /// <param name="senderName">senderName.</param>
-        /// <param name="senderVerifiedType">X/Twitter verified badge type. Only present for Twitter/X messages..</param>
+        /// <param name="senderVerifiedType">X verified badge type. Only present for X messages..</param>
         /// <param name="direction">direction.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="attachments">attachments.</param>

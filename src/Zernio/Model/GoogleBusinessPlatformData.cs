@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Text and single image only (no videos). Supports STANDARD, EVENT, OFFER, and ALERT post types. Posts appear on GBP, Google Search, and Maps. Use locationId for multi-location posting. Schedule dates accept both ISO 8601 strings (e.g. &#39;2026-04-15T09:00:00Z&#39;) and Google&#39;s native {year, month, day} objects.
+    /// Text and single image only (no videos). Supports STANDARD, EVENT, OFFER, and ALERT post types. Posts appear on Google Business Profile, Google Search, and Maps. Use locationId for multi-location posting. Schedule dates accept both ISO 8601 strings (e.g. &#39;2026-04-15T09:00:00Z&#39;) and Google&#39;s native {year, month, day} objects.
     /// </summary>
     [DataContract(Name = "GoogleBusinessPlatformData")]
     public partial class GoogleBusinessPlatformData : IValidatableObject
@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GoogleBusinessPlatformData" /> class.
         /// </summary>
-        /// <param name="locationId">Target GBP location ID (e.g. \&quot;locations/123456789\&quot;). If omitted, uses the default location. Use GET /v1/accounts/{id}/gmb-locations to list locations..</param>
+        /// <param name="locationId">Target Google Business Profile location ID (e.g. \&quot;locations/123456789\&quot;). If omitted, uses the default location. Use GET /v1/accounts/{id}/gmb-locations to list locations..</param>
         /// <param name="languageCode">BCP 47 language code (e.g. \&quot;en\&quot;, \&quot;de\&quot;, \&quot;es\&quot;). Auto-detected if omitted. Set explicitly for short or mixed-language posts..</param>
         /// <param name="topicType">Post type. STANDARD is a regular update. EVENT requires the event object. OFFER requires the offer object. Defaults to STANDARD if omitted. (default to TopicTypeEnum.STANDARD).</param>
         /// <param name="callToAction">callToAction.</param>
@@ -86,9 +86,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Target GBP location ID (e.g. \&quot;locations/123456789\&quot;). If omitted, uses the default location. Use GET /v1/accounts/{id}/gmb-locations to list locations.
+        /// Target Google Business Profile location ID (e.g. \&quot;locations/123456789\&quot;). If omitted, uses the default location. Use GET /v1/accounts/{id}/gmb-locations to list locations.
         /// </summary>
-        /// <value>Target GBP location ID (e.g. \&quot;locations/123456789\&quot;). If omitted, uses the default location. Use GET /v1/accounts/{id}/gmb-locations to list locations.</value>
+        /// <value>Target Google Business Profile location ID (e.g. \&quot;locations/123456789\&quot;). If omitted, uses the default location. Use GET /v1/accounts/{id}/gmb-locations to list locations.</value>
         [DataMember(Name = "locationId", EmitDefaultValue = false)]
         public string LocationId { get; set; }
 

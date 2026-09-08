@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="country">country.</param>
         /// <param name="numberType">numberType.</param>
-        /// <param name="supported">false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification) — porting it needs support..</param>
+        /// <param name="supported">false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification). Porting it needs support..</param>
         /// <param name="fields">fields.</param>
         public GetPhoneNumberPortInRequirements200Response(string country = default, string numberType = default, bool supported = default, List<GetPhoneNumberPortInRequirements200ResponseFieldsInner> fields = default)
         {
@@ -61,9 +61,9 @@ namespace Zernio.Model
         public string NumberType { get; set; }
 
         /// <summary>
-        /// false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification) — porting it needs support.
+        /// false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification). Porting it needs support.
         /// </summary>
-        /// <value>false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification) — porting it needs support.</value>
+        /// <value>false when the combination includes a step that can&#39;t be completed through the API (e.g. an in-person identity verification). Porting it needs support.</value>
         [DataMember(Name = "supported", EmitDefaultValue = true)]
         public bool Supported { get; set; }
 

@@ -52,7 +52,7 @@ namespace Zernio.Model
         /// <param name="platformAdSetId">platformAdSetId.</param>
         /// <param name="adSetName">adSetName.</param>
         /// <param name="status">Derived from child ad statuses.</param>
-        /// <param name="createdTime">Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting..</param>
+        /// <param name="createdTime">Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform, but a proxy usable for sorting..</param>
         /// <param name="adCount">adCount.</param>
         /// <param name="budget">budget.</param>
         /// <param name="adSetBudget">adSetBudget.</param>
@@ -100,9 +100,9 @@ namespace Zernio.Model
         public string AdSetName { get; set; }
 
         /// <summary>
-        /// Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting.
+        /// Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform, but a proxy usable for sorting.
         /// </summary>
-        /// <value>Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform — a proxy usable for sorting.</value>
+        /// <value>Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across this ad set&#39;s ads. Not the ad set&#39;s own creation time on the platform, but a proxy usable for sorting.</value>
         [DataMember(Name = "createdTime", EmitDefaultValue = true)]
         public DateTime? CreatedTime { get; set; }
 

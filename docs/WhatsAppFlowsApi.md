@@ -154,7 +154,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -198,7 +198,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -360,7 +360,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var fields = "fields_example";  // string? | Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) (optional) 
 
             try
@@ -405,7 +405,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **fields** | **string?** | Comma-separated fields to return (default: id,name,status,categories,validation_errors,json_version,preview,data_api_version,endpoint_uri) | [optional]  |
 
 ### Return type
@@ -464,7 +464,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -508,7 +508,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -566,7 +566,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var invalidate = true;  // bool? | Mint a fresh preview link (default false) (optional) 
 
             try
@@ -611,7 +611,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **invalidate** | **bool?** | Mint a fresh preview link (default false) | [optional]  |
 
 ### Return type
@@ -669,7 +669,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -712,7 +712,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -746,7 +746,7 @@ catch (ApiException e)
 
 List flow responses
 
-List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with `flowId` — this matches responses whose flow_token carries the `<flowId>:` prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with `flowId`, which matches responses whose flow_token carries the `<flowId>:` prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
 
 ### Example
 ```csharp
@@ -772,7 +772,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var flowId = "flowId_example";  // string? | Scope to responses for this flow (optional) 
             var limit = 50;  // int? | Max responses to return (optional)  (default to 50)
 
@@ -817,7 +817,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **flowId** | **string?** | Scope to responses for this flow | [optional]  |
 | **limit** | **int?** | Max responses to return | [optional] [default to 50] |
 
@@ -850,7 +850,7 @@ catch (ApiException e)
 
 List flow versions
 
-List the flow's version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version's live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+List the flow's version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version's live name and status from Meta. A flow with no lineage returns only itself as version 1. 
 
 ### Example
 ```csharp
@@ -877,7 +877,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -921,7 +921,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -978,7 +978,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1021,7 +1021,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 

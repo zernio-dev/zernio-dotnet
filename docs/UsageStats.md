@@ -1,5 +1,5 @@
 # Zernio.Model.UsageStats
-Plan and usage stats. The response shape depends on `billingSystem`:   * Stripe users (default): per-period counters like `usage.uploads` and     `usage.profiles` are returned, scoped by the plan's `limits`.   * Metronome users (usage-based): `limits` are unlimited (-1). The     `usage` block carries connected-account and per-X-operation counts,     and the `spend` block carries current-period costs plus the X cap. 
+Plan and usage stats. The response shape depends on `billingSystem`:   * Stripe users (default): per-period counters like `usage.uploads` and     `usage.profiles` are returned, scoped by the plan's `limits`.   * Usage-based billing users: `limits` are unlimited (-1). The     `usage` block carries connected-account and per-X-operation counts,     and the `spend` block carries current-period costs plus the X cap. 
 
 ## Properties
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **HasAccess** | **bool** | True if the account is in good standing. False for past-due/unpaid/paused subscriptions. | [optional] 
 **CustomerId** | **string** | Stripe customer ID, when present. | [optional] 
 **IsInvitedUser** | **bool** | True if this is a team member; limits/usage reflect the account owner. | [optional] 
-**AutoUpgradeEnabled** | **bool** | Stripe-only. Always false for Metronome users. | [optional] 
+**AutoUpgradeEnabled** | **bool** | Stripe-only. Always false for accounts on usage-based billing. | [optional] 
 **Limits** | [**UsageStatsLimits**](UsageStatsLimits.md) |  | [optional] 
 **Usage** | [**UsageStatsUsage**](UsageStatsUsage.md) |  | [optional] 
 **Spend** | [**UsageStatsSpend**](UsageStatsSpend.md) |  | [optional] 

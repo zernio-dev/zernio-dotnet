@@ -36,20 +36,20 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListInboxReviews200ResponseDataInner" /> class.
         /// </summary>
-        /// <param name="id">Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location..</param>
+        /// <param name="id">Review identifier. For Google Business Profile this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location..</param>
         /// <param name="platform">platform.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="accountUsername">accountUsername.</param>
-        /// <param name="locationId">Bare GBP location id the review belongs to. Google Business only; absent for other platforms..</param>
-        /// <param name="locationName">Human-readable GBP location display name. Google Business only; absent for other platforms..</param>
+        /// <param name="locationId">Bare Google Business Profile location id the review belongs to. Google Business Profile only; absent for other platforms..</param>
+        /// <param name="locationName">Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms..</param>
         /// <param name="reviewer">reviewer.</param>
         /// <param name="rating">rating.</param>
         /// <param name="text">text.</param>
         /// <param name="created">created.</param>
         /// <param name="hasReply">hasReply.</param>
-        /// <param name="hasPhotos">Whether the review has at least one photo. Google Business only; always false for other platforms..</param>
-        /// <param name="photoCount">Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms..</param>
-        /// <param name="photos">Photos attached to the review. Google Business only; always an empty array for other platforms..</param>
+        /// <param name="hasPhotos">Whether the review has at least one photo. Google Business Profile only; always false for other platforms..</param>
+        /// <param name="photoCount">Number of photos attached to the review (photos only; videos are not counted). Google Business Profile only; 0 for other platforms..</param>
+        /// <param name="photos">Photos attached to the review. Google Business Profile only; always an empty array for other platforms..</param>
         /// <param name="reply">reply.</param>
         /// <param name="reviewUrl">reviewUrl.</param>
         public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string locationId = default, string locationName = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, bool hasPhotos = default, int photoCount = default, List<ListInboxReviews200ResponseDataInnerPhotosInner> photos = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
@@ -73,9 +73,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.
+        /// Review identifier. For Google Business Profile this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.
         /// </summary>
-        /// <value>Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.</value>
+        /// <value>Review identifier. For Google Business Profile this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -98,16 +98,16 @@ namespace Zernio.Model
         public string AccountUsername { get; set; }
 
         /// <summary>
-        /// Bare GBP location id the review belongs to. Google Business only; absent for other platforms.
+        /// Bare Google Business Profile location id the review belongs to. Google Business Profile only; absent for other platforms.
         /// </summary>
-        /// <value>Bare GBP location id the review belongs to. Google Business only; absent for other platforms.</value>
+        /// <value>Bare Google Business Profile location id the review belongs to. Google Business Profile only; absent for other platforms.</value>
         [DataMember(Name = "locationId", EmitDefaultValue = false)]
         public string LocationId { get; set; }
 
         /// <summary>
-        /// Human-readable GBP location display name. Google Business only; absent for other platforms.
+        /// Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms.
         /// </summary>
-        /// <value>Human-readable GBP location display name. Google Business only; absent for other platforms.</value>
+        /// <value>Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms.</value>
         [DataMember(Name = "locationName", EmitDefaultValue = true)]
         public string LocationName { get; set; }
 
@@ -142,23 +142,23 @@ namespace Zernio.Model
         public bool HasReply { get; set; }
 
         /// <summary>
-        /// Whether the review has at least one photo. Google Business only; always false for other platforms.
+        /// Whether the review has at least one photo. Google Business Profile only; always false for other platforms.
         /// </summary>
-        /// <value>Whether the review has at least one photo. Google Business only; always false for other platforms.</value>
+        /// <value>Whether the review has at least one photo. Google Business Profile only; always false for other platforms.</value>
         [DataMember(Name = "hasPhotos", EmitDefaultValue = true)]
         public bool HasPhotos { get; set; }
 
         /// <summary>
-        /// Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms.
+        /// Number of photos attached to the review (photos only; videos are not counted). Google Business Profile only; 0 for other platforms.
         /// </summary>
-        /// <value>Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms.</value>
+        /// <value>Number of photos attached to the review (photos only; videos are not counted). Google Business Profile only; 0 for other platforms.</value>
         [DataMember(Name = "photoCount", EmitDefaultValue = false)]
         public int PhotoCount { get; set; }
 
         /// <summary>
-        /// Photos attached to the review. Google Business only; always an empty array for other platforms.
+        /// Photos attached to the review. Google Business Profile only; always an empty array for other platforms.
         /// </summary>
-        /// <value>Photos attached to the review. Google Business only; always an empty array for other platforms.</value>
+        /// <value>Photos attached to the review. Google Business Profile only; always an empty array for other platforms.</value>
         [DataMember(Name = "photos", EmitDefaultValue = false)]
         public List<ListInboxReviews200ResponseDataInnerPhotosInner> Photos { get; set; }
 

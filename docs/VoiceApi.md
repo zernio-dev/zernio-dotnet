@@ -122,7 +122,7 @@ catch (ApiException e)
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **403** | SIP trunking is not enabled for this team, or the team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
@@ -135,7 +135,7 @@ catch (ApiException e)
 
 Create a SIP trunk
 
-Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to `sipHost`, and the platform originates outbound calls through `termination.uri` with the digest credentials.  The `digestPassword` is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency's clients) stay isolated. 
+Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to `sipHost`, and the platform originates outbound calls through `termination.uri` with the digest credentials.  The `digestPassword` is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency's clients) stay isolated. 
 
 ### Example
 ```csharp
@@ -226,8 +226,8 @@ catch (ApiException e)
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | SIP trunking is not enabled for this workspace, or the workspace is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
-| **409** | The workspace trunk limit was reached (code invalid_resource_state). |  -  |
+| **403** | SIP trunking is not enabled for this team, or the team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **409** | The team trunk limit was reached (code invalid_resource_state). |  -  |
 | **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -342,7 +342,7 @@ catch (ApiException e)
 
 Mint a browser softphone session
 
-Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the `@telnyx/webrtc` SDK. Once registered, call `POST /v1/voice/calls/web/dial` with the returned `credentialId` to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the `@telnyx/webrtc` SDK. Once registered, call `POST /v1/voice/calls/web/dial` with the returned `credentialId` to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
 
 ### Example
 ```csharp
@@ -1536,7 +1536,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The workspace&#39;s trunks. Passwords are never included. |  -  |
+| **200** | The team&#39;s trunks. Passwords are never included. |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -107,16 +107,16 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="country">country.</param>
         /// <param name="status">status.</param>
-        /// <param name="registrantName">For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC..</param>
+        /// <param name="registrantName">For regulated numbers, who it&#39;s registered for (company or person), set from the submitted KYC..</param>
         /// <param name="telnyxOrderId">Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review..</param>
         /// <param name="monthlyCents">What this number bills each month, in cents. Stamped when the number was bought, so an existing number keeps its price when the rate card changes..</param>
-        /// <param name="hostedByZernio">False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them..</param>
+        /// <param name="hostedByZernio">False for numbers you brought yourself (connected via Meta embedded signup). They live on your own carrier, so SMS/Calls can&#39;t be enabled on them..</param>
         /// <param name="sipTrunkId">SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409..</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="provisionedAt">provisionedAt.</param>
         /// <param name="metaPreverifiedId">metaPreverifiedId.</param>
         /// <param name="metaVerificationStatus">metaVerificationStatus.</param>
-        /// <param name="onfidoVerificationUrl">For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC..</param>
+        /// <param name="onfidoVerificationUrl">For regulated (Tier 3/4) numbers with an Onfido ID-verification step: the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC..</param>
         /// <param name="endUserFirstName">endUserFirstName.</param>
         /// <param name="endUserLastName">endUserLastName.</param>
         /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
@@ -164,9 +164,9 @@ namespace Zernio.Model
         public string Country { get; set; }
 
         /// <summary>
-        /// For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.
+        /// For regulated numbers, who it&#39;s registered for (company or person), set from the submitted KYC.
         /// </summary>
-        /// <value>For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.</value>
+        /// <value>For regulated numbers, who it&#39;s registered for (company or person), set from the submitted KYC.</value>
         [DataMember(Name = "registrantName", EmitDefaultValue = true)]
         public string RegistrantName { get; set; }
 
@@ -185,9 +185,9 @@ namespace Zernio.Model
         public int MonthlyCents { get; set; }
 
         /// <summary>
-        /// False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them.
+        /// False for numbers you brought yourself (connected via Meta embedded signup). They live on your own carrier, so SMS/Calls can&#39;t be enabled on them.
         /// </summary>
-        /// <value>False for numbers you brought yourself (connected via Meta embedded signup) — they live on your own carrier, so SMS/Calls can&#39;t be enabled on them.</value>
+        /// <value>False for numbers you brought yourself (connected via Meta embedded signup). They live on your own carrier, so SMS/Calls can&#39;t be enabled on them.</value>
         [DataMember(Name = "hostedByZernio", EmitDefaultValue = true)]
         public bool HostedByZernio { get; set; }
 
@@ -223,9 +223,9 @@ namespace Zernio.Model
         public string MetaVerificationStatus { get; set; }
 
         /// <summary>
-        /// For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
+        /// For regulated (Tier 3/4) numbers with an Onfido ID-verification step: the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
         /// </summary>
-        /// <value>For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.</value>
+        /// <value>For regulated (Tier 3/4) numbers with an Onfido ID-verification step: the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.</value>
         [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = true)]
         public string OnfidoVerificationUrl { get; set; }
 

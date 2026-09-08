@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadAnalyticsSyncedSync
-Summary of the analytics sync cycle that just completed.
+Summary of the analytics sync cycle that completed.
 
 ## Properties
 

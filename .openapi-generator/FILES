@@ -208,6 +208,7 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
+docs/Conversation.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
@@ -848,6 +849,7 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
+docs/GetWhatsAppSdkConfig200Response.md
 docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
 docs/GetWhatsAppTemplate409Response.md
@@ -1444,6 +1446,9 @@ docs/SendWhatsAppFlowMessageRequestHeader.md
 docs/SequencesApi.md
 docs/SetCommentModerationRequest.md
 docs/SetContactFieldValueRequest.md
+docs/SetConversationThreadControl200Response.md
+docs/SetConversationThreadControl200ResponseControl.md
+docs/SetConversationThreadControlRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
@@ -1785,6 +1790,8 @@ docs/WebhookPayloadCommentCommentAttachment.md
 docs/WebhookPayloadCommentCommentAuthor.md
 docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md
 docs/WebhookPayloadCommentPost.md
+docs/WebhookPayloadConversationControlChanged.md
+docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadExternalPost.md
@@ -2165,6 +2172,7 @@ src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignupRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
+src/Zernio.Test/Model/ConversationTests.cs
 src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
 src/Zernio.Test/Model/ConversionActionTests.cs
 src/Zernio.Test/Model/ConversionDestinationTests.cs
@@ -2794,6 +2802,7 @@ src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponseWabaTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberRemediation200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppSdkConfig200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTemplateTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate409ResponseDetailsTests.cs
@@ -3371,6 +3380,9 @@ src/Zernio.Test/Model/SendWhatsAppFlowMessageRequestHeaderTests.cs
 src/Zernio.Test/Model/SendWhatsAppFlowMessageRequestTests.cs
 src/Zernio.Test/Model/SetCommentModerationRequestTests.cs
 src/Zernio.Test/Model/SetContactFieldValueRequestTests.cs
+src/Zernio.Test/Model/SetConversationThreadControl200ResponseControlTests.cs
+src/Zernio.Test/Model/SetConversationThreadControl200ResponseTests.cs
+src/Zernio.Test/Model/SetConversationThreadControlRequestTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestIceBreakersInnerTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
@@ -3702,6 +3714,8 @@ src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversationControlChangedControlTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversationControlChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
 src/Zernio.Test/Model/WebhookPayloadExternalPostTests.cs
@@ -4093,6 +4107,7 @@ src/Zernio/Model/ConnectWhatsAppEmbeddedSignupRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
 src/Zernio/Model/ConnectedApp.cs
+src/Zernio/Model/Conversation.cs
 src/Zernio/Model/ConversionAction.cs
 src/Zernio/Model/ConversionActionTagSnippetsInner.cs
 src/Zernio/Model/ConversionDestination.cs
@@ -4722,6 +4737,7 @@ src/Zernio/Model/GetWhatsAppNumberInfo200ResponseWaba.cs
 src/Zernio/Model/GetWhatsAppNumberKycForm200Response.cs
 src/Zernio/Model/GetWhatsAppNumberKycForm200ResponseFieldsInner.cs
 src/Zernio/Model/GetWhatsAppNumberRemediation200Response.cs
+src/Zernio/Model/GetWhatsAppSdkConfig200Response.cs
 src/Zernio/Model/GetWhatsAppTemplate200Response.cs
 src/Zernio/Model/GetWhatsAppTemplate200ResponseTemplate.cs
 src/Zernio/Model/GetWhatsAppTemplate409Response.cs
@@ -5299,6 +5315,9 @@ src/Zernio/Model/SendWhatsAppFlowMessageRequestFlowActionPayload.cs
 src/Zernio/Model/SendWhatsAppFlowMessageRequestHeader.cs
 src/Zernio/Model/SetCommentModerationRequest.cs
 src/Zernio/Model/SetContactFieldValueRequest.cs
+src/Zernio/Model/SetConversationThreadControl200Response.cs
+src/Zernio/Model/SetConversationThreadControl200ResponseControl.cs
+src/Zernio/Model/SetConversationThreadControlRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
@@ -5631,6 +5650,8 @@ src/Zernio/Model/WebhookPayloadCommentCommentAttachment.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAuthor.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAuthorInstagramProfile.cs
 src/Zernio/Model/WebhookPayloadCommentPost.cs
+src/Zernio/Model/WebhookPayloadConversationControlChanged.cs
+src/Zernio/Model/WebhookPayloadConversationControlChangedControl.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
 src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
 src/Zernio/Model/WebhookPayloadExternalPost.cs

@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LikeInboxCommentRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
+        /// <param name="accountId">The account ID (required).</param>
         /// <param name="reactionType">(LinkedIn only) Reaction to create. Defaults to LIKE; ignored on other platforms..</param>
         /// <param name="cid">(Bluesky only) Content identifier for the comment.</param>
         public LikeInboxCommentRequest(string accountId = default, ReactionTypeEnum? reactionType = default, string cid = default)
@@ -108,9 +108,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The account ID
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

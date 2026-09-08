@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListPhoneNumbers200Response" /> class.
         /// </summary>
         /// <param name="numbers">numbers.</param>
-        /// <param name="connected">Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. .</param>
+        /// <param name="connected">Connected (bring-your-own) WhatsApp numbers: your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. .</param>
         /// <param name="sandbox">sandbox.</param>
         public ListPhoneNumbers200Response(List<ListPhoneNumbers200ResponseNumbersInner> numbers = default, List<ListPhoneNumbers200ResponseConnectedInner> connected = default, ListPhoneNumbers200ResponseSandbox sandbox = default)
         {
@@ -53,9 +53,9 @@ namespace Zernio.Model
         public List<ListPhoneNumbers200ResponseNumbersInner> Numbers { get; set; }
 
         /// <summary>
-        /// Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. 
+        /// Connected (bring-your-own) WhatsApp numbers: your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. 
         /// </summary>
-        /// <value>Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. </value>
+        /// <value>Connected (bring-your-own) WhatsApp numbers: your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. </value>
         [DataMember(Name = "connected", EmitDefaultValue = false)]
         public List<ListPhoneNumbers200ResponseConnectedInner> Connected { get; set; }
 

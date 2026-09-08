@@ -41,9 +41,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadAdStatusChangedError" /> class.
         /// </summary>
-        /// <param name="code">Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator — &#x60;summary&#x60; and &#x60;message&#x60; are localized.  (required).</param>
-        /// <param name="summary">Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale — display only, do not match on it. .</param>
-        /// <param name="message">Full human-readable error message (Meta &#x60;error_message&#x60;). Localized — display only. .</param>
+        /// <param name="code">Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator, since &#x60;summary&#x60; and &#x60;message&#x60; are localized.  (required).</param>
+        /// <param name="summary">Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale. Display only, do not match on it. .</param>
+        /// <param name="message">Full human-readable error message (Meta &#x60;error_message&#x60;). Localized, display only. .</param>
         public WebhookPayloadAdStatusChangedError(string code = default, string summary = default, string message = default)
         {
             // to ensure "code" is required (not null)
@@ -57,9 +57,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator — &#x60;summary&#x60; and &#x60;message&#x60; are localized. 
+        /// Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator, since &#x60;summary&#x60; and &#x60;message&#x60; are localized. 
         /// </summary>
-        /// <value>Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator — &#x60;summary&#x60; and &#x60;message&#x60; are localized. </value>
+        /// <value>Platform-native error code, forwarded verbatim. For Meta this is &#x60;error_code&#x60; as a string. Use as the stable discriminator, since &#x60;summary&#x60; and &#x60;message&#x60; are localized. </value>
         /*
         <example>2643001</example>
         */
@@ -67,9 +67,9 @@ namespace Zernio.Model
         public string Code { get; set; }
 
         /// <summary>
-        /// Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale — display only, do not match on it. 
+        /// Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale. Display only, do not match on it. 
         /// </summary>
-        /// <value>Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale — display only, do not match on it. </value>
+        /// <value>Short human-readable summary (Meta &#x60;error_summary&#x60;). Localized to the ad-account owner&#39;s Meta locale. Display only, do not match on it. </value>
         /*
         <example>Ad Processing Error</example>
         */
@@ -77,9 +77,9 @@ namespace Zernio.Model
         public string Summary { get; set; }
 
         /// <summary>
-        /// Full human-readable error message (Meta &#x60;error_message&#x60;). Localized — display only. 
+        /// Full human-readable error message (Meta &#x60;error_message&#x60;). Localized, display only. 
         /// </summary>
-        /// <value>Full human-readable error message (Meta &#x60;error_message&#x60;). Localized — display only. </value>
+        /// <value>Full human-readable error message (Meta &#x60;error_message&#x60;). Localized, display only. </value>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 

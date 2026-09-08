@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadPostPlatformAccount
-The connected social account the platform-write went through.
+The connected account the platform-write went through.
 
 ## Properties
 

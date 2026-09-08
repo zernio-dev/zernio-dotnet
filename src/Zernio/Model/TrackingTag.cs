@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// A platform measurement tag — the thing you create, install on a website, send events to, and target ads against. On Meta this is a Pixel (&#x60;kind: pixel&#x60;). The shape is platform-neutral so other platforms (Pinterest Tag, LinkedIn Insight Tag, etc.) can be added without changing the contract; platform-specific fields are simply absent where a platform has no equivalent. Returned by &#x60;listTrackingTags&#x60;, &#x60;createTrackingTag&#x60;, &#x60;getTrackingTag&#x60;, and &#x60;updateTrackingTag&#x60;. 
+    /// A platform measurement tag: the thing you create, install on a website, send events to, and target ads against. On Meta this is a Pixel (&#x60;kind: pixel&#x60;). The shape is platform-neutral so other platforms (Pinterest Tag, LinkedIn Insight Tag, etc.) can be added without changing the contract; platform-specific fields are absent where a platform has no equivalent. Returned by &#x60;listTrackingTags&#x60;, &#x60;createTrackingTag&#x60;, &#x60;getTrackingTag&#x60;, and &#x60;updateTrackingTag&#x60;. 
     /// </summary>
     [DataContract(Name = "TrackingTag")]
     public partial class TrackingTag : IValidatableObject
@@ -128,9 +128,9 @@ namespace Zernio.Model
         /// <param name="code">The base-code &#x60;&lt;script&gt;&#x60; snippet to install on the site. Meta only; populated by &#x60;getTrackingTag&#x60;, omitted from the list view. .</param>
         /// <param name="lastFiredTime">Unix seconds of the last event the tag received, or &#x60;null&#x60; if it never fired. The practical \&quot;is it installed and working\&quot; signal. .</param>
         /// <param name="isUnavailable">Whether the tag is in a broken/unavailable state (Meta &#x60;is_unavailable&#x60;)..</param>
-        /// <param name="installed">Convenience flag derived from &#x60;lastFiredTime&#x60; — has the tag ever fired..</param>
+        /// <param name="installed">Convenience flag derived from &#x60;lastFiredTime&#x60;: has the tag ever fired..</param>
         /// <param name="creationTime">Unix seconds the tag was created..</param>
-        /// <param name="ownerBusinessId">Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. .</param>
+        /// <param name="ownerBusinessId">Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account. Such tags can&#39;t be shared with other ad accounts. .</param>
         /// <param name="ownerAdAccountId">Ad account id (&#x60;act_...&#x60;) that owns the tag, when reported..</param>
         public TrackingTag(string id = default, string name = default, PlatformEnum platform = default, KindEnum kind = default, StatusEnum status = default, string code = default, int? lastFiredTime = default, bool isUnavailable = default, bool installed = default, int creationTime = default, string ownerBusinessId = default, string ownerAdAccountId = default)
         {
@@ -193,9 +193,9 @@ namespace Zernio.Model
         public bool IsUnavailable { get; set; }
 
         /// <summary>
-        /// Convenience flag derived from &#x60;lastFiredTime&#x60; — has the tag ever fired.
+        /// Convenience flag derived from &#x60;lastFiredTime&#x60;: has the tag ever fired.
         /// </summary>
-        /// <value>Convenience flag derived from &#x60;lastFiredTime&#x60; — has the tag ever fired.</value>
+        /// <value>Convenience flag derived from &#x60;lastFiredTime&#x60;: has the tag ever fired.</value>
         [DataMember(Name = "installed", EmitDefaultValue = true)]
         public bool Installed { get; set; }
 
@@ -207,9 +207,9 @@ namespace Zernio.Model
         public int CreationTime { get; set; }
 
         /// <summary>
-        /// Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. 
+        /// Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account. Such tags can&#39;t be shared with other ad accounts. 
         /// </summary>
-        /// <value>Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. </value>
+        /// <value>Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account. Such tags can&#39;t be shared with other ad accounts. </value>
         [DataMember(Name = "ownerBusinessId", EmitDefaultValue = true)]
         public string OwnerBusinessId { get; set; }
 

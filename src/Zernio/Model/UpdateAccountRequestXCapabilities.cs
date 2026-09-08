@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// X/Twitter only. Per-account opt-in toggles for background API operations that incur X API pass-through costs. Each call is billed via Metronome at the X tier rate. Either field can be sent independently; omitted fields are unchanged. 
+    /// X only. Per-account opt-in toggles for background API operations that incur X API pass-through costs. Each call is billed at the X tier rate. Either field can be sent independently; omitted fields are unchanged. 
     /// </summary>
     [DataContract(Name = "updateAccount_request_xCapabilities")]
     public partial class UpdateAccountRequestXCapabilities : IValidatableObject
@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAccountRequestXCapabilities" /> class.
         /// </summary>
-        /// <param name="analytics">Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing — actual rate depends on X&#39;s pricing tier). .</param>
+        /// <param name="analytics">Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing; the actual rate depends on X&#39;s pricing tier). .</param>
         /// <param name="inbox">Enable DM polling and inbox sync for this X account. DM reads are metered as &#x60;dm_event_read&#x60; (~$0.010/call) and DM sends as &#x60;dm_interaction_create&#x60; (~$0.015/call), both billed pass-through. DM sends fire only on user-initiated actions; reads/polling fire only when this flag is true. .</param>
         public UpdateAccountRequestXCapabilities(bool analytics = default, bool inbox = default)
         {
@@ -45,9 +45,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing — actual rate depends on X&#39;s pricing tier). 
+        /// Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing; the actual rate depends on X&#39;s pricing tier). 
         /// </summary>
-        /// <value>Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing — actual rate depends on X&#39;s pricing tier). </value>
+        /// <value>Enable periodic analytics reads (impressions, likes, etc.) for this X account. Each X API call is metered as &#x60;posts_read&#x60; and billed pass-through (~$0.005/call at the time of writing; the actual rate depends on X&#39;s pricing tier). </value>
         [DataMember(Name = "analytics", EmitDefaultValue = true)]
         public bool Analytics { get; set; }
 

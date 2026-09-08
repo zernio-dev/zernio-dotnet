@@ -41,8 +41,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadCommentAccount" /> class.
         /// </summary>
-        /// <param name="id">Social account ID (required).</param>
-        /// <param name="accountId">Social account ID (same as id); canonical field for account filtering..</param>
+        /// <param name="id">Account ID (required).</param>
+        /// <param name="accountId">Account ID (same as id); canonical field for account filtering..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="username">username (required).</param>
         public WebhookPayloadCommentAccount(string id = default, string accountId = default, string platform = default, string username = default)
@@ -69,16 +69,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID
+        /// Account ID
         /// </summary>
-        /// <value>Social account ID</value>
+        /// <value>Account ID</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Social account ID (same as id); canonical field for account filtering.
+        /// Account ID (same as id); canonical field for account filtering.
         /// </summary>
-        /// <value>Social account ID (same as id); canonical field for account filtering.</value>
+        /// <value>Account ID (same as id); canonical field for account filtering.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

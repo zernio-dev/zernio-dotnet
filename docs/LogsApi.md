@@ -48,7 +48,7 @@ namespace Example
             var skip = 0;  // int? | Number of logs to skip (for pagination) (optional)  (default to 0)
             var accountId = "accountId_example";  // string? | Filter by connected account ID (optional) 
             var varEvent = "varEvent_example";  // string? | Filter webhook logs by event (e.g. post.published, message.received) (optional) 
-            var requestId = "requestId_example";  // string? | Correlation ID — returns every log spawned by a single API request (optional) 
+            var requestId = "requestId_example";  // string? | Correlation ID. Returns every log spawned by a single API request (optional) 
             var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Precise start instant (ISO 8601); narrows within the day range (optional) 
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Precise end instant (ISO 8601) (optional) 
             var statusCode = 56;  // int? | Filter by exact HTTP status code (api_request logs) (optional) 
@@ -106,7 +106,7 @@ catch (ApiException e)
 | **skip** | **int?** | Number of logs to skip (for pagination) | [optional] [default to 0] |
 | **accountId** | **string?** | Filter by connected account ID | [optional]  |
 | **varEvent** | **string?** | Filter webhook logs by event (e.g. post.published, message.received) | [optional]  |
-| **requestId** | **string?** | Correlation ID — returns every log spawned by a single API request | [optional]  |
+| **requestId** | **string?** | Correlation ID. Returns every log spawned by a single API request | [optional]  |
 | **from** | **DateTime?** | Precise start instant (ISO 8601); narrows within the day range | [optional]  |
 | **to** | **DateTime?** | Precise end instant (ISO 8601) | [optional]  |
 | **statusCode** | **int?** | Filter by exact HTTP status code (api_request logs) | [optional]  |

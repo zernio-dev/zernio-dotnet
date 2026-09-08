@@ -146,7 +146,7 @@ namespace Zernio.Model
         /// <param name="platformCampaignId">platformCampaignId.</param>
         /// <param name="platform">platform.</param>
         /// <param name="campaignName">campaignName.</param>
-        /// <param name="createdTime">Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced) — a campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;..</param>
+        /// <param name="createdTime">Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced). A campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;..</param>
         /// <param name="status">Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state..</param>
         /// <param name="reviewStatus">reviewStatus.</param>
         /// <param name="platformCampaignStatus">Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;..</param>
@@ -156,7 +156,7 @@ namespace Zernio.Model
         /// <param name="budget">budget.</param>
         /// <param name="campaignBudget">campaignBudget.</param>
         /// <param name="budgetLevel">Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity..</param>
-        /// <param name="isBudgetScheduleEnabled">Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO. (default to false).</param>
+        /// <param name="isBudgetScheduleEnabled">Meta-only. Mirrors Campaign.is_budget_schedule_enabled: true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO. (default to false).</param>
         /// <param name="currency">ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD..</param>
         /// <param name="metrics">metrics.</param>
         /// <param name="platformAdAccountId">platformAdAccountId.</param>
@@ -168,10 +168,10 @@ namespace Zernio.Model
         /// <param name="optimizationGoal">optimizationGoal.</param>
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">Representative bid for the campaign, bubbled up from the top-spending ad set (whole currency units). Meta: populated when the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, which has no bidStrategy gate and where 0 is a real, delivery-stopping value rather than unset..</param>
-        /// <param name="roasAverageFloor">Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x)..</param>
+        /// <param name="roasAverageFloor">Representative ROAS floor for the campaign, bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x)..</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="adSets">adSets.</param>
-        /// <param name="daily">Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it..</param>
+        /// <param name="daily">Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend. Summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it..</param>
         public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, DateTime? createdTime = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, AdTreeCampaignOptimizationGoal optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default, List<AdDailyMetrics> daily = default)
         {
             this.PlatformCampaignId = platformCampaignId;
@@ -218,9 +218,9 @@ namespace Zernio.Model
         public string CampaignName { get; set; }
 
         /// <summary>
-        /// Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced) — a campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.
+        /// Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced). A campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.
         /// </summary>
-        /// <value>Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced) — a campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.</value>
+        /// <value>Earliest &#x60;platformCreatedAt&#x60; (platform ad creation time; falls back to &#x60;createdAt&#x60;, Zernio&#39;s sync time, for ads synced before that field existed) across every ad in the campaign. Not the platform campaign&#39;s own creation time (Meta&#39;s &#x60;Campaign.created_time&#x60; etc. is not synced). A campaign created empty and populated later will show its first ad&#39;s time, not the campaign&#39;s. Usable for sorting \&quot;most recently created\&quot; without the numeric-campaign-id heuristic. Same source as &#x60;AdTreeAdSet.createdTime&#x60; and &#x60;Ad.platformCreatedAt&#x60;; mirrors &#x60;AdCampaign.earliestAd&#x60;.</value>
         [DataMember(Name = "createdTime", EmitDefaultValue = true)]
         public DateTime? CreatedTime { get; set; }
 
@@ -264,9 +264,9 @@ namespace Zernio.Model
         public AdTreeCampaignCampaignBudget CampaignBudget { get; set; }
 
         /// <summary>
-        /// Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.
+        /// Meta-only. Mirrors Campaign.is_budget_schedule_enabled: true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.
         /// </summary>
-        /// <value>Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.</value>
+        /// <value>Meta-only. Mirrors Campaign.is_budget_schedule_enabled: true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.</value>
         [DataMember(Name = "isBudgetScheduleEnabled", EmitDefaultValue = true)]
         public bool IsBudgetScheduleEnabled { get; set; }
 
@@ -336,9 +336,9 @@ namespace Zernio.Model
         public decimal? BidAmount { get; set; }
 
         /// <summary>
-        /// Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).
+        /// Representative ROAS floor for the campaign, bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).
         /// </summary>
-        /// <value>Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).</value>
+        /// <value>Representative ROAS floor for the campaign, bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).</value>
         [DataMember(Name = "roasAverageFloor", EmitDefaultValue = true)]
         public decimal? RoasAverageFloor { get; set; }
 
@@ -355,9 +355,9 @@ namespace Zernio.Model
         public List<AdTreeAdSet> AdSets { get; set; }
 
         /// <summary>
-        /// Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it.
+        /// Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend. Summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it.
         /// </summary>
-        /// <value>Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it.</value>
+        /// <value>Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend. Summing its additive fields reproduces the campaign &#x60;metrics&#x60; total, except &#x60;reach&#x60;: on Meta the range total is de-duplicated, so daily reach does not sum to it.</value>
         [DataMember(Name = "daily", EmitDefaultValue = false)]
         public List<AdDailyMetrics> Daily { get; set; }
 

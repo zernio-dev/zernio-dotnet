@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Peak counts over the window (Metronome COUNT metrics + live active-number count). Null when &#x60;profileId&#x60; / &#x60;accountId&#x60; is set.
+    /// Peak counts over the window (usage-based COUNT metrics + live active-number count). Null when &#x60;profileId&#x60; / &#x60;accountId&#x60; is set.
     /// </summary>
     [DataContract(Name = "UsageMetering_peaks")]
     public partial class UsageMeteringPeaks : IValidatableObject

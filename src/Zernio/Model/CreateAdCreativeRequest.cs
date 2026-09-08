@@ -53,9 +53,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+        /// Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
         /// </summary>
-        /// <value>Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.</value>
+        /// <value>Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MultiAdvertiserEnum
         {
@@ -74,9 +74,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.
+        /// Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.
         /// </summary>
-        /// <value>Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there.</value>
+        /// <value>Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there.</value>
         [DataMember(Name = "multiAdvertiser", EmitDefaultValue = false)]
         public MultiAdvertiserEnum? MultiAdvertiser { get; set; }
         /// <summary>
@@ -99,7 +99,7 @@ namespace Zernio.Model
         /// <param name="carouselCards">carouselCards.</param>
         /// <param name="urlTags">Appended to every outbound URL (e.g. utm_source&#x3D;fb)..</param>
         /// <param name="creativeFeatures">Advantage+ creative enhancements: partial map of Meta creative feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Unspecified features default to OPT_OUT..</param>
-        /// <param name="multiAdvertiser">Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key — Meta rejects it there..</param>
+        /// <param name="multiAdvertiser">Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there..</param>
         public CreateAdCreativeRequest(string accountId = default, string adAccountId = default, string headline = default, string body = default, string description = default, string callToAction = @"LEARN_MORE", string linkUrl = default, string imageUrl = default, string imageHash = default, List<CreateAdCreativeRequestCarouselCardsInner> carouselCards = default, string urlTags = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default)
         {
             // to ensure "accountId" is required (not null)

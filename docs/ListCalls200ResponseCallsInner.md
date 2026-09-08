@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
-**AccountId** | **string** | Owning social account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access. | [optional] 
+**AccountId** | **string** | Owning account. The unified /v1/calls/{id} detail + recording endpoints work for any channel; the channel-specific endpoints remain for account-scoped access. | [optional] 
 **ConversationId** | **string** | Inbox conversation with the counterparty, when one exists. | [optional] 
 **ContactId** | **string** | CRM Contact for the counterparty, when resolved. | [optional] 
 **Channel** | **string** |  | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **TransferredAt** | **DateTime** | When the call was blind-transferred (POST /v1/voice/calls/{id}/transfer). | [optional] 
 **DurationSeconds** | **int** |  | [optional] 
 **EndReason** | **string** |  | [optional] 
-**HangupCause** | **string** | Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit) — the actual motive when endReason is a coarse bucket. | [optional] 
+**HangupCause** | **string** | Raw carrier hangup cause behind endReason (e.g. normal_clearing, not_found, time_limit). The actual motive when endReason is a coarse bucket. | [optional] 
 **SipHangupCause** | **string** | SIP response code that ended the call, when SIP-signalled (e.g. &#39;403&#39;, &#39;488&#39;). The real failure reason for SIP legs. | [optional] 
 **CallErrors** | [**List&lt;CallRecordCallErrorsInner&gt;**](CallRecordCallErrorsInner.md) | Per-call failure log (dial failed, bridge failed, recording error). | [optional] 
 **RecordingUrl** | **string** | May be expired. Resolve a fresh playable URL via GET /v1/calls/{id}/recording (any channel). | [optional] 

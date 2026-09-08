@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EditInboxCommentRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
+        /// <param name="accountId">The account ID (required).</param>
         /// <param name="platform">Only Reddit supports editing a comment (required).</param>
         /// <param name="content">The new comment body (required).</param>
         public EditInboxCommentRequest(string accountId = default, PlatformEnum platform = default, string content = default)
@@ -83,9 +83,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The account ID
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// End-user / current-carrier account info that authorizes the port. The losing carrier matches every field against its records and rejects the whole port on a mismatch — enter values exactly as they appear on the carrier bill. 
+    /// End-user / current-carrier account info that authorizes the port. The losing carrier matches every field against its records and rejects the whole port on a mismatch, so enter values exactly as they appear on the carrier bill. 
     /// </summary>
     [DataContract(Name = "createPhoneNumberPortIn_request_endUser")]
     public partial class CreatePhoneNumberPortInRequestEndUser : IValidatableObject
@@ -111,9 +111,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreatePhoneNumberPortInRequestEndUser" /> class.
         /// </summary>
         /// <param name="entityName">Account holder / business name, as on the carrier account. (required).</param>
-        /// <param name="authPersonName">Full name (first + last) of the person authorizing the port — must match the LOA signature. (required).</param>
+        /// <param name="authPersonName">Full name (first + last) of the person authorizing the port, which must match the LOA signature. (required).</param>
         /// <param name="billingPhoneNumber">Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present..</param>
-        /// <param name="accountNumber">Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself). (required).</param>
+        /// <param name="accountNumber">Account number with the losing carrier. Required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself). (required).</param>
         /// <param name="pinPasscode">Transfer PIN. Required for US/CA mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. International porting codes (e.g. the UK PAC) go through &#x60;requirements&#x60; instead..</param>
         /// <param name="taxIdentifier">Company tax id on the carrier account (EU ports, e.g. Spanish CIF)..</param>
         /// <param name="businessIdentifier">Business registration id on the carrier account (EU ports)..</param>
@@ -178,9 +178,9 @@ namespace Zernio.Model
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Full name (first + last) of the person authorizing the port — must match the LOA signature.
+        /// Full name (first + last) of the person authorizing the port, which must match the LOA signature.
         /// </summary>
-        /// <value>Full name (first + last) of the person authorizing the port — must match the LOA signature.</value>
+        /// <value>Full name (first + last) of the person authorizing the port, which must match the LOA signature.</value>
         [DataMember(Name = "authPersonName", IsRequired = true, EmitDefaultValue = true)]
         public string AuthPersonName { get; set; }
 
@@ -192,9 +192,9 @@ namespace Zernio.Model
         public string BillingPhoneNumber { get; set; }
 
         /// <summary>
-        /// Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).
+        /// Account number with the losing carrier. Required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).
         /// </summary>
-        /// <value>Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).</value>
+        /// <value>Account number with the losing carrier. Required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).</value>
         [DataMember(Name = "accountNumber", IsRequired = true, EmitDefaultValue = true)]
         public string AccountNumber { get; set; }
 

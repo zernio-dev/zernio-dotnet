@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdMedia200ResponseMediaInner" /> class.
         /// </summary>
         /// <param name="type">type.</param>
-        /// <param name="url">Direct file URL (signed; short-lived — see description)..</param>
+        /// <param name="url">Direct file URL (signed; short-lived, see description)..</param>
         /// <param name="thumbnailUrl">Video poster URL (videos only)..</param>
         /// <param name="videoId">Meta video id (videos only), reusable as video.id on the create endpoints..</param>
         /// <param name="length">Video length in seconds (videos only)..</param>
@@ -78,9 +78,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Direct file URL (signed; short-lived — see description).
+        /// Direct file URL (signed; short-lived, see description).
         /// </summary>
-        /// <value>Direct file URL (signed; short-lived — see description).</value>
+        /// <value>Direct file URL (signed; short-lived, see description).</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

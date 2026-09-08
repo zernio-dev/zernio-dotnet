@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// <param name="type">Error class for programmatic handling..</param>
         /// <param name="code">Stable machine-readable error code..</param>
         /// <param name="param">The request field that caused the error, when applicable..</param>
-        /// <param name="platform">Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error..</param>
+        /// <param name="platform">Upstream platform (e.g. meta, google, tiktok), present when type is platform_error..</param>
         /// <param name="platformError">Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg. .</param>
         /// <param name="details">Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent..</param>
         public ErrorResponse(string error = default, TypeEnum? type = default, string code = default, string param = default, string platform = default, Dictionary<string, Object> platformError = default, Dictionary<string, Object> details = default)
@@ -133,9 +133,9 @@ namespace Zernio.Model
         public string Param { get; set; }
 
         /// <summary>
-        /// Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error.
+        /// Upstream platform (e.g. meta, google, tiktok), present when type is platform_error.
         /// </summary>
-        /// <value>Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error.</value>
+        /// <value>Upstream platform (e.g. meta, google, tiktok), present when type is platform_error.</value>
         [DataMember(Name = "platform", EmitDefaultValue = false)]
         public string Platform { get; set; }
 

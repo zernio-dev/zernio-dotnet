@@ -39,7 +39,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MentionsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string? | Filter by social account ID (optional) 
+            var accountId = "accountId_example";  // string? | Filter by account ID (optional) 
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
             var sortOrder = "asc";  // string? | Sort order by publishedAt (optional)  (default to desc)
             var limit = 25;  // int? |  (optional)  (default to 25)
@@ -86,7 +86,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string?** | Filter by social account ID | [optional]  |
+| **accountId** | **string?** | Filter by account ID | [optional]  |
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
 | **sortOrder** | **string?** | Sort order by publishedAt | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 25] |
@@ -121,7 +121,7 @@ catch (ApiException e)
 
 Reply to a mention
 
-Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether `commentId` is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   `mediaId` and `commentId`. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass `mediaId` only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram's API.  Note that `GET /v1/inbox/mentions` currently returns LinkedIn mentions only and does not surface Instagram mentions. Source `mediaId` and `commentId` from Instagram's `comments` webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether `commentId` is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   `mediaId` and `commentId`. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass `mediaId` only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram's API.  `GET /v1/inbox/mentions` currently returns LinkedIn mentions only and does not surface Instagram mentions. Source `mediaId` and `commentId` from Instagram's `comments` webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
 
 ### Example
 ```csharp

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Legacy + attach shapes — one ad returned.
+    /// Legacy + attach shapes: one ad returned.
     /// </summary>
     [DataContract(Name = "createStandaloneAd_201_response_oneOf")]
     public partial class CreateStandaloneAd201ResponseOneOf : IValidatableObject

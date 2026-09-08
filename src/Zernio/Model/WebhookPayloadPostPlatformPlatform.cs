@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// The specific platform that just transitioned to a terminal state.
+    /// The specific platform that transitioned to a terminal state.
     /// </summary>
     [DataContract(Name = "WebhookPayloadPostPlatform_platform")]
     public partial class WebhookPayloadPostPlatformPlatform : IValidatableObject

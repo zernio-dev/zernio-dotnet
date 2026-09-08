@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="overview">overview.</param>
         /// <param name="posts">posts.</param>
         /// <param name="pagination">pagination.</param>
-        /// <param name="accounts">Connected social accounts (followerCount and followersLastUpdated only included if user has analytics add-on).</param>
+        /// <param name="accounts">Connected accounts (followerCount and followersLastUpdated only included if user has analytics add-on).</param>
         /// <param name="hasAnalyticsAccess">Whether user has analytics add-on access.</param>
         public AnalyticsListResponse(AnalyticsOverview overview = default, List<AnalyticsListResponsePostsInner> posts = default, Pagination pagination = default, List<SocialAccount> accounts = default, bool hasAnalyticsAccess = default)
         {
@@ -69,9 +69,9 @@ namespace Zernio.Model
         public Pagination Pagination { get; set; }
 
         /// <summary>
-        /// Connected social accounts (followerCount and followersLastUpdated only included if user has analytics add-on)
+        /// Connected accounts (followerCount and followersLastUpdated only included if user has analytics add-on)
         /// </summary>
-        /// <value>Connected social accounts (followerCount and followersLastUpdated only included if user has analytics add-on)</value>
+        /// <value>Connected accounts (followerCount and followersLastUpdated only included if user has analytics add-on)</value>
         [DataMember(Name = "accounts", EmitDefaultValue = false)]
         public List<SocialAccount> Accounts { get; set; }
 

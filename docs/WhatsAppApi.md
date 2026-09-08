@@ -77,7 +77,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var addWhatsAppGroupParticipantsRequest = new AddWhatsAppGroupParticipantsRequest(); // AddWhatsAppGroupParticipantsRequest | 
 
             try
@@ -122,7 +122,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **addWhatsAppGroupParticipantsRequest** | [**AddWhatsAppGroupParticipantsRequest**](AddWhatsAppGroupParticipantsRequest.md) |  |  |
 
 ### Return type
@@ -181,7 +181,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var approveWhatsAppGroupJoinRequestsRequest = new ApproveWhatsAppGroupJoinRequestsRequest(); // ApproveWhatsAppGroupJoinRequestsRequest | 
 
             try
@@ -226,7 +226,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **approveWhatsAppGroupJoinRequestsRequest** | [**ApproveWhatsAppGroupJoinRequestsRequest**](ApproveWhatsAppGroupJoinRequestsRequest.md) |  |  |
 
 ### Return type
@@ -358,7 +358,7 @@ catch (ApiException e)
 
 Provision CTWA dataset
 
-Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as `metadata.metaCapiDatasetId`.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with `created: false`.  Requires the connected WhatsApp account's token to carry the `whatsapp_business_manage_events` permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as `metadata.metaCapiDatasetId`.  The call is GET-first idempotent: a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with `created: false`.  Requires the connected WhatsApp account's token to carry the `whatsapp_business_manage_events` permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
 
 ### Example
 ```csharp
@@ -449,7 +449,7 @@ catch (ApiException e)
 | **200** | Dataset provisioned (or already present) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
-| **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60; — reconnect required |  -  |
+| **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60;. Reconnect required |  -  |
 | **502** | Upstream Meta failure during provisioning |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -587,7 +587,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -631,7 +631,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -790,7 +790,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -834,7 +834,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -893,7 +893,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var templateName = "templateName_example";  // string | Template name (the family).
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var language = "language_example";  // string? | Delete only this language variant (e.g. es). Omit to delete the whole family. (optional) 
 
             try
@@ -938,7 +938,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **templateName** | **string** | Template name (the family). |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **language** | **string?** | Delete only this language variant (e.g. es). Omit to delete the whole family. | [optional]  |
 
 ### Return type
@@ -1000,7 +1000,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var templateId = "templateId_example";  // string | Meta template id (numeric).
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1044,7 +1044,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **templateId** | **string** | Meta template id (numeric). |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -1305,7 +1305,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var limit = 56;  // int? | Page size. (optional) 
             var after = "after_example";  // string? | Cursor from a previous response's `nextCursor`. (optional) 
 
@@ -1350,7 +1350,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **limit** | **int?** | Page size. | [optional]  |
 | **after** | **string?** | Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. | [optional]  |
 
@@ -1409,7 +1409,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1452,7 +1452,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -1484,7 +1484,7 @@ catch (ApiException e)
 
 Get CTWA conversions dataset
 
-Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored `metadata.metaCapiDatasetId` — never hits Meta, never creates a dataset. Use this to detect whether `POST /v1/whatsapp/conversions` is configured for an account. 
+Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored `metadata.metaCapiDatasetId`, never hits Meta, never creates a dataset. Use this to detect whether `POST /v1/whatsapp/conversions` is configured for an account. 
 
 ### Example
 ```csharp
@@ -1510,7 +1510,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1553,7 +1553,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -1610,7 +1610,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1653,7 +1653,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -1712,7 +1712,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -1756,7 +1756,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -1919,7 +1919,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var templateName = "templateName_example";  // string | Template name (the family).
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var language = "language_example";  // string? | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. (optional) 
 
             try
@@ -1964,7 +1964,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **templateName** | **string** | Template name (the family). |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **language** | **string?** | Language code of the variant (e.g. en_US, es, pt_BR). Required when the family has several languages. | [optional]  |
 
 ### Return type
@@ -2026,7 +2026,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var templateId = "templateId_example";  // string | Meta template id (numeric).
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -2070,7 +2070,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **templateId** | **string** | Meta template id (numeric). |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -2129,7 +2129,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var name = "name_example";  // string? | Exact template name; returns every language variant of that family. (optional) 
             var language = "language_example";  // string? | Exact language code (e.g. en_US). (optional) 
             var status = "APPROVED";  // string? |  (optional) 
@@ -2175,7 +2175,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **name** | **string?** | Exact template name; returns every language variant of that family. | [optional]  |
 | **language** | **string?** | Exact language code (e.g. en_US). | [optional]  |
 | **status** | **string?** |  | [optional]  |
@@ -2236,7 +2236,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -2279,7 +2279,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -2336,7 +2336,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -2379,7 +2379,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -2436,7 +2436,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var limit = 50;  // int? | Maximum events to return (optional)  (default to 50)
 
             try
@@ -2480,7 +2480,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **limit** | **int?** | Maximum events to return | [optional] [default to 50] |
 
 ### Return type
@@ -2539,7 +2539,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var limit = 50;  // int? | Max events to return (1-200, default 50). (optional)  (default to 50)
 
             try
@@ -2583,7 +2583,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **limit** | **int?** | Max events to return (1-200, default 50). | [optional] [default to 50] |
 
 ### Return type
@@ -2641,7 +2641,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var limit = 25;  // int? | Max groups to return (optional)  (default to 25)
             var after = "after_example";  // string? | Pagination cursor (optional) 
 
@@ -2686,7 +2686,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **limit** | **int?** | Max groups to return | [optional] [default to 25] |
 | **after** | **string?** | Pagination cursor | [optional]  |
 
@@ -2746,7 +2746,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
 
             try
             {
@@ -2790,7 +2790,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 
 ### Return type
 
@@ -2952,7 +2952,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var rejectWhatsAppGroupJoinRequestsRequest = new RejectWhatsAppGroupJoinRequestsRequest(); // RejectWhatsAppGroupJoinRequestsRequest | 
 
             try
@@ -2997,7 +2997,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **rejectWhatsAppGroupJoinRequestsRequest** | [**RejectWhatsAppGroupJoinRequestsRequest**](RejectWhatsAppGroupJoinRequestsRequest.md) |  |  |
 
 ### Return type
@@ -3056,7 +3056,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var removeWhatsAppGroupParticipantsRequest = new RemoveWhatsAppGroupParticipantsRequest(); // RemoveWhatsAppGroupParticipantsRequest | 
 
             try
@@ -3101,7 +3101,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **removeWhatsAppGroupParticipantsRequest** | [**RemoveWhatsAppGroupParticipantsRequest**](RemoveWhatsAppGroupParticipantsRequest.md) |  |  |
 
 ### Return type
@@ -3665,7 +3665,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var groupId = "groupId_example";  // string | Group ID
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var updateWhatsAppGroupChatRequest = new UpdateWhatsAppGroupChatRequest(); // UpdateWhatsAppGroupChatRequest | 
 
             try
@@ -3710,7 +3710,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **groupId** | **string** | Group ID |  |
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **updateWhatsAppGroupChatRequest** | [**UpdateWhatsAppGroupChatRequest**](UpdateWhatsAppGroupChatRequest.md) |  |  |
 
 ### Return type
@@ -3952,7 +3952,7 @@ catch (ApiException e)
 
 Upload profile picture
 
-Upload a new profile picture for the WhatsApp Business Profile. Uses Meta's resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (`multipart/form-data` with `file`) or as a download URL (`application/json` with `url`) — with a URL we fetch the image server-side and upload the bytes for you. Meta's profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
+Upload a new profile picture for the WhatsApp Business Profile. Uses Meta's resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (`multipart/form-data` with `file`) or as a download URL (`application/json` with `url`). With a URL we fetch the image server-side and upload the bytes for you. Meta's profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
 
 ### Example
 ```csharp
@@ -3978,7 +3978,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var accountId = "accountId_example";  // string | WhatsApp account ID
             var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter | Image file (JPEG or PNG, max 5MB, recommended 640x640)
 
             try
@@ -4022,7 +4022,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | WhatsApp social account ID |  |
+| **accountId** | **string** | WhatsApp account ID |  |
 | **file** | **FileParameter****FileParameter** | Image file (JPEG or PNG, max 5MB, recommended 640x640) |  |
 
 ### Return type

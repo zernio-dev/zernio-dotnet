@@ -38,9 +38,9 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="messageId">Platform message ID (dm_event_id).</param>
         /// <param name="conversationId">Platform conversation ID (dm_conversation_id). For WhatsApp, this is Zernio&#39;s internal conversation id (24-character hex) which matches the id returned by the list-conversations endpoint and the conversationId in the message.received and conversation.started webhooks; use it to correlate the created thread with inbound events..</param>
-        /// <param name="participantId">Twitter numeric user ID of the recipient.</param>
+        /// <param name="participantId">X numeric user ID of the recipient.</param>
         /// <param name="participantName">Display name of the recipient.</param>
-        /// <param name="participantUsername">Twitter username of the recipient.</param>
+        /// <param name="participantUsername">X username of the recipient.</param>
         public CreateInboxConversation201ResponseData(string messageId = default, string conversationId = default, string participantId = default, string participantName = default, string participantUsername = default)
         {
             this.MessageId = messageId;
@@ -65,9 +65,9 @@ namespace Zernio.Model
         public string ConversationId { get; set; }
 
         /// <summary>
-        /// Twitter numeric user ID of the recipient
+        /// X numeric user ID of the recipient
         /// </summary>
-        /// <value>Twitter numeric user ID of the recipient</value>
+        /// <value>X numeric user ID of the recipient</value>
         [DataMember(Name = "participantId", EmitDefaultValue = false)]
         public string ParticipantId { get; set; }
 
@@ -79,9 +79,9 @@ namespace Zernio.Model
         public string ParticipantName { get; set; }
 
         /// <summary>
-        /// Twitter username of the recipient
+        /// X username of the recipient
         /// </summary>
-        /// <value>Twitter username of the recipient</value>
+        /// <value>X username of the recipient</value>
         [DataMember(Name = "participantUsername", EmitDefaultValue = true)]
         public string ParticipantUsername { get; set; }
 

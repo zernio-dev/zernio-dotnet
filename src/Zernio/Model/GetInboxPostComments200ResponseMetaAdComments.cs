@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// (Facebook/Instagram only) Present when this post has no organic comments but is a boosted post — the engagement lives on the ad. Use the ad-comments endpoint instead.
+    /// (Facebook/Instagram only) Present when this post has no organic comments but is a boosted post: the engagement lives on the ad. Use the ad-comments endpoint instead.
     /// </summary>
     [DataContract(Name = "getInboxPostComments_200_response_meta_adComments")]
     public partial class GetInboxPostComments200ResponseMetaAdComments : IValidatableObject

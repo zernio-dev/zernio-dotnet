@@ -98,7 +98,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListAdAudiences200ResponseAudiencesInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
-        /// <param name="accountId">Social account the audience was created against. Returned for saved_targeting items..</param>
+        /// <param name="accountId">Account the audience was created against. Returned for saved_targeting items..</param>
         /// <param name="platformAudienceId">platformAudienceId.</param>
         /// <param name="name">name.</param>
         /// <param name="description">description.</param>
@@ -128,9 +128,9 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Social account the audience was created against. Returned for saved_targeting items.
+        /// Account the audience was created against. Returned for saved_targeting items.
         /// </summary>
-        /// <value>Social account the audience was created against. Returned for saved_targeting items.</value>
+        /// <value>Account the audience was created against. Returned for saved_targeting items.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

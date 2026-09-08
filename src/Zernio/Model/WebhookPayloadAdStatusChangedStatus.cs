@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadAdStatusChangedStatus" /> class.
         /// </summary>
-        /// <param name="raw">Platform-native status string, forwarded verbatim. For Meta this is &#x60;status_name&#x60; from &#x60;in_process_ad_objects&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;, &#x60;DISAPPROVED&#x60;), or &#x60;WITH_ISSUES&#x60; when sourced from &#x60;with_issues_ad_objects&#x60;. Not constrained by an &#x60;enum&#x60; — Meta may add new values.  (required).</param>
+        /// <param name="raw">Platform-native status string, forwarded verbatim. For Meta this is &#x60;status_name&#x60; from &#x60;in_process_ad_objects&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;, &#x60;DISAPPROVED&#x60;), or &#x60;WITH_ISSUES&#x60; when sourced from &#x60;with_issues_ad_objects&#x60;. Not constrained by an &#x60;enum&#x60;, because Meta may add new values.  (required).</param>
         public WebhookPayloadAdStatusChangedStatus(string raw = default)
         {
             // to ensure "raw" is required (not null)
@@ -53,9 +53,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Platform-native status string, forwarded verbatim. For Meta this is &#x60;status_name&#x60; from &#x60;in_process_ad_objects&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;, &#x60;DISAPPROVED&#x60;), or &#x60;WITH_ISSUES&#x60; when sourced from &#x60;with_issues_ad_objects&#x60;. Not constrained by an &#x60;enum&#x60; — Meta may add new values. 
+        /// Platform-native status string, forwarded verbatim. For Meta this is &#x60;status_name&#x60; from &#x60;in_process_ad_objects&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;, &#x60;DISAPPROVED&#x60;), or &#x60;WITH_ISSUES&#x60; when sourced from &#x60;with_issues_ad_objects&#x60;. Not constrained by an &#x60;enum&#x60;, because Meta may add new values. 
         /// </summary>
-        /// <value>Platform-native status string, forwarded verbatim. For Meta this is &#x60;status_name&#x60; from &#x60;in_process_ad_objects&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;, &#x60;DISAPPROVED&#x60;), or &#x60;WITH_ISSUES&#x60; when sourced from &#x60;with_issues_ad_objects&#x60;. Not constrained by an &#x60;enum&#x60; — Meta may add new values. </value>
+        /// <value>Platform-native status string, forwarded verbatim. For Meta this is &#x60;status_name&#x60; from &#x60;in_process_ad_objects&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;, &#x60;DISAPPROVED&#x60;), or &#x60;WITH_ISSUES&#x60; when sourced from &#x60;with_issues_ad_objects&#x60;. Not constrained by an &#x60;enum&#x60;, because Meta may add new values. </value>
         /*
         <example>ACTIVE</example>
         */

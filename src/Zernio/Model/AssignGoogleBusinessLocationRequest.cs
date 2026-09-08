@@ -42,8 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="AssignGoogleBusinessLocationRequest" /> class.
         /// </summary>
         /// <param name="profileId">Target profile to connect the location onto. (required).</param>
-        /// <param name="selectedLocationId">The Google Business location ID to assign (e.g. \&quot;locations/123\&quot;). (required).</param>
-        /// <param name="googleAccountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the location (from GET gmb-locations). When provided the location is resolved directly instead of by enumerating the account, required for accounts with many locations. .</param>
+        /// <param name="selectedLocationId">The Google Business Profile location ID to assign (e.g. \&quot;locations/123\&quot;). (required).</param>
+        /// <param name="googleAccountId">Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the location (from GET gmb-locations). When provided the location is resolved directly instead of by enumerating the account, required for accounts with many locations. .</param>
         public AssignGoogleBusinessLocationRequest(string profileId = default, string selectedLocationId = default, string googleAccountId = default)
         {
             // to ensure "profileId" is required (not null)
@@ -69,16 +69,16 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
-        /// The Google Business location ID to assign (e.g. \&quot;locations/123\&quot;).
+        /// The Google Business Profile location ID to assign (e.g. \&quot;locations/123\&quot;).
         /// </summary>
-        /// <value>The Google Business location ID to assign (e.g. \&quot;locations/123\&quot;).</value>
+        /// <value>The Google Business Profile location ID to assign (e.g. \&quot;locations/123\&quot;).</value>
         [DataMember(Name = "selectedLocationId", IsRequired = true, EmitDefaultValue = true)]
         public string SelectedLocationId { get; set; }
 
         /// <summary>
-        /// Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the location (from GET gmb-locations). When provided the location is resolved directly instead of by enumerating the account, required for accounts with many locations. 
+        /// Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the location (from GET gmb-locations). When provided the location is resolved directly instead of by enumerating the account, required for accounts with many locations. 
         /// </summary>
-        /// <value>Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the location (from GET gmb-locations). When provided the location is resolved directly instead of by enumerating the account, required for accounts with many locations. </value>
+        /// <value>Optional but recommended. The Google Business Profile Account resource name (\&quot;accounts/123\&quot;) that owns the location (from GET gmb-locations). When provided the location is resolved directly instead of by enumerating the account, required for accounts with many locations. </value>
         [DataMember(Name = "googleAccountId", EmitDefaultValue = false)]
         public string GoogleAccountId { get; set; }
 

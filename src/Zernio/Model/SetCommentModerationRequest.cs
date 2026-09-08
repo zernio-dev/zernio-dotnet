@@ -95,7 +95,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SetCommentModerationRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
+        /// <param name="accountId">The account ID (required).</param>
         /// <param name="platform">Only YouTube supports comment moderation (required).</param>
         /// <param name="moderationStatus">published approves the comment, rejected removes it, heldForReview returns it to the queue. (required).</param>
         /// <param name="banAuthor">Also ban the comment&#39;s author, auto-rejecting their future comments. Only valid when moderationStatus is \&quot;rejected\&quot;; any other pairing is a 400. .</param>
@@ -113,9 +113,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The account ID
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

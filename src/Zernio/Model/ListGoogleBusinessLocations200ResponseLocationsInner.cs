@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Location ID.</param>
         /// <param name="name">Business name.</param>
-        /// <param name="accountId">Google Business Account ID.</param>
+        /// <param name="accountId">Google Business Profile Account ID.</param>
         /// <param name="accountName">Account name.</param>
         /// <param name="address">Business address.</param>
         /// <param name="category">Business category.</param>
@@ -69,9 +69,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Google Business Account ID
+        /// Google Business Profile Account ID
         /// </summary>
-        /// <value>Google Business Account ID</value>
+        /// <value>Google Business Profile Account ID</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

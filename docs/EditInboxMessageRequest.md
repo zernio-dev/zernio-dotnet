@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | Social account ID | 
+**AccountId** | **string** | Account ID | 
 **Text** | **string** | New message text | [optional] 
 **ReplyMarkup** | [**EditInboxMessageRequestReplyMarkup**](EditInboxMessageRequestReplyMarkup.md) |  | [optional] 
 

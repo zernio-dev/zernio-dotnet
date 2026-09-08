@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | [optional] 
-**Url** | **string** | Direct file URL (signed; short-lived — see description). | [optional] 
+**Url** | **string** | Direct file URL (signed; short-lived, see description). | [optional] 
 **ThumbnailUrl** | **string** | Video poster URL (videos only). | [optional] 
 **VideoId** | **string** | Meta video id (videos only), reusable as video.id on the create endpoints. | [optional] 
 **Length** | **decimal** | Video length in seconds (videos only). | [optional] 

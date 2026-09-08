@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Delete review reply
         /// </summary>
         /// <remarks>
-        /// Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Delete review reply
         /// </summary>
         /// <remarks>
-        /// Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -67,7 +67,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <returns>ListInboxReviews200Response</returns>
         ListInboxReviews200Response ListInboxReviews(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default);
 
@@ -75,7 +75,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -87,7 +87,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <returns>ApiResponse of ListInboxReviews200Response</returns>
         ApiResponse<ListInboxReviews200Response> ListInboxReviewsWithHttpInfo(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default);
         /// <summary>
@@ -97,7 +97,7 @@ namespace Zernio.Api
         /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ReplyToInboxReview200Response</returns>
@@ -110,7 +110,7 @@ namespace Zernio.Api
         /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ReplyToInboxReview200Response</returns>
@@ -128,7 +128,7 @@ namespace Zernio.Api
         /// Delete review reply
         /// </summary>
         /// <remarks>
-        /// Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -141,7 +141,7 @@ namespace Zernio.Api
         /// Delete review reply
         /// </summary>
         /// <remarks>
-        /// Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -153,7 +153,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -165,7 +165,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListInboxReviews200Response</returns>
         System.Threading.Tasks.Task<ListInboxReviews200Response> ListInboxReviewsAsync(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -174,7 +174,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -186,7 +186,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListInboxReviews200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListInboxReviews200Response>> ListInboxReviewsWithHttpInfoAsync(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -197,7 +197,7 @@ namespace Zernio.Api
         /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -211,7 +211,7 @@ namespace Zernio.Api
         /// Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -431,7 +431,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete review reply Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete review reply Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -444,7 +444,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete review reply Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete review reply Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -500,7 +500,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete review reply Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete review reply Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -514,7 +514,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete review reply Delete a reply to a review (Google Business only). Requires accountId in request body.
+        /// Delete review reply Delete a reply to a review (Google Business Profile only). Requires accountId in request body.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reviewId"></param>
@@ -574,7 +574,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -586,7 +586,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <returns>ListInboxReviews200Response</returns>
         public ListInboxReviews200Response ListInboxReviews(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default)
         {
@@ -595,7 +595,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -607,7 +607,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <returns>ApiResponse of ListInboxReviews200Response</returns>
         public Zernio.Client.ApiResponse<ListInboxReviews200Response> ListInboxReviewsWithHttpInfo(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default)
         {
@@ -688,7 +688,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -700,7 +700,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListInboxReviews200Response</returns>
         public async System.Threading.Tasks.Task<ListInboxReviews200Response> ListInboxReviewsAsync(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -710,7 +710,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -722,7 +722,7 @@ namespace Zernio.Api
         /// <param name="sortOrder"> (optional, default to desc)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
-        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListInboxReviews200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListInboxReviews200Response>> ListInboxReviewsWithHttpInfoAsync(string? profileId = default, string? platform = default, int? minRating = default, int? maxRating = default, bool? hasReply = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -810,7 +810,7 @@ namespace Zernio.Api
         /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ReplyToInboxReview200Response</returns>
@@ -824,7 +824,7 @@ namespace Zernio.Api
         /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ReplyToInboxReview200Response</returns>
@@ -885,7 +885,7 @@ namespace Zernio.Api
         /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -900,7 +900,7 @@ namespace Zernio.Api
         /// Reply to review Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reviewId">Review ID (URL-encoded for Google Business)</param>
+        /// <param name="reviewId">Review ID (URL-encoded for Google Business Profile)</param>
         /// <param name="replyToInboxReviewRequest"></param>
         /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

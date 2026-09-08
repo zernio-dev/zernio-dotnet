@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// Create a SIP trunk
         /// </summary>
         /// <remarks>
-        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Create a SIP trunk
         /// </summary>
         /// <remarks>
-        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -99,7 +99,7 @@ namespace Zernio.Api
         /// Mint a browser softphone session
         /// </summary>
         /// <remarks>
-        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>CreateVoiceWebSession200Response</returns>
@@ -109,7 +109,7 @@ namespace Zernio.Api
         /// Mint a browser softphone session
         /// </summary>
         /// <remarks>
-        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of CreateVoiceWebSession200Response</returns>
@@ -458,7 +458,7 @@ namespace Zernio.Api
         /// Create a SIP trunk
         /// </summary>
         /// <remarks>
-        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -470,7 +470,7 @@ namespace Zernio.Api
         /// Create a SIP trunk
         /// </summary>
         /// <remarks>
-        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -506,7 +506,7 @@ namespace Zernio.Api
         /// Mint a browser softphone session
         /// </summary>
         /// <remarks>
-        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -517,7 +517,7 @@ namespace Zernio.Api
         /// Mint a browser softphone session
         /// </summary>
         /// <remarks>
-        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1220,7 +1220,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -1232,7 +1232,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -1282,7 +1282,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -1295,7 +1295,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host — each carries its own credentials and spend cap, so separate destination workspaces (e.g. an agency&#39;s clients) stay isolated. 
+        /// Create a SIP trunk Creates a SIP trunk an external voice platform (Retell, ElevenLabs, Vapi, or any SIP endpoint) can import your Zernio numbers into. The trunk carries both directions: inbound calls on attached numbers are delivered to &#x60;sipHost&#x60;, and the platform originates outbound calls through &#x60;termination.uri&#x60; with the digest credentials.  The &#x60;digestPassword&#x60; is returned only by this call (and by rotate-credentials); store it immediately. Attach any number of numbers to a trunk. Several trunks may point at the same host. Each carries its own credentials and spend cap, so separate destinations (e.g. an agency&#39;s clients) stay isolated. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSipTrunkRequest"></param>
@@ -1490,7 +1490,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>CreateVoiceWebSession200Response</returns>
@@ -1501,7 +1501,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of CreateVoiceWebSession200Response</returns>
@@ -1544,7 +1544,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1556,7 +1556,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not just the handshake). 
+        /// Mint a browser softphone session Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

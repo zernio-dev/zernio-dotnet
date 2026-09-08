@@ -39,13 +39,13 @@ namespace Zernio.Model
         /// <param name="followingCount">Number of accounts being followed.</param>
         /// <param name="mediaCount">Total media posts (Instagram).</param>
         /// <param name="videoCount">Total videos (YouTube, TikTok).</param>
-        /// <param name="tweetCount">Total tweets (X/Twitter).</param>
+        /// <param name="tweetCount">Total tweets (X).</param>
         /// <param name="postsCount">Total posts (Bluesky).</param>
         /// <param name="pinCount">Total pins (Pinterest).</param>
         /// <param name="totalViews">Total channel views (YouTube).</param>
         /// <param name="likesCount">Total likes received (TikTok).</param>
         /// <param name="monthlyViews">Monthly profile views (Pinterest).</param>
-        /// <param name="listedCount">Lists the user appears on (X/Twitter).</param>
+        /// <param name="listedCount">Lists the user appears on (X).</param>
         /// <param name="boardCount">Total boards (Pinterest).</param>
         public AccountWithFollowerStatsAllOfAccountStats(decimal followingCount = default, decimal mediaCount = default, decimal videoCount = default, decimal tweetCount = default, decimal postsCount = default, decimal pinCount = default, decimal totalViews = default, decimal likesCount = default, decimal monthlyViews = default, decimal listedCount = default, decimal boardCount = default)
         {
@@ -84,9 +84,9 @@ namespace Zernio.Model
         public decimal VideoCount { get; set; }
 
         /// <summary>
-        /// Total tweets (X/Twitter)
+        /// Total tweets (X)
         /// </summary>
-        /// <value>Total tweets (X/Twitter)</value>
+        /// <value>Total tweets (X)</value>
         [DataMember(Name = "tweetCount", EmitDefaultValue = false)]
         public decimal TweetCount { get; set; }
 
@@ -126,9 +126,9 @@ namespace Zernio.Model
         public decimal MonthlyViews { get; set; }
 
         /// <summary>
-        /// Lists the user appears on (X/Twitter)
+        /// Lists the user appears on (X)
         /// </summary>
-        /// <value>Lists the user appears on (X/Twitter)</value>
+        /// <value>Lists the user appears on (X)</value>
         [DataMember(Name = "listedCount", EmitDefaultValue = false)]
         public decimal ListedCount { get; set; }
 

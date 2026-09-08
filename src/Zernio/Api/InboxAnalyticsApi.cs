@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -45,7 +45,7 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -57,7 +57,7 @@ namespace Zernio.Api
         /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
-        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -74,7 +74,7 @@ namespace Zernio.Api
         /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
-        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -90,7 +90,7 @@ namespace Zernio.Api
         /// Get inbox response-time stats
         /// </summary>
         /// <remarks>
-        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -105,7 +105,7 @@ namespace Zernio.Api
         /// Get inbox response-time stats
         /// </summary>
         /// <remarks>
-        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -148,7 +148,7 @@ namespace Zernio.Api
         /// Get top accounts by inbox volume
         /// </summary>
         /// <remarks>
-        /// Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -164,7 +164,7 @@ namespace Zernio.Api
         /// Get top accounts by inbox volume
         /// </summary>
         /// <remarks>
-        /// Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -210,7 +210,7 @@ namespace Zernio.Api
         /// List conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -230,7 +230,7 @@ namespace Zernio.Api
         /// List conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -258,7 +258,7 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -272,7 +272,7 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -285,7 +285,7 @@ namespace Zernio.Api
         /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
-        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -303,7 +303,7 @@ namespace Zernio.Api
         /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
-        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -320,7 +320,7 @@ namespace Zernio.Api
         /// Get inbox response-time stats
         /// </summary>
         /// <remarks>
-        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -336,7 +336,7 @@ namespace Zernio.Api
         /// Get inbox response-time stats
         /// </summary>
         /// <remarks>
-        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -382,7 +382,7 @@ namespace Zernio.Api
         /// Get top accounts by inbox volume
         /// </summary>
         /// <remarks>
-        /// Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -399,7 +399,7 @@ namespace Zernio.Api
         /// Get top accounts by inbox volume
         /// </summary>
         /// <remarks>
-        /// Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -448,7 +448,7 @@ namespace Zernio.Api
         /// List conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -469,7 +469,7 @@ namespace Zernio.Api
         /// List conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -699,7 +699,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -713,7 +713,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -769,7 +769,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -784,7 +784,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -844,7 +844,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -862,7 +862,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -937,7 +937,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -956,7 +956,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse: only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1035,7 +1035,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1051,7 +1051,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1116,7 +1116,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1133,7 +1133,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window — received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
+        /// Get inbox response-time stats Time-to-first-response stats. Pairs each received message with the next sent message in the same conversation and reports the delta as both summary statistics and a fixed-bucket histogram suited for the analytics page&#39;s TTR chart.  &#x60;sampleSize&#x60; reflects only conversations that received AND got a reply in the window. Received-but-never-answered conversations are excluded. Compare against /v1/analytics/inbox/volume&#39;s &#x60;summary.received&#x60; to compute reply rate.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1369,7 +1369,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get top accounts by inbox volume Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Get top accounts by inbox volume Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1386,7 +1386,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get top accounts by inbox volume Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Get top accounts by inbox volume Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1456,7 +1456,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get top accounts by inbox volume Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Get top accounts by inbox volume Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1474,7 +1474,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get top accounts by inbox volume Leaderboard of social accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not just an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+        /// Get top accounts by inbox volume Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1727,7 +1727,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1748,7 +1748,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1838,7 +1838,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1860,7 +1860,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing): same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>

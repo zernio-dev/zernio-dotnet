@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Standby'
+        /// </summary>
+        [Fact]
+        public void StandbyTest()
+        {
+            // TODO unit test for the property 'Standby'
+        }
+
+        /// <summary>
         /// Test the property 'QuotedMessageId'
         /// </summary>
         [Fact]

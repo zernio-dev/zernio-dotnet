@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RetweetPostRequest" /> class.
         /// </summary>
-        /// <param name="accountId">The social account ID (required).</param>
+        /// <param name="accountId">The account ID (required).</param>
         /// <param name="tweetId">The ID of the tweet to retweet (required).</param>
         public RetweetPostRequest(string accountId = default, string tweetId = default)
         {
@@ -60,9 +60,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The social account ID
+        /// The account ID
         /// </summary>
-        /// <value>The social account ID</value>
+        /// <value>The account ID</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 

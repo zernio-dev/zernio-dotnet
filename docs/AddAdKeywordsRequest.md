@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | Social account ID (Google Ads) | 
+**AccountId** | **string** | Account ID (Google Ads) | 
 **AdSetId** | **string** | Google ad group ID to add the keywords to | 
 **Keywords** | [**List&lt;AddAdKeywordsRequestKeywordsInner&gt;**](AddAdKeywordsRequestKeywordsInner.md) |  | 
 **Negative** | **bool** | Add as ad-group-level negatives instead of positive keywords | [optional] [default to false]

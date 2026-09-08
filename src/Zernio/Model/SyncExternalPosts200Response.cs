@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SyncExternalPosts200Response" /> class.
         /// </summary>
         /// <param name="synced">synced.</param>
-        /// <param name="found">Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided — whether the post was found..</param>
+        /// <param name="found">Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided: whether the post was found..</param>
         /// <param name="post">post.</param>
         /// <param name="posts">The account&#39;s recent external posts. Present only when no locator was provided..</param>
         public SyncExternalPosts200Response(SyncExternalPosts200ResponseSynced synced = default, bool found = default, ExternalPostSummary post = default, List<ExternalPostSummary> posts = default)
@@ -55,9 +55,9 @@ namespace Zernio.Model
         public SyncExternalPosts200ResponseSynced Synced { get; set; }
 
         /// <summary>
-        /// Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided — whether the post was found.
+        /// Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided: whether the post was found.
         /// </summary>
-        /// <value>Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided — whether the post was found.</value>
+        /// <value>Present only when a locator (&#x60;url&#x60;/&#x60;postId&#x60;) was provided: whether the post was found.</value>
         [DataMember(Name = "found", EmitDefaultValue = true)]
         public bool Found { get; set; }
 

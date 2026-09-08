@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// <param name="link">Destination link (pin URL).</param>
         /// <param name="coverImageUrl">Optional cover image for video pins.</param>
         /// <param name="coverImageKeyFrameTime">Optional key frame time in seconds for derived video cover.</param>
-        /// <param name="isAiGenerated">When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection. (default to false).</param>
+        /// <param name="isAiGenerated">When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false omits the disclosure. Pinterest may still label a Pin on its own detection. (default to false).</param>
         public PinterestPlatformData(string title = default, string boardId = default, string boardSectionId = default, string link = default, string coverImageUrl = default, int coverImageKeyFrameTime = default, bool isAiGenerated = false)
         {
             this.Title = title;
@@ -97,9 +97,9 @@ namespace Zernio.Model
         public int CoverImageKeyFrameTime { get; set; }
 
         /// <summary>
-        /// When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection.
+        /// When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false omits the disclosure. Pinterest may still label a Pin on its own detection.
         /// </summary>
-        /// <value>When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false simply omits the disclosure. Pinterest may still label a Pin on its own detection.</value>
+        /// <value>When true, the Pin is created with Pinterest&#39;s AI_MODIFIED disclosure (ai_disclosures), which shows an \&quot;AI modified\&quot; label. Applies to image and video Pins. Pinterest offers no \&quot;not AI\&quot; value, so false omits the disclosure. Pinterest may still label a Pin on its own detection.</value>
         [DataMember(Name = "isAiGenerated", EmitDefaultValue = true)]
         public bool IsAiGenerated { get; set; }
 

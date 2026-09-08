@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Assign a role to a guild member
         /// </summary>
         /// <remarks>
-        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -46,7 +46,7 @@ namespace Zernio.Api
         /// Assign a role to a guild member
         /// </summary>
         /// <remarks>
-        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -84,7 +84,7 @@ namespace Zernio.Api
         /// Create a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -96,7 +96,7 @@ namespace Zernio.Api
         /// Create a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -375,7 +375,7 @@ namespace Zernio.Api
         /// List Discord guild roles
         /// </summary>
         /// <remarks>
-        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -387,7 +387,7 @@ namespace Zernio.Api
         /// List Discord guild roles
         /// </summary>
         /// <remarks>
-        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -421,7 +421,7 @@ namespace Zernio.Api
         /// List Discord scheduled events
         /// </summary>
         /// <remarks>
-        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -434,7 +434,7 @@ namespace Zernio.Api
         /// List Discord scheduled events
         /// </summary>
         /// <remarks>
-        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -446,7 +446,7 @@ namespace Zernio.Api
         /// Pin a Discord message
         /// </summary>
         /// <remarks>
-        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -459,7 +459,7 @@ namespace Zernio.Api
         /// Pin a Discord message
         /// </summary>
         /// <remarks>
-        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -471,7 +471,7 @@ namespace Zernio.Api
         /// Remove a role from a guild member
         /// </summary>
         /// <remarks>
-        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -485,7 +485,7 @@ namespace Zernio.Api
         /// Remove a role from a guild member
         /// </summary>
         /// <remarks>
-        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -525,7 +525,7 @@ namespace Zernio.Api
         /// Send a Discord Direct Message
         /// </summary>
         /// <remarks>
-        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -536,7 +536,7 @@ namespace Zernio.Api
         /// Send a Discord Direct Message
         /// </summary>
         /// <remarks>
-        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -546,7 +546,7 @@ namespace Zernio.Api
         /// Unpin a Discord message
         /// </summary>
         /// <remarks>
-        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -559,7 +559,7 @@ namespace Zernio.Api
         /// Unpin a Discord message
         /// </summary>
         /// <remarks>
-        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -571,7 +571,7 @@ namespace Zernio.Api
         /// Update a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -584,7 +584,7 @@ namespace Zernio.Api
         /// Update a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -628,7 +628,7 @@ namespace Zernio.Api
         /// Assign a role to a guild member
         /// </summary>
         /// <remarks>
-        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -643,7 +643,7 @@ namespace Zernio.Api
         /// Assign a role to a guild member
         /// </summary>
         /// <remarks>
-        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -684,7 +684,7 @@ namespace Zernio.Api
         /// Create a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -697,7 +697,7 @@ namespace Zernio.Api
         /// Create a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1002,7 +1002,7 @@ namespace Zernio.Api
         /// List Discord guild roles
         /// </summary>
         /// <remarks>
-        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -1015,7 +1015,7 @@ namespace Zernio.Api
         /// List Discord guild roles
         /// </summary>
         /// <remarks>
-        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -1052,7 +1052,7 @@ namespace Zernio.Api
         /// List Discord scheduled events
         /// </summary>
         /// <remarks>
-        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1066,7 +1066,7 @@ namespace Zernio.Api
         /// List Discord scheduled events
         /// </summary>
         /// <remarks>
-        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1079,7 +1079,7 @@ namespace Zernio.Api
         /// Pin a Discord message
         /// </summary>
         /// <remarks>
-        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -1093,7 +1093,7 @@ namespace Zernio.Api
         /// Pin a Discord message
         /// </summary>
         /// <remarks>
-        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -1106,7 +1106,7 @@ namespace Zernio.Api
         /// Remove a role from a guild member
         /// </summary>
         /// <remarks>
-        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1121,7 +1121,7 @@ namespace Zernio.Api
         /// Remove a role from a guild member
         /// </summary>
         /// <remarks>
-        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1164,7 +1164,7 @@ namespace Zernio.Api
         /// Send a Discord Direct Message
         /// </summary>
         /// <remarks>
-        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -1176,7 +1176,7 @@ namespace Zernio.Api
         /// Send a Discord Direct Message
         /// </summary>
         /// <remarks>
-        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -1187,7 +1187,7 @@ namespace Zernio.Api
         /// Unpin a Discord message
         /// </summary>
         /// <remarks>
-        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -1201,7 +1201,7 @@ namespace Zernio.Api
         /// Unpin a Discord message
         /// </summary>
         /// <remarks>
-        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -1214,7 +1214,7 @@ namespace Zernio.Api
         /// Update a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1228,7 +1228,7 @@ namespace Zernio.Api
         /// Update a Discord scheduled event
         /// </summary>
         /// <remarks>
-        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1476,7 +1476,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1491,7 +1491,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1558,7 +1558,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1574,7 +1574,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side: re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1802,7 +1802,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1815,7 +1815,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1871,7 +1871,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -1885,7 +1885,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60;: off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60;: hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60;: hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission. See route header for details. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -3622,7 +3622,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -3635,7 +3635,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -3690,7 +3690,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -3704,7 +3704,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered. Sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId">Discord guild snowflake ID</param>
@@ -3904,7 +3904,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -3918,7 +3918,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -3978,7 +3978,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -3993,7 +3993,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages: they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4057,7 +4057,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4071,7 +4071,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4132,7 +4132,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4147,7 +4147,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent: re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel: hitting it returns 400 (Discord-side).     Caller should unpin one first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4212,7 +4212,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove a role from a guild member Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4227,7 +4227,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove a role from a guild member Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4294,7 +4294,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove a role from a guild member Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4310,7 +4310,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// Remove a role from a guild member Remove one role from one member. Idempotent: removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4548,7 +4548,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -4560,7 +4560,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -4610,7 +4610,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -4623,7 +4623,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts: content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendDiscordDirectMessageRequest"></param>
@@ -4677,7 +4677,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4691,7 +4691,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4752,7 +4752,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4767,7 +4767,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent: unpinning a non-pinned message is a 204 no-op. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId"></param>
@@ -4832,7 +4832,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4846,7 +4846,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4908,7 +4908,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>
@@ -4923,7 +4923,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event. Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="guildId"></param>

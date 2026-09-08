@@ -78,7 +78,7 @@ namespace Zernio.Model
         /// <param name="campaign">campaign.</param>
         /// <param name="messagingBrandName">DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets..</param>
         /// <param name="wizardValues">Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit..</param>
-        /// <param name="resubmitRequestId">Resubmit a registration that was returned for changes — updates it in place instead of creating a new one..</param>
+        /// <param name="resubmitRequestId">Resubmit a registration that was returned for changes. Updates it in place instead of creating a new one..</param>
         /// <param name="tollFree">tollFree.</param>
         public StartSmsRegistrationRequest(RegistrationTypeEnum registrationType = default, List<string> phoneNumbers = default, StartSmsRegistrationRequestBrand brand = default, StartSmsRegistrationRequestCampaign campaign = default, string messagingBrandName = default, Dictionary<string, string> wizardValues = default, string resubmitRequestId = default, StartSmsRegistrationRequestTollFree tollFree = default)
         {
@@ -126,9 +126,9 @@ namespace Zernio.Model
         public Dictionary<string, string> WizardValues { get; set; }
 
         /// <summary>
-        /// Resubmit a registration that was returned for changes — updates it in place instead of creating a new one.
+        /// Resubmit a registration that was returned for changes. Updates it in place instead of creating a new one.
         /// </summary>
-        /// <value>Resubmit a registration that was returned for changes — updates it in place instead of creating a new one.</value>
+        /// <value>Resubmit a registration that was returned for changes. Updates it in place instead of creating a new one.</value>
         [DataMember(Name = "resubmitRequestId", EmitDefaultValue = false)]
         public string ResubmitRequestId { get; set; }
 

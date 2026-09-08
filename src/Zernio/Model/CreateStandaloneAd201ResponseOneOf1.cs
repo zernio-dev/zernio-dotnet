@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Multi-creative shape — N ads returned sharing platformCampaignId / platformAdSetId.
+    /// Multi-creative shape: N ads returned sharing platformCampaignId / platformAdSetId.
     /// </summary>
     [DataContract(Name = "createStandaloneAd_201_response_oneOf_1")]
     public partial class CreateStandaloneAd201ResponseOneOf1 : IValidatableObject

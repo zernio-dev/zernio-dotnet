@@ -5,7 +5,7 @@ Compact public-facing summary derived from Google's `metadata`. Useful for surfa
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Business name as set in GBP | [optional] 
+**Name** | **string** | Business name as set in Google Business Profile | [optional] 
 **PlaceId** | **string** | Google Maps Place ID for this location | [optional] 
 **ReviewUrl** | **string** | Public \&quot;write a review\&quot; URL Google generates for this place | [optional] 
 **MapsUri** | **string** | Public Google Maps URL for this location | [optional] 

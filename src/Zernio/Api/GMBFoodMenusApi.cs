@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Get food menus
         /// </summary>
         /// <remarks>
-        /// Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Get food menus
         /// </summary>
         /// <remarks>
-        /// Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// Update food menus
         /// </summary>
         /// <remarks>
-        /// Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -68,7 +68,7 @@ namespace Zernio.Api
         /// Update food menus
         /// </summary>
         /// <remarks>
-        /// Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -89,7 +89,7 @@ namespace Zernio.Api
         /// Get food menus
         /// </summary>
         /// <remarks>
-        /// Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -102,7 +102,7 @@ namespace Zernio.Api
         /// Get food menus
         /// </summary>
         /// <remarks>
-        /// Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -114,7 +114,7 @@ namespace Zernio.Api
         /// Update food menus
         /// </summary>
         /// <remarks>
-        /// Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -128,7 +128,7 @@ namespace Zernio.Api
         /// Update food menus
         /// </summary>
         /// <remarks>
-        /// Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -351,7 +351,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get food menus Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Get food menus Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -364,7 +364,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get food menus Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Get food menus Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -418,7 +418,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get food menus Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Get food menus Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -432,7 +432,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get food menus Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
+        /// Get food menus Returns food menus for a Google Business Profile location including sections, items, pricing, and dietary info. Only for locations with food menu support.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -490,7 +490,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update food menus Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Update food menus Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -504,7 +504,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update food menus Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Update food menus Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -565,7 +565,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update food menus Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Update food menus Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
@@ -580,7 +580,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update food menus Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
+        /// Update food menus Updates food menus for a Google Business Profile location. Send the full menus array. Use updateMask for partial updates.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>

@@ -53,7 +53,7 @@ namespace Zernio.Api
         /// List users
         /// </summary>
         /// <remarks>
-        /// Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListUsers200Response</returns>
@@ -63,7 +63,7 @@ namespace Zernio.Api
         /// List users
         /// </summary>
         /// <remarks>
-        /// Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListUsers200Response</returns>
@@ -104,7 +104,7 @@ namespace Zernio.Api
         /// List users
         /// </summary>
         /// <remarks>
-        /// Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -115,7 +115,7 @@ namespace Zernio.Api
         /// List users
         /// </summary>
         /// <remarks>
-        /// Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -462,7 +462,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List users Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// List users Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListUsers200Response</returns>
@@ -473,7 +473,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List users Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// List users Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListUsers200Response</returns>
@@ -516,7 +516,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List users Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// List users Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -528,7 +528,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List users Returns all users in the workspace including roles and profile access. Also returns the currentUserId of the caller.
+        /// List users Returns all users in the team including roles and profile access. Also returns the currentUserId of the caller.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

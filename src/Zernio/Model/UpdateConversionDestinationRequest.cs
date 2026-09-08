@@ -177,7 +177,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="adAccountId">adAccountId (required).</param>
         /// <param name="name">name.</param>
-        /// <param name="enabled">Setting &#x60;false&#x60; is equivalent to calling DELETE — the rule will appear as &#x60;inactive&#x60; afterwards. .</param>
+        /// <param name="enabled">Setting &#x60;false&#x60; is equivalent to calling DELETE: the rule will appear as &#x60;inactive&#x60; afterwards. .</param>
         /// <param name="attributionType">attributionType.</param>
         /// <param name="postClickAttributionWindowSize">365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types. .</param>
         /// <param name="viewThroughAttributionWindowSize">365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types. .</param>
@@ -213,9 +213,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Setting &#x60;false&#x60; is equivalent to calling DELETE — the rule will appear as &#x60;inactive&#x60; afterwards. 
+        /// Setting &#x60;false&#x60; is equivalent to calling DELETE: the rule will appear as &#x60;inactive&#x60; afterwards. 
         /// </summary>
-        /// <value>Setting &#x60;false&#x60; is equivalent to calling DELETE — the rule will appear as &#x60;inactive&#x60; afterwards. </value>
+        /// <value>Setting &#x60;false&#x60; is equivalent to calling DELETE: the rule will appear as &#x60;inactive&#x60; afterwards. </value>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 

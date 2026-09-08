@@ -75,12 +75,12 @@ namespace Zernio.Model
         /// <param name="adjustmentType">adjustmentType (required).</param>
         /// <param name="adjustmentTime">When the adjustment occurred, unix seconds. (required).</param>
         /// <param name="orderId">Transaction ID of the original conversion (the &#x60;eventId&#x60; you sent). Recommended; required for ENHANCEMENT..</param>
-        /// <param name="gclid">Alternative key — the original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT..</param>
+        /// <param name="gclid">Alternative key. The original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT..</param>
         /// <param name="conversionTime">The original conversion&#39;s time, unix seconds. Required when identifying by &#x60;gclid&#x60;..</param>
-        /// <param name="restatementValue">RESTATEMENT only — the corrected TOTAL conversion value..</param>
-        /// <param name="currency">RESTATEMENT only — ISO 4217 currency for &#x60;restatementValue&#x60;..</param>
+        /// <param name="restatementValue">RESTATEMENT only. The corrected TOTAL conversion value..</param>
+        /// <param name="currency">RESTATEMENT only. ISO 4217 currency for &#x60;restatementValue&#x60;..</param>
         /// <param name="user">user.</param>
-        /// <param name="userAgent">ENHANCEMENT only — the original conversion&#39;s user agent (improves match quality)..</param>
+        /// <param name="userAgent">ENHANCEMENT only. The original conversion&#39;s user agent (improves match quality)..</param>
         public AdjustConversionsRequestAdjustmentsInner(AdjustmentTypeEnum adjustmentType = default, decimal adjustmentTime = default, string orderId = default, string gclid = default, decimal conversionTime = default, decimal restatementValue = default, string currency = default, AdjustConversionsRequestAdjustmentsInnerUser user = default, string userAgent = default)
         {
             this.AdjustmentType = adjustmentType;
@@ -109,9 +109,9 @@ namespace Zernio.Model
         public string OrderId { get; set; }
 
         /// <summary>
-        /// Alternative key — the original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT.
+        /// Alternative key. The original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT.
         /// </summary>
-        /// <value>Alternative key — the original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT.</value>
+        /// <value>Alternative key. The original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT.</value>
         [DataMember(Name = "gclid", EmitDefaultValue = false)]
         public string Gclid { get; set; }
 
@@ -123,16 +123,16 @@ namespace Zernio.Model
         public decimal ConversionTime { get; set; }
 
         /// <summary>
-        /// RESTATEMENT only — the corrected TOTAL conversion value.
+        /// RESTATEMENT only. The corrected TOTAL conversion value.
         /// </summary>
-        /// <value>RESTATEMENT only — the corrected TOTAL conversion value.</value>
+        /// <value>RESTATEMENT only. The corrected TOTAL conversion value.</value>
         [DataMember(Name = "restatementValue", EmitDefaultValue = false)]
         public decimal RestatementValue { get; set; }
 
         /// <summary>
-        /// RESTATEMENT only — ISO 4217 currency for &#x60;restatementValue&#x60;.
+        /// RESTATEMENT only. ISO 4217 currency for &#x60;restatementValue&#x60;.
         /// </summary>
-        /// <value>RESTATEMENT only — ISO 4217 currency for &#x60;restatementValue&#x60;.</value>
+        /// <value>RESTATEMENT only. ISO 4217 currency for &#x60;restatementValue&#x60;.</value>
         [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
@@ -143,9 +143,9 @@ namespace Zernio.Model
         public AdjustConversionsRequestAdjustmentsInnerUser User { get; set; }
 
         /// <summary>
-        /// ENHANCEMENT only — the original conversion&#39;s user agent (improves match quality).
+        /// ENHANCEMENT only. The original conversion&#39;s user agent (improves match quality).
         /// </summary>
-        /// <value>ENHANCEMENT only — the original conversion&#39;s user agent (improves match quality).</value>
+        /// <value>ENHANCEMENT only. The original conversion&#39;s user agent (improves match quality).</value>
         [DataMember(Name = "userAgent", EmitDefaultValue = false)]
         public string UserAgent { get; set; }
 

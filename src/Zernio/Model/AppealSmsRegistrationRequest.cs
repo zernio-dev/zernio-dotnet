@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AppealSmsRegistrationRequest" /> class.
         /// </summary>
-        /// <param name="appealReason">Goes verbatim to the carrier reviewer — address the decline reason directly. (required).</param>
+        /// <param name="appealReason">Goes verbatim to the carrier reviewer. Address the decline reason directly. (required).</param>
         /// <param name="messageFlow">Corrected opt-in flow; include a link to the opt-in page/form..</param>
         /// <param name="sample1">sample1.</param>
         /// <param name="sample2">sample2.</param>
@@ -59,9 +59,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Goes verbatim to the carrier reviewer — address the decline reason directly.
+        /// Goes verbatim to the carrier reviewer. Address the decline reason directly.
         /// </summary>
-        /// <value>Goes verbatim to the carrier reviewer — address the decline reason directly.</value>
+        /// <value>Goes verbatim to the carrier reviewer. Address the decline reason directly.</value>
         [DataMember(Name = "appealReason", IsRequired = true, EmitDefaultValue = true)]
         public string AppealReason { get; set; }
 
