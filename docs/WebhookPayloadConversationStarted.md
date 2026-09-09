@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Stable webhook event ID | 
 **Event** | **string** |  | 
-**Conversation** | [**WebhookPayloadConversationStartedConversation**](WebhookPayloadConversationStartedConversation.md) |  | 
+**Conversation** | [**InboxWebhookConversationDetail**](InboxWebhookConversationDetail.md) |  | 
 **Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 
 **StartedAt** | **DateTime** | When the conversation document was created. | 
 **Timestamp** | **DateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. | 

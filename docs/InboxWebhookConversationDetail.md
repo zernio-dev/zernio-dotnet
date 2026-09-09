@@ -1,4 +1,5 @@
-# Zernio.Model.WebhookPayloadConversationStartedConversation
+# Zernio.Model.InboxWebhookConversationDetail
+The conversation object included in conversation lifecycle webhook payloads (conversation.started, conversation.control_changed).
 
 ## Properties
 

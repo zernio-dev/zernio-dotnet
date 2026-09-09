@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Conversation
+    /// The conversation object included in conversation lifecycle webhook payloads (conversation.started, conversation.control_changed).
     /// </summary>
-    [DataContract(Name = "conversation")]
-    public partial class Conversation : IValidatableObject
+    [DataContract(Name = "InboxWebhookConversationDetail")]
+    public partial class InboxWebhookConversationDetail : IValidatableObject
     {
         /// <summary>
         /// Defines Platform
@@ -126,12 +126,12 @@ namespace Zernio.Model
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
         public StatusEnum Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Conversation" /> class.
+        /// Initializes a new instance of the <see cref="InboxWebhookConversationDetail" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Conversation() { }
+        protected InboxWebhookConversationDetail() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Conversation" /> class.
+        /// Initializes a new instance of the <see cref="InboxWebhookConversationDetail" /> class.
         /// </summary>
         /// <param name="id">Internal conversation ID (required).</param>
         /// <param name="platform">platform (required).</param>
@@ -142,25 +142,25 @@ namespace Zernio.Model
         /// <param name="participantPicture">participantPicture.</param>
         /// <param name="status">status (required).</param>
         /// <param name="contactId">Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event. .</param>
-        public Conversation(string id = default, PlatformEnum platform = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default, string contactId = default)
+        public InboxWebhookConversationDetail(string id = default, PlatformEnum platform = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default, string contactId = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for Conversation and cannot be null");
+                throw new ArgumentNullException("id is a required property for InboxWebhookConversationDetail and cannot be null");
             }
             this.Id = id;
             this.Platform = platform;
             // to ensure "platformConversationId" is required (not null)
             if (platformConversationId == null)
             {
-                throw new ArgumentNullException("platformConversationId is a required property for Conversation and cannot be null");
+                throw new ArgumentNullException("platformConversationId is a required property for InboxWebhookConversationDetail and cannot be null");
             }
             this.PlatformConversationId = platformConversationId;
             // to ensure "participantName" is required (not null)
             if (participantName == null)
             {
-                throw new ArgumentNullException("participantName is a required property for Conversation and cannot be null");
+                throw new ArgumentNullException("participantName is a required property for InboxWebhookConversationDetail and cannot be null");
             }
             this.ParticipantName = participantName;
             this.Status = status;
@@ -223,7 +223,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Conversation {\n");
+            sb.Append("class InboxWebhookConversationDetail {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformConversationId: ").Append(PlatformConversationId).Append("\n");

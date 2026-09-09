@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Stable webhook event ID | 
 **Event** | **string** |  | 
-**Conversation** | [**WebhookPayloadConversationStartedConversation**](WebhookPayloadConversationStartedConversation.md) |  | 
+**Conversation** | [**InboxWebhookConversationDetail**](InboxWebhookConversationDetail.md) |  | 
 **Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 
 **Control** | [**WebhookPayloadConversationControlChangedControl**](WebhookPayloadConversationControlChangedControl.md) |  | 
 **ChangedAt** | **DateTime** |  | 

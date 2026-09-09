@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <param name="account">account (required).</param>
         /// <param name="startedAt">When the conversation document was created. (required).</param>
         /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
-        public WebhookPayloadConversationStarted(string id = default, EventEnum varEvent = default, WebhookPayloadConversationStartedConversation conversation = default, InboxWebhookAccount account = default, DateTime startedAt = default, DateTime timestamp = default)
+        public WebhookPayloadConversationStarted(string id = default, EventEnum varEvent = default, InboxWebhookConversationDetail conversation = default, InboxWebhookAccount account = default, DateTime startedAt = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -102,7 +102,7 @@ namespace Zernio.Model
         /// Gets or Sets Conversation
         /// </summary>
         [DataMember(Name = "conversation", IsRequired = true, EmitDefaultValue = true)]
-        public WebhookPayloadConversationStartedConversation Conversation { get; set; }
+        public InboxWebhookConversationDetail Conversation { get; set; }
 
         /// <summary>
         /// Gets or Sets Account

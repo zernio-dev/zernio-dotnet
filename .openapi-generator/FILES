@@ -244,7 +244,6 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
-docs/Conversation.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
@@ -931,6 +930,7 @@ docs/InboxMessageEditAttachment.md
 docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
 docs/InboxWebhookConversation.md
+docs/InboxWebhookConversationDetail.md
 docs/InboxWebhookMessage.md
 docs/InboxWebhookMessageAttachmentsInner.md
 docs/InboxWebhookMessageSender.md
@@ -1873,7 +1873,6 @@ docs/WebhookPayloadCommentPost.md
 docs/WebhookPayloadConversationControlChanged.md
 docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
-docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
@@ -2288,7 +2287,6 @@ src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignupRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
-src/Zernio.Test/Model/ConversationTests.cs
 src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
 src/Zernio.Test/Model/ConversionActionTests.cs
 src/Zernio.Test/Model/ConversionDestinationTests.cs
@@ -2962,6 +2960,7 @@ src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
 src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
 src/Zernio.Test/Model/InboxMessageEditHistoryEntryTests.cs
 src/Zernio.Test/Model/InboxWebhookAccountTests.cs
+src/Zernio.Test/Model/InboxWebhookConversationDetailTests.cs
 src/Zernio.Test/Model/InboxWebhookConversationTests.cs
 src/Zernio.Test/Model/InboxWebhookMessageAttachmentsInnerTests.cs
 src/Zernio.Test/Model/InboxWebhookMessageSenderInstagramProfileTests.cs
@@ -3876,7 +3875,6 @@ src/Zernio.Test/Model/WebhookPayloadCommentPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedControlTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedTests.cs
-src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
 src/Zernio.Test/Model/WebhookPayloadExternalPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadAccountTests.cs
@@ -4303,7 +4301,6 @@ src/Zernio/Model/ConnectWhatsAppEmbeddedSignupRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
 src/Zernio/Model/ConnectedApp.cs
-src/Zernio/Model/Conversation.cs
 src/Zernio/Model/ConversionAction.cs
 src/Zernio/Model/ConversionActionTagSnippetsInner.cs
 src/Zernio/Model/ConversionDestination.cs
@@ -4978,6 +4975,7 @@ src/Zernio/Model/InboxMessageEditAttachment.cs
 src/Zernio/Model/InboxMessageEditHistoryEntry.cs
 src/Zernio/Model/InboxWebhookAccount.cs
 src/Zernio/Model/InboxWebhookConversation.cs
+src/Zernio/Model/InboxWebhookConversationDetail.cs
 src/Zernio/Model/InboxWebhookMessage.cs
 src/Zernio/Model/InboxWebhookMessageAttachmentsInner.cs
 src/Zernio/Model/InboxWebhookMessageSender.cs
@@ -5893,7 +5891,6 @@ src/Zernio/Model/WebhookPayloadCommentPost.cs
 src/Zernio/Model/WebhookPayloadConversationControlChanged.cs
 src/Zernio/Model/WebhookPayloadConversationControlChangedControl.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
-src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
 src/Zernio/Model/WebhookPayloadExternalPost.cs
 src/Zernio/Model/WebhookPayloadLead.cs
 src/Zernio/Model/WebhookPayloadLeadAccount.cs

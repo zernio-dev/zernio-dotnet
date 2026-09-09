@@ -67,7 +67,7 @@ namespace Zernio.Model
         /// <param name="control">control (required).</param>
         /// <param name="changedAt">changedAt (required).</param>
         /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. (required).</param>
-        public WebhookPayloadConversationControlChanged(string id = default, EventEnum varEvent = default, WebhookPayloadConversationStartedConversation conversation = default, InboxWebhookAccount account = default, WebhookPayloadConversationControlChangedControl control = default, DateTime changedAt = default, DateTime timestamp = default)
+        public WebhookPayloadConversationControlChanged(string id = default, EventEnum varEvent = default, InboxWebhookConversationDetail conversation = default, InboxWebhookAccount account = default, WebhookPayloadConversationControlChangedControl control = default, DateTime changedAt = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -109,7 +109,7 @@ namespace Zernio.Model
         /// Gets or Sets Conversation
         /// </summary>
         [DataMember(Name = "conversation", IsRequired = true, EmitDefaultValue = true)]
-        public WebhookPayloadConversationStartedConversation Conversation { get; set; }
+        public InboxWebhookConversationDetail Conversation { get; set; }
 
         /// <summary>
         /// Gets or Sets Account
