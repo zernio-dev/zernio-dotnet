@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestCarouselCardsInner" /> class.
         /// </summary>
         /// <param name="imageUrl">Card image; uploaded to the ad account and referenced by hash. (required).</param>
-        /// <param name="linkUrl">Card destination URL. Defaults to the top-level linkUrl..</param>
+        /// <param name="linkUrl">Card destination URL. Defaults to the top-level linkUrl, or Meta&#39;s lead-form link when leadGenFormId is set and neither is provided..</param>
         /// <param name="headline">Card headline, shown below the card image..</param>
         /// <param name="description">Card description, shown under the headline..</param>
         /// <param name="callToAction">Card CTA override. Defaults to the top-level callToAction; same enum..</param>
@@ -68,9 +68,9 @@ namespace Zernio.Model
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// Card destination URL. Defaults to the top-level linkUrl.
+        /// Card destination URL. Defaults to the top-level linkUrl, or Meta&#39;s lead-form link when leadGenFormId is set and neither is provided.
         /// </summary>
-        /// <value>Card destination URL. Defaults to the top-level linkUrl.</value>
+        /// <value>Card destination URL. Defaults to the top-level linkUrl, or Meta&#39;s lead-form link when leadGenFormId is set and neither is provided.</value>
         [DataMember(Name = "linkUrl", EmitDefaultValue = false)]
         public string LinkUrl { get; set; }
 
