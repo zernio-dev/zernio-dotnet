@@ -87,10 +87,11 @@ namespace Zernio.Model
         /// <param name="bidAmount">**Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both..</param>
         /// <param name="roasAverageFloor">**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS..</param>
         /// <param name="portfolioBidStrategyId">**Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy..</param>
+        /// <param name="allowSharedBudgetUpdate">Google only. Explicitly allow changing a shared campaign budget, affecting every campaign that uses it. Does not bypass an unknown sharing state. (default to false).</param>
         /// <param name="budget">budget.</param>
         /// <param name="name">**Meta only.** Rename the campaign..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaignRequest(PlatformEnum platform = default, string accountId = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, UpdateAdCampaignRequestBudget budget = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
+        public UpdateAdCampaignRequest(PlatformEnum platform = default, string accountId = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, bool allowSharedBudgetUpdate = false, UpdateAdCampaignRequestBudget budget = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
         {
             this.Platform = platform;
             this.AccountId = accountId;
@@ -98,6 +99,7 @@ namespace Zernio.Model
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
             this.PortfolioBidStrategyId = portfolioBidStrategyId;
+            this.AllowSharedBudgetUpdate = allowSharedBudgetUpdate;
             this.Budget = budget;
             this.Name = name;
             this.PlatformSpecificData = platformSpecificData;
@@ -132,6 +134,13 @@ namespace Zernio.Model
         public string PortfolioBidStrategyId { get; set; }
 
         /// <summary>
+        /// Google only. Explicitly allow changing a shared campaign budget, affecting every campaign that uses it. Does not bypass an unknown sharing state.
+        /// </summary>
+        /// <value>Google only. Explicitly allow changing a shared campaign budget, affecting every campaign that uses it. Does not bypass an unknown sharing state.</value>
+        [DataMember(Name = "allowSharedBudgetUpdate", EmitDefaultValue = true)]
+        public bool AllowSharedBudgetUpdate { get; set; }
+
+        /// <summary>
         /// Gets or Sets Budget
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
@@ -164,6 +173,7 @@ namespace Zernio.Model
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  PortfolioBidStrategyId: ").Append(PortfolioBidStrategyId).Append("\n");
+            sb.Append("  AllowSharedBudgetUpdate: ").Append(AllowSharedBudgetUpdate).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");

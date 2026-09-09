@@ -28,9 +28,9 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Effective budget (back-compat). Use &#x60;budgetLevel&#x60; to disambiguate CBO vs ABO.
+    /// AdCampaignBudget
     /// </summary>
-    [DataContract(Name = "AdCampaign_budget")]
+    [DataContract(Name = "AdCampaignBudget")]
     public partial class AdCampaignBudget : IValidatableObject
     {
         /// <summary>
@@ -56,24 +56,65 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AdCampaignBudget" /> class.
         /// </summary>
-        /// <param name="amount">amount.</param>
-        /// <param name="type">type.</param>
-        public AdCampaignBudget(decimal amount = default, TypeEnum? type = default)
+        [JsonConstructorAttribute]
+        protected AdCampaignBudget() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdCampaignBudget" /> class.
+        /// </summary>
+        /// <param name="amount">amount (required).</param>
+        /// <param name="type">type (required).</param>
+        /// <param name="amountMicros">Google only. Exact decimal micros; DAILY uses amount_micros and CUSTOM_PERIOD uses total_amount_micros..</param>
+        /// <param name="explicitlyShared">Google only. True for a shared budget; null when unavailable. Shared writes require allowSharedBudgetUpdate&#x3D;true; unknown sharing status cannot be overridden..</param>
+        /// <param name="resourceName">Google only. campaign_budget.resource_name, or null when unavailable..</param>
+        /// <param name="deliveryMethod">Google only. campaign_budget.delivery_method, typically STANDARD, or null when unavailable..</param>
+        public AdCampaignBudget(decimal amount = default, TypeEnum type = default, string amountMicros = default, bool? explicitlyShared = default, string resourceName = default, string deliveryMethod = default)
         {
             this.Amount = amount;
             this.Type = type;
+            this.AmountMicros = amountMicros;
+            this.ExplicitlyShared = explicitlyShared;
+            this.ResourceName = resourceName;
+            this.DeliveryMethod = deliveryMethod;
         }
 
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = true)]
         public decimal Amount { get; set; }
+
+        /// <summary>
+        /// Google only. Exact decimal micros; DAILY uses amount_micros and CUSTOM_PERIOD uses total_amount_micros.
+        /// </summary>
+        /// <value>Google only. Exact decimal micros; DAILY uses amount_micros and CUSTOM_PERIOD uses total_amount_micros.</value>
+        [DataMember(Name = "amountMicros", EmitDefaultValue = false)]
+        public string AmountMicros { get; set; }
+
+        /// <summary>
+        /// Google only. True for a shared budget; null when unavailable. Shared writes require allowSharedBudgetUpdate&#x3D;true; unknown sharing status cannot be overridden.
+        /// </summary>
+        /// <value>Google only. True for a shared budget; null when unavailable. Shared writes require allowSharedBudgetUpdate&#x3D;true; unknown sharing status cannot be overridden.</value>
+        [DataMember(Name = "explicitlyShared", EmitDefaultValue = true)]
+        public bool? ExplicitlyShared { get; set; }
+
+        /// <summary>
+        /// Google only. campaign_budget.resource_name, or null when unavailable.
+        /// </summary>
+        /// <value>Google only. campaign_budget.resource_name, or null when unavailable.</value>
+        [DataMember(Name = "resourceName", EmitDefaultValue = true)]
+        public string ResourceName { get; set; }
+
+        /// <summary>
+        /// Google only. campaign_budget.delivery_method, typically STANDARD, or null when unavailable.
+        /// </summary>
+        /// <value>Google only. campaign_budget.delivery_method, typically STANDARD, or null when unavailable.</value>
+        [DataMember(Name = "deliveryMethod", EmitDefaultValue = true)]
+        public string DeliveryMethod { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,6 +126,10 @@ namespace Zernio.Model
             sb.Append("class AdCampaignBudget {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  AmountMicros: ").Append(AmountMicros).Append("\n");
+            sb.Append("  ExplicitlyShared: ").Append(ExplicitlyShared).Append("\n");
+            sb.Append("  ResourceName: ").Append(ResourceName).Append("\n");
+            sb.Append("  DeliveryMethod: ").Append(DeliveryMethod).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -105,6 +150,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.AmountMicros != null) {
+                // AmountMicros (string) pattern
+                Regex regexAmountMicros = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexAmountMicros.Match(this.AmountMicros).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AmountMicros, must match a pattern of " + regexAmountMicros, new [] { "AmountMicros" });
+                }
+            }
+
             yield break;
         }
     }

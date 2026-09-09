@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Each entry must also include exactly one of &#x60;imageUrl&#x60; or &#x60;video&#x60;. 
+    /// Supply headline, body, and image/video, or exactly one existing post reference. References cannot be combined with fresh creative fields.
     /// </summary>
     [DataContract(Name = "CtwaAdRequestBody_creatives_inner")]
     public partial class CtwaAdRequestBodyCreativesInner : IValidatableObject
@@ -36,29 +36,18 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CtwaAdRequestBodyCreativesInner" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CtwaAdRequestBodyCreativesInner() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CtwaAdRequestBodyCreativesInner" /> class.
-        /// </summary>
-        /// <param name="headline">headline (required).</param>
-        /// <param name="body">Primary text shown above the image / video. (required).</param>
-        /// <param name="imageUrl">Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. .</param>
+        /// <param name="existingPostId">Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields..</param>
+        /// <param name="objectStoryId">Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields..</param>
+        /// <param name="headline">headline.</param>
+        /// <param name="body">Primary text shown above the image / video..</param>
+        /// <param name="imageUrl">Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if neither &#x60;video&#x60; nor an existing post reference is supplied. .</param>
         /// <param name="video">video.</param>
         /// <param name="welcomeMessage">welcomeMessage.</param>
-        public CtwaAdRequestBodyCreativesInner(string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyCreativesInnerVideo video = default, CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage = default)
+        public CtwaAdRequestBodyCreativesInner(string existingPostId = default, string objectStoryId = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyCreativesInnerVideo video = default, CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage = default)
         {
-            // to ensure "headline" is required (not null)
-            if (headline == null)
-            {
-                throw new ArgumentNullException("headline is a required property for CtwaAdRequestBodyCreativesInner and cannot be null");
-            }
+            this.ExistingPostId = existingPostId;
+            this.ObjectStoryId = objectStoryId;
             this.Headline = headline;
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new ArgumentNullException("body is a required property for CtwaAdRequestBodyCreativesInner and cannot be null");
-            }
             this.Body = body;
             this.ImageUrl = imageUrl;
             this.Video = video;
@@ -66,22 +55,36 @@ namespace Zernio.Model
         }
 
         /// <summary>
+        /// Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields.
+        /// </summary>
+        /// <value>Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields.</value>
+        [DataMember(Name = "existingPostId", EmitDefaultValue = false)]
+        public string ExistingPostId { get; set; }
+
+        /// <summary>
+        /// Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.
+        /// </summary>
+        /// <value>Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.</value>
+        [DataMember(Name = "objectStoryId", EmitDefaultValue = false)]
+        public string ObjectStoryId { get; set; }
+
+        /// <summary>
         /// Gets or Sets Headline
         /// </summary>
-        [DataMember(Name = "headline", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
 
         /// <summary>
         /// Primary text shown above the image / video.
         /// </summary>
         /// <value>Primary text shown above the image / video.</value>
-        [DataMember(Name = "body", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "body", EmitDefaultValue = false)]
         public string Body { get; set; }
 
         /// <summary>
-        /// Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. 
+        /// Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if neither &#x60;video&#x60; nor an existing post reference is supplied. 
         /// </summary>
-        /// <value>Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. </value>
+        /// <value>Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if neither &#x60;video&#x60; nor an existing post reference is supplied. </value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
 
@@ -105,6 +108,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CtwaAdRequestBodyCreativesInner {\n");
+            sb.Append("  ExistingPostId: ").Append(ExistingPostId).Append("\n");
+            sb.Append("  ObjectStoryId: ").Append(ObjectStoryId).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
@@ -130,6 +135,21 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ExistingPostId (string) minLength
+            if (this.ExistingPostId != null && this.ExistingPostId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for ExistingPostId, length must be greater than 1.", new [] { "ExistingPostId" });
+            }
+
+            if (this.ObjectStoryId != null) {
+                // ObjectStoryId (string) pattern
+                Regex regexObjectStoryId = new Regex(@"^\d+_\d+$", RegexOptions.CultureInvariant);
+                if (!regexObjectStoryId.Match(this.ObjectStoryId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ObjectStoryId, must match a pattern of " + regexObjectStoryId, new [] { "ObjectStoryId" });
+                }
+            }
+
             // Headline (string) maxLength
             if (this.Headline != null && this.Headline.Length > 255)
             {

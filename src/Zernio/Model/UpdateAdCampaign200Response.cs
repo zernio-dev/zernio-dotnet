@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">roasAverageFloor.</param>
         /// <param name="portfolioBidStrategyId">Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet)..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, Object platformSpecificData = default)
+        public UpdateAdCampaign200Response(int updated = default, AdCampaignBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, Object platformSpecificData = default)
         {
             this.Updated = updated;
             this.Budget = budget;
@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// Gets or Sets Budget
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
-        public AdBudget Budget { get; set; }
+        public AdCampaignBudget Budget { get; set; }
 
         /// <summary>
         /// Gets or Sets BidAmount

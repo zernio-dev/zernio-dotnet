@@ -72,5 +72,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Type'
         }
+
+        /// <summary>
+        /// Test the property 'AmountMicros'
+        /// </summary>
+        [Fact]
+        public void AmountMicrosTest()
+        {
+            // TODO unit test for the property 'AmountMicros'
+        }
+
+        /// <summary>
+        /// Test the property 'ExplicitlyShared'
+        /// </summary>
+        [Fact]
+        public void ExplicitlySharedTest()
+        {
+            // TODO unit test for the property 'ExplicitlyShared'
+        }
+
+        /// <summary>
+        /// Test the property 'ResourceName'
+        /// </summary>
+        [Fact]
+        public void ResourceNameTest()
+        {
+            // TODO unit test for the property 'ResourceName'
+        }
+
+        /// <summary>
+        /// Test the property 'DeliveryMethod'
+        /// </summary>
+        [Fact]
+        public void DeliveryMethodTest()
+        {
+            // TODO unit test for the property 'DeliveryMethod'
+        }
     }
 }

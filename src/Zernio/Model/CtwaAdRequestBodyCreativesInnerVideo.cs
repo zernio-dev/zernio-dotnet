@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Video creative. Mutually exclusive with this entry&#39;s &#x60;imageUrl&#x60;. Required if &#x60;imageUrl&#x60; is not supplied. 
+    /// Video creative. Mutually exclusive with this entry&#39;s &#x60;imageUrl&#x60;. Required if neither &#x60;imageUrl&#x60; nor an existing post reference is supplied. 
     /// </summary>
     [DataContract(Name = "CtwaAdRequestBody_creatives_inner_video")]
     public partial class CtwaAdRequestBodyCreativesInnerVideo : IValidatableObject

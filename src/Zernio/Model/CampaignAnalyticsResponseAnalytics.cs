@@ -37,11 +37,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CampaignAnalyticsResponseAnalytics" /> class.
         /// </summary>
         /// <param name="summary">summary.</param>
+        /// <param name="impressionShareCache">impressionShareCache.</param>
         /// <param name="daily">daily.</param>
         /// <param name="breakdowns">breakdowns.</param>
-        public CampaignAnalyticsResponseAnalytics(AdMetrics summary = default, List<CampaignAnalyticsResponseAnalyticsDailyInner> daily = default, Dictionary<string, List<Object>> breakdowns = default)
+        public CampaignAnalyticsResponseAnalytics(CampaignAnalyticsResponseAnalyticsSummary summary = default, CampaignAnalyticsResponseAnalyticsImpressionShareCache impressionShareCache = default, List<CampaignAnalyticsResponseAnalyticsDailyInner> daily = default, Dictionary<string, List<Object>> breakdowns = default)
         {
             this.Summary = summary;
+            this.ImpressionShareCache = impressionShareCache;
             this.Daily = daily;
             this.Breakdowns = breakdowns;
         }
@@ -50,7 +52,13 @@ namespace Zernio.Model
         /// Gets or Sets Summary
         /// </summary>
         [DataMember(Name = "summary", EmitDefaultValue = false)]
-        public AdMetrics Summary { get; set; }
+        public CampaignAnalyticsResponseAnalyticsSummary Summary { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ImpressionShareCache
+        /// </summary>
+        [DataMember(Name = "impressionShareCache", EmitDefaultValue = false)]
+        public CampaignAnalyticsResponseAnalyticsImpressionShareCache ImpressionShareCache { get; set; }
 
         /// <summary>
         /// Gets or Sets Daily
@@ -73,6 +81,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CampaignAnalyticsResponseAnalytics {\n");
             sb.Append("  Summary: ").Append(Summary).Append("\n");
+            sb.Append("  ImpressionShareCache: ").Append(ImpressionShareCache).Append("\n");
             sb.Append("  Daily: ").Append(Daily).Append("\n");
             sb.Append("  Breakdowns: ").Append(Breakdowns).Append("\n");
             sb.Append("}\n");

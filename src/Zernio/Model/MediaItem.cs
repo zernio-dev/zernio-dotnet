@@ -74,7 +74,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="MediaItem" /> class.
         /// </summary>
         /// <param name="type">type.</param>
-        /// <param name="url">url.</param>
+        /// <param name="url">A media item with a null, missing or empty url is dropped from non-draft posts (drafts keep it as a pending-upload placeholder)..</param>
         /// <param name="title">Optional title for the media item. Used as the document title for LinkedIn PDF/carousel posts. If omitted, falls back to the post title, then the filename..</param>
         /// <param name="altText">Accessibility alternative text for an image, applied on every platform that supports it: Instagram (feed images only, not Reels/Stories), Facebook, Threads, X (max 1000 chars), LinkedIn, Bluesky, and Pinterest (max 500 chars). Ignored on platforms without alt-text support (TikTok, YouTube, Snapchat, Telegram, Reddit, Google Business Profile, WhatsApp) and on video items where the platform does not accept it. Set once per image; the same value is sent to each selected platform..</param>
         /// <param name="filename">filename.</param>
@@ -98,8 +98,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// A media item with a null, missing or empty url is dropped from non-draft posts (drafts keep it as a pending-upload placeholder).
         /// </summary>
+        /// <value>A media item with a null, missing or empty url is dropped from non-draft posts (drafts keep it as a pending-upload placeholder).</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

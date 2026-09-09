@@ -170,7 +170,7 @@ namespace Zernio.Model
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="earliestAd">earliestAd.</param>
         /// <param name="latestAd">latestAd.</param>
-        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, AdTreeCampaignOptimizationGoal optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
+        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, AdTreeCampaignOptimizationGoal optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
@@ -236,14 +236,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Budget
         /// </summary>
-        [DataMember(Name = "budget", EmitDefaultValue = false)]
+        [DataMember(Name = "budget", EmitDefaultValue = true)]
         public AdCampaignBudget Budget { get; set; }
 
         /// <summary>
         /// Gets or Sets CampaignBudget
         /// </summary>
-        [DataMember(Name = "campaignBudget", EmitDefaultValue = false)]
-        public AdCampaignCampaignBudget CampaignBudget { get; set; }
+        [DataMember(Name = "campaignBudget", EmitDefaultValue = true)]
+        public AdCampaignBudget CampaignBudget { get; set; }
 
         /// <summary>
         /// Meta-only. Mirrors Campaign.is_budget_schedule_enabled.

@@ -1,5 +1,5 @@
 # Zernio.Model.UpdateAdCampaignRequestBudget
-**Meta only.** The CBO budget.
+Meta CBO or Google daily campaign budget, in whole currency units.
 
 ## Properties
 

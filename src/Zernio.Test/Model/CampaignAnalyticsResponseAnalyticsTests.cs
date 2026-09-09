@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ImpressionShareCache'
+        /// </summary>
+        [Fact]
+        public void ImpressionShareCacheTest()
+        {
+            // TODO unit test for the property 'ImpressionShareCache'
+        }
+
+        /// <summary>
         /// Test the property 'Daily'
         /// </summary>
         [Fact]

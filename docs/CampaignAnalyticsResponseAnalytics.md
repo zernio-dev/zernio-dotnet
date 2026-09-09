@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Summary** | [**AdMetrics**](AdMetrics.md) |  | [optional] 
+**Summary** | [**CampaignAnalyticsResponseAnalyticsSummary**](CampaignAnalyticsResponseAnalyticsSummary.md) |  | [optional] 
+**ImpressionShareCache** | [**CampaignAnalyticsResponseAnalyticsImpressionShareCache**](CampaignAnalyticsResponseAnalyticsImpressionShareCache.md) |  | [optional] 
 **Daily** | [**List&lt;CampaignAnalyticsResponseAnalyticsDailyInner&gt;**](CampaignAnalyticsResponseAnalyticsDailyInner.md) |  | [optional] 
 **Breakdowns** | **Dictionary&lt;string, List&lt;Object&gt;&gt;** |  | [optional] 
 

@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="backfillPending">Always true on this response. Part of the requested range is still being backfilled; retry until the request returns 200. (required).</param>
         /// <param name="ad">ad.</param>
         /// <param name="analytics">analytics.</param>
-        public GetAdAnalytics202Response(bool backfillPending = default, AdAnalyticsResponseAd ad = default, CampaignAnalyticsResponseAnalytics analytics = default)
+        public GetAdAnalytics202Response(bool backfillPending = default, AdAnalyticsResponseAd ad = default, AdAnalyticsResponseAnalytics analytics = default)
         {
             this.BackfillPending = backfillPending;
             this.Ad = ad;
@@ -68,7 +68,7 @@ namespace Zernio.Model
         /// Gets or Sets Analytics
         /// </summary>
         [DataMember(Name = "analytics", EmitDefaultValue = false)]
-        public CampaignAnalyticsResponseAnalytics Analytics { get; set; }
+        public AdAnalyticsResponseAnalytics Analytics { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

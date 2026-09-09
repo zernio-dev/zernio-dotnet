@@ -1,5 +1,5 @@
 # Zernio.Model.CtwaAdRequestBodyCreativesInnerVideo
-Video creative. Mutually exclusive with this entry's `imageUrl`. Required if `imageUrl` is not supplied. 
+Video creative. Mutually exclusive with this entry's `imageUrl`. Required if neither `imageUrl` nor an existing post reference is supplied. 
 
 ## Properties
 

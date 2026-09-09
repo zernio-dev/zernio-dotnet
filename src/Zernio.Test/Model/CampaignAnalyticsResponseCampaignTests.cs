@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Budget'
+        /// </summary>
+        [Fact]
+        public void BudgetTest()
+        {
+            // TODO unit test for the property 'Budget'
+        }
+
+        /// <summary>
         /// Test the property 'Currency'
         /// </summary>
         [Fact]

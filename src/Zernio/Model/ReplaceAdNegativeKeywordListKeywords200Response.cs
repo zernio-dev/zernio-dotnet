@@ -28,52 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Campaign-level budget (CBO). Null for ABO campaigns.
+    /// ReplaceAdNegativeKeywordListKeywords200Response
     /// </summary>
-    [DataContract(Name = "AdCampaign_campaignBudget")]
-    public partial class AdCampaignCampaignBudget : IValidatableObject
+    [DataContract(Name = "replaceAdNegativeKeywordListKeywords_200_response")]
+    public partial class ReplaceAdNegativeKeywordListKeywords200Response : IValidatableObject
     {
         /// <summary>
-        /// Defines Type
+        /// Initializes a new instance of the <see cref="ReplaceAdNegativeKeywordListKeywords200Response" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        /// <param name="created">New criteria or campaign links created..</param>
+        /// <param name="removed">Existing criteria or campaign links removed..</param>
+        /// <param name="customerId">Resolved Google Ads customer id..</param>
+        public ReplaceAdNegativeKeywordListKeywords200Response(int created = default, int removed = default, string customerId = default)
         {
-            /// <summary>
-            /// Enum Daily for value: daily
-            /// </summary>
-            [EnumMember(Value = "daily")]
-            Daily = 1,
-
-            /// <summary>
-            /// Enum Lifetime for value: lifetime
-            /// </summary>
-            [EnumMember(Value = "lifetime")]
-            Lifetime = 2
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AdCampaignCampaignBudget" /> class.
-        /// </summary>
-        /// <param name="amount">amount.</param>
-        /// <param name="type">type.</param>
-        public AdCampaignCampaignBudget(decimal amount = default, TypeEnum? type = default)
-        {
-            this.Amount = amount;
-            this.Type = type;
+            this.Created = created;
+            this.Removed = removed;
+            this.CustomerId = customerId;
         }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// New criteria or campaign links created.
         /// </summary>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
-        public decimal Amount { get; set; }
+        /// <value>New criteria or campaign links created.</value>
+        [DataMember(Name = "created", EmitDefaultValue = false)]
+        public int Created { get; set; }
+
+        /// <summary>
+        /// Existing criteria or campaign links removed.
+        /// </summary>
+        /// <value>Existing criteria or campaign links removed.</value>
+        [DataMember(Name = "removed", EmitDefaultValue = false)]
+        public int Removed { get; set; }
+
+        /// <summary>
+        /// Resolved Google Ads customer id.
+        /// </summary>
+        /// <value>Resolved Google Ads customer id.</value>
+        [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        public string CustomerId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,9 +74,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AdCampaignCampaignBudget {\n");
-            sb.Append("  Amount: ").Append(Amount).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class ReplaceAdNegativeKeywordListKeywords200Response {\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  Removed: ").Append(Removed).Append("\n");
+            sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -105,6 +98,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.CustomerId != null) {
+                // CustomerId (string) pattern
+                Regex regexCustomerId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexCustomerId.Match(this.CustomerId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerId, must match a pattern of " + regexCustomerId, new [] { "CustomerId" });
+                }
+            }
+
             yield break;
         }
     }

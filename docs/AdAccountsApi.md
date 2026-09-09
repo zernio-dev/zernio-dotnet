@@ -5,12 +5,15 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddAccountCallouts**](AdAccountsApi.md#addaccountcallouts) | **POST** /v1/ads/accounts/callouts | Add account-level callout extensions |
+| [**CreateAdNegativeKeywordList**](AdAccountsApi.md#createadnegativekeywordlist) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
 | [**CreateCustomConversion**](AdAccountsApi.md#createcustomconversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion |
 | [**CreateHighDemandPeriod**](AdAccountsApi.md#createhighdemandperiod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase |
 | [**CreateValueRuleSet**](AdAccountsApi.md#createvalueruleset) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
+| [**DeleteAdNegativeKeywordList**](AdAccountsApi.md#deleteadnegativekeywordlist) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**DeleteValueRuleSet**](AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**GetAdComments**](AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
+| [**GetAdNegativeKeywordList**](AdAccountsApi.md#getadnegativekeywordlist) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list |
 | [**GetAdsActivityLog**](AdAccountsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log |
 | [**GetDsaDefaults**](AdAccountsApi.md#getdsadefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
 | [**GetDsaRecommendations**](AdAccountsApi.md#getdsarecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
@@ -18,6 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAccountCallouts**](AdAccountsApi.md#listaccountcallouts) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions |
 | [**ListAdAccounts**](AdAccountsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAdLabels**](AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels |
+| [**ListAdNegativeKeywordLists**](AdAccountsApi.md#listadnegativekeywordlists) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists |
 | [**ListAdStudies**](AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies |
 | [**ListAdsBusinessCenters**](AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**ListCustomConversions**](AdAccountsApi.md#listcustomconversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
@@ -25,7 +29,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListMetaBusinesses**](AdAccountsApi.md#listmetabusinesses) | **GET** /v1/ads/businesses | Businesses list |
 | [**ListValueRuleSets**](AdAccountsApi.md#listvaluerulesets) | **GET** /v1/ads/value-rule-sets | List value rule sets |
 | [**RemoveAccountCallout**](AdAccountsApi.md#removeaccountcallout) | **DELETE** /v1/ads/accounts/callouts | Remove an account-level callout extension |
+| [**ReplaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceadnegativekeywordlistkeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**UpdateAdAccount**](AdAccountsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**UpdateAdNegativeKeywordList**](AdAccountsApi.md#updateadnegativekeywordlist) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**UpdateValueRuleSet**](AdAccountsApi.md#updatevalueruleset) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
 
 <a id="addaccountcallouts"></a>
@@ -128,6 +134,112 @@ catch (ApiException e)
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Resource not found |  -  |
 | **501** | Only supported on Google Ads |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createadnegativekeywordlist"></a>
+# **CreateAdNegativeKeywordList**
+> CreateAdNegativeKeywordList201Response CreateAdNegativeKeywordList (CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest)
+
+Create a negative keyword list
+
+Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateAdNegativeKeywordListExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var createAdNegativeKeywordListRequest = new CreateAdNegativeKeywordListRequest(); // CreateAdNegativeKeywordListRequest | 
+
+            try
+            {
+                // Create a negative keyword list
+                CreateAdNegativeKeywordList201Response result = apiInstance.CreateAdNegativeKeywordList(createAdNegativeKeywordListRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.CreateAdNegativeKeywordList: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateAdNegativeKeywordListWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a negative keyword list
+    ApiResponse<CreateAdNegativeKeywordList201Response> response = apiInstance.CreateAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.CreateAdNegativeKeywordListWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createAdNegativeKeywordListRequest** | [**CreateAdNegativeKeywordListRequest**](CreateAdNegativeKeywordListRequest.md) |  |  |
+
+### Return type
+
+[**CreateAdNegativeKeywordList201Response**](CreateAdNegativeKeywordList201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access and permission to the selected account are required. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -434,6 +546,118 @@ catch (ApiException e)
 | **400** | Invalid input, or Meta rejected the create (per-account rule-set cap, ineligible criteria, or an account that is not enabled for value rules) |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteadnegativekeywordlist"></a>
+# **DeleteAdNegativeKeywordList**
+> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? customerId = null, string? platform = null)
+
+Delete a negative keyword list
+
+Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteAdNegativeKeywordListExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var listId = "listId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+            var customerId = "customerId_example";  // string? |  (optional) 
+            var platform = "facebook";  // string? |  (optional) 
+
+            try
+            {
+                // Delete a negative keyword list
+                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, customerId, platform);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.DeleteAdNegativeKeywordList: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteAdNegativeKeywordListWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a negative keyword list
+    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.DeleteAdNegativeKeywordListWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **listId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+| **customerId** | **string?** |  | [optional]  |
+| **platform** | **string?** |  | [optional]  |
+
+### Return type
+
+[**DeleteAdNegativeKeywordList200Response**](DeleteAdNegativeKeywordList200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access and permission to the selected account are required. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -749,6 +973,118 @@ catch (ApiException e)
 | **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadnegativekeywordlist"></a>
+# **GetAdNegativeKeywordList**
+> GetAdNegativeKeywordList200Response GetAdNegativeKeywordList (string listId, string accountId, string? customerId = null, string? platform = null)
+
+Get a negative keyword list
+
+Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale=true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdNegativeKeywordListExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var listId = "listId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+            var customerId = "customerId_example";  // string? |  (optional) 
+            var platform = "facebook";  // string? |  (optional) 
+
+            try
+            {
+                // Get a negative keyword list
+                GetAdNegativeKeywordList200Response result = apiInstance.GetAdNegativeKeywordList(listId, accountId, customerId, platform);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.GetAdNegativeKeywordList: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdNegativeKeywordListWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a negative keyword list
+    ApiResponse<GetAdNegativeKeywordList200Response> response = apiInstance.GetAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.GetAdNegativeKeywordListWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **listId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+| **customerId** | **string?** |  | [optional]  |
+| **platform** | **string?** |  | [optional]  |
+
+### Return type
+
+[**GetAdNegativeKeywordList200Response**](GetAdNegativeKeywordList200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access and permission to the selected account are required. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1492,6 +1828,116 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listadnegativekeywordlists"></a>
+# **ListAdNegativeKeywordLists**
+> ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists (string accountId, string? customerId = null, string? platform = null)
+
+List negative keyword lists
+
+Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale=true. Customer selection is limited to this connection and its account scope.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdNegativeKeywordListsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var customerId = "customerId_example";  // string? |  (optional) 
+            var platform = "facebook";  // string? |  (optional) 
+
+            try
+            {
+                // List negative keyword lists
+                ListAdNegativeKeywordLists200Response result = apiInstance.ListAdNegativeKeywordLists(accountId, customerId, platform);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ListAdNegativeKeywordLists: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdNegativeKeywordListsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List negative keyword lists
+    ApiResponse<ListAdNegativeKeywordLists200Response> response = apiInstance.ListAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ListAdNegativeKeywordListsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **customerId** | **string?** |  | [optional]  |
+| **platform** | **string?** |  | [optional]  |
+
+### Return type
+
+[**ListAdNegativeKeywordLists200Response**](ListAdNegativeKeywordLists200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access and permission to the selected account are required. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadstudies"></a>
 # **ListAdStudies**
 > ListAdStudies200Response ListAdStudies (string accountId, string adAccountId, string? fields = null, int? limit = null, string? after = null)
@@ -2230,6 +2676,114 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="replaceadnegativekeywordlistkeywords"></a>
+# **ReplaceAdNegativeKeywordListKeywords**
+> ReplaceAdNegativeKeywordListKeywords200Response ReplaceAdNegativeKeywordListKeywords (string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest)
+
+Replace negative list keywords
+
+Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReplaceAdNegativeKeywordListKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var listId = "listId_example";  // string | 
+            var replaceAdNegativeKeywordListKeywordsRequest = new ReplaceAdNegativeKeywordListKeywordsRequest(); // ReplaceAdNegativeKeywordListKeywordsRequest | 
+
+            try
+            {
+                // Replace negative list keywords
+                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.ReplaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ReplaceAdNegativeKeywordListKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReplaceAdNegativeKeywordListKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Replace negative list keywords
+    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ReplaceAdNegativeKeywordListKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **listId** | **string** |  |  |
+| **replaceAdNegativeKeywordListKeywordsRequest** | [**ReplaceAdNegativeKeywordListKeywordsRequest**](ReplaceAdNegativeKeywordListKeywordsRequest.md) |  |  |
+
+### Return type
+
+[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegativeKeywordListKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access and permission to the selected account are required. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updateadaccount"></a>
 # **UpdateAdAccount**
 > UpdateAdAccount200Response UpdateAdAccount (UpdateAdAccountRequest updateAdAccountRequest)
@@ -2328,6 +2882,114 @@ catch (ApiException e)
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadnegativekeywordlist"></a>
+# **UpdateAdNegativeKeywordList**
+> UpdateAdNegativeKeywordList200Response UpdateAdNegativeKeywordList (string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest)
+
+Rename a negative keyword list
+
+Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdNegativeKeywordListExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var listId = "listId_example";  // string | 
+            var updateAdNegativeKeywordListRequest = new UpdateAdNegativeKeywordListRequest(); // UpdateAdNegativeKeywordListRequest | 
+
+            try
+            {
+                // Rename a negative keyword list
+                UpdateAdNegativeKeywordList200Response result = apiInstance.UpdateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.UpdateAdNegativeKeywordList: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdNegativeKeywordListWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Rename a negative keyword list
+    ApiResponse<UpdateAdNegativeKeywordList200Response> response = apiInstance.UpdateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.UpdateAdNegativeKeywordListWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **listId** | **string** |  |  |
+| **updateAdNegativeKeywordListRequest** | [**UpdateAdNegativeKeywordListRequest**](UpdateAdNegativeKeywordListRequest.md) |  |  |
+
+### Return type
+
+[**UpdateAdNegativeKeywordList200Response**](UpdateAdNegativeKeywordList200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access and permission to the selected account are required. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

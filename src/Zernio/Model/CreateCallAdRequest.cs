@@ -221,12 +221,15 @@ namespace Zernio.Model
         /// <param name="accountId">Facebook or Instagram SocialAccount ID. (required).</param>
         /// <param name="adAccountId">Meta ad account ID, e.g. &#x60;act_123456789&#x60;. (required).</param>
         /// <param name="name">Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  (required).</param>
+        /// <param name="existingPostId">Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields..</param>
+        /// <param name="objectStoryId">Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields..</param>
+        /// <param name="whatsappPhoneNumber">WhatsApp only. Optional E.164 number already paired with the Facebook Page. Omit to let Meta select the paired number. Sent to the creative CTA and, when creating a new ad set, its promoted_object. Attach requests do not change the existing ad set..</param>
         /// <param name="headline">Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
         /// <param name="body">Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
-        /// <param name="imageUrl">Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. .</param>
+        /// <param name="imageUrl">Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;video&#x60; nor an existing post reference is supplied. .</param>
         /// <param name="video">video.</param>
         /// <param name="welcomeMessage">welcomeMessage.</param>
-        /// <param name="creatives">Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. .</param>
+        /// <param name="creatives">Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry supplies headline, body, and image/video, or an existingPostId or objectStoryId reference. Fresh and existing creatives can be mixed. .</param>
         /// <param name="adSetId">Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination. .</param>
         /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it. .</param>
         /// <param name="budgetType">Required unless &#x60;adSetId&#x60; is set..</param>
@@ -256,7 +259,7 @@ namespace Zernio.Model
         /// <param name="regionalRegulationIdentities">Meta only. Beneficiary/payer entity IDs required alongside regionalRegulatedCategories. Values are numeric IDs from the advertiser&#39;s Meta verification/authorization setup. Keys depend on the declared category: BRAZIL_REGULATION and THAILAND_UNIVERSAL use universal_beneficiary / universal_payer; SINGAPORE_UNIVERSAL uses singapore_universal_beneficiary / singapore_universal_payer; TAIWAN_UNIVERSAL uses taiwan_universal_beneficiary / taiwan_universal_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary / taiwan_finserv_payer; AUSTRALIA_FINSERV uses australia_finserv_beneficiary / australia_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer. Both beneficiary and payer must be included. If omitted and the advertiser has set defaults in Meta Ads Manager advertising settings, Meta auto-fills them. .</param>
         /// <param name="phoneNumber">E.164 number the CALL_NOW CTA dials (e.g. +34600111222). (required).</param>
         /// <param name="linkUrl">Website shown as the creative&#39;s link. Required: Meta rejects tel: as link_data.link; the phone number rides only the CTA. (required).</param>
-        public CreateCallAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, string phoneNumber = default, string linkUrl = default)
+        public CreateCallAdRequest(string accountId = default, string adAccountId = default, string name = default, string existingPostId = default, string objectStoryId = default, string whatsappPhoneNumber = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, string phoneNumber = default, string linkUrl = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -288,6 +291,9 @@ namespace Zernio.Model
                 throw new ArgumentNullException("linkUrl is a required property for CreateCallAdRequest and cannot be null");
             }
             this.LinkUrl = linkUrl;
+            this.ExistingPostId = existingPostId;
+            this.ObjectStoryId = objectStoryId;
+            this.WhatsappPhoneNumber = whatsappPhoneNumber;
             this.Headline = headline;
             this.Body = body;
             this.ImageUrl = imageUrl;
@@ -345,6 +351,27 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields.
+        /// </summary>
+        /// <value>Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields.</value>
+        [DataMember(Name = "existingPostId", EmitDefaultValue = false)]
+        public string ExistingPostId { get; set; }
+
+        /// <summary>
+        /// Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.
+        /// </summary>
+        /// <value>Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.</value>
+        [DataMember(Name = "objectStoryId", EmitDefaultValue = false)]
+        public string ObjectStoryId { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Optional E.164 number already paired with the Facebook Page. Omit to let Meta select the paired number. Sent to the creative CTA and, when creating a new ad set, its promoted_object. Attach requests do not change the existing ad set.
+        /// </summary>
+        /// <value>WhatsApp only. Optional E.164 number already paired with the Facebook Page. Omit to let Meta select the paired number. Sent to the creative CTA and, when creating a new ad set, its promoted_object. Attach requests do not change the existing ad set.</value>
+        [DataMember(Name = "whatsappPhoneNumber", EmitDefaultValue = false)]
+        public string WhatsappPhoneNumber { get; set; }
+
+        /// <summary>
         /// Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. 
         /// </summary>
         /// <value>Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. </value>
@@ -359,9 +386,9 @@ namespace Zernio.Model
         public string Body { get; set; }
 
         /// <summary>
-        /// Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. 
+        /// Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;video&#x60; nor an existing post reference is supplied. 
         /// </summary>
-        /// <value>Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. </value>
+        /// <value>Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;video&#x60; nor an existing post reference is supplied. </value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
 
@@ -378,9 +405,9 @@ namespace Zernio.Model
         public CtwaAdRequestBodyWelcomeMessage WelcomeMessage { get; set; }
 
         /// <summary>
-        /// Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. 
+        /// Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry supplies headline, body, and image/video, or an existingPostId or objectStoryId reference. Fresh and existing creatives can be mixed. 
         /// </summary>
-        /// <value>Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. </value>
+        /// <value>Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry supplies headline, body, and image/video, or an existingPostId or objectStoryId reference. Fresh and existing creatives can be mixed. </value>
         [DataMember(Name = "creatives", EmitDefaultValue = false)]
         public List<CtwaAdRequestBodyCreativesInner> Creatives { get; set; }
 
@@ -552,6 +579,9 @@ namespace Zernio.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  ExistingPostId: ").Append(ExistingPostId).Append("\n");
+            sb.Append("  ObjectStoryId: ").Append(ObjectStoryId).Append("\n");
+            sb.Append("  WhatsappPhoneNumber: ").Append(WhatsappPhoneNumber).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
@@ -623,6 +653,30 @@ namespace Zernio.Model
             if (this.Name != null && this.Name.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+            }
+
+            // ExistingPostId (string) minLength
+            if (this.ExistingPostId != null && this.ExistingPostId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for ExistingPostId, length must be greater than 1.", new [] { "ExistingPostId" });
+            }
+
+            if (this.ObjectStoryId != null) {
+                // ObjectStoryId (string) pattern
+                Regex regexObjectStoryId = new Regex(@"^\d+_\d+$", RegexOptions.CultureInvariant);
+                if (!regexObjectStoryId.Match(this.ObjectStoryId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ObjectStoryId, must match a pattern of " + regexObjectStoryId, new [] { "ObjectStoryId" });
+                }
+            }
+
+            if (this.WhatsappPhoneNumber != null) {
+                // WhatsappPhoneNumber (string) pattern
+                Regex regexWhatsappPhoneNumber = new Regex(@"^\+[1-9]\d{6,14}$", RegexOptions.CultureInvariant);
+                if (!regexWhatsappPhoneNumber.Match(this.WhatsappPhoneNumber).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for WhatsappPhoneNumber, must match a pattern of " + regexWhatsappPhoneNumber, new [] { "WhatsappPhoneNumber" });
+                }
             }
 
             // Headline (string) maxLength

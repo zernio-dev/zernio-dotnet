@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="backfillPending">Present and true while historical data is being backfilled..</param>
         /// <param name="ad">ad.</param>
         /// <param name="analytics">analytics.</param>
-        public AdAnalyticsResponse(bool backfillPending = default, AdAnalyticsResponseAd ad = default, CampaignAnalyticsResponseAnalytics analytics = default)
+        public AdAnalyticsResponse(bool backfillPending = default, AdAnalyticsResponseAd ad = default, AdAnalyticsResponseAnalytics analytics = default)
         {
             this.BackfillPending = backfillPending;
             this.Ad = ad;
@@ -63,7 +63,7 @@ namespace Zernio.Model
         /// Gets or Sets Analytics
         /// </summary>
         [DataMember(Name = "analytics", EmitDefaultValue = false)]
-        public CampaignAnalyticsResponseAnalytics Analytics { get; set; }
+        public AdAnalyticsResponseAnalytics Analytics { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

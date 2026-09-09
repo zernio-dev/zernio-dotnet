@@ -6,7 +6,7 @@ Echoes back only the fields you sent, plus `updated`.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Updated** | **int** | Local Ad documents mirrored. 0 on the empty-campaign path. | [optional] 
-**Budget** | [**AdBudget**](AdBudget.md) |  | [optional] 
+**Budget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  | [optional] 
 **BudgetLevel** | **string** |  | [optional] 
 **BidStrategy** | **BidStrategy** |  | [optional] 
 **BidAmount** | **decimal** |  | [optional] 

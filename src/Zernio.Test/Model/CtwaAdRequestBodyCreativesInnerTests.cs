@@ -56,6 +56,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExistingPostId'
+        /// </summary>
+        [Fact]
+        public void ExistingPostIdTest()
+        {
+            // TODO unit test for the property 'ExistingPostId'
+        }
+
+        /// <summary>
+        /// Test the property 'ObjectStoryId'
+        /// </summary>
+        [Fact]
+        public void ObjectStoryIdTest()
+        {
+            // TODO unit test for the property 'ObjectStoryId'
+        }
+
+        /// <summary>
         /// Test the property 'Headline'
         /// </summary>
         [Fact]

@@ -67,6 +67,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAdNegativeKeywordList
+        /// </summary>
+        [Fact]
+        public void CreateAdNegativeKeywordListTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest = null;
+            //var response = instance.CreateAdNegativeKeywordList(createAdNegativeKeywordListRequest);
+            //Assert.IsType<CreateAdNegativeKeywordList201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateCustomConversion
         /// </summary>
         [Fact]
@@ -101,6 +113,21 @@ namespace Zernio.Test.Api
             //CreateValueRuleSetRequest createValueRuleSetRequest = null;
             //var response = instance.CreateValueRuleSet(createValueRuleSetRequest);
             //Assert.IsType<CreateValueRuleSet201Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteAdNegativeKeywordList
+        /// </summary>
+        [Fact]
+        public void DeleteAdNegativeKeywordListTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string listId = null;
+            //string accountId = null;
+            //string? customerId = null;
+            //string? platform = null;
+            //var response = instance.DeleteAdNegativeKeywordList(listId, accountId, customerId, platform);
+            //Assert.IsType<DeleteAdNegativeKeywordList200Response>(response);
         }
 
         /// <summary>
@@ -142,6 +169,21 @@ namespace Zernio.Test.Api
             //string? cursor = null;
             //var response = instance.GetAdComments(adId, placement, limit, cursor);
             //Assert.IsType<GetAdComments200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetAdNegativeKeywordList
+        /// </summary>
+        [Fact]
+        public void GetAdNegativeKeywordListTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string listId = null;
+            //string accountId = null;
+            //string? customerId = null;
+            //string? platform = null;
+            //var response = instance.GetAdNegativeKeywordList(listId, accountId, customerId, platform);
+            //Assert.IsType<GetAdNegativeKeywordList200Response>(response);
         }
 
         /// <summary>
@@ -244,6 +286,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdNegativeKeywordLists
+        /// </summary>
+        [Fact]
+        public void ListAdNegativeKeywordListsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //string? platform = null;
+            //var response = instance.ListAdNegativeKeywordLists(accountId, customerId, platform);
+            //Assert.IsType<ListAdNegativeKeywordLists200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdStudies
         /// </summary>
         [Fact]
@@ -342,6 +398,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ReplaceAdNegativeKeywordListKeywords
+        /// </summary>
+        [Fact]
+        public void ReplaceAdNegativeKeywordListKeywordsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string listId = null;
+            //ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest = null;
+            //var response = instance.ReplaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest);
+            //Assert.IsType<ReplaceAdNegativeKeywordListKeywords200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdAccount
         /// </summary>
         [Fact]
@@ -351,6 +420,19 @@ namespace Zernio.Test.Api
             //UpdateAdAccountRequest updateAdAccountRequest = null;
             //var response = instance.UpdateAdAccount(updateAdAccountRequest);
             //Assert.IsType<UpdateAdAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAdNegativeKeywordList
+        /// </summary>
+        [Fact]
+        public void UpdateAdNegativeKeywordListTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string listId = null;
+            //UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest = null;
+            //var response = instance.UpdateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest);
+            //Assert.IsType<UpdateAdNegativeKeywordList200Response>(response);
         }
 
         /// <summary>

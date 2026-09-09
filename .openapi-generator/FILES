@@ -17,11 +17,11 @@ docs/Ad.md
 docs/AdAccountsApi.md
 docs/AdAnalyticsResponse.md
 docs/AdAnalyticsResponseAd.md
+docs/AdAnalyticsResponseAnalytics.md
 docs/AdAudiencesApi.md
 docs/AdBudget.md
 docs/AdCampaign.md
 docs/AdCampaignBudget.md
-docs/AdCampaignCampaignBudget.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
 docs/AdCreativesApi.md
@@ -33,6 +33,8 @@ docs/AdKeyword.md
 docs/AdKeywordMetrics.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
+docs/AdNegativeKeywordList.md
+docs/AdNegativeKeywordListKeyword.md
 docs/AdPromotedObject.md
 docs/AdReviewStatus.md
 docs/AdSchedule.md
@@ -190,6 +192,8 @@ docs/CallsApi.md
 docs/CampaignAnalyticsResponse.md
 docs/CampaignAnalyticsResponseAnalytics.md
 docs/CampaignAnalyticsResponseAnalyticsDailyInner.md
+docs/CampaignAnalyticsResponseAnalyticsImpressionShareCache.md
+docs/CampaignAnalyticsResponseAnalyticsSummary.md
 docs/CampaignAnalyticsResponseCampaign.md
 docs/CampaignBidding.md
 docs/CampaignBiddingBidSpec.md
@@ -266,6 +270,8 @@ docs/CreateAdInsightsReport202Response.md
 docs/CreateAdInsightsReportRequest.md
 docs/CreateAdInsightsReportRequestFilteringInner.md
 docs/CreateAdInsightsReportRequestTimeIncrement.md
+docs/CreateAdNegativeKeywordList201Response.md
+docs/CreateAdNegativeKeywordListRequest.md
 docs/CreateAdSet201Response.md
 docs/CreateAdSetRequest.md
 docs/CreateApiKey201Response.md
@@ -455,6 +461,7 @@ docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
 docs/DeleteAdCreative200Response.md
+docs/DeleteAdNegativeKeywordList200Response.md
 docs/DeleteAdSet200Response.md
 docs/DeleteAdVideo200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
@@ -589,6 +596,8 @@ docs/GetAdInsightsReport200Response.md
 docs/GetAdInsightsReport200ResponsePaging.md
 docs/GetAdMedia200Response.md
 docs/GetAdMedia200ResponseMediaInner.md
+docs/GetAdNegativeKeywordList200Response.md
+docs/GetAdNegativeKeywordList200ResponseList.md
 docs/GetAdPreviews200Response.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
@@ -1016,6 +1025,7 @@ docs/ListAdCreatives200Response.md
 docs/ListAdImages200Response.md
 docs/ListAdKeywords200Response.md
 docs/ListAdLabels200Response.md
+docs/ListAdNegativeKeywordLists200Response.md
 docs/ListAdSets200Response.md
 docs/ListAdSets200ResponseAdSetsInner.md
 docs/ListAdStudies200Response.md
@@ -1324,6 +1334,9 @@ docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
 docs/ReplaceAdAudienceCompaniesRequestCompaniesInner.md
+docs/ReplaceAdNegativeKeywordListKeywords200Response.md
+docs/ReplaceAdNegativeKeywordListKeywordsRequest.md
+docs/ReplaceCampaignNegativeKeywordListsRequest.md
 docs/ReplaceCampaignNegativeKeywords200Response.md
 docs/ReplaceCampaignNegativeKeywordsRequest.md
 docs/ReplyToGoogleBusinessReview200Response.md
@@ -1607,6 +1620,8 @@ docs/UpdateAdCreative200Response.md
 docs/UpdateAdCreativeRequest.md
 docs/UpdateAdKeyword200Response.md
 docs/UpdateAdKeywordRequest.md
+docs/UpdateAdNegativeKeywordList200Response.md
+docs/UpdateAdNegativeKeywordListRequest.md
 docs/UpdateAdRequest.md
 docs/UpdateAdRequestBudget.md
 docs/UpdateAdRequestCreative.md
@@ -2074,10 +2089,10 @@ src/Zernio.Test/Model/ActivateSequence200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseAdTests.cs
+src/Zernio.Test/Model/AdAnalyticsResponseAnalyticsTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseTests.cs
 src/Zernio.Test/Model/AdBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignBudgetTests.cs
-src/Zernio.Test/Model/AdCampaignCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignTests.cs
 src/Zernio.Test/Model/AdCreativeTests.cs
 src/Zernio.Test/Model/AdDailyMetricsTests.cs
@@ -2086,6 +2101,8 @@ src/Zernio.Test/Model/AdFunnelCountsTests.cs
 src/Zernio.Test/Model/AdKeywordMetricsTests.cs
 src/Zernio.Test/Model/AdKeywordTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
+src/Zernio.Test/Model/AdNegativeKeywordListKeywordTests.cs
+src/Zernio.Test/Model/AdNegativeKeywordListTests.cs
 src/Zernio.Test/Model/AdPromotedObjectTests.cs
 src/Zernio.Test/Model/AdReviewStatusTests.cs
 src/Zernio.Test/Model/AdScheduleTests.cs
@@ -2236,6 +2253,8 @@ src/Zernio.Test/Model/CallRecordCallErrorsInnerTests.cs
 src/Zernio.Test/Model/CallRecordTests.cs
 src/Zernio.Test/Model/CallRecordTranscriptInnerTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsDailyInnerTests.cs
+src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsImpressionShareCacheTests.cs
+src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsSummaryTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseCampaignTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseTests.cs
@@ -2308,6 +2327,8 @@ src/Zernio.Test/Model/CreateAdInsightsReport202ResponseTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestFilteringInnerTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestTimeIncrementTests.cs
+src/Zernio.Test/Model/CreateAdNegativeKeywordList201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdNegativeKeywordListRequestTests.cs
 src/Zernio.Test/Model/CreateAdSet201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdSetRequestTests.cs
 src/Zernio.Test/Model/CreateApiKey201ResponseTests.cs
@@ -2496,6 +2517,7 @@ src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaignRequestTests.cs
 src/Zernio.Test/Model/DeleteAdCreative200ResponseTests.cs
+src/Zernio.Test/Model/DeleteAdNegativeKeywordList200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdVideo200ResponseTests.cs
 src/Zernio.Test/Model/DeleteDiscordScheduledEvent200ResponseTests.cs
@@ -2621,6 +2643,8 @@ src/Zernio.Test/Model/GetAdInsightsReport200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdInsightsReport200ResponseTests.cs
 src/Zernio.Test/Model/GetAdMedia200ResponseMediaInnerTests.cs
 src/Zernio.Test/Model/GetAdMedia200ResponseTests.cs
+src/Zernio.Test/Model/GetAdNegativeKeywordList200ResponseListTests.cs
+src/Zernio.Test/Model/GetAdNegativeKeywordList200ResponseTests.cs
 src/Zernio.Test/Model/GetAdPreviews200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
@@ -3043,6 +3067,7 @@ src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdImages200ResponseTests.cs
 src/Zernio.Test/Model/ListAdKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
+src/Zernio.Test/Model/ListAdNegativeKeywordLists200ResponseTests.cs
 src/Zernio.Test/Model/ListAdSets200ResponseAdSetsInnerTests.cs
 src/Zernio.Test/Model/ListAdSets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
@@ -3340,6 +3365,9 @@ src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompanies200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestTests.cs
+src/Zernio.Test/Model/ReplaceAdNegativeKeywordListKeywords200ResponseTests.cs
+src/Zernio.Test/Model/ReplaceAdNegativeKeywordListKeywordsRequestTests.cs
+src/Zernio.Test/Model/ReplaceCampaignNegativeKeywordListsRequestTests.cs
 src/Zernio.Test/Model/ReplaceCampaignNegativeKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceCampaignNegativeKeywordsRequestTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReview200ResponseTests.cs
@@ -3617,6 +3645,8 @@ src/Zernio.Test/Model/UpdateAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCreativeRequestTests.cs
 src/Zernio.Test/Model/UpdateAdKeyword200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdKeywordRequestTests.cs
+src/Zernio.Test/Model/UpdateAdNegativeKeywordList200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdNegativeKeywordListRequestTests.cs
 src/Zernio.Test/Model/UpdateAdRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingDevicesInnerOneOfTests.cs
@@ -4090,10 +4120,10 @@ src/Zernio/Model/ActivateWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/Ad.cs
 src/Zernio/Model/AdAnalyticsResponse.cs
 src/Zernio/Model/AdAnalyticsResponseAd.cs
+src/Zernio/Model/AdAnalyticsResponseAnalytics.cs
 src/Zernio/Model/AdBudget.cs
 src/Zernio/Model/AdCampaign.cs
 src/Zernio/Model/AdCampaignBudget.cs
-src/Zernio/Model/AdCampaignCampaignBudget.cs
 src/Zernio/Model/AdCreative.cs
 src/Zernio/Model/AdDailyMetrics.cs
 src/Zernio/Model/AdEngagementCounts.cs
@@ -4101,6 +4131,8 @@ src/Zernio/Model/AdFunnelCounts.cs
 src/Zernio/Model/AdKeyword.cs
 src/Zernio/Model/AdKeywordMetrics.cs
 src/Zernio/Model/AdMetrics.cs
+src/Zernio/Model/AdNegativeKeywordList.cs
+src/Zernio/Model/AdNegativeKeywordListKeyword.cs
 src/Zernio/Model/AdPromotedObject.cs
 src/Zernio/Model/AdReviewStatus.cs
 src/Zernio/Model/AdSchedule.cs
@@ -4252,6 +4284,8 @@ src/Zernio/Model/CallRecordTranscriptInner.cs
 src/Zernio/Model/CampaignAnalyticsResponse.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalytics.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalyticsDailyInner.cs
+src/Zernio/Model/CampaignAnalyticsResponseAnalyticsImpressionShareCache.cs
+src/Zernio/Model/CampaignAnalyticsResponseAnalyticsSummary.cs
 src/Zernio/Model/CampaignAnalyticsResponseCampaign.cs
 src/Zernio/Model/CampaignBidding.cs
 src/Zernio/Model/CampaignBiddingBidSpec.cs
@@ -4322,6 +4356,8 @@ src/Zernio/Model/CreateAdInsightsReport202Response.cs
 src/Zernio/Model/CreateAdInsightsReportRequest.cs
 src/Zernio/Model/CreateAdInsightsReportRequestFilteringInner.cs
 src/Zernio/Model/CreateAdInsightsReportRequestTimeIncrement.cs
+src/Zernio/Model/CreateAdNegativeKeywordList201Response.cs
+src/Zernio/Model/CreateAdNegativeKeywordListRequest.cs
 src/Zernio/Model/CreateAdSet201Response.cs
 src/Zernio/Model/CreateAdSetRequest.cs
 src/Zernio/Model/CreateApiKey201Response.cs
@@ -4510,6 +4546,7 @@ src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
 src/Zernio/Model/DeleteAdCampaignRequest.cs
 src/Zernio/Model/DeleteAdCreative200Response.cs
+src/Zernio/Model/DeleteAdNegativeKeywordList200Response.cs
 src/Zernio/Model/DeleteAdSet200Response.cs
 src/Zernio/Model/DeleteAdVideo200Response.cs
 src/Zernio/Model/DeleteDiscordScheduledEvent200Response.cs
@@ -4635,6 +4672,8 @@ src/Zernio/Model/GetAdInsightsReport200Response.cs
 src/Zernio/Model/GetAdInsightsReport200ResponsePaging.cs
 src/Zernio/Model/GetAdMedia200Response.cs
 src/Zernio/Model/GetAdMedia200ResponseMediaInner.cs
+src/Zernio/Model/GetAdNegativeKeywordList200Response.cs
+src/Zernio/Model/GetAdNegativeKeywordList200ResponseList.cs
 src/Zernio/Model/GetAdPreviews200Response.cs
 src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
@@ -5057,6 +5096,7 @@ src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdImages200Response.cs
 src/Zernio/Model/ListAdKeywords200Response.cs
 src/Zernio/Model/ListAdLabels200Response.cs
+src/Zernio/Model/ListAdNegativeKeywordLists200Response.cs
 src/Zernio/Model/ListAdSets200Response.cs
 src/Zernio/Model/ListAdSets200ResponseAdSetsInner.cs
 src/Zernio/Model/ListAdStudies200Response.cs
@@ -5354,6 +5394,9 @@ src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompanies200Response.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequestCompaniesInner.cs
+src/Zernio/Model/ReplaceAdNegativeKeywordListKeywords200Response.cs
+src/Zernio/Model/ReplaceAdNegativeKeywordListKeywordsRequest.cs
+src/Zernio/Model/ReplaceCampaignNegativeKeywordListsRequest.cs
 src/Zernio/Model/ReplaceCampaignNegativeKeywords200Response.cs
 src/Zernio/Model/ReplaceCampaignNegativeKeywordsRequest.cs
 src/Zernio/Model/ReplyToGoogleBusinessReview200Response.cs
@@ -5631,6 +5674,8 @@ src/Zernio/Model/UpdateAdCreative200Response.cs
 src/Zernio/Model/UpdateAdCreativeRequest.cs
 src/Zernio/Model/UpdateAdKeyword200Response.cs
 src/Zernio/Model/UpdateAdKeywordRequest.cs
+src/Zernio/Model/UpdateAdNegativeKeywordList200Response.cs
+src/Zernio/Model/UpdateAdNegativeKeywordListRequest.cs
 src/Zernio/Model/UpdateAdRequest.cs
 src/Zernio/Model/UpdateAdRequestBudget.cs
 src/Zernio/Model/UpdateAdRequestCreative.cs

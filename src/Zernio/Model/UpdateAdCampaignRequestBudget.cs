@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// **Meta only.** The CBO budget.
+    /// Meta CBO or Google daily campaign budget, in whole currency units.
     /// </summary>
     [DataContract(Name = "updateAdCampaign_request_budget")]
     public partial class UpdateAdCampaignRequestBudget : IValidatableObject

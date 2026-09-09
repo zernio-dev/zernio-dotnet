@@ -50,6 +50,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AddAccountCallouts201Response</returns>
         ApiResponse<AddAccountCallouts201Response> AddAccountCalloutsWithHttpInfo(AddAccountCalloutsRequest addAccountCalloutsRequest);
         /// <summary>
+        /// Create a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <returns>CreateAdNegativeKeywordList201Response</returns>
+        CreateAdNegativeKeywordList201Response CreateAdNegativeKeywordList(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest);
+
+        /// <summary>
+        /// Create a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <returns>ApiResponse of CreateAdNegativeKeywordList201Response</returns>
+        ApiResponse<CreateAdNegativeKeywordList201Response> CreateAdNegativeKeywordListWithHttpInfo(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest);
+        /// <summary>
         /// Create or reuse a custom conversion
         /// </summary>
         /// <remarks>
@@ -114,6 +135,33 @@ namespace Zernio.Api
         /// <param name="createValueRuleSetRequest"></param>
         /// <returns>ApiResponse of CreateValueRuleSet201Response</returns>
         ApiResponse<CreateValueRuleSet201Response> CreateValueRuleSetWithHttpInfo(CreateValueRuleSetRequest createValueRuleSetRequest);
+        /// <summary>
+        /// Delete a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>DeleteAdNegativeKeywordList200Response</returns>
+        DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default);
+
+        /// <summary>
+        /// Delete a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ApiResponse of DeleteAdNegativeKeywordList200Response</returns>
+        ApiResponse<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default);
         /// <summary>
         /// Delete a value rule set
         /// </summary>
@@ -187,6 +235,33 @@ namespace Zernio.Api
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
         ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
+        /// <summary>
+        /// Get a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>GetAdNegativeKeywordList200Response</returns>
+        GetAdNegativeKeywordList200Response GetAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default);
+
+        /// <summary>
+        /// Get a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ApiResponse of GetAdNegativeKeywordList200Response</returns>
+        ApiResponse<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default);
         /// <summary>
         /// Ad account change / audit log
         /// </summary>
@@ -365,6 +440,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdLabels200Response</returns>
         ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default);
         /// <summary>
+        /// List negative keyword lists
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ListAdNegativeKeywordLists200Response</returns>
+        ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists(string accountId, string? customerId = default, string? platform = default);
+
+        /// <summary>
+        /// List negative keyword lists
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ApiResponse of ListAdNegativeKeywordLists200Response</returns>
+        ApiResponse<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsWithHttpInfo(string accountId, string? customerId = default, string? platform = default);
+        /// <summary>
         /// A/B tests and lift studies
         /// </summary>
         /// <remarks>
@@ -540,6 +640,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
         ApiResponse<RemoveAccountCallout200Response> RemoveAccountCalloutWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest);
         /// <summary>
+        /// Replace negative list keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <returns>ReplaceAdNegativeKeywordListKeywords200Response</returns>
+        ReplaceAdNegativeKeywordListKeywords200Response ReplaceAdNegativeKeywordListKeywords(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest);
+
+        /// <summary>
+        /// Replace negative list keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <returns>ApiResponse of ReplaceAdNegativeKeywordListKeywords200Response</returns>
+        ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest);
+        /// <summary>
         /// Update ad account settings
         /// </summary>
         /// <remarks>
@@ -560,6 +683,29 @@ namespace Zernio.Api
         /// <param name="updateAdAccountRequest"></param>
         /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
         ApiResponse<UpdateAdAccount200Response> UpdateAdAccountWithHttpInfo(UpdateAdAccountRequest updateAdAccountRequest);
+        /// <summary>
+        /// Rename a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <returns>UpdateAdNegativeKeywordList200Response</returns>
+        UpdateAdNegativeKeywordList200Response UpdateAdNegativeKeywordList(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest);
+
+        /// <summary>
+        /// Rename a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <returns>ApiResponse of UpdateAdNegativeKeywordList200Response</returns>
+        ApiResponse<UpdateAdNegativeKeywordList200Response> UpdateAdNegativeKeywordListWithHttpInfo(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest);
         /// <summary>
         /// Replace a value rule set
         /// </summary>
@@ -615,6 +761,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddAccountCallouts201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddAccountCallouts201Response>> AddAccountCalloutsWithHttpInfoAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdNegativeKeywordList201Response</returns>
+        System.Threading.Tasks.Task<CreateAdNegativeKeywordList201Response> CreateAdNegativeKeywordListAsync(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdNegativeKeywordList201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateAdNegativeKeywordList201Response>> CreateAdNegativeKeywordListWithHttpInfoAsync(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create or reuse a custom conversion
         /// </summary>
@@ -686,6 +855,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateValueRuleSet201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateValueRuleSet201Response>> CreateValueRuleSetWithHttpInfoAsync(CreateValueRuleSetRequest createValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdNegativeKeywordList200Response</returns>
+        System.Threading.Tasks.Task<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdNegativeKeywordList200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteAdNegativeKeywordList200Response>> DeleteAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a value rule set
         /// </summary>
@@ -765,6 +963,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdNegativeKeywordList200Response</returns>
+        System.Threading.Tasks.Task<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdNegativeKeywordList200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdNegativeKeywordList200Response>> GetAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Ad account change / audit log
         /// </summary>
@@ -957,6 +1184,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdLabels200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List negative keyword lists
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdNegativeKeywordLists200Response</returns>
+        System.Threading.Tasks.Task<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List negative keyword lists
+        /// </summary>
+        /// <remarks>
+        /// Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdNegativeKeywordLists200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdNegativeKeywordLists200Response>> ListAdNegativeKeywordListsWithHttpInfoAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// A/B tests and lift studies
         /// </summary>
         /// <remarks>
@@ -1146,6 +1400,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveAccountCallout200Response>> RemoveAccountCalloutWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Replace negative list keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplaceAdNegativeKeywordListKeywords200Response</returns>
+        System.Threading.Tasks.Task<ReplaceAdNegativeKeywordListKeywords200Response> ReplaceAdNegativeKeywordListKeywordsAsync(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Replace negative list keywords
+        /// </summary>
+        /// <remarks>
+        /// Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplaceAdNegativeKeywordListKeywords200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response>> ReplaceAdNegativeKeywordListKeywordsWithHttpInfoAsync(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update ad account settings
         /// </summary>
         /// <remarks>
@@ -1168,6 +1447,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdAccount200Response>> UpdateAdAccountWithHttpInfoAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Rename a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdNegativeKeywordList200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdNegativeKeywordList200Response> UpdateAdNegativeKeywordListAsync(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Rename a negative keyword list
+        /// </summary>
+        /// <remarks>
+        /// Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdNegativeKeywordList200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdNegativeKeywordList200Response>> UpdateAdNegativeKeywordListWithHttpInfoAsync(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Replace a value rule set
         /// </summary>
@@ -1529,6 +1833,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("AddAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a negative keyword list Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <returns>CreateAdNegativeKeywordList201Response</returns>
+        public CreateAdNegativeKeywordList201Response CreateAdNegativeKeywordList(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest)
+        {
+            Zernio.Client.ApiResponse<CreateAdNegativeKeywordList201Response> localVarResponse = CreateAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a negative keyword list Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <returns>ApiResponse of CreateAdNegativeKeywordList201Response</returns>
+        public Zernio.Client.ApiResponse<CreateAdNegativeKeywordList201Response> CreateAdNegativeKeywordListWithHttpInfo(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest)
+        {
+            // verify the required parameter 'createAdNegativeKeywordListRequest' is set
+            if (createAdNegativeKeywordListRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdNegativeKeywordListRequest' when calling AdAccountsApi->CreateAdNegativeKeywordList");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdNegativeKeywordListRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateAdNegativeKeywordList201Response>("/v1/ads/accounts/negative-keyword-lists", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdNegativeKeywordList", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a negative keyword list Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdNegativeKeywordList201Response</returns>
+        public async System.Threading.Tasks.Task<CreateAdNegativeKeywordList201Response> CreateAdNegativeKeywordListAsync(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateAdNegativeKeywordList201Response> localVarResponse = await CreateAdNegativeKeywordListWithHttpInfoAsync(createAdNegativeKeywordListRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a negative keyword list Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdNegativeKeywordList201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdNegativeKeywordList201Response>> CreateAdNegativeKeywordListWithHttpInfoAsync(CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createAdNegativeKeywordListRequest' is set
+            if (createAdNegativeKeywordListRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdNegativeKeywordListRequest' when calling AdAccountsApi->CreateAdNegativeKeywordList");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdNegativeKeywordListRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateAdNegativeKeywordList201Response>("/v1/ads/accounts/negative-keyword-lists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdNegativeKeywordList", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1930,6 +2363,171 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a negative keyword list Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>DeleteAdNegativeKeywordList200Response</returns>
+        public DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default)
+        {
+            Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a negative keyword list Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ApiResponse of DeleteAdNegativeKeywordList200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->DeleteAdNegativeKeywordList");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->DeleteAdNegativeKeywordList");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteAdNegativeKeywordList200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdNegativeKeywordList", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a negative keyword list Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdNegativeKeywordList200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = await DeleteAdNegativeKeywordListWithHttpInfoAsync(listId, accountId, customerId, platform, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a negative keyword list Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdNegativeKeywordList200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response>> DeleteAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->DeleteAdNegativeKeywordList");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->DeleteAdNegativeKeywordList");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteAdNegativeKeywordList200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdNegativeKeywordList", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2375,6 +2973,171 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdComments", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a negative keyword list Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>GetAdNegativeKeywordList200Response</returns>
+        public GetAdNegativeKeywordList200Response GetAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default)
+        {
+            Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = GetAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a negative keyword list Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ApiResponse of GetAdNegativeKeywordList200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->GetAdNegativeKeywordList");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetAdNegativeKeywordList");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdNegativeKeywordList200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdNegativeKeywordList", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a negative keyword list Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdNegativeKeywordList200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = await GetAdNegativeKeywordListWithHttpInfoAsync(listId, accountId, customerId, platform, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a negative keyword list Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope. Includes the keywords and their criterion ids.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdNegativeKeywordList200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response>> GetAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->GetAdNegativeKeywordList");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetAdNegativeKeywordList");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdNegativeKeywordList200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdNegativeKeywordList", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -3461,6 +4224,157 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List negative keyword lists Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ListAdNegativeKeywordLists200Response</returns>
+        public ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists(string accountId, string? customerId = default, string? platform = default)
+        {
+            Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = ListAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List negative keyword lists Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <returns>ApiResponse of ListAdNegativeKeywordLists200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsWithHttpInfo(string accountId, string? customerId = default, string? platform = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdNegativeKeywordLists");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdNegativeKeywordLists200Response>("/v1/ads/accounts/negative-keyword-lists", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdNegativeKeywordLists", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List negative keyword lists Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdNegativeKeywordLists200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = await ListAdNegativeKeywordListsWithHttpInfoAsync(accountId, customerId, platform, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List negative keyword lists Google Ads shared negative keyword lists (shared_set type NEGATIVE_KEYWORDS). Reads are cached for 10 minutes; quota exhaustion may return the last successful result for up to 7 days with stale&#x3D;true. Customer selection is limited to this connection and its account scope.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="platform"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdNegativeKeywordLists200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response>> ListAdNegativeKeywordListsWithHttpInfoAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdNegativeKeywordLists");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdNegativeKeywordLists200Response>("/v1/ads/accounts/negative-keyword-lists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdNegativeKeywordLists", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// A/B tests and lift studies Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4526,6 +5440,149 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Replace negative list keywords Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <returns>ReplaceAdNegativeKeywordListKeywords200Response</returns>
+        public ReplaceAdNegativeKeywordListKeywords200Response ReplaceAdNegativeKeywordListKeywords(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest)
+        {
+            Zernio.Client.ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> localVarResponse = ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace negative list keywords Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <returns>ApiResponse of ReplaceAdNegativeKeywordListKeywords200Response</returns>
+        public Zernio.Client.ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->ReplaceAdNegativeKeywordListKeywords");
+
+            // verify the required parameter 'replaceAdNegativeKeywordListKeywordsRequest' is set
+            if (replaceAdNegativeKeywordListKeywordsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replaceAdNegativeKeywordListKeywordsRequest' when calling AdAccountsApi->ReplaceAdNegativeKeywordListKeywords");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.Data = replaceAdNegativeKeywordListKeywordsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<ReplaceAdNegativeKeywordListKeywords200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}/keywords", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplaceAdNegativeKeywordListKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace negative list keywords Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplaceAdNegativeKeywordListKeywords200Response</returns>
+        public async System.Threading.Tasks.Task<ReplaceAdNegativeKeywordListKeywords200Response> ReplaceAdNegativeKeywordListKeywordsAsync(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> localVarResponse = await ReplaceAdNegativeKeywordListKeywordsWithHttpInfoAsync(listId, replaceAdNegativeKeywordListKeywordsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace negative list keywords Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplaceAdNegativeKeywordListKeywords200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response>> ReplaceAdNegativeKeywordListKeywordsWithHttpInfoAsync(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->ReplaceAdNegativeKeywordListKeywords");
+
+            // verify the required parameter 'replaceAdNegativeKeywordListKeywordsRequest' is set
+            if (replaceAdNegativeKeywordListKeywordsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replaceAdNegativeKeywordListKeywordsRequest' when calling AdAccountsApi->ReplaceAdNegativeKeywordListKeywords");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.Data = replaceAdNegativeKeywordListKeywordsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<ReplaceAdNegativeKeywordListKeywords200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}/keywords", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplaceAdNegativeKeywordListKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update ad account settings Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4648,6 +5705,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAdAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Rename a negative keyword list Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <returns>UpdateAdNegativeKeywordList200Response</returns>
+        public UpdateAdNegativeKeywordList200Response UpdateAdNegativeKeywordList(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAdNegativeKeywordList200Response> localVarResponse = UpdateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Rename a negative keyword list Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <returns>ApiResponse of UpdateAdNegativeKeywordList200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdNegativeKeywordList200Response> UpdateAdNegativeKeywordListWithHttpInfo(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->UpdateAdNegativeKeywordList");
+
+            // verify the required parameter 'updateAdNegativeKeywordListRequest' is set
+            if (updateAdNegativeKeywordListRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdNegativeKeywordListRequest' when calling AdAccountsApi->UpdateAdNegativeKeywordList");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.Data = updateAdNegativeKeywordListRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAdNegativeKeywordList200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdNegativeKeywordList", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Rename a negative keyword list Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdNegativeKeywordList200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdNegativeKeywordList200Response> UpdateAdNegativeKeywordListAsync(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdNegativeKeywordList200Response> localVarResponse = await UpdateAdNegativeKeywordListWithHttpInfoAsync(listId, updateAdNegativeKeywordListRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Rename a negative keyword list Renames a shared negative keyword list. Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="listId"></param>
+        /// <param name="updateAdNegativeKeywordListRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdNegativeKeywordList200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdNegativeKeywordList200Response>> UpdateAdNegativeKeywordListWithHttpInfoAsync(string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'listId' is set
+            if (listId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'listId' when calling AdAccountsApi->UpdateAdNegativeKeywordList");
+
+            // verify the required parameter 'updateAdNegativeKeywordListRequest' is set
+            if (updateAdNegativeKeywordListRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdNegativeKeywordListRequest' when calling AdAccountsApi->UpdateAdNegativeKeywordList");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
+            localVarRequestOptions.Data = updateAdNegativeKeywordListRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAdNegativeKeywordList200Response>("/v1/ads/accounts/negative-keyword-lists/{listId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdNegativeKeywordList", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

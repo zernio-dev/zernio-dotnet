@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Video creative for single-creative shape. Mutually exclusive with &#x60;imageUrl&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;imageUrl&#x60; is not supplied. 
+    /// Video creative for single-creative shape. Mutually exclusive with &#x60;imageUrl&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;imageUrl&#x60; nor an existing post reference is supplied. 
     /// </summary>
     [DataContract(Name = "CtwaAdRequestBody_video")]
     public partial class CtwaAdRequestBodyVideo : IValidatableObject

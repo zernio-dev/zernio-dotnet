@@ -40,13 +40,15 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="platform">platform.</param>
         /// <param name="status">Effective campaign status (ACTIVE when any child ad is active)..</param>
+        /// <param name="budget">budget.</param>
         /// <param name="currency">ISO 4217 code of the ad account (e.g. USD, THB). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency..</param>
-        public CampaignAnalyticsResponseCampaign(string id = default, string name = default, string platform = default, string status = default, string currency = default)
+        public CampaignAnalyticsResponseCampaign(string id = default, string name = default, string platform = default, string status = default, AdCampaignBudget budget = default, string currency = default)
         {
             this.Id = id;
             this.Name = name;
             this.Platform = platform;
             this.Status = status;
+            this.Budget = budget;
             this.Currency = currency;
         }
 
@@ -76,6 +78,12 @@ namespace Zernio.Model
         public string Status { get; set; }
 
         /// <summary>
+        /// Gets or Sets Budget
+        /// </summary>
+        [DataMember(Name = "budget", EmitDefaultValue = true)]
+        public AdCampaignBudget Budget { get; set; }
+
+        /// <summary>
         /// ISO 4217 code of the ad account (e.g. USD, THB). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency.
         /// </summary>
         /// <value>ISO 4217 code of the ad account (e.g. USD, THB). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency.</value>
@@ -94,6 +102,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

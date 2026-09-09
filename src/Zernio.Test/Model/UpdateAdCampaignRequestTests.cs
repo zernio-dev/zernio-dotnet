@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AllowSharedBudgetUpdate'
+        /// </summary>
+        [Fact]
+        public void AllowSharedBudgetUpdateTest()
+        {
+            // TODO unit test for the property 'AllowSharedBudgetUpdate'
+        }
+
+        /// <summary>
         /// Test the property 'Budget'
         /// </summary>
         [Fact]
