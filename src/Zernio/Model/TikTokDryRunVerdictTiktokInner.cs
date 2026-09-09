@@ -28,36 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreatePost200ResponseTiktokInner
+    /// TikTokDryRunVerdictTiktokInner
     /// </summary>
-    [DataContract(Name = "createPost_200_response_tiktok_inner")]
-    public partial class CreatePost200ResponseTiktokInner : IValidatableObject
+    [DataContract(Name = "TikTokDryRunVerdict_tiktok_inner")]
+    public partial class TikTokDryRunVerdictTiktokInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePost200ResponseTiktokInner" /> class.
+        /// Initializes a new instance of the <see cref="TikTokDryRunVerdictTiktokInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreatePost200ResponseTiktokInner() { }
+        protected TikTokDryRunVerdictTiktokInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePost200ResponseTiktokInner" /> class.
+        /// Initializes a new instance of the <see cref="TikTokDryRunVerdictTiktokInner" /> class.
         /// </summary>
         /// <param name="accountId">accountId (required).</param>
         /// <param name="canPublish">canPublish (required).</param>
         /// <param name="alreadyPostedToday">Whether this account already published a Direct Post today (an account that did can keep publishing). Absent for Creator Inbox drafts and when no per-user limit applies..</param>
         /// <param name="reason">Human-readable explanation of the verdict (required).</param>
-        public CreatePost200ResponseTiktokInner(string accountId = default, bool canPublish = default, bool alreadyPostedToday = default, string reason = default)
+        public TikTokDryRunVerdictTiktokInner(string accountId = default, bool canPublish = default, bool alreadyPostedToday = default, string reason = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
             {
-                throw new ArgumentNullException("accountId is a required property for CreatePost200ResponseTiktokInner and cannot be null");
+                throw new ArgumentNullException("accountId is a required property for TikTokDryRunVerdictTiktokInner and cannot be null");
             }
             this.AccountId = accountId;
             this.CanPublish = canPublish;
             // to ensure "reason" is required (not null)
             if (reason == null)
             {
-                throw new ArgumentNullException("reason is a required property for CreatePost200ResponseTiktokInner and cannot be null");
+                throw new ArgumentNullException("reason is a required property for TikTokDryRunVerdictTiktokInner and cannot be null");
             }
             this.Reason = reason;
             this.AlreadyPostedToday = alreadyPostedToday;
@@ -96,7 +96,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreatePost200ResponseTiktokInner {\n");
+            sb.Append("class TikTokDryRunVerdictTiktokInner {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  CanPublish: ").Append(CanPublish).Append("\n");
             sb.Append("  AlreadyPostedToday: ").Append(AlreadyPostedToday).Append("\n");

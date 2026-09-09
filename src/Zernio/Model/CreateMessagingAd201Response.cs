@@ -30,18 +30,18 @@ using System.Reflection;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateCtwaAd201Response
+    /// CreateMessagingAd201Response
     /// </summary>
-    [JsonConverter(typeof(CreateCtwaAd201ResponseJsonConverter))]
-    [DataContract(Name = "createCtwaAd_201_response")]
-    public partial class CreateCtwaAd201Response : AbstractOpenAPISchema, IValidatableObject
+    [JsonConverter(typeof(CreateMessagingAd201ResponseJsonConverter))]
+    [DataContract(Name = "createMessagingAd_201_response")]
+    public partial class CreateMessagingAd201Response : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAd201Response" /> class
+        /// Initializes a new instance of the <see cref="CreateMessagingAd201Response" /> class
         /// with the <see cref="CtwaSingleResponse" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CtwaSingleResponse.</param>
-        public CreateCtwaAd201Response(CtwaSingleResponse actualInstance)
+        public CreateMessagingAd201Response(CtwaSingleResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -49,11 +49,11 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAd201Response" /> class
+        /// Initializes a new instance of the <see cref="CreateMessagingAd201Response" /> class
         /// with the <see cref="CtwaMultiResponse" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CtwaMultiResponse.</param>
-        public CreateCtwaAd201Response(CtwaMultiResponse actualInstance)
+        public CreateMessagingAd201Response(CtwaMultiResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -116,7 +116,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreateCtwaAd201Response {\n");
+            sb.Append("class CreateMessagingAd201Response {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -128,21 +128,21 @@ namespace Zernio.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, CreateCtwaAd201Response.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, CreateMessagingAd201Response.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of CreateCtwaAd201Response
+        /// Converts the JSON string into an instance of CreateMessagingAd201Response
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of CreateCtwaAd201Response</returns>
-        public static CreateCtwaAd201Response FromJson(string jsonString)
+        /// <returns>An instance of CreateMessagingAd201Response</returns>
+        public static CreateMessagingAd201Response FromJson(string jsonString)
         {
-            CreateCtwaAd201Response newCreateCtwaAd201Response = null;
+            CreateMessagingAd201Response newCreateMessagingAd201Response = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newCreateCtwaAd201Response;
+                return newCreateMessagingAd201Response;
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
@@ -152,11 +152,11 @@ namespace Zernio.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(CtwaMultiResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaMultiResponse>(jsonString, CreateCtwaAd201Response.SerializerSettings));
+                    newCreateMessagingAd201Response = new CreateMessagingAd201Response(JsonConvert.DeserializeObject<CtwaMultiResponse>(jsonString, CreateMessagingAd201Response.SerializerSettings));
                 }
                 else
                 {
-                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaMultiResponse>(jsonString, CreateCtwaAd201Response.AdditionalPropertiesSerializerSettings));
+                    newCreateMessagingAd201Response = new CreateMessagingAd201Response(JsonConvert.DeserializeObject<CtwaMultiResponse>(jsonString, CreateMessagingAd201Response.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("CtwaMultiResponse");
                 match++;
@@ -172,11 +172,11 @@ namespace Zernio.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(CtwaSingleResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaSingleResponse>(jsonString, CreateCtwaAd201Response.SerializerSettings));
+                    newCreateMessagingAd201Response = new CreateMessagingAd201Response(JsonConvert.DeserializeObject<CtwaSingleResponse>(jsonString, CreateMessagingAd201Response.SerializerSettings));
                 }
                 else
                 {
-                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaSingleResponse>(jsonString, CreateCtwaAd201Response.AdditionalPropertiesSerializerSettings));
+                    newCreateMessagingAd201Response = new CreateMessagingAd201Response(JsonConvert.DeserializeObject<CtwaSingleResponse>(jsonString, CreateMessagingAd201Response.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("CtwaSingleResponse");
                 match++;
@@ -197,7 +197,7 @@ namespace Zernio.Model
             }
 
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newCreateCtwaAd201Response;
+            return newCreateMessagingAd201Response;
         }
 
 
@@ -213,9 +213,9 @@ namespace Zernio.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for CreateCtwaAd201Response
+    /// Custom JSON converter for CreateMessagingAd201Response
     /// </summary>
-    public class CreateCtwaAd201ResponseJsonConverter : JsonConverter
+    public class CreateMessagingAd201ResponseJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -225,7 +225,7 @@ namespace Zernio.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(CreateCtwaAd201Response).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(CreateMessagingAd201Response).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -241,9 +241,9 @@ namespace Zernio.Model
             switch(reader.TokenType) 
             {
                 case JsonToken.StartObject:
-                    return CreateCtwaAd201Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                    return CreateMessagingAd201Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
                 case JsonToken.StartArray:
-                    return CreateCtwaAd201Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                    return CreateMessagingAd201Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
                 default:
                     return null;
             }

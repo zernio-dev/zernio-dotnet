@@ -105,7 +105,6 @@ catch (ApiException e)
 | **200** | Call |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Not enrolled in the calling beta |  -  |
 | **404** | Call not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -210,7 +209,6 @@ catch (ApiException e)
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Not enrolled in the calling beta |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |
 | **502** | Recording provider lookup failed |  -  |
 
@@ -324,7 +322,6 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Not enrolled in the calling beta |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

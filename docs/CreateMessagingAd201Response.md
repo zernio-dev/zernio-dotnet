@@ -1,4 +1,4 @@
-# Zernio.Model.CreateCtwaAd201Response
+# Zernio.Model.CreateMessagingAd201Response
 
 ## Properties
 

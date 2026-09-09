@@ -229,8 +229,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
-        /// <returns></returns>
-        void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
+        /// <returns>UpdateAdTrackingTags200Response</returns>
+        UpdateAdTrackingTags200Response UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
 
         /// <summary>
         /// Set ad tracking tags
@@ -241,8 +241,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
+        /// <returns>ApiResponse of UpdateAdTrackingTags200Response</returns>
+        ApiResponse<UpdateAdTrackingTags200Response> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
         /// <summary>
         /// Update a tracking tag
         /// </summary>
@@ -495,8 +495,8 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateAdTrackingTags200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdTrackingTags200Response> UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set ad tracking tags
@@ -508,8 +508,8 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateAdTrackingTags200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdTrackingTags200Response>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a tracking tag
         /// </summary>
@@ -1932,10 +1932,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
-        /// <returns></returns>
-        public void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+        /// <returns>UpdateAdTrackingTags200Response</returns>
+        public UpdateAdTrackingTags200Response UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
         {
-            UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+            Zernio.Client.ApiResponse<UpdateAdTrackingTags200Response> localVarResponse = UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1944,8 +1945,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Zernio.Client.ApiResponse<Object> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+        /// <returns>ApiResponse of UpdateAdTrackingTags200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdTrackingTags200Response> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -1983,7 +1984,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<UpdateAdTrackingTags200Response>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2001,10 +2002,11 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateAdTrackingTags200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdTrackingTags200Response> UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UpdateAdTrackingTagsWithHttpInfoAsync(adId, updateAdTrackingTagsRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateAdTrackingTags200Response> localVarResponse = await UpdateAdTrackingTagsWithHttpInfoAsync(adId, updateAdTrackingTagsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2014,8 +2016,8 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="updateAdTrackingTagsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateAdTrackingTags200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdTrackingTags200Response>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2056,7 +2058,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateAdTrackingTags200Response>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

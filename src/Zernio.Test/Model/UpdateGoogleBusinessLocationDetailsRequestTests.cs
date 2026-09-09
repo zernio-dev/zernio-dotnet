@@ -126,5 +126,86 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ServiceItems'
         }
+
+        /// <summary>
+        /// Test the property 'Title'
+        /// </summary>
+        [Fact]
+        public void TitleTest()
+        {
+            // TODO unit test for the property 'Title'
+        }
+
+        /// <summary>
+        /// Test the property 'StoreCode'
+        /// </summary>
+        [Fact]
+        public void StoreCodeTest()
+        {
+            // TODO unit test for the property 'StoreCode'
+        }
+
+        /// <summary>
+        /// Test the property 'Labels'
+        /// </summary>
+        [Fact]
+        public void LabelsTest()
+        {
+            // TODO unit test for the property 'Labels'
+        }
+
+        /// <summary>
+        /// Test the property 'StorefrontAddress'
+        /// </summary>
+        [Fact]
+        public void StorefrontAddressTest()
+        {
+            // TODO unit test for the property 'StorefrontAddress'
+        }
+
+        /// <summary>
+        /// Test the property 'ServiceArea'
+        /// </summary>
+        [Fact]
+        public void ServiceAreaTest()
+        {
+            // TODO unit test for the property 'ServiceArea'
+        }
+
+        /// <summary>
+        /// Test the property 'OpenInfo'
+        /// </summary>
+        [Fact]
+        public void OpenInfoTest()
+        {
+            // TODO unit test for the property 'OpenInfo'
+        }
+
+        /// <summary>
+        /// Test the property 'MoreHours'
+        /// </summary>
+        [Fact]
+        public void MoreHoursTest()
+        {
+            // TODO unit test for the property 'MoreHours'
+        }
+
+        /// <summary>
+        /// Test the property 'Latlng'
+        /// </summary>
+        [Fact]
+        public void LatlngTest()
+        {
+            // TODO unit test for the property 'Latlng'
+        }
+
+        /// <summary>
+        /// Test the property 'AdWordsLocationExtensions'
+        /// </summary>
+        [Fact]
+        public void AdWordsLocationExtensionsTest()
+        {
+            // TODO unit test for the property 'AdWordsLocationExtensions'
+        }
     }
 }

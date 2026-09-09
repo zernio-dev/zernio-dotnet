@@ -10,7 +10,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="createcallad"></a>
 # **CreateCallAd**
-> void CreateCallAd (CreateCallAdRequest createCallAdRequest)
+> CreateMessagingAd201Response CreateCallAd (CreateCallAdRequest createCallAdRequest)
 
 Create Click-to-Call ad
 
@@ -45,7 +45,8 @@ namespace Example
             try
             {
                 // Create Click-to-Call ad
-                apiInstance.CreateCallAd(createCallAdRequest);
+                CreateMessagingAd201Response result = apiInstance.CreateCallAd(createCallAdRequest);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -65,7 +66,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Click-to-Call ad
-    apiInstance.CreateCallAdWithHttpInfo(createCallAdRequest);
+    ApiResponse<CreateMessagingAd201Response> response = apiInstance.CreateCallAdWithHttpInfo(createCallAdRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -83,7 +87,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
 
 ### Authorization
 
@@ -98,7 +102,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad(s) created and submitted for review |  -  |
+| **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
@@ -110,7 +114,7 @@ void (empty response body)
 
 <a id="createctwaad"></a>
 # **CreateCtwaAd**
-> CreateCtwaAd201Response CreateCtwaAd (CtwaAdRequestBody ctwaAdRequestBody)
+> CreateMessagingAd201Response CreateCtwaAd (CtwaAdRequestBody ctwaAdRequestBody)
 
 Create Click-to-WhatsApp ad (deprecated)
 
@@ -145,7 +149,7 @@ namespace Example
             try
             {
                 // Create Click-to-WhatsApp ad (deprecated)
-                CreateCtwaAd201Response result = apiInstance.CreateCtwaAd(ctwaAdRequestBody);
+                CreateMessagingAd201Response result = apiInstance.CreateCtwaAd(ctwaAdRequestBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -166,7 +170,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Click-to-WhatsApp ad (deprecated)
-    ApiResponse<CreateCtwaAd201Response> response = apiInstance.CreateCtwaAdWithHttpInfo(ctwaAdRequestBody);
+    ApiResponse<CreateMessagingAd201Response> response = apiInstance.CreateCtwaAdWithHttpInfo(ctwaAdRequestBody);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -187,7 +191,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateCtwaAd201Response**](CreateCtwaAd201Response.md)
+[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
 
 ### Authorization
 
@@ -214,7 +218,7 @@ catch (ApiException e)
 
 <a id="createmessagingad"></a>
 # **CreateMessagingAd**
-> void CreateMessagingAd (CreateMessagingAdRequest createMessagingAdRequest)
+> CreateMessagingAd201Response CreateMessagingAd (CreateMessagingAdRequest createMessagingAdRequest)
 
 Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 
@@ -249,7 +253,8 @@ namespace Example
             try
             {
                 // Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
-                apiInstance.CreateMessagingAd(createMessagingAdRequest);
+                CreateMessagingAd201Response result = apiInstance.CreateMessagingAd(createMessagingAdRequest);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -269,7 +274,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
-    apiInstance.CreateMessagingAdWithHttpInfo(createMessagingAdRequest);
+    ApiResponse<CreateMessagingAd201Response> response = apiInstance.CreateMessagingAdWithHttpInfo(createMessagingAdRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -287,7 +295,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
 
 ### Authorization
 
@@ -302,7 +310,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad(s) created and submitted for review |  -  |
+| **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |

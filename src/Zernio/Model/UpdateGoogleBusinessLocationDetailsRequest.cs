@@ -52,7 +52,16 @@ namespace Zernio.Model
         /// <param name="phoneNumbers">phoneNumbers.</param>
         /// <param name="categories">categories.</param>
         /// <param name="serviceItems">Services offered by the business. Use updateMask&#x3D;&#39;serviceItems&#39; to update..</param>
-        public UpdateGoogleBusinessLocationDetailsRequest(string updateMask = default, UpdateGoogleBusinessLocationDetailsRequestRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, UpdateGoogleBusinessLocationDetailsRequestProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default, UpdateGoogleBusinessLocationDetailsRequestCategories categories = default, List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems = default)
+        /// <param name="title">Business name. Use updateMask&#x3D;&#39;title&#39;..</param>
+        /// <param name="storeCode">External store identifier, unique within the account. Use updateMask&#x3D;&#39;storeCode&#39;..</param>
+        /// <param name="labels">Free-form, internal-only labels for grouping (1-255 characters each). Use updateMask&#x3D;&#39;labels&#39;..</param>
+        /// <param name="storefrontAddress">storefrontAddress.</param>
+        /// <param name="serviceArea">serviceArea.</param>
+        /// <param name="openInfo">openInfo.</param>
+        /// <param name="moreHours">Additional hours for specific services (delivery, drive-through, etc.). Use updateMask&#x3D;&#39;moreHours&#39;..</param>
+        /// <param name="latlng">latlng.</param>
+        /// <param name="adWordsLocationExtensions">adWordsLocationExtensions.</param>
+        public UpdateGoogleBusinessLocationDetailsRequest(string updateMask = default, UpdateGoogleBusinessLocationDetailsRequestRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, UpdateGoogleBusinessLocationDetailsRequestProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default, UpdateGoogleBusinessLocationDetailsRequestCategories categories = default, List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems = default, string title = default, string storeCode = default, List<string> labels = default, UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress storefrontAddress = default, UpdateGoogleBusinessLocationDetailsRequestServiceArea serviceArea = default, UpdateGoogleBusinessLocationDetailsRequestOpenInfo openInfo = default, List<UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner> moreHours = default, UpdateGoogleBusinessLocationDetailsRequestLatlng latlng = default, UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions adWordsLocationExtensions = default)
         {
             // to ensure "updateMask" is required (not null)
             if (updateMask == null)
@@ -67,6 +76,15 @@ namespace Zernio.Model
             this.PhoneNumbers = phoneNumbers;
             this.Categories = categories;
             this.ServiceItems = serviceItems;
+            this.Title = title;
+            this.StoreCode = storeCode;
+            this.Labels = labels;
+            this.StorefrontAddress = storefrontAddress;
+            this.ServiceArea = serviceArea;
+            this.OpenInfo = openInfo;
+            this.MoreHours = moreHours;
+            this.Latlng = latlng;
+            this.AdWordsLocationExtensions = adWordsLocationExtensions;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -121,6 +139,64 @@ namespace Zernio.Model
         public List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> ServiceItems { get; set; }
 
         /// <summary>
+        /// Business name. Use updateMask&#x3D;&#39;title&#39;.
+        /// </summary>
+        /// <value>Business name. Use updateMask&#x3D;&#39;title&#39;.</value>
+        [DataMember(Name = "title", EmitDefaultValue = false)]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// External store identifier, unique within the account. Use updateMask&#x3D;&#39;storeCode&#39;.
+        /// </summary>
+        /// <value>External store identifier, unique within the account. Use updateMask&#x3D;&#39;storeCode&#39;.</value>
+        [DataMember(Name = "storeCode", EmitDefaultValue = false)]
+        public string StoreCode { get; set; }
+
+        /// <summary>
+        /// Free-form, internal-only labels for grouping (1-255 characters each). Use updateMask&#x3D;&#39;labels&#39;.
+        /// </summary>
+        /// <value>Free-form, internal-only labels for grouping (1-255 characters each). Use updateMask&#x3D;&#39;labels&#39;.</value>
+        [DataMember(Name = "labels", EmitDefaultValue = false)]
+        public List<string> Labels { get; set; }
+
+        /// <summary>
+        /// Gets or Sets StorefrontAddress
+        /// </summary>
+        [DataMember(Name = "storefrontAddress", EmitDefaultValue = false)]
+        public UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress StorefrontAddress { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ServiceArea
+        /// </summary>
+        [DataMember(Name = "serviceArea", EmitDefaultValue = false)]
+        public UpdateGoogleBusinessLocationDetailsRequestServiceArea ServiceArea { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OpenInfo
+        /// </summary>
+        [DataMember(Name = "openInfo", EmitDefaultValue = false)]
+        public UpdateGoogleBusinessLocationDetailsRequestOpenInfo OpenInfo { get; set; }
+
+        /// <summary>
+        /// Additional hours for specific services (delivery, drive-through, etc.). Use updateMask&#x3D;&#39;moreHours&#39;.
+        /// </summary>
+        /// <value>Additional hours for specific services (delivery, drive-through, etc.). Use updateMask&#x3D;&#39;moreHours&#39;.</value>
+        [DataMember(Name = "moreHours", EmitDefaultValue = false)]
+        public List<UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner> MoreHours { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Latlng
+        /// </summary>
+        [DataMember(Name = "latlng", EmitDefaultValue = false)]
+        public UpdateGoogleBusinessLocationDetailsRequestLatlng Latlng { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AdWordsLocationExtensions
+        /// </summary>
+        [DataMember(Name = "adWordsLocationExtensions", EmitDefaultValue = false)]
+        public UpdateGoogleBusinessLocationDetailsRequestAdWordsLocationExtensions AdWordsLocationExtensions { get; set; }
+
+        /// <summary>
         /// Gets or Sets additional properties
         /// </summary>
         [JsonExtensionData]
@@ -142,6 +218,15 @@ namespace Zernio.Model
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  Categories: ").Append(Categories).Append("\n");
             sb.Append("  ServiceItems: ").Append(ServiceItems).Append("\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  StoreCode: ").Append(StoreCode).Append("\n");
+            sb.Append("  Labels: ").Append(Labels).Append("\n");
+            sb.Append("  StorefrontAddress: ").Append(StorefrontAddress).Append("\n");
+            sb.Append("  ServiceArea: ").Append(ServiceArea).Append("\n");
+            sb.Append("  OpenInfo: ").Append(OpenInfo).Append("\n");
+            sb.Append("  MoreHours: ").Append(MoreHours).Append("\n");
+            sb.Append("  Latlng: ").Append(Latlng).Append("\n");
+            sb.Append("  AdWordsLocationExtensions: ").Append(AdWordsLocationExtensions).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

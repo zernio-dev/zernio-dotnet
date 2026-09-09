@@ -865,7 +865,7 @@ void (empty response body)
 
 <a id="updateadtrackingtags"></a>
 # **UpdateAdTrackingTags**
-> void UpdateAdTrackingTags (string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+> UpdateAdTrackingTags200Response UpdateAdTrackingTags (string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
 
 Set ad tracking tags
 
@@ -901,7 +901,8 @@ namespace Example
             try
             {
                 // Set ad tracking tags
-                apiInstance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+                UpdateAdTrackingTags200Response result = apiInstance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -921,7 +922,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Set ad tracking tags
-    apiInstance.UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+    ApiResponse<UpdateAdTrackingTags200Response> response = apiInstance.UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -940,7 +944,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**UpdateAdTrackingTags200Response**](UpdateAdTrackingTags200Response.md)
 
 ### Authorization
 
@@ -955,7 +959,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Updated |  -  |
+| **200** | The tags as they now stand, in the same shape the GET on this path returns: &#x60;platform&#x60; plus the fields that platform supports. Meta returns &#x60;level&#x60;, &#x60;urlTags&#x60; and &#x60;templateUrlSpec&#x60;; Google returns &#x60;trackingUrlTemplate&#x60; and &#x60;finalUrlSuffix&#x60;. A field the platform does not support is absent.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |

@@ -62,7 +62,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //CreateCallAdRequest createCallAdRequest = null;
-            //instance.CreateCallAd(createCallAdRequest);
+            //var response = instance.CreateCallAd(createCallAdRequest);
+            //Assert.IsType<CreateMessagingAd201Response>(response);
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //CtwaAdRequestBody ctwaAdRequestBody = null;
             //var response = instance.CreateCtwaAd(ctwaAdRequestBody);
-            //Assert.IsType<CreateCtwaAd201Response>(response);
+            //Assert.IsType<CreateMessagingAd201Response>(response);
         }
 
         /// <summary>
@@ -85,7 +86,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //CreateMessagingAdRequest createMessagingAdRequest = null;
-            //instance.CreateMessagingAd(createMessagingAdRequest);
+            //var response = instance.CreateMessagingAd(createMessagingAdRequest);
+            //Assert.IsType<CreateMessagingAd201Response>(response);
         }
     }
 }

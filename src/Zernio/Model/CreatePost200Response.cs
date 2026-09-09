@@ -24,58 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// CreatePost200Response
     /// </summary>
+    [JsonConverter(typeof(CreatePost200ResponseJsonConverter))]
     [DataContract(Name = "createPost_200_response")]
-    public partial class CreatePost200Response : IValidatableObject
+    public partial class CreatePost200Response : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePost200Response" /> class.
+        /// Initializes a new instance of the <see cref="CreatePost200Response" /> class
+        /// with the <see cref="TikTokDryRunVerdict" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreatePost200Response() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePost200Response" /> class.
-        /// </summary>
-        /// <param name="dryRun">Always true on this response (required).</param>
-        /// <param name="canPublish">True only when every evaluated TikTok account can publish now (required).</param>
-        /// <param name="tiktok">One verdict per &#x60;tiktok&#x60; entry in the request, in request order (required).</param>
-        public CreatePost200Response(bool dryRun = default, bool canPublish = default, List<CreatePost200ResponseTiktokInner> tiktok = default)
+        /// <param name="actualInstance">An instance of TikTokDryRunVerdict.</param>
+        public CreatePost200Response(TikTokDryRunVerdict actualInstance)
         {
-            this.DryRun = dryRun;
-            this.CanPublish = canPublish;
-            // to ensure "tiktok" is required (not null)
-            if (tiktok == null)
-            {
-                throw new ArgumentNullException("tiktok is a required property for CreatePost200Response and cannot be null");
-            }
-            this.Tiktok = tiktok;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Always true on this response
+        /// Initializes a new instance of the <see cref="CreatePost200Response" /> class
+        /// with the <see cref="PostCreateResponse" /> class
         /// </summary>
-        /// <value>Always true on this response</value>
-        [DataMember(Name = "dryRun", IsRequired = true, EmitDefaultValue = true)]
-        public bool DryRun { get; set; }
+        /// <param name="actualInstance">An instance of PostCreateResponse.</param>
+        public CreatePost200Response(PostCreateResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// True only when every evaluated TikTok account can publish now
+        /// Gets or Sets ActualInstance
         /// </summary>
-        /// <value>True only when every evaluated TikTok account can publish now</value>
-        [DataMember(Name = "canPublish", IsRequired = true, EmitDefaultValue = true)]
-        public bool CanPublish { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(PostCreateResponse) || value is PostCreateResponse)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(TikTokDryRunVerdict) || value is TikTokDryRunVerdict)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: PostCreateResponse, TikTokDryRunVerdict");
+                }
+            }
+        }
 
         /// <summary>
-        /// One verdict per &#x60;tiktok&#x60; entry in the request, in request order
+        /// Get the actual instance of `TikTokDryRunVerdict`. If the actual instance is not `TikTokDryRunVerdict`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>One verdict per &#x60;tiktok&#x60; entry in the request, in request order</value>
-        [DataMember(Name = "tiktok", IsRequired = true, EmitDefaultValue = true)]
-        public List<CreatePost200ResponseTiktokInner> Tiktok { get; set; }
+        /// <returns>An instance of TikTokDryRunVerdict</returns>
+        public TikTokDryRunVerdict GetTikTokDryRunVerdict()
+        {
+            return (TikTokDryRunVerdict)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `PostCreateResponse`. If the actual instance is not `PostCreateResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PostCreateResponse</returns>
+        public PostCreateResponse GetPostCreateResponse()
+        {
+            return (PostCreateResponse)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,11 +114,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CreatePost200Response {\n");
-            sb.Append("  DryRun: ").Append(DryRun).Append("\n");
-            sb.Append("  CanPublish: ").Append(CanPublish).Append("\n");
-            sb.Append("  Tiktok: ").Append(Tiktok).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -96,19 +125,137 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, CreatePost200Response.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of CreatePost200Response
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CreatePost200Response</returns>
+        public static CreatePost200Response FromJson(string jsonString)
+        {
+            CreatePost200Response newCreatePost200Response = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCreatePost200Response;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(PostCreateResponse).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreatePost200Response = new CreatePost200Response(JsonConvert.DeserializeObject<PostCreateResponse>(jsonString, CreatePost200Response.SerializerSettings));
+                }
+                else
+                {
+                    newCreatePost200Response = new CreatePost200Response(JsonConvert.DeserializeObject<PostCreateResponse>(jsonString, CreatePost200Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("PostCreateResponse");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PostCreateResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(TikTokDryRunVerdict).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreatePost200Response = new CreatePost200Response(JsonConvert.DeserializeObject<TikTokDryRunVerdict>(jsonString, CreatePost200Response.SerializerSettings));
+                }
+                else
+                {
+                    newCreatePost200Response = new CreatePost200Response(JsonConvert.DeserializeObject<TikTokDryRunVerdict>(jsonString, CreatePost200Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("TikTokDryRunVerdict");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into TikTokDryRunVerdict: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newCreatePost200Response;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CreatePost200Response
+    /// </summary>
+    public class CreatePost200ResponseJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CreatePost200Response).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return CreatePost200Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreatePost200Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

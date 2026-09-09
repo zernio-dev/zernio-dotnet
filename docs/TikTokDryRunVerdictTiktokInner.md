@@ -1,4 +1,4 @@
-# Zernio.Model.CreatePost200ResponseTiktokInner
+# Zernio.Model.TikTokDryRunVerdictTiktokInner
 
 ## Properties
 

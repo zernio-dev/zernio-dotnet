@@ -170,7 +170,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string adId = null;
             //UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = null;
-            //instance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+            //var response = instance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+            //Assert.IsType<UpdateAdTrackingTags200Response>(response);
         }
 
         /// <summary>
