@@ -116,6 +116,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DeleteAdComment
+        /// </summary>
+        [Fact]
+        public void DeleteAdCommentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //string commentId = null;
+            //DateOnly? since = null;
+            //DateOnly? until = null;
+            //var response = instance.DeleteAdComment(adId, commentId, since, until);
+            //Assert.IsType<ReplyToAdComment200Response>(response);
+        }
+
+        /// <summary>
         /// Test DeleteAdNegativeKeywordList
         /// </summary>
         [Fact]
@@ -166,8 +181,10 @@ namespace Zernio.Test.Api
             //string adId = null;
             //string? placement = null;
             //int? limit = null;
+            //DateOnly? since = null;
+            //DateOnly? until = null;
             //string? cursor = null;
-            //var response = instance.GetAdComments(adId, placement, limit, cursor);
+            //var response = instance.GetAdComments(adId, placement, limit, since, until, cursor);
             //Assert.IsType<GetAdComments200Response>(response);
         }
 
@@ -231,6 +248,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetIosFourteenCampaignLimits
+        /// </summary>
+        [Fact]
+        public void GetIosFourteenCampaignLimitsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //string applicationId = null;
+            //var response = instance.GetIosFourteenCampaignLimits(accountId, adAccountId, applicationId);
+            //Assert.IsType<GetIosFourteenCampaignLimits200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetValueRuleSet
         /// </summary>
         [Fact]
@@ -241,6 +272,22 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.GetValueRuleSet(valueRuleSetId, accountId);
             //Assert.IsType<GetValueRuleSet200Response>(response);
+        }
+
+        /// <summary>
+        /// Test HideAdComment
+        /// </summary>
+        [Fact]
+        public void HideAdCommentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //string commentId = null;
+            //HideAdCommentRequest hideAdCommentRequest = null;
+            //DateOnly? since = null;
+            //DateOnly? until = null;
+            //var response = instance.HideAdComment(adId, commentId, hideAdCommentRequest, since, until);
+            //Assert.IsType<HideAdComment200Response>(response);
         }
 
         /// <summary>
@@ -328,6 +375,32 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdsInstagramAccounts
+        /// </summary>
+        [Fact]
+        public void ListAdsInstagramAccountsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.ListAdsInstagramAccounts(accountId, adAccountId);
+            //Assert.IsType<ListAdsInstagramAccounts200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdvertisableApplications
+        /// </summary>
+        [Fact]
+        public void ListAdvertisableApplicationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.ListAdvertisableApplications(accountId, adAccountId);
+            //Assert.IsType<ListAdvertisableApplications200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListCustomConversions
         /// </summary>
         [Fact]
@@ -408,6 +481,22 @@ namespace Zernio.Test.Api
             //ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest = null;
             //var response = instance.ReplaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest);
             //Assert.IsType<ReplaceAdNegativeKeywordListKeywords200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ReplyToAdComment
+        /// </summary>
+        [Fact]
+        public void ReplyToAdCommentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //string commentId = null;
+            //ReplyToAdCommentRequest replyToAdCommentRequest = null;
+            //DateOnly? since = null;
+            //DateOnly? until = null;
+            //var response = instance.ReplyToAdComment(adId, commentId, replyToAdCommentRequest, since, until);
+            //Assert.IsType<ReplyToAdComment200Response>(response);
         }
 
         /// <summary>

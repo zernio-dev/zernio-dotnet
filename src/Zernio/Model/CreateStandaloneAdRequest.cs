@@ -716,6 +716,33 @@ namespace Zernio.Model
         [DataMember(Name = "identityType", EmitDefaultValue = false)]
         public IdentityTypeEnum? IdentityType { get; set; }
         /// <summary>
+        /// Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create.
+        /// </summary>
+        /// <value>Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CampaignAttributionEnum
+        {
+            /// <summary>
+            /// Enum AEM for value: AEM
+            /// </summary>
+            [EnumMember(Value = "AEM")]
+            AEM = 1,
+
+            /// <summary>
+            /// Enum SKADNETWORK for value: SKADNETWORK
+            /// </summary>
+            [EnumMember(Value = "SKADNETWORK")]
+            SKADNETWORK = 2
+        }
+
+
+        /// <summary>
+        /// Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create.
+        /// </summary>
+        /// <value>Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create.</value>
+        [DataMember(Name = "campaignAttribution", EmitDefaultValue = false)]
+        public CampaignAttributionEnum? CampaignAttribution { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -738,7 +765,7 @@ namespace Zernio.Model
         /// <param name="promotion">promotion.</param>
         /// <param name="creativeFeatures">Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion..</param>
         /// <param name="multiAdvertiser">Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there..</param>
-        /// <param name="validateOnly">Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist, so pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad..</param>
+        /// <param name="validateOnly">Meta only. Validates the complete inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created, and validation bypasses Idempotency-Key storage. Supports a single image, existing video.id or existingCreativeId; media pools, new video uploads, creatives[], adSetId and RESERVED buying return 400. Existing campaign or creative nodes are marked skipped. Success returns 200 with per-node results; Meta rejection returns an error..</param>
         /// <param name="budgetAmount">Budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType)..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window..</param>
         /// <param name="status">Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each)..</param>
@@ -821,8 +848,12 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field, because TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="smartPlus">TikTok only. Creates the ad as a TikTok Upgraded Smart+ campaign: TikTok automates targeting, bidding and delivery. Supports goals &#x60;conversions&#x60; (Smart+ Web Conversions), &#x60;lead_generation&#x60; (Smart+ Lead Generation with a website form on &#x60;linkUrl&#x60;; TikTok Instant Forms not supported) and &#x60;app_promotion&#x60; (Smart+ App installs; the ad&#39;s destination is the app store, so &#x60;linkUrl&#x60; is not used). The web goals require &#x60;promotedObject.pixelId&#x60; AND &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; instead. Targeting works like on any TikTok ad (defaults to &#x60;countries: [\&quot;US\&quot;]&#x60; when omitted); TikTok automates delivery within it. The budget lives on the Smart+ campaign (Campaign Budget Optimization); a &#x60;lifetime&#x60; budget additionally requires &#x60;endDate&#x60;. Cannot be combined with &#x60;adSetId&#x60;. .</param>
+        /// <param name="userOs">Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting..</param>
+        /// <param name="userDevice">Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting..</param>
+        /// <param name="isSkadnetworkAttribution">Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign..</param>
+        /// <param name="campaignAttribution">Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create..</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, CreateStandaloneAdRequestTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, string billingEvent = default, BuyingTypeEnum? buyingType = default, string rfPredictionId = default, MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default, bool validateOnly = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, List<string> bodies = default, List<string> headlines = default, List<string> descriptions = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, TargetingSpec targeting = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = default, string defaultLocale = default, List<CreateStandaloneAdRequestTranslationsInner> translations = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<KeywordEntry> keywords = default, List<KeywordEntry> negativeKeywords = default, List<KeywordEntry> campaignNegativeKeywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, List<CreateStandaloneAdRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, string valueRuleSetId = default, bool valueRulesApplied = default, CreateStandaloneAdRequestPlatformSpecificData platformSpecificData = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, bool smartPlus = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, AdTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, string billingEvent = default, BuyingTypeEnum? buyingType = default, string rfPredictionId = default, MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default, bool validateOnly = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, List<string> bodies = default, List<string> headlines = default, List<string> descriptions = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, TargetingSpec targeting = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = default, string defaultLocale = default, List<CreateStandaloneAdRequestTranslationsInner> translations = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<KeywordEntry> keywords = default, List<KeywordEntry> negativeKeywords = default, List<KeywordEntry> campaignNegativeKeywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, List<CreateStandaloneAdRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, string valueRuleSetId = default, bool valueRulesApplied = default, CreateStandaloneAdRequestPlatformSpecificData platformSpecificData = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, bool smartPlus = default, List<string> userOs = default, List<string> userDevice = default, bool isSkadnetworkAttribution = default, CampaignAttributionEnum? campaignAttribution = default, AdPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -937,6 +968,10 @@ namespace Zernio.Model
             this.BrandIdentity = brandIdentity;
             this.IdentityType = identityType;
             this.SmartPlus = smartPlus;
+            this.UserOs = userOs;
+            this.UserDevice = userDevice;
+            this.IsSkadnetworkAttribution = isSkadnetworkAttribution;
+            this.CampaignAttribution = campaignAttribution;
             this.PromotedObject = promotedObject;
         }
 
@@ -983,7 +1018,7 @@ namespace Zernio.Model
         /// Gets or Sets Tracking
         /// </summary>
         [DataMember(Name = "tracking", EmitDefaultValue = false)]
-        public CreateStandaloneAdRequestTracking Tracking { get; set; }
+        public AdTracking Tracking { get; set; }
 
         /// <summary>
         /// Meta only. Explicit ad-set &#x60;optimization_goal&#x60; (e.g. &#x60;LANDING_PAGE_VIEWS&#x60;, &#x60;LINK_CLICKS&#x60;, &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;OFFSITE_CONVERSIONS&#x60;, &#x60;THRUPLAY&#x60;, &#x60;LEAD_GENERATION&#x60;). Overrides the default derived from &#x60;goal&#x60; (e.g. &#x60;traffic&#x60; defaults to &#x60;LINK_CLICKS&#x60;). Forwarded verbatim to Meta, which validates compatibility with the campaign objective and rejects incompatible combinations.
@@ -1023,9 +1058,9 @@ namespace Zernio.Model
         public Dictionary<string, CreateStandaloneAdRequest.InnerEnum> CreativeFeatures { get; set; }
 
         /// <summary>
-        /// Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist, so pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad.
+        /// Meta only. Validates the complete inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created, and validation bypasses Idempotency-Key storage. Supports a single image, existing video.id or existingCreativeId; media pools, new video uploads, creatives[], adSetId and RESERVED buying return 400. Existing campaign or creative nodes are marked skipped. Success returns 200 with per-node results; Meta rejection returns an error.
         /// </summary>
-        /// <value>Meta only, single standalone shape only (no creatives[], adSetId, or RESERVED). Dry-run: each node runs Meta&#39;s execution_options validate_only and NOTHING is created or persisted. Children need real parents, so a fresh tree validates the campaign + creative (the ad set needs its campaign to exist, so pass existingCampaignId to validate it too; the ad itself is never validatable pre-create). A Meta validation failure returns the 400 verbatim; success returns 200 with per-node results instead of an ad.</value>
+        /// <value>Meta only. Validates the complete inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created, and validation bypasses Idempotency-Key storage. Supports a single image, existing video.id or existingCreativeId; media pools, new video uploads, creatives[], adSetId and RESERVED buying return 400. Existing campaign or creative nodes are marked skipped. Success returns 200 with per-node results; Meta rejection returns an error.</value>
         [DataMember(Name = "validateOnly", EmitDefaultValue = true)]
         public bool ValidateOnly { get; set; }
 
@@ -1520,10 +1555,31 @@ namespace Zernio.Model
         public bool SmartPlus { get; set; }
 
         /// <summary>
+        /// Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting.
+        /// </summary>
+        /// <value>Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting.</value>
+        [DataMember(Name = "userOs", EmitDefaultValue = false)]
+        public List<string> UserOs { get; set; }
+
+        /// <summary>
+        /// Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting.
+        /// </summary>
+        /// <value>Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting.</value>
+        [DataMember(Name = "userDevice", EmitDefaultValue = false)]
+        public List<string> UserDevice { get; set; }
+
+        /// <summary>
+        /// Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign.
+        /// </summary>
+        /// <value>Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign.</value>
+        [DataMember(Name = "isSkadnetworkAttribution", EmitDefaultValue = true)]
+        public bool IsSkadnetworkAttribution { get; set; }
+
+        /// <summary>
         /// Gets or Sets PromotedObject
         /// </summary>
         [DataMember(Name = "promotedObject", EmitDefaultValue = false)]
-        public CreateStandaloneAdRequestPromotedObject PromotedObject { get; set; }
+        public AdPromotedObject PromotedObject { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -1631,6 +1687,10 @@ namespace Zernio.Model
             sb.Append("  BrandIdentity: ").Append(BrandIdentity).Append("\n");
             sb.Append("  IdentityType: ").Append(IdentityType).Append("\n");
             sb.Append("  SmartPlus: ").Append(SmartPlus).Append("\n");
+            sb.Append("  UserOs: ").Append(UserOs).Append("\n");
+            sb.Append("  UserDevice: ").Append(UserDevice).Append("\n");
+            sb.Append("  IsSkadnetworkAttribution: ").Append(IsSkadnetworkAttribution).Append("\n");
+            sb.Append("  CampaignAttribution: ").Append(CampaignAttribution).Append("\n");
             sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

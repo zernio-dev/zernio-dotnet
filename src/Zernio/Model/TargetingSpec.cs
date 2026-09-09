@@ -108,6 +108,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetingSpec" /> class.
         /// </summary>
+        /// <param name="userOs">Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting..</param>
+        /// <param name="userDevice">Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting..</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes (e.g. [&#39;US&#39;])..</param>
         /// <param name="regions">Region/state targeting. &#x60;key&#x60; is the platform location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region..</param>
         /// <param name="cities">City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits; both must be set together or both omitted. &#x60;radius&#x60; is only honoured on platforms whose capability map allows city radius (Meta)..</param>
@@ -131,8 +133,10 @@ namespace Zernio.Model
         /// <param name="jobFunctions">LinkedIn B2B only..</param>
         /// <param name="audienceInclude">Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400)..</param>
         /// <param name="audienceExclude">Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400)..</param>
-        public TargetingSpec(List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
+        public TargetingSpec(List<string> userOs = default, List<string> userDevice = default, List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
         {
+            this.UserOs = userOs;
+            this.UserDevice = userDevice;
             this.Countries = countries;
             this.Regions = regions;
             this.Cities = cities;
@@ -157,6 +161,20 @@ namespace Zernio.Model
             this.AudienceInclude = audienceInclude;
             this.AudienceExclude = audienceExclude;
         }
+
+        /// <summary>
+        /// Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting.
+        /// </summary>
+        /// <value>Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting.</value>
+        [DataMember(Name = "userOs", EmitDefaultValue = false)]
+        public List<string> UserOs { get; set; }
+
+        /// <summary>
+        /// Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting.
+        /// </summary>
+        /// <value>Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting.</value>
+        [DataMember(Name = "userDevice", EmitDefaultValue = false)]
+        public List<string> UserDevice { get; set; }
 
         /// <summary>
         /// ISO 3166-1 alpha-2 country codes (e.g. [&#39;US&#39;]).
@@ -312,6 +330,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TargetingSpec {\n");
+            sb.Append("  UserOs: ").Append(UserOs).Append("\n");
+            sb.Append("  UserDevice: ").Append(UserDevice).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Regions: ").Append(Regions).Append("\n");
             sb.Append("  Cities: ").Append(Cities).Append("\n");

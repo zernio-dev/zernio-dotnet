@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **AdAccountId** | **string** | Platform ad account id (Meta act_&lt;n&gt;, Google customer id, LinkedIn account id, ...). | 
 **Name** | **string** |  | 
 **Goal** | **string** | Mapped to the ODAX objective (same mapping as POST /v1/ads/create). | 
+**IsSkadnetworkAttribution** | **bool** | Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign. | [optional] 
+**PromotedObject** | [**AdPromotedObject**](AdPromotedObject.md) |  | [optional] 
+**BuyingType** | **string** | Meta only. SKAdNetwork app promotion requires AUCTION. | [optional] 
+**ValidateOnly** | **bool** | Meta only. Runs campaign validation without creating or persisting a campaign; Idempotency-Key storage is bypassed. Returns HTTP 200 with validateOnly true and status VALIDATED. | [optional] 
 **SpecialAdCategories** | **List&lt;CreateAdCampaignRequest.SpecialAdCategoriesEnum&gt;** |  | [optional] 
 **BudgetAmount** | **decimal** | Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType. | [optional] 
 **BudgetType** | **string** |  | [optional] 

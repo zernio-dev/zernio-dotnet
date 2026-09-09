@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class GetAdComments200ResponseMeta : IValidatableObject
     {
         /// <summary>
-        /// Which side these comments are on (same as &#x60;placement&#x60;).
+        /// Platform of the comments.
         /// </summary>
-        /// <value>Which side these comments are on (same as &#x60;placement&#x60;).</value>
+        /// <value>Platform of the comments.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -50,14 +50,20 @@ namespace Zernio.Model
             /// Enum Instagram for value: instagram
             /// </summary>
             [EnumMember(Value = "instagram")]
-            Instagram = 2
+            Instagram = 2,
+
+            /// <summary>
+            /// Enum Tiktok for value: tiktok
+            /// </summary>
+            [EnumMember(Value = "tiktok")]
+            Tiktok = 3
         }
 
 
         /// <summary>
-        /// Which side these comments are on (same as &#x60;placement&#x60;).
+        /// Platform of the comments.
         /// </summary>
-        /// <value>Which side these comments are on (same as &#x60;placement&#x60;).</value>
+        /// <value>Platform of the comments.</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
@@ -85,8 +91,8 @@ namespace Zernio.Model
         /// The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
         /// </summary>
         /// <value>The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
-        [DataMember(Name = "placement", IsRequired = true, EmitDefaultValue = true)]
-        public PlacementEnum Placement { get; set; }
+        [DataMember(Name = "placement", EmitDefaultValue = false)]
+        public PlacementEnum? Placement { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAdComments200ResponseMeta" /> class.
         /// </summary>
@@ -95,39 +101,29 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAdComments200ResponseMeta" /> class.
         /// </summary>
-        /// <param name="platform">Which side these comments are on (same as &#x60;placement&#x60;). (required).</param>
-        /// <param name="placement">The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got. (required).</param>
+        /// <param name="platform">Platform of the comments. (required).</param>
+        /// <param name="placement">The placement these comments are for, useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got..</param>
         /// <param name="adId">Internal Zernio ad ID. (required).</param>
-        /// <param name="platformAdId">Meta ad ID. (required).</param>
-        /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side. (required).</param>
+        /// <param name="platformAdId">Platform ad ID..</param>
+        /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side..</param>
+        /// <param name="tiktokItemId">TikTok-only video item ID. Null when the ad and comments do not expose it..</param>
+        /// <param name="since">TikTok-only resolved start date..</param>
+        /// <param name="until">TikTok-only resolved end date..</param>
         /// <param name="facebookAccountId">Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible)..</param>
         /// <param name="instagramUserId">Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id)..</param>
         /// <param name="instagramPermalink">Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url)..</param>
         /// <param name="instagramAccountId">Instagram-only. The connected Instagram SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete..</param>
         /// <param name="accountId">Account ID (ads SocialAccount). (required).</param>
         /// <param name="lastUpdated">lastUpdated (required).</param>
-        public GetAdComments200ResponseMeta(PlatformEnum platform = default, PlacementEnum placement = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string facebookAccountId = default, string instagramUserId = default, string instagramPermalink = default, string instagramAccountId = default, string accountId = default, DateTime lastUpdated = default)
+        public GetAdComments200ResponseMeta(PlatformEnum platform = default, PlacementEnum? placement = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string tiktokItemId = default, DateOnly since = default, DateOnly until = default, string facebookAccountId = default, string instagramUserId = default, string instagramPermalink = default, string instagramAccountId = default, string accountId = default, DateTime lastUpdated = default)
         {
             this.Platform = platform;
-            this.Placement = placement;
             // to ensure "adId" is required (not null)
             if (adId == null)
             {
                 throw new ArgumentNullException("adId is a required property for GetAdComments200ResponseMeta and cannot be null");
             }
             this.AdId = adId;
-            // to ensure "platformAdId" is required (not null)
-            if (platformAdId == null)
-            {
-                throw new ArgumentNullException("platformAdId is a required property for GetAdComments200ResponseMeta and cannot be null");
-            }
-            this.PlatformAdId = platformAdId;
-            // to ensure "effectiveStoryId" is required (not null)
-            if (effectiveStoryId == null)
-            {
-                throw new ArgumentNullException("effectiveStoryId is a required property for GetAdComments200ResponseMeta and cannot be null");
-            }
-            this.EffectiveStoryId = effectiveStoryId;
             // to ensure "accountId" is required (not null)
             if (accountId == null)
             {
@@ -135,6 +131,12 @@ namespace Zernio.Model
             }
             this.AccountId = accountId;
             this.LastUpdated = lastUpdated;
+            this.Placement = placement;
+            this.PlatformAdId = platformAdId;
+            this.EffectiveStoryId = effectiveStoryId;
+            this.TiktokItemId = tiktokItemId;
+            this.Since = since;
+            this.Until = until;
             this.FacebookAccountId = facebookAccountId;
             this.InstagramUserId = instagramUserId;
             this.InstagramPermalink = instagramPermalink;
@@ -149,18 +151,39 @@ namespace Zernio.Model
         public string AdId { get; set; }
 
         /// <summary>
-        /// Meta ad ID.
+        /// Platform ad ID.
         /// </summary>
-        /// <value>Meta ad ID.</value>
-        [DataMember(Name = "platformAdId", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Platform ad ID.</value>
+        [DataMember(Name = "platformAdId", EmitDefaultValue = false)]
         public string PlatformAdId { get; set; }
 
         /// <summary>
         /// Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side.
         /// </summary>
         /// <value>Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side.</value>
-        [DataMember(Name = "effectiveStoryId", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "effectiveStoryId", EmitDefaultValue = false)]
         public string EffectiveStoryId { get; set; }
+
+        /// <summary>
+        /// TikTok-only video item ID. Null when the ad and comments do not expose it.
+        /// </summary>
+        /// <value>TikTok-only video item ID. Null when the ad and comments do not expose it.</value>
+        [DataMember(Name = "tiktokItemId", EmitDefaultValue = true)]
+        public string TiktokItemId { get; set; }
+
+        /// <summary>
+        /// TikTok-only resolved start date.
+        /// </summary>
+        /// <value>TikTok-only resolved start date.</value>
+        [DataMember(Name = "since", EmitDefaultValue = false)]
+        public DateOnly Since { get; set; }
+
+        /// <summary>
+        /// TikTok-only resolved end date.
+        /// </summary>
+        /// <value>TikTok-only resolved end date.</value>
+        [DataMember(Name = "until", EmitDefaultValue = false)]
+        public DateOnly Until { get; set; }
 
         /// <summary>
         /// Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
@@ -216,6 +239,9 @@ namespace Zernio.Model
             sb.Append("  AdId: ").Append(AdId).Append("\n");
             sb.Append("  PlatformAdId: ").Append(PlatformAdId).Append("\n");
             sb.Append("  EffectiveStoryId: ").Append(EffectiveStoryId).Append("\n");
+            sb.Append("  TiktokItemId: ").Append(TiktokItemId).Append("\n");
+            sb.Append("  Since: ").Append(Since).Append("\n");
+            sb.Append("  Until: ").Append(Until).Append("\n");
             sb.Append("  FacebookAccountId: ").Append(FacebookAccountId).Append("\n");
             sb.Append("  InstagramUserId: ").Append(InstagramUserId).Append("\n");
             sb.Append("  InstagramPermalink: ").Append(InstagramPermalink).Append("\n");

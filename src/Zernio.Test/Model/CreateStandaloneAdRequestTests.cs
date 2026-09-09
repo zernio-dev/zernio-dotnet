@@ -938,6 +938,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UserOs'
+        /// </summary>
+        [Fact]
+        public void UserOsTest()
+        {
+            // TODO unit test for the property 'UserOs'
+        }
+
+        /// <summary>
+        /// Test the property 'UserDevice'
+        /// </summary>
+        [Fact]
+        public void UserDeviceTest()
+        {
+            // TODO unit test for the property 'UserDevice'
+        }
+
+        /// <summary>
+        /// Test the property 'IsSkadnetworkAttribution'
+        /// </summary>
+        [Fact]
+        public void IsSkadnetworkAttributionTest()
+        {
+            // TODO unit test for the property 'IsSkadnetworkAttribution'
+        }
+
+        /// <summary>
+        /// Test the property 'CampaignAttribution'
+        /// </summary>
+        [Fact]
+        public void CampaignAttributionTest()
+        {
+            // TODO unit test for the property 'CampaignAttribution'
+        }
+
+        /// <summary>
         /// Test the property 'PromotedObject'
         /// </summary>
         [Fact]

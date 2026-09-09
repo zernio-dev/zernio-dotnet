@@ -1,0 +1,10 @@
+# Zernio.Model.ListAdvertisableApplications200Response
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Applications** | [**List&lt;ListAdvertisableApplications200ResponseApplicationsInner&gt;**](ListAdvertisableApplications200ResponseApplicationsInner.md) |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

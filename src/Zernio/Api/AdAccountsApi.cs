@@ -136,6 +136,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateValueRuleSet201Response</returns>
         ApiResponse<CreateValueRuleSet201Response> CreateValueRuleSetWithHttpInfo(CreateValueRuleSetRequest createValueRuleSetRequest);
         /// <summary>
+        /// Delete an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ReplyToAdComment200Response</returns>
+        ReplyToAdComment200Response DeleteAdComment(string adId, string commentId, DateOnly? since = default, DateOnly? until = default);
+
+        /// <summary>
+        /// Delete an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ApiResponse of ReplyToAdComment200Response</returns>
+        ApiResponse<ReplyToAdComment200Response> DeleteAdCommentWithHttpInfo(string adId, string commentId, DateOnly? since = default, DateOnly? until = default);
+        /// <summary>
         /// Delete a negative keyword list
         /// </summary>
         /// <remarks>
@@ -212,29 +239,33 @@ namespace Zernio.Api
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>GetAdComments200Response</returns>
-        GetAdComments200Response GetAdComments(string adId, string? placement = default, int? limit = default, string? cursor = default);
+        GetAdComments200Response GetAdComments(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default);
 
         /// <summary>
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
-        ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
+        ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default);
         /// <summary>
         /// Get a negative keyword list
         /// </summary>
@@ -342,6 +373,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetDsaRecommendations200Response</returns>
         ApiResponse<GetDsaRecommendations200Response> GetDsaRecommendationsWithHttpInfo(string accountId, string adAccountId);
         /// <summary>
+        /// Get iOS 14 campaign limits
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <returns>GetIosFourteenCampaignLimits200Response</returns>
+        GetIosFourteenCampaignLimits200Response GetIosFourteenCampaignLimits(string accountId, string adAccountId, string applicationId);
+
+        /// <summary>
+        /// Get iOS 14 campaign limits
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <returns>ApiResponse of GetIosFourteenCampaignLimits200Response</returns>
+        ApiResponse<GetIosFourteenCampaignLimits200Response> GetIosFourteenCampaignLimitsWithHttpInfo(string accountId, string adAccountId, string applicationId);
+        /// <summary>
         /// Read a value rule set
         /// </summary>
         /// <remarks>
@@ -364,6 +420,35 @@ namespace Zernio.Api
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <returns>ApiResponse of GetValueRuleSet200Response</returns>
         ApiResponse<GetValueRuleSet200Response> GetValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId);
+        /// <summary>
+        /// Hide or unhide an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>HideAdComment200Response</returns>
+        HideAdComment200Response HideAdComment(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default);
+
+        /// <summary>
+        /// Hide or unhide an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ApiResponse of HideAdComment200Response</returns>
+        ApiResponse<HideAdComment200Response> HideAdCommentWithHttpInfo(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default);
         /// <summary>
         /// List account-level callout extensions
         /// </summary>
@@ -515,6 +600,52 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdsBusinessCenters200Response</returns>
         ApiResponse<ListAdsBusinessCenters200Response> ListAdsBusinessCentersWithHttpInfo(string accountId);
         /// <summary>
+        /// List Instagram ad identities
+        /// </summary>
+        /// <remarks>
+        /// Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ListAdsInstagramAccounts200Response</returns>
+        ListAdsInstagramAccounts200Response ListAdsInstagramAccounts(string accountId, string adAccountId);
+
+        /// <summary>
+        /// List Instagram ad identities
+        /// </summary>
+        /// <remarks>
+        /// Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ApiResponse of ListAdsInstagramAccounts200Response</returns>
+        ApiResponse<ListAdsInstagramAccounts200Response> ListAdsInstagramAccountsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
+        /// List advertisable apps
+        /// </summary>
+        /// <remarks>
+        /// Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ListAdvertisableApplications200Response</returns>
+        ListAdvertisableApplications200Response ListAdvertisableApplications(string accountId, string adAccountId);
+
+        /// <summary>
+        /// List advertisable apps
+        /// </summary>
+        /// <remarks>
+        /// Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ApiResponse of ListAdvertisableApplications200Response</returns>
+        ApiResponse<ListAdvertisableApplications200Response> ListAdvertisableApplicationsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
         /// List custom conversions
         /// </summary>
         /// <remarks>
@@ -662,6 +793,35 @@ namespace Zernio.Api
         /// <param name="replaceAdNegativeKeywordListKeywordsRequest"></param>
         /// <returns>ApiResponse of ReplaceAdNegativeKeywordListKeywords200Response</returns>
         ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest);
+        /// <summary>
+        /// Reply to an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ReplyToAdComment200Response</returns>
+        ReplyToAdComment200Response ReplyToAdComment(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default);
+
+        /// <summary>
+        /// Reply to an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ApiResponse of ReplyToAdComment200Response</returns>
+        ApiResponse<ReplyToAdComment200Response> ReplyToAdCommentWithHttpInfo(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default);
         /// <summary>
         /// Update ad account settings
         /// </summary>
@@ -856,6 +1016,35 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateValueRuleSet201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateValueRuleSet201Response>> CreateValueRuleSetWithHttpInfoAsync(CreateValueRuleSetRequest createValueRuleSetRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Delete an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToAdComment200Response</returns>
+        System.Threading.Tasks.Task<ReplyToAdComment200Response> DeleteAdCommentAsync(string adId, string commentId, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToAdComment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplyToAdComment200Response>> DeleteAdCommentWithHttpInfoAsync(string adId, string commentId, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Delete a negative keyword list
         /// </summary>
         /// <remarks>
@@ -938,31 +1127,35 @@ namespace Zernio.Api
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdComments200Response</returns>
-        System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a negative keyword list
         /// </summary>
@@ -1078,6 +1271,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetDsaRecommendations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetDsaRecommendations200Response>> GetDsaRecommendationsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get iOS 14 campaign limits
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetIosFourteenCampaignLimits200Response</returns>
+        System.Threading.Tasks.Task<GetIosFourteenCampaignLimits200Response> GetIosFourteenCampaignLimitsAsync(string accountId, string adAccountId, string applicationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get iOS 14 campaign limits
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetIosFourteenCampaignLimits200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetIosFourteenCampaignLimits200Response>> GetIosFourteenCampaignLimitsWithHttpInfoAsync(string accountId, string adAccountId, string applicationId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Read a value rule set
         /// </summary>
         /// <remarks>
@@ -1102,6 +1322,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetValueRuleSet200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetValueRuleSet200Response>> GetValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Hide or unhide an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of HideAdComment200Response</returns>
+        System.Threading.Tasks.Task<HideAdComment200Response> HideAdCommentAsync(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Hide or unhide an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (HideAdComment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<HideAdComment200Response>> HideAdCommentWithHttpInfoAsync(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List account-level callout extensions
         /// </summary>
@@ -1265,6 +1516,56 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdsBusinessCenters200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdsBusinessCenters200Response>> ListAdsBusinessCentersWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List Instagram ad identities
+        /// </summary>
+        /// <remarks>
+        /// Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdsInstagramAccounts200Response</returns>
+        System.Threading.Tasks.Task<ListAdsInstagramAccounts200Response> ListAdsInstagramAccountsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Instagram ad identities
+        /// </summary>
+        /// <remarks>
+        /// Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdsInstagramAccounts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdsInstagramAccounts200Response>> ListAdsInstagramAccountsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List advertisable apps
+        /// </summary>
+        /// <remarks>
+        /// Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdvertisableApplications200Response</returns>
+        System.Threading.Tasks.Task<ListAdvertisableApplications200Response> ListAdvertisableApplicationsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List advertisable apps
+        /// </summary>
+        /// <remarks>
+        /// Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdvertisableApplications200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdvertisableApplications200Response>> ListAdvertisableApplicationsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List custom conversions
         /// </summary>
         /// <remarks>
@@ -1424,6 +1725,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplaceAdNegativeKeywordListKeywords200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response>> ReplaceAdNegativeKeywordListKeywordsWithHttpInfoAsync(string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Reply to an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToAdComment200Response</returns>
+        System.Threading.Tasks.Task<ReplyToAdComment200Response> ReplyToAdCommentAsync(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reply to an ad comment
+        /// </summary>
+        /// <remarks>
+        /// Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToAdComment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplyToAdComment200Response>> ReplyToAdCommentWithHttpInfoAsync(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad account settings
         /// </summary>
@@ -2370,6 +2702,171 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Delete an ad comment Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ReplyToAdComment200Response</returns>
+        public ReplyToAdComment200Response DeleteAdComment(string adId, string commentId, DateOnly? since = default, DateOnly? until = default)
+        {
+            Zernio.Client.ApiResponse<ReplyToAdComment200Response> localVarResponse = DeleteAdCommentWithHttpInfo(adId, commentId, since, until);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete an ad comment Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ApiResponse of ReplyToAdComment200Response</returns>
+        public Zernio.Client.ApiResponse<ReplyToAdComment200Response> DeleteAdCommentWithHttpInfo(string adId, string commentId, DateOnly? since = default, DateOnly? until = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdAccountsApi->DeleteAdComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling AdAccountsApi->DeleteAdComment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<ReplyToAdComment200Response>("/v1/ads/{adId}/comments/{commentId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete an ad comment Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToAdComment200Response</returns>
+        public async System.Threading.Tasks.Task<ReplyToAdComment200Response> DeleteAdCommentAsync(string adId, string commentId, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplyToAdComment200Response> localVarResponse = await DeleteAdCommentWithHttpInfoAsync(adId, commentId, since, until, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete an ad comment Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToAdComment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToAdComment200Response>> DeleteAdCommentWithHttpInfoAsync(string adId, string commentId, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdAccountsApi->DeleteAdComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling AdAccountsApi->DeleteAdComment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<ReplyToAdComment200Response>("/v1/ads/{adId}/comments/{commentId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Delete a negative keyword list Removes the Google shared negative keyword list. Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2817,30 +3314,34 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>GetAdComments200Response</returns>
-        public GetAdComments200Response GetAdComments(string adId, string? placement = default, int? limit = default, string? cursor = default)
+        public GetAdComments200Response GetAdComments(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default)
         {
-            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = GetAdCommentsWithHttpInfo(adId, placement, limit, cursor);
+            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = GetAdCommentsWithHttpInfo(adId, placement, limit, since, until, cursor);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default)
+        public Zernio.Client.ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2870,6 +3371,14 @@ namespace Zernio.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
             }
             if (cursor != null)
             {
@@ -2896,32 +3405,36 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdComments200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = await GetAdCommentsWithHttpInfoAsync(adId, placement, limit, cursor, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = await GetAdCommentsWithHttpInfoAsync(adId, placement, limit, since, until, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad/post ID.</param>
         /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional)</param>
+        /// <param name="until">TikTok-only end date. Defaults to today in UTC. (optional)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, DateOnly? since = default, DateOnly? until = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2953,6 +3466,14 @@ namespace Zernio.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
             }
             if (cursor != null)
             {
@@ -3628,6 +4149,161 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get iOS 14 campaign limits Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <returns>GetIosFourteenCampaignLimits200Response</returns>
+        public GetIosFourteenCampaignLimits200Response GetIosFourteenCampaignLimits(string accountId, string adAccountId, string applicationId)
+        {
+            Zernio.Client.ApiResponse<GetIosFourteenCampaignLimits200Response> localVarResponse = GetIosFourteenCampaignLimitsWithHttpInfo(accountId, adAccountId, applicationId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get iOS 14 campaign limits Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <returns>ApiResponse of GetIosFourteenCampaignLimits200Response</returns>
+        public Zernio.Client.ApiResponse<GetIosFourteenCampaignLimits200Response> GetIosFourteenCampaignLimitsWithHttpInfo(string accountId, string adAccountId, string applicationId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetIosFourteenCampaignLimits");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->GetIosFourteenCampaignLimits");
+
+            // verify the required parameter 'applicationId' is set
+            if (applicationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'applicationId' when calling AdAccountsApi->GetIosFourteenCampaignLimits");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "applicationId", applicationId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetIosFourteenCampaignLimits200Response>("/v1/ads/ios-fourteen-campaign-limits", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetIosFourteenCampaignLimits", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get iOS 14 campaign limits Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetIosFourteenCampaignLimits200Response</returns>
+        public async System.Threading.Tasks.Task<GetIosFourteenCampaignLimits200Response> GetIosFourteenCampaignLimitsAsync(string accountId, string adAccountId, string applicationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetIosFourteenCampaignLimits200Response> localVarResponse = await GetIosFourteenCampaignLimitsWithHttpInfoAsync(accountId, adAccountId, applicationId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get iOS 14 campaign limits Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="applicationId">Meta application ID from advertisable-applications.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetIosFourteenCampaignLimits200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetIosFourteenCampaignLimits200Response>> GetIosFourteenCampaignLimitsWithHttpInfoAsync(string accountId, string adAccountId, string applicationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetIosFourteenCampaignLimits");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->GetIosFourteenCampaignLimits");
+
+            // verify the required parameter 'applicationId' is set
+            if (applicationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'applicationId' when calling AdAccountsApi->GetIosFourteenCampaignLimits");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "applicationId", applicationId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetIosFourteenCampaignLimits200Response>("/v1/ads/ios-fourteen-campaign-limits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetIosFourteenCampaignLimits", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Read a value rule set Reads one value rule set including every nested rule id and criterion id. This is step one of any edit: &#x60;PUT&#x60; is a full replace, so you need the ids before you can keep the objects you are not changing.  Meta&#39;s own read returns &#x60;GENDER&#x60; values lowercase (&#x60;\&quot;male\&quot;&#x60;) while writes require &#x60;\&quot;MALE\&quot;&#x60;. Values are passed through untouched, so never case-compare a stored rule against a fetched one.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3762,6 +4438,187 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Hide or unhide an ad comment Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>HideAdComment200Response</returns>
+        public HideAdComment200Response HideAdComment(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default)
+        {
+            Zernio.Client.ApiResponse<HideAdComment200Response> localVarResponse = HideAdCommentWithHttpInfo(adId, commentId, hideAdCommentRequest, since, until);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Hide or unhide an ad comment Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ApiResponse of HideAdComment200Response</returns>
+        public Zernio.Client.ApiResponse<HideAdComment200Response> HideAdCommentWithHttpInfo(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdAccountsApi->HideAdComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling AdAccountsApi->HideAdComment");
+
+            // verify the required parameter 'hideAdCommentRequest' is set
+            if (hideAdCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'hideAdCommentRequest' when calling AdAccountsApi->HideAdComment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            localVarRequestOptions.Data = hideAdCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<HideAdComment200Response>("/v1/ads/{adId}/comments/{commentId}/hide", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("HideAdComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Hide or unhide an ad comment Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of HideAdComment200Response</returns>
+        public async System.Threading.Tasks.Task<HideAdComment200Response> HideAdCommentAsync(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<HideAdComment200Response> localVarResponse = await HideAdCommentWithHttpInfoAsync(adId, commentId, hideAdCommentRequest, since, until, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Hide or unhide an ad comment Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="hideAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (HideAdComment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<HideAdComment200Response>> HideAdCommentWithHttpInfoAsync(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdAccountsApi->HideAdComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling AdAccountsApi->HideAdComment");
+
+            // verify the required parameter 'hideAdCommentRequest' is set
+            if (hideAdCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'hideAdCommentRequest' when calling AdAccountsApi->HideAdComment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            localVarRequestOptions.Data = hideAdCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<HideAdComment200Response>("/v1/ads/{adId}/comments/{commentId}/hide", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("HideAdComment", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4679,6 +5536,288 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List Instagram ad identities Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ListAdsInstagramAccounts200Response</returns>
+        public ListAdsInstagramAccounts200Response ListAdsInstagramAccounts(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<ListAdsInstagramAccounts200Response> localVarResponse = ListAdsInstagramAccountsWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Instagram ad identities Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ApiResponse of ListAdsInstagramAccounts200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdsInstagramAccounts200Response> ListAdsInstagramAccountsWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdsInstagramAccounts");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListAdsInstagramAccounts");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdsInstagramAccounts200Response>("/v1/ads/instagram-accounts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdsInstagramAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Instagram ad identities Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdsInstagramAccounts200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdsInstagramAccounts200Response> ListAdsInstagramAccountsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdsInstagramAccounts200Response> localVarResponse = await ListAdsInstagramAccountsWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Instagram ad identities Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdsInstagramAccounts200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdsInstagramAccounts200Response>> ListAdsInstagramAccountsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdsInstagramAccounts");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListAdsInstagramAccounts");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdsInstagramAccounts200Response>("/v1/ads/instagram-accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdsInstagramAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List advertisable apps Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ListAdvertisableApplications200Response</returns>
+        public ListAdvertisableApplications200Response ListAdvertisableApplications(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<ListAdvertisableApplications200Response> localVarResponse = ListAdvertisableApplicationsWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List advertisable apps Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <returns>ApiResponse of ListAdvertisableApplications200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdvertisableApplications200Response> ListAdvertisableApplicationsWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdvertisableApplications");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListAdvertisableApplications");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdvertisableApplications200Response>("/v1/ads/advertisable-applications", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdvertisableApplications", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List advertisable apps Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdvertisableApplications200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdvertisableApplications200Response> ListAdvertisableApplicationsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdvertisableApplications200Response> localVarResponse = await ListAdvertisableApplicationsWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List advertisable apps Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio Meta Ads or Facebook SocialAccount ID.</param>
+        /// <param name="adAccountId">Meta ad account ID including the act_ prefix.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdvertisableApplications200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdvertisableApplications200Response>> ListAdvertisableApplicationsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdvertisableApplications");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListAdvertisableApplications");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdvertisableApplications200Response>("/v1/ads/advertisable-applications", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdvertisableApplications", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List custom conversions The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5576,6 +6715,187 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ReplaceAdNegativeKeywordListKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to an ad comment Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ReplyToAdComment200Response</returns>
+        public ReplyToAdComment200Response ReplyToAdComment(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default)
+        {
+            Zernio.Client.ApiResponse<ReplyToAdComment200Response> localVarResponse = ReplyToAdCommentWithHttpInfo(adId, commentId, replyToAdCommentRequest, since, until);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to an ad comment Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <returns>ApiResponse of ReplyToAdComment200Response</returns>
+        public Zernio.Client.ApiResponse<ReplyToAdComment200Response> ReplyToAdCommentWithHttpInfo(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdAccountsApi->ReplyToAdComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling AdAccountsApi->ReplyToAdComment");
+
+            // verify the required parameter 'replyToAdCommentRequest' is set
+            if (replyToAdCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replyToAdCommentRequest' when calling AdAccountsApi->ReplyToAdComment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            localVarRequestOptions.Data = replyToAdCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReplyToAdComment200Response>("/v1/ads/{adId}/comments/{commentId}/reply", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplyToAdComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to an ad comment Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToAdComment200Response</returns>
+        public async System.Threading.Tasks.Task<ReplyToAdComment200Response> ReplyToAdCommentAsync(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplyToAdComment200Response> localVarResponse = await ReplyToAdCommentWithHttpInfoAsync(adId, commentId, replyToAdCommentRequest, since, until, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to an ad comment Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Internal Zernio ad ID or indexed platform ad ID.</param>
+        /// <param name="commentId">TikTok comment ID from the ad comment listing.</param>
+        /// <param name="replyToAdCommentRequest"></param>
+        /// <param name="since">Start date of the comment lookup window. Defaults to 30 days before until. (optional)</param>
+        /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToAdComment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToAdComment200Response>> ReplyToAdCommentWithHttpInfoAsync(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdAccountsApi->ReplyToAdComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling AdAccountsApi->ReplyToAdComment");
+
+            // verify the required parameter 'replyToAdCommentRequest' is set
+            if (replyToAdCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replyToAdCommentRequest' when calling AdAccountsApi->ReplyToAdComment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            localVarRequestOptions.Data = replyToAdCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReplyToAdComment200Response>("/v1/ads/{adId}/comments/{commentId}/reply", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplyToAdComment", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

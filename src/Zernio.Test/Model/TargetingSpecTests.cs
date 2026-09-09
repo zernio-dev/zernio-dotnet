@@ -56,6 +56,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UserOs'
+        /// </summary>
+        [Fact]
+        public void UserOsTest()
+        {
+            // TODO unit test for the property 'UserOs'
+        }
+
+        /// <summary>
+        /// Test the property 'UserDevice'
+        /// </summary>
+        [Fact]
+        public void UserDeviceTest()
+        {
+            // TODO unit test for the property 'UserDevice'
+        }
+
+        /// <summary>
         /// Test the property 'Countries'
         /// </summary>
         [Fact]

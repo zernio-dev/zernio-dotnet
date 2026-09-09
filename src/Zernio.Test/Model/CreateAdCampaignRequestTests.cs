@@ -92,6 +92,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsSkadnetworkAttribution'
+        /// </summary>
+        [Fact]
+        public void IsSkadnetworkAttributionTest()
+        {
+            // TODO unit test for the property 'IsSkadnetworkAttribution'
+        }
+
+        /// <summary>
+        /// Test the property 'PromotedObject'
+        /// </summary>
+        [Fact]
+        public void PromotedObjectTest()
+        {
+            // TODO unit test for the property 'PromotedObject'
+        }
+
+        /// <summary>
+        /// Test the property 'BuyingType'
+        /// </summary>
+        [Fact]
+        public void BuyingTypeTest()
+        {
+            // TODO unit test for the property 'BuyingType'
+        }
+
+        /// <summary>
+        /// Test the property 'ValidateOnly'
+        /// </summary>
+        [Fact]
+        public void ValidateOnlyTest()
+        {
+            // TODO unit test for the property 'ValidateOnly'
+        }
+
+        /// <summary>
         /// Test the property 'SpecialAdCategories'
         /// </summary>
         [Fact]

@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateCustomConversion**](AdAccountsApi.md#createcustomconversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion |
 | [**CreateHighDemandPeriod**](AdAccountsApi.md#createhighdemandperiod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase |
 | [**CreateValueRuleSet**](AdAccountsApi.md#createvalueruleset) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
+| [**DeleteAdComment**](AdAccountsApi.md#deleteadcomment) | **DELETE** /v1/ads/{adId}/comments/{commentId} | Delete an ad comment |
 | [**DeleteAdNegativeKeywordList**](AdAccountsApi.md#deleteadnegativekeywordlist) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**DeleteValueRuleSet**](AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
@@ -17,19 +18,24 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdsActivityLog**](AdAccountsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log |
 | [**GetDsaDefaults**](AdAccountsApi.md#getdsadefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
 | [**GetDsaRecommendations**](AdAccountsApi.md#getdsarecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
+| [**GetIosFourteenCampaignLimits**](AdAccountsApi.md#getiosfourteencampaignlimits) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits |
 | [**GetValueRuleSet**](AdAccountsApi.md#getvalueruleset) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
+| [**HideAdComment**](AdAccountsApi.md#hideadcomment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
 | [**ListAccountCallouts**](AdAccountsApi.md#listaccountcallouts) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions |
 | [**ListAdAccounts**](AdAccountsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAdLabels**](AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels |
 | [**ListAdNegativeKeywordLists**](AdAccountsApi.md#listadnegativekeywordlists) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists |
 | [**ListAdStudies**](AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies |
 | [**ListAdsBusinessCenters**](AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
+| [**ListAdsInstagramAccounts**](AdAccountsApi.md#listadsinstagramaccounts) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities |
+| [**ListAdvertisableApplications**](AdAccountsApi.md#listadvertisableapplications) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
 | [**ListCustomConversions**](AdAccountsApi.md#listcustomconversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
 | [**ListHighDemandPeriods**](AdAccountsApi.md#listhighdemandperiods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules |
 | [**ListMetaBusinesses**](AdAccountsApi.md#listmetabusinesses) | **GET** /v1/ads/businesses | Businesses list |
 | [**ListValueRuleSets**](AdAccountsApi.md#listvaluerulesets) | **GET** /v1/ads/value-rule-sets | List value rule sets |
 | [**RemoveAccountCallout**](AdAccountsApi.md#removeaccountcallout) | **DELETE** /v1/ads/accounts/callouts | Remove an account-level callout extension |
 | [**ReplaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceadnegativekeywordlistkeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
+| [**ReplyToAdComment**](AdAccountsApi.md#replytoadcomment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
 | [**UpdateAdAccount**](AdAccountsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**UpdateAdNegativeKeywordList**](AdAccountsApi.md#updateadnegativekeywordlist) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**UpdateValueRuleSet**](AdAccountsApi.md#updatevalueruleset) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
@@ -549,6 +555,117 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="deleteadcomment"></a>
+# **DeleteAdComment**
+> ReplyToAdComment200Response DeleteAdComment (string adId, string commentId, DateOnly? since = null, DateOnly? until = null)
+
+Delete an ad comment
+
+Delete your own TikTok ad comment or reply. TikTok must return can_delete=true for the comment. Other users' comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller's accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok's ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteAdCommentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad ID.
+            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing.
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date of the comment lookup window. Defaults to 30 days before until. (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date of the comment lookup window. Defaults to today in UTC. (optional) 
+
+            try
+            {
+                // Delete an ad comment
+                ReplyToAdComment200Response result = apiInstance.DeleteAdComment(adId, commentId, since, until);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.DeleteAdComment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteAdCommentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete an ad comment
+    ApiResponse<ReplyToAdComment200Response> response = apiInstance.DeleteAdCommentWithHttpInfo(adId, commentId, since, until);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.DeleteAdCommentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Internal Zernio ad ID or indexed platform ad ID. |  |
+| **commentId** | **string** | TikTok comment ID from the ad comment listing. |  |
+| **since** | **DateOnly?** | Start date of the comment lookup window. Defaults to 30 days before until. | [optional]  |
+| **until** | **DateOnly?** | End date of the comment lookup window. Defaults to today in UTC. | [optional]  |
+
+### Return type
+
+[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteadnegativekeywordlist"></a>
 # **DeleteAdNegativeKeywordList**
 > DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? customerId = null, string? platform = null)
@@ -869,11 +986,11 @@ catch (ApiException e)
 
 <a id="getadcomments"></a>
 # **GetAdComments**
-> GetAdComments200Response GetAdComments (string adId, string? placement = null, int? limit = null, string? cursor = null)
+> GetAdComments200Response GetAdComments (string adId, string? placement = null, int? limit = null, DateOnly? since = null, DateOnly? until = null, string? cursor = null)
 
 List comments on an ad
 
-Returns comments on an ad's underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio's post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative's effective_object_story_id and effective_instagram_media_id). Use the `placement` query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account's token. If no connected Instagram account on the profile can read the ad's media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement=facebook).  Meta-only for now. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) are not wired to this endpoint and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The `{adId}` path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal `_id` (24-char hex), Meta's numeric `platformAdId` (the value shipped in `comment.received` webhooks as `comment.ad.id`), or the creative's `effective_object_story_id` / `effective_instagram_media_id`. Caller doesn't need a translation step. 
+Returns comments on an ad's underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio's post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative's effective_object_story_id and effective_instagram_media_id). Use the `placement` query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account's token. If no connected Instagram account on the profile can read the ad's media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement=facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. `since` and `until` select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while `pagination.hasMore` is true. Reuse `pagination.cursor` with the same `limit`; the cursor retains the date window. `placement` is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with `parentId`; nested reply fetching is not supported. `canReply` requires a first-level comment and an identity with comment-management permission. `canDelete` reflects TikTok's own-comment deletion capability. `canHide` is supported and `canLike` is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The `{adId}` path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal `_id` (24-char hex), the numeric `platformAdId` (the value shipped in `comment.received` webhooks as `comment.ad.id`), or the creative's `effective_object_story_id` / `effective_instagram_media_id`. Caller doesn't need a translation step. 
 
 ### Example
 ```csharp
@@ -899,15 +1016,17 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
-            var adId = "adId_example";  // string | Internal Zernio ad ID (ObjectId).
+            var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad/post ID.
             var placement = "facebook";  // string? | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | TikTok-only end date. Defaults to today in UTC. (optional) 
             var cursor = "cursor_example";  // string? | Pagination cursor from a previous response. (optional) 
 
             try
             {
                 // List comments on an ad
-                GetAdComments200Response result = apiInstance.GetAdComments(adId, placement, limit, cursor);
+                GetAdComments200Response result = apiInstance.GetAdComments(adId, placement, limit, since, until, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -928,7 +1047,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List comments on an ad
-    ApiResponse<GetAdComments200Response> response = apiInstance.GetAdCommentsWithHttpInfo(adId, placement, limit, cursor);
+    ApiResponse<GetAdComments200Response> response = apiInstance.GetAdCommentsWithHttpInfo(adId, placement, limit, since, until, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -945,9 +1064,11 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **adId** | **string** | Internal Zernio ad ID (ObjectId). |  |
+| **adId** | **string** | Internal Zernio ad ID or indexed platform ad/post ID. |  |
 | **placement** | **string?** | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
+| **since** | **DateOnly?** | TikTok-only start date. Defaults to 30 days before until. Maximum window is 30 days. | [optional]  |
+| **until** | **DateOnly?** | TikTok-only end date. Defaults to today in UTC. | [optional]  |
 | **cursor** | **string?** | Pagination cursor from a previous response. | [optional]  |
 
 ### Return type
@@ -967,10 +1088,10 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Comments on the ad |  -  |
+| **200** | Comments on the ad. |  -  |
 | **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code ad_not_commentable).  |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta or TikTok (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
 
@@ -1407,6 +1528,113 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getiosfourteencampaignlimits"></a>
+# **GetIosFourteenCampaignLimits**
+> GetIosFourteenCampaignLimits200Response GetIosFourteenCampaignLimits (string accountId, string adAccountId, string applicationId)
+
+Get iOS 14 campaign limits
+
+Reads Meta iOS 14 campaign limits for an application on an ad account. applicationId is sent as Meta app_id. This read does not establish that the application is configured for iOS promotion.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetIosFourteenCampaignLimitsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio Meta Ads or Facebook SocialAccount ID.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account ID including the act_ prefix.
+            var applicationId = "applicationId_example";  // string | Meta application ID from advertisable-applications.
+
+            try
+            {
+                // Get iOS 14 campaign limits
+                GetIosFourteenCampaignLimits200Response result = apiInstance.GetIosFourteenCampaignLimits(accountId, adAccountId, applicationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.GetIosFourteenCampaignLimits: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetIosFourteenCampaignLimitsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get iOS 14 campaign limits
+    ApiResponse<GetIosFourteenCampaignLimits200Response> response = apiInstance.GetIosFourteenCampaignLimitsWithHttpInfo(accountId, adAccountId, applicationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.GetIosFourteenCampaignLimitsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio Meta Ads or Facebook SocialAccount ID. |  |
+| **adAccountId** | **string** | Meta ad account ID including the act_ prefix. |  |
+| **applicationId** | **string** | Meta application ID from advertisable-applications. |  |
+
+### Return type
+
+[**GetIosFourteenCampaignLimits200Response**](GetIosFourteenCampaignLimits200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Application campaign limits. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getvalueruleset"></a>
 # **GetValueRuleSet**
 > GetValueRuleSet200Response GetValueRuleSet (string valueRuleSetId, string accountId)
@@ -1507,6 +1735,119 @@ catch (ApiException e)
 | **400** | Invalid input, or Meta rejected the read. A bad id comes back as GraphMethodException code 100 / subcode 33, which cannot be told apart from a permission problem. |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="hideadcomment"></a>
+# **HideAdComment**
+> HideAdComment200Response HideAdComment (string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = null, DateOnly? until = null)
+
+Hide or unhide an ad comment
+
+Hide or restore a TikTok ad comment. Send hidden=true to hide it or hidden=false to make it public again.  Requires Ads access. The ad is resolved within the caller's accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok's ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class HideAdCommentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad ID.
+            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing.
+            var hideAdCommentRequest = new HideAdCommentRequest(); // HideAdCommentRequest | 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date of the comment lookup window. Defaults to 30 days before until. (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date of the comment lookup window. Defaults to today in UTC. (optional) 
+
+            try
+            {
+                // Hide or unhide an ad comment
+                HideAdComment200Response result = apiInstance.HideAdComment(adId, commentId, hideAdCommentRequest, since, until);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.HideAdComment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the HideAdCommentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Hide or unhide an ad comment
+    ApiResponse<HideAdComment200Response> response = apiInstance.HideAdCommentWithHttpInfo(adId, commentId, hideAdCommentRequest, since, until);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.HideAdCommentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Internal Zernio ad ID or indexed platform ad ID. |  |
+| **commentId** | **string** | TikTok comment ID from the ad comment listing. |  |
+| **hideAdCommentRequest** | [**HideAdCommentRequest**](HideAdCommentRequest.md) |  |  |
+| **since** | **DateOnly?** | Start date of the comment lookup window. Defaults to 30 days before until. | [optional]  |
+| **until** | **DateOnly?** | End date of the comment lookup window. Defaults to today in UTC. | [optional]  |
+
+### Return type
+
+[**HideAdComment200Response**](HideAdComment200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2149,6 +2490,216 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listadsinstagramaccounts"></a>
+# **ListAdsInstagramAccounts**
+> ListAdsInstagramAccounts200Response ListAdsInstagramAccounts (string accountId, string adAccountId)
+
+List Instagram ad identities
+
+Discovers identities through connected_instagram_accounts, Page linkage and Page-backed identities, with a best-effort business fallback. Business permission errors do not fail discovery. The resolved object uses the same profile-scoped resolver as ad creation; null means no identity was resolved. Format-specific observed-actor fallbacks at creative creation are not predicted.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdsInstagramAccountsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio Meta Ads or Facebook SocialAccount ID.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account ID including the act_ prefix.
+
+            try
+            {
+                // List Instagram ad identities
+                ListAdsInstagramAccounts200Response result = apiInstance.ListAdsInstagramAccounts(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ListAdsInstagramAccounts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdsInstagramAccountsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Instagram ad identities
+    ApiResponse<ListAdsInstagramAccounts200Response> response = apiInstance.ListAdsInstagramAccountsWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ListAdsInstagramAccountsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio Meta Ads or Facebook SocialAccount ID. |  |
+| **adAccountId** | **string** | Meta ad account ID including the act_ prefix. |  |
+
+### Return type
+
+[**ListAdsInstagramAccounts200Response**](ListAdsInstagramAccounts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Instagram identities and Page linkage. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadvertisableapplications"></a>
+# **ListAdvertisableApplications**
+> ListAdvertisableApplications200Response ListAdvertisableApplications (string accountId, string adAccountId)
+
+List advertisable apps
+
+Lists applications available to a Meta ad account, their supported platforms and unmodified object store URLs. A listed app still needs a configured mobile platform and store URL to run install promotion.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdvertisableApplicationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio Meta Ads or Facebook SocialAccount ID.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account ID including the act_ prefix.
+
+            try
+            {
+                // List advertisable apps
+                ListAdvertisableApplications200Response result = apiInstance.ListAdvertisableApplications(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ListAdvertisableApplications: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdvertisableApplicationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List advertisable apps
+    ApiResponse<ListAdvertisableApplications200Response> response = apiInstance.ListAdvertisableApplicationsWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ListAdvertisableApplicationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio Meta Ads or Facebook SocialAccount ID. |  |
+| **adAccountId** | **string** | Meta ad account ID including the act_ prefix. |  |
+
+### Return type
+
+[**ListAdvertisableApplications200Response**](ListAdvertisableApplications200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Applications available for promotion. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The account or Meta asset is not accessible. |  -  |
+| **404** | Resource not found |  -  |
+| **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listcustomconversions"></a>
 # **ListCustomConversions**
 > ListCustomConversions200Response ListCustomConversions (string accountId, string adAccountId)
@@ -2781,6 +3332,119 @@ catch (ApiException e)
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="replytoadcomment"></a>
+# **ReplyToAdComment**
+> ReplyToAdComment200Response ReplyToAdComment (string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = null, DateOnly? until = null)
+
+Reply to an ad comment
+
+Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller's accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok's ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReplyToAdCommentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad ID.
+            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing.
+            var replyToAdCommentRequest = new ReplyToAdCommentRequest(); // ReplyToAdCommentRequest | 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date of the comment lookup window. Defaults to 30 days before until. (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date of the comment lookup window. Defaults to today in UTC. (optional) 
+
+            try
+            {
+                // Reply to an ad comment
+                ReplyToAdComment200Response result = apiInstance.ReplyToAdComment(adId, commentId, replyToAdCommentRequest, since, until);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ReplyToAdComment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReplyToAdCommentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reply to an ad comment
+    ApiResponse<ReplyToAdComment200Response> response = apiInstance.ReplyToAdCommentWithHttpInfo(adId, commentId, replyToAdCommentRequest, since, until);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ReplyToAdCommentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Internal Zernio ad ID or indexed platform ad ID. |  |
+| **commentId** | **string** | TikTok comment ID from the ad comment listing. |  |
+| **replyToAdCommentRequest** | [**ReplyToAdCommentRequest**](ReplyToAdCommentRequest.md) |  |  |
+| **since** | **DateOnly?** | Start date of the comment lookup window. Defaults to 30 days before until. | [optional]  |
+| **until** | **DateOnly?** | End date of the comment lookup window. Defaults to today in UTC. | [optional]  |
+
+### Return type
+
+[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment action completed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
+| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **422** | TikTok Ads connection is unavailable. |  -  |
+| **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
+| **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

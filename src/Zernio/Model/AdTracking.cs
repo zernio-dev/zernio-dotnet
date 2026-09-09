@@ -28,17 +28,17 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta only. Attaches pixel measurement to the ad regardless of the optimization goal (the \&quot;Website events\&quot; tracking row in Ads Manager). &#x60;pixelId&#x60; becomes the ad&#39;s &#x60;tracking_specs&#x60; (offsite_conversion + fb_pixel); &#x60;urlTags&#x60; becomes the ad&#39;s &#x60;url_tags&#x60; (click-tracking query params). Applied on the legacy single-creative shape, every ad of the multi-creative shape, and the attach shape. NOTE: tracking lives on the AD object and is not inherited from the ad set, so pass it on EVERY attach call that should carry the pixel.
+    /// Meta only. Attaches pixel measurement to the ad regardless of the optimization goal (the \&quot;Website events\&quot; tracking row in Ads Manager). &#x60;pixelId&#x60; becomes the ad&#39;s &#x60;tracking_specs&#x60; (offsite_conversion + fb_pixel); &#x60;urlTags&#x60; is stored on the new creative as &#x60;url_tags&#x60; and retained on the ad for compatibility. Applied on the legacy single-creative shape, every ad of the multi-creative shape, and the attach shape. NOTE: tracking lives on the AD object and is not inherited from the ad set, so pass it on EVERY attach call that should carry the pixel.
     /// </summary>
-    [DataContract(Name = "createStandaloneAd_request_tracking")]
-    public partial class CreateStandaloneAdRequestTracking : IValidatableObject
+    [DataContract(Name = "AdTracking")]
+    public partial class AdTracking : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestTracking" /> class.
+        /// Initializes a new instance of the <see cref="AdTracking" /> class.
         /// </summary>
         /// <param name="pixelId">Meta Pixel ID to attach for offsite-conversion measurement..</param>
-        /// <param name="urlTags">Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded..</param>
-        public CreateStandaloneAdRequestTracking(string pixelId = default, List<UpdateAdTrackingTagsRequestUrlTagsInner> urlTags = default)
+        /// <param name="urlTags">Click-URL params stored on the creative as &#x60;url_tags&#x60; and returned by GET /v1/ads/{adId}/tracking-tags. App-promotion linkUrl stays byte-identical to promotedObject.objectStoreUrl. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded..</param>
+        public AdTracking(string pixelId = default, List<UpdateAdTrackingTagsRequestUrlTagsInner> urlTags = default)
         {
             this.PixelId = pixelId;
             this.UrlTags = urlTags;
@@ -52,9 +52,9 @@ namespace Zernio.Model
         public string PixelId { get; set; }
 
         /// <summary>
-        /// Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.
+        /// Click-URL params stored on the creative as &#x60;url_tags&#x60; and returned by GET /v1/ads/{adId}/tracking-tags. App-promotion linkUrl stays byte-identical to promotedObject.objectStoreUrl. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.
         /// </summary>
-        /// <value>Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.</value>
+        /// <value>Click-URL params stored on the creative as &#x60;url_tags&#x60; and returned by GET /v1/ads/{adId}/tracking-tags. App-promotion linkUrl stays byte-identical to promotedObject.objectStoreUrl. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.</value>
         [DataMember(Name = "urlTags", EmitDefaultValue = false)]
         public List<UpdateAdTrackingTagsRequestUrlTagsInner> UrlTags { get; set; }
 
@@ -65,7 +65,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateStandaloneAdRequestTracking {\n");
+            sb.Append("class AdTracking {\n");
             sb.Append("  PixelId: ").Append(PixelId).Append("\n");
             sb.Append("  UrlTags: ").Append(UrlTags).Append("\n");
             sb.Append("}\n");

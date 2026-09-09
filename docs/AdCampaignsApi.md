@@ -459,7 +459,7 @@ catch (ApiException e)
 
 <a id="createadcampaign"></a>
 # **CreateAdCampaign**
-> CreateAdCampaign201Response CreateAdCampaign (CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = null)
+> CreateAdCampaign200Response CreateAdCampaign (CreateAdCampaignRequest createAdCampaignRequest, string? idempotencyKey = null)
 
 Create a standalone campaign
 
@@ -495,7 +495,7 @@ namespace Example
             try
             {
                 // Create a standalone campaign
-                CreateAdCampaign201Response result = apiInstance.CreateAdCampaign(createAdCampaignRequest, idempotencyKey);
+                CreateAdCampaign200Response result = apiInstance.CreateAdCampaign(createAdCampaignRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -516,7 +516,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a standalone campaign
-    ApiResponse<CreateAdCampaign201Response> response = apiInstance.CreateAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
+    ApiResponse<CreateAdCampaign200Response> response = apiInstance.CreateAdCampaignWithHttpInfo(createAdCampaignRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -538,7 +538,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateAdCampaign201Response**](CreateAdCampaign201Response.md)
+[**CreateAdCampaign200Response**](CreateAdCampaign200Response.md)
 
 ### Authorization
 
@@ -553,6 +553,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |

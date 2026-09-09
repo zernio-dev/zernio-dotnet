@@ -40,6 +40,7 @@ docs/AdReviewStatus.md
 docs/AdSchedule.md
 docs/AdStatus.md
 docs/AdTargetingApi.md
+docs/AdTracking.md
 docs/AdTreeAdSet.md
 docs/AdTreeAdSetAdSetBudget.md
 docs/AdTreeAdSetBudget.md
@@ -261,6 +262,7 @@ docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
 docs/CreateAdAudience201Response.md
 docs/CreateAdAudienceRequest.md
+docs/CreateAdCampaign200Response.md
 docs/CreateAdCampaign201Response.md
 docs/CreateAdCampaignRequest.md
 docs/CreateAdCreative201Response.md
@@ -402,11 +404,9 @@ docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
-docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestSitelinksInner.md
 docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
-docs/CreateStandaloneAdRequestTracking.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateTestLead200Response.md
@@ -756,6 +756,8 @@ docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
+docs/GetIosFourteenCampaignLimits200Response.md
+docs/GetIosFourteenCampaignLimits200ResponseLimits.md
 docs/GetLeadForm200Response.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
@@ -932,6 +934,8 @@ docs/GoogleBusinessReview.md
 docs/GoogleBusinessReviewReviewReply.md
 docs/GoogleBusinessReviewReviewer.md
 docs/HandleOAuthCallbackRequest.md
+docs/HideAdComment200Response.md
+docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/InboxAnalyticsApi.md
@@ -1032,6 +1036,12 @@ docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
 docs/ListAdsBusinessCenters200Response.md
+docs/ListAdsInstagramAccounts200Response.md
+docs/ListAdsInstagramAccounts200ResponseAccountsInner.md
+docs/ListAdsInstagramAccounts200ResponsePagesInner.md
+docs/ListAdsInstagramAccounts200ResponseResolved.md
+docs/ListAdvertisableApplications200Response.md
+docs/ListAdvertisableApplications200ResponseApplicationsInner.md
 docs/ListApiKeys200Response.md
 docs/ListBidStrategies200Response.md
 docs/ListBlogArticles200Response.md
@@ -1224,6 +1234,7 @@ docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
 docs/MetaAdsPlatformData.md
+docs/MetaInstagramIdentityRef.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/MetaPromotion.md
@@ -1341,6 +1352,8 @@ docs/ReplaceAdNegativeKeywordListKeywordsRequest.md
 docs/ReplaceCampaignNegativeKeywordListsRequest.md
 docs/ReplaceCampaignNegativeKeywords200Response.md
 docs/ReplaceCampaignNegativeKeywordsRequest.md
+docs/ReplyToAdComment200Response.md
+docs/ReplyToAdCommentRequest.md
 docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
@@ -2110,6 +2123,7 @@ src/Zernio.Test/Model/AdReviewStatusTests.cs
 src/Zernio.Test/Model/AdScheduleTests.cs
 src/Zernio.Test/Model/AdStatusTests.cs
 src/Zernio.Test/Model/AdTests.cs
+src/Zernio.Test/Model/AdTrackingTests.cs
 src/Zernio.Test/Model/AdTreeAdSetAdSetBudgetTests.cs
 src/Zernio.Test/Model/AdTreeAdSetBudgetTests.cs
 src/Zernio.Test/Model/AdTreeAdSetPromotedObjectTests.cs
@@ -2320,6 +2334,7 @@ src/Zernio.Test/Model/CreateAccountGroup201ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroupRequestTests.cs
 src/Zernio.Test/Model/CreateAdAudience201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdAudienceRequestTests.cs
+src/Zernio.Test/Model/CreateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCampaign201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/CreateAdCreative201ResponseTests.cs
@@ -2460,12 +2475,10 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
-src/Zernio.Test/Model/CreateStandaloneAdRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestSitelinksInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
-src/Zernio.Test/Model/CreateStandaloneAdRequestTrackingTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
@@ -2805,6 +2818,8 @@ src/Zernio.Test/Model/GetInstagramPublishingLimit200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseTests.cs
+src/Zernio.Test/Model/GetIosFourteenCampaignLimits200ResponseLimitsTests.cs
+src/Zernio.Test/Model/GetIosFourteenCampaignLimits200ResponseTests.cs
 src/Zernio.Test/Model/GetLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics400ResponseTests.cs
@@ -2981,6 +2996,8 @@ src/Zernio.Test/Model/GoogleBusinessReviewReviewReplyTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewerTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewTests.cs
 src/Zernio.Test/Model/HandleOAuthCallbackRequestTests.cs
+src/Zernio.Test/Model/HideAdComment200ResponseTests.cs
+src/Zernio.Test/Model/HideAdCommentRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
 src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
@@ -3076,6 +3093,12 @@ src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
 src/Zernio.Test/Model/ListAdVideos200ResponseTests.cs
 src/Zernio.Test/Model/ListAds202ResponseTests.cs
 src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
+src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseAccountsInnerTests.cs
+src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponsePagesInnerTests.cs
+src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseResolvedTests.cs
+src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseTests.cs
+src/Zernio.Test/Model/ListAdvertisableApplications200ResponseApplicationsInnerTests.cs
+src/Zernio.Test/Model/ListAdvertisableApplications200ResponseTests.cs
 src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
 src/Zernio.Test/Model/ListBidStrategies200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogArticles200ResponseTests.cs
@@ -3263,6 +3286,7 @@ src/Zernio.Test/Model/MediaContentTypeTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
+src/Zernio.Test/Model/MetaInstagramIdentityRefTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataContextCardTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MetaPromotionStatusTests.cs
@@ -3374,6 +3398,8 @@ src/Zernio.Test/Model/ReplaceAdNegativeKeywordListKeywordsRequestTests.cs
 src/Zernio.Test/Model/ReplaceCampaignNegativeKeywordListsRequestTests.cs
 src/Zernio.Test/Model/ReplaceCampaignNegativeKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceCampaignNegativeKeywordsRequestTests.cs
+src/Zernio.Test/Model/ReplyToAdComment200ResponseTests.cs
+src/Zernio.Test/Model/ReplyToAdCommentRequestTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseDataTests.cs
@@ -4141,6 +4167,7 @@ src/Zernio/Model/AdPromotedObject.cs
 src/Zernio/Model/AdReviewStatus.cs
 src/Zernio/Model/AdSchedule.cs
 src/Zernio/Model/AdStatus.cs
+src/Zernio/Model/AdTracking.cs
 src/Zernio/Model/AdTreeAdSet.cs
 src/Zernio/Model/AdTreeAdSetAdSetBudget.cs
 src/Zernio/Model/AdTreeAdSetBudget.cs
@@ -4351,6 +4378,7 @@ src/Zernio/Model/CreateAccountGroup201ResponseGroup.cs
 src/Zernio/Model/CreateAccountGroupRequest.cs
 src/Zernio/Model/CreateAdAudience201Response.cs
 src/Zernio/Model/CreateAdAudienceRequest.cs
+src/Zernio/Model/CreateAdCampaign200Response.cs
 src/Zernio/Model/CreateAdCampaign201Response.cs
 src/Zernio/Model/CreateAdCampaignRequest.cs
 src/Zernio/Model/CreateAdCreative201Response.cs
@@ -4492,11 +4520,9 @@ src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
-src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestSitelinksInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestStructuredSnippetsInner.cs
-src/Zernio/Model/CreateStandaloneAdRequestTracking.cs
 src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
 src/Zernio/Model/CreateTestLead200Response.cs
@@ -4836,6 +4862,8 @@ src/Zernio/Model/GetInstagramPublishingLimit200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseDataMetrics.cs
+src/Zernio/Model/GetIosFourteenCampaignLimits200Response.cs
+src/Zernio/Model/GetIosFourteenCampaignLimits200ResponseLimits.cs
 src/Zernio/Model/GetLeadForm200Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics200Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics400Response.cs
@@ -5012,6 +5040,8 @@ src/Zernio/Model/GoogleBusinessReview.cs
 src/Zernio/Model/GoogleBusinessReviewReviewReply.cs
 src/Zernio/Model/GoogleBusinessReviewReviewer.cs
 src/Zernio/Model/HandleOAuthCallbackRequest.cs
+src/Zernio/Model/HideAdComment200Response.cs
+src/Zernio/Model/HideAdCommentRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
 src/Zernio/Model/InboxMessageEditAttachment.cs
@@ -5107,6 +5137,12 @@ src/Zernio/Model/ListAdStudies200Response.cs
 src/Zernio/Model/ListAdVideos200Response.cs
 src/Zernio/Model/ListAds202Response.cs
 src/Zernio/Model/ListAdsBusinessCenters200Response.cs
+src/Zernio/Model/ListAdsInstagramAccounts200Response.cs
+src/Zernio/Model/ListAdsInstagramAccounts200ResponseAccountsInner.cs
+src/Zernio/Model/ListAdsInstagramAccounts200ResponsePagesInner.cs
+src/Zernio/Model/ListAdsInstagramAccounts200ResponseResolved.cs
+src/Zernio/Model/ListAdvertisableApplications200Response.cs
+src/Zernio/Model/ListAdvertisableApplications200ResponseApplicationsInner.cs
 src/Zernio/Model/ListApiKeys200Response.cs
 src/Zernio/Model/ListBidStrategies200Response.cs
 src/Zernio/Model/ListBlogArticles200Response.cs
@@ -5294,6 +5330,7 @@ src/Zernio/Model/MediaContentType.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
+src/Zernio/Model/MetaInstagramIdentityRef.cs
 src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
 src/Zernio/Model/MetaPromotion.cs
@@ -5405,6 +5442,8 @@ src/Zernio/Model/ReplaceAdNegativeKeywordListKeywordsRequest.cs
 src/Zernio/Model/ReplaceCampaignNegativeKeywordListsRequest.cs
 src/Zernio/Model/ReplaceCampaignNegativeKeywords200Response.cs
 src/Zernio/Model/ReplaceCampaignNegativeKeywordsRequest.cs
+src/Zernio/Model/ReplyToAdComment200Response.cs
+src/Zernio/Model/ReplyToAdCommentRequest.cs
 src/Zernio/Model/ReplyToGoogleBusinessReview200Response.cs
 src/Zernio/Model/ReplyToGoogleBusinessReviewRequest.cs
 src/Zernio/Model/ReplyToInboxPost200Response.cs

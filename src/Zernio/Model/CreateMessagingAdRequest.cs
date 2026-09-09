@@ -271,6 +271,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateMessagingAdRequest" /> class.
         /// </summary>
         /// <param name="creativeFeatures">Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object..</param>
+        /// <param name="tracking">tracking.</param>
         /// <param name="accountId">Facebook or Instagram SocialAccount ID. (required).</param>
         /// <param name="adAccountId">Meta ad account ID, e.g. &#x60;act_123456789&#x60;. (required).</param>
         /// <param name="name">Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  (required).</param>
@@ -311,7 +312,7 @@ namespace Zernio.Model
         /// <param name="regionalRegulatedCategories">Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. BRAZIL_REGULATION, SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV). Forwarded to the ad set..</param>
         /// <param name="regionalRegulationIdentities">Meta only. Beneficiary/payer entity IDs required alongside regionalRegulatedCategories. Values are numeric IDs from the advertiser&#39;s Meta verification/authorization setup. Keys depend on the declared category: BRAZIL_REGULATION and THAILAND_UNIVERSAL use universal_beneficiary / universal_payer; SINGAPORE_UNIVERSAL uses singapore_universal_beneficiary / singapore_universal_payer; TAIWAN_UNIVERSAL uses taiwan_universal_beneficiary / taiwan_universal_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary / taiwan_finserv_payer; AUSTRALIA_FINSERV uses australia_finserv_beneficiary / australia_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer. Both beneficiary and payer must be included. If omitted and the advertiser has set defaults in Meta Ads Manager advertising settings, Meta auto-fills them. .</param>
         /// <param name="destination">Where the conversation opens when the ad is tapped. (required).</param>
-        public CreateMessagingAdRequest(Dictionary<string, InnerEnum> creativeFeatures = default, string accountId = default, string adAccountId = default, string name = default, string existingPostId = default, string objectStoryId = default, string whatsappPhoneNumber = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, DestinationEnum destination = default)
+        public CreateMessagingAdRequest(Dictionary<string, InnerEnum> creativeFeatures = default, AdTracking tracking = default, string accountId = default, string adAccountId = default, string name = default, string existingPostId = default, string objectStoryId = default, string whatsappPhoneNumber = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, DestinationEnum destination = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -333,6 +334,7 @@ namespace Zernio.Model
             this.Name = name;
             this.Destination = destination;
             this.CreativeFeatures = creativeFeatures;
+            this.Tracking = tracking;
             this.ExistingPostId = existingPostId;
             this.ObjectStoryId = objectStoryId;
             this.WhatsappPhoneNumber = whatsappPhoneNumber;
@@ -380,6 +382,12 @@ namespace Zernio.Model
         */
         [DataMember(Name = "creativeFeatures", EmitDefaultValue = false)]
         public Dictionary<string, CreateMessagingAdRequest.InnerEnum> CreativeFeatures { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Tracking
+        /// </summary>
+        [DataMember(Name = "tracking", EmitDefaultValue = false)]
+        public AdTracking Tracking { get; set; }
 
         /// <summary>
         /// Facebook or Instagram SocialAccount ID.
@@ -615,6 +623,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateMessagingAdRequest {\n");
             sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
+            sb.Append("  Tracking: ").Append(Tracking).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");

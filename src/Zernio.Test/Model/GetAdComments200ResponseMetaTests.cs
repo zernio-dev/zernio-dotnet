@@ -101,6 +101,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TiktokItemId'
+        /// </summary>
+        [Fact]
+        public void TiktokItemIdTest()
+        {
+            // TODO unit test for the property 'TiktokItemId'
+        }
+
+        /// <summary>
+        /// Test the property 'Since'
+        /// </summary>
+        [Fact]
+        public void SinceTest()
+        {
+            // TODO unit test for the property 'Since'
+        }
+
+        /// <summary>
+        /// Test the property 'Until'
+        /// </summary>
+        [Fact]
+        public void UntilTest()
+        {
+            // TODO unit test for the property 'Until'
+        }
+
+        /// <summary>
         /// Test the property 'FacebookAccountId'
         /// </summary>
         [Fact]

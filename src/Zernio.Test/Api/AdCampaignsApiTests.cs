@@ -114,7 +114,7 @@ namespace Zernio.Test.Api
             //CreateAdCampaignRequest createAdCampaignRequest = null;
             //string? idempotencyKey = null;
             //var response = instance.CreateAdCampaign(createAdCampaignRequest, idempotencyKey);
-            //Assert.IsType<CreateAdCampaign201Response>(response);
+            //Assert.IsType<CreateAdCampaign200Response>(response);
         }
 
         /// <summary>
