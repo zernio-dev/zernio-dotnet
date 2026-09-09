@@ -37,11 +37,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdAudience200Response" /> class.
         /// </summary>
         /// <param name="audience">audience.</param>
-        /// <param name="metaData">Fresh data from Meta API.</param>
-        public GetAdAudience200Response(Object audience = default, Object metaData = default)
+        /// <param name="platformData">Fresh data from the platform API.</param>
+        public GetAdAudience200Response(Object audience = default, Object platformData = default)
         {
             this.Audience = audience;
-            this.MetaData = metaData;
+            this.PlatformData = platformData;
         }
 
         /// <summary>
@@ -51,11 +51,11 @@ namespace Zernio.Model
         public Object Audience { get; set; }
 
         /// <summary>
-        /// Fresh data from Meta API
+        /// Fresh data from the platform API
         /// </summary>
-        /// <value>Fresh data from Meta API</value>
-        [DataMember(Name = "metaData", EmitDefaultValue = true)]
-        public Object MetaData { get; set; }
+        /// <value>Fresh data from the platform API</value>
+        [DataMember(Name = "platformData", EmitDefaultValue = true)]
+        public Object PlatformData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,7 +66,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetAdAudience200Response {\n");
             sb.Append("  Audience: ").Append(Audience).Append("\n");
-            sb.Append("  MetaData: ").Append(MetaData).Append("\n");
+            sb.Append("  PlatformData: ").Append(PlatformData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

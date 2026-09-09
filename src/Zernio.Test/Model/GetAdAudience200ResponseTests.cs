@@ -65,12 +65,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'MetaData'
+        /// Test the property 'PlatformData'
         /// </summary>
         [Fact]
-        public void MetaDataTest()
+        public void PlatformDataTest()
         {
-            // TODO unit test for the property 'MetaData'
+            // TODO unit test for the property 'PlatformData'
         }
     }
 }

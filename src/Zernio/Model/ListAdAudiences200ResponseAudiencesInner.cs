@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListAdAudiences200ResponseAudiencesInner" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
+        /// <param name="id">The Zernio audience id. Pass this as audienceId on GET /v1/ads/audiences/{audienceId} and the companies/users upload endpoints. Null when the audience was not created through Zernio..</param>
         /// <param name="accountId">Account the audience was created against. Returned for saved_targeting items..</param>
         /// <param name="platformAudienceId">platformAudienceId.</param>
         /// <param name="name">name.</param>
@@ -122,8 +122,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The Zernio audience id. Pass this as audienceId on GET /v1/ads/audiences/{audienceId} and the companies/users upload endpoints. Null when the audience was not created through Zernio.
         /// </summary>
+        /// <value>The Zernio audience id. Pass this as audienceId on GET /v1/ads/audiences/{audienceId} and the companies/users upload endpoints. Null when the audience was not created through Zernio.</value>
         [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; set; }
 

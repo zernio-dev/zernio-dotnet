@@ -35,7 +35,7 @@ namespace Zernio.Api
         /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <returns>AddUsersToAdAudience200Response</returns>
         AddUsersToAdAudience200Response AddUsersToAdAudience(string audienceId, AddUsersToAdAudienceRequest addUsersToAdAudienceRequest);
@@ -47,7 +47,7 @@ namespace Zernio.Api
         /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <returns>ApiResponse of AddUsersToAdAudience200Response</returns>
         ApiResponse<AddUsersToAdAudience200Response> AddUsersToAdAudienceWithHttpInfo(string audienceId, AddUsersToAdAudienceRequest addUsersToAdAudienceRequest);
@@ -100,7 +100,7 @@ namespace Zernio.Api
         /// Returns the local audience record and fresh data from Meta (if available).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <returns>GetAdAudience200Response</returns>
         GetAdAudience200Response GetAdAudience(string audienceId);
 
@@ -111,7 +111,7 @@ namespace Zernio.Api
         /// Returns the local audience record and fresh data from Meta (if available).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <returns>ApiResponse of GetAdAudience200Response</returns>
         ApiResponse<GetAdAudience200Response> GetAdAudienceWithHttpInfo(string audienceId);
         /// <summary>
@@ -148,7 +148,7 @@ namespace Zernio.Api
         /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <returns>ReplaceAdAudienceCompanies200Response</returns>
         ReplaceAdAudienceCompanies200Response ReplaceAdAudienceCompanies(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest);
@@ -160,7 +160,7 @@ namespace Zernio.Api
         /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <returns>ApiResponse of ReplaceAdAudienceCompanies200Response</returns>
         ApiResponse<ReplaceAdAudienceCompanies200Response> ReplaceAdAudienceCompaniesWithHttpInfo(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest);
@@ -203,7 +203,7 @@ namespace Zernio.Api
         /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AddUsersToAdAudience200Response</returns>
@@ -216,7 +216,7 @@ namespace Zernio.Api
         /// Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddUsersToAdAudience200Response)</returns>
@@ -274,7 +274,7 @@ namespace Zernio.Api
         /// Returns the local audience record and fresh data from Meta (if available).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdAudience200Response</returns>
         System.Threading.Tasks.Task<GetAdAudience200Response> GetAdAudienceAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default);
@@ -286,7 +286,7 @@ namespace Zernio.Api
         /// Returns the local audience record and fresh data from Meta (if available).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdAudience200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdAudience200Response>> GetAdAudienceWithHttpInfoAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default);
@@ -326,7 +326,7 @@ namespace Zernio.Api
         /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ReplaceAdAudienceCompanies200Response</returns>
@@ -339,7 +339,7 @@ namespace Zernio.Api
         /// Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplaceAdAudienceCompanies200Response)</returns>
@@ -586,7 +586,7 @@ namespace Zernio.Api
         /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <returns>AddUsersToAdAudience200Response</returns>
         public AddUsersToAdAudience200Response AddUsersToAdAudience(string audienceId, AddUsersToAdAudienceRequest addUsersToAdAudienceRequest)
@@ -599,7 +599,7 @@ namespace Zernio.Api
         /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <returns>ApiResponse of AddUsersToAdAudience200Response</returns>
         public Zernio.Client.ApiResponse<AddUsersToAdAudience200Response> AddUsersToAdAudienceWithHttpInfo(string audienceId, AddUsersToAdAudienceRequest addUsersToAdAudienceRequest)
@@ -655,7 +655,7 @@ namespace Zernio.Api
         /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AddUsersToAdAudience200Response</returns>
@@ -669,7 +669,7 @@ namespace Zernio.Api
         /// Add users to audience Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request.  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="addUsersToAdAudienceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddUsersToAdAudience200Response)</returns>
@@ -985,7 +985,7 @@ namespace Zernio.Api
         /// Get audience details Returns the local audience record and fresh data from Meta (if available).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <returns>GetAdAudience200Response</returns>
         public GetAdAudience200Response GetAdAudience(string audienceId)
         {
@@ -997,7 +997,7 @@ namespace Zernio.Api
         /// Get audience details Returns the local audience record and fresh data from Meta (if available).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <returns>ApiResponse of GetAdAudience200Response</returns>
         public Zernio.Client.ApiResponse<GetAdAudience200Response> GetAdAudienceWithHttpInfo(string audienceId)
         {
@@ -1046,7 +1046,7 @@ namespace Zernio.Api
         /// Get audience details Returns the local audience record and fresh data from Meta (if available).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdAudience200Response</returns>
         public async System.Threading.Tasks.Task<GetAdAudience200Response> GetAdAudienceAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default)
@@ -1059,7 +1059,7 @@ namespace Zernio.Api
         /// Get audience details Returns the local audience record and fresh data from Meta (if available).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdAudience200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdAudience200Response>> GetAdAudienceWithHttpInfoAsync(string audienceId, System.Threading.CancellationToken cancellationToken = default)
@@ -1277,7 +1277,7 @@ namespace Zernio.Api
         /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <returns>ReplaceAdAudienceCompanies200Response</returns>
         public ReplaceAdAudienceCompanies200Response ReplaceAdAudienceCompanies(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest)
@@ -1290,7 +1290,7 @@ namespace Zernio.Api
         /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <returns>ApiResponse of ReplaceAdAudienceCompanies200Response</returns>
         public Zernio.Client.ApiResponse<ReplaceAdAudienceCompanies200Response> ReplaceAdAudienceCompaniesWithHttpInfo(string audienceId, ReplaceAdAudienceCompaniesRequest replaceAdAudienceCompaniesRequest)
@@ -1346,7 +1346,7 @@ namespace Zernio.Api
         /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ReplaceAdAudienceCompanies200Response</returns>
@@ -1360,7 +1360,7 @@ namespace Zernio.Api
         /// Replace audience companies Upload the company rows of a LinkedIn &#x60;company_list&#x60; audience (account-based marketing). LinkedIn-only, every other platform returns 422.  A LinkedIn audience segment holds exactly one uploaded list, so the list you send here REPLACES the segment&#39;s list instead of being appended to it: always send the full set of companies. LinkedIn returns only the identifier of the uploaded file, never its rows, so the merge cannot be done for you, keep the source list on your side.  How the matching behaves:  - Rows are plain text (not hashed), matched against LinkedIn&#39;s own company graph. - Matching is asynchronous: LinkedIn takes up to 48h for a new audience and up to 24h for a   later update, and the audience stays &#x60;processing&#x60; meanwhile. - LinkedIn does not document how quickly companies dropped from the list stop being targeted,   so treat removals as eventual rather than immediate. - LinkedIn recommends at least 1,000 companies for a usable match rate, and caps a list at   300,000.  The initial list is sent with &#x60;companies&#x60; on &#x60;POST /v1/ads/audiences&#x60;; this endpoint is for every change after that. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="audienceId"></param>
+        /// <param name="audienceId">The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.</param>
         /// <param name="replaceAdAudienceCompaniesRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplaceAdAudienceCompanies200Response)</returns>

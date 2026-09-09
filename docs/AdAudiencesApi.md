@@ -44,7 +44,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
-            var audienceId = "audienceId_example";  // string | 
+            var audienceId = "audienceId_example";  // string | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
             var addUsersToAdAudienceRequest = new AddUsersToAdAudienceRequest(); // AddUsersToAdAudienceRequest | 
 
             try
@@ -88,7 +88,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **audienceId** | **string** |  |  |
+| **audienceId** | **string** | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. |  |
 | **addUsersToAdAudienceRequest** | [**AddUsersToAdAudienceRequest**](AddUsersToAdAudienceRequest.md) |  |  |
 
 ### Return type
@@ -351,7 +351,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
-            var audienceId = "audienceId_example";  // string | 
+            var audienceId = "audienceId_example";  // string | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
 
             try
             {
@@ -394,7 +394,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **audienceId** | **string** |  |  |
+| **audienceId** | **string** | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. |  |
 
 ### Return type
 
@@ -558,7 +558,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
-            var audienceId = "audienceId_example";  // string | 
+            var audienceId = "audienceId_example";  // string | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
             var replaceAdAudienceCompaniesRequest = new ReplaceAdAudienceCompaniesRequest(); // ReplaceAdAudienceCompaniesRequest | 
 
             try
@@ -602,7 +602,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **audienceId** | **string** |  |  |
+| **audienceId** | **string** | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. |  |
 | **replaceAdAudienceCompaniesRequest** | [**ReplaceAdAudienceCompaniesRequest**](ReplaceAdAudienceCompaniesRequest.md) |  |  |
 
 ### Return type
