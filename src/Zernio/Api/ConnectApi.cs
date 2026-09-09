@@ -281,23 +281,25 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
-        /// <returns></returns>
-        void ConnectWhatsAppEmbeddedSignup(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest);
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>ConnectWhatsAppEmbeddedSignup200Response</returns>
+        ConnectWhatsAppEmbeddedSignup200Response ConnectWhatsAppEmbeddedSignup(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default);
 
         /// <summary>
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest);
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>ApiResponse of ConnectWhatsAppEmbeddedSignup200Response</returns>
+        ApiResponse<ConnectWhatsAppEmbeddedSignup200Response> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default);
         /// <summary>
         /// Create Pinterest board
         /// </summary>
@@ -334,8 +336,12 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <returns>GetConnectUrl200Response</returns>
-        GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default);
+        GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default);
 
         /// <summary>
         /// Get OAuth connect URL
@@ -350,8 +356,12 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <returns>ApiResponse of GetConnectUrl200Response</returns>
-        ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default);
+        ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default);
         /// <summary>
         /// List Facebook pages
         /// </summary>
@@ -578,6 +588,27 @@ namespace Zernio.Api
         /// <param name="profileId">The profile ID to connect the Telegram account to</param>
         /// <returns>ApiResponse of GetTelegramConnectStatus200Response</returns>
         ApiResponse<GetTelegramConnectStatus200Response> GetTelegramConnectStatusWithHttpInfo(string profileId);
+        /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>GetWhatsAppSdkConfig200Response</returns>
+        GetWhatsAppSdkConfig200Response GetWhatsAppSdkConfig(string? xConnectToken = default);
+
+        /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppSdkConfig200Response</returns>
+        ApiResponse<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigWithHttpInfo(string? xConnectToken = default);
         /// <summary>
         /// Get a YouTube video transcript
         /// </summary>
@@ -1468,25 +1499,27 @@ namespace Zernio.Api
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ConnectWhatsAppEmbeddedSignupAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ConnectWhatsAppEmbeddedSignup200Response</returns>
+        System.Threading.Tasks.Task<ConnectWhatsAppEmbeddedSignup200Response> ConnectWhatsAppEmbeddedSignupAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Connect WhatsApp from Embedded Signup
         /// </summary>
         /// <remarks>
-        /// Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ConnectWhatsAppEmbeddedSignup200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConnectWhatsAppEmbeddedSignup200Response>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Pinterest board
         /// </summary>
@@ -1525,9 +1558,13 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetConnectUrl200Response</returns>
-        System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get OAuth connect URL
@@ -1542,9 +1579,13 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConnectUrl200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Facebook pages
         /// </summary>
@@ -1791,6 +1832,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTelegramConnectStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetTelegramConnectStatus200Response>> GetTelegramConnectStatusWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppSdkConfig200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigAsync(string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Embedded Signup SDK config
+        /// </summary>
+        /// <remarks>
+        /// The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppSdkConfig200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppSdkConfig200Response>> GetWhatsAppSdkConfigWithHttpInfoAsync(string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a YouTube video transcript
         /// </summary>
@@ -4186,23 +4250,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
-        /// <returns></returns>
-        public void ConnectWhatsAppEmbeddedSignup(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest)
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>ConnectWhatsAppEmbeddedSignup200Response</returns>
+        public ConnectWhatsAppEmbeddedSignup200Response ConnectWhatsAppEmbeddedSignup(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default)
         {
-            ConnectWhatsAppEmbeddedSignupWithHttpInfo(connectWhatsAppEmbeddedSignupRequest);
+            Zernio.Client.ApiResponse<ConnectWhatsAppEmbeddedSignup200Response> localVarResponse = ConnectWhatsAppEmbeddedSignupWithHttpInfo(connectWhatsAppEmbeddedSignupRequest, xConnectToken);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Zernio.Client.ApiResponse<Object> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest)
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>ApiResponse of ConnectWhatsAppEmbeddedSignup200Response</returns>
+        public Zernio.Client.ApiResponse<ConnectWhatsAppEmbeddedSignup200Response> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default)
         {
             // verify the required parameter 'connectWhatsAppEmbeddedSignupRequest' is set
             if (connectWhatsAppEmbeddedSignupRequest == null)
@@ -4225,6 +4292,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (xConnectToken != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", Zernio.Client.ClientUtils.ParameterToString(xConnectToken)); // header parameter
+            }
             localVarRequestOptions.Data = connectWhatsAppEmbeddedSignupRequest;
 
             // authentication (bearerAuth) required
@@ -4235,7 +4306,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/connect/whatsapp/embedded-signup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ConnectWhatsAppEmbeddedSignup200Response>("/v1/connect/whatsapp/embedded-signup", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4247,25 +4318,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ConnectWhatsAppEmbeddedSignupAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ConnectWhatsAppEmbeddedSignup200Response</returns>
+        public async System.Threading.Tasks.Task<ConnectWhatsAppEmbeddedSignup200Response> ConnectWhatsAppEmbeddedSignupAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(connectWhatsAppEmbeddedSignupRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ConnectWhatsAppEmbeddedSignup200Response> localVarResponse = await ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(connectWhatsAppEmbeddedSignupRequest, xConnectToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta Embedded Signup returns to your browser SDK. This is the headless completion path for WhatsApp: the code never passes through a redirect_uri, so POST /v1/connect/{platform} cannot accept it.
+        /// Connect WhatsApp from Embedded Signup Exchange the authorization code Meta&#39;s Embedded Signup popup returned. This is the call the Zernio-hosted signup page makes after the popup closes (&#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60;), sending the &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; Meta reported so exactly the chosen number is connected; when both are omitted the first number the token can see is used. The code never passes through a &#x60;redirect_uri&#x60;, so &#x60;POST /v1/connect/{platform}&#x60; cannot accept it. Authenticates with an API key, or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="connectWhatsAppEmbeddedSignupRequest"></param>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ConnectWhatsAppEmbeddedSignup200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConnectWhatsAppEmbeddedSignup200Response>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'connectWhatsAppEmbeddedSignupRequest' is set
             if (connectWhatsAppEmbeddedSignupRequest == null)
@@ -4290,6 +4364,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (xConnectToken != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", Zernio.Client.ClientUtils.ParameterToString(xConnectToken)); // header parameter
+            }
             localVarRequestOptions.Data = connectWhatsAppEmbeddedSignupRequest;
 
             // authentication (bearerAuth) required
@@ -4301,7 +4379,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/connect/whatsapp/embedded-signup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ConnectWhatsAppEmbeddedSignup200Response>("/v1/connect/whatsapp/embedded-signup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -4465,10 +4543,14 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <returns>GetConnectUrl200Response</returns>
-        public GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default)
+        public GetConnectUrl200Response GetConnectUrl(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default)
         {
-            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = GetConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, onboarding);
+            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = GetConnectUrlWithHttpInfo(platform, profileId, redirectUrl, headless, loginMethod, onboarding, signup, brandName, primaryColor, language);
             return localVarResponse.Data;
         }
 
@@ -4482,8 +4564,12 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <returns>ApiResponse of GetConnectUrl200Response</returns>
-        public Zernio.Client.ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default)
+        public Zernio.Client.ApiResponse<GetConnectUrl200Response> GetConnectUrlWithHttpInfo(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default)
         {
             // verify the required parameter 'platform' is set
             if (platform == null)
@@ -4526,6 +4612,22 @@ namespace Zernio.Api
             if (onboarding != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "onboarding", onboarding));
+            }
+            if (signup != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "signup", signup));
+            }
+            if (brandName != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "brandName", brandName));
+            }
+            if (primaryColor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "primaryColor", primaryColor));
+            }
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
             }
 
             // authentication (bearerAuth) required
@@ -4557,11 +4659,15 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetConnectUrl200Response</returns>
-        public async System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetConnectUrl200Response> GetConnectUrlAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = await GetConnectUrlWithHttpInfoAsync(platform, profileId, redirectUrl, headless, loginMethod, onboarding, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetConnectUrl200Response> localVarResponse = await GetConnectUrlWithHttpInfoAsync(platform, profileId, redirectUrl, headless, loginMethod, onboarding, signup, brandName, primaryColor, language, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4575,9 +4681,13 @@ namespace Zernio.Api
         /// <param name="headless">When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. (optional, default to false)</param>
         /// <param name="loginMethod">Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  (optional, default to instagram_login)</param>
         /// <param name="onboarding">WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  (optional)</param>
+        /// <param name="signup">WhatsApp only. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; on any other platform.  &#x60;hosted&#x60;: &#x60;authUrl&#x60; points at a Zernio-hosted page on zernio.com instead of Meta&#39;s OAuth dialog, and the response carries &#x60;authUrl&#x60; only (no &#x60;state&#x60;). That page opens Meta&#39;s Embedded Signup popup itself, so it learns which WhatsApp Business Account and number the user picked inside the popup and connects exactly that one. Use it when your users&#39; Facebook logins manage several WhatsApp accounts: on the default redirect flow Meta only returns an authorization code, so when that login can see more than one number the user lands on Zernio&#39;s number picker and has to choose again. Nothing to embed on your side and no domain setup: send the user to &#x60;authUrl&#x60;, and they come back to &#x60;redirect_url&#x60; with the same params as the redirect flow. Success: &#x60;connected&#x3D;whatsapp&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; (plus &#x60;connect_token&#x60; for API-key callers). Failure: &#x60;error&#x60; and &#x60;platform&#x3D;whatsapp&#x60;, with the same values and extras as the redirect flow (&#x60;one_whatsapp_per_profile&#x60;, &#x60;whatsapp_number_already_connected&#x60; and &#x60;whatsapp_number_pinned_to_profile&#x60; with &#x60;is_user_fixable&#x3D;true&#x60;; &#x60;payment_required&#x60; with &#x60;reason&#x60; and &#x60;dashboard_url&#x60;; &#x60;whatsapp_error&#x60; with &#x60;error_message&#x60; when Meta reported one), plus two of its own: &#x60;connection_cancelled&#x60; when the popup was closed before finishing (&#x60;error_message&#x60; carries Meta&#39;s last reported step or error when there is one) and &#x60;session_expired&#x60; when the user took longer than the 60 minute window the hosted page is valid for; restart the flow with a new call in that case. &#x60;onboarding&#x60; is carried through and a pre-verified Zernio-provisioned number is attached like on the redirect flow. &#x60;headless&#x60; has no effect here because there is no selection step left to hand you. When a previously disconnected account for this profile can simply be re-enabled, this endpoint re-enables it and returns the account directly instead of a URL, exactly like the redirect flow. The page shows the same guidance as the Zernio dashboard: a pre-verified Zernio-provisioned number is called out by name (\&quot;choose it in Meta&#39;s list, no code will be asked\&quot;), coexistence and standard signups get their explainer video, and a step-by-step follow-along checklist stays visible while Meta&#39;s popup is open. Skin it with &#x60;brandName&#x60;, &#x60;primaryColor&#x60; and &#x60;language&#x60; below.  (optional)</param>
+        /// <param name="brandName">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): name shown in the page title (\&quot;Connect your WhatsApp number to &lt;brandName&gt;\&quot;) instead of Zernio. The Zernio logo stays: the page is co-branded, not white-label. Trimmed; 1 to 60 characters. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; without &#x60;signup&#x3D;hosted&#x60;. Stored on the signup session at issue time, so the page URL cannot change it. (optional)</param>
+        /// <param name="primaryColor">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): hex colour (&#x60;#RRGGBB&#x60;) for the primary button and step accents. Validated server-side; anything else is a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
+        /// <param name="language">Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConnectUrl200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConnectUrl200Response>> GetConnectUrlWithHttpInfoAsync(string platform, string profileId, string? redirectUrl = default, bool? headless = default, string? loginMethod = default, string? onboarding = default, string? signup = default, string? brandName = default, string? primaryColor = default, string? language = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'platform' is set
             if (platform == null)
@@ -4622,6 +4732,22 @@ namespace Zernio.Api
             if (onboarding != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "onboarding", onboarding));
+            }
+            if (signup != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "signup", signup));
+            }
+            if (brandName != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "brandName", brandName));
+            }
+            if (primaryColor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "primaryColor", primaryColor));
+            }
+            if (language != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "language", language));
             }
 
             // authentication (bearerAuth) required
@@ -6010,6 +6136,131 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTelegramConnectStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>GetWhatsAppSdkConfig200Response</returns>
+        public GetWhatsAppSdkConfig200Response GetWhatsAppSdkConfig(string? xConnectToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> localVarResponse = GetWhatsAppSdkConfigWithHttpInfo(xConnectToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppSdkConfig200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigWithHttpInfo(string? xConnectToken = default)
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (xConnectToken != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", Zernio.Client.ClientUtils.ParameterToString(xConnectToken)); // header parameter
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppSdkConfig200Response>("/v1/connect/whatsapp/sdk-config", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppSdkConfig", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppSdkConfig200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppSdkConfig200Response> GetWhatsAppSdkConfigAsync(string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response> localVarResponse = await GetWhatsAppSdkConfigWithHttpInfoAsync(xConnectToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Embedded Signup SDK config The Meta app id and Embedded Signup configuration id the Zernio-hosted signup page uses to open Meta&#39;s popup. Integrators do not need this endpoint: start the hosted flow with &#x60;GET /v1/connect/whatsapp?signup&#x3D;hosted&#x60; and send the user to the returned &#x60;authUrl&#x60;. Authenticates with an API key or with the connect token the hosted flow issues (&#x60;X-Connect-Token&#x60; header). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xConnectToken">Connect token issued by the hosted signup flow, accepted instead of an API key. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppSdkConfig200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppSdkConfig200Response>> GetWhatsAppSdkConfigWithHttpInfoAsync(string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (xConnectToken != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Connect-Token", Zernio.Client.ClientUtils.ParameterToString(xConnectToken)); // header parameter
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppSdkConfig200Response>("/v1/connect/whatsapp/sdk-config", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppSdkConfig", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

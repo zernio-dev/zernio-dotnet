@@ -108,5 +108,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ExpectedPhoneNumber'
         }
+
+        /// <summary>
+        /// Test the property 'RedirectUrl'
+        /// </summary>
+        [Fact]
+        public void RedirectUrlTest()
+        {
+            // TODO unit test for the property 'RedirectUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'EchoConnectToken'
+        /// </summary>
+        [Fact]
+        public void EchoConnectTokenTest()
+        {
+            // TODO unit test for the property 'EchoConnectToken'
+        }
     }
 }

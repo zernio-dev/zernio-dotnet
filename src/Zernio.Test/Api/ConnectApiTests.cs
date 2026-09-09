@@ -201,7 +201,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest = null;
-            //instance.ConnectWhatsAppEmbeddedSignup(connectWhatsAppEmbeddedSignupRequest);
+            //string? xConnectToken = null;
+            //var response = instance.ConnectWhatsAppEmbeddedSignup(connectWhatsAppEmbeddedSignupRequest, xConnectToken);
+            //Assert.IsType<ConnectWhatsAppEmbeddedSignup200Response>(response);
         }
 
         /// <summary>
@@ -230,7 +232,11 @@ namespace Zernio.Test.Api
             //bool? headless = null;
             //string? loginMethod = null;
             //string? onboarding = null;
-            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, onboarding);
+            //string? signup = null;
+            //string? brandName = null;
+            //string? primaryColor = null;
+            //string? language = null;
+            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, onboarding, signup, brandName, primaryColor, language);
             //Assert.IsType<GetConnectUrl200Response>(response);
         }
 
@@ -360,6 +366,18 @@ namespace Zernio.Test.Api
             //string profileId = null;
             //var response = instance.GetTelegramConnectStatus(profileId);
             //Assert.IsType<GetTelegramConnectStatus200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsAppSdkConfig
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppSdkConfigTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string? xConnectToken = null;
+            //var response = instance.GetWhatsAppSdkConfig(xConnectToken);
+            //Assert.IsType<GetWhatsAppSdkConfig200Response>(response);
         }
 
         /// <summary>

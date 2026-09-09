@@ -47,7 +47,9 @@ namespace Zernio.Model
         /// <param name="phoneNumberId">phoneNumberId.</param>
         /// <param name="isCoexistence">Number is also live in the WhatsApp Business app.</param>
         /// <param name="expectedPhoneNumber">Rejects the connect when Meta returns a different number.</param>
-        public ConnectWhatsAppEmbeddedSignupRequest(string code = default, string profileId = default, string wabaId = default, string phoneNumberId = default, bool isCoexistence = default, string expectedPhoneNumber = default)
+        /// <param name="redirectUrl">Hosted signup page only. When present, the response also carries &#x60;redirectUrl&#x60;, the URL the user should land on, with the outcome mapped exactly like the redirect flow (success params, or &#x60;error&#x60; and &#x60;platform&#x60; with the same values). Must be an absolute http(s) URL or a custom app scheme..</param>
+        /// <param name="echoConnectToken">Hosted signup page only. Append the connect token to the success redirect, as the redirect flow does for API-key callers..</param>
+        public ConnectWhatsAppEmbeddedSignupRequest(string code = default, string profileId = default, string wabaId = default, string phoneNumberId = default, bool isCoexistence = default, string expectedPhoneNumber = default, string redirectUrl = default, bool echoConnectToken = default)
         {
             // to ensure "code" is required (not null)
             if (code == null)
@@ -65,6 +67,8 @@ namespace Zernio.Model
             this.PhoneNumberId = phoneNumberId;
             this.IsCoexistence = isCoexistence;
             this.ExpectedPhoneNumber = expectedPhoneNumber;
+            this.RedirectUrl = redirectUrl;
+            this.EchoConnectToken = echoConnectToken;
         }
 
         /// <summary>
@@ -108,6 +112,20 @@ namespace Zernio.Model
         public string ExpectedPhoneNumber { get; set; }
 
         /// <summary>
+        /// Hosted signup page only. When present, the response also carries &#x60;redirectUrl&#x60;, the URL the user should land on, with the outcome mapped exactly like the redirect flow (success params, or &#x60;error&#x60; and &#x60;platform&#x60; with the same values). Must be an absolute http(s) URL or a custom app scheme.
+        /// </summary>
+        /// <value>Hosted signup page only. When present, the response also carries &#x60;redirectUrl&#x60;, the URL the user should land on, with the outcome mapped exactly like the redirect flow (success params, or &#x60;error&#x60; and &#x60;platform&#x60; with the same values). Must be an absolute http(s) URL or a custom app scheme.</value>
+        [DataMember(Name = "redirectUrl", EmitDefaultValue = false)]
+        public string RedirectUrl { get; set; }
+
+        /// <summary>
+        /// Hosted signup page only. Append the connect token to the success redirect, as the redirect flow does for API-key callers.
+        /// </summary>
+        /// <value>Hosted signup page only. Append the connect token to the success redirect, as the redirect flow does for API-key callers.</value>
+        [DataMember(Name = "echoConnectToken", EmitDefaultValue = true)]
+        public bool EchoConnectToken { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -121,6 +139,8 @@ namespace Zernio.Model
             sb.Append("  PhoneNumberId: ").Append(PhoneNumberId).Append("\n");
             sb.Append("  IsCoexistence: ").Append(IsCoexistence).Append("\n");
             sb.Append("  ExpectedPhoneNumber: ").Append(ExpectedPhoneNumber).Append("\n");
+            sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
+            sb.Append("  EchoConnectToken: ").Append(EchoConnectToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

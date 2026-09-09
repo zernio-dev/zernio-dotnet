@@ -236,6 +236,8 @@ docs/ConnectSlackChannelRequest.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
+docs/ConnectWhatsAppEmbeddedSignup200Response.md
+docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md
 docs/ConnectWhatsAppEmbeddedSignupRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
@@ -885,6 +887,8 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
+docs/GetWhatsAppSdkConfig200Response.md
+docs/GetWhatsAppSdkConfig200ResponseBranding.md
 docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
 docs/GetWhatsAppTemplate409Response.md
@@ -2264,6 +2268,8 @@ src/Zernio.Test/Model/ConnectSlackChannelRequestTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentialsRequestTests.cs
+src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignup200ResponseAccountTests.cs
+src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignup200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignupRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
@@ -2900,6 +2906,8 @@ src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponseWabaTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberRemediation200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppSdkConfig200ResponseBrandingTests.cs
+src/Zernio.Test/Model/GetWhatsAppSdkConfig200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTemplateTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate409ResponseDetailsTests.cs
@@ -4261,6 +4269,8 @@ src/Zernio/Model/ConnectSlackChannelRequest.cs
 src/Zernio/Model/ConnectWhatsAppCredentials200Response.cs
 src/Zernio/Model/ConnectWhatsAppCredentials200ResponseAccount.cs
 src/Zernio/Model/ConnectWhatsAppCredentialsRequest.cs
+src/Zernio/Model/ConnectWhatsAppEmbeddedSignup200Response.cs
+src/Zernio/Model/ConnectWhatsAppEmbeddedSignup200ResponseAccount.cs
 src/Zernio/Model/ConnectWhatsAppEmbeddedSignupRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
@@ -4897,6 +4907,8 @@ src/Zernio/Model/GetWhatsAppNumberInfo200ResponseWaba.cs
 src/Zernio/Model/GetWhatsAppNumberKycForm200Response.cs
 src/Zernio/Model/GetWhatsAppNumberKycForm200ResponseFieldsInner.cs
 src/Zernio/Model/GetWhatsAppNumberRemediation200Response.cs
+src/Zernio/Model/GetWhatsAppSdkConfig200Response.cs
+src/Zernio/Model/GetWhatsAppSdkConfig200ResponseBranding.cs
 src/Zernio/Model/GetWhatsAppTemplate200Response.cs
 src/Zernio/Model/GetWhatsAppTemplate200ResponseTemplate.cs
 src/Zernio/Model/GetWhatsAppTemplate409Response.cs
