@@ -28,26 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// RegisterWhatsAppNumberRequest
+    /// VerifyWhatsAppNumberRequest
     /// </summary>
-    [DataContract(Name = "registerWhatsAppNumber_request")]
-    public partial class RegisterWhatsAppNumberRequest : IValidatableObject
+    [DataContract(Name = "verifyWhatsAppNumber_request")]
+    public partial class VerifyWhatsAppNumberRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegisterWhatsAppNumberRequest" /> class.
+        /// Initializes a new instance of the <see cref="VerifyWhatsAppNumberRequest" /> class.
         /// </summary>
-        /// <param name="pin">The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically..</param>
-        public RegisterWhatsAppNumberRequest(string pin = default)
+        [JsonConstructorAttribute]
+        protected VerifyWhatsAppNumberRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyWhatsAppNumberRequest" /> class.
+        /// </summary>
+        /// <param name="code">The 6-digit code Meta sent to the phone. Non-digit separators (e.g. \&quot;749-456\&quot;) are stripped automatically. (required).</param>
+        public VerifyWhatsAppNumberRequest(string code = default)
         {
-            this.Pin = pin;
+            // to ensure "code" is required (not null)
+            if (code == null)
+            {
+                throw new ArgumentNullException("code is a required property for VerifyWhatsAppNumberRequest and cannot be null");
+            }
+            this.Code = code;
         }
 
         /// <summary>
-        /// The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically.
+        /// The 6-digit code Meta sent to the phone. Non-digit separators (e.g. \&quot;749-456\&quot;) are stripped automatically.
         /// </summary>
-        /// <value>The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically.</value>
-        [DataMember(Name = "pin", EmitDefaultValue = false)]
-        public string Pin { get; set; }
+        /// <value>The 6-digit code Meta sent to the phone. Non-digit separators (e.g. \&quot;749-456\&quot;) are stripped automatically.</value>
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
+        public string Code { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,8 +66,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RegisterWhatsAppNumberRequest {\n");
-            sb.Append("  Pin: ").Append(Pin).Append("\n");
+            sb.Append("class VerifyWhatsAppNumberRequest {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +88,6 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.Pin != null) {
-                // Pin (string) pattern
-                Regex regexPin = new Regex(@"^\d{6}$", RegexOptions.CultureInvariant);
-                if (!regexPin.Match(this.Pin).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Pin, must match a pattern of " + regexPin, new [] { "Pin" });
-                }
-            }
-
             yield break;
         }
     }

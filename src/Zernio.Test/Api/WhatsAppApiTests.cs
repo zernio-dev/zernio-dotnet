@@ -445,6 +445,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RequestWhatsAppVerificationCode
+        /// </summary>
+        [Fact]
+        public void RequestWhatsAppVerificationCodeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = null;
+            //var response = instance.RequestWhatsAppVerificationCode(accountId, requestWhatsAppVerificationCodeRequest);
+            //Assert.IsType<RequestWhatsAppVerificationCode200Response>(response);
+        }
+
+        /// <summary>
         /// Test SendWhatsAppConversion
         /// </summary>
         [Fact]
@@ -555,6 +568,19 @@ namespace Zernio.Test.Api
             //FileParameter file = null;
             //var response = instance.UploadWhatsAppProfilePhoto(accountId, file);
             //Assert.IsType<UnpublishPost200Response>(response);
+        }
+
+        /// <summary>
+        /// Test VerifyWhatsAppNumber
+        /// </summary>
+        [Fact]
+        public void VerifyWhatsAppNumberTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest = null;
+            //var response = instance.VerifyWhatsAppNumber(accountId, verifyWhatsAppNumberRequest);
+            //Assert.IsType<VerifyWhatsAppNumber200Response>(response);
         }
     }
 }

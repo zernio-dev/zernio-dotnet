@@ -28,26 +28,57 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// RegisterWhatsAppNumberRequest
+    /// RequestWhatsAppVerificationCode200Response
     /// </summary>
-    [DataContract(Name = "registerWhatsAppNumber_request")]
-    public partial class RegisterWhatsAppNumberRequest : IValidatableObject
+    [DataContract(Name = "requestWhatsAppVerificationCode_200_response")]
+    public partial class RequestWhatsAppVerificationCode200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegisterWhatsAppNumberRequest" /> class.
+        /// Initializes a new instance of the <see cref="RequestWhatsAppVerificationCode200Response" /> class.
         /// </summary>
-        /// <param name="pin">The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically..</param>
-        public RegisterWhatsAppNumberRequest(string pin = default)
+        /// <param name="requested">requested.</param>
+        /// <param name="alreadyActive">alreadyActive.</param>
+        /// <param name="method">method.</param>
+        /// <param name="accountId">accountId.</param>
+        /// <param name="phoneNumberId">phoneNumberId.</param>
+        public RequestWhatsAppVerificationCode200Response(bool requested = default, bool alreadyActive = default, string method = default, string accountId = default, string phoneNumberId = default)
         {
-            this.Pin = pin;
+            this.Requested = requested;
+            this.AlreadyActive = alreadyActive;
+            this.Method = method;
+            this.AccountId = accountId;
+            this.PhoneNumberId = phoneNumberId;
         }
 
         /// <summary>
-        /// The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically.
+        /// Gets or Sets Requested
         /// </summary>
-        /// <value>The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically.</value>
-        [DataMember(Name = "pin", EmitDefaultValue = false)]
-        public string Pin { get; set; }
+        [DataMember(Name = "requested", EmitDefaultValue = true)]
+        public bool Requested { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AlreadyActive
+        /// </summary>
+        [DataMember(Name = "alreadyActive", EmitDefaultValue = true)]
+        public bool AlreadyActive { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Method
+        /// </summary>
+        [DataMember(Name = "method", EmitDefaultValue = false)]
+        public string Method { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AccountId
+        /// </summary>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PhoneNumberId
+        /// </summary>
+        [DataMember(Name = "phoneNumberId", EmitDefaultValue = false)]
+        public string PhoneNumberId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,8 +87,12 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RegisterWhatsAppNumberRequest {\n");
-            sb.Append("  Pin: ").Append(Pin).Append("\n");
+            sb.Append("class RequestWhatsAppVerificationCode200Response {\n");
+            sb.Append("  Requested: ").Append(Requested).Append("\n");
+            sb.Append("  AlreadyActive: ").Append(AlreadyActive).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  PhoneNumberId: ").Append(PhoneNumberId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +113,6 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.Pin != null) {
-                // Pin (string) pattern
-                Regex regexPin = new Regex(@"^\d{6}$", RegexOptions.CultureInvariant);
-                if (!regexPin.Match(this.Pin).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Pin, must match a pattern of " + regexPin, new [] { "Pin" });
-                }
-            }
-
             yield break;
         }
     }

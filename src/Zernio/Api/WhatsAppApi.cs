@@ -719,6 +719,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> RemoveWhatsAppGroupParticipantsWithHttpInfo(string groupId, string accountId, RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest);
         /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <returns>RequestWhatsAppVerificationCode200Response</returns>
+        RequestWhatsAppVerificationCode200Response RequestWhatsAppVerificationCode(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default);
+
+        /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <returns>ApiResponse of RequestWhatsAppVerificationCode200Response</returns>
+        ApiResponse<RequestWhatsAppVerificationCode200Response> RequestWhatsAppVerificationCodeWithHttpInfo(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default);
+        /// <summary>
         /// Send WhatsApp conversion event
         /// </summary>
         /// <remarks>
@@ -917,6 +940,29 @@ namespace Zernio.Api
         /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> UploadWhatsAppProfilePhotoWithHttpInfo(string accountId, FileParameter file);
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <returns>VerifyWhatsAppNumber200Response</returns>
+        VerifyWhatsAppNumber200Response VerifyWhatsAppNumber(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest);
+
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <returns>ApiResponse of VerifyWhatsAppNumber200Response</returns>
+        ApiResponse<VerifyWhatsAppNumber200Response> VerifyWhatsAppNumberWithHttpInfo(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest);
         #endregion Synchronous Operations
     }
 
@@ -1677,6 +1723,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> RemoveWhatsAppGroupParticipantsWithHttpInfoAsync(string groupId, string accountId, RemoveWhatsAppGroupParticipantsRequest removeWhatsAppGroupParticipantsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RequestWhatsAppVerificationCode200Response</returns>
+        System.Threading.Tasks.Task<RequestWhatsAppVerificationCode200Response> RequestWhatsAppVerificationCodeAsync(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RequestWhatsAppVerificationCode200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RequestWhatsAppVerificationCode200Response>> RequestWhatsAppVerificationCodeWithHttpInfoAsync(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Send WhatsApp conversion event
         /// </summary>
         /// <remarks>
@@ -1893,6 +1964,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> UploadWhatsAppProfilePhotoWithHttpInfoAsync(string accountId, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of VerifyWhatsAppNumber200Response</returns>
+        System.Threading.Tasks.Task<VerifyWhatsAppNumber200Response> VerifyWhatsAppNumberAsync(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number
+        /// </summary>
+        /// <remarks>
+        /// Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (VerifyWhatsAppNumber200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<VerifyWhatsAppNumber200Response>> VerifyWhatsAppNumberWithHttpInfoAsync(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -6329,6 +6425,141 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <returns>RequestWhatsAppVerificationCode200Response</returns>
+        public RequestWhatsAppVerificationCode200Response RequestWhatsAppVerificationCode(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default)
+        {
+            Zernio.Client.ApiResponse<RequestWhatsAppVerificationCode200Response> localVarResponse = RequestWhatsAppVerificationCodeWithHttpInfo(accountId, requestWhatsAppVerificationCodeRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <returns>ApiResponse of RequestWhatsAppVerificationCode200Response</returns>
+        public Zernio.Client.ApiResponse<RequestWhatsAppVerificationCode200Response> RequestWhatsAppVerificationCodeWithHttpInfo(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->RequestWhatsAppVerificationCode");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = requestWhatsAppVerificationCodeRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RequestWhatsAppVerificationCode200Response>("/v1/accounts/{accountId}/whatsapp/request-code", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestWhatsAppVerificationCode", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RequestWhatsAppVerificationCode200Response</returns>
+        public async System.Threading.Tasks.Task<RequestWhatsAppVerificationCode200Response> RequestWhatsAppVerificationCodeAsync(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RequestWhatsAppVerificationCode200Response> localVarResponse = await RequestWhatsAppVerificationCodeWithHttpInfoAsync(accountId, requestWhatsAppVerificationCodeRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Request a Meta re-verification code for a BYO WhatsApp number For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer&#39;s own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="requestWhatsAppVerificationCodeRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RequestWhatsAppVerificationCode200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RequestWhatsAppVerificationCode200Response>> RequestWhatsAppVerificationCodeWithHttpInfoAsync(string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->RequestWhatsAppVerificationCode");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = requestWhatsAppVerificationCodeRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RequestWhatsAppVerificationCode200Response>("/v1/accounts/{accountId}/whatsapp/request-code", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestWhatsAppVerificationCode", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Send WhatsApp conversion event Forward a WhatsApp Business Messaging conversion event (&#x60;LeadSubmitted&#x60;, &#x60;Purchase&#x60;, &#x60;AddToCart&#x60;, &#x60;InitiateCheckout&#x60;, &#x60;ViewContent&#x60;) to Meta&#39;s Conversions API with &#x60;action_source &#x3D; business_messaging&#x60; and &#x60;messaging_channel &#x3D; whatsapp&#x60;. The endpoint looks up the originating CTWA click ID (&#x60;ctwa_clid&#x60;) captured on the first inbound message of the conversation and replays it on every event so Meta can attribute the conversion back to the Click-to-WhatsApp ad that drove the chat.  Configuration prerequisite on the WhatsApp account metadata:   - &#x60;metaCapiDatasetId&#x60;: the Meta dataset ID linked to the WABA.     Provision one with &#x60;POST /v1/whatsapp/dataset&#x60;.  The WABA ID (already set automatically at connect time) is forwarded as &#x60;user_data.whatsapp_business_account_id&#x60;, which is the per-channel attribution identifier Meta requires for WhatsApp events. No Facebook Page ID is needed (that field is the Messenger-branch identifier).  Identify the conversation by either &#x60;conversationId&#x60; (preferred) or &#x60;phoneE164&#x60; (digits only, no &#x60;+&#x60;). At least one is required. If the conversation has no captured &#x60;ctwa_clid&#x60;, the request returns 422 because there is nothing to attribute.  Token and dataset coupling: the WhatsApp account&#39;s accessToken must have access to the configured &#x60;metaCapiDatasetId&#x60;. By default a WABA&#39;s system-user token is scoped to the WABA&#39;s own Business Manager and cannot post to a pixel owned by a different Business; Meta returns code 100 in that case. Either share the dataset with the WhatsApp app&#39;s Business in BM, or use a dataset already in the same Business as the WABA. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -7555,6 +7786,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UploadWhatsAppProfilePhoto", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <returns>VerifyWhatsAppNumber200Response</returns>
+        public VerifyWhatsAppNumber200Response VerifyWhatsAppNumber(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest)
+        {
+            Zernio.Client.ApiResponse<VerifyWhatsAppNumber200Response> localVarResponse = VerifyWhatsAppNumberWithHttpInfo(accountId, verifyWhatsAppNumberRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <returns>ApiResponse of VerifyWhatsAppNumber200Response</returns>
+        public Zernio.Client.ApiResponse<VerifyWhatsAppNumber200Response> VerifyWhatsAppNumberWithHttpInfo(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->VerifyWhatsAppNumber");
+
+            // verify the required parameter 'verifyWhatsAppNumberRequest' is set
+            if (verifyWhatsAppNumberRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'verifyWhatsAppNumberRequest' when calling WhatsAppApi->VerifyWhatsAppNumber");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = verifyWhatsAppNumberRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<VerifyWhatsAppNumber200Response>("/v1/accounts/{accountId}/whatsapp/verify-code", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VerifyWhatsAppNumber", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of VerifyWhatsAppNumber200Response</returns>
+        public async System.Threading.Tasks.Task<VerifyWhatsAppNumber200Response> VerifyWhatsAppNumberAsync(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<VerifyWhatsAppNumber200Response> localVarResponse = await VerifyWhatsAppNumberWithHttpInfoAsync(accountId, verifyWhatsAppNumberRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Verify the Meta re-verification code for a BYO WhatsApp number Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="verifyWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (VerifyWhatsAppNumber200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<VerifyWhatsAppNumber200Response>> VerifyWhatsAppNumberWithHttpInfoAsync(string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->VerifyWhatsAppNumber");
+
+            // verify the required parameter 'verifyWhatsAppNumberRequest' is set
+            if (verifyWhatsAppNumberRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'verifyWhatsAppNumberRequest' when calling WhatsAppApi->VerifyWhatsAppNumber");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = verifyWhatsAppNumberRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<VerifyWhatsAppNumber200Response>("/v1/accounts/{accountId}/whatsapp/verify-code", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VerifyWhatsAppNumber", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

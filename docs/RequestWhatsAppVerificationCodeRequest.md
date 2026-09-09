@@ -1,10 +1,11 @@
-# Zernio.Model.RegisterWhatsAppNumberRequest
+# Zernio.Model.RequestWhatsAppVerificationCodeRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pin** | **string** | The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically. | [optional] 
+**Method** | **string** |  | [optional] [default to MethodEnum.SMS]
+**Language** | **string** | Meta locale code for the verification message, e.g. en_US. | [optional] [default to "en_US"]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,26 +28,54 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// RegisterWhatsAppNumberRequest
+    /// RequestWhatsAppVerificationCodeRequest
     /// </summary>
-    [DataContract(Name = "registerWhatsAppNumber_request")]
-    public partial class RegisterWhatsAppNumberRequest : IValidatableObject
+    [DataContract(Name = "requestWhatsAppVerificationCode_request")]
+    public partial class RequestWhatsAppVerificationCodeRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegisterWhatsAppNumberRequest" /> class.
+        /// Defines Method
         /// </summary>
-        /// <param name="pin">The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically..</param>
-        public RegisterWhatsAppNumberRequest(string pin = default)
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MethodEnum
         {
-            this.Pin = pin;
+            /// <summary>
+            /// Enum SMS for value: SMS
+            /// </summary>
+            [EnumMember(Value = "SMS")]
+            SMS = 1,
+
+            /// <summary>
+            /// Enum VOICE for value: VOICE
+            /// </summary>
+            [EnumMember(Value = "VOICE")]
+            VOICE = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Method
+        /// </summary>
+        [DataMember(Name = "method", EmitDefaultValue = false)]
+        public MethodEnum? Method { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequestWhatsAppVerificationCodeRequest" /> class.
+        /// </summary>
+        /// <param name="method">method (default to MethodEnum.SMS).</param>
+        /// <param name="language">Meta locale code for the verification message, e.g. en_US. (default to &quot;en_US&quot;).</param>
+        public RequestWhatsAppVerificationCodeRequest(MethodEnum? method = MethodEnum.SMS, string language = @"en_US")
+        {
+            this.Method = method;
+            // use default value if no "language" provided
+            this.Language = language ?? @"en_US";
         }
 
         /// <summary>
-        /// The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically.
+        /// Meta locale code for the verification message, e.g. en_US.
         /// </summary>
-        /// <value>The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically.</value>
-        [DataMember(Name = "pin", EmitDefaultValue = false)]
-        public string Pin { get; set; }
+        /// <value>Meta locale code for the verification message, e.g. en_US.</value>
+        [DataMember(Name = "language", EmitDefaultValue = false)]
+        public string Language { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,8 +84,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RegisterWhatsAppNumberRequest {\n");
-            sb.Append("  Pin: ").Append(Pin).Append("\n");
+            sb.Append("class RequestWhatsAppVerificationCodeRequest {\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +107,6 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.Pin != null) {
-                // Pin (string) pattern
-                Regex regexPin = new Regex(@"^\d{6}$", RegexOptions.CultureInvariant);
-                if (!regexPin.Match(this.Pin).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Pin, must match a pattern of " + regexPin, new [] { "Pin" });
-                }
-            }
-
             yield break;
         }
     }

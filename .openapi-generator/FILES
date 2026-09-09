@@ -1340,6 +1340,8 @@ docs/ReplyToPhoneNumberReviewerRequest.md
 docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md
 docs/RequestSmsSenderIdLimitIncrease200Response.md
 docs/RequestSmsSenderIdLimitIncreaseRequest.md
+docs/RequestWhatsAppVerificationCode200Response.md
+docs/RequestWhatsAppVerificationCodeRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
 docs/ReserveRfPrediction201Response.md
 docs/ReserveRfPredictionRequest.md
@@ -1829,6 +1831,8 @@ docs/VerifyCredential200Response.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VerifyWhatsAppCallerIdRequest.md
+docs/VerifyWhatsAppNumber200Response.md
+docs/VerifyWhatsAppNumberRequest.md
 docs/VoiceApi.md
 docs/VoteRedditThingRequest.md
 docs/Webhook.md
@@ -3353,6 +3357,8 @@ src/Zernio.Test/Model/ReplyToPhoneNumberReviewerRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/ReplyToPhoneNumberReviewerRequestTests.cs
 src/Zernio.Test/Model/RequestSmsSenderIdLimitIncrease200ResponseTests.cs
 src/Zernio.Test/Model/RequestSmsSenderIdLimitIncreaseRequestTests.cs
+src/Zernio.Test/Model/RequestWhatsAppVerificationCode200ResponseTests.cs
+src/Zernio.Test/Model/RequestWhatsAppVerificationCodeRequestTests.cs
 src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPrediction201ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPredictionRequestTests.cs
@@ -3832,6 +3838,8 @@ src/Zernio.Test/Model/VerifyCredential200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppCallerIdRequestTests.cs
+src/Zernio.Test/Model/VerifyWhatsAppNumber200ResponseTests.cs
+src/Zernio.Test/Model/VerifyWhatsAppNumberRequestTests.cs
 src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
 src/Zernio.Test/Model/WebhookLogTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
@@ -5364,6 +5372,8 @@ src/Zernio/Model/ReplyToPhoneNumberReviewerRequest.cs
 src/Zernio/Model/ReplyToPhoneNumberReviewerRequestAttachmentsInner.cs
 src/Zernio/Model/RequestSmsSenderIdLimitIncrease200Response.cs
 src/Zernio/Model/RequestSmsSenderIdLimitIncreaseRequest.cs
+src/Zernio/Model/RequestWhatsAppVerificationCode200Response.cs
+src/Zernio/Model/RequestWhatsAppVerificationCodeRequest.cs
 src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
 src/Zernio/Model/ReserveRfPrediction201Response.cs
 src/Zernio/Model/ReserveRfPredictionRequest.cs
@@ -5843,6 +5853,8 @@ src/Zernio/Model/VerifyCredential200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
 src/Zernio/Model/VerifyWhatsAppCallerIdRequest.cs
+src/Zernio/Model/VerifyWhatsAppNumber200Response.cs
+src/Zernio/Model/VerifyWhatsAppNumberRequest.cs
 src/Zernio/Model/VoteRedditThingRequest.cs
 src/Zernio/Model/Webhook.cs
 src/Zernio/Model/WebhookLog.cs

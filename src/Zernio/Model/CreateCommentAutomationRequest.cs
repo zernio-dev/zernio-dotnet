@@ -105,7 +105,7 @@ namespace Zernio.Model
         /// <param name="accountId">Instagram or Facebook account ID (required).</param>
         /// <param name="trigger">What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story). (default to TriggerEnum.Comment).</param>
         /// <param name="platformPostId">Platform media/post ID (or story media id when trigger&#x3D;story_reply). Omit for an account-wide (any-post / any-story) automation..</param>
-        /// <param name="postId">Zernio post ID. Required only when also targeting a specific post via platformPostId..</param>
+        /// <param name="postId">Zernio post ID. Optional and never required. Use it INSTEAD of platformPostId to bind a per-post automation to a not-yet-published Zernio post: the automation stays pending and arms itself when that post publishes. For a post already live on the platform, pass platformPostId alone and omit this..</param>
         /// <param name="postTitle">Post content snippet for display.</param>
         /// <param name="name">Automation label (required).</param>
         /// <param name="keywords">Trigger keywords (empty &#x3D; any comment triggers).</param>
@@ -194,9 +194,9 @@ namespace Zernio.Model
         public string PlatformPostId { get; set; }
 
         /// <summary>
-        /// Zernio post ID. Required only when also targeting a specific post via platformPostId.
+        /// Zernio post ID. Optional and never required. Use it INSTEAD of platformPostId to bind a per-post automation to a not-yet-published Zernio post: the automation stays pending and arms itself when that post publishes. For a post already live on the platform, pass platformPostId alone and omit this.
         /// </summary>
-        /// <value>Zernio post ID. Required only when also targeting a specific post via platformPostId.</value>
+        /// <value>Zernio post ID. Optional and never required. Use it INSTEAD of platformPostId to bind a per-post automation to a not-yet-published Zernio post: the automation stays pending and arms itself when that post publishes. For a post already live on the platform, pass platformPostId alone and omit this.</value>
         [DataMember(Name = "postId", EmitDefaultValue = false)]
         public string PostId { get; set; }
 

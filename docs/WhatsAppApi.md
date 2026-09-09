@@ -34,6 +34,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**RegisterWhatsAppNumber**](WhatsAppApi.md#registerwhatsappnumber) | **POST** /v1/accounts/{accountId}/whatsapp/register | Register a connected WhatsApp number on the Cloud API |
 | [**RejectWhatsAppGroupJoinRequests**](WhatsAppApi.md#rejectwhatsappgroupjoinrequests) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests |
 | [**RemoveWhatsAppGroupParticipants**](WhatsAppApi.md#removewhatsappgroupparticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
+| [**RequestWhatsAppVerificationCode**](WhatsAppApi.md#requestwhatsappverificationcode) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number |
 | [**SendWhatsAppConversion**](WhatsAppApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**SetWhatsappBusinessUsername**](WhatsAppApi.md#setwhatsappbusinessusername) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**UnblockWhatsAppUsers**](WhatsAppApi.md#unblockwhatsappusers) | **DELETE** /v1/whatsapp/block-users | Unblock users |
@@ -43,6 +44,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateWhatsAppTemplate**](WhatsAppApi.md#updatewhatsapptemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template |
 | [**UpdateWhatsAppTemplateById**](WhatsAppApi.md#updatewhatsapptemplatebyid) | **PATCH** /v1/whatsapp/templates/id/{templateId} | Update template by id |
 | [**UploadWhatsAppProfilePhoto**](WhatsAppApi.md#uploadwhatsappprofilephoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture |
+| [**VerifyWhatsAppNumber**](WhatsAppApi.md#verifywhatsappnumber) | **POST** /v1/accounts/{accountId}/whatsapp/verify-code | Verify the Meta re-verification code for a BYO WhatsApp number |
 
 <a id="addwhatsappgroupparticipants"></a>
 # **AddWhatsAppGroupParticipants**
@@ -3127,6 +3129,113 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="requestwhatsappverificationcode"></a>
+# **RequestWhatsAppVerificationCode**
+> RequestWhatsAppVerificationCode200Response RequestWhatsAppVerificationCode (string accountId, RequestWhatsAppVerificationCodeRequest? requestWhatsAppVerificationCodeRequest = null)
+
+Request a Meta re-verification code for a BYO WhatsApp number
+
+For a bring-your-own WhatsApp number (its own WABA, migrated off another BSP) that Meta demoted to re-verification, this requests a new OTP from Meta. The code lands on the customer's own handset, so verifying it is necessarily self-service; call POST /v1/accounts/{accountId}/whatsapp/verify-code with the code once it arrives. Rate-limited to one request per 10 minutes per account, and Meta enforces its own cooldown on top of that. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RequestWhatsAppVerificationCodeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The WhatsApp account ID
+            var requestWhatsAppVerificationCodeRequest = new RequestWhatsAppVerificationCodeRequest?(); // RequestWhatsAppVerificationCodeRequest? |  (optional) 
+
+            try
+            {
+                // Request a Meta re-verification code for a BYO WhatsApp number
+                RequestWhatsAppVerificationCode200Response result = apiInstance.RequestWhatsAppVerificationCode(accountId, requestWhatsAppVerificationCodeRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.RequestWhatsAppVerificationCode: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RequestWhatsAppVerificationCodeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Request a Meta re-verification code for a BYO WhatsApp number
+    ApiResponse<RequestWhatsAppVerificationCode200Response> response = apiInstance.RequestWhatsAppVerificationCodeWithHttpInfo(accountId, requestWhatsAppVerificationCodeRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.RequestWhatsAppVerificationCodeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The WhatsApp account ID |  |
+| **requestWhatsAppVerificationCodeRequest** | [**RequestWhatsAppVerificationCodeRequest?**](RequestWhatsAppVerificationCodeRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**RequestWhatsAppVerificationCode200Response**](RequestWhatsAppVerificationCode200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
+| **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
+| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="sendwhatsappconversion"></a>
 # **SendWhatsAppConversion**
 > SendWhatsAppConversion200Response SendWhatsAppConversion (SendWhatsAppConversionRequest sendWhatsAppConversionRequest)
@@ -4047,6 +4156,110 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **422** | Profile photo is locked for WhatsApp coexistence numbers (manage it in the WhatsApp Business app) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="verifywhatsappnumber"></a>
+# **VerifyWhatsAppNumber**
+> VerifyWhatsAppNumber200Response VerifyWhatsAppNumber (string accountId, VerifyWhatsAppNumberRequest verifyWhatsAppNumberRequest)
+
+Verify the Meta re-verification code for a BYO WhatsApp number
+
+Submits the OTP Meta sent in response to POST /v1/accounts/{accountId}/whatsapp/request-code. This only verifies the number with Meta; it does not register it on the Cloud API. Call POST /v1/accounts/{accountId}/whatsapp/register afterward to complete activation. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class VerifyWhatsAppNumberExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The WhatsApp account ID
+            var verifyWhatsAppNumberRequest = new VerifyWhatsAppNumberRequest(); // VerifyWhatsAppNumberRequest | 
+
+            try
+            {
+                // Verify the Meta re-verification code for a BYO WhatsApp number
+                VerifyWhatsAppNumber200Response result = apiInstance.VerifyWhatsAppNumber(accountId, verifyWhatsAppNumberRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.VerifyWhatsAppNumber: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the VerifyWhatsAppNumberWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Verify the Meta re-verification code for a BYO WhatsApp number
+    ApiResponse<VerifyWhatsAppNumber200Response> response = apiInstance.VerifyWhatsAppNumberWithHttpInfo(accountId, verifyWhatsAppNumberRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.VerifyWhatsAppNumberWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The WhatsApp account ID |  |
+| **verifyWhatsAppNumberRequest** | [**VerifyWhatsAppNumberRequest**](VerifyWhatsAppNumberRequest.md) |  |  |
+
+### Return type
+
+[**VerifyWhatsAppNumber200Response**](VerifyWhatsAppNumber200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number verified with Meta |  -  |
+| **400** | The code is malformed, or Meta rejected it as wrong or expired. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The account has no phone number bound to it yet. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

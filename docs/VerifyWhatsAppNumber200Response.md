@@ -1,10 +1,12 @@
-# Zernio.Model.RegisterWhatsAppNumberRequest
+# Zernio.Model.VerifyWhatsAppNumber200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pin** | **string** | The 6-digit two-step verification PIN set on the number. Omitting it applies Zernio&#39;s managed default registration PIN, the same one every Embedded Signup connect sets automatically. | [optional] 
+**Verified** | **bool** |  | [optional] 
+**AccountId** | **string** |  | [optional] 
+**PhoneNumberId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
