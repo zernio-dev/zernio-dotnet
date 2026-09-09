@@ -55,10 +55,11 @@ namespace Zernio.Model
         /// <param name="googleHeadline">Google Ads headline.</param>
         /// <param name="googleDescription">Google Ads description.</param>
         /// <param name="linkUrl">Destination URL.</param>
+        /// <param name="whatsappPhoneNumber">Explicit E.164 WhatsApp number supplied when creating a Meta boost or messaging ad. Absent when omitted by the caller or on older records..</param>
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
             this.ThumbnailUrl = thumbnailUrl;
             this.ImageUrl = imageUrl;
@@ -79,6 +80,7 @@ namespace Zernio.Model
             this.GoogleHeadline = googleHeadline;
             this.GoogleDescription = googleDescription;
             this.LinkUrl = linkUrl;
+            this.WhatsappPhoneNumber = whatsappPhoneNumber;
             this.PinterestImageUrl = pinterestImageUrl;
             this.PinterestTitle = pinterestTitle;
             this.PinterestDescription = pinterestDescription;
@@ -221,6 +223,16 @@ namespace Zernio.Model
         public string LinkUrl { get; set; }
 
         /// <summary>
+        /// Explicit E.164 WhatsApp number supplied when creating a Meta boost or messaging ad. Absent when omitted by the caller or on older records.
+        /// </summary>
+        /// <value>Explicit E.164 WhatsApp number supplied when creating a Meta boost or messaging ad. Absent when omitted by the caller or on older records.</value>
+        /*
+        <example>+12025550123</example>
+        */
+        [DataMember(Name = "whatsappPhoneNumber", EmitDefaultValue = false)]
+        public string WhatsappPhoneNumber { get; set; }
+
+        /// <summary>
         /// Gets or Sets PinterestImageUrl
         /// </summary>
         [DataMember(Name = "pinterestImageUrl", EmitDefaultValue = false)]
@@ -265,6 +277,7 @@ namespace Zernio.Model
             sb.Append("  GoogleHeadline: ").Append(GoogleHeadline).Append("\n");
             sb.Append("  GoogleDescription: ").Append(GoogleDescription).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
+            sb.Append("  WhatsappPhoneNumber: ").Append(WhatsappPhoneNumber).Append("\n");
             sb.Append("  PinterestImageUrl: ").Append(PinterestImageUrl).Append("\n");
             sb.Append("  PinterestTitle: ").Append(PinterestTitle).Append("\n");
             sb.Append("  PinterestDescription: ").Append(PinterestDescription).Append("\n");

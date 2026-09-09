@@ -227,6 +227,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'WhatsappPhoneNumber'
+        /// </summary>
+        [Fact]
+        public void WhatsappPhoneNumberTest()
+        {
+            // TODO unit test for the property 'WhatsappPhoneNumber'
+        }
+
+        /// <summary>
         /// Test the property 'PinterestImageUrl'
         /// </summary>
         [Fact]

@@ -91,9 +91,9 @@ namespace Zernio.Model
         [DataMember(Name = "goal", IsRequired = true, EmitDefaultValue = true)]
         public GoalEnum Goal { get; set; }
         /// <summary>
-        /// Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected.
+        /// Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Independent of plain link CTAs and their goal. A messaging callToAction selects its destination automatically; an explicit destinationType must then match. Lead ads use ON_AD.
         /// </summary>
-        /// <value>Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected.</value>
+        /// <value>Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Independent of plain link CTAs and their goal. A messaging callToAction selects its destination automatically; an explicit destinationType must then match. Lead ads use ON_AD.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DestinationTypeEnum
         {
@@ -136,9 +136,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected.
+        /// Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Independent of plain link CTAs and their goal. A messaging callToAction selects its destination automatically; an explicit destinationType must then match. Lead ads use ON_AD.
         /// </summary>
-        /// <value>Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected.</value>
+        /// <value>Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Independent of plain link CTAs and their goal. A messaging callToAction selects its destination automatically; an explicit destinationType must then match. Lead ads use ON_AD.</value>
         [DataMember(Name = "destinationType", EmitDefaultValue = false)]
         public DestinationTypeEnum? DestinationType { get; set; }
 
@@ -193,9 +193,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
+        /// Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
         /// </summary>
-        /// <value>Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).</value>
+        /// <value>Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -214,9 +214,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
+        /// Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
         /// </summary>
-        /// <value>Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).</value>
+        /// <value>Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -236,8 +236,8 @@ namespace Zernio.Model
         /// <param name="adSetId">Meta only. Attach the boosted post to this existing ad set instead of creating a campaign. The ad set then owns budget, schedule and targeting; sending those too is a 400..</param>
         /// <param name="budget">budget.</param>
         /// <param name="instagramAccountId">Meta only. Instagram identity the ad runs AS (creative.instagram_user_id), overriding the account linked to the Page. Live-verified against a Page-post creative..</param>
-        /// <param name="destinationType">Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Messaging destinations imply their matching CTA and require goal engagement. Lead ads use ON_AD; combining an instant form with a messaging destination is rejected..</param>
-        /// <param name="whatsappPhoneNumber">Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP destinationType or WHATSAPP_MESSAGE callToAction..</param>
+        /// <param name="destinationType">Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Independent of plain link CTAs and their goal. A messaging callToAction selects its destination automatically; an explicit destinationType must then match. Lead ads use ON_AD..</param>
+        /// <param name="whatsappPhoneNumber">Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP_MESSAGE callToAction. Stored as creative.whatsappPhoneNumber on the ad..</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency. Meta only. Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is)..</param>
         /// <param name="schedule">schedule.</param>
         /// <param name="targeting">targeting.</param>
@@ -257,7 +257,7 @@ namespace Zernio.Model
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         /// <param name="leadGenFormId">Lead Gen form ID to attach to the boosted ad&#39;s creative. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;. On Meta this is the leadgen_forms ID (create one via POST /v1/ads/lead-forms). On LinkedIn this is the adForm ID (create one via POST /v1/ads/lead-forms with a LinkedIn account); the creative&#39;s &#x60;leadgenCallToAction.destination&#x60; is set to &#x60;urn:li:adForm:{id}&#x60;. Ignored for other goals..</param>
-        /// <param name="status">Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each)..</param>
+        /// <param name="status">Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each)..</param>
         /// <param name="optimizationGoal">Meta only. Explicit ad-set &#x60;optimization_goal&#x60; override. When omitted, defaults to the value derived from &#x60;goal&#x60;. Messaging boosts always use CONVERSATIONS and reject another optimizationGoal. Otherwise the value must be compatible with the objective Meta derives from &#x60;goal&#x60;, not with the objective used by &#x60;POST /v1/ads/create&#x60; for the same &#x60;goal&#x60; name: boost maps &#x60;goal: \&quot;engagement\&quot;&#x60; to objective &#x60;OUTCOME_AWARENESS&#x60;, which accepts &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;AD_RECALL_LIFT&#x60;, or THRUPLAY-class values, and rejects &#x60;POST_ENGAGEMENT&#x60; (that value is only valid under &#x60;OUTCOME_ENGAGEMENT&#x60;, which create uses for the same goal name). .</param>
         public BoostPostRequest(string postId = default, string platformPostId = default, string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, string adSetId = default, BoostPostRequestBudget budget = default, string instagramAccountId = default, DestinationTypeEnum? destinationType = default, string whatsappPhoneNumber = default, string currency = default, BoostPostRequestSchedule schedule = default, BoostPostRequestTargeting targeting = default, Dictionary<string, Object> rawTargeting = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, BoostPostRequestPlatformSpecificData platformSpecificData = default, BoostPostRequestTracking tracking = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, string linkUrl = default, string callToAction = default, string sparkAuthCode = default, string dsaBeneficiary = default, string dsaPayor = default, string leadGenFormId = default, StatusEnum? status = default, string optimizationGoal = default)
         {
@@ -365,9 +365,9 @@ namespace Zernio.Model
         public string InstagramAccountId { get; set; }
 
         /// <summary>
-        /// Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP destinationType or WHATSAPP_MESSAGE callToAction.
+        /// Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP_MESSAGE callToAction. Stored as creative.whatsappPhoneNumber on the ad.
         /// </summary>
-        /// <value>Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP destinationType or WHATSAPP_MESSAGE callToAction.</value>
+        /// <value>Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP_MESSAGE callToAction. Stored as creative.whatsappPhoneNumber on the ad.</value>
         [DataMember(Name = "whatsappPhoneNumber", EmitDefaultValue = false)]
         public string WhatsappPhoneNumber { get; set; }
 
