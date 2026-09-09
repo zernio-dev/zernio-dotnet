@@ -242,7 +242,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string adId = null;
-            //var response = instance.GetAd(adId);
+            //bool? refreshPromotion = null;
+            //var response = instance.GetAd(adId, refreshPromotion);
             //Assert.IsType<GetAd200Response>(response);
         }
 

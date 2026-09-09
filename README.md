@@ -2019,6 +2019,8 @@ Class | Method | HTTP request | Description
  - [Model.MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
  - [Model.MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
  - [Model.MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
+ - [Model.MetaPromotion](docs/MetaPromotion.md)
+ - [Model.MetaPromotionStatus](docs/MetaPromotionStatus.md)
  - [Model.Money](docs/Money.md)
  - [Model.MoneyAmount](docs/MoneyAmount.md)
  - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)

@@ -1226,6 +1226,8 @@ docs/MessagingAdsApi.md
 docs/MetaAdsPlatformData.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
+docs/MetaPromotion.md
+docs/MetaPromotionStatus.md
 docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
@@ -3263,6 +3265,8 @@ src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataContextCardTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
+src/Zernio.Test/Model/MetaPromotionStatusTests.cs
+src/Zernio.Test/Model/MetaPromotionTests.cs
 src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
@@ -5292,6 +5296,8 @@ src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
+src/Zernio/Model/MetaPromotion.cs
+src/Zernio/Model/MetaPromotionStatus.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs

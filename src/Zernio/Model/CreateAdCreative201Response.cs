@@ -33,15 +33,25 @@ namespace Zernio.Model
     [DataContract(Name = "createAdCreative_201_response")]
     public partial class CreateAdCreative201Response : IValidatableObject
     {
+
+        /// <summary>
+        /// Gets or Sets PromotionStatus
+        /// </summary>
+        [DataMember(Name = "promotionStatus", EmitDefaultValue = false)]
+        public MetaPromotionStatus? PromotionStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAdCreative201Response" /> class.
         /// </summary>
         /// <param name="adAccountId">adAccountId.</param>
         /// <param name="creativeId">Platform creative id, reusable via existingCreativeId..</param>
-        public CreateAdCreative201Response(string adAccountId = default, string creativeId = default)
+        /// <param name="promotion">promotion.</param>
+        /// <param name="promotionStatus">promotionStatus.</param>
+        public CreateAdCreative201Response(string adAccountId = default, string creativeId = default, MetaPromotion promotion = default, MetaPromotionStatus? promotionStatus = default)
         {
             this.AdAccountId = adAccountId;
             this.CreativeId = creativeId;
+            this.Promotion = promotion;
+            this.PromotionStatus = promotionStatus;
         }
 
         /// <summary>
@@ -58,6 +68,12 @@ namespace Zernio.Model
         public string CreativeId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Promotion
+        /// </summary>
+        [DataMember(Name = "promotion", EmitDefaultValue = false)]
+        public MetaPromotion Promotion { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -67,6 +83,8 @@ namespace Zernio.Model
             sb.Append("class CreateAdCreative201Response {\n");
             sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CreativeId: ").Append(CreativeId).Append("\n");
+            sb.Append("  Promotion: ").Append(Promotion).Append("\n");
+            sb.Append("  PromotionStatus: ").Append(PromotionStatus).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

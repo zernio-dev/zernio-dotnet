@@ -98,9 +98,10 @@ namespace Zernio.Model
         /// <param name="imageHash">Existing library image hash (POST /v1/ads/images or GET /v1/ads/images)..</param>
         /// <param name="carouselCards">carouselCards.</param>
         /// <param name="urlTags">Appended to every outbound URL (e.g. utm_source&#x3D;fb)..</param>
-        /// <param name="creativeFeatures">Advantage+ creative enhancements: partial map of Meta creative feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Unspecified features default to OPT_OUT..</param>
+        /// <param name="promotion">promotion.</param>
+        /// <param name="creativeFeatures">Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion..</param>
         /// <param name="multiAdvertiser">Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there..</param>
-        public CreateAdCreativeRequest(string accountId = default, string adAccountId = default, string headline = default, string body = default, string description = default, string callToAction = @"LEARN_MORE", string linkUrl = default, string imageUrl = default, string imageHash = default, List<CreateAdCreativeRequestCarouselCardsInner> carouselCards = default, string urlTags = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default)
+        public CreateAdCreativeRequest(string accountId = default, string adAccountId = default, string headline = default, string body = default, string description = default, string callToAction = @"LEARN_MORE", string linkUrl = default, string imageUrl = default, string imageHash = default, List<CreateAdCreativeRequestCarouselCardsInner> carouselCards = default, string urlTags = default, MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -139,6 +140,7 @@ namespace Zernio.Model
             this.ImageHash = imageHash;
             this.CarouselCards = carouselCards;
             this.UrlTags = urlTags;
+            this.Promotion = promotion;
             this.CreativeFeatures = creativeFeatures;
             this.MultiAdvertiser = multiAdvertiser;
         }
@@ -218,9 +220,18 @@ namespace Zernio.Model
         public string UrlTags { get; set; }
 
         /// <summary>
-        /// Advantage+ creative enhancements: partial map of Meta creative feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Unspecified features default to OPT_OUT.
+        /// Gets or Sets Promotion
         /// </summary>
-        /// <value>Advantage+ creative enhancements: partial map of Meta creative feature keys (snake_case) to enroll status, forwarded as degrees_of_freedom_spec.creative_features_spec. Unspecified features default to OPT_OUT.</value>
+        [DataMember(Name = "promotion", EmitDefaultValue = false)]
+        public MetaPromotion Promotion { get; set; }
+
+        /// <summary>
+        /// Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.
+        /// </summary>
+        /// <value>Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.</value>
+        /*
+        <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
+        */
         [DataMember(Name = "creativeFeatures", EmitDefaultValue = false)]
         public Dictionary<string, CreateAdCreativeRequest.InnerEnum> CreativeFeatures { get; set; }
 
@@ -243,6 +254,7 @@ namespace Zernio.Model
             sb.Append("  ImageHash: ").Append(ImageHash).Append("\n");
             sb.Append("  CarouselCards: ").Append(CarouselCards).Append("\n");
             sb.Append("  UrlTags: ").Append(UrlTags).Append("\n");
+            sb.Append("  Promotion: ").Append(Promotion).Append("\n");
             sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  MultiAdvertiser: ").Append(MultiAdvertiser).Append("\n");
             sb.Append("}\n");

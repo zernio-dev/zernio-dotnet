@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CreativeFeatures'
+        /// </summary>
+        [Fact]
+        public void CreativeFeaturesTest()
+        {
+            // TODO unit test for the property 'CreativeFeatures'
+        }
+
+        /// <summary>
         /// Test the property 'AccountId'
         /// </summary>
         [Fact]

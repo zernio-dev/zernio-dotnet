@@ -5,6 +5,7 @@ In addition to the `required` list, the request must use EXACTLY ONE of the two 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreativeFeatures** | **Dictionary&lt;string, CtwaAdRequestBody.InnerEnum&gt;** | Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object. | [optional] 
 **AccountId** | **string** | Facebook or Instagram SocialAccount ID. | 
 **AdAccountId** | **string** | Meta ad account ID, e.g. &#x60;act_123456789&#x60;. | 
 **Name** | **string** | Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  | 

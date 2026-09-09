@@ -34,6 +34,25 @@ namespace Zernio.Model
     public partial class CreateStandaloneAdRequestCreativesInner : IValidatableObject
     {
         /// <summary>
+        /// Defines Inner
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InnerEnum
+        {
+            /// <summary>
+            /// Enum OPTIN for value: OPT_IN
+            /// </summary>
+            [EnumMember(Value = "OPT_IN")]
+            OPTIN = 1,
+
+            /// <summary>
+            /// Enum OPTOUT for value: OPT_OUT
+            /// </summary>
+            [EnumMember(Value = "OPT_OUT")]
+            OPTOUT = 2
+        }
+
+        /// <summary>
         /// Defines CallToAction
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -210,6 +229,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestCreativesInner" /> class.
         /// </summary>
+        /// <param name="promotion">Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer..</param>
+        /// <param name="creativeFeatures">Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults..</param>
         /// <param name="name">Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position)..</param>
         /// <param name="headline">headline (required).</param>
         /// <param name="body">body (required).</param>
@@ -218,7 +239,7 @@ namespace Zernio.Model
         /// <param name="video">video.</param>
         /// <param name="linkUrl">linkUrl (required).</param>
         /// <param name="callToAction">callToAction (required).</param>
-        public CreateStandaloneAdRequestCreativesInner(string name = default, string headline = default, string body = default, string description = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
+        public CreateStandaloneAdRequestCreativesInner(MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, string name = default, string headline = default, string body = default, string description = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
         {
             // to ensure "headline" is required (not null)
             if (headline == null)
@@ -239,11 +260,30 @@ namespace Zernio.Model
             }
             this.LinkUrl = linkUrl;
             this.CallToAction = callToAction;
+            this.Promotion = promotion;
+            this.CreativeFeatures = creativeFeatures;
             this.Name = name;
             this.Description = description;
             this.ImageUrl = imageUrl;
             this.Video = video;
         }
+
+        /// <summary>
+        /// Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer.
+        /// </summary>
+        /// <value>Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer.</value>
+        [DataMember(Name = "promotion", EmitDefaultValue = false)]
+        public MetaPromotion Promotion { get; set; }
+
+        /// <summary>
+        /// Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults.
+        /// </summary>
+        /// <value>Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults.</value>
+        /*
+        <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
+        */
+        [DataMember(Name = "creativeFeatures", EmitDefaultValue = false)]
+        public Dictionary<string, CreateStandaloneAdRequestCreativesInner.InnerEnum> CreativeFeatures { get; set; }
 
         /// <summary>
         /// Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position).
@@ -298,6 +338,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateStandaloneAdRequestCreativesInner {\n");
+            sb.Append("  Promotion: ").Append(Promotion).Append("\n");
+            sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");

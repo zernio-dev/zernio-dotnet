@@ -34,19 +34,40 @@ namespace Zernio.Model
     public partial class CtwaAdRequestBodyCreativesInner : IValidatableObject
     {
         /// <summary>
+        /// Defines Inner
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InnerEnum
+        {
+            /// <summary>
+            /// Enum OPTIN for value: OPT_IN
+            /// </summary>
+            [EnumMember(Value = "OPT_IN")]
+            OPTIN = 1,
+
+            /// <summary>
+            /// Enum OPTOUT for value: OPT_OUT
+            /// </summary>
+            [EnumMember(Value = "OPT_OUT")]
+            OPTOUT = 2
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CtwaAdRequestBodyCreativesInner" /> class.
         /// </summary>
         /// <param name="existingPostId">Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields..</param>
         /// <param name="objectStoryId">Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields..</param>
+        /// <param name="creativeFeatures">Replaces the top-level creativeFeatures map for this item. Omit to inherit; an empty object clears inherited enrollment choices..</param>
         /// <param name="headline">headline.</param>
         /// <param name="body">Primary text shown above the image / video..</param>
         /// <param name="imageUrl">Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if neither &#x60;video&#x60; nor an existing post reference is supplied. .</param>
         /// <param name="video">video.</param>
         /// <param name="welcomeMessage">welcomeMessage.</param>
-        public CtwaAdRequestBodyCreativesInner(string existingPostId = default, string objectStoryId = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyCreativesInnerVideo video = default, CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage = default)
+        public CtwaAdRequestBodyCreativesInner(string existingPostId = default, string objectStoryId = default, Dictionary<string, InnerEnum> creativeFeatures = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyCreativesInnerVideo video = default, CtwaAdRequestBodyCreativesInnerWelcomeMessage welcomeMessage = default)
         {
             this.ExistingPostId = existingPostId;
             this.ObjectStoryId = objectStoryId;
+            this.CreativeFeatures = creativeFeatures;
             this.Headline = headline;
             this.Body = body;
             this.ImageUrl = imageUrl;
@@ -67,6 +88,16 @@ namespace Zernio.Model
         /// <value>Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields.</value>
         [DataMember(Name = "objectStoryId", EmitDefaultValue = false)]
         public string ObjectStoryId { get; set; }
+
+        /// <summary>
+        /// Replaces the top-level creativeFeatures map for this item. Omit to inherit; an empty object clears inherited enrollment choices.
+        /// </summary>
+        /// <value>Replaces the top-level creativeFeatures map for this item. Omit to inherit; an empty object clears inherited enrollment choices.</value>
+        /*
+        <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
+        */
+        [DataMember(Name = "creativeFeatures", EmitDefaultValue = false)]
+        public Dictionary<string, CtwaAdRequestBodyCreativesInner.InnerEnum> CreativeFeatures { get; set; }
 
         /// <summary>
         /// Gets or Sets Headline
@@ -110,6 +141,7 @@ namespace Zernio.Model
             sb.Append("class CtwaAdRequestBodyCreativesInner {\n");
             sb.Append("  ExistingPostId: ").Append(ExistingPostId).Append("\n");
             sb.Append("  ObjectStoryId: ").Append(ObjectStoryId).Append("\n");
+            sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");

@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **ImageUrl** | **string** | Alternative image URL | [optional] 
 **VideoId** | **string** | Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token. | [optional] 
 **VideoUrl** | **string** | Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads. | [optional] 
+**Promotion** | [**MetaPromotion**](MetaPromotion.md) | Meta offer read from the live creative on creation or GET /v1/ads/{adId}. Null when metadata is not returned or cannot be read. Requested values are never echoed as applied. | [optional] 
+**PromotionStatus** | **MetaPromotionStatus** |  | [optional] 
 **CreativeId** | **string** | Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create. | [optional] 
 **ObjectType** | **string** | Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews: when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available. | [optional] 
 **ObjectStoryId** | **string** | Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent, because Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead. | [optional] 

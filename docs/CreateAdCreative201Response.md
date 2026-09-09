@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AdAccountId** | **string** |  | [optional] 
 **CreativeId** | **string** | Platform creative id, reusable via existingCreativeId. | [optional] 
+**Promotion** | [**MetaPromotion**](MetaPromotion.md) |  | [optional] 
+**PromotionStatus** | **MetaPromotionStatus** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

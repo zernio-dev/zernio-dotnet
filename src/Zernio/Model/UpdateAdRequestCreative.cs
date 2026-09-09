@@ -28,14 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset: fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives. Those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: requires new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;);   a text-only creative update returns 400. Uploads the media, creates a new inline   media creative on the same campaign, and pauses the old creative (best-effort).   The old creative is retained for historical reporting. &#x60;videoId&#x60; and   &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
+    /// Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset: fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives. Those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting.   &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; are Meta-only. Omitted settings are   preserved from the live creative, including full rebuilds. Send   &#x60;promotion: null&#x60; to remove the explicit offer from the replacement.   A supplied creativeFeatures map overrides individual existing keys. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: requires new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;);   a text-only creative update returns 400. Uploads the media, creates a new inline   media creative on the same campaign, and pauses the old creative (best-effort).   The old creative is retained for historical reporting. &#x60;videoId&#x60; and   &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
     /// </summary>
     [DataContract(Name = "updateAd_request_creative")]
     public partial class UpdateAdRequestCreative : IValidatableObject
     {
         /// <summary>
+        /// Defines Inner
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InnerEnum
+        {
+            /// <summary>
+            /// Enum OPTIN for value: OPT_IN
+            /// </summary>
+            [EnumMember(Value = "OPT_IN")]
+            OPTIN = 1,
+
+            /// <summary>
+            /// Enum OPTOUT for value: OPT_OUT
+            /// </summary>
+            [EnumMember(Value = "OPT_OUT")]
+            OPTOUT = 2
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdRequestCreative" /> class.
         /// </summary>
+        /// <param name="promotion">promotion.</param>
+        /// <param name="creativeFeatures">Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta..</param>
         /// <param name="headline">Meta and LinkedIn (TikTok has no headline slot).</param>
         /// <param name="body">body.</param>
         /// <param name="description">Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description)..</param>
@@ -45,8 +66,10 @@ namespace Zernio.Model
         /// <param name="videoUrl">videoUrl.</param>
         /// <param name="videoId">Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos or GET /v1/ads/videos) instead of re-uploading via videoUrl..</param>
         /// <param name="existingCreativeId">Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored..</param>
-        public UpdateAdRequestCreative(string headline = default, string body = default, string description = default, string callToAction = default, string linkUrl = default, string imageUrl = default, string videoUrl = default, string videoId = default, string existingCreativeId = default)
+        public UpdateAdRequestCreative(MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, string headline = default, string body = default, string description = default, string callToAction = default, string linkUrl = default, string imageUrl = default, string videoUrl = default, string videoId = default, string existingCreativeId = default)
         {
+            this.Promotion = promotion;
+            this.CreativeFeatures = creativeFeatures;
             this.Headline = headline;
             this.Body = body;
             this.Description = description;
@@ -57,6 +80,22 @@ namespace Zernio.Model
             this.VideoId = videoId;
             this.ExistingCreativeId = existingCreativeId;
         }
+
+        /// <summary>
+        /// Gets or Sets Promotion
+        /// </summary>
+        [DataMember(Name = "promotion", EmitDefaultValue = false)]
+        public MetaPromotion Promotion { get; set; }
+
+        /// <summary>
+        /// Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+        /// </summary>
+        /// <value>Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.</value>
+        /*
+        <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
+        */
+        [DataMember(Name = "creativeFeatures", EmitDefaultValue = false)]
+        public Dictionary<string, UpdateAdRequestCreative.InnerEnum> CreativeFeatures { get; set; }
 
         /// <summary>
         /// Meta and LinkedIn (TikTok has no headline slot)
@@ -124,6 +163,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdRequestCreative {\n");
+            sb.Append("  Promotion: ").Append(Promotion).Append("\n");
+            sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");

@@ -43,8 +43,8 @@ namespace Zernio.Model
         /// <param name="applicationId">App ID. Required for &#x60;goal: app_promotion&#x60;..</param>
         /// <param name="objectStoreUrl">App Store / Play Store listing URL. Required for &#x60;goal: app_promotion&#x60;..</param>
         /// <param name="customConversionId">Custom Conversion ID, when optimising against one instead of a standard event. Accepted alone by this API, without &#x60;pixelId&#x60; or &#x60;customEventType&#x60;. If &#x60;pixelId&#x60; is also sent, &#x60;customEventType&#x60; is still required on the promoted_object (Meta rejects &#x60;pixel_id&#x60; without &#x60;custom_event_type&#x60;, error_subcode 1885014). .</param>
-        /// <param name="productCatalogId">Catalog ID for catalog/Advantage+ Shopping campaigns..</param>
-        /// <param name="productSetId">Product Set ID inside the catalog..</param>
+        /// <param name="productCatalogId">Optional catalog ID. If supplied with productSetId, the set must belong to this catalog. A catalog ID cannot replace productSetId..</param>
+        /// <param name="productSetId">Meta product SET ID from GET /v1/ads/catalogs/{catalogId}/product-sets. Zernio checks that the token can read the set and its product_catalog before creation. A catalog ID or inaccessible set returns a precise 400 naming promotedObject.productSetId. A mismatch with productCatalogId names promotedObject.productCatalogId..</param>
         /// <param name="offlineConversionDataSetId">Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id)..</param>
         /// <param name="whatsappPhoneNumber">Meta only. WhatsApp number on messaging-destination ad sets..</param>
         public CreateStandaloneAdRequestPromotedObject(string pixelId = default, string customEventType = default, string customEventStr = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default, string offlineConversionDataSetId = default, string whatsappPhoneNumber = default)
@@ -113,16 +113,16 @@ namespace Zernio.Model
         public string CustomConversionId { get; set; }
 
         /// <summary>
-        /// Catalog ID for catalog/Advantage+ Shopping campaigns.
+        /// Optional catalog ID. If supplied with productSetId, the set must belong to this catalog. A catalog ID cannot replace productSetId.
         /// </summary>
-        /// <value>Catalog ID for catalog/Advantage+ Shopping campaigns.</value>
+        /// <value>Optional catalog ID. If supplied with productSetId, the set must belong to this catalog. A catalog ID cannot replace productSetId.</value>
         [DataMember(Name = "productCatalogId", EmitDefaultValue = false)]
         public string ProductCatalogId { get; set; }
 
         /// <summary>
-        /// Product Set ID inside the catalog.
+        /// Meta product SET ID from GET /v1/ads/catalogs/{catalogId}/product-sets. Zernio checks that the token can read the set and its product_catalog before creation. A catalog ID or inaccessible set returns a precise 400 naming promotedObject.productSetId. A mismatch with productCatalogId names promotedObject.productCatalogId.
         /// </summary>
-        /// <value>Product Set ID inside the catalog.</value>
+        /// <value>Meta product SET ID from GET /v1/ads/catalogs/{catalogId}/product-sets. Zernio checks that the token can read the set and its product_catalog before creation. A catalog ID or inaccessible set returns a precise 400 naming promotedObject.productSetId. A mismatch with productCatalogId names promotedObject.productCatalogId.</value>
         [DataMember(Name = "productSetId", EmitDefaultValue = false)]
         public string ProductSetId { get; set; }
 

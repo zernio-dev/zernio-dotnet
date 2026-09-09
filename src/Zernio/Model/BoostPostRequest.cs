@@ -34,6 +34,25 @@ namespace Zernio.Model
     public partial class BoostPostRequest : IValidatableObject
     {
         /// <summary>
+        /// Defines Inner
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InnerEnum
+        {
+            /// <summary>
+            /// Enum OPTIN for value: OPT_IN
+            /// </summary>
+            [EnumMember(Value = "OPT_IN")]
+            OPTIN = 1,
+
+            /// <summary>
+            /// Enum OPTOUT for value: OPT_OUT
+            /// </summary>
+            [EnumMember(Value = "OPT_OUT")]
+            OPTOUT = 2
+        }
+
+        /// <summary>
         /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
         /// </summary>
         /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
@@ -227,6 +246,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BoostPostRequest" /> class.
         /// </summary>
+        /// <param name="creativeFeatures">Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta..</param>
         /// <param name="postId">Zernio post ID (provide this or platformPostId).</param>
         /// <param name="platformPostId">Platform post ID (alternative to postId).</param>
         /// <param name="accountId">Account ID (required).</param>
@@ -259,7 +279,7 @@ namespace Zernio.Model
         /// <param name="leadGenFormId">Lead Gen form ID to attach to the boosted ad&#39;s creative. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;. On Meta this is the leadgen_forms ID (create one via POST /v1/ads/lead-forms). On LinkedIn this is the adForm ID (create one via POST /v1/ads/lead-forms with a LinkedIn account); the creative&#39;s &#x60;leadgenCallToAction.destination&#x60; is set to &#x60;urn:li:adForm:{id}&#x60;. Ignored for other goals..</param>
         /// <param name="status">Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default); PAUSED creates them paused so you can review before they spend. On Meta a new campaign stays paused until explicitly activated; an attached ad is itself paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each)..</param>
         /// <param name="optimizationGoal">Meta only. Explicit ad-set &#x60;optimization_goal&#x60; override. When omitted, defaults to the value derived from &#x60;goal&#x60;. Messaging boosts always use CONVERSATIONS and reject another optimizationGoal. Otherwise the value must be compatible with the objective Meta derives from &#x60;goal&#x60;, not with the objective used by &#x60;POST /v1/ads/create&#x60; for the same &#x60;goal&#x60; name: boost maps &#x60;goal: \&quot;engagement\&quot;&#x60; to objective &#x60;OUTCOME_AWARENESS&#x60;, which accepts &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;AD_RECALL_LIFT&#x60;, or THRUPLAY-class values, and rejects &#x60;POST_ENGAGEMENT&#x60; (that value is only valid under &#x60;OUTCOME_ENGAGEMENT&#x60;, which create uses for the same goal name). .</param>
-        public BoostPostRequest(string postId = default, string platformPostId = default, string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, string adSetId = default, BoostPostRequestBudget budget = default, string instagramAccountId = default, DestinationTypeEnum? destinationType = default, string whatsappPhoneNumber = default, string currency = default, BoostPostRequestSchedule schedule = default, BoostPostRequestTargeting targeting = default, Dictionary<string, Object> rawTargeting = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, BoostPostRequestPlatformSpecificData platformSpecificData = default, BoostPostRequestTracking tracking = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, string linkUrl = default, string callToAction = default, string sparkAuthCode = default, string dsaBeneficiary = default, string dsaPayor = default, string leadGenFormId = default, StatusEnum? status = default, string optimizationGoal = default)
+        public BoostPostRequest(Dictionary<string, InnerEnum> creativeFeatures = default, string postId = default, string platformPostId = default, string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, string adSetId = default, BoostPostRequestBudget budget = default, string instagramAccountId = default, DestinationTypeEnum? destinationType = default, string whatsappPhoneNumber = default, string currency = default, BoostPostRequestSchedule schedule = default, BoostPostRequestTargeting targeting = default, Dictionary<string, Object> rawTargeting = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, BoostPostRequestPlatformSpecificData platformSpecificData = default, BoostPostRequestTracking tracking = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, string linkUrl = default, string callToAction = default, string sparkAuthCode = default, string dsaBeneficiary = default, string dsaPayor = default, string leadGenFormId = default, StatusEnum? status = default, string optimizationGoal = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -280,6 +300,7 @@ namespace Zernio.Model
             }
             this.Name = name;
             this.Goal = goal;
+            this.CreativeFeatures = creativeFeatures;
             this.PostId = postId;
             this.PlatformPostId = platformPostId;
             this.AdSetId = adSetId;
@@ -309,6 +330,16 @@ namespace Zernio.Model
             this.Status = status;
             this.OptimizationGoal = optimizationGoal;
         }
+
+        /// <summary>
+        /// Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+        /// </summary>
+        /// <value>Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.</value>
+        /*
+        <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
+        */
+        [DataMember(Name = "creativeFeatures", EmitDefaultValue = false)]
+        public Dictionary<string, BoostPostRequest.InnerEnum> CreativeFeatures { get; set; }
 
         /// <summary>
         /// Zernio post ID (provide this or platformPostId)
@@ -513,6 +544,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BoostPostRequest {\n");
+            sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  PostId: ").Append(PostId).Append("\n");
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
