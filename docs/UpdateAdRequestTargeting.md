@@ -1,5 +1,5 @@
 # Zernio.Model.UpdateAdRequestTargeting
-Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (geo countries). Pinterest / X return 501. 
+Meta + TikTok (demographics/interests), Google (keyword and device bid adjustment edits only), and LinkedIn (countries or regions required). Pinterest / X return 501. 
 
 ## Properties
 

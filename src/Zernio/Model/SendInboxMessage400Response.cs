@@ -34,9 +34,36 @@ namespace Zernio.Model
     public partial class SendInboxMessage400Response : IValidatableObject
     {
         /// <summary>
-        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
+        /// Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures.
         /// </summary>
-        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.</value>
+        /// <value>Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum PlatformError for value: platform_error
+            /// </summary>
+            [EnumMember(Value = "platform_error")]
+            PlatformError = 1,
+
+            /// <summary>
+            /// Enum InvalidRequestError for value: invalid_request_error
+            /// </summary>
+            [EnumMember(Value = "invalid_request_error")]
+            InvalidRequestError = 2
+        }
+
+
+        /// <summary>
+        /// Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures.
+        /// </summary>
+        /// <value>Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
+        /// <summary>
+        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError).
+        /// </summary>
+        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CodeEnum
         {
@@ -68,26 +95,36 @@ namespace Zernio.Model
             /// Enum DIRECTSENDBLOCKED for value: DIRECT_SEND_BLOCKED
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_BLOCKED")]
-            DIRECTSENDBLOCKED = 5
+            DIRECTSENDBLOCKED = 5,
+
+            /// <summary>
+            /// Enum PlatformApiError for value: platform_api_error
+            /// </summary>
+            [EnumMember(Value = "platform_api_error")]
+            PlatformApiError = 6
         }
 
 
         /// <summary>
-        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.
+        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError).
         /// </summary>
-        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own.</value>
+        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError).</value>
         [DataMember(Name = "code", EmitDefaultValue = false)]
         public CodeEnum? Code { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessage400Response" /> class.
         /// </summary>
         /// <param name="error">error.</param>
-        /// <param name="code">Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own..</param>
+        /// <param name="type">Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures..</param>
+        /// <param name="code">Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError)..</param>
+        /// <param name="platform">Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook)..</param>
         /// <param name="platformError">platformError.</param>
-        public SendInboxMessage400Response(string error = default, CodeEnum? code = default, SendInboxMessage400ResponsePlatformError platformError = default)
+        public SendInboxMessage400Response(string error = default, TypeEnum? type = default, CodeEnum? code = default, string platform = default, SendInboxMessage400ResponsePlatformError platformError = default)
         {
             this.Error = error;
+            this.Type = type;
             this.Code = code;
+            this.Platform = platform;
             this.PlatformError = platformError;
         }
 
@@ -96,6 +133,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
+
+        /// <summary>
+        /// Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook).
+        /// </summary>
+        /// <value>Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook).</value>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public string Platform { get; set; }
 
         /// <summary>
         /// Gets or Sets PlatformError
@@ -112,7 +156,9 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessage400Response {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformError: ").Append(PlatformError).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

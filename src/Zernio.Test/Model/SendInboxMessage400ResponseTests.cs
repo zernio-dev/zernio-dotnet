@@ -65,12 +65,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Type'
+        /// </summary>
+        [Fact]
+        public void TypeTest()
+        {
+            // TODO unit test for the property 'Type'
+        }
+
+        /// <summary>
         /// Test the property 'Code'
         /// </summary>
         [Fact]
         public void CodeTest()
         {
             // TODO unit test for the property 'Code'
+        }
+
+        /// <summary>
+        /// Test the property 'Platform'
+        /// </summary>
+        [Fact]
+        public void PlatformTest()
+        {
+            // TODO unit test for the property 'Platform'
         }
 
         /// <summary>
