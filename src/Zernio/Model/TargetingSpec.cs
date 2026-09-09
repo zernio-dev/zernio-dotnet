@@ -129,7 +129,7 @@ namespace Zernio.Model
         /// <param name="companySizes">LinkedIn B2B only..</param>
         /// <param name="seniorities">LinkedIn B2B only..</param>
         /// <param name="jobFunctions">LinkedIn B2B only..</param>
-        /// <param name="audienceInclude">Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400)..</param>
+        /// <param name="audienceInclude">Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400)..</param>
         /// <param name="audienceExclude">Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400)..</param>
         public TargetingSpec(List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
         {
@@ -291,9 +291,9 @@ namespace Zernio.Model
         public List<string> JobFunctions { get; set; }
 
         /// <summary>
-        /// Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400).
+        /// Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400).
         /// </summary>
-        /// <value>Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (bare, urn:li:adSegment or urn:li:dmpSegment forms accepted), Google user list ids, X custom audience ids). Not supported on OpenAI (400).</value>
+        /// <value>Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400).</value>
         [DataMember(Name = "audienceInclude", EmitDefaultValue = false)]
         public List<string> AudienceInclude { get; set; }
 
