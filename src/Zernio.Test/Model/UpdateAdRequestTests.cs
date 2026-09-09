@@ -56,6 +56,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Headlines'
+        /// </summary>
+        [Fact]
+        public void HeadlinesTest()
+        {
+            // TODO unit test for the property 'Headlines'
+        }
+
+        /// <summary>
+        /// Test the property 'Descriptions'
+        /// </summary>
+        [Fact]
+        public void DescriptionsTest()
+        {
+            // TODO unit test for the property 'Descriptions'
+        }
+
+        /// <summary>
+        /// Test the property 'FinalUrls'
+        /// </summary>
+        [Fact]
+        public void FinalUrlsTest()
+        {
+            // TODO unit test for the property 'FinalUrls'
+        }
+
+        /// <summary>
         /// Test the property 'Status'
         /// </summary>
         [Fact]

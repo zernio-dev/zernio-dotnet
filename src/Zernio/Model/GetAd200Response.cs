@@ -37,9 +37,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAd200Response" /> class.
         /// </summary>
         /// <param name="ad">ad.</param>
-        public GetAd200Response(Ad ad = default)
+        /// <param name="cachedAt">Google RSA details cache timestamp..</param>
+        /// <param name="stale">Whether Google RSA details use the last successful cached response..</param>
+        public GetAd200Response(Ad ad = default, DateTime? cachedAt = default, bool stale = default)
         {
             this.Ad = ad;
+            this.CachedAt = cachedAt;
+            this.Stale = stale;
         }
 
         /// <summary>
@@ -47,6 +51,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "ad", EmitDefaultValue = false)]
         public Ad Ad { get; set; }
+
+        /// <summary>
+        /// Google RSA details cache timestamp.
+        /// </summary>
+        /// <value>Google RSA details cache timestamp.</value>
+        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
+        public DateTime? CachedAt { get; set; }
+
+        /// <summary>
+        /// Whether Google RSA details use the last successful cached response.
+        /// </summary>
+        /// <value>Whether Google RSA details use the last successful cached response.</value>
+        [DataMember(Name = "stale", EmitDefaultValue = true)]
+        public bool Stale { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +75,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetAd200Response {\n");
             sb.Append("  Ad: ").Append(Ad).Append("\n");
+            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
+            sb.Append("  Stale: ").Append(Stale).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,51 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// AttachCampaignAssetsRequestSitelinksInner
+    /// AddAccountSitelinks201ResponseSitelinksInner
     /// </summary>
-    [DataContract(Name = "attachCampaignAssets_request_sitelinks_inner")]
-    public partial class AttachCampaignAssetsRequestSitelinksInner : IValidatableObject
+    [DataContract(Name = "addAccountSitelinks_201_response_sitelinks_inner")]
+    public partial class AddAccountSitelinks201ResponseSitelinksInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequestSitelinksInner" /> class.
+        /// Initializes a new instance of the <see cref="AddAccountSitelinks201ResponseSitelinksInner" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AttachCampaignAssetsRequestSitelinksInner() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequestSitelinksInner" /> class.
-        /// </summary>
-        /// <param name="text">text (required).</param>
-        /// <param name="linkUrl">linkUrl (required).</param>
+        /// <param name="assetId">assetId.</param>
+        /// <param name="text">text.</param>
+        /// <param name="linkUrl">linkUrl.</param>
         /// <param name="description1">description1.</param>
         /// <param name="description2">description2.</param>
-        public AttachCampaignAssetsRequestSitelinksInner(string text = default, string linkUrl = default, string description1 = default, string description2 = default)
+        public AddAccountSitelinks201ResponseSitelinksInner(string assetId = default, string text = default, string linkUrl = default, string description1 = default, string description2 = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for AttachCampaignAssetsRequestSitelinksInner and cannot be null");
-            }
+            this.AssetId = assetId;
             this.Text = text;
-            // to ensure "linkUrl" is required (not null)
-            if (linkUrl == null)
-            {
-                throw new ArgumentNullException("linkUrl is a required property for AttachCampaignAssetsRequestSitelinksInner and cannot be null");
-            }
             this.LinkUrl = linkUrl;
             this.Description1 = description1;
             this.Description2 = description2;
         }
 
         /// <summary>
+        /// Gets or Sets AssetId
+        /// </summary>
+        [DataMember(Name = "assetId", EmitDefaultValue = false)]
+        public string AssetId { get; set; }
+
+        /// <summary>
         /// Gets or Sets Text
         /// </summary>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
         /// <summary>
         /// Gets or Sets LinkUrl
         /// </summary>
-        [DataMember(Name = "linkUrl", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "linkUrl", EmitDefaultValue = false)]
         public string LinkUrl { get; set; }
 
         /// <summary>
@@ -94,7 +87,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AttachCampaignAssetsRequestSitelinksInner {\n");
+            sb.Append("class AddAccountSitelinks201ResponseSitelinksInner {\n");
+            sb.Append("  AssetId: ").Append(AssetId).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
             sb.Append("  Description1: ").Append(Description1).Append("\n");

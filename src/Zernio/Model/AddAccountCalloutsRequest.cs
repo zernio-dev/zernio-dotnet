@@ -41,9 +41,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AddAccountCalloutsRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio SocialAccount id owning the Google Ads connection. (required).</param>
-        /// <param name="customerId">Numeric Google Ads customer id. Only required when the connection has more than one..</param>
-        /// <param name="callouts">Callout text, 1-25 characters each; up to 20 per request (Google&#39;s CalloutAsset limits). (required).</param>
+        /// <param name="accountId">Zernio Google Ads connection id. (required).</param>
+        /// <param name="customerId">Google customer id without dashes. Required when the connection has multiple customers..</param>
+        /// <param name="callouts">callouts (required).</param>
         public AddAccountCalloutsRequest(string accountId = default, string customerId = default, List<string> callouts = default)
         {
             // to ensure "accountId" is required (not null)
@@ -62,23 +62,22 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio SocialAccount id owning the Google Ads connection.
+        /// Zernio Google Ads connection id.
         /// </summary>
-        /// <value>Zernio SocialAccount id owning the Google Ads connection.</value>
+        /// <value>Zernio Google Ads connection id.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id. Only required when the connection has more than one.
+        /// Google customer id without dashes. Required when the connection has multiple customers.
         /// </summary>
-        /// <value>Numeric Google Ads customer id. Only required when the connection has more than one.</value>
+        /// <value>Google customer id without dashes. Required when the connection has multiple customers.</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
         public string CustomerId { get; set; }
 
         /// <summary>
-        /// Callout text, 1-25 characters each; up to 20 per request (Google&#39;s CalloutAsset limits).
+        /// Gets or Sets Callouts
         /// </summary>
-        /// <value>Callout text, 1-25 characters each; up to 20 per request (Google&#39;s CalloutAsset limits).</value>
         [DataMember(Name = "callouts", IsRequired = true, EmitDefaultValue = true)]
         public List<string> Callouts { get; set; }
 
@@ -113,6 +112,24 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.AccountId != null) {
+                // AccountId (string) pattern
+                Regex regexAccountId = new Regex(@"^[a-fA-F0-9]{24}$", RegexOptions.CultureInvariant);
+                if (!regexAccountId.Match(this.AccountId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
+                }
+            }
+
+            if (this.CustomerId != null) {
+                // CustomerId (string) pattern
+                Regex regexCustomerId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexCustomerId.Match(this.CustomerId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerId, must match a pattern of " + regexCustomerId, new [] { "CustomerId" });
+                }
+            }
+
             yield break;
         }
     }

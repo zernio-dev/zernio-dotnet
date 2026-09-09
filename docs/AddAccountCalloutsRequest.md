@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** | Zernio SocialAccount id owning the Google Ads connection. | 
-**CustomerId** | **string** | Numeric Google Ads customer id. Only required when the connection has more than one. | [optional] 
-**Callouts** | **List&lt;string&gt;** | Callout text, 1-25 characters each; up to 20 per request (Google&#39;s CalloutAsset limits). | 
+**AccountId** | **string** | Zernio Google Ads connection id. | 
+**CustomerId** | **string** | Google customer id without dashes. Required when the connection has multiple customers. | [optional] 
+**Callouts** | **List&lt;string&gt;** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

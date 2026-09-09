@@ -31277,6 +31277,11 @@ paths:
     get:
       description: |
         Returns an ad with its creative, targeting, status, and performance metrics.
+        Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls,
+        preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read.
+        RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel
+        return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned
+        with HTTP 200 and without cache metadata.
 
         The `{adId}` path segment accepts any identifier dialect Zernio indexes for the ad:
         - the Zernio internal `_id` (24-char hex)
@@ -31316,6 +31321,23 @@ paths:
         "200":
           content:
             application/json:
+              example:
+                ad:
+                  platform: google
+                  creative:
+                    headlines:
+                    - text: Social Media API
+                      pinnedField: HEADLINE_1
+                    - text: Schedule Your Posts
+                    - text: Build With Zernio
+                    descriptions:
+                    - text: Connect social accounts with one API.
+                      pinnedField: DESCRIPTION_1
+                    - text: Build social publishing into your application.
+                    finalUrls:
+                    - https://zernio.com
+                cachedAt: null
+                stale: false
               schema:
                 $ref: "#/components/schemas/getAd_200_response"
           description: Ad details
@@ -31352,7 +31374,11 @@ paths:
           Each list you send becomes the FULL new set of its kind (criteria not in the
           list are removed); a kind left out is untouched. Any other `targeting` field
           returns 400: Google cannot mutate broad targeting post-create without recreating
-          the campaign. `creative` returns 501.
+          the campaign. RSA text updates use top-level `headlines`, `descriptions` and `finalUrls`.
+          Each supplied array replaces the full list; omit a field to preserve it. Use 3-15 headlines
+          (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;
+          omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.
+          The legacy creative fields remain unsupported for Google.
         - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),
           the B2B facets, and audience segments; applied to the LinkedIn Campaign via
           PARTIAL_UPDATE, and REPLACES the campaign's entire targetingCriteria, not a merge),
@@ -31399,11 +31425,29 @@ paths:
       requestBody:
         content:
           application/json:
-            example:
-              creative:
-                promotion: null
-                creativeFeatures:
-                  auto_promotion_tag: OPT_OUT
+            examples:
+              googleRsa:
+                summary: Replace and pin Google RSA text.
+                value:
+                  headlines:
+                  - text: Social Media API
+                    pinnedField: HEADLINE_1
+                  - text: Schedule Your Posts
+                  - text: Build With Zernio
+                  descriptions:
+                  - text: Connect social accounts and schedule posts with the Zernio
+                      API.
+                    pinnedField: DESCRIPTION_1
+                  - text: Build social publishing into your application.
+                  finalUrls:
+                  - https://zernio.com
+              metaPromotion:
+                summary: Remove a Meta promotion.
+                value:
+                  creative:
+                    promotion: null
+                    creativeFeatures:
+                      auto_promotion_tag: OPT_OUT
             schema:
               $ref: "#/components/schemas/updateAd_request"
         required: true
@@ -31507,29 +31551,154 @@ paths:
       - pinterest
       - x
   /v1/ads/campaigns/{campaignId}/assets:
-    post:
-      description: |-
-        Attach sitelinks, callouts and/or structured snippets to an already-existing Google
-        Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding
-        the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.
-
-        Google-only. Other platforms have no equivalent extension surface and return 501.
-
-        Approval status is Google-async; poll `asset.policy_summary` after review. Assets
-        stay in the account library even if the campaign is later deleted.
-      operationId: attachCampaignAssets
+    delete:
+      description: Removes the specified attachments only. Google assets cannot be
+        deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+      operationId: removeCampaignAssets
       parameters:
-      - description: Numeric Google platform campaign id.
+      - description: Numeric Google platform id.
         explode: false
         in: path
         name: campaignId
         required: true
         schema:
+          pattern: ^\d+$
           type: string
         style: simple
       requestBody:
         content:
           application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              assetResourceNames:
+              - customers/1234567890/assets/123
+              campaignAssetResourceNames:
+              - customers/1234567890/campaignAssets/456~123~CALLOUT
+            schema:
+              $ref: "#/components/schemas/removeCampaignAssets_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeCampaignAssets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Remove campaign assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    get:
+      description: Lists directly attached Google assets. Fresh reads are cached for
+        10 minutes; exhausted quota may return the last successful read with stale=true.
+        Inherited assets are not included.
+      operationId: listCampaignAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignAssets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: List campaign assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    post:
+      description: "Creates and attaches sitelinks, callouts and structured snippets\
+        \ in one Google mutation."
+      operationId: attachCampaignAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              sitelinks:
+              - text: Pricing
+                linkUrl: https://zernio.com/pricing
+              - text: Documentation
+                linkUrl: https://zernio.com/docs
+              callouts:
+              - Fast setup
+              structuredSnippets:
+              - header: Types
+                values:
+                - Scheduling
+                - Analytics
+                - Messaging
             schema:
               $ref: "#/components/schemas/attachCampaignAssets_request"
         required: true
@@ -31539,25 +31708,313 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/attachCampaignAssets_201_response"
-          description: Assets attached
+          description: Assets created and attached.
         "400":
-          description: "Invalid input, Google rejected the assets, an unknown customerId\
-            \ (not one of this connection's Google Ads accounts), or a required customerId\
-            \ missing when the connection has multiple Google Ads accounts"
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
-        "422":
-          description: No Google Ads customer accounts on this connection. Reconnect
-            Google Ads.
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
         "501":
-          description: Only supported on Google Ads
+          description: Only supported on Google Ads.
       security:
       - bearerAuth: []
-      summary: Attach extension assets to a Google Search campaign
+      summary: Attach campaign assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    put:
+      description: "Edits existing Google assets in place. Send updates with assetResourceName\
+        \ and the fields to change. An asset is shared: changes affect every attachment\
+        \ using it. Omitted fields stay unchanged. The operation consumes the Google\
+        \ operations budget and invalidates affected cached lists."
+      operationId: updateCampaignAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              updates:
+              - assetResourceName: customers/1234567890/assets/123
+                calloutAsset:
+                  calloutText: Simple integration
+            schema:
+              $ref: "#/components/schemas/updateCampaignAssets_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCampaignAssets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Update campaign assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+  /v1/ads/ad-sets/{adSetId}/assets:
+    delete:
+      description: Removes the specified attachments only. Google assets cannot be
+        deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+      operationId: removeAdGroupAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              assetResourceNames:
+              - customers/1234567890/assets/123
+              adGroupAssetResourceNames:
+              - customers/1234567890/adGroupAssets/456~123~CALLOUT
+            schema:
+              $ref: "#/components/schemas/removeAdGroupAssets_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeCampaignAssets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Remove ad-group assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    get:
+      description: Lists directly attached Google assets. Fresh reads are cached for
+        10 minutes; exhausted quota may return the last successful read with stale=true.
+        Inherited assets are not included.
+      operationId: listAdGroupAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdGroupAssets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: List ad-group assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    post:
+      description: "Creates and attaches sitelinks, callouts and structured snippets\
+        \ in one Google mutation."
+      operationId: attachAdGroupAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              sitelinks:
+              - text: Pricing
+                linkUrl: https://zernio.com/pricing
+              - text: Documentation
+                linkUrl: https://zernio.com/docs
+              callouts:
+              - Fast setup
+              structuredSnippets:
+              - header: Types
+                values:
+                - Scheduling
+                - Analytics
+                - Messaging
+            schema:
+              $ref: "#/components/schemas/attachCampaignAssets_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/attachAdGroupAssets_201_response"
+          description: Assets created and attached.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Attach ad-group assets
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    put:
+      description: "Edits existing Google assets in place. Send updates with assetResourceName\
+        \ and the fields to change. An asset is shared: changes affect every attachment\
+        \ using it. Omitted fields stay unchanged. The operation consumes the Google\
+        \ operations budget and invalidates affected cached lists."
+      operationId: updateAdGroupAssets
+      parameters:
+      - description: Numeric Google platform id.
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              updates:
+              - assetResourceName: customers/1234567890/assets/123
+                calloutAsset:
+                  calloutText: Simple integration
+            schema:
+              $ref: "#/components/schemas/updateCampaignAssets_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCampaignAssets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Update ad-group assets
       tags:
       - Ad Campaigns
       x-resource-group: ads
@@ -34864,13 +35321,16 @@ paths:
       - google
   /v1/ads/accounts/callouts:
     delete:
-      description: |-
-        Removes the `customerAsset` link (`customers/{cid}/customerAssets/{assetId}~CALLOUT`).
-        Google only; every other platform returns 501.
+      description: Removes the customer_asset attachment only. The underlying shared
+        asset and its campaign or ad-group attachments remain.
       operationId: removeAccountCallout
       requestBody:
         content:
           application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              assetId: "123"
             schema:
               $ref: "#/components/schemas/removeAccountCallout_request"
         required: true
@@ -34880,53 +35340,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/removeAccountCallout_200_response"
-          description: Callout removed
+          description: Assets returned.
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required (Ads add-on on legacy plans, included\
-            \ on usage-based plans)."
+          description: Ads access is required.
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
         "501":
-          description: Only supported on Google Ads
+          description: Only supported on Google Ads.
       security:
       - bearerAuth: []
-      summary: Remove an account-level callout extension
+      summary: Remove account callout
       tags:
       - Ad Accounts
       x-resource-group: ads
       x-platforms:
       - google
     get:
-      description: |-
-        Google Ads compliance row C.75: callout assets linked at the CUSTOMER
-        level via `customer_asset` (not a campaign or ad group), so they serve
-        fleet-wide across the account. Google only; every other platform
-        returns 501. Cached for the quota window (10 minutes fresh, up to 7
-        days last-good), and gated by the shared Google Ads operations budget
-        on a cache miss. The response carries `cachedAt` and `stale`, set when
-        a quota-exhausted call falls back to the last-good copy instead of a
-        live read.
+      description: Lists directly attached Google assets. Fresh reads are cached for
+        10 minutes; exhausted quota may return the last successful read with stale=true.
+        Inherited assets are not included. Preserves Google RMF C.75 account-level
+        callouts.
       operationId: listAccountCallouts
       parameters:
-      - description: Google ads SocialAccount id.
-        explode: true
+      - explode: true
         in: query
         name: accountId
         required: true
         schema:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
           type: string
         style: form
-      - description: Numeric Google Ads customer id (no dashes). Defaults to the account's
-          connected customer.
-        explode: true
+      - explode: true
         in: query
         name: customerId
         required: false
         schema:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
           type: string
         style: form
       responses:
@@ -34935,37 +35393,39 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/listAccountCallouts_200_response"
-          description: Account-level callouts
+          description: Assets returned.
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required (Ads add-on on legacy plans, included\
-            \ on usage-based plans)."
+          description: Ads access is required.
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
-          description: Google Ads operations budget exhausted; retry later
+          description: Google Ads operations budget or platform quota exhausted.
         "501":
-          description: Only available on Google Ads accounts
+          description: Only supported on Google Ads.
       security:
       - bearerAuth: []
-      summary: List account-level callout extensions
+      summary: List account callouts
       tags:
       - Ad Accounts
       x-resource-group: ads
       x-platforms:
       - google
     post:
-      description: |-
-        Creates one asset plus one `customerAsset` link (field type CALLOUT)
-        per callout text, in a single mutate. Google only; every other
-        platform returns 501.
+      description: Creates assets and customer_asset links for this Google customer.
+        Links apply at account level.
       operationId: addAccountCallouts
       requestBody:
         content:
           application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              callouts:
+              - Fast setup
             schema:
               $ref: "#/components/schemas/addAccountCallouts_request"
         required: true
@@ -34975,21 +35435,443 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/addAccountCallouts_201_response"
-          description: Callouts created
+          description: Assets created and attached.
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required (Ads add-on on legacy plans, included\
-            \ on usage-based plans)."
+          description: Ads access is required.
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
         "501":
-          description: Only supported on Google Ads
+          description: Only supported on Google Ads.
       security:
       - bearerAuth: []
-      summary: Add account-level callout extensions
+      summary: Add account callouts
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    put:
+      description: "Edits existing Google assets in place. Send updates with assetResourceName\
+        \ and the fields to change. An asset is shared: changes affect every attachment\
+        \ using it. Omitted fields stay unchanged. The operation consumes the Google\
+        \ operations budget and invalidates affected cached lists."
+      operationId: updateAccountCallouts
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              updates:
+              - assetResourceName: customers/1234567890/assets/123
+                calloutAsset:
+                  calloutText: Simple integration
+            schema:
+              $ref: "#/components/schemas/updateAccountCallouts_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAccountCallouts_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Update account callouts
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+  /v1/ads/accounts/sitelinks:
+    delete:
+      description: Removes the customer_asset attachment only. The underlying shared
+        asset and its campaign or ad-group attachments remain.
+      operationId: removeAccountSitelink
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              assetId: "123"
+            schema:
+              $ref: "#/components/schemas/removeAccountCallout_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeAccountCallout_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Remove account sitelink
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    get:
+      description: Lists directly attached Google assets. Fresh reads are cached for
+        10 minutes; exhausted quota may return the last successful read with stale=true.
+        Inherited assets are not included.
+      operationId: listAccountSitelinks
+      parameters:
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAccountSitelinks_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: List account sitelinks
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    post:
+      description: Creates assets and customer_asset links for this Google customer.
+        Links apply at account level.
+      operationId: addAccountSitelinks
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              sitelinks:
+              - text: Pricing
+                linkUrl: https://zernio.com/pricing
+            schema:
+              $ref: "#/components/schemas/addAccountSitelinks_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addAccountSitelinks_201_response"
+          description: Assets created and attached.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Add account sitelinks
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    put:
+      description: "Edits existing Google assets in place. Send updates with assetResourceName\
+        \ and the fields to change. An asset is shared: changes affect every attachment\
+        \ using it. Omitted fields stay unchanged. The operation consumes the Google\
+        \ operations budget and invalidates affected cached lists."
+      operationId: updateAccountSitelinks
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              updates:
+              - assetResourceName: customers/1234567890/assets/123
+                sitelinkAsset:
+                  linkText: Explore pricing
+                finalUrls:
+                - https://zernio.com/pricing
+            schema:
+              $ref: "#/components/schemas/updateAccountSitelinks_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAccountCallouts_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Update account sitelinks
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+  /v1/ads/accounts/structured-snippets:
+    delete:
+      description: Removes the customer_asset attachment only. The underlying shared
+        asset and its campaign or ad-group attachments remain.
+      operationId: removeAccountStructuredSnippet
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              assetId: "123"
+            schema:
+              $ref: "#/components/schemas/removeAccountCallout_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeAccountCallout_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Remove account snippet
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    get:
+      description: Lists directly attached Google assets. Fresh reads are cached for
+        10 minutes; exhausted quota may return the last successful read with stale=true.
+        Inherited assets are not included.
+      operationId: listAccountStructuredSnippets
+      parameters:
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAccountStructuredSnippets_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: List account snippets
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    post:
+      description: Creates assets and customer_asset links for this Google customer.
+        Links apply at account level.
+      operationId: addAccountStructuredSnippets
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              structuredSnippets:
+              - header: Types
+                values:
+                - Scheduling
+                - Analytics
+                - Messaging
+            schema:
+              $ref: "#/components/schemas/addAccountStructuredSnippets_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addAccountStructuredSnippets_201_response"
+          description: Assets created and attached.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Add account snippets
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+    put:
+      description: "Edits existing Google assets in place. Send updates with assetResourceName\
+        \ and the fields to change. An asset is shared: changes affect every attachment\
+        \ using it. Omitted fields stay unchanged. The operation consumes the Google\
+        \ operations budget and invalidates affected cached lists."
+      operationId: updateAccountStructuredSnippets
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              customerId: "1234567890"
+              updates:
+              - assetResourceName: customers/1234567890/assets/123
+                structuredSnippetAsset:
+                  header: Types
+                  values:
+                  - Scheduling
+                  - Reporting
+                  - Messaging
+            schema:
+              $ref: "#/components/schemas/updateAccountStructuredSnippets_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAccountCallouts_200_response"
+          description: Assets returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access is required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google Ads operations budget or platform quota exhausted.
+        "501":
+          description: Only supported on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Update account snippets
       tags:
       - Ad Accounts
       x-resource-group: ads
@@ -52318,6 +53200,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -52325,6 +53216,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -52335,6 +53229,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -52390,6 +53295,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -52397,6 +53311,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -52407,6 +53324,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -52660,6 +53588,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -52667,6 +53604,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -52677,6 +53617,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -52732,6 +53683,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -52739,6 +53699,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -52749,6 +53712,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -53023,6 +53997,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -53030,6 +54013,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -53040,6 +54026,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -53095,6 +54092,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -53102,6 +54108,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -53112,6 +54121,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -53618,6 +54638,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -53625,6 +54654,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -53635,6 +54667,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -53690,6 +54733,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -53697,6 +54749,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -53707,6 +54762,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -53981,6 +55047,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -53988,6 +55063,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -53998,6 +55076,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -54053,6 +55142,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -54060,6 +55158,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -54070,6 +55171,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -56219,6 +57331,115 @@ components:
       - unavailable
       example: not_returned
       type: string
+    GoogleSitelink:
+      properties:
+        text:
+          maxLength: 25
+          minLength: 1
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        description1:
+          maxLength: 35
+          minLength: 1
+          type: string
+        description2:
+          maxLength: 35
+          minLength: 1
+          type: string
+      required:
+      - linkUrl
+      - text
+    GoogleStructuredSnippet:
+      properties:
+        header:
+          enum:
+          - Amenities
+          - Brands
+          - Courses
+          - Degree programs
+          - Destinations
+          - Featured hotels
+          - Insurance coverage
+          - Models
+          - Neighborhoods
+          - Service catalog
+          - Shows
+          - Styles
+          - Types
+          type: string
+        values:
+          items:
+            maxLength: 25
+            minLength: 1
+            type: string
+          maxItems: 10
+          minItems: 3
+          type: array
+      required:
+      - header
+      - values
+    GoogleAssetUpdate:
+      description: Supply fields for exactly one asset type per update. finalUrls
+        may accompany sitelinkAsset. Shared asset edits affect every attachment using
+        the asset.
+      properties:
+        assetResourceName:
+          description: Asset resource name returned by a list operation. Must belong
+            to the selected customer.
+          pattern: ^customers/\d+/assets/\d+$
+          type: string
+        sitelinkAsset:
+          $ref: "#/components/schemas/updateAccountSitelinks_request_updates_inner_sitelinkAsset"
+        finalUrls:
+          items:
+            format: uri
+            type: string
+          minItems: 1
+          type: array
+        calloutAsset:
+          $ref: "#/components/schemas/updateAccountCallouts_request_updates_inner_calloutAsset"
+        structuredSnippetAsset:
+          $ref: "#/components/schemas/GoogleStructuredSnippet"
+      required:
+      - assetResourceName
+    GoogleRsaHeadline:
+      example:
+        text: text
+        pinnedField: HEADLINE_1
+      properties:
+        text:
+          maxLength: 30
+          minLength: 1
+          type: string
+        pinnedField:
+          description: Optional fixed headline position. Omit to leave the asset unpinned.
+          enum:
+          - HEADLINE_1
+          - HEADLINE_2
+          - HEADLINE_3
+          type: string
+      required:
+      - text
+    GoogleRsaDescription:
+      example:
+        text: text
+        pinnedField: DESCRIPTION_1
+      properties:
+        text:
+          maxLength: 90
+          minLength: 1
+          type: string
+        pinnedField:
+          description: Optional fixed description position. Omit to leave the asset
+            unpinned.
+          enum:
+          - DESCRIPTION_1
+          - DESCRIPTION_2
+          type: string
+      required:
+      - text
     Ad:
       example:
         bidStrategy: ""
@@ -56257,6 +57478,15 @@ components:
           whatsappPhoneNumber: "+12025550123"
           videoId: videoId
           body: body
+          descriptions:
+          - text: text
+            pinnedField: DESCRIPTION_1
+          - text: text
+            pinnedField: DESCRIPTION_1
+          - text: text
+            pinnedField: DESCRIPTION_1
+          - text: text
+            pinnedField: DESCRIPTION_1
           effectiveObjectStoryId: effectiveObjectStoryId
           creativeId: creativeId
           promotionStatus: not_returned
@@ -56264,6 +57494,9 @@ components:
           videoUrl: videoUrl
           objectStoryId: objectStoryId
           pinterestDescription: pinterestDescription
+          finalUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
           imageUrl: imageUrl
           linkUrl: linkUrl
           googleHeadline: googleHeadline
@@ -56274,6 +57507,17 @@ components:
           pinterestTitle: pinterestTitle
           pageId: pageId
           googleDescription: googleDescription
+          headlines:
+          - text: text
+            pinnedField: HEADLINE_1
+          - text: text
+            pinnedField: HEADLINE_1
+          - text: text
+            pinnedField: HEADLINE_1
+          - text: text
+            pinnedField: HEADLINE_1
+          - text: text
+            pinnedField: HEADLINE_1
           isServing: true
           mediaUrls:
           - mediaUrls
@@ -56581,6 +57825,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -56588,6 +57841,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -56598,6 +57854,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -56653,6 +57920,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -56660,6 +57936,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -56670,6 +57949,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -57198,6 +58488,15 @@ components:
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               body: body
+              descriptions:
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               promotionStatus: not_returned
@@ -57205,6 +58504,9 @@ components:
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
+              finalUrls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
@@ -57215,6 +58517,17 @@ components:
               pinterestTitle: pinterestTitle
               pageId: pageId
               googleDescription: googleDescription
+              headlines:
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
               isServing: true
               mediaUrls:
               - mediaUrls
@@ -57270,6 +58583,15 @@ components:
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               body: body
+              descriptions:
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               promotionStatus: not_returned
@@ -57277,6 +58599,9 @@ components:
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
+              finalUrls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
@@ -57287,6 +58612,17 @@ components:
               pinterestTitle: pinterestTitle
               pageId: pageId
               googleDescription: googleDescription
+              headlines:
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
               isServing: true
               mediaUrls:
               - mediaUrls
@@ -57561,6 +58897,15 @@ components:
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               body: body
+              descriptions:
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               promotionStatus: not_returned
@@ -57568,6 +58913,9 @@ components:
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
+              finalUrls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
@@ -57578,6 +58926,17 @@ components:
               pinterestTitle: pinterestTitle
               pageId: pageId
               googleDescription: googleDescription
+              headlines:
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
               isServing: true
               mediaUrls:
               - mediaUrls
@@ -57633,6 +58992,15 @@ components:
               whatsappPhoneNumber: "+12025550123"
               videoId: videoId
               body: body
+              descriptions:
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
+              - text: text
+                pinnedField: DESCRIPTION_1
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               promotionStatus: not_returned
@@ -57640,6 +59008,9 @@ components:
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
+              finalUrls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
@@ -57650,6 +59021,17 @@ components:
               pinterestTitle: pinterestTitle
               pageId: pageId
               googleDescription: googleDescription
+              headlines:
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
+              - text: text
+                pinnedField: HEADLINE_1
               isServing: true
               mediaUrls:
               - mediaUrls
@@ -88278,6 +89660,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -88285,6 +89676,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -88295,6 +89689,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -88350,6 +89755,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -88357,6 +89771,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -88367,6 +89784,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -90953,6 +92381,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -90960,6 +92397,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -90970,6 +92410,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -91025,6 +92476,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -91032,6 +92492,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -91042,6 +92505,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -91316,6 +92790,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -91323,6 +92806,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -91333,6 +92819,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -91388,6 +92885,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -91395,6 +92901,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -91405,6 +92914,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -91911,6 +93431,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -91918,6 +93447,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -91928,6 +93460,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -91983,6 +93526,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -91990,6 +93542,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -92000,6 +93555,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -92274,6 +93840,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -92281,6 +93856,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -92291,6 +93869,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -92346,6 +93935,15 @@ components:
                 whatsappPhoneNumber: "+12025550123"
                 videoId: videoId
                 body: body
+                descriptions:
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
+                - text: text
+                  pinnedField: DESCRIPTION_1
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 promotionStatus: not_returned
@@ -92353,6 +93951,9 @@ components:
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
+                finalUrls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
@@ -92363,6 +93964,17 @@ components:
                 pinterestTitle: pinterestTitle
                 pageId: pageId
                 googleDescription: googleDescription
+                headlines:
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
+                - text: text
+                  pinnedField: HEADLINE_1
                 isServing: true
                 mediaUrls:
                 - mediaUrls
@@ -92748,6 +94360,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -92755,6 +94376,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -92765,6 +94389,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -92784,9 +94419,19 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+        stale: true
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         ad:
           $ref: "#/components/schemas/Ad"
+        cachedAt:
+          description: Google RSA details cache timestamp.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: Whether Google RSA details use the last successful cached response.
+          type: boolean
     updateAd_request_budget:
       properties:
         amount:
@@ -92987,6 +94632,29 @@ components:
           type: string
     updateAd_request:
       properties:
+        headlines:
+          description: Google RSA only. Replaces the complete headline list. No padding
+            or truncation on update.
+          items:
+            $ref: "#/components/schemas/GoogleRsaHeadline"
+          maxItems: 15
+          minItems: 3
+          type: array
+        descriptions:
+          description: Google RSA only. Replaces the complete description list. No
+            padding or truncation on update.
+          items:
+            $ref: "#/components/schemas/GoogleRsaDescription"
+          maxItems: 4
+          minItems: 2
+          type: array
+        finalUrls:
+          description: Google RSA only. Replaces final URLs. Omitted lists stay unchanged.
+          items:
+            format: uri
+            type: string
+          minItems: 1
+          type: array
         status:
           enum:
           - active
@@ -93042,6 +94710,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -93049,6 +94726,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -93059,6 +94739,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -93100,70 +94791,163 @@ components:
         message:
           description: Human-readable summary (present only when skipped)
           type: string
-    attachCampaignAssets_request_sitelinks_inner:
+    listCampaignAssets_200_response_sitelinks_inner:
+      example:
+        campaignAssetResourceName: campaignAssetResourceName
+        linkUrl: https://openapi-generator.tech
+        assetResourceName: assetResourceName
+        text: text
+        description2: description2
+        description1: description1
       properties:
+        assetResourceName:
+          type: string
+        campaignAssetResourceName:
+          type: string
         text:
-          maxLength: 25
-          minLength: 1
           type: string
         linkUrl:
           format: uri
           type: string
         description1:
-          maxLength: 35
-          minLength: 1
           type: string
         description2:
-          maxLength: 35
-          minLength: 1
           type: string
-      required:
-      - linkUrl
-      - text
-    attachCampaignAssets_request_structuredSnippets_inner:
+    listCampaignAssets_200_response_callouts_inner:
+      example:
+        campaignAssetResourceName: campaignAssetResourceName
+        assetResourceName: assetResourceName
+        calloutText: calloutText
       properties:
+        assetResourceName:
+          type: string
+        campaignAssetResourceName:
+          type: string
+        calloutText:
+          type: string
+    listCampaignAssets_200_response_structuredSnippets_inner:
+      example:
+        campaignAssetResourceName: campaignAssetResourceName
+        values:
+        - values
+        - values
+        header: header
+        assetResourceName: assetResourceName
+      properties:
+        assetResourceName:
+          type: string
+        campaignAssetResourceName:
+          type: string
         header:
-          enum:
-          - Amenities
-          - Brands
-          - Courses
-          - Degree programs
-          - Destinations
-          - Featured hotels
-          - Insurance coverage
-          - Models
-          - Neighborhoods
-          - Service catalog
-          - Shows
-          - Styles
-          - Types
           type: string
         values:
           items:
-            maxLength: 25
-            minLength: 1
             type: string
-          maxItems: 10
-          minItems: 3
           type: array
-      required:
-      - header
-      - values
-    attachCampaignAssets_request:
+    listCampaignAssets_200_response:
+      example:
+        callouts:
+        - campaignAssetResourceName: campaignAssetResourceName
+          assetResourceName: assetResourceName
+          calloutText: calloutText
+        - campaignAssetResourceName: campaignAssetResourceName
+          assetResourceName: assetResourceName
+          calloutText: calloutText
+        stale: true
+        campaignId: campaignId
+        sitelinks:
+        - campaignAssetResourceName: campaignAssetResourceName
+          linkUrl: https://openapi-generator.tech
+          assetResourceName: assetResourceName
+          text: text
+          description2: description2
+          description1: description1
+        - campaignAssetResourceName: campaignAssetResourceName
+          linkUrl: https://openapi-generator.tech
+          assetResourceName: assetResourceName
+          text: text
+          description2: description2
+          description1: description1
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        structuredSnippets:
+        - campaignAssetResourceName: campaignAssetResourceName
+          values:
+          - values
+          - values
+          header: header
+          assetResourceName: assetResourceName
+        - campaignAssetResourceName: campaignAssetResourceName
+          values:
+          - values
+          - values
+          header: header
+          assetResourceName: assetResourceName
       properties:
-        accountId:
-          description: Zernio Google Ads SocialAccount id. Resolves the customer id
-            + refresh token.
-          type: string
-        customerId:
-          description: Numeric Google Ads customer id. Required when the connection
-            has multiple Google Ads accounts; optional (and inferred) when it has
-            only one.
+        campaignId:
           type: string
         sitelinks:
-          description: "See POST /v1/ads/create sitelinks, same shape."
           items:
-            $ref: "#/components/schemas/attachCampaignAssets_request_sitelinks_inner"
+            $ref: "#/components/schemas/listCampaignAssets_200_response_sitelinks_inner"
+          type: array
+        callouts:
+          items:
+            $ref: "#/components/schemas/listCampaignAssets_200_response_callouts_inner"
+          type: array
+        structuredSnippets:
+          items:
+            $ref: "#/components/schemas/listCampaignAssets_200_response_structuredSnippets_inner"
+          type: array
+        cachedAt:
+          description: Time of the cached Google read. Null when no cache was used.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when exhausted quota required returning the last successful
+            read.
+          type: boolean
+    updateCampaignAssets_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        updates:
+          items:
+            $ref: "#/components/schemas/GoogleAssetUpdate"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - updates
+    updateCampaignAssets_200_response:
+      example:
+        updated: 0
+      properties:
+        updated:
+          type: integer
+    attachCampaignAssets_request:
+      description: "Provide at least one of sitelinks, callouts or structuredSnippets.\
+        \ Sitelink description1 and description2 must be supplied together."
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        sitelinks:
+          items:
+            $ref: "#/components/schemas/GoogleSitelink"
           maxItems: 20
           minItems: 2
           type: array
@@ -93177,7 +94961,7 @@ components:
           type: array
         structuredSnippets:
           items:
-            $ref: "#/components/schemas/attachCampaignAssets_request_structuredSnippets_inner"
+            $ref: "#/components/schemas/GoogleStructuredSnippet"
           maxItems: 20
           minItems: 1
           type: array
@@ -93210,6 +94994,204 @@ components:
           items:
             type: string
           type: array
+    removeCampaignAssets_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        assetResourceNames:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        campaignAssetResourceNames:
+          items:
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - assetResourceNames
+      - campaignAssetResourceNames
+    removeCampaignAssets_200_response:
+      example:
+        removed: true
+      properties:
+        removed:
+          type: boolean
+    listAdGroupAssets_200_response_sitelinks_inner:
+      example:
+        linkUrl: https://openapi-generator.tech
+        assetResourceName: assetResourceName
+        text: text
+        description2: description2
+        adGroupAssetResourceName: adGroupAssetResourceName
+        description1: description1
+      properties:
+        assetResourceName:
+          type: string
+        adGroupAssetResourceName:
+          type: string
+        text:
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        description1:
+          type: string
+        description2:
+          type: string
+    listAdGroupAssets_200_response_callouts_inner:
+      example:
+        assetResourceName: assetResourceName
+        calloutText: calloutText
+        adGroupAssetResourceName: adGroupAssetResourceName
+      properties:
+        assetResourceName:
+          type: string
+        adGroupAssetResourceName:
+          type: string
+        calloutText:
+          type: string
+    listAdGroupAssets_200_response_structuredSnippets_inner:
+      example:
+        values:
+        - values
+        - values
+        header: header
+        assetResourceName: assetResourceName
+        adGroupAssetResourceName: adGroupAssetResourceName
+      properties:
+        assetResourceName:
+          type: string
+        adGroupAssetResourceName:
+          type: string
+        header:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+    listAdGroupAssets_200_response:
+      example:
+        callouts:
+        - assetResourceName: assetResourceName
+          calloutText: calloutText
+          adGroupAssetResourceName: adGroupAssetResourceName
+        - assetResourceName: assetResourceName
+          calloutText: calloutText
+          adGroupAssetResourceName: adGroupAssetResourceName
+        stale: true
+        sitelinks:
+        - linkUrl: https://openapi-generator.tech
+          assetResourceName: assetResourceName
+          text: text
+          description2: description2
+          adGroupAssetResourceName: adGroupAssetResourceName
+          description1: description1
+        - linkUrl: https://openapi-generator.tech
+          assetResourceName: assetResourceName
+          text: text
+          description2: description2
+          adGroupAssetResourceName: adGroupAssetResourceName
+          description1: description1
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        adGroupId: adGroupId
+        structuredSnippets:
+        - values:
+          - values
+          - values
+          header: header
+          assetResourceName: assetResourceName
+          adGroupAssetResourceName: adGroupAssetResourceName
+        - values:
+          - values
+          - values
+          header: header
+          assetResourceName: assetResourceName
+          adGroupAssetResourceName: adGroupAssetResourceName
+      properties:
+        adGroupId:
+          type: string
+        sitelinks:
+          items:
+            $ref: "#/components/schemas/listAdGroupAssets_200_response_sitelinks_inner"
+          type: array
+        callouts:
+          items:
+            $ref: "#/components/schemas/listAdGroupAssets_200_response_callouts_inner"
+          type: array
+        structuredSnippets:
+          items:
+            $ref: "#/components/schemas/listAdGroupAssets_200_response_structuredSnippets_inner"
+          type: array
+        cachedAt:
+          description: Time of the cached Google read. Null when no cache was used.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when exhausted quota required returning the last successful
+            read.
+          type: boolean
+    attachAdGroupAssets_201_response:
+      example:
+        sitelinkAssetResourceNames:
+        - sitelinkAssetResourceNames
+        - sitelinkAssetResourceNames
+        structuredSnippetAssetResourceNames:
+        - structuredSnippetAssetResourceNames
+        - structuredSnippetAssetResourceNames
+        adGroupId: adGroupId
+        calloutAssetResourceNames:
+        - calloutAssetResourceNames
+        - calloutAssetResourceNames
+      properties:
+        adGroupId:
+          type: string
+        sitelinkAssetResourceNames:
+          items:
+            type: string
+          type: array
+        calloutAssetResourceNames:
+          items:
+            type: string
+          type: array
+        structuredSnippetAssetResourceNames:
+          items:
+            type: string
+          type: array
+    removeAdGroupAssets_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        assetResourceNames:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        adGroupAssetResourceNames:
+          items:
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - adGroupAssetResourceNames
+      - assetResourceNames
     getCampaignAnalytics_202_response:
       allOf:
       - $ref: "#/components/schemas/CampaignAnalyticsResponse"
@@ -95792,10 +97774,9 @@ components:
       properties:
         assetId:
           type: string
-        text:
-          type: string
         status:
-          description: "customer_asset.status, e.g. ENABLED, REMOVED, PAUSED."
+          type: string
+        text:
           type: string
     listAccountCallouts_200_response:
       example:
@@ -95817,27 +97798,75 @@ components:
             $ref: "#/components/schemas/listAccountCallouts_200_response_callouts_inner"
           type: array
         cachedAt:
-          description: When this list was fetched from Google. Null when it was never
-            served from cache.
+          description: Time of the cached Google read. Null when no cache was used.
           format: date-time
           nullable: true
           type: string
         stale:
-          description: "True when Google's daily API quota was exhausted and this\
-            \ is the last successful fetch, not a live read."
+          description: True when exhausted quota required returning the last successful
+            read.
           type: boolean
+    updateAccountCallouts_request_updates_inner_calloutAsset:
+      properties:
+        calloutText:
+          maxLength: 25
+          minLength: 1
+          type: string
+      required:
+      - calloutText
+    updateAccountCallouts_request_updates_inner:
+      description: Provide at least one field belonging to this asset type.
+      properties:
+        assetResourceName:
+          description: Asset resource name returned by a list operation. Must belong
+            to the selected customer.
+          pattern: ^customers/\d+/assets/\d+$
+          type: string
+        calloutAsset:
+          $ref: "#/components/schemas/updateAccountCallouts_request_updates_inner_calloutAsset"
+      required:
+      - assetResourceName
+    updateAccountCallouts_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        updates:
+          items:
+            $ref: "#/components/schemas/updateAccountCallouts_request_updates_inner"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - updates
+    updateAccountCallouts_200_response:
+      example:
+        customerId: customerId
+        updated: 0
+      properties:
+        updated:
+          type: integer
+        customerId:
+          type: string
     addAccountCallouts_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id owning the Google Ads connection.
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
           type: string
         customerId:
-          description: Numeric Google Ads customer id. Only required when the connection
-            has more than one.
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
           type: string
         callouts:
-          description: "Callout text, 1-25 characters each; up to 20 per request (Google's\
-            \ CalloutAsset limits)."
           items:
             maxLength: 25
             minLength: 1
@@ -95875,14 +97904,16 @@ components:
     removeAccountCallout_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id owning the Google Ads connection.
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
           type: string
         customerId:
-          description: Numeric Google Ads customer id. Only required when the connection
-            has more than one.
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
           type: string
         assetId:
-          description: Numeric asset id from GET /v1/ads/accounts/callouts.
+          pattern: ^\d+$
           type: string
       required:
       - accountId
@@ -95896,6 +97927,372 @@ components:
           type: boolean
         customerId:
           type: string
+    listAccountSitelinks_200_response_sitelinks_inner:
+      example:
+        assetId: assetId
+        linkUrl: https://openapi-generator.tech
+        assetResourceName: assetResourceName
+        text: text
+        description2: description2
+        customerAssetResourceName: customerAssetResourceName
+        status: status
+        description1: description1
+      properties:
+        assetId:
+          type: string
+        status:
+          type: string
+        assetResourceName:
+          type: string
+        customerAssetResourceName:
+          type: string
+        text:
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        description1:
+          type: string
+        description2:
+          type: string
+    listAccountSitelinks_200_response:
+      example:
+        stale: true
+        customerId: customerId
+        sitelinks:
+        - assetId: assetId
+          linkUrl: https://openapi-generator.tech
+          assetResourceName: assetResourceName
+          text: text
+          description2: description2
+          customerAssetResourceName: customerAssetResourceName
+          status: status
+          description1: description1
+        - assetId: assetId
+          linkUrl: https://openapi-generator.tech
+          assetResourceName: assetResourceName
+          text: text
+          description2: description2
+          customerAssetResourceName: customerAssetResourceName
+          status: status
+          description1: description1
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        customerId:
+          type: string
+        sitelinks:
+          items:
+            $ref: "#/components/schemas/listAccountSitelinks_200_response_sitelinks_inner"
+          type: array
+        cachedAt:
+          description: Time of the cached Google read. Null when no cache was used.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when exhausted quota required returning the last successful
+            read.
+          type: boolean
+    updateAccountSitelinks_request_updates_inner_sitelinkAsset:
+      minProperties: 1
+      properties:
+        linkText:
+          maxLength: 25
+          minLength: 1
+          type: string
+        description1:
+          maxLength: 35
+          type: string
+        description2:
+          maxLength: 35
+          type: string
+        linkUrl:
+          description: Alias for finalUrls with one URL. Do not supply both.
+          format: uri
+          type: string
+    updateAccountSitelinks_request_updates_inner:
+      description: Provide at least one field belonging to this asset type.
+      properties:
+        assetResourceName:
+          description: Asset resource name returned by a list operation. Must belong
+            to the selected customer.
+          pattern: ^customers/\d+/assets/\d+$
+          type: string
+        sitelinkAsset:
+          $ref: "#/components/schemas/updateAccountSitelinks_request_updates_inner_sitelinkAsset"
+        finalUrls:
+          items:
+            format: uri
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - assetResourceName
+    updateAccountSitelinks_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        updates:
+          items:
+            $ref: "#/components/schemas/updateAccountSitelinks_request_updates_inner"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - updates
+    addAccountSitelinks_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        sitelinks:
+          items:
+            $ref: "#/components/schemas/GoogleSitelink"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - sitelinks
+    addAccountSitelinks_201_response_sitelinks_inner:
+      example:
+        assetId: assetId
+        linkUrl: https://openapi-generator.tech
+        text: text
+        description2: description2
+        description1: description1
+      properties:
+        assetId:
+          type: string
+        text:
+          maxLength: 25
+          minLength: 1
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        description1:
+          maxLength: 35
+          minLength: 1
+          type: string
+        description2:
+          maxLength: 35
+          minLength: 1
+          type: string
+    addAccountSitelinks_201_response:
+      example:
+        customerId: customerId
+        sitelinks:
+        - assetId: assetId
+          linkUrl: https://openapi-generator.tech
+          text: text
+          description2: description2
+          description1: description1
+        - assetId: assetId
+          linkUrl: https://openapi-generator.tech
+          text: text
+          description2: description2
+          description1: description1
+      properties:
+        customerId:
+          type: string
+        sitelinks:
+          items:
+            $ref: "#/components/schemas/addAccountSitelinks_201_response_sitelinks_inner"
+          type: array
+    listAccountStructuredSnippets_200_response_structuredSnippets_inner:
+      example:
+        assetId: assetId
+        values:
+        - values
+        - values
+        header: header
+        assetResourceName: assetResourceName
+        customerAssetResourceName: customerAssetResourceName
+        status: status
+      properties:
+        assetId:
+          type: string
+        status:
+          type: string
+        assetResourceName:
+          type: string
+        customerAssetResourceName:
+          type: string
+        header:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+    listAccountStructuredSnippets_200_response:
+      example:
+        stale: true
+        customerId: customerId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        structuredSnippets:
+        - assetId: assetId
+          values:
+          - values
+          - values
+          header: header
+          assetResourceName: assetResourceName
+          customerAssetResourceName: customerAssetResourceName
+          status: status
+        - assetId: assetId
+          values:
+          - values
+          - values
+          header: header
+          assetResourceName: assetResourceName
+          customerAssetResourceName: customerAssetResourceName
+          status: status
+      properties:
+        customerId:
+          type: string
+        structuredSnippets:
+          items:
+            $ref: "#/components/schemas/listAccountStructuredSnippets_200_response_structuredSnippets_inner"
+          type: array
+        cachedAt:
+          description: Time of the cached Google read. Null when no cache was used.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when exhausted quota required returning the last successful
+            read.
+          type: boolean
+    updateAccountStructuredSnippets_request_updates_inner:
+      description: Provide at least one field belonging to this asset type.
+      properties:
+        assetResourceName:
+          description: Asset resource name returned by a list operation. Must belong
+            to the selected customer.
+          pattern: ^customers/\d+/assets/\d+$
+          type: string
+        structuredSnippetAsset:
+          $ref: "#/components/schemas/GoogleStructuredSnippet"
+      required:
+      - assetResourceName
+    updateAccountStructuredSnippets_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        updates:
+          items:
+            $ref: "#/components/schemas/updateAccountStructuredSnippets_request_updates_inner"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - updates
+    addAccountStructuredSnippets_request:
+      properties:
+        accountId:
+          description: Zernio Google Ads connection id.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        customerId:
+          description: Google customer id without dashes. Required when the connection
+            has multiple customers.
+          pattern: ^\d+$
+          type: string
+        structuredSnippets:
+          items:
+            $ref: "#/components/schemas/GoogleStructuredSnippet"
+          maxItems: 20
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - structuredSnippets
+    addAccountStructuredSnippets_201_response_structuredSnippets_inner:
+      example:
+        assetId: assetId
+        values:
+        - values
+        - values
+        - values
+        - values
+        - values
+        header: Amenities
+      properties:
+        assetId:
+          type: string
+        header:
+          enum:
+          - Amenities
+          - Brands
+          - Courses
+          - Degree programs
+          - Destinations
+          - Featured hotels
+          - Insurance coverage
+          - Models
+          - Neighborhoods
+          - Service catalog
+          - Shows
+          - Styles
+          - Types
+          type: string
+        values:
+          items:
+            maxLength: 25
+            minLength: 1
+            type: string
+          maxItems: 10
+          minItems: 3
+          type: array
+    addAccountStructuredSnippets_201_response:
+      example:
+        customerId: customerId
+        structuredSnippets:
+        - assetId: assetId
+          values:
+          - values
+          - values
+          - values
+          - values
+          - values
+          header: Amenities
+        - assetId: assetId
+          values:
+          - values
+          - values
+          - values
+          - values
+          - values
+          header: Amenities
+      properties:
+        customerId:
+          type: string
+        structuredSnippets:
+          items:
+            $ref: "#/components/schemas/addAccountStructuredSnippets_201_response_structuredSnippets_inner"
+          type: array
     getAdAccountFinance_200_response_fundingSource:
       example:
         displayString: displayString
@@ -97180,6 +99577,14 @@ components:
           type: array
       required:
       - rules
+    createStandaloneAd_request_additionalHeadlines_inner:
+      oneOf:
+      - type: string
+      - $ref: "#/components/schemas/GoogleRsaHeadline"
+    createStandaloneAd_request_additionalDescriptions_inner:
+      oneOf:
+      - type: string
+      - $ref: "#/components/schemas/GoogleRsaDescription"
     createStandaloneAd_request_sitelinks_inner:
       properties:
         text:
@@ -98040,14 +100445,30 @@ components:
           maxItems: 1000
           type: array
         additionalHeadlines:
-          description: Google Search RSA only. Extra headlines.
+          description: "Google Search RSA only. Extra text assets as strings or objects\
+            \ with text and optional pinnedField. Existing string input remains supported.\
+            \ The effective create lists, including primary text and deduplication,\
+            \ must contain 3-15 headlines and 2-4 descriptions; excess entries return\
+            \ 400."
+          example:
+          - Schedule Your Posts
+          - text: Build With Zernio
+            pinnedField: HEADLINE_2
           items:
-            type: string
+            $ref: "#/components/schemas/createStandaloneAd_request_additionalHeadlines_inner"
           type: array
         additionalDescriptions:
-          description: Google Search RSA only. Extra descriptions.
+          description: "Google Search RSA only. Extra text assets as strings or objects\
+            \ with text and optional pinnedField. Existing string input remains supported.\
+            \ The effective create lists, including primary text and deduplication,\
+            \ must contain 3-15 headlines and 2-4 descriptions; excess entries return\
+            \ 400."
+          example:
+          - Build social publishing into your application.
+          - text: Connect social accounts with one API.
+            pinnedField: DESCRIPTION_2
           items:
-            type: string
+            $ref: "#/components/schemas/createStandaloneAd_request_additionalDescriptions_inner"
           type: array
         sitelinks:
           description: |
@@ -98367,6 +100788,15 @@ components:
             whatsappPhoneNumber: "+12025550123"
             videoId: videoId
             body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             promotionStatus: not_returned
@@ -98374,6 +100804,9 @@ components:
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
@@ -98384,6 +100817,17 @@ components:
             pinterestTitle: pinterestTitle
             pageId: pageId
             googleDescription: googleDescription
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
             isServing: true
             mediaUrls:
             - mediaUrls
@@ -108931,6 +111375,15 @@ components:
         whatsappPhoneNumber: "+12025550123"
         videoId: videoId
         body: body
+        descriptions:
+        - text: text
+          pinnedField: DESCRIPTION_1
+        - text: text
+          pinnedField: DESCRIPTION_1
+        - text: text
+          pinnedField: DESCRIPTION_1
+        - text: text
+          pinnedField: DESCRIPTION_1
         effectiveObjectStoryId: effectiveObjectStoryId
         creativeId: creativeId
         promotionStatus: not_returned
@@ -108938,6 +111391,9 @@ components:
         videoUrl: videoUrl
         objectStoryId: objectStoryId
         pinterestDescription: pinterestDescription
+        finalUrls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
         imageUrl: imageUrl
         linkUrl: linkUrl
         googleHeadline: googleHeadline
@@ -108948,12 +111404,46 @@ components:
         pinterestTitle: pinterestTitle
         pageId: pageId
         googleDescription: googleDescription
+        headlines:
+        - text: text
+          pinnedField: HEADLINE_1
+        - text: text
+          pinnedField: HEADLINE_1
+        - text: text
+          pinnedField: HEADLINE_1
+        - text: text
+          pinnedField: HEADLINE_1
+        - text: text
+          pinnedField: HEADLINE_1
         isServing: true
         mediaUrls:
         - mediaUrls
         - mediaUrls
         promotion: ""
       properties:
+        headlines:
+          description: Google RSA only. Replaces the complete headline list. No padding
+            or truncation on update.
+          items:
+            $ref: "#/components/schemas/GoogleRsaHeadline"
+          maxItems: 15
+          minItems: 3
+          type: array
+        descriptions:
+          description: Google RSA only. Replaces the complete description list. No
+            padding or truncation on update.
+          items:
+            $ref: "#/components/schemas/GoogleRsaDescription"
+          maxItems: 4
+          minItems: 2
+          type: array
+        finalUrls:
+          description: Google RSA only. Replaces final URLs. Omitted lists stay unchanged.
+          items:
+            format: uri
+            type: string
+          minItems: 1
+          type: array
         thumbnailUrl:
           description: Primary thumbnail/image URL
           nullable: true

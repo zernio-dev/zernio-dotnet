@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// AttachCampaignAssetsRequestStructuredSnippetsInner
+    /// GoogleStructuredSnippet
     /// </summary>
-    [DataContract(Name = "attachCampaignAssets_request_structuredSnippets_inner")]
-    public partial class AttachCampaignAssetsRequestStructuredSnippetsInner : IValidatableObject
+    [DataContract(Name = "GoogleStructuredSnippet")]
+    public partial class GoogleStructuredSnippet : IValidatableObject
     {
         /// <summary>
         /// Defines Header
@@ -125,22 +125,22 @@ namespace Zernio.Model
         [DataMember(Name = "header", IsRequired = true, EmitDefaultValue = true)]
         public HeaderEnum Header { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequestStructuredSnippetsInner" /> class.
+        /// Initializes a new instance of the <see cref="GoogleStructuredSnippet" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AttachCampaignAssetsRequestStructuredSnippetsInner() { }
+        protected GoogleStructuredSnippet() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequestStructuredSnippetsInner" /> class.
+        /// Initializes a new instance of the <see cref="GoogleStructuredSnippet" /> class.
         /// </summary>
         /// <param name="header">header (required).</param>
         /// <param name="values">values (required).</param>
-        public AttachCampaignAssetsRequestStructuredSnippetsInner(HeaderEnum header = default, List<string> values = default)
+        public GoogleStructuredSnippet(HeaderEnum header = default, List<string> values = default)
         {
             this.Header = header;
             // to ensure "values" is required (not null)
             if (values == null)
             {
-                throw new ArgumentNullException("values is a required property for AttachCampaignAssetsRequestStructuredSnippetsInner and cannot be null");
+                throw new ArgumentNullException("values is a required property for GoogleStructuredSnippet and cannot be null");
             }
             this.Values = values;
         }
@@ -158,7 +158,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AttachCampaignAssetsRequestStructuredSnippetsInner {\n");
+            sb.Append("class GoogleStructuredSnippet {\n");
             sb.Append("  Header: ").Append(Header).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("}\n");

@@ -65,21 +65,21 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Text'
-        /// </summary>
-        [Fact]
-        public void TextTest()
-        {
-            // TODO unit test for the property 'Text'
-        }
-
-        /// <summary>
         /// Test the property 'Status'
         /// </summary>
         [Fact]
         public void StatusTest()
         {
             // TODO unit test for the property 'Status'
+        }
+
+        /// <summary>
+        /// Test the property 'Text'
+        /// </summary>
+        [Fact]
+        public void TextTest()
+        {
+            // TODO unit test for the property 'Text'
         }
     }
 }

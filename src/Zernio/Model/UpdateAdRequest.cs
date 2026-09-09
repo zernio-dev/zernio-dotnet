@@ -61,19 +61,46 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdRequest" /> class.
         /// </summary>
+        /// <param name="headlines">Google RSA only. Replaces the complete headline list. No padding or truncation on update..</param>
+        /// <param name="descriptions">Google RSA only. Replaces the complete description list. No padding or truncation on update..</param>
+        /// <param name="finalUrls">Google RSA only. Replaces final URLs. Omitted lists stay unchanged..</param>
         /// <param name="status">status.</param>
         /// <param name="budget">budget.</param>
         /// <param name="targeting">targeting.</param>
         /// <param name="creative">creative.</param>
         /// <param name="name">Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501..</param>
-        public UpdateAdRequest(StatusEnum? status = default, UpdateAdRequestBudget budget = default, UpdateAdRequestTargeting targeting = default, UpdateAdRequestCreative creative = default, string name = default)
+        public UpdateAdRequest(List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, StatusEnum? status = default, UpdateAdRequestBudget budget = default, UpdateAdRequestTargeting targeting = default, UpdateAdRequestCreative creative = default, string name = default)
         {
+            this.Headlines = headlines;
+            this.Descriptions = descriptions;
+            this.FinalUrls = finalUrls;
             this.Status = status;
             this.Budget = budget;
             this.Targeting = targeting;
             this.Creative = creative;
             this.Name = name;
         }
+
+        /// <summary>
+        /// Google RSA only. Replaces the complete headline list. No padding or truncation on update.
+        /// </summary>
+        /// <value>Google RSA only. Replaces the complete headline list. No padding or truncation on update.</value>
+        [DataMember(Name = "headlines", EmitDefaultValue = false)]
+        public List<GoogleRsaHeadline> Headlines { get; set; }
+
+        /// <summary>
+        /// Google RSA only. Replaces the complete description list. No padding or truncation on update.
+        /// </summary>
+        /// <value>Google RSA only. Replaces the complete description list. No padding or truncation on update.</value>
+        [DataMember(Name = "descriptions", EmitDefaultValue = false)]
+        public List<GoogleRsaDescription> Descriptions { get; set; }
+
+        /// <summary>
+        /// Google RSA only. Replaces final URLs. Omitted lists stay unchanged.
+        /// </summary>
+        /// <value>Google RSA only. Replaces final URLs. Omitted lists stay unchanged.</value>
+        [DataMember(Name = "finalUrls", EmitDefaultValue = false)]
+        public List<string> FinalUrls { get; set; }
 
         /// <summary>
         /// Gets or Sets Budget
@@ -108,6 +135,9 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdRequest {\n");
+            sb.Append("  Headlines: ").Append(Headlines).Append("\n");
+            sb.Append("  Descriptions: ").Append(Descriptions).Append("\n");
+            sb.Append("  FinalUrls: ").Append(FinalUrls).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Targeting: ").Append(Targeting).Append("\n");

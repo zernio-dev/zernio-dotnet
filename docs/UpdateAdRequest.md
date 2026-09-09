@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Headlines** | [**List&lt;GoogleRsaHeadline&gt;**](GoogleRsaHeadline.md) | Google RSA only. Replaces the complete headline list. No padding or truncation on update. | [optional] 
+**Descriptions** | [**List&lt;GoogleRsaDescription&gt;**](GoogleRsaDescription.md) | Google RSA only. Replaces the complete description list. No padding or truncation on update. | [optional] 
+**FinalUrls** | **List&lt;string&gt;** | Google RSA only. Replaces final URLs. Omitted lists stay unchanged. | [optional] 
 **Status** | **string** |  | [optional] 
 **Budget** | [**UpdateAdRequestBudget**](UpdateAdRequestBudget.md) |  | [optional] 
 **Targeting** | [**UpdateAdRequestTargeting**](UpdateAdRequestTargeting.md) |  | [optional] 

@@ -37,13 +37,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListAccountCallouts200ResponseCalloutsInner" /> class.
         /// </summary>
         /// <param name="assetId">assetId.</param>
+        /// <param name="status">status.</param>
         /// <param name="text">text.</param>
-        /// <param name="status">customer_asset.status, e.g. ENABLED, REMOVED, PAUSED..</param>
-        public ListAccountCallouts200ResponseCalloutsInner(string assetId = default, string text = default, string status = default)
+        public ListAccountCallouts200ResponseCalloutsInner(string assetId = default, string status = default, string text = default)
         {
             this.AssetId = assetId;
-            this.Text = text;
             this.Status = status;
+            this.Text = text;
         }
 
         /// <summary>
@@ -53,17 +53,16 @@ namespace Zernio.Model
         public string AssetId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Status
+        /// </summary>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public string Status { get; set; }
+
+        /// <summary>
         /// Gets or Sets Text
         /// </summary>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
-
-        /// <summary>
-        /// customer_asset.status, e.g. ENABLED, REMOVED, PAUSED.
-        /// </summary>
-        /// <value>customer_asset.status, e.g. ENABLED, REMOVED, PAUSED.</value>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,8 +73,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListAccountCallouts200ResponseCalloutsInner {\n");
             sb.Append("  AssetId: ").Append(AssetId).Append("\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

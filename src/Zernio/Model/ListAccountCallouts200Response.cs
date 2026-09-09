@@ -38,8 +38,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="customerId">customerId.</param>
         /// <param name="callouts">callouts.</param>
-        /// <param name="cachedAt">When this list was fetched from Google. Null when it was never served from cache..</param>
-        /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
+        /// <param name="cachedAt">Time of the cached Google read. Null when no cache was used..</param>
+        /// <param name="stale">True when exhausted quota required returning the last successful read..</param>
         public ListAccountCallouts200Response(string customerId = default, List<ListAccountCallouts200ResponseCalloutsInner> callouts = default, DateTime? cachedAt = default, bool stale = default)
         {
             this.CustomerId = customerId;
@@ -61,16 +61,16 @@ namespace Zernio.Model
         public List<ListAccountCallouts200ResponseCalloutsInner> Callouts { get; set; }
 
         /// <summary>
-        /// When this list was fetched from Google. Null when it was never served from cache.
+        /// Time of the cached Google read. Null when no cache was used.
         /// </summary>
-        /// <value>When this list was fetched from Google. Null when it was never served from cache.</value>
+        /// <value>Time of the cached Google read. Null when no cache was used.</value>
         [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
         public DateTime? CachedAt { get; set; }
 
         /// <summary>
-        /// True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+        /// True when exhausted quota required returning the last successful read.
         /// </summary>
-        /// <value>True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.</value>
+        /// <value>True when exhausted quota required returning the last successful read.</value>
         [DataMember(Name = "stale", EmitDefaultValue = true)]
         public bool Stale { get; set; }
 

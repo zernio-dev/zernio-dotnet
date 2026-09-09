@@ -67,6 +67,30 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AddAccountSitelinks
+        /// </summary>
+        [Fact]
+        public void AddAccountSitelinksTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //AddAccountSitelinksRequest addAccountSitelinksRequest = null;
+            //var response = instance.AddAccountSitelinks(addAccountSitelinksRequest);
+            //Assert.IsType<AddAccountSitelinks201Response>(response);
+        }
+
+        /// <summary>
+        /// Test AddAccountStructuredSnippets
+        /// </summary>
+        [Fact]
+        public void AddAccountStructuredSnippetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest = null;
+            //var response = instance.AddAccountStructuredSnippets(addAccountStructuredSnippetsRequest);
+            //Assert.IsType<AddAccountStructuredSnippets201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateAdNegativeKeywordList
         /// </summary>
         [Fact]
@@ -304,6 +328,32 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAccountSitelinks
+        /// </summary>
+        [Fact]
+        public void ListAccountSitelinksTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //var response = instance.ListAccountSitelinks(accountId, customerId);
+            //Assert.IsType<ListAccountSitelinks200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAccountStructuredSnippets
+        /// </summary>
+        [Fact]
+        public void ListAccountStructuredSnippetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? customerId = null;
+            //var response = instance.ListAccountStructuredSnippets(accountId, customerId);
+            //Assert.IsType<ListAccountStructuredSnippets200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]
@@ -471,6 +521,30 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RemoveAccountSitelink
+        /// </summary>
+        [Fact]
+        public void RemoveAccountSitelinkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //RemoveAccountCalloutRequest removeAccountCalloutRequest = null;
+            //var response = instance.RemoveAccountSitelink(removeAccountCalloutRequest);
+            //Assert.IsType<RemoveAccountCallout200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveAccountStructuredSnippet
+        /// </summary>
+        [Fact]
+        public void RemoveAccountStructuredSnippetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //RemoveAccountCalloutRequest removeAccountCalloutRequest = null;
+            //var response = instance.RemoveAccountStructuredSnippet(removeAccountCalloutRequest);
+            //Assert.IsType<RemoveAccountCallout200Response>(response);
+        }
+
+        /// <summary>
         /// Test ReplaceAdNegativeKeywordListKeywords
         /// </summary>
         [Fact]
@@ -497,6 +571,42 @@ namespace Zernio.Test.Api
             //DateOnly? until = null;
             //var response = instance.ReplyToAdComment(adId, commentId, replyToAdCommentRequest, since, until);
             //Assert.IsType<ReplyToAdComment200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAccountCallouts
+        /// </summary>
+        [Fact]
+        public void UpdateAccountCalloutsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UpdateAccountCalloutsRequest updateAccountCalloutsRequest = null;
+            //var response = instance.UpdateAccountCallouts(updateAccountCalloutsRequest);
+            //Assert.IsType<UpdateAccountCallouts200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAccountSitelinks
+        /// </summary>
+        [Fact]
+        public void UpdateAccountSitelinksTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UpdateAccountSitelinksRequest updateAccountSitelinksRequest = null;
+            //var response = instance.UpdateAccountSitelinks(updateAccountSitelinksRequest);
+            //Assert.IsType<UpdateAccountCallouts200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAccountStructuredSnippets
+        /// </summary>
+        [Fact]
+        public void UpdateAccountStructuredSnippetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest = null;
+            //var response = instance.UpdateAccountStructuredSnippets(updateAccountStructuredSnippetsRequest);
+            //Assert.IsType<UpdateAccountCallouts200Response>(response);
         }
 
         /// <summary>

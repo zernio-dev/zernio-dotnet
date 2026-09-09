@@ -41,9 +41,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoveAccountCalloutRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio SocialAccount id owning the Google Ads connection. (required).</param>
-        /// <param name="customerId">Numeric Google Ads customer id. Only required when the connection has more than one..</param>
-        /// <param name="assetId">Numeric asset id from GET /v1/ads/accounts/callouts. (required).</param>
+        /// <param name="accountId">Zernio Google Ads connection id. (required).</param>
+        /// <param name="customerId">Google customer id without dashes. Required when the connection has multiple customers..</param>
+        /// <param name="assetId">assetId (required).</param>
         public RemoveAccountCalloutRequest(string accountId = default, string customerId = default, string assetId = default)
         {
             // to ensure "accountId" is required (not null)
@@ -62,23 +62,22 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio SocialAccount id owning the Google Ads connection.
+        /// Zernio Google Ads connection id.
         /// </summary>
-        /// <value>Zernio SocialAccount id owning the Google Ads connection.</value>
+        /// <value>Zernio Google Ads connection id.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id. Only required when the connection has more than one.
+        /// Google customer id without dashes. Required when the connection has multiple customers.
         /// </summary>
-        /// <value>Numeric Google Ads customer id. Only required when the connection has more than one.</value>
+        /// <value>Google customer id without dashes. Required when the connection has multiple customers.</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
         public string CustomerId { get; set; }
 
         /// <summary>
-        /// Numeric asset id from GET /v1/ads/accounts/callouts.
+        /// Gets or Sets AssetId
         /// </summary>
-        /// <value>Numeric asset id from GET /v1/ads/accounts/callouts.</value>
         [DataMember(Name = "assetId", IsRequired = true, EmitDefaultValue = true)]
         public string AssetId { get; set; }
 
@@ -113,6 +112,33 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.AccountId != null) {
+                // AccountId (string) pattern
+                Regex regexAccountId = new Regex(@"^[a-fA-F0-9]{24}$", RegexOptions.CultureInvariant);
+                if (!regexAccountId.Match(this.AccountId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
+                }
+            }
+
+            if (this.CustomerId != null) {
+                // CustomerId (string) pattern
+                Regex regexCustomerId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexCustomerId.Match(this.CustomerId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerId, must match a pattern of " + regexCustomerId, new [] { "CustomerId" });
+                }
+            }
+
+            if (this.AssetId != null) {
+                // AssetId (string) pattern
+                Regex regexAssetId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexAssetId.Match(this.AssetId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AssetId, must match a pattern of " + regexAssetId, new [] { "AssetId" });
+                }
+            }
+
             yield break;
         }
     }

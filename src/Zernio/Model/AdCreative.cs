@@ -42,6 +42,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AdCreative" /> class.
         /// </summary>
+        /// <param name="headlines">Google RSA only. Replaces the complete headline list. No padding or truncation on update..</param>
+        /// <param name="descriptions">Google RSA only. Replaces the complete description list. No padding or truncation on update..</param>
+        /// <param name="finalUrls">Google RSA only. Replaces final URLs. Omitted lists stay unchanged..</param>
         /// <param name="thumbnailUrl">Primary thumbnail/image URL.</param>
         /// <param name="imageUrl">Alternative image URL.</param>
         /// <param name="videoId">Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token..</param>
@@ -67,8 +70,11 @@ namespace Zernio.Model
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, MetaPromotion promotion = default, MetaPromotionStatus? promotionStatus = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, MetaPromotion promotion = default, MetaPromotionStatus? promotionStatus = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
+            this.Headlines = headlines;
+            this.Descriptions = descriptions;
+            this.FinalUrls = finalUrls;
             this.ThumbnailUrl = thumbnailUrl;
             this.ImageUrl = imageUrl;
             this.VideoId = videoId;
@@ -95,6 +101,27 @@ namespace Zernio.Model
             this.PinterestTitle = pinterestTitle;
             this.PinterestDescription = pinterestDescription;
         }
+
+        /// <summary>
+        /// Google RSA only. Replaces the complete headline list. No padding or truncation on update.
+        /// </summary>
+        /// <value>Google RSA only. Replaces the complete headline list. No padding or truncation on update.</value>
+        [DataMember(Name = "headlines", EmitDefaultValue = false)]
+        public List<GoogleRsaHeadline> Headlines { get; set; }
+
+        /// <summary>
+        /// Google RSA only. Replaces the complete description list. No padding or truncation on update.
+        /// </summary>
+        /// <value>Google RSA only. Replaces the complete description list. No padding or truncation on update.</value>
+        [DataMember(Name = "descriptions", EmitDefaultValue = false)]
+        public List<GoogleRsaDescription> Descriptions { get; set; }
+
+        /// <summary>
+        /// Google RSA only. Replaces final URLs. Omitted lists stay unchanged.
+        /// </summary>
+        /// <value>Google RSA only. Replaces final URLs. Omitted lists stay unchanged.</value>
+        [DataMember(Name = "finalUrls", EmitDefaultValue = false)]
+        public List<string> FinalUrls { get; set; }
 
         /// <summary>
         /// Primary thumbnail/image URL
@@ -275,6 +302,9 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AdCreative {\n");
+            sb.Append("  Headlines: ").Append(Headlines).Append("\n");
+            sb.Append("  Descriptions: ").Append(Descriptions).Append("\n");
+            sb.Append("  FinalUrls: ").Append(FinalUrls).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoId: ").Append(VideoId).Append("\n");

@@ -29,10 +29,10 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Add account-level callout extensions
+        /// Add account callouts
         /// </summary>
         /// <remarks>
-        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
@@ -40,15 +40,57 @@ namespace Zernio.Api
         AddAccountCallouts201Response AddAccountCallouts(AddAccountCalloutsRequest addAccountCalloutsRequest);
 
         /// <summary>
-        /// Add account-level callout extensions
+        /// Add account callouts
         /// </summary>
         /// <remarks>
-        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
         /// <returns>ApiResponse of AddAccountCallouts201Response</returns>
         ApiResponse<AddAccountCallouts201Response> AddAccountCalloutsWithHttpInfo(AddAccountCalloutsRequest addAccountCalloutsRequest);
+        /// <summary>
+        /// Add account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <returns>AddAccountSitelinks201Response</returns>
+        AddAccountSitelinks201Response AddAccountSitelinks(AddAccountSitelinksRequest addAccountSitelinksRequest);
+
+        /// <summary>
+        /// Add account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <returns>ApiResponse of AddAccountSitelinks201Response</returns>
+        ApiResponse<AddAccountSitelinks201Response> AddAccountSitelinksWithHttpInfo(AddAccountSitelinksRequest addAccountSitelinksRequest);
+        /// <summary>
+        /// Add account snippets
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <returns>AddAccountStructuredSnippets201Response</returns>
+        AddAccountStructuredSnippets201Response AddAccountStructuredSnippets(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest);
+
+        /// <summary>
+        /// Add account snippets
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <returns>ApiResponse of AddAccountStructuredSnippets201Response</returns>
+        ApiResponse<AddAccountStructuredSnippets201Response> AddAccountStructuredSnippetsWithHttpInfo(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest);
         /// <summary>
         /// Create a negative keyword list
         /// </summary>
@@ -450,28 +492,74 @@ namespace Zernio.Api
         /// <returns>ApiResponse of HideAdComment200Response</returns>
         ApiResponse<HideAdComment200Response> HideAdCommentWithHttpInfo(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default);
         /// <summary>
-        /// List account-level callout extensions
+        /// List account callouts
         /// </summary>
         /// <remarks>
-        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <returns>ListAccountCallouts200Response</returns>
         ListAccountCallouts200Response ListAccountCallouts(string accountId, string? customerId = default);
 
         /// <summary>
-        /// List account-level callout extensions
+        /// List account callouts
         /// </summary>
         /// <remarks>
-        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <returns>ApiResponse of ListAccountCallouts200Response</returns>
         ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? customerId = default);
+        /// <summary>
+        /// List account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ListAccountSitelinks200Response</returns>
+        ListAccountSitelinks200Response ListAccountSitelinks(string accountId, string? customerId = default);
+
+        /// <summary>
+        /// List account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ApiResponse of ListAccountSitelinks200Response</returns>
+        ApiResponse<ListAccountSitelinks200Response> ListAccountSitelinksWithHttpInfo(string accountId, string? customerId = default);
+        /// <summary>
+        /// List account snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ListAccountStructuredSnippets200Response</returns>
+        ListAccountStructuredSnippets200Response ListAccountStructuredSnippets(string accountId, string? customerId = default);
+
+        /// <summary>
+        /// List account snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ApiResponse of ListAccountStructuredSnippets200Response</returns>
+        ApiResponse<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsWithHttpInfo(string accountId, string? customerId = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -750,10 +838,10 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListValueRuleSets200Response</returns>
         ApiResponse<ListValueRuleSets200Response> ListValueRuleSetsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default);
         /// <summary>
-        /// Remove an account-level callout extension
+        /// Remove account callout
         /// </summary>
         /// <remarks>
-        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
@@ -761,15 +849,57 @@ namespace Zernio.Api
         RemoveAccountCallout200Response RemoveAccountCallout(RemoveAccountCalloutRequest removeAccountCalloutRequest);
 
         /// <summary>
-        /// Remove an account-level callout extension
+        /// Remove account callout
         /// </summary>
         /// <remarks>
-        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
         /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
         ApiResponse<RemoveAccountCallout200Response> RemoveAccountCalloutWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest);
+        /// <summary>
+        /// Remove account sitelink
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>RemoveAccountCallout200Response</returns>
+        RemoveAccountCallout200Response RemoveAccountSitelink(RemoveAccountCalloutRequest removeAccountCalloutRequest);
+
+        /// <summary>
+        /// Remove account sitelink
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
+        ApiResponse<RemoveAccountCallout200Response> RemoveAccountSitelinkWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest);
+        /// <summary>
+        /// Remove account snippet
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>RemoveAccountCallout200Response</returns>
+        RemoveAccountCallout200Response RemoveAccountStructuredSnippet(RemoveAccountCalloutRequest removeAccountCalloutRequest);
+
+        /// <summary>
+        /// Remove account snippet
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
+        ApiResponse<RemoveAccountCallout200Response> RemoveAccountStructuredSnippetWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest);
         /// <summary>
         /// Replace negative list keywords
         /// </summary>
@@ -822,6 +952,69 @@ namespace Zernio.Api
         /// <param name="until">End date of the comment lookup window. Defaults to today in UTC. (optional)</param>
         /// <returns>ApiResponse of ReplyToAdComment200Response</returns>
         ApiResponse<ReplyToAdComment200Response> ReplyToAdCommentWithHttpInfo(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default);
+        /// <summary>
+        /// Update account callouts
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <returns>UpdateAccountCallouts200Response</returns>
+        UpdateAccountCallouts200Response UpdateAccountCallouts(UpdateAccountCalloutsRequest updateAccountCalloutsRequest);
+
+        /// <summary>
+        /// Update account callouts
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <returns>ApiResponse of UpdateAccountCallouts200Response</returns>
+        ApiResponse<UpdateAccountCallouts200Response> UpdateAccountCalloutsWithHttpInfo(UpdateAccountCalloutsRequest updateAccountCalloutsRequest);
+        /// <summary>
+        /// Update account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <returns>UpdateAccountCallouts200Response</returns>
+        UpdateAccountCallouts200Response UpdateAccountSitelinks(UpdateAccountSitelinksRequest updateAccountSitelinksRequest);
+
+        /// <summary>
+        /// Update account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <returns>ApiResponse of UpdateAccountCallouts200Response</returns>
+        ApiResponse<UpdateAccountCallouts200Response> UpdateAccountSitelinksWithHttpInfo(UpdateAccountSitelinksRequest updateAccountSitelinksRequest);
+        /// <summary>
+        /// Update account snippets
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <returns>UpdateAccountCallouts200Response</returns>
+        UpdateAccountCallouts200Response UpdateAccountStructuredSnippets(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest);
+
+        /// <summary>
+        /// Update account snippets
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <returns>ApiResponse of UpdateAccountCallouts200Response</returns>
+        ApiResponse<UpdateAccountCallouts200Response> UpdateAccountStructuredSnippetsWithHttpInfo(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest);
         /// <summary>
         /// Update ad account settings
         /// </summary>
@@ -899,10 +1092,10 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Add account-level callout extensions
+        /// Add account callouts
         /// </summary>
         /// <remarks>
-        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
@@ -911,16 +1104,62 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<AddAccountCallouts201Response> AddAccountCalloutsAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Add account-level callout extensions
+        /// Add account callouts
         /// </summary>
         /// <remarks>
-        /// Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddAccountCallouts201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddAccountCallouts201Response>> AddAccountCalloutsWithHttpInfoAsync(AddAccountCalloutsRequest addAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Add account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAccountSitelinks201Response</returns>
+        System.Threading.Tasks.Task<AddAccountSitelinks201Response> AddAccountSitelinksAsync(AddAccountSitelinksRequest addAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Add account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAccountSitelinks201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddAccountSitelinks201Response>> AddAccountSitelinksWithHttpInfoAsync(AddAccountSitelinksRequest addAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Add account snippets
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAccountStructuredSnippets201Response</returns>
+        System.Threading.Tasks.Task<AddAccountStructuredSnippets201Response> AddAccountStructuredSnippetsAsync(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Add account snippets
+        /// </summary>
+        /// <remarks>
+        /// Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAccountStructuredSnippets201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddAccountStructuredSnippets201Response>> AddAccountStructuredSnippetsWithHttpInfoAsync(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a negative keyword list
         /// </summary>
@@ -1354,30 +1593,80 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (HideAdComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<HideAdComment200Response>> HideAdCommentWithHttpInfoAsync(string adId, string commentId, HideAdCommentRequest hideAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List account-level callout extensions
+        /// List account callouts
         /// </summary>
         /// <remarks>
-        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountCallouts200Response</returns>
         System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List account-level callout extensions
+        /// List account callouts
         /// </summary>
         /// <remarks>
-        /// Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountCallouts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAccountSitelinks200Response</returns>
+        System.Threading.Tasks.Task<ListAccountSitelinks200Response> ListAccountSitelinksAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAccountSitelinks200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAccountSitelinks200Response>> ListAccountSitelinksWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List account snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAccountStructuredSnippets200Response</returns>
+        System.Threading.Tasks.Task<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List account snippets
+        /// </summary>
+        /// <remarks>
+        /// Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAccountStructuredSnippets200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAccountStructuredSnippets200Response>> ListAccountStructuredSnippetsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -1678,10 +1967,10 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListValueRuleSets200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListValueRuleSets200Response>> ListValueRuleSetsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Remove an account-level callout extension
+        /// Remove account callout
         /// </summary>
         /// <remarks>
-        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
@@ -1690,16 +1979,62 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountCalloutAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Remove an account-level callout extension
+        /// Remove account callout
         /// </summary>
         /// <remarks>
-        /// Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveAccountCallout200Response>> RemoveAccountCalloutWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove account sitelink
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAccountCallout200Response</returns>
+        System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountSitelinkAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove account sitelink
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveAccountCallout200Response>> RemoveAccountSitelinkWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove account snippet
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAccountCallout200Response</returns>
+        System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountStructuredSnippetAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove account snippet
+        /// </summary>
+        /// <remarks>
+        /// Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveAccountCallout200Response>> RemoveAccountStructuredSnippetWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Replace negative list keywords
         /// </summary>
@@ -1756,6 +2091,75 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplyToAdComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ReplyToAdComment200Response>> ReplyToAdCommentWithHttpInfoAsync(string adId, string commentId, ReplyToAdCommentRequest replyToAdCommentRequest, DateOnly? since = default, DateOnly? until = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update account callouts
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAccountCallouts200Response</returns>
+        System.Threading.Tasks.Task<UpdateAccountCallouts200Response> UpdateAccountCalloutsAsync(UpdateAccountCalloutsRequest updateAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update account callouts
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAccountCallouts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAccountCallouts200Response>> UpdateAccountCalloutsWithHttpInfoAsync(UpdateAccountCalloutsRequest updateAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAccountCallouts200Response</returns>
+        System.Threading.Tasks.Task<UpdateAccountCallouts200Response> UpdateAccountSitelinksAsync(UpdateAccountSitelinksRequest updateAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update account sitelinks
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAccountCallouts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAccountCallouts200Response>> UpdateAccountSitelinksWithHttpInfoAsync(UpdateAccountSitelinksRequest updateAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update account snippets
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAccountCallouts200Response</returns>
+        System.Threading.Tasks.Task<UpdateAccountCallouts200Response> UpdateAccountStructuredSnippetsAsync(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update account snippets
+        /// </summary>
+        /// <remarks>
+        /// Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAccountCallouts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAccountCallouts200Response>> UpdateAccountStructuredSnippetsWithHttpInfoAsync(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad account settings
         /// </summary>
@@ -2043,7 +2447,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Add account callouts Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
@@ -2055,7 +2459,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Add account callouts Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
@@ -2105,7 +2509,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Add account callouts Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
@@ -2118,7 +2522,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add account-level callout extensions Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+        /// Add account callouts Creates assets and customer_asset links for this Google customer. Links apply at account level.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAccountCalloutsRequest"></param>
@@ -2165,6 +2569,264 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("AddAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add account sitelinks Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <returns>AddAccountSitelinks201Response</returns>
+        public AddAccountSitelinks201Response AddAccountSitelinks(AddAccountSitelinksRequest addAccountSitelinksRequest)
+        {
+            Zernio.Client.ApiResponse<AddAccountSitelinks201Response> localVarResponse = AddAccountSitelinksWithHttpInfo(addAccountSitelinksRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add account sitelinks Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <returns>ApiResponse of AddAccountSitelinks201Response</returns>
+        public Zernio.Client.ApiResponse<AddAccountSitelinks201Response> AddAccountSitelinksWithHttpInfo(AddAccountSitelinksRequest addAccountSitelinksRequest)
+        {
+            // verify the required parameter 'addAccountSitelinksRequest' is set
+            if (addAccountSitelinksRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAccountSitelinksRequest' when calling AdAccountsApi->AddAccountSitelinks");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAccountSitelinksRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AddAccountSitelinks201Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAccountSitelinks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add account sitelinks Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAccountSitelinks201Response</returns>
+        public async System.Threading.Tasks.Task<AddAccountSitelinks201Response> AddAccountSitelinksAsync(AddAccountSitelinksRequest addAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AddAccountSitelinks201Response> localVarResponse = await AddAccountSitelinksWithHttpInfoAsync(addAccountSitelinksRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add account sitelinks Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAccountSitelinks201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddAccountSitelinks201Response>> AddAccountSitelinksWithHttpInfoAsync(AddAccountSitelinksRequest addAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'addAccountSitelinksRequest' is set
+            if (addAccountSitelinksRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAccountSitelinksRequest' when calling AdAccountsApi->AddAccountSitelinks");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAccountSitelinksRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AddAccountSitelinks201Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAccountSitelinks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add account snippets Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <returns>AddAccountStructuredSnippets201Response</returns>
+        public AddAccountStructuredSnippets201Response AddAccountStructuredSnippets(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest)
+        {
+            Zernio.Client.ApiResponse<AddAccountStructuredSnippets201Response> localVarResponse = AddAccountStructuredSnippetsWithHttpInfo(addAccountStructuredSnippetsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add account snippets Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <returns>ApiResponse of AddAccountStructuredSnippets201Response</returns>
+        public Zernio.Client.ApiResponse<AddAccountStructuredSnippets201Response> AddAccountStructuredSnippetsWithHttpInfo(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest)
+        {
+            // verify the required parameter 'addAccountStructuredSnippetsRequest' is set
+            if (addAccountStructuredSnippetsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAccountStructuredSnippetsRequest' when calling AdAccountsApi->AddAccountStructuredSnippets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAccountStructuredSnippetsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AddAccountStructuredSnippets201Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAccountStructuredSnippets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add account snippets Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddAccountStructuredSnippets201Response</returns>
+        public async System.Threading.Tasks.Task<AddAccountStructuredSnippets201Response> AddAccountStructuredSnippetsAsync(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AddAccountStructuredSnippets201Response> localVarResponse = await AddAccountStructuredSnippetsWithHttpInfoAsync(addAccountStructuredSnippetsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add account snippets Creates assets and customer_asset links for this Google customer. Links apply at account level.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="addAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddAccountStructuredSnippets201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddAccountStructuredSnippets201Response>> AddAccountStructuredSnippetsWithHttpInfoAsync(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'addAccountStructuredSnippetsRequest' is set
+            if (addAccountStructuredSnippetsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addAccountStructuredSnippetsRequest' when calling AdAccountsApi->AddAccountStructuredSnippets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = addAccountStructuredSnippetsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AddAccountStructuredSnippets201Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddAccountStructuredSnippets", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4626,11 +5288,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// List account callouts Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <returns>ListAccountCallouts200Response</returns>
         public ListAccountCallouts200Response ListAccountCallouts(string accountId, string? customerId = default)
         {
@@ -4639,11 +5301,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// List account callouts Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <returns>ApiResponse of ListAccountCallouts200Response</returns>
         public Zernio.Client.ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? customerId = default)
         {
@@ -4693,11 +5355,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// List account callouts Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountCallouts200Response</returns>
         public async System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4707,11 +5369,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List account-level callout extensions Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+        /// List account callouts Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountCallouts200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4758,6 +5420,284 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List account sitelinks Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ListAccountSitelinks200Response</returns>
+        public ListAccountSitelinks200Response ListAccountSitelinks(string accountId, string? customerId = default)
+        {
+            Zernio.Client.ApiResponse<ListAccountSitelinks200Response> localVarResponse = ListAccountSitelinksWithHttpInfo(accountId, customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List account sitelinks Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ApiResponse of ListAccountSitelinks200Response</returns>
+        public Zernio.Client.ApiResponse<ListAccountSitelinks200Response> ListAccountSitelinksWithHttpInfo(string accountId, string? customerId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAccountSitelinks");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAccountSitelinks200Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAccountSitelinks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List account sitelinks Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAccountSitelinks200Response</returns>
+        public async System.Threading.Tasks.Task<ListAccountSitelinks200Response> ListAccountSitelinksAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAccountSitelinks200Response> localVarResponse = await ListAccountSitelinksWithHttpInfoAsync(accountId, customerId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List account sitelinks Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAccountSitelinks200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountSitelinks200Response>> ListAccountSitelinksWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAccountSitelinks");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAccountSitelinks200Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAccountSitelinks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List account snippets Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ListAccountStructuredSnippets200Response</returns>
+        public ListAccountStructuredSnippets200Response ListAccountStructuredSnippets(string accountId, string? customerId = default)
+        {
+            Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = ListAccountStructuredSnippetsWithHttpInfo(accountId, customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List account snippets Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <returns>ApiResponse of ListAccountStructuredSnippets200Response</returns>
+        public Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsWithHttpInfo(string accountId, string? customerId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAccountStructuredSnippets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAccountStructuredSnippets200Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAccountStructuredSnippets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List account snippets Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAccountStructuredSnippets200Response</returns>
+        public async System.Threading.Tasks.Task<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = await ListAccountStructuredSnippetsWithHttpInfoAsync(accountId, customerId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List account snippets Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="customerId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAccountStructuredSnippets200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response>> ListAccountStructuredSnippetsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAccountStructuredSnippets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAccountStructuredSnippets200Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAccountStructuredSnippets", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -6450,7 +7390,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Remove account callout Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
@@ -6462,7 +7402,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Remove account callout Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
@@ -6512,7 +7452,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Remove account callout Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
@@ -6525,7 +7465,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove an account-level callout extension Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+        /// Remove account callout Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="removeAccountCalloutRequest"></param>
@@ -6572,6 +7512,264 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RemoveAccountCallout", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove account sitelink Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>RemoveAccountCallout200Response</returns>
+        public RemoveAccountCallout200Response RemoveAccountSitelink(RemoveAccountCalloutRequest removeAccountCalloutRequest)
+        {
+            Zernio.Client.ApiResponse<RemoveAccountCallout200Response> localVarResponse = RemoveAccountSitelinkWithHttpInfo(removeAccountCalloutRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove account sitelink Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveAccountCallout200Response> RemoveAccountSitelinkWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest)
+        {
+            // verify the required parameter 'removeAccountCalloutRequest' is set
+            if (removeAccountCalloutRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'removeAccountCalloutRequest' when calling AdAccountsApi->RemoveAccountSitelink");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = removeAccountCalloutRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveAccountCallout200Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAccountSitelink", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove account sitelink Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAccountCallout200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountSitelinkAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveAccountCallout200Response> localVarResponse = await RemoveAccountSitelinkWithHttpInfoAsync(removeAccountCalloutRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove account sitelink Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveAccountCallout200Response>> RemoveAccountSitelinkWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'removeAccountCalloutRequest' is set
+            if (removeAccountCalloutRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'removeAccountCalloutRequest' when calling AdAccountsApi->RemoveAccountSitelink");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = removeAccountCalloutRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveAccountCallout200Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAccountSitelink", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove account snippet Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>RemoveAccountCallout200Response</returns>
+        public RemoveAccountCallout200Response RemoveAccountStructuredSnippet(RemoveAccountCalloutRequest removeAccountCalloutRequest)
+        {
+            Zernio.Client.ApiResponse<RemoveAccountCallout200Response> localVarResponse = RemoveAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove account snippet Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveAccountCallout200Response> RemoveAccountStructuredSnippetWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest)
+        {
+            // verify the required parameter 'removeAccountCalloutRequest' is set
+            if (removeAccountCalloutRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'removeAccountCalloutRequest' when calling AdAccountsApi->RemoveAccountStructuredSnippet");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = removeAccountCalloutRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveAccountCallout200Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAccountStructuredSnippet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove account snippet Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAccountCallout200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveAccountCallout200Response> RemoveAccountStructuredSnippetAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveAccountCallout200Response> localVarResponse = await RemoveAccountStructuredSnippetWithHttpInfoAsync(removeAccountCalloutRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove account snippet Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="removeAccountCalloutRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveAccountCallout200Response>> RemoveAccountStructuredSnippetWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'removeAccountCalloutRequest' is set
+            if (removeAccountCalloutRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'removeAccountCalloutRequest' when calling AdAccountsApi->RemoveAccountStructuredSnippet");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = removeAccountCalloutRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveAccountCallout200Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAccountStructuredSnippet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -6896,6 +8094,393 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ReplyToAdComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update account callouts Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <returns>UpdateAccountCallouts200Response</returns>
+        public UpdateAccountCallouts200Response UpdateAccountCallouts(UpdateAccountCalloutsRequest updateAccountCalloutsRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> localVarResponse = UpdateAccountCalloutsWithHttpInfo(updateAccountCalloutsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update account callouts Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <returns>ApiResponse of UpdateAccountCallouts200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> UpdateAccountCalloutsWithHttpInfo(UpdateAccountCalloutsRequest updateAccountCalloutsRequest)
+        {
+            // verify the required parameter 'updateAccountCalloutsRequest' is set
+            if (updateAccountCalloutsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAccountCalloutsRequest' when calling AdAccountsApi->UpdateAccountCallouts");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAccountCalloutsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAccountCallouts200Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update account callouts Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAccountCallouts200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAccountCallouts200Response> UpdateAccountCalloutsAsync(UpdateAccountCalloutsRequest updateAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> localVarResponse = await UpdateAccountCalloutsWithHttpInfoAsync(updateAccountCalloutsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update account callouts Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountCalloutsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAccountCallouts200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAccountCallouts200Response>> UpdateAccountCalloutsWithHttpInfoAsync(UpdateAccountCalloutsRequest updateAccountCalloutsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'updateAccountCalloutsRequest' is set
+            if (updateAccountCalloutsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAccountCalloutsRequest' when calling AdAccountsApi->UpdateAccountCallouts");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAccountCalloutsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAccountCallouts200Response>("/v1/ads/accounts/callouts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAccountCallouts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update account sitelinks Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <returns>UpdateAccountCallouts200Response</returns>
+        public UpdateAccountCallouts200Response UpdateAccountSitelinks(UpdateAccountSitelinksRequest updateAccountSitelinksRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> localVarResponse = UpdateAccountSitelinksWithHttpInfo(updateAccountSitelinksRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update account sitelinks Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <returns>ApiResponse of UpdateAccountCallouts200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> UpdateAccountSitelinksWithHttpInfo(UpdateAccountSitelinksRequest updateAccountSitelinksRequest)
+        {
+            // verify the required parameter 'updateAccountSitelinksRequest' is set
+            if (updateAccountSitelinksRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAccountSitelinksRequest' when calling AdAccountsApi->UpdateAccountSitelinks");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAccountSitelinksRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAccountCallouts200Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAccountSitelinks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update account sitelinks Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAccountCallouts200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAccountCallouts200Response> UpdateAccountSitelinksAsync(UpdateAccountSitelinksRequest updateAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> localVarResponse = await UpdateAccountSitelinksWithHttpInfoAsync(updateAccountSitelinksRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update account sitelinks Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountSitelinksRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAccountCallouts200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAccountCallouts200Response>> UpdateAccountSitelinksWithHttpInfoAsync(UpdateAccountSitelinksRequest updateAccountSitelinksRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'updateAccountSitelinksRequest' is set
+            if (updateAccountSitelinksRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAccountSitelinksRequest' when calling AdAccountsApi->UpdateAccountSitelinks");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAccountSitelinksRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAccountCallouts200Response>("/v1/ads/accounts/sitelinks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAccountSitelinks", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update account snippets Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <returns>UpdateAccountCallouts200Response</returns>
+        public UpdateAccountCallouts200Response UpdateAccountStructuredSnippets(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> localVarResponse = UpdateAccountStructuredSnippetsWithHttpInfo(updateAccountStructuredSnippetsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update account snippets Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <returns>ApiResponse of UpdateAccountCallouts200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> UpdateAccountStructuredSnippetsWithHttpInfo(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest)
+        {
+            // verify the required parameter 'updateAccountStructuredSnippetsRequest' is set
+            if (updateAccountStructuredSnippetsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAccountStructuredSnippetsRequest' when calling AdAccountsApi->UpdateAccountStructuredSnippets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAccountStructuredSnippetsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAccountCallouts200Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAccountStructuredSnippets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update account snippets Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAccountCallouts200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAccountCallouts200Response> UpdateAccountStructuredSnippetsAsync(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAccountCallouts200Response> localVarResponse = await UpdateAccountStructuredSnippetsWithHttpInfoAsync(updateAccountStructuredSnippetsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update account snippets Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAccountStructuredSnippetsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAccountCallouts200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAccountCallouts200Response>> UpdateAccountStructuredSnippetsWithHttpInfoAsync(UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'updateAccountStructuredSnippetsRequest' is set
+            if (updateAccountStructuredSnippetsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAccountStructuredSnippetsRequest' when calling AdAccountsApi->UpdateAccountStructuredSnippets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAccountStructuredSnippetsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAccountCallouts200Response>("/v1/ads/accounts/structured-snippets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAccountStructuredSnippets", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -67,6 +67,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AttachAdGroupAssets
+        /// </summary>
+        [Fact]
+        public void AttachAdGroupAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //AttachCampaignAssetsRequest attachCampaignAssetsRequest = null;
+            //var response = instance.AttachAdGroupAssets(adSetId, attachCampaignAssetsRequest);
+            //Assert.IsType<AttachAdGroupAssets201Response>(response);
+        }
+
+        /// <summary>
         /// Test AttachCampaignAssets
         /// </summary>
         [Fact]
@@ -359,6 +372,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdGroupAssets
+        /// </summary>
+        [Fact]
+        public void ListAdGroupAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //string accountId = null;
+            //string? customerId = null;
+            //var response = instance.ListAdGroupAssets(adSetId, accountId, customerId);
+            //Assert.IsType<ListAdGroupAssets200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdKeywords
         /// </summary>
         [Fact]
@@ -437,6 +464,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListCampaignAssets
+        /// </summary>
+        [Fact]
+        public void ListCampaignAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //string accountId = null;
+            //string? customerId = null;
+            //var response = instance.ListCampaignAssets(campaignId, accountId, customerId);
+            //Assert.IsType<ListCampaignAssets200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListCampaignNegativeKeywordLists
         /// </summary>
         [Fact]
@@ -463,6 +504,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RemoveAdGroupAssets
+        /// </summary>
+        [Fact]
+        public void RemoveAdGroupAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest = null;
+            //var response = instance.RemoveAdGroupAssets(adSetId, removeAdGroupAssetsRequest);
+            //Assert.IsType<RemoveCampaignAssets200Response>(response);
+        }
+
+        /// <summary>
         /// Test RemoveAdKeyword
         /// </summary>
         [Fact]
@@ -472,6 +526,19 @@ namespace Zernio.Test.Api
             //string keywordId = null;
             //var response = instance.RemoveAdKeyword(keywordId);
             //Assert.IsType<RemoveAdKeyword200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveCampaignAssets
+        /// </summary>
+        [Fact]
+        public void RemoveCampaignAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //RemoveCampaignAssetsRequest removeCampaignAssetsRequest = null;
+            //var response = instance.RemoveCampaignAssets(campaignId, removeCampaignAssetsRequest);
+            //Assert.IsType<RemoveCampaignAssets200Response>(response);
         }
 
         /// <summary>
@@ -540,6 +607,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test UpdateAdGroupAssets
+        /// </summary>
+        [Fact]
+        public void UpdateAdGroupAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //UpdateCampaignAssetsRequest updateCampaignAssetsRequest = null;
+            //var response = instance.UpdateAdGroupAssets(adSetId, updateCampaignAssetsRequest);
+            //Assert.IsType<UpdateCampaignAssets200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdKeyword
         /// </summary>
         [Fact]
@@ -602,6 +682,19 @@ namespace Zernio.Test.Api
             //UpdateBidStrategyRequest updateBidStrategyRequest = null;
             //var response = instance.UpdateBidStrategy(strategyId, updateBidStrategyRequest);
             //Assert.IsType<UpdateBidStrategy200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateCampaignAssets
+        /// </summary>
+        [Fact]
+        public void UpdateCampaignAssetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //UpdateCampaignAssetsRequest updateCampaignAssetsRequest = null;
+            //var response = instance.UpdateCampaignAssets(campaignId, updateCampaignAssetsRequest);
+            //Assert.IsType<UpdateCampaignAssets200Response>(response);
         }
 
         /// <summary>

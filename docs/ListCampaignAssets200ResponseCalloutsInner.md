@@ -1,13 +1,12 @@
-# Zernio.Model.AttachCampaignAssetsRequestSitelinksInner
+# Zernio.Model.ListCampaignAssets200ResponseCalloutsInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Text** | **string** |  | 
-**LinkUrl** | **string** |  | 
-**Description1** | **string** |  | [optional] 
-**Description2** | **string** |  | [optional] 
+**AssetResourceName** | **string** |  | [optional] 
+**CampaignAssetResourceName** | **string** |  | [optional] 
+**CalloutText** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

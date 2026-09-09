@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// AttachCampaignAssetsRequest
+    /// Provide at least one of sitelinks, callouts or structuredSnippets. Sitelink description1 and description2 must be supplied together.
     /// </summary>
     [DataContract(Name = "attachCampaignAssets_request")]
     public partial class AttachCampaignAssetsRequest : IValidatableObject
@@ -41,12 +41,12 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AttachCampaignAssetsRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token. (required).</param>
-        /// <param name="customerId">Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one..</param>
-        /// <param name="sitelinks">See POST /v1/ads/create sitelinks, same shape..</param>
+        /// <param name="accountId">Zernio Google Ads connection id. (required).</param>
+        /// <param name="customerId">Google customer id without dashes. Required when the connection has multiple customers..</param>
+        /// <param name="sitelinks">sitelinks.</param>
         /// <param name="callouts">callouts.</param>
         /// <param name="structuredSnippets">structuredSnippets.</param>
-        public AttachCampaignAssetsRequest(string accountId = default, string customerId = default, List<AttachCampaignAssetsRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets = default)
+        public AttachCampaignAssetsRequest(string accountId = default, string customerId = default, List<GoogleSitelink> sitelinks = default, List<string> callouts = default, List<GoogleStructuredSnippet> structuredSnippets = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -61,25 +61,24 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token.
+        /// Zernio Google Ads connection id.
         /// </summary>
-        /// <value>Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token.</value>
+        /// <value>Zernio Google Ads connection id.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+        /// Google customer id without dashes. Required when the connection has multiple customers.
         /// </summary>
-        /// <value>Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.</value>
+        /// <value>Google customer id without dashes. Required when the connection has multiple customers.</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
         public string CustomerId { get; set; }
 
         /// <summary>
-        /// See POST /v1/ads/create sitelinks, same shape.
+        /// Gets or Sets Sitelinks
         /// </summary>
-        /// <value>See POST /v1/ads/create sitelinks, same shape.</value>
         [DataMember(Name = "sitelinks", EmitDefaultValue = false)]
-        public List<AttachCampaignAssetsRequestSitelinksInner> Sitelinks { get; set; }
+        public List<GoogleSitelink> Sitelinks { get; set; }
 
         /// <summary>
         /// Gets or Sets Callouts
@@ -91,7 +90,7 @@ namespace Zernio.Model
         /// Gets or Sets StructuredSnippets
         /// </summary>
         [DataMember(Name = "structuredSnippets", EmitDefaultValue = false)]
-        public List<AttachCampaignAssetsRequestStructuredSnippetsInner> StructuredSnippets { get; set; }
+        public List<GoogleStructuredSnippet> StructuredSnippets { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -126,6 +125,24 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.AccountId != null) {
+                // AccountId (string) pattern
+                Regex regexAccountId = new Regex(@"^[a-fA-F0-9]{24}$", RegexOptions.CultureInvariant);
+                if (!regexAccountId.Match(this.AccountId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
+                }
+            }
+
+            if (this.CustomerId != null) {
+                // CustomerId (string) pattern
+                Regex regexCustomerId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexCustomerId.Match(this.CustomerId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerId, must match a pattern of " + regexCustomerId, new [] { "CustomerId" });
+                }
+            }
+
             yield break;
         }
     }

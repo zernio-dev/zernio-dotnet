@@ -63,5 +63,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Ad'
         }
+
+        /// <summary>
+        /// Test the property 'CachedAt'
+        /// </summary>
+        [Fact]
+        public void CachedAtTest()
+        {
+            // TODO unit test for the property 'CachedAt'
+        }
+
+        /// <summary>
+        /// Test the property 'Stale'
+        /// </summary>
+        [Fact]
+        public void StaleTest()
+        {
+            // TODO unit test for the property 'Stale'
+        }
     }
 }

@@ -5,6 +5,9 @@ Platform-specific creative data. Fields vary by platform.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Headlines** | [**List&lt;GoogleRsaHeadline&gt;**](GoogleRsaHeadline.md) | Google RSA only. Replaces the complete headline list. No padding or truncation on update. | [optional] 
+**Descriptions** | [**List&lt;GoogleRsaDescription&gt;**](GoogleRsaDescription.md) | Google RSA only. Replaces the complete description list. No padding or truncation on update. | [optional] 
+**FinalUrls** | **List&lt;string&gt;** | Google RSA only. Replaces final URLs. Omitted lists stay unchanged. | [optional] 
 **ThumbnailUrl** | **string** | Primary thumbnail/image URL | [optional] 
 **ImageUrl** | **string** | Alternative image URL | [optional] 
 **VideoId** | **string** | Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token. | [optional] 
