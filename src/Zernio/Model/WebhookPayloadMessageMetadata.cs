@@ -111,6 +111,7 @@ namespace Zernio.Model
         /// <param name="nfmReplyName">WhatsApp only. &#x60;nfm_reply.name&#x60; as Meta sent it, e.g. &#x60;flow&#x60; or &#x60;address_message&#x60;. Address submissions share the &#x60;nfm_reply&#x60; envelope with Flow submissions and are otherwise indistinguishable in &#x60;flowResponseData&#x60;; use this field to tell them apart. .</param>
         /// <param name="order">order.</param>
         /// <param name="referredProduct">referredProduct.</param>
+        /// <param name="location">location.</param>
         /// <param name="contacts">WhatsApp only. Contact cards the user shared, forwarded verbatim from Meta. Read &#x60;contactsOrigin&#x60; before treating any number here as the sender&#39;s own. .</param>
         /// <param name="contactsOrigin">WhatsApp only. How the contact card was shared. &#x60;contact_request&#x60; means the user tapped a &#x60;request_contact_info&#x60; button, so the number is their own and consented. &#x60;other&#x60; means they picked a card from their address book: it may be anyone&#39;s, and must NOT be stored as the sender&#39;s identity. Omitted when Meta sends no origin. .</param>
         /// <param name="storyReply">storyReply.</param>
@@ -118,7 +119,7 @@ namespace Zernio.Model
         /// <param name="referral">referral.</param>
         /// <param name="unsupported">unsupported.</param>
         /// <param name="noRenderableContent">Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, only the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;. .</param>
-        public WebhookPayloadMessageMetadata(bool standby = default, string quotedMessageId = default, WebhookPayloadMessageMetadataQuotedMessage quotedMessage = default, string quickReplyPayload = default, string postbackPayload = default, string postbackTitle = default, string callbackData = default, InteractiveTypeEnum? interactiveType = default, string interactiveId = default, string buttonPayload = default, string flowResponseJson = default, Dictionary<string, Object> flowResponseData = default, string nfmReplyName = default, WebhookPayloadMessageMetadataOrder order = default, WebhookPayloadMessageMetadataReferredProduct referredProduct = default, List<Dictionary<string, Object>> contacts = default, ContactsOriginEnum? contactsOrigin = default, WebhookPayloadMessageMetadataStoryReply storyReply = default, bool isStoryMention = default, WebhookPayloadMessageMetadataReferral referral = default, WebhookPayloadMessageMetadataUnsupported unsupported = default, bool noRenderableContent = default)
+        public WebhookPayloadMessageMetadata(bool standby = default, string quotedMessageId = default, WebhookPayloadMessageMetadataQuotedMessage quotedMessage = default, string quickReplyPayload = default, string postbackPayload = default, string postbackTitle = default, string callbackData = default, InteractiveTypeEnum? interactiveType = default, string interactiveId = default, string buttonPayload = default, string flowResponseJson = default, Dictionary<string, Object> flowResponseData = default, string nfmReplyName = default, WebhookPayloadMessageMetadataOrder order = default, WebhookPayloadMessageMetadataReferredProduct referredProduct = default, WebhookPayloadMessageMetadataLocation location = default, List<Dictionary<string, Object>> contacts = default, ContactsOriginEnum? contactsOrigin = default, WebhookPayloadMessageMetadataStoryReply storyReply = default, bool isStoryMention = default, WebhookPayloadMessageMetadataReferral referral = default, WebhookPayloadMessageMetadataUnsupported unsupported = default, bool noRenderableContent = default)
         {
             this.Standby = standby;
             this.QuotedMessageId = quotedMessageId;
@@ -135,6 +136,7 @@ namespace Zernio.Model
             this.NfmReplyName = nfmReplyName;
             this.Order = order;
             this.ReferredProduct = referredProduct;
+            this.Location = location;
             this.Contacts = contacts;
             this.ContactsOrigin = contactsOrigin;
             this.StoryReply = storyReply;
@@ -240,6 +242,12 @@ namespace Zernio.Model
         public WebhookPayloadMessageMetadataReferredProduct ReferredProduct { get; set; }
 
         /// <summary>
+        /// Gets or Sets Location
+        /// </summary>
+        [DataMember(Name = "location", EmitDefaultValue = false)]
+        public WebhookPayloadMessageMetadataLocation Location { get; set; }
+
+        /// <summary>
         /// WhatsApp only. Contact cards the user shared, forwarded verbatim from Meta. Read &#x60;contactsOrigin&#x60; before treating any number here as the sender&#39;s own. 
         /// </summary>
         /// <value>WhatsApp only. Contact cards the user shared, forwarded verbatim from Meta. Read &#x60;contactsOrigin&#x60; before treating any number here as the sender&#39;s own. </value>
@@ -301,6 +309,7 @@ namespace Zernio.Model
             sb.Append("  NfmReplyName: ").Append(NfmReplyName).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  ReferredProduct: ").Append(ReferredProduct).Append("\n");
+            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("  Contacts: ").Append(Contacts).Append("\n");
             sb.Append("  ContactsOrigin: ").Append(ContactsOrigin).Append("\n");
             sb.Append("  StoryReply: ").Append(StoryReply).Append("\n");

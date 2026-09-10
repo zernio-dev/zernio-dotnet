@@ -1955,6 +1955,7 @@ docs/WebhookPayloadMessageMessageAttachmentsInner.md
 docs/WebhookPayloadMessageMessageSender.md
 docs/WebhookPayloadMessageMessageSenderInstagramProfile.md
 docs/WebhookPayloadMessageMetadata.md
+docs/WebhookPayloadMessageMetadataLocation.md
 docs/WebhookPayloadMessageMetadataOrder.md
 docs/WebhookPayloadMessageMetadataOrderProductItemsInner.md
 docs/WebhookPayloadMessageMetadataQuotedMessage.md
@@ -1968,6 +1969,7 @@ docs/WebhookPayloadMessageSentMessage.md
 docs/WebhookPayloadMessageSentMessageAttachmentsInner.md
 docs/WebhookPayloadMessageSentMessageSender.md
 docs/WebhookPayloadMessageSentMetadata.md
+docs/WebhookPayloadMessageSentMetadataLocation.md
 docs/WebhookPayloadPhoneNumberStockAvailable.md
 docs/WebhookPayloadPhoneNumberStockAvailableStock.md
 docs/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.md
@@ -4024,6 +4026,7 @@ src/Zernio.Test/Model/WebhookPayloadMessageMessageAttachmentsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMessageSenderInstagramProfileTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMessageSenderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMessageTests.cs
+src/Zernio.Test/Model/WebhookPayloadMessageMetadataLocationTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataOrderProductItemsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataOrderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataQuotedMessageTests.cs
@@ -4036,6 +4039,7 @@ src/Zernio.Test/Model/WebhookPayloadMessageMetadataUnsupportedTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMessageAttachmentsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMessageSenderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMessageTests.cs
+src/Zernio.Test/Model/WebhookPayloadMessageSentMetadataLocationTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMetadataTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageTests.cs
@@ -6109,6 +6113,7 @@ src/Zernio/Model/WebhookPayloadMessageMessageAttachmentsInner.cs
 src/Zernio/Model/WebhookPayloadMessageMessageSender.cs
 src/Zernio/Model/WebhookPayloadMessageMessageSenderInstagramProfile.cs
 src/Zernio/Model/WebhookPayloadMessageMetadata.cs
+src/Zernio/Model/WebhookPayloadMessageMetadataLocation.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataOrder.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataOrderProductItemsInner.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataQuotedMessage.cs
@@ -6122,6 +6127,7 @@ src/Zernio/Model/WebhookPayloadMessageSentMessage.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessageAttachmentsInner.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessageSender.cs
 src/Zernio/Model/WebhookPayloadMessageSentMetadata.cs
+src/Zernio/Model/WebhookPayloadMessageSentMetadataLocation.cs
 src/Zernio/Model/WebhookPayloadPhoneNumberStockAvailable.cs
 src/Zernio/Model/WebhookPayloadPhoneNumberStockAvailableStock.cs
 src/Zernio/Model/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.cs

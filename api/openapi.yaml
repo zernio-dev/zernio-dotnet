@@ -47161,7 +47161,7 @@ components:
             ctwa_clid: ctwa_clid
             headline: headline
           unsupported:
-            code: 5
+            code: 2
             details: details
             title: title
           isStoryMention: true
@@ -47172,6 +47172,11 @@ components:
           callbackData: callbackData
           flowResponseData:
             key: ""
+          location:
+            address: address
+            latitude: 5.962133916683182
+            name: name
+            longitude: 5.637376656633329
           contacts:
           - key: ""
           - key: ""
@@ -47277,7 +47282,15 @@ components:
       example:
         metadata:
           quotedMessageId: quotedMessageId
+          location:
+            address: address
+            latitude: 0.8008281904610115
+            name: name
+            longitude: 6.027456183070403
           threadTs: threadTs
+          contacts:
+          - key: ""
+          - key: ""
         id: id
         event: message.sent
         message:
@@ -107345,6 +107358,29 @@ components:
         product_retailer_id:
           description: Retailer ID (SKU) of the product being asked about.
           type: string
+    WebhookPayloadMessage_metadata_location:
+      description: |
+        WhatsApp only. The location pin the user shared, forwarded
+        verbatim from Meta. The message `text` is only the emoji preview
+        (`📍 <name>`); the coordinates live here.
+      example:
+        address: address
+        latitude: 5.962133916683182
+        name: name
+        longitude: 5.637376656633329
+      properties:
+        latitude:
+          description: Latitude in decimal degrees.
+          type: number
+        longitude:
+          description: Longitude in decimal degrees.
+          type: number
+        name:
+          description: "Location name, when the user shared a named place."
+          type: string
+        address:
+          description: "Street address, when Meta sends one."
+          type: string
     WebhookPayloadMessage_metadata_storyReply:
       description: |
         Instagram only. Populated when an IG user replies to one of the
@@ -107495,7 +107531,7 @@ components:
         supported). `text` on those messages is the fixed
         `[Unsupported message]` placeholder.
       example:
-        code: 5
+        code: 2
         details: details
         title: title
       properties:
@@ -107554,7 +107590,7 @@ components:
           ctwa_clid: ctwa_clid
           headline: headline
         unsupported:
-          code: 5
+          code: 2
           details: details
           title: title
         isStoryMention: true
@@ -107565,6 +107601,11 @@ components:
         callbackData: callbackData
         flowResponseData:
           key: ""
+        location:
+          address: address
+          latitude: 5.962133916683182
+          name: name
+          longitude: 5.637376656633329
         contacts:
         - key: ""
         - key: ""
@@ -107660,6 +107701,8 @@ components:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_order"
         referredProduct:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referredProduct"
+        location:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_location"
         contacts:
           description: |
             WhatsApp only. Contact cards the user shared, forwarded verbatim
@@ -107899,14 +107942,64 @@ components:
       - sender
       - sentAt
       - text
+    WebhookPayloadMessageSent_metadata_location:
+      description: |
+        WhatsApp only. The location pin this message carries, in the same
+        shape the inbox send API accepts. Present on API sends that passed
+        `location`, and on Coexistence echoes of a pin shared from the
+        WhatsApp Business app. The message `text` is only the emoji
+        preview (`📍 <name>`); the pin itself lives here.
+      example:
+        address: address
+        latitude: 0.8008281904610115
+        name: name
+        longitude: 6.027456183070403
+      properties:
+        latitude:
+          description: Latitude in decimal degrees.
+          type: number
+        longitude:
+          description: Longitude in decimal degrees.
+          type: number
+        name:
+          description: "Location name, when one was given."
+          type: string
+        address:
+          description: "Street address, when one was given."
+          type: string
     WebhookPayloadMessageSent_metadata:
-      description: "Platform-specific context for the sent message. The key is present\
-        \ only when the send carried some context, and absent otherwise: it is never\
-        \ null and never an empty object."
+      description: "Platform-specific context for the sent message: a quote-reply\
+        \ reference, a WhatsApp location pin or WhatsApp contact cards. The key is\
+        \ present only when the send carried some context, and absent otherwise: it\
+        \ is never null and never an empty object. Read it to tell a location or contact-card\
+        \ message from a text one without a GET on the message."
       example:
         quotedMessageId: quotedMessageId
+        location:
+          address: address
+          latitude: 0.8008281904610115
+          name: name
+          longitude: 6.027456183070403
         threadTs: threadTs
+        contacts:
+        - key: ""
+        - key: ""
       properties:
+        location:
+          $ref: "#/components/schemas/WebhookPayloadMessageSent_metadata_location"
+        contacts:
+          description: |
+            WhatsApp only. The contact cards this message carries. On API
+            sends this is the `contacts` array exactly as given to the inbox
+            send API (`name`, `phones[].phone` / `type`, `emails[]`); on
+            Coexistence echoes of a card shared from the WhatsApp Business
+            app it is Meta's shape (`phones[].wa_id`, `vcard`). The message
+            `text` is only the emoji preview (`👤 <name>`); the cards live
+            here.
+          items:
+            additionalProperties: true
+            type: object
+          type: array
         quotedMessageId:
           description: |
             `platformMessageId` of the message this send is a quote-reply to.
