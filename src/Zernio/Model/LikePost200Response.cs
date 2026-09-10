@@ -41,13 +41,17 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="liked">liked.</param>
         /// <param name="likeUri">(Bluesky only) URI to use for unliking.</param>
-        public LikePost200Response(string status = default, string postId = default, string platform = default, bool liked = default, string likeUri = default)
+        /// <param name="alreadyReacted">LinkedIn only: the account already had this exact reaction, so nothing was created.</param>
+        /// <param name="reactionType">LinkedIn only: the reaction type now in effect.</param>
+        public LikePost200Response(string status = default, string postId = default, string platform = default, bool liked = default, string likeUri = default, bool alreadyReacted = default, string reactionType = default)
         {
             this.Status = status;
             this.PostId = postId;
             this.Platform = platform;
             this.Liked = liked;
             this.LikeUri = likeUri;
+            this.AlreadyReacted = alreadyReacted;
+            this.ReactionType = reactionType;
         }
 
         /// <summary>
@@ -83,6 +87,20 @@ namespace Zernio.Model
         public string LikeUri { get; set; }
 
         /// <summary>
+        /// LinkedIn only: the account already had this exact reaction, so nothing was created
+        /// </summary>
+        /// <value>LinkedIn only: the account already had this exact reaction, so nothing was created</value>
+        [DataMember(Name = "alreadyReacted", EmitDefaultValue = true)]
+        public bool AlreadyReacted { get; set; }
+
+        /// <summary>
+        /// LinkedIn only: the reaction type now in effect
+        /// </summary>
+        /// <value>LinkedIn only: the reaction type now in effect</value>
+        [DataMember(Name = "reactionType", EmitDefaultValue = false)]
+        public string ReactionType { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,6 +113,8 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Liked: ").Append(Liked).Append("\n");
             sb.Append("  LikeUri: ").Append(LikeUri).Append("\n");
+            sb.Append("  AlreadyReacted: ").Append(AlreadyReacted).Append("\n");
+            sb.Append("  ReactionType: ").Append(ReactionType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **Liked** | **bool** |  | [optional] 
 **LikeUri** | **string** | (Bluesky only) URI to use for unliking | [optional] 
+**AlreadyReacted** | **bool** | LinkedIn only: the account already had this exact reaction, so nothing was created | [optional] 
+**ReactionType** | **string** | LinkedIn only: the reaction type now in effect | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

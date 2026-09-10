@@ -49,7 +49,7 @@ namespace Zernio.Model
         /// <param name="canReply">canReply.</param>
         /// <param name="canDelete">canDelete.</param>
         /// <param name="canHide">Whether this comment can be hidden (Facebook, Instagram, Threads).</param>
-        /// <param name="canLike">Whether this comment can be liked (Facebook, X, Bluesky, Reddit).</param>
+        /// <param name="canLike">Whether this comment can be liked (Facebook, X, Bluesky, Reddit, LinkedIn).</param>
         /// <param name="isHidden">Whether the comment is currently hidden.</param>
         /// <param name="isLiked">Whether the current user has liked this comment.</param>
         /// <param name="likeUri">Bluesky like URI for unliking.</param>
@@ -166,9 +166,9 @@ namespace Zernio.Model
         public bool CanHide { get; set; }
 
         /// <summary>
-        /// Whether this comment can be liked (Facebook, X, Bluesky, Reddit)
+        /// Whether this comment can be liked (Facebook, X, Bluesky, Reddit, LinkedIn)
         /// </summary>
-        /// <value>Whether this comment can be liked (Facebook, X, Bluesky, Reddit)</value>
+        /// <value>Whether this comment can be liked (Facebook, X, Bluesky, Reddit, LinkedIn)</value>
         [DataMember(Name = "canLike", EmitDefaultValue = true)]
         public bool CanLike { get; set; }
 

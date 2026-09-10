@@ -18754,6 +18754,10 @@ paths:
         "403":
           description: "Inbox addon required, or the account is missing the platform\
             \ permission"
+        "409":
+          description: "LinkedIn only: the account already holds a different reaction\
+            \ on this target (code invalid_resource_state); remove it before creating\
+            \ another."
       security:
       - bearerAuth: []
       summary: Like comment
@@ -18883,6 +18887,10 @@ paths:
             \ scope"
         "404":
           description: Account or post not found
+        "409":
+          description: "LinkedIn only: the account already holds a different reaction\
+            \ on this target (code invalid_resource_state); remove it before creating\
+            \ another."
       security:
       - bearerAuth: []
       summary: Like post
@@ -77701,7 +77709,8 @@ components:
           description: "Whether this comment can be hidden (Facebook, Instagram, Threads)"
           type: boolean
         canLike:
-          description: "Whether this comment can be liked (Facebook, X, Bluesky, Reddit)"
+          description: "Whether this comment can be liked (Facebook, X, Bluesky, Reddit,\
+            \ LinkedIn)"
           type: boolean
         isHidden:
           description: Whether the comment is currently hidden
@@ -78119,7 +78128,9 @@ components:
       - accountId
     likeInboxComment_200_response:
       example:
+        reactionType: reactionType
         likeUri: likeUri
+        alreadyReacted: true
         commentId: commentId
         liked: true
         platform: platform
@@ -78133,6 +78144,13 @@ components:
           type: boolean
         likeUri:
           description: (Bluesky only) URI to use for unliking
+          type: string
+        alreadyReacted:
+          description: "LinkedIn only: the account already had this exact reaction,\
+            \ so nothing was created"
+          type: boolean
+        reactionType:
+          description: "LinkedIn only: the reaction type now in effect"
           type: string
         platform:
           type: string
@@ -78174,7 +78192,9 @@ components:
       - accountId
     likePost_200_response:
       example:
+        reactionType: reactionType
         likeUri: likeUri
+        alreadyReacted: true
         postId: postId
         platform: platform
         liked: true
@@ -78191,6 +78211,13 @@ components:
           type: boolean
         likeUri:
           description: (Bluesky only) URI to use for unliking
+          type: string
+        alreadyReacted:
+          description: "LinkedIn only: the account already had this exact reaction,\
+            \ so nothing was created"
+          type: boolean
+        reactionType:
+          description: "LinkedIn only: the reaction type now in effect"
           type: string
     unlikePost_200_response:
       example:

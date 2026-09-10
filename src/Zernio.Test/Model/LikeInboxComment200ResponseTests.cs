@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AlreadyReacted'
+        /// </summary>
+        [Fact]
+        public void AlreadyReactedTest()
+        {
+            // TODO unit test for the property 'AlreadyReacted'
+        }
+
+        /// <summary>
+        /// Test the property 'ReactionType'
+        /// </summary>
+        [Fact]
+        public void ReactionTypeTest()
+        {
+            // TODO unit test for the property 'ReactionType'
+        }
+
+        /// <summary>
         /// Test the property 'Platform'
         /// </summary>
         [Fact]

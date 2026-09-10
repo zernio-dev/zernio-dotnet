@@ -40,13 +40,17 @@ namespace Zernio.Model
         /// <param name="commentId">commentId.</param>
         /// <param name="liked">liked.</param>
         /// <param name="likeUri">(Bluesky only) URI to use for unliking.</param>
+        /// <param name="alreadyReacted">LinkedIn only: the account already had this exact reaction, so nothing was created.</param>
+        /// <param name="reactionType">LinkedIn only: the reaction type now in effect.</param>
         /// <param name="platform">platform.</param>
-        public LikeInboxComment200Response(string status = default, string commentId = default, bool liked = default, string likeUri = default, string platform = default)
+        public LikeInboxComment200Response(string status = default, string commentId = default, bool liked = default, string likeUri = default, bool alreadyReacted = default, string reactionType = default, string platform = default)
         {
             this.Status = status;
             this.CommentId = commentId;
             this.Liked = liked;
             this.LikeUri = likeUri;
+            this.AlreadyReacted = alreadyReacted;
+            this.ReactionType = reactionType;
             this.Platform = platform;
         }
 
@@ -76,6 +80,20 @@ namespace Zernio.Model
         public string LikeUri { get; set; }
 
         /// <summary>
+        /// LinkedIn only: the account already had this exact reaction, so nothing was created
+        /// </summary>
+        /// <value>LinkedIn only: the account already had this exact reaction, so nothing was created</value>
+        [DataMember(Name = "alreadyReacted", EmitDefaultValue = true)]
+        public bool AlreadyReacted { get; set; }
+
+        /// <summary>
+        /// LinkedIn only: the reaction type now in effect
+        /// </summary>
+        /// <value>LinkedIn only: the reaction type now in effect</value>
+        [DataMember(Name = "reactionType", EmitDefaultValue = false)]
+        public string ReactionType { get; set; }
+
+        /// <summary>
         /// Gets or Sets Platform
         /// </summary>
         [DataMember(Name = "platform", EmitDefaultValue = false)]
@@ -93,6 +111,8 @@ namespace Zernio.Model
             sb.Append("  CommentId: ").Append(CommentId).Append("\n");
             sb.Append("  Liked: ").Append(Liked).Append("\n");
             sb.Append("  LikeUri: ").Append(LikeUri).Append("\n");
+            sb.Append("  AlreadyReacted: ").Append(AlreadyReacted).Append("\n");
+            sb.Append("  ReactionType: ").Append(ReactionType).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

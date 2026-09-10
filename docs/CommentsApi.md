@@ -552,6 +552,7 @@ catch (ApiException e)
 | **400** | Platform does not support liking comments |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform permission |  -  |
+| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -656,6 +657,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
+| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
