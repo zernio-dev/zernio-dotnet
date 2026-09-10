@@ -115,9 +115,9 @@ namespace Zernio.Model
         [DataMember(Name = "goal", IsRequired = true, EmitDefaultValue = true)]
         public GoalEnum Goal { get; set; }
         /// <summary>
-        /// Meta only. SKAdNetwork app promotion requires AUCTION.
+        /// Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.
         /// </summary>
-        /// <value>Meta only. SKAdNetwork app promotion requires AUCTION.</value>
+        /// <value>Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BuyingTypeEnum
         {
@@ -136,9 +136,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only. SKAdNetwork app promotion requires AUCTION.
+        /// Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.
         /// </summary>
-        /// <value>Meta only. SKAdNetwork app promotion requires AUCTION.</value>
+        /// <value>Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.</value>
         [DataMember(Name = "buyingType", EmitDefaultValue = false)]
         public BuyingTypeEnum? BuyingType { get; set; }
         /// <summary>
@@ -287,7 +287,7 @@ namespace Zernio.Model
         /// <param name="goal">Mapped to the ODAX objective (same mapping as POST /v1/ads/create). (required).</param>
         /// <param name="isSkadnetworkAttribution">Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign..</param>
         /// <param name="promotedObject">promotedObject.</param>
-        /// <param name="buyingType">Meta only. SKAdNetwork app promotion requires AUCTION..</param>
+        /// <param name="buyingType">Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION. (default to BuyingTypeEnum.AUCTION).</param>
         /// <param name="validateOnly">Meta only. Runs campaign validation without creating or persisting a campaign; Idempotency-Key storage is bypassed. Returns HTTP 200 with validateOnly true and status VALIDATED..</param>
         /// <param name="specialAdCategories">specialAdCategories.</param>
         /// <param name="budgetAmount">Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType..</param>
@@ -297,7 +297,7 @@ namespace Zernio.Model
         /// <param name="bidAmount">Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise. On Meta, validated here but NOT stored: the campaign object has no bid_amount field, only bid_strategy lives on it, and the amount takes effect once an ad set joins this campaign (existingCampaignId on POST /v1/ads/create) and supplies its own bidAmount there. On Google, stored directly on the campaign&#39;s bidding strategy..</param>
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (2.0 &#x3D; 2.0x). Required for LOWEST_COST_WITH_MIN_ROAS..</param>
         /// <param name="portfolioBidStrategyId">Google only. Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) to the new campaign instead of a standard one. Exclusive with bidStrategy..</param>
-        public CreateAdCampaignRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, bool isSkadnetworkAttribution = default, AdPromotedObject promotedObject = default, BuyingTypeEnum? buyingType = default, bool validateOnly = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = StatusEnum.PAUSED, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default)
+        public CreateAdCampaignRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, bool isSkadnetworkAttribution = default, AdPromotedObject promotedObject = default, BuyingTypeEnum? buyingType = BuyingTypeEnum.AUCTION, bool validateOnly = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = StatusEnum.PAUSED, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
