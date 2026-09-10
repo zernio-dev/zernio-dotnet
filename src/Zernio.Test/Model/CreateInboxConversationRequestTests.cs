@@ -155,6 +155,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TemplateCards'
+        /// </summary>
+        [Fact]
+        public void TemplateCardsTest()
+        {
+            // TODO unit test for the property 'TemplateCards'
+        }
+
+        /// <summary>
         /// Test the property 'HeaderMedia'
         /// </summary>
         [Fact]

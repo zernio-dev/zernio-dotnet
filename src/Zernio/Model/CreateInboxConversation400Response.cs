@@ -70,22 +70,28 @@ namespace Zernio.Model
             INVALIDTEMPLATEBUTTONPARAM = 5,
 
             /// <summary>
+            /// Enum INVALIDTEMPLATECARDPARAM for value: INVALID_TEMPLATE_CARD_PARAM
+            /// </summary>
+            [EnumMember(Value = "INVALID_TEMPLATE_CARD_PARAM")]
+            INVALIDTEMPLATECARDPARAM = 6,
+
+            /// <summary>
             /// Enum DIRECTSENDNOTELIGIBLE for value: DIRECT_SEND_NOT_ELIGIBLE
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_NOT_ELIGIBLE")]
-            DIRECTSENDNOTELIGIBLE = 6,
+            DIRECTSENDNOTELIGIBLE = 7,
 
             /// <summary>
             /// Enum DIRECTSENDLIMITED for value: DIRECT_SEND_LIMITED
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_LIMITED")]
-            DIRECTSENDLIMITED = 7,
+            DIRECTSENDLIMITED = 8,
 
             /// <summary>
             /// Enum DIRECTSENDBLOCKED for value: DIRECT_SEND_BLOCKED
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_BLOCKED")]
-            DIRECTSENDBLOCKED = 8
+            DIRECTSENDBLOCKED = 9
         }
 
 

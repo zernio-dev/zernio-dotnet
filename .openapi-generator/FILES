@@ -346,6 +346,9 @@ docs/CreateInboxConversationRequest.md
 docs/CreateInboxConversationRequestHeaderLocation.md
 docs/CreateInboxConversationRequestHeaderMedia.md
 docs/CreateInboxConversationRequestTemplateButtonParamsInner.md
+docs/CreateInboxConversationRequestTemplateCardsInner.md
+docs/CreateInboxConversationRequestTemplateCardsInnerButtonsInner.md
+docs/CreateInboxConversationRequestTemplateCardsInnerHeaderMedia.md
 docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
@@ -2482,6 +2485,9 @@ src/Zernio.Test/Model/CreateInboxConversation429ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestHeaderLocationTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestHeaderMediaTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestTemplateButtonParamsInnerTests.cs
+src/Zernio.Test/Model/CreateInboxConversationRequestTemplateCardsInnerButtonsInnerTests.cs
+src/Zernio.Test/Model/CreateInboxConversationRequestTemplateCardsInnerHeaderMediaTests.cs
+src/Zernio.Test/Model/CreateInboxConversationRequestTemplateCardsInnerTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestTests.cs
 src/Zernio.Test/Model/CreateInviteToken201ResponseTests.cs
 src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
@@ -4591,6 +4597,9 @@ src/Zernio/Model/CreateInboxConversationRequest.cs
 src/Zernio/Model/CreateInboxConversationRequestHeaderLocation.cs
 src/Zernio/Model/CreateInboxConversationRequestHeaderMedia.cs
 src/Zernio/Model/CreateInboxConversationRequestTemplateButtonParamsInner.cs
+src/Zernio/Model/CreateInboxConversationRequestTemplateCardsInner.cs
+src/Zernio/Model/CreateInboxConversationRequestTemplateCardsInnerButtonsInner.cs
+src/Zernio/Model/CreateInboxConversationRequestTemplateCardsInnerHeaderMedia.cs
 src/Zernio/Model/CreateInviteToken201Response.cs
 src/Zernio/Model/CreateInviteTokenRequest.cs
 src/Zernio/Model/CreateLeadForm200Response.cs
