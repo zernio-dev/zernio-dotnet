@@ -258,6 +258,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**ListCampaignAssets**](docs/AdCampaignsApi.md#listcampaignassets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets
 *AdCampaignsApi* | [**ListCampaignNegativeKeywordLists**](docs/AdCampaignsApi.md#listcampaignnegativekeywordlists) | **GET** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | List campaign negative lists
 *AdCampaignsApi* | [**ListCampaignNegativeKeywords**](docs/AdCampaignsApi.md#listcampaignnegativekeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords
+*AdCampaignsApi* | [**ListGoogleAssetGroups**](docs/AdCampaignsApi.md#listgoogleassetgroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups
 *AdCampaignsApi* | [**RemoveAdGroupAssets**](docs/AdCampaignsApi.md#removeadgroupassets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**RemoveAdKeyword**](docs/AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
 *AdCampaignsApi* | [**RemoveCampaignAssets**](docs/AdCampaignsApi.md#removecampaignassets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets
@@ -1769,6 +1770,10 @@ Class | Method | HTTP request | Description
  - [Model.GoogleBusinessReview](docs/GoogleBusinessReview.md)
  - [Model.GoogleBusinessReviewReviewReply](docs/GoogleBusinessReviewReviewReply.md)
  - [Model.GoogleBusinessReviewReviewer](docs/GoogleBusinessReviewReviewer.md)
+ - [Model.GooglePmaxAssetGroup](docs/GooglePmaxAssetGroup.md)
+ - [Model.GooglePmaxAssetGroupAssetsInner](docs/GooglePmaxAssetGroupAssetsInner.md)
+ - [Model.GooglePmaxAssetGroupInput](docs/GooglePmaxAssetGroupInput.md)
+ - [Model.GooglePmaxAssetGroupInputImages](docs/GooglePmaxAssetGroupInputImages.md)
  - [Model.GoogleRsaDescription](docs/GoogleRsaDescription.md)
  - [Model.GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [Model.GoogleSitelink](docs/GoogleSitelink.md)
@@ -1941,6 +1946,7 @@ Class | Method | HTTP request | Description
  - [Model.ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [Model.ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [Model.ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
+ - [Model.ListGoogleAssetGroups200Response](docs/ListGoogleAssetGroups200Response.md)
  - [Model.ListGoogleBusinessLocations200Response](docs/ListGoogleBusinessLocations200Response.md)
  - [Model.ListGoogleBusinessLocations200ResponseLocationsInner](docs/ListGoogleBusinessLocations200ResponseLocationsInner.md)
  - [Model.ListGoogleBusinessMedia200Response](docs/ListGoogleBusinessMedia200Response.md)

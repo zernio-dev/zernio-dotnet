@@ -61,7 +61,13 @@ namespace Zernio.Model
             /// Enum Ad for value: ad
             /// </summary>
             [EnumMember(Value = "ad")]
-            Ad = 4
+            Ad = 4,
+
+            /// <summary>
+            /// Enum PerformanceMaxCampaign for value: performanceMaxCampaign
+            /// </summary>
+            [EnumMember(Value = "performanceMaxCampaign")]
+            PerformanceMaxCampaign = 5
         }
 
 

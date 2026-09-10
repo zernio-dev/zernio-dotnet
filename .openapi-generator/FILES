@@ -943,6 +943,10 @@ docs/GoogleBusinessPlatformDataOffer.md
 docs/GoogleBusinessReview.md
 docs/GoogleBusinessReviewReviewReply.md
 docs/GoogleBusinessReviewReviewer.md
+docs/GooglePmaxAssetGroup.md
+docs/GooglePmaxAssetGroupAssetsInner.md
+docs/GooglePmaxAssetGroupInput.md
+docs/GooglePmaxAssetGroupInputImages.md
 docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
@@ -1120,6 +1124,7 @@ docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
+docs/ListGoogleAssetGroups200Response.md
 docs/ListGoogleBusinessLocations200Response.md
 docs/ListGoogleBusinessLocations200ResponseLocationsInner.md
 docs/ListGoogleBusinessMedia200Response.md
@@ -3047,6 +3052,10 @@ src/Zernio.Test/Model/GoogleBusinessPlatformDataTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewReplyTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewerTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewTests.cs
+src/Zernio.Test/Model/GooglePmaxAssetGroupAssetsInnerTests.cs
+src/Zernio.Test/Model/GooglePmaxAssetGroupInputImagesTests.cs
+src/Zernio.Test/Model/GooglePmaxAssetGroupInputTests.cs
+src/Zernio.Test/Model/GooglePmaxAssetGroupTests.cs
 src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
@@ -3219,6 +3228,7 @@ src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseTests.cs
+src/Zernio.Test/Model/ListGoogleAssetGroups200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessLocations200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessLocations200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociationTests.cs
@@ -5133,6 +5143,10 @@ src/Zernio/Model/GoogleBusinessPlatformDataOffer.cs
 src/Zernio/Model/GoogleBusinessReview.cs
 src/Zernio/Model/GoogleBusinessReviewReviewReply.cs
 src/Zernio/Model/GoogleBusinessReviewReviewer.cs
+src/Zernio/Model/GooglePmaxAssetGroup.cs
+src/Zernio/Model/GooglePmaxAssetGroupAssetsInner.cs
+src/Zernio/Model/GooglePmaxAssetGroupInput.cs
+src/Zernio/Model/GooglePmaxAssetGroupInputImages.cs
 src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs
@@ -5305,6 +5319,7 @@ src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFormLeads200Response.cs
 src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
+src/Zernio/Model/ListGoogleAssetGroups200Response.cs
 src/Zernio/Model/ListGoogleBusinessLocations200Response.cs
 src/Zernio/Model/ListGoogleBusinessLocations200ResponseLocationsInner.cs
 src/Zernio/Model/ListGoogleBusinessMedia200Response.cs

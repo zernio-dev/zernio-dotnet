@@ -504,6 +504,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListGoogleAssetGroups
+        /// </summary>
+        [Fact]
+        public void ListGoogleAssetGroupsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //var response = instance.ListGoogleAssetGroups(campaignId);
+            //Assert.IsType<ListGoogleAssetGroups200Response>(response);
+        }
+
+        /// <summary>
         /// Test RemoveAdGroupAssets
         /// </summary>
         [Fact]

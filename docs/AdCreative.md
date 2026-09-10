@@ -5,6 +5,8 @@ Platform-specific creative data. Fields vary by platform.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AssetGroup** | [**GooglePmaxAssetGroupInput**](GooglePmaxAssetGroupInput.md) | Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets. | [optional] 
+**AssetGroupResourceName** | **string** | Google resource name of the created Performance Max asset group. | [optional] 
 **Headlines** | [**List&lt;GoogleRsaHeadline&gt;**](GoogleRsaHeadline.md) | Google RSA only. Replaces the complete headline list. No padding or truncation on update. | [optional] 
 **Descriptions** | [**List&lt;GoogleRsaDescription&gt;**](GoogleRsaDescription.md) | Google RSA only. Replaces the complete description list. No padding or truncation on update. | [optional] 
 **FinalUrls** | **List&lt;string&gt;** | Google RSA only. Replaces final URLs. Omitted lists stay unchanged. | [optional] 

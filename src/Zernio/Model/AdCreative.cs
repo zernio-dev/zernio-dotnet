@@ -42,6 +42,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AdCreative" /> class.
         /// </summary>
+        /// <param name="assetGroup">Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets..</param>
+        /// <param name="assetGroupResourceName">Google resource name of the created Performance Max asset group..</param>
         /// <param name="headlines">Google RSA only. Replaces the complete headline list. No padding or truncation on update..</param>
         /// <param name="descriptions">Google RSA only. Replaces the complete description list. No padding or truncation on update..</param>
         /// <param name="finalUrls">Google RSA only. Replaces final URLs. Omitted lists stay unchanged..</param>
@@ -70,8 +72,10 @@ namespace Zernio.Model
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, MetaPromotion promotion = default, MetaPromotionStatus? promotionStatus = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(GooglePmaxAssetGroupInput assetGroup = default, string assetGroupResourceName = default, List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, MetaPromotion promotion = default, MetaPromotionStatus? promotionStatus = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
+            this.AssetGroup = assetGroup;
+            this.AssetGroupResourceName = assetGroupResourceName;
             this.Headlines = headlines;
             this.Descriptions = descriptions;
             this.FinalUrls = finalUrls;
@@ -101,6 +105,23 @@ namespace Zernio.Model
             this.PinterestTitle = pinterestTitle;
             this.PinterestDescription = pinterestDescription;
         }
+
+        /// <summary>
+        /// Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets.
+        /// </summary>
+        /// <value>Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets.</value>
+        [DataMember(Name = "assetGroup", EmitDefaultValue = false)]
+        public GooglePmaxAssetGroupInput AssetGroup { get; set; }
+
+        /// <summary>
+        /// Google resource name of the created Performance Max asset group.
+        /// </summary>
+        /// <value>Google resource name of the created Performance Max asset group.</value>
+        /*
+        <example>customers/9122445560/assetGroups/123456789</example>
+        */
+        [DataMember(Name = "assetGroupResourceName", EmitDefaultValue = false)]
+        public string AssetGroupResourceName { get; set; }
 
         /// <summary>
         /// Google RSA only. Replaces the complete headline list. No padding or truncation on update.
@@ -302,6 +323,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AdCreative {\n");
+            sb.Append("  AssetGroup: ").Append(AssetGroup).Append("\n");
+            sb.Append("  AssetGroupResourceName: ").Append(AssetGroupResourceName).Append("\n");
             sb.Append("  Headlines: ").Append(Headlines).Append("\n");
             sb.Append("  Descriptions: ").Append(Descriptions).Append("\n");
             sb.Append("  FinalUrls: ").Append(FinalUrls).Append("\n");

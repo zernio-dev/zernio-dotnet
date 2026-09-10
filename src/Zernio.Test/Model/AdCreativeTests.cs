@@ -56,6 +56,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AssetGroup'
+        /// </summary>
+        [Fact]
+        public void AssetGroupTest()
+        {
+            // TODO unit test for the property 'AssetGroup'
+        }
+
+        /// <summary>
+        /// Test the property 'AssetGroupResourceName'
+        /// </summary>
+        [Fact]
+        public void AssetGroupResourceNameTest()
+        {
+            // TODO unit test for the property 'AssetGroupResourceName'
+        }
+
+        /// <summary>
         /// Test the property 'Headlines'
         /// </summary>
         [Fact]

@@ -36351,12 +36351,85 @@ paths:
       - linkedin
       - pinterest
       - x
+  /v1/ads/campaigns/{campaignId}/asset-groups:
+    get:
+      description: "Read Performance Max asset groups and their linked text, image\
+        \ and YouTube assets. campaignId is the platform campaign id returned by creation\
+        \ or the campaign list. The campaign must be visible to the caller. Uses a\
+        \ 10-minute cache, with the last successful response served as stale when\
+        \ Google quota is exhausted. Removed groups and asset links are excluded.\
+        \ Campaign-level brand assets on campaigns with brand guidelines enabled are\
+        \ not included."
+      operationId: listGoogleAssetGroups
+      parameters:
+      - description: Google Ads campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                assetGroups:
+                - id: "123456789"
+                  resourceName: customers/9122445560/assetGroups/123456789
+                  name: Social publishing
+                  status: ENABLED
+                  finalUrls:
+                  - https://zernio.com
+                  assets:
+                  - resourceName: customers/9122445560/assets/987654321
+                    fieldType: HEADLINE
+                    status: ENABLED
+                    text: Schedule posts
+                cachedAt: 2026-09-10T09:00:00Z
+                stale: false
+              schema:
+                $ref: "#/components/schemas/listGoogleAssetGroups_200_response"
+          description: Asset groups and linked assets.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          description: Google quota or operation budget exhausted with no cached response.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: List Performance Max asset groups
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
   /v1/ads/create:
     post:
       description: |
         Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).
 
-        Three mutually-exclusive request shapes are selected by the body:
+        Google Performance Max: set `campaignType: "pmax"` and supply `assetGroup` with
+        text, images by role, business name and finalUrl. Creates a daily budget, PAUSED
+        campaign and asset group atomically. `validateOnly: true` validates the complete
+        request with Google without creating or persisting resources. Read assets with
+        `GET /v1/ads/campaigns/{campaignId}/asset-groups`. The logo is required; video is
+        optional via `assetGroup.youtubeVideoId`. Brand guidelines are disabled at creation.
+        PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields
+        and attach shapes. Geo and language targeting are supported; omitted geo targets
+        all locations. PMax does not require top-level goal, headline, body or linkUrl.
+        Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions,
+        COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus
+        roasAverageFloor for Maximize Conversion Value with target ROAS.
+
+        Other mutually-exclusive request shapes are selected by the body:
 
         - Legacy single-creative shape (all platforms, the default).
         - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting.
@@ -36384,6 +36457,39 @@ paths:
         content:
           application/json:
             examples:
+              performanceMax:
+                summary: Paused Performance Max campaign.
+                value:
+                  accountId: 69ce75d483e990e1c01ccfe4
+                  adAccountId: "9122445560"
+                  name: Social publishing
+                  campaignType: pmax
+                  budgetAmount: 1
+                  budgetType: daily
+                  status: PAUSED
+                  validateOnly: true
+                  countries:
+                  - US
+                  languages:
+                  - en
+                  assetGroup:
+                    finalUrl: https://zernio.com
+                    headlines:
+                    - Schedule posts
+                    - One social API
+                    - Build with Zernio
+                    longHeadline: Schedule social content from your app with Zernio
+                    descriptions:
+                    - Connect your social accounts.
+                    - Publish and manage social content through one API.
+                    businessName: Zernio
+                    images:
+                      landscape:
+                      - https://example.com/landscape.png
+                      square:
+                      - https://example.com/square.png
+                      logo:
+                      - https://example.com/logo.png
               appPromotion:
                 value:
                   accountId: 69fc524892b3d8e85f893e73
@@ -53355,9 +53461,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -53450,9 +53558,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -53743,9 +53853,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -53838,9 +53950,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -54152,9 +54266,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -54247,9 +54363,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -54793,9 +54911,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -54888,9 +55008,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -55202,9 +55324,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -55297,9 +55421,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -57534,6 +57660,129 @@ components:
           $ref: "#/components/schemas/GoogleStructuredSnippet"
       required:
       - assetResourceName
+    GooglePmaxAssetGroupInput:
+      additionalProperties: {}
+      description: Google Performance Max creative assets. At least one description
+        must be 60 characters or fewer. Texts within each list must be distinct.
+      example:
+        finalUrl: https://zernio.com
+        headlines:
+        - Schedule posts
+        - One social API
+        - Build with Zernio
+        longHeadline: Schedule social content from your app with Zernio
+        descriptions:
+        - Connect your social accounts.
+        - Publish and manage social content through one API.
+        businessName: Zernio
+        images:
+          landscape:
+          - https://example.com/landscape.png
+          square:
+          - https://example.com/square.png
+          logo:
+          - https://example.com/logo.png
+      properties:
+        name:
+          description: Defaults to the request name.
+          maxLength: 128
+          minLength: 1
+          type: string
+        finalUrl:
+          description: Required destination URL.
+          format: uri
+          pattern: ^https?://
+          type: string
+        headlines:
+          items:
+            maxLength: 30
+            minLength: 1
+            type: string
+          maxItems: 15
+          minItems: 3
+          type: array
+          uniqueItems: true
+        longHeadline:
+          maxLength: 90
+          minLength: 1
+          type: string
+        descriptions:
+          description: At least one description must be 60 characters or fewer.
+          items:
+            maxLength: 90
+            minLength: 1
+            type: string
+          maxItems: 5
+          minItems: 2
+          type: array
+          uniqueItems: true
+        businessName:
+          maxLength: 25
+          minLength: 1
+          type: string
+        images:
+          $ref: "#/components/schemas/GooglePmaxAssetGroupInput_images"
+        youtubeVideoId:
+          description: Optional existing YouTube video id. Google can generate video
+            when omitted. Video uploads and arbitrary video URLs are not supported.
+          pattern: "^[A-Za-z0-9_-]{11}$"
+          type: string
+      required:
+      - businessName
+      - descriptions
+      - finalUrl
+      - headlines
+      - images
+      - longHeadline
+    GooglePmaxAssetGroup:
+      example:
+        assets:
+        - youtubeVideoId: youtubeVideoId
+          imageUrl: https://openapi-generator.tech
+          resourceName: resourceName
+          text: text
+          fieldType: fieldType
+          status: status
+        - youtubeVideoId: youtubeVideoId
+          imageUrl: https://openapi-generator.tech
+          resourceName: resourceName
+          text: text
+          fieldType: fieldType
+          status: status
+        finalUrls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+        name: name
+        resourceName: resourceName
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        resourceName:
+          type: string
+        name:
+          type: string
+        status:
+          description: Asset-group status on Google. Campaign status independently
+            controls delivery.
+          type: string
+        finalUrls:
+          items:
+            format: uri
+            type: string
+          type: array
+        assets:
+          items:
+            $ref: "#/components/schemas/GooglePmaxAssetGroup_assets_inner"
+          type: array
+      required:
+      - assets
+      - finalUrls
+      - id
+      - name
+      - resourceName
+      - status
     GoogleRsaHeadline:
       example:
         text: text
@@ -57633,9 +57882,11 @@ components:
           thumbnailUrl: thumbnailUrl
           pinterestImageUrl: pinterestImageUrl
           instagramPermalinkUrl: instagramPermalinkUrl
+          assetGroupResourceName: customers/9122445560/assetGroups/123456789
           instagramUserId: instagramUserId
           pinterestTitle: pinterestTitle
           pageId: pageId
+          assetGroup: ""
           googleDescription: googleDescription
           headlines:
           - text: text
@@ -57980,9 +58231,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -58075,9 +58328,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -58643,9 +58898,11 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
               pinterestTitle: pinterestTitle
               pageId: pageId
+              assetGroup: ""
               googleDescription: googleDescription
               headlines:
               - text: text
@@ -58738,9 +58995,11 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
               pinterestTitle: pinterestTitle
               pageId: pageId
+              assetGroup: ""
               googleDescription: googleDescription
               headlines:
               - text: text
@@ -59052,9 +59311,11 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
               pinterestTitle: pinterestTitle
               pageId: pageId
+              assetGroup: ""
               googleDescription: googleDescription
               headlines:
               - text: text
@@ -59147,9 +59408,11 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
               pinterestTitle: pinterestTitle
               pageId: pageId
+              assetGroup: ""
               googleDescription: googleDescription
               headlines:
               - text: text
@@ -89867,9 +90130,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -89962,9 +90227,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -92588,9 +92855,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -92683,9 +92952,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -92997,9 +93268,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -93092,9 +93365,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -93638,9 +93913,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -93733,9 +94010,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -94047,9 +94326,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -94142,9 +94423,11 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
                 pinterestTitle: pinterestTitle
                 pageId: pageId
+                assetGroup: ""
                 googleDescription: googleDescription
                 headlines:
                 - text: text
@@ -94567,9 +94850,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -94917,9 +95202,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -99252,6 +99539,66 @@ components:
       - adAccountId
       - goal
       - name
+    listGoogleAssetGroups_200_response:
+      example:
+        stale: true
+        assetGroups:
+        - assets:
+          - youtubeVideoId: youtubeVideoId
+            imageUrl: https://openapi-generator.tech
+            resourceName: resourceName
+            text: text
+            fieldType: fieldType
+            status: status
+          - youtubeVideoId: youtubeVideoId
+            imageUrl: https://openapi-generator.tech
+            resourceName: resourceName
+            text: text
+            fieldType: fieldType
+            status: status
+          finalUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+          name: name
+          resourceName: resourceName
+          id: id
+          status: status
+        - assets:
+          - youtubeVideoId: youtubeVideoId
+            imageUrl: https://openapi-generator.tech
+            resourceName: resourceName
+            text: text
+            fieldType: fieldType
+            status: status
+          - youtubeVideoId: youtubeVideoId
+            imageUrl: https://openapi-generator.tech
+            resourceName: resourceName
+            text: text
+            fieldType: fieldType
+            status: status
+          finalUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+          name: name
+          resourceName: resourceName
+          id: id
+          status: status
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        assetGroups:
+          items:
+            $ref: "#/components/schemas/GooglePmaxAssetGroup"
+          type: array
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          type: boolean
+      required:
+      - assetGroups
+      - cachedAt
+      - stale
     createStandaloneAd_request_images:
       description: "Google Display (Responsive Display Ads) only. Google RDA requires\
         \ both a landscape (1.91:1) and a square (1:1) marketing image; sending only\
@@ -100118,42 +100465,46 @@ components:
           - OPT_OUT
           type: string
         validateOnly:
-          description: "Meta only. Validates the complete inline campaign, ad set,\
-            \ creative and ad with execution_options validate_only. Nothing is uploaded\
-            \ or created, and validation bypasses Idempotency-Key storage. Supports\
-            \ a single image, existing video.id or existingCreativeId; media pools,\
-            \ new video uploads, creatives[], adSetId and RESERVED buying return 400.\
-            \ Existing campaign or creative nodes are marked skipped. Success returns\
-            \ 200 with per-node results; Meta rejection returns an error."
+          description: "Google Performance Max validates the complete atomic campaign\
+            \ and asset group with no resource creation or local persistence. Google\
+            \ validation still downloads image URLs and consumes quota. On Meta, validates\
+            \ the complete inline campaign, ad set, creative and ad with execution_options\
+            \ validate_only. Nothing is uploaded or created, and validation bypasses\
+            \ Idempotency-Key storage. Supports a single image, existing video.id\
+            \ or existingCreativeId; media pools, new video uploads, creatives[],\
+            \ adSetId and RESERVED buying return 400. Existing campaign or creative\
+            \ nodes are marked skipped. Success returns 200 with per-node results;\
+            \ Meta rejection returns an error."
           type: boolean
         budgetAmount:
           description: "Budget in WHOLE currency units (USD: 50 = $50.00), NOT cents.\
             \ Meta's own Marketing API takes this same number in minor units, so it\
-            \ is an easy and expensive mix-up. Required on legacy + multi-creative\
-            \ shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget\
-            \ is lifetime-only, see budgetType)."
+            \ is an easy and expensive mix-up. Required on legacy, multi-creative\
+            \ and Performance Max shapes. Inherited on attach. OpenAI Ads requires\
+            \ a $1 minimum (its budget is lifetime-only, see budgetType)."
           type: number
         budgetType:
-          description: Required on legacy + multi-creative shapes. Inherited on attach.
-            OpenAI Ads accepts lifetime only (no daily-budget concept on the platform);
-            sending daily returns 422. OpenAI Ads lifetime budgets require `endDate`
-            to give the lifetime cap a spend window.
+          description: "Required on legacy, multi-creative and Performance Max shapes.\
+            \ Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget\
+            \ concept on the platform); sending daily returns 422. OpenAI Ads lifetime\
+            \ budgets require `endDate` to give the lifetime cap a spend window."
           enum:
           - daily
           - lifetime
           type: string
         status:
-          description: "Meta, TikTok, and LinkedIn. Publish state of the created entities.\
-            \ Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates\
-            \ them paused so you can review before they spend. On Meta the pause is\
-            \ held on the campaign this call creates, leaving the ad set and ad switched\
-            \ on, so a single PUT /v1/ads/campaigns/{campaignId}/status with `active`\
-            \ brings the whole thing live. It is held at every level instead when\
-            \ the pause cannot rely on the campaign: `existingCampaignId` (that campaign\
-            \ may be running and is never touched) or `campaignStatus: ACTIVE`. On\
-            \ TikTok the whole campaign > ad group > ad hierarchy stays paused. On\
-            \ LinkedIn the whole campaign group, campaign, and creative hierarchy\
-            \ stays PAUSED (intendedStatus PAUSED on each)."
+          description: "Google Performance Max accepts PAUSED only and always creates\
+            \ a paused campaign. Meta, TikTok, and LinkedIn: publish state of the\
+            \ created entities. Omitted or ACTIVE publishes live (default, back-compat);\
+            \ PAUSED creates them paused so you can review before they spend. On Meta\
+            \ the pause is held on the campaign this call creates, leaving the ad\
+            \ set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status\
+            \ with `active` brings the whole thing live. It is held at every level\
+            \ instead when the pause cannot rely on the campaign: `existingCampaignId`\
+            \ (that campaign may be running and is never touched) or `campaignStatus:\
+            \ ACTIVE`. On TikTok the whole campaign > ad group > ad hierarchy stays\
+            \ paused. On LinkedIn the whole campaign group, campaign, and creative\
+            \ hierarchy stays PAUSED (intendedStatus PAUSED on each)."
           enum:
           - ACTIVE
           - PAUSED
@@ -100721,11 +101072,15 @@ components:
           type: string
         campaignType:
           default: display
-          description: Google only
+          description: Google only. Performance Max requires assetGroup and is always
+            created PAUSED.
           enum:
           - display
           - search
+          - pmax
           type: string
+        assetGroup:
+          $ref: "#/components/schemas/GooglePmaxAssetGroupInput"
         keywords:
           description: "Google Search only. Keywords on the new ad group; entries\
             \ are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId}\
@@ -100889,9 +101244,10 @@ components:
             there is no supported way to set it while joining a CBO campaign here.
           type: number
         portfolioBidStrategyId:
-          description: Google only. Attach an existing portfolio bid strategy (numeric
-            id from GET /v1/ads/bid-strategies) to the new campaign instead of a standard
-            one. Exclusive with bidStrategy.
+          description: Google Search and Display only. Performance Max rejects portfolio
+            bidding. Attach an existing portfolio bid strategy (numeric id from GET
+            /v1/ads/bid-strategies) to the new campaign instead of a standard one.
+            Exclusive with bidStrategy.
           pattern: ^\d+$
           type: string
         valueRuleSetId:
@@ -101024,6 +101380,7 @@ components:
           - adSet
           - creative
           - ad
+          - performanceMaxCampaign
           type: string
         status:
           enum:
@@ -101119,9 +101476,11 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
             pinterestTitle: pinterestTitle
             pageId: pageId
+            assetGroup: ""
             googleDescription: googleDescription
             headlines:
             - text: text
@@ -111713,6 +112072,72 @@ components:
           items:
             $ref: "#/components/schemas/TargetingSpec_customLocations_inner"
           type: array
+    GooglePmaxAssetGroupInput_images:
+      additionalProperties: false
+      description: "Public HTTP(S) image URLs. GIF, JPEG or PNG, at most 5120 KB per\
+        \ image. Google validates dimensions and aspect ratios."
+      properties:
+        landscape:
+          description: "Landscape marketing images. Aspect ratio 1.91:1, minimum 600\
+            \ x 314 pixels."
+          items:
+            format: uri
+            pattern: ^https?://
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        square:
+          description: "Square marketing images. Aspect ratio 1:1, minimum 300 x 300\
+            \ pixels."
+          items:
+            format: uri
+            pattern: ^https?://
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        logo:
+          description: "Required square logos. Aspect ratio 1:1, minimum 128 x 128\
+            \ pixels."
+          items:
+            format: uri
+            pattern: ^https?://
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+      required:
+      - landscape
+      - logo
+      - square
+    GooglePmaxAssetGroup_assets_inner:
+      example:
+        youtubeVideoId: youtubeVideoId
+        imageUrl: https://openapi-generator.tech
+        resourceName: resourceName
+        text: text
+        fieldType: fieldType
+        status: status
+      properties:
+        resourceName:
+          type: string
+        fieldType:
+          description: "Google asset role, such as HEADLINE or LOGO."
+          type: string
+        status:
+          type: string
+        text:
+          type: string
+        imageUrl:
+          format: uri
+          type: string
+        youtubeVideoId:
+          type: string
+      required:
+      - fieldType
+      - resourceName
+      - status
     Ad_budget:
       example:
         amount: 0.8008281904610115
@@ -111786,9 +112211,11 @@ components:
         thumbnailUrl: thumbnailUrl
         pinterestImageUrl: pinterestImageUrl
         instagramPermalinkUrl: instagramPermalinkUrl
+        assetGroupResourceName: customers/9122445560/assetGroups/123456789
         instagramUserId: instagramUserId
         pinterestTitle: pinterestTitle
         pageId: pageId
+        assetGroup: ""
         googleDescription: googleDescription
         headlines:
         - text: text
@@ -111807,6 +112234,15 @@ components:
         - mediaUrls
         promotion: ""
       properties:
+        assetGroup:
+          allOf:
+          - $ref: "#/components/schemas/GooglePmaxAssetGroupInput"
+          description: Initial Performance Max asset group input. Use the asset-groups
+            endpoint for current Google assets.
+        assetGroupResourceName:
+          description: Google resource name of the created Performance Max asset group.
+          example: customers/9122445560/assetGroups/123456789
+          type: string
         headlines:
           description: Google RSA only. Replaces the complete headline list. No padding
             or truncation on update.
