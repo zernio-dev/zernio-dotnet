@@ -620,7 +620,7 @@ namespace Zernio.Api
         /// Post platform failed event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -631,7 +631,7 @@ namespace Zernio.Api
         /// Post platform failed event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -641,7 +641,7 @@ namespace Zernio.Api
         /// Post platform published event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -652,7 +652,7 @@ namespace Zernio.Api
         /// Post platform published event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -1798,7 +1798,7 @@ namespace Zernio.Api
         /// Post platform failed event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -1810,7 +1810,7 @@ namespace Zernio.Api
         /// Post platform failed event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -1821,7 +1821,7 @@ namespace Zernio.Api
         /// Post platform published event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -1833,7 +1833,7 @@ namespace Zernio.Api
         /// Post platform published event
         /// </summary>
         /// <remarks>
-        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6083,7 +6083,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6094,7 +6094,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6143,7 +6143,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6155,7 +6155,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform failed event Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6208,7 +6208,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6219,7 +6219,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6268,7 +6268,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
@@ -6280,7 +6280,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+        /// Post platform published event Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadPostPlatform"></param>
