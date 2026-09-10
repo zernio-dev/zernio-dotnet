@@ -29,7 +29,7 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation
+        /// Cancel reach-frequency booking
         /// </summary>
         /// <remarks>
         /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
@@ -42,7 +42,7 @@ namespace Zernio.Api
         void CancelRfReservation(string predictionId, string accountId, string adAccountId);
 
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation
+        /// Cancel reach-frequency booking
         /// </summary>
         /// <remarks>
         /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
@@ -54,7 +54,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> CancelRfReservationWithHttpInfo(string predictionId, string accountId, string adAccountId);
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction
+        /// Create reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
@@ -65,7 +65,7 @@ namespace Zernio.Api
         CreateRfPrediction201Response CreateRfPrediction(CreateRfPredictionRequest createRfPredictionRequest);
 
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction
+        /// Create reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
@@ -75,7 +75,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateRfPrediction201Response</returns>
         ApiResponse<CreateRfPrediction201Response> CreateRfPredictionWithHttpInfo(CreateRfPredictionRequest createRfPredictionRequest);
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction
+        /// Get reach-frequency prediction
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -85,7 +85,7 @@ namespace Zernio.Api
         CreateRfPrediction201Response GetRfPrediction(string predictionId, string accountId, string adAccountId);
 
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction
+        /// Get reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// 
@@ -97,7 +97,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateRfPrediction201Response</returns>
         ApiResponse<CreateRfPrediction201Response> GetRfPredictionWithHttpInfo(string predictionId, string accountId, string adAccountId);
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction
+        /// Reserve reach-frequency inventory
         /// </summary>
         /// <remarks>
         /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
@@ -109,7 +109,7 @@ namespace Zernio.Api
         ReserveRfPrediction201Response ReserveRfPrediction(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest);
 
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction
+        /// Reserve reach-frequency inventory
         /// </summary>
         /// <remarks>
         /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
@@ -129,7 +129,7 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation
+        /// Cancel reach-frequency booking
         /// </summary>
         /// <remarks>
         /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
@@ -143,7 +143,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task CancelRfReservationAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation
+        /// Cancel reach-frequency booking
         /// </summary>
         /// <remarks>
         /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
@@ -156,7 +156,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> CancelRfReservationWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction
+        /// Create reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
@@ -168,7 +168,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateRfPrediction201Response> CreateRfPredictionAsync(CreateRfPredictionRequest createRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction
+        /// Create reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
@@ -179,7 +179,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateRfPrediction201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateRfPrediction201Response>> CreateRfPredictionWithHttpInfoAsync(CreateRfPredictionRequest createRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction
+        /// Get reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// 
@@ -193,7 +193,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateRfPrediction201Response> GetRfPredictionAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction
+        /// Get reach-frequency prediction
         /// </summary>
         /// <remarks>
         /// 
@@ -206,7 +206,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateRfPrediction201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateRfPrediction201Response>> GetRfPredictionWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction
+        /// Reserve reach-frequency inventory
         /// </summary>
         /// <remarks>
         /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
@@ -219,7 +219,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ReserveRfPrediction201Response> ReserveRfPredictionAsync(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction
+        /// Reserve reach-frequency inventory
         /// </summary>
         /// <remarks>
         /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
@@ -444,7 +444,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// Cancel reach-frequency booking Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -457,7 +457,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// Cancel reach-frequency booking Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -518,7 +518,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// Cancel reach-frequency booking Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -532,7 +532,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Cancel a Reach &amp; Frequency reservation Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// Cancel reach-frequency booking Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -597,7 +597,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+        /// Create reach-frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRfPredictionRequest"></param>
@@ -609,7 +609,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+        /// Create reach-frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRfPredictionRequest"></param>
@@ -659,7 +659,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+        /// Create reach-frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRfPredictionRequest"></param>
@@ -672,7 +672,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Reach &amp; Frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
+        /// Create reach-frequency prediction Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createRfPredictionRequest"></param>
@@ -726,7 +726,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction 
+        /// Get reach-frequency prediction 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -740,7 +740,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction 
+        /// Get reach-frequency prediction 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -801,7 +801,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction 
+        /// Get reach-frequency prediction 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -816,7 +816,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read a Reach &amp; Frequency prediction 
+        /// Get reach-frequency prediction 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -881,7 +881,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+        /// Reserve reach-frequency inventory Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -894,7 +894,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+        /// Reserve reach-frequency inventory Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -950,7 +950,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+        /// Reserve reach-frequency inventory Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>
@@ -964,7 +964,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reserve a Reach &amp; Frequency prediction Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
+        /// Reserve reach-frequency inventory Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="predictionId"></param>

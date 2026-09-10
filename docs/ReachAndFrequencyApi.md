@@ -4,16 +4,16 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**CancelRfReservation**](ReachAndFrequencyApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation |
-| [**CreateRfPrediction**](ReachAndFrequencyApi.md#createrfprediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction |
-| [**GetRfPrediction**](ReachAndFrequencyApi.md#getrfprediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction |
-| [**ReserveRfPrediction**](ReachAndFrequencyApi.md#reserverfprediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction |
+| [**CancelRfReservation**](ReachAndFrequencyApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel reach-frequency booking |
+| [**CreateRfPrediction**](ReachAndFrequencyApi.md#createrfprediction) | **POST** /v1/ads/rf-predictions | Create reach-frequency prediction |
+| [**GetRfPrediction**](ReachAndFrequencyApi.md#getrfprediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Get reach-frequency prediction |
+| [**ReserveRfPrediction**](ReachAndFrequencyApi.md#reserverfprediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve reach-frequency inventory |
 
 <a id="cancelrfreservation"></a>
 # **CancelRfReservation**
 > void CancelRfReservation (string predictionId, string accountId, string adAccountId)
 
-Cancel a Reach & Frequency reservation
+Cancel reach-frequency booking
 
 Releases a RESERVATION's locked price and inventory. Unreserved predictions expire on their own.
 
@@ -47,7 +47,7 @@ namespace Example
 
             try
             {
-                // Cancel a Reach & Frequency reservation
+                // Cancel reach-frequency booking
                 apiInstance.CancelRfReservation(predictionId, accountId, adAccountId);
             }
             catch (ApiException  e)
@@ -67,7 +67,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Cancel a Reach & Frequency reservation
+    // Cancel reach-frequency booking
     apiInstance.CancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId);
 }
 catch (ApiException e)
@@ -103,6 +103,8 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Reservation cancelled |  -  |
 | **400** | Invalid input, or Meta rejected the cancel |  -  |
 | **401** | Unauthorized |  -  |
@@ -114,7 +116,7 @@ void (empty response body)
 # **CreateRfPrediction**
 > CreateRfPrediction201Response CreateRfPrediction (CreateRfPredictionRequest createRfPredictionRequest)
 
-Create a Reach & Frequency prediction
+Create reach-frequency prediction
 
 Creates an R&F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of `budgetAmount` (Meta predicts reach) or `reach` (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with `buyingType: \"RESERVED\"`.  Reservation campaigns reject automatic placements. Top-level `placements` wins; when it is omitted, `targeting.placements` is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
 
@@ -146,7 +148,7 @@ namespace Example
 
             try
             {
-                // Create a Reach & Frequency prediction
+                // Create reach-frequency prediction
                 CreateRfPrediction201Response result = apiInstance.CreateRfPrediction(createRfPredictionRequest);
                 Debug.WriteLine(result);
             }
@@ -167,7 +169,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Create a Reach & Frequency prediction
+    // Create reach-frequency prediction
     ApiResponse<CreateRfPrediction201Response> response = apiInstance.CreateRfPredictionWithHttpInfo(createRfPredictionRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -204,6 +206,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Prediction created (usually ready within seconds) |  -  |
 | **400** | Invalid input, or Meta rejected the prediction; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -216,7 +220,7 @@ catch (ApiException e)
 # **GetRfPrediction**
 > CreateRfPrediction201Response GetRfPrediction (string predictionId, string accountId, string adAccountId)
 
-Read a Reach & Frequency prediction
+Get reach-frequency prediction
 
 ### Example
 ```csharp
@@ -248,7 +252,7 @@ namespace Example
 
             try
             {
-                // Read a Reach & Frequency prediction
+                // Get reach-frequency prediction
                 CreateRfPrediction201Response result = apiInstance.GetRfPrediction(predictionId, accountId, adAccountId);
                 Debug.WriteLine(result);
             }
@@ -269,7 +273,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Read a Reach & Frequency prediction
+    // Get reach-frequency prediction
     ApiResponse<CreateRfPrediction201Response> response = apiInstance.GetRfPredictionWithHttpInfo(predictionId, accountId, adAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -308,6 +312,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Prediction status and estimates |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
@@ -319,7 +325,7 @@ catch (ApiException e)
 # **ReserveRfPrediction**
 > ReserveRfPrediction201Response ReserveRfPrediction (string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest)
 
-Reserve a Reach & Frequency prediction
+Reserve reach-frequency inventory
 
 Locks the quoted price + inventory until the returned `expiresAt` and mints a NEW prediction id. Pass that RESERVED id (not the original) as `rfPredictionId` on POST /v1/ads/create. Release an unused reservation via DELETE.
 
@@ -352,7 +358,7 @@ namespace Example
 
             try
             {
-                // Reserve a Reach & Frequency prediction
+                // Reserve reach-frequency inventory
                 ReserveRfPrediction201Response result = apiInstance.ReserveRfPrediction(predictionId, reserveRfPredictionRequest);
                 Debug.WriteLine(result);
             }
@@ -373,7 +379,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Reserve a Reach & Frequency prediction
+    // Reserve reach-frequency inventory
     ApiResponse<ReserveRfPrediction201Response> response = apiInstance.ReserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -411,6 +417,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
 | **400** | Invalid input, or Meta rejected the reserve |  -  |
 | **401** | Unauthorized |  -  |

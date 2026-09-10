@@ -321,6 +321,77 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdVideos200Response</returns>
         ApiResponse<ListAdVideos200Response> ListAdVideosWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
         /// <summary>
+        /// List partnership ad content
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <returns>ListPartnershipAdContent200Response</returns>
+        ListPartnershipAdContent200Response ListPartnershipAdContent(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default);
+
+        /// <summary>
+        /// List partnership ad content
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <returns>ApiResponse of ListPartnershipAdContent200Response</returns>
+        ApiResponse<ListPartnershipAdContent200Response> ListPartnershipAdContentWithHttpInfo(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default);
+        /// <summary>
+        /// List partnership permissions
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <returns>ListPartnershipAdPermissions200Response</returns>
+        ListPartnershipAdPermissions200Response ListPartnershipAdPermissions(string accountId, string? creatorUsername = default);
+
+        /// <summary>
+        /// List partnership permissions
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <returns>ApiResponse of ListPartnershipAdPermissions200Response</returns>
+        ApiResponse<ListPartnershipAdPermissions200Response> ListPartnershipAdPermissionsWithHttpInfo(string accountId, string? creatorUsername = default);
+        /// <summary>
+        /// Set partnership permission
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <returns>SetPartnershipAdPermission200Response</returns>
+        SetPartnershipAdPermission200Response SetPartnershipAdPermission(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest);
+
+        /// <summary>
+        /// Set partnership permission
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <returns>ApiResponse of SetPartnershipAdPermission200Response</returns>
+        ApiResponse<SetPartnershipAdPermission200Response> SetPartnershipAdPermissionWithHttpInfo(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest);
+        /// <summary>
         /// Rename a creative
         /// </summary>
         /// <remarks>
@@ -710,6 +781,83 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdVideos200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdVideos200Response>> ListAdVideosWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List partnership ad content
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListPartnershipAdContent200Response</returns>
+        System.Threading.Tasks.Task<ListPartnershipAdContent200Response> ListPartnershipAdContentAsync(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List partnership ad content
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListPartnershipAdContent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListPartnershipAdContent200Response>> ListPartnershipAdContentWithHttpInfoAsync(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List partnership permissions
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListPartnershipAdPermissions200Response</returns>
+        System.Threading.Tasks.Task<ListPartnershipAdPermissions200Response> ListPartnershipAdPermissionsAsync(string accountId, string? creatorUsername = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List partnership permissions
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListPartnershipAdPermissions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListPartnershipAdPermissions200Response>> ListPartnershipAdPermissionsWithHttpInfoAsync(string accountId, string? creatorUsername = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set partnership permission
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SetPartnershipAdPermission200Response</returns>
+        System.Threading.Tasks.Task<SetPartnershipAdPermission200Response> SetPartnershipAdPermissionAsync(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set partnership permission
+        /// </summary>
+        /// <remarks>
+        /// Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SetPartnershipAdPermission200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SetPartnershipAdPermission200Response>> SetPartnershipAdPermissionWithHttpInfoAsync(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Rename a creative
         /// </summary>
@@ -2774,6 +2922,437 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdVideos", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List partnership ad content Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <returns>ListPartnershipAdContent200Response</returns>
+        public ListPartnershipAdContent200Response ListPartnershipAdContent(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default)
+        {
+            Zernio.Client.ApiResponse<ListPartnershipAdContent200Response> localVarResponse = ListPartnershipAdContentWithHttpInfo(accountId, creatorUsername, postUrl, onlyAllowlisted);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List partnership ad content Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <returns>ApiResponse of ListPartnershipAdContent200Response</returns>
+        public Zernio.Client.ApiResponse<ListPartnershipAdContent200Response> ListPartnershipAdContentWithHttpInfo(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCreativesApi->ListPartnershipAdContent");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (creatorUsername != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "creatorUsername", creatorUsername));
+            }
+            if (postUrl != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "postUrl", postUrl));
+            }
+            if (onlyAllowlisted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "onlyAllowlisted", onlyAllowlisted));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListPartnershipAdContent200Response>("/v1/ads/partnership-content", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListPartnershipAdContent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List partnership ad content Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListPartnershipAdContent200Response</returns>
+        public async System.Threading.Tasks.Task<ListPartnershipAdContent200Response> ListPartnershipAdContentAsync(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListPartnershipAdContent200Response> localVarResponse = await ListPartnershipAdContentWithHttpInfoAsync(accountId, creatorUsername, postUrl, onlyAllowlisted, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List partnership ad content Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Creator username. Required unless postUrl is supplied. (optional)</param>
+        /// <param name="postUrl">Instagram post permalink. Required unless creatorUsername is supplied. (optional)</param>
+        /// <param name="onlyAllowlisted">Return only creators with account-level permission. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListPartnershipAdContent200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListPartnershipAdContent200Response>> ListPartnershipAdContentWithHttpInfoAsync(string accountId, string? creatorUsername = default, string? postUrl = default, bool? onlyAllowlisted = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCreativesApi->ListPartnershipAdContent");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (creatorUsername != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "creatorUsername", creatorUsername));
+            }
+            if (postUrl != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "postUrl", postUrl));
+            }
+            if (onlyAllowlisted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "onlyAllowlisted", onlyAllowlisted));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListPartnershipAdContent200Response>("/v1/ads/partnership-content", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListPartnershipAdContent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List partnership permissions Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <returns>ListPartnershipAdPermissions200Response</returns>
+        public ListPartnershipAdPermissions200Response ListPartnershipAdPermissions(string accountId, string? creatorUsername = default)
+        {
+            Zernio.Client.ApiResponse<ListPartnershipAdPermissions200Response> localVarResponse = ListPartnershipAdPermissionsWithHttpInfo(accountId, creatorUsername);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List partnership permissions Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <returns>ApiResponse of ListPartnershipAdPermissions200Response</returns>
+        public Zernio.Client.ApiResponse<ListPartnershipAdPermissions200Response> ListPartnershipAdPermissionsWithHttpInfo(string accountId, string? creatorUsername = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCreativesApi->ListPartnershipAdPermissions");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (creatorUsername != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "creatorUsername", creatorUsername));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListPartnershipAdPermissions200Response>("/v1/ads/partnership-permissions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListPartnershipAdPermissions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List partnership permissions Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListPartnershipAdPermissions200Response</returns>
+        public async System.Threading.Tasks.Task<ListPartnershipAdPermissions200Response> ListPartnershipAdPermissionsAsync(string accountId, string? creatorUsername = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListPartnershipAdPermissions200Response> localVarResponse = await ListPartnershipAdPermissionsWithHttpInfoAsync(accountId, creatorUsername, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List partnership permissions Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount ID.</param>
+        /// <param name="creatorUsername">Filter by creator username. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListPartnershipAdPermissions200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListPartnershipAdPermissions200Response>> ListPartnershipAdPermissionsWithHttpInfoAsync(string accountId, string? creatorUsername = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCreativesApi->ListPartnershipAdPermissions");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (creatorUsername != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "creatorUsername", creatorUsername));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListPartnershipAdPermissions200Response>("/v1/ads/partnership-permissions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListPartnershipAdPermissions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set partnership permission Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <returns>SetPartnershipAdPermission200Response</returns>
+        public SetPartnershipAdPermission200Response SetPartnershipAdPermission(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest)
+        {
+            Zernio.Client.ApiResponse<SetPartnershipAdPermission200Response> localVarResponse = SetPartnershipAdPermissionWithHttpInfo(setPartnershipAdPermissionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set partnership permission Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <returns>ApiResponse of SetPartnershipAdPermission200Response</returns>
+        public Zernio.Client.ApiResponse<SetPartnershipAdPermission200Response> SetPartnershipAdPermissionWithHttpInfo(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest)
+        {
+            // verify the required parameter 'setPartnershipAdPermissionRequest' is set
+            if (setPartnershipAdPermissionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setPartnershipAdPermissionRequest' when calling AdCreativesApi->SetPartnershipAdPermission");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setPartnershipAdPermissionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SetPartnershipAdPermission200Response>("/v1/ads/partnership-permissions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetPartnershipAdPermission", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set partnership permission Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SetPartnershipAdPermission200Response</returns>
+        public async System.Threading.Tasks.Task<SetPartnershipAdPermission200Response> SetPartnershipAdPermissionAsync(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SetPartnershipAdPermission200Response> localVarResponse = await SetPartnershipAdPermissionWithHttpInfoAsync(setPartnershipAdPermissionRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set partnership permission Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setPartnershipAdPermissionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SetPartnershipAdPermission200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SetPartnershipAdPermission200Response>> SetPartnershipAdPermissionWithHttpInfoAsync(SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'setPartnershipAdPermissionRequest' is set
+            if (setPartnershipAdPermissionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setPartnershipAdPermissionRequest' when calling AdCreativesApi->SetPartnershipAdPermission");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setPartnershipAdPermissionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SetPartnershipAdPermission200Response>("/v1/ads/partnership-permissions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetPartnershipAdPermission", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

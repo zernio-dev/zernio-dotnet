@@ -1178,6 +1178,10 @@ docs/ListLogs200Response.md
 docs/ListLogs200ResponseLogsInner.md
 docs/ListLogs200ResponsePagination.md
 docs/ListMetaBusinesses200Response.md
+docs/ListPartnershipAdContent200Response.md
+docs/ListPartnershipAdContent200ResponseMediaInner.md
+docs/ListPartnershipAdPermissions200Response.md
+docs/ListPartnershipAdPermissions200ResponsePermissionsInner.md
 docs/ListPhoneNumberCountries200Response.md
 docs/ListPhoneNumberCountries200ResponseCountriesInner.md
 docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md
@@ -1214,6 +1218,9 @@ docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md
 docs/ListSmsSenderIds200ResponseSenderIdsInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
+docs/ListTikTokAdPixels200Response.md
+docs/ListTikTokAdPixels200ResponsePixelsInner.md
+docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md
 docs/ListTrackingTagSharedAccounts200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
@@ -1574,6 +1581,8 @@ docs/SetConversationThreadControlRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
+docs/SetPartnershipAdPermission200Response.md
+docs/SetPartnershipAdPermissionRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
@@ -3282,6 +3291,10 @@ src/Zernio.Test/Model/ListLogs200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/ListLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinesses200ResponseTests.cs
+src/Zernio.Test/Model/ListPartnershipAdContent200ResponseMediaInnerTests.cs
+src/Zernio.Test/Model/ListPartnershipAdContent200ResponseTests.cs
+src/Zernio.Test/Model/ListPartnershipAdPermissions200ResponsePermissionsInnerTests.cs
+src/Zernio.Test/Model/ListPartnershipAdPermissions200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseCountriesInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseTests.cs
@@ -3318,6 +3331,9 @@ src/Zernio.Test/Model/ListSmsSenderIds200ResponseSenderIdsInnerTests.cs
 src/Zernio.Test/Model/ListSmsSenderIds200ResponseTests.cs
 src/Zernio.Test/Model/ListSnapchatProfiles200ResponsePublicProfilesInnerTests.cs
 src/Zernio.Test/Model/ListSnapchatProfiles200ResponseTests.cs
+src/Zernio.Test/Model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInnerTests.cs
+src/Zernio.Test/Model/ListTikTokAdPixels200ResponsePixelsInnerTests.cs
+src/Zernio.Test/Model/ListTikTokAdPixels200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
@@ -3664,6 +3680,8 @@ src/Zernio.Test/Model/SetConversationThreadControlRequestTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestIceBreakersInnerTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
+src/Zernio.Test/Model/SetPartnershipAdPermission200ResponseTests.cs
+src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
@@ -5373,6 +5391,10 @@ src/Zernio/Model/ListLogs200Response.cs
 src/Zernio/Model/ListLogs200ResponseLogsInner.cs
 src/Zernio/Model/ListLogs200ResponsePagination.cs
 src/Zernio/Model/ListMetaBusinesses200Response.cs
+src/Zernio/Model/ListPartnershipAdContent200Response.cs
+src/Zernio/Model/ListPartnershipAdContent200ResponseMediaInner.cs
+src/Zernio/Model/ListPartnershipAdPermissions200Response.cs
+src/Zernio/Model/ListPartnershipAdPermissions200ResponsePermissionsInner.cs
 src/Zernio/Model/ListPhoneNumberCountries200Response.cs
 src/Zernio/Model/ListPhoneNumberCountries200ResponseCountriesInner.cs
 src/Zernio/Model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.cs
@@ -5409,6 +5431,9 @@ src/Zernio/Model/ListSmsSenderIds200ResponseBudgetPendingRequest.cs
 src/Zernio/Model/ListSmsSenderIds200ResponseSenderIdsInner.cs
 src/Zernio/Model/ListSnapchatProfiles200Response.cs
 src/Zernio/Model/ListSnapchatProfiles200ResponsePublicProfilesInner.cs
+src/Zernio/Model/ListTikTokAdPixels200Response.cs
+src/Zernio/Model/ListTikTokAdPixels200ResponsePixelsInner.cs
+src/Zernio/Model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.cs
 src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
 src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
@@ -5755,6 +5780,8 @@ src/Zernio/Model/SetConversationThreadControlRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
+src/Zernio/Model/SetPartnershipAdPermission200Response.cs
+src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs

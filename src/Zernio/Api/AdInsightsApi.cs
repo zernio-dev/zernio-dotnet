@@ -29,7 +29,7 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Submit an async insights report run
+        /// Submit async insights report
         /// </summary>
         /// <remarks>
         /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
@@ -40,7 +40,7 @@ namespace Zernio.Api
         CreateAdInsightsReport202Response CreateAdInsightsReport(CreateAdInsightsReportRequest createAdInsightsReportRequest);
 
         /// <summary>
-        /// Submit an async insights report run
+        /// Submit async insights report
         /// </summary>
         /// <remarks>
         /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
@@ -50,7 +50,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateAdInsightsReport202Response</returns>
         ApiResponse<CreateAdInsightsReport202Response> CreateAdInsightsReportWithHttpInfo(CreateAdInsightsReportRequest createAdInsightsReportRequest);
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner)
+        /// Get historical keyword metrics
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
@@ -61,7 +61,7 @@ namespace Zernio.Api
         GenerateKeywordHistoricalMetrics200Response GenerateKeywordHistoricalMetrics(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest);
 
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner)
+        /// Get historical keyword metrics
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
@@ -71,7 +71,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GenerateKeywordHistoricalMetrics200Response</returns>
         ApiResponse<GenerateKeywordHistoricalMetrics200Response> GenerateKeywordHistoricalMetricsWithHttpInfo(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest);
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner)
+        /// Generate keyword ideas
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
@@ -82,7 +82,7 @@ namespace Zernio.Api
         GenerateKeywordIdeas200Response GenerateKeywordIdeas(GenerateKeywordIdeasRequest generateKeywordIdeasRequest);
 
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner)
+        /// Generate keyword ideas
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
@@ -208,7 +208,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CampaignAnalyticsResponse</returns>
         ApiResponse<CampaignAnalyticsResponse> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
         /// <summary>
-        /// Conversations of a Local Services lead
+        /// List lead conversations
         /// </summary>
         /// <remarks>
         /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
@@ -222,7 +222,7 @@ namespace Zernio.Api
         ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? customerId = default, string? pageToken = default);
 
         /// <summary>
-        /// Conversations of a Local Services lead
+        /// List lead conversations
         /// </summary>
         /// <remarks>
         /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
@@ -336,7 +336,7 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Submit an async insights report run
+        /// Submit async insights report
         /// </summary>
         /// <remarks>
         /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
@@ -348,7 +348,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateAdInsightsReport202Response> CreateAdInsightsReportAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Submit an async insights report run
+        /// Submit async insights report
         /// </summary>
         /// <remarks>
         /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
@@ -359,7 +359,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateAdInsightsReport202Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateAdInsightsReport202Response>> CreateAdInsightsReportWithHttpInfoAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner)
+        /// Get historical keyword metrics
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
@@ -371,7 +371,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GenerateKeywordHistoricalMetrics200Response> GenerateKeywordHistoricalMetricsAsync(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner)
+        /// Get historical keyword metrics
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
@@ -382,7 +382,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GenerateKeywordHistoricalMetrics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GenerateKeywordHistoricalMetrics200Response>> GenerateKeywordHistoricalMetricsWithHttpInfoAsync(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner)
+        /// Generate keyword ideas
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
@@ -394,7 +394,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GenerateKeywordIdeas200Response> GenerateKeywordIdeasAsync(GenerateKeywordIdeasRequest generateKeywordIdeasRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner)
+        /// Generate keyword ideas
         /// </summary>
         /// <remarks>
         /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
@@ -529,7 +529,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CampaignAnalyticsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CampaignAnalyticsResponse>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Conversations of a Local Services lead
+        /// List lead conversations
         /// </summary>
         /// <remarks>
         /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
@@ -544,7 +544,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Conversations of a Local Services lead
+        /// List lead conversations
         /// </summary>
         /// <remarks>
         /// Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
@@ -867,7 +867,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit an async insights report run Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
+        /// Submit async insights report Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdInsightsReportRequest"></param>
@@ -879,7 +879,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit an async insights report run Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
+        /// Submit async insights report Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdInsightsReportRequest"></param>
@@ -929,7 +929,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit an async insights report run Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
+        /// Submit async insights report Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdInsightsReportRequest"></param>
@@ -942,7 +942,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit an async insights report run Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
+        /// Submit async insights report Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdInsightsReportRequest"></param>
@@ -996,7 +996,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// Get historical keyword metrics Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordHistoricalMetricsRequest"></param>
@@ -1008,7 +1008,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// Get historical keyword metrics Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordHistoricalMetricsRequest"></param>
@@ -1058,7 +1058,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// Get historical keyword metrics Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordHistoricalMetricsRequest"></param>
@@ -1071,7 +1071,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// Get historical keyword metrics Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordHistoricalMetricsRequest"></param>
@@ -1125,7 +1125,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// Generate keyword ideas Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordIdeasRequest"></param>
@@ -1137,7 +1137,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// Generate keyword ideas Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordIdeasRequest"></param>
@@ -1187,7 +1187,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// Generate keyword ideas Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordIdeasRequest"></param>
@@ -1200,7 +1200,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// Generate keyword ideas Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="generateKeywordIdeasRequest"></param>
@@ -1956,7 +1956,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// List lead conversations Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
@@ -1971,7 +1971,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// List lead conversations Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
@@ -2036,7 +2036,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// List lead conversations Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
@@ -2052,7 +2052,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Conversations of a Local Services lead Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
+        /// List lead conversations Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>

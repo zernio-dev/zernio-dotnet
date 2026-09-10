@@ -75,7 +75,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AdjustConversions200Response</returns>
         ApiResponse<AdjustConversions200Response> AdjustConversionsWithHttpInfo(AdjustConversionsRequest adjustConversionsRequest);
         /// <summary>
-        /// Create a website conversion action
+        /// Create website conversion action
         /// </summary>
         /// <remarks>
         /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
@@ -86,7 +86,7 @@ namespace Zernio.Api
         CreateConversionAction201Response CreateConversionAction(CreateConversionActionRequest createConversionActionRequest);
 
         /// <summary>
-        /// Create a website conversion action
+        /// Create website conversion action
         /// </summary>
         /// <remarks>
         /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
@@ -223,7 +223,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetConversionsQuality200Response</returns>
         ApiResponse<GetConversionsQuality200Response> GetConversionsQualityWithHttpInfo(string accountId, string destinationId);
         /// <summary>
-        /// List conversion actions and their tag snippets
+        /// List conversion actions
         /// </summary>
         /// <remarks>
         /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
@@ -236,7 +236,7 @@ namespace Zernio.Api
         ListConversionActions200Response ListConversionActions(string accountId, string? customerId = default, string? type = default);
 
         /// <summary>
-        /// List conversion actions and their tag snippets
+        /// List conversion actions
         /// </summary>
         /// <remarks>
         /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
@@ -426,7 +426,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AdjustConversions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AdjustConversions200Response>> AdjustConversionsWithHttpInfoAsync(AdjustConversionsRequest adjustConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a website conversion action
+        /// Create website conversion action
         /// </summary>
         /// <remarks>
         /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
@@ -438,7 +438,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateConversionAction201Response> CreateConversionActionAsync(CreateConversionActionRequest createConversionActionRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create a website conversion action
+        /// Create website conversion action
         /// </summary>
         /// <remarks>
         /// Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
@@ -586,7 +586,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetConversionsQuality200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionsQuality200Response>> GetConversionsQualityWithHttpInfoAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List conversion actions and their tag snippets
+        /// List conversion actions
         /// </summary>
         /// <remarks>
         /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
@@ -600,7 +600,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List conversion actions and their tag snippets
+        /// List conversion actions
         /// </summary>
         /// <remarks>
         /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
@@ -1241,7 +1241,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// Create website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createConversionActionRequest"></param>
@@ -1253,7 +1253,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// Create website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createConversionActionRequest"></param>
@@ -1303,7 +1303,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// Create website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createConversionActionRequest"></param>
@@ -1316,7 +1316,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
+        /// Create website conversion action Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createConversionActionRequest"></param>
@@ -2153,7 +2153,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
@@ -2167,7 +2167,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
@@ -2226,7 +2226,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
@@ -2241,7 +2241,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversion actions and their tag snippets Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>

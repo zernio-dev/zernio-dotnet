@@ -506,6 +506,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListTikTokAdPixels
+        /// </summary>
+        [Fact]
+        public void ListTikTokAdPixelsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? advertiserId = null;
+            //string? code = null;
+            //var response = instance.ListTikTokAdPixels(accountId, advertiserId, code);
+            //Assert.IsType<ListTikTokAdPixels200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListValueRuleSets
         /// </summary>
         [Fact]

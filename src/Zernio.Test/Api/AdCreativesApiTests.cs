@@ -219,6 +219,46 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListPartnershipAdContent
+        /// </summary>
+        [Fact]
+        public void ListPartnershipAdContentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? creatorUsername = null;
+            //string? postUrl = null;
+            //bool? onlyAllowlisted = null;
+            //var response = instance.ListPartnershipAdContent(accountId, creatorUsername, postUrl, onlyAllowlisted);
+            //Assert.IsType<ListPartnershipAdContent200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListPartnershipAdPermissions
+        /// </summary>
+        [Fact]
+        public void ListPartnershipAdPermissionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? creatorUsername = null;
+            //var response = instance.ListPartnershipAdPermissions(accountId, creatorUsername);
+            //Assert.IsType<ListPartnershipAdPermissions200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SetPartnershipAdPermission
+        /// </summary>
+        [Fact]
+        public void SetPartnershipAdPermissionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest = null;
+            //var response = instance.SetPartnershipAdPermission(setPartnershipAdPermissionRequest);
+            //Assert.IsType<SetPartnershipAdPermission200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdCreative
         /// </summary>
         [Fact]

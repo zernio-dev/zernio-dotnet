@@ -4,14 +4,14 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**CreateAdInsightsReport**](AdInsightsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run |
-| [**GenerateKeywordHistoricalMetrics**](AdInsightsApi.md#generatekeywordhistoricalmetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner) |
-| [**GenerateKeywordIdeas**](AdInsightsApi.md#generatekeywordideas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
+| [**CreateAdInsightsReport**](AdInsightsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit async insights report |
+| [**GenerateKeywordHistoricalMetrics**](AdInsightsApi.md#generatekeywordhistoricalmetrics) | **POST** /v1/ads/keywords/historical-metrics | Get historical keyword metrics |
+| [**GenerateKeywordIdeas**](AdInsightsApi.md#generatekeywordideas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas |
 | [**GetAdAnalytics**](AdInsightsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdInsightsReport**](AdInsightsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
 | [**GetAdsSearchTerms**](AdInsightsApi.md#getadssearchterms) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**GetCampaignAnalytics**](AdInsightsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
-| [**ListLocalServicesLeadConversations**](AdInsightsApi.md#listlocalservicesleadconversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead |
+| [**ListLocalServicesLeadConversations**](AdInsightsApi.md#listlocalservicesleadconversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations |
 | [**ListLocalServicesLeads**](AdInsightsApi.md#listlocalservicesleads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
 | [**QueryAdInsights**](AdInsightsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query |
 
@@ -19,7 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 # **CreateAdInsightsReport**
 > CreateAdInsightsReport202Response CreateAdInsightsReport (CreateAdInsightsReportRequest createAdInsightsReportRequest)
 
-Submit an async insights report run
+Submit async insights report
 
 Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a `reportRunId` to poll via GET /v1/ads/insights/reports/{reportRunId}. 
 
@@ -51,7 +51,7 @@ namespace Example
 
             try
             {
-                // Submit an async insights report run
+                // Submit async insights report
                 CreateAdInsightsReport202Response result = apiInstance.CreateAdInsightsReport(createAdInsightsReportRequest);
                 Debug.WriteLine(result);
             }
@@ -72,7 +72,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Submit an async insights report run
+    // Submit async insights report
     ApiResponse<CreateAdInsightsReport202Response> response = apiInstance.CreateAdInsightsReportWithHttpInfo(createAdInsightsReportRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -109,6 +109,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
 | **401** | Unauthorized |  -  |
@@ -121,7 +123,7 @@ catch (ApiException e)
 # **GenerateKeywordHistoricalMetrics**
 > GenerateKeywordHistoricalMetrics200Response GenerateKeywordHistoricalMetrics (GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest)
 
-Historical keyword metrics (Google Keyword Planner)
+Get historical keyword metrics
 
 Google Ads only. Runs Keyword Planner's generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
 
@@ -153,7 +155,7 @@ namespace Example
 
             try
             {
-                // Historical keyword metrics (Google Keyword Planner)
+                // Get historical keyword metrics
                 GenerateKeywordHistoricalMetrics200Response result = apiInstance.GenerateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest);
                 Debug.WriteLine(result);
             }
@@ -174,7 +176,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Historical keyword metrics (Google Keyword Planner)
+    // Get historical keyword metrics
     ApiResponse<GenerateKeywordHistoricalMetrics200Response> response = apiInstance.GenerateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -211,6 +213,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -223,7 +227,7 @@ catch (ApiException e)
 # **GenerateKeywordIdeas**
 > GenerateKeywordIdeas200Response GenerateKeywordIdeas (GenerateKeywordIdeasRequest generateKeywordIdeasRequest)
 
-Generate keyword ideas (Google Keyword Planner)
+Generate keyword ideas
 
 Google Ads only. Runs Keyword Planner's generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting `countries` targets worldwide. 
 
@@ -255,7 +259,7 @@ namespace Example
 
             try
             {
-                // Generate keyword ideas (Google Keyword Planner)
+                // Generate keyword ideas
                 GenerateKeywordIdeas200Response result = apiInstance.GenerateKeywordIdeas(generateKeywordIdeasRequest);
                 Debug.WriteLine(result);
             }
@@ -276,7 +280,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Generate keyword ideas (Google Keyword Planner)
+    // Generate keyword ideas
     ApiResponse<GenerateKeywordIdeas200Response> response = apiInstance.GenerateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -313,6 +317,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -530,6 +536,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Unauthorized |  -  |
@@ -644,6 +652,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Search terms |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -768,7 +778,7 @@ catch (ApiException e)
 # **ListLocalServicesLeadConversations**
 > ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations (string leadId, string accountId, string? customerId = null, string? pageToken = null)
 
-Conversations of a Local Services lead
+List lead conversations
 
 Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from `local_services_lead_conversation`, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
 
@@ -803,7 +813,7 @@ namespace Example
 
             try
             {
-                // Conversations of a Local Services lead
+                // List lead conversations
                 ListLocalServicesLeadConversations200Response result = apiInstance.ListLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
                 Debug.WriteLine(result);
             }
@@ -824,7 +834,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Conversations of a Local Services lead
+    // List lead conversations
     ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -864,6 +874,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Lead conversations |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -980,6 +992,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Local Services leads |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1118,6 +1132,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
