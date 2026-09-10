@@ -55,7 +55,9 @@ namespace Zernio.Model
         /// <param name="igReelsVideoViewTotalTime">Instagram Reels total watch time, in milliseconds (required).</param>
         /// <param name="reposts">reposts (required).</param>
         /// <param name="reelsSkipRate">Instagram Reels skip rate, 0 to 1 (required).</param>
-        public AnalyticsDeltaEntryMetrics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int sends = default, int clicks = default, int views = default, int follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, int reposts = default, decimal reelsSkipRate = default)
+        /// <param name="completionRate">TikTok business lane: share of viewers who watched to the end, 0 to 1 (required).</param>
+        /// <param name="profileViews">TikTok business lane: profile views attributed to the post (required).</param>
+        public AnalyticsDeltaEntryMetrics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int sends = default, int clicks = default, int views = default, int follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, int reposts = default, decimal reelsSkipRate = default, decimal completionRate = default, int profileViews = default)
         {
             this.Impressions = impressions;
             this.Reach = reach;
@@ -71,6 +73,8 @@ namespace Zernio.Model
             this.IgReelsVideoViewTotalTime = igReelsVideoViewTotalTime;
             this.Reposts = reposts;
             this.ReelsSkipRate = reelsSkipRate;
+            this.CompletionRate = completionRate;
+            this.ProfileViews = profileViews;
         }
 
         /// <summary>
@@ -162,6 +166,20 @@ namespace Zernio.Model
         public decimal ReelsSkipRate { get; set; }
 
         /// <summary>
+        /// TikTok business lane: share of viewers who watched to the end, 0 to 1
+        /// </summary>
+        /// <value>TikTok business lane: share of viewers who watched to the end, 0 to 1</value>
+        [DataMember(Name = "completionRate", IsRequired = true, EmitDefaultValue = true)]
+        public decimal CompletionRate { get; set; }
+
+        /// <summary>
+        /// TikTok business lane: profile views attributed to the post
+        /// </summary>
+        /// <value>TikTok business lane: profile views attributed to the post</value>
+        [DataMember(Name = "profileViews", IsRequired = true, EmitDefaultValue = true)]
+        public int ProfileViews { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -183,6 +201,8 @@ namespace Zernio.Model
             sb.Append("  IgReelsVideoViewTotalTime: ").Append(IgReelsVideoViewTotalTime).Append("\n");
             sb.Append("  Reposts: ").Append(Reposts).Append("\n");
             sb.Append("  ReelsSkipRate: ").Append(ReelsSkipRate).Append("\n");
+            sb.Append("  CompletionRate: ").Append(CompletionRate).Append("\n");
+            sb.Append("  ProfileViews: ").Append(ProfileViews).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

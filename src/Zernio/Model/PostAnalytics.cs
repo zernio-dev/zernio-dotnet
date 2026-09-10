@@ -48,11 +48,13 @@ namespace Zernio.Model
         /// <param name="igReelsAvgWatchTime">Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="igReelsVideoViewTotalTime">Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="reelsSkipRate">Instagram Reels only: percentage (0-100) of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views..</param>
+        /// <param name="completionRate">TikTok accounts connected through the TikTok for Business app only: share of viewers who watched the video to the end, 0 to 1, as TikTok reports it (T+24-48h, only for posts active in the last 7 days). 0 for other platforms. When a post is published to several accounts, the aggregate is weighted by views..</param>
+        /// <param name="profileViews">TikTok accounts connected through the TikTok for Business app only: profile views from users who reached the profile through this post (T+24-48h). 0 for other platforms..</param>
         /// <param name="reposts">Instagram accounts connected with Facebook Login only: reposts of the media by other users, minus deleted reposts, on feed posts, reels and stories. Meta does not expose this metric for accounts connected with Instagram Login, so those always report 0. 0 for other platforms, including Threads, where reposts are counted in shares instead..</param>
         /// <param name="videoDurationSeconds">Video length in seconds. Currently Instagram Reels only; combine with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown (other platforms, non-video media, or when Instagram does not expose the media URL, e.g. reels with copyrighted audio)..</param>
         /// <param name="engagementRate">Percentage, rounded to 2 decimals: (likes + comments + shares + saves) / (impressions or reach or views) * 100. Clicks and follows are never counted. The denominator is the FIRST of impressions, reach, views that is non-zero, so it is not the same basis on every post: a post with impressions divides by impressions, one without falls back to reach, then to views. If you need a single consistent basis (e.g. interactions / reach), compute it from the raw fields above. The engagementRate on the LinkedIn account endpoints is a different formula..</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int? follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, decimal reelsSkipRate = default, int reposts = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
+        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int? follows = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, decimal reelsSkipRate = default, decimal completionRate = default, int profileViews = default, int reposts = default, int? videoDurationSeconds = default, decimal engagementRate = default, DateTime lastUpdated = default)
         {
             this.Impressions = impressions;
             this.Reach = reach;
@@ -66,6 +68,8 @@ namespace Zernio.Model
             this.IgReelsAvgWatchTime = igReelsAvgWatchTime;
             this.IgReelsVideoViewTotalTime = igReelsVideoViewTotalTime;
             this.ReelsSkipRate = reelsSkipRate;
+            this.CompletionRate = completionRate;
+            this.ProfileViews = profileViews;
             this.Reposts = reposts;
             this.VideoDurationSeconds = videoDurationSeconds;
             this.EngagementRate = engagementRate;
@@ -186,6 +190,26 @@ namespace Zernio.Model
         public decimal ReelsSkipRate { get; set; }
 
         /// <summary>
+        /// TikTok accounts connected through the TikTok for Business app only: share of viewers who watched the video to the end, 0 to 1, as TikTok reports it (T+24-48h, only for posts active in the last 7 days). 0 for other platforms. When a post is published to several accounts, the aggregate is weighted by views.
+        /// </summary>
+        /// <value>TikTok accounts connected through the TikTok for Business app only: share of viewers who watched the video to the end, 0 to 1, as TikTok reports it (T+24-48h, only for posts active in the last 7 days). 0 for other platforms. When a post is published to several accounts, the aggregate is weighted by views.</value>
+        /*
+        <example>0</example>
+        */
+        [DataMember(Name = "completionRate", EmitDefaultValue = false)]
+        public decimal CompletionRate { get; set; }
+
+        /// <summary>
+        /// TikTok accounts connected through the TikTok for Business app only: profile views from users who reached the profile through this post (T+24-48h). 0 for other platforms.
+        /// </summary>
+        /// <value>TikTok accounts connected through the TikTok for Business app only: profile views from users who reached the profile through this post (T+24-48h). 0 for other platforms.</value>
+        /*
+        <example>0</example>
+        */
+        [DataMember(Name = "profileViews", EmitDefaultValue = false)]
+        public int ProfileViews { get; set; }
+
+        /// <summary>
         /// Instagram accounts connected with Facebook Login only: reposts of the media by other users, minus deleted reposts, on feed posts, reels and stories. Meta does not expose this metric for accounts connected with Instagram Login, so those always report 0. 0 for other platforms, including Threads, where reposts are counted in shares instead.
         /// </summary>
         /// <value>Instagram accounts connected with Facebook Login only: reposts of the media by other users, minus deleted reposts, on feed posts, reels and stories. Meta does not expose this metric for accounts connected with Instagram Login, so those always report 0. 0 for other platforms, including Threads, where reposts are counted in shares instead.</value>
@@ -241,6 +265,8 @@ namespace Zernio.Model
             sb.Append("  IgReelsAvgWatchTime: ").Append(IgReelsAvgWatchTime).Append("\n");
             sb.Append("  IgReelsVideoViewTotalTime: ").Append(IgReelsVideoViewTotalTime).Append("\n");
             sb.Append("  ReelsSkipRate: ").Append(ReelsSkipRate).Append("\n");
+            sb.Append("  CompletionRate: ").Append(CompletionRate).Append("\n");
+            sb.Append("  ProfileViews: ").Append(ProfileViews).Append("\n");
             sb.Append("  Reposts: ").Append(Reposts).Append("\n");
             sb.Append("  VideoDurationSeconds: ").Append(VideoDurationSeconds).Append("\n");
             sb.Append("  EngagementRate: ").Append(EngagementRate).Append("\n");

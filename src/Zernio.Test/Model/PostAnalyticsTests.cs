@@ -164,6 +164,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CompletionRate'
+        /// </summary>
+        [Fact]
+        public void CompletionRateTest()
+        {
+            // TODO unit test for the property 'CompletionRate'
+        }
+
+        /// <summary>
+        /// Test the property 'ProfileViews'
+        /// </summary>
+        [Fact]
+        public void ProfileViewsTest()
+        {
+            // TODO unit test for the property 'ProfileViews'
+        }
+
+        /// <summary>
         /// Test the property 'Reposts'
         /// </summary>
         [Fact]

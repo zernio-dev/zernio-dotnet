@@ -619,9 +619,9 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: "Sort by date, engagement, or a specific metric. Instagram-only\
-          \ metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value\
-          \ as 0."
+      - description: "Sort by date, engagement, or a specific metric. Platform-specific\
+          \ metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate,\
+          \ profile_views) sort a null value as 0."
         explode: true
         in: query
         name: sortBy
@@ -644,6 +644,8 @@ paths:
           - ig_reels_video_view_total_time
           - reposts
           - reels_skip_rate
+          - completion_rate
+          - profile_views
           type: string
         style: form
       - description: Sort order
@@ -981,6 +983,8 @@ paths:
                         igReelsVideoViewTotalTime: 0
                         reposts: 0
                         reelsSkipRate: 0
+                        completionRate: 0
+                        profileViews: 0
                     nextCursor: v1.WyIyMDI2LTA5LTAxIDE3OjEyOjA0IiwiNjVmMWMwYTllMmI1YWYwMDEyYWIzNGNkIl0
                     hasMore: true
               schema:
@@ -52478,7 +52482,9 @@ components:
         reach: 0
         igReelsVideoViewTotalTime: 0
         follows: 0
+        profileViews: 0
         impressions: 0
+        completionRate: 0
         videoDurationSeconds: 30
         shares: 0
         engagementRate: 6.59
@@ -52541,6 +52547,20 @@ components:
             \ is published to several accounts, the aggregate is weighted by views."
           example: 48.8
           type: number
+        completionRate:
+          description: "TikTok accounts connected through the TikTok for Business\
+            \ app only: share of viewers who watched the video to the end, 0 to 1,\
+            \ as TikTok reports it (T+24-48h, only for posts active in the last 7\
+            \ days). 0 for other platforms. When a post is published to several accounts,\
+            \ the aggregate is weighted by views."
+          example: 0
+          type: number
+        profileViews:
+          description: "TikTok accounts connected through the TikTok for Business\
+            \ app only: profile views from users who reached the profile through this\
+            \ post (T+24-48h). 0 for other platforms."
+          example: 0
+          type: integer
         reposts:
           description: "Instagram accounts connected with Facebook Login only: reposts\
             \ of the media by other users, minus deleted reposts, on feed posts, reels\
@@ -52667,7 +52687,9 @@ components:
           reach: 0
           igReelsVideoViewTotalTime: 0
           follows: 0
+          profileViews: 0
           impressions: 0
+          completionRate: 0
           videoDurationSeconds: 30
           shares: 0
           engagementRate: 6.59
@@ -52822,7 +52844,9 @@ components:
           reach: 6
           igReelsVideoViewTotalTime: 7
           follows: 2
+          profileViews: 6
           impressions: 0
+          completionRate: 1.4894159098541704
           sends: 7
           shares: 5
           saves: 2
@@ -52894,7 +52918,9 @@ components:
             reach: 6
             igReelsVideoViewTotalTime: 7
             follows: 2
+            profileViews: 6
             impressions: 0
+            completionRate: 1.4894159098541704
             sends: 7
             shares: 5
             saves: 2
@@ -52917,7 +52943,9 @@ components:
             reach: 6
             igReelsVideoViewTotalTime: 7
             follows: 2
+            profileViews: 6
             impressions: 0
+            completionRate: 1.4894159098541704
             sends: 7
             shares: 5
             saves: 2
@@ -112590,7 +112618,9 @@ components:
         reach: 6
         igReelsVideoViewTotalTime: 7
         follows: 2
+        profileViews: 6
         impressions: 0
+        completionRate: 1.4894159098541704
         sends: 7
         shares: 5
         saves: 2
@@ -112632,14 +112662,23 @@ components:
         reelsSkipRate:
           description: "Instagram Reels skip rate, 0 to 1"
           type: number
+        completionRate:
+          description: "TikTok business lane: share of viewers who watched to the\
+            \ end, 0 to 1"
+          type: number
+        profileViews:
+          description: "TikTok business lane: profile views attributed to the post"
+          type: integer
       required:
       - clicks
       - comments
+      - completionRate
       - follows
       - igReelsAvgWatchTime
       - igReelsVideoViewTotalTime
       - impressions
       - likes
+      - profileViews
       - reach
       - reelsSkipRate
       - reposts

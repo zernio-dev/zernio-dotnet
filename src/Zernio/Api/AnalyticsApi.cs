@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>GetAnalytics200Response</returns>
         GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default);
@@ -65,7 +65,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>ApiResponse of GetAnalytics200Response</returns>
         ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default);
@@ -775,7 +775,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAnalytics200Response</returns>
@@ -797,7 +797,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAnalytics200Response)</returns>
@@ -1759,7 +1759,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>GetAnalytics200Response</returns>
         public GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default)
@@ -1781,7 +1781,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>ApiResponse of GetAnalytics200Response</returns>
         public Zernio.Client.ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default)
@@ -1879,7 +1879,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAnalytics200Response</returns>
@@ -1902,7 +1902,7 @@ namespace Zernio.Api
         /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAnalytics200Response)</returns>
