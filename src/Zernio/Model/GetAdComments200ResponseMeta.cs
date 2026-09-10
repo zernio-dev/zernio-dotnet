@@ -106,7 +106,7 @@ namespace Zernio.Model
         /// <param name="adId">Internal Zernio ad ID. (required).</param>
         /// <param name="platformAdId">Platform ad ID..</param>
         /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side..</param>
-        /// <param name="tiktokItemId">TikTok-only video item ID. Null when the ad and comments do not expose it..</param>
+        /// <param name="tiktokItemId">TikTok-only video item ID from stored ad fields or returned comments. Null does not prevent listing; ad details are not fetched to populate it..</param>
         /// <param name="since">TikTok-only resolved start date..</param>
         /// <param name="until">TikTok-only resolved end date..</param>
         /// <param name="facebookAccountId">Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible)..</param>
@@ -165,9 +165,9 @@ namespace Zernio.Model
         public string EffectiveStoryId { get; set; }
 
         /// <summary>
-        /// TikTok-only video item ID. Null when the ad and comments do not expose it.
+        /// TikTok-only video item ID from stored ad fields or returned comments. Null does not prevent listing; ad details are not fetched to populate it.
         /// </summary>
-        /// <value>TikTok-only video item ID. Null when the ad and comments do not expose it.</value>
+        /// <value>TikTok-only video item ID from stored ad fields or returned comments. Null does not prevent listing; ad details are not fetched to populate it.</value>
         [DataMember(Name = "tiktokItemId", EmitDefaultValue = true)]
         public string TiktokItemId { get; set; }
 

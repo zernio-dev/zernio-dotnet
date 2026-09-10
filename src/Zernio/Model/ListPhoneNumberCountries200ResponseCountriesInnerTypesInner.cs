@@ -144,7 +144,7 @@ namespace Zernio.Model
         /// <param name="callsAvailable">callsAvailable.</param>
         /// <param name="inStock">inStock.</param>
         /// <param name="fulfilment">&#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order..</param>
-        /// <param name="preOrderable">Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc) and the carrier sources the number after review, usually about 3 weeks and never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active..</param>
+        /// <param name="preOrderable">Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc): we buy regular stock the moment it returns, otherwise the carrier sources the number. Usually 2 to 4 weeks, never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active..</param>
         public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner(NumberTypeEnum? numberType = default, TierEnum? tier = default, bool needsKyc = default, int monthlyCents = default, bool whatsappAvailable = default, bool smsAvailable = default, bool callsAvailable = default, bool inStock = default, FulfilmentEnum? fulfilment = default, bool preOrderable = default)
         {
             this.NumberType = numberType;
@@ -198,9 +198,9 @@ namespace Zernio.Model
         public bool InStock { get; set; }
 
         /// <summary>
-        /// Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc) and the carrier sources the number after review, usually about 3 weeks and never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.
+        /// Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc): we buy regular stock the moment it returns, otherwise the carrier sources the number. Usually 2 to 4 weeks, never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.
         /// </summary>
-        /// <value>Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc) and the carrier sources the number after review, usually about 3 weeks and never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.</value>
+        /// <value>Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc): we buy regular stock the moment it returns, otherwise the carrier sources the number. Usually 2 to 4 weeks, never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.</value>
         [DataMember(Name = "preOrderable", EmitDefaultValue = true)]
         public bool PreOrderable { get; set; }
 

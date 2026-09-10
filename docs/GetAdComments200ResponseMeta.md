@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AdId** | **string** | Internal Zernio ad ID. | 
 **PlatformAdId** | **string** | Platform ad ID. | [optional] 
 **EffectiveStoryId** | **string** | Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side. | [optional] 
-**TiktokItemId** | **string** | TikTok-only video item ID. Null when the ad and comments do not expose it. | [optional] 
+**TiktokItemId** | **string** | TikTok-only video item ID from stored ad fields or returned comments. Null does not prevent listing; ad details are not fetched to populate it. | [optional] 
 **Since** | **DateOnly** | TikTok-only resolved start date. | [optional] 
 **Until** | **DateOnly** | TikTok-only resolved end date. | [optional] 
 **FacebookAccountId** | **string** | Facebook-only. The connected Facebook Page SocialAccount these comments were read through. Pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible). | [optional] 
