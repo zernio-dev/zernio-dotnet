@@ -179,6 +179,7 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**AddAccountCallouts**](docs/AdAccountsApi.md#addaccountcallouts) | **POST** /v1/ads/accounts/callouts | Add account callouts
 *AdAccountsApi* | [**AddAccountSitelinks**](docs/AdAccountsApi.md#addaccountsitelinks) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks
 *AdAccountsApi* | [**AddAccountStructuredSnippets**](docs/AdAccountsApi.md#addaccountstructuredsnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets
+*AdAccountsApi* | [**CreateAdAccount**](docs/AdAccountsApi.md#createadaccount) | **POST** /v1/ads/accounts | Create Meta ad account
 *AdAccountsApi* | [**CreateAdNegativeKeywordList**](docs/AdAccountsApi.md#createadnegativekeywordlist) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list
 *AdAccountsApi* | [**CreateCustomConversion**](docs/AdAccountsApi.md#createcustomconversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion
 *AdAccountsApi* | [**CreateHighDemandPeriod**](docs/AdAccountsApi.md#createhighdemandperiod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase
@@ -1100,6 +1101,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateAccountGroup201Response](docs/CreateAccountGroup201Response.md)
  - [Model.CreateAccountGroup201ResponseGroup](docs/CreateAccountGroup201ResponseGroup.md)
  - [Model.CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
+ - [Model.CreateAdAccount201Response](docs/CreateAdAccount201Response.md)
+ - [Model.CreateAdAccountRequest](docs/CreateAdAccountRequest.md)
  - [Model.CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
  - [Model.CreateAdAudienceRequest](docs/CreateAdAudienceRequest.md)
  - [Model.CreateAdCampaign200Response](docs/CreateAdCampaign200Response.md)

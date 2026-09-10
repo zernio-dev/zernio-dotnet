@@ -36040,6 +36040,120 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+    post:
+      description: |
+        Creates a durable Meta ad account in the end user's own business portfolio using
+        their connected Meta Ads token. Requires an active metaads accountId, Ads access,
+        business_management permission and business admin access. Discover portfolios with
+        GET /v1/ads/businesses. System-user tokens may return an empty businesses list;
+        supply the known business ID in that case.
+
+        The self-serve account starts without a payment method. The user must add a payment
+        method in Ads Manager before ads can deliver. Zernio cannot add payment methods.
+        Meta may require business verification and limits how many accounts a business can
+        create. Closing an account does not guarantee more capacity. An ad account cannot
+        truly be deleted, even after closing it and removing it from a business.
+
+        timezoneId is Meta's numeric ID, not an IANA timezone name. Select it from
+        https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/.
+        For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs.
+        endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.
+
+        The new account is added atomically to an existing scoped ad-account allowlist.
+        Unrestricted connections stay unrestricted. Reconnecting the same Meta identity
+        preserves this scope unless a caller explicitly replaces it. Discovery is nudged
+        immediately. Use the returned adAccountId with the existing ads endpoints.
+
+        This operation is not idempotent and Zernio never automatically retries it.
+        Unknown body fields are rejected. No validateOnly or dry-run option is supported.
+        After a timeout or a 502 with details.creationStatus=unknown, check the business
+        in Ads Manager before attempting another creation. A 201 with connectionUpdated=false
+        means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous
+        scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call.
+      operationId: createAdAccount
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 69fc524892b3d8e85f893e73
+              businessId: "123456789012345"
+              name: Customer advertising
+              currency: EUR
+              timezoneId: 1
+            schema:
+              $ref: "#/components/schemas/createAdAccount_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                adAccountId: act_123456789012345
+                businessId: "123456789012345"
+                connectionUpdated: true
+                paymentMethodRequired: true
+                adsManagerUrl: https://adsmanager.facebook.com/adsmanager/manage/accounts?act=123456789012345
+                nextSteps: "The user must configure payment in Meta Ads Manager before\
+                  \ ads can deliver. Add a payment method there, or confirm an existing\
+                  \ funding or invoicing arrangement. Zernio cannot add payment methods\
+                  \ through the API."
+                warnings: []
+              schema:
+                $ref: "#/components/schemas/createAdAccount_201_response"
+          description: Ad account created. Check connectionUpdated and payment instructions.
+        "400":
+          content:
+            application/json:
+              example:
+                error: This business has reached its Meta ad account creation limit.
+                  Use an existing ad account or ask Meta Business Support about increasing
+                  the limit. Closing accounts does not guarantee additional capacity.
+                code: invalid_field_value
+                type: invalid_request_error
+                param: businessId
+                platform: meta
+                details:
+                  reason: creation_limit
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid input or Meta rejection. details.reason identifies\
+            \ creation_limit, business_verification_required, unsupported_currency,\
+            \ unsupported_timezone or business_unavailable when recognized."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Ads access denied or Meta permission missing. details.reason\
+            \ may be business_management_required, business_admin_required or business_access_required."
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "502":
+          content:
+            application/json:
+              example:
+                error: Meta did not confirm whether the ad account was created. Do
+                  not repeat this request until you check the business portfolio in
+                  Ads Manager.
+                code: platform_api_error
+                type: platform_error
+                platform: meta
+                details:
+                  creationStatus: unknown
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Creation outcome unknown. Check Ads Manager before repeating
+            this non-idempotent request.
+      security:
+      - bearerAuth: []
+      summary: Create Meta ad account
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
   /v1/ads/dsa-defaults:
     get:
       description: |
@@ -98511,6 +98625,130 @@ components:
             \ and this is the last successful fetch, not a live read. Absent on other\
             \ platforms."
           type: boolean
+    createAdAccount_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Zernio metaads SocialAccount ID.
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        businessId:
+          description: Business portfolio that will own the account.
+          pattern: "^[1-9][0-9]*$"
+          type: string
+        name:
+          description: Ad account name. Whitespace is trimmed.
+          maxLength: 255
+          minLength: 1
+          type: string
+        currency:
+          description: Uppercase ISO 4217 currency supported by Meta.
+          pattern: "^[A-Z]{3}$"
+          type: string
+        timezoneId:
+          description: Numeric Meta timezone ID from the linked timezone list. For
+            example 1 is America/Los_Angeles.
+          maximum: 4294967295
+          minimum: 0
+          type: integer
+        endAdvertiser:
+          default: NONE
+          description: End advertiser business or page ID. NONE uses the owning business.
+          pattern: "^(NONE|[1-9][0-9]*)$"
+          type: string
+        mediaAgency:
+          default: NONE
+          description: Media agency business or page ID. NONE for self-serve customers.
+          pattern: "^(NONE|[1-9][0-9]*)$"
+          type: string
+        partner:
+          default: NONE
+          description: Partner business or page ID. NONE for self-serve customers.
+          pattern: "^(NONE|[1-9][0-9]*)$"
+          type: string
+        invoice:
+          description: Request Meta invoicing. Eligibility is determined by Meta.
+          type: boolean
+        invoiceGroupId:
+          description: Existing Meta invoice group ID.
+          pattern: "^[1-9][0-9]*$"
+          type: string
+        invoicingEmails:
+          description: Addresses for Meta invoices.
+          items:
+            format: email
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        io:
+          description: Meta insertion-order invoicing option.
+          type: boolean
+        poNumber:
+          description: Purchase order number.
+          maxLength: 255
+          minLength: 1
+          type: string
+        fundingId:
+          description: Existing Meta funding reference. Does not add a payment method.
+          pattern: "^[1-9][0-9]*$"
+          type: string
+        adAccountCreatedFromBmFlag:
+          description: Meta Business Manager creation flag.
+          type: boolean
+      required:
+      - accountId
+      - businessId
+      - currency
+      - name
+      - timezoneId
+    createAdAccount_201_response:
+      example:
+        nextSteps: nextSteps
+        adsManagerUrl: https://openapi-generator.tech
+        adAccountId: adAccountId
+        warnings:
+        - warnings
+        - warnings
+        businessId: businessId
+        paymentMethodRequired: true
+        connectionUpdated: true
+      properties:
+        adAccountId:
+          description: New Meta ad account ID for subsequent ads calls.
+          pattern: "^act_[0-9]+$"
+          type: string
+        businessId:
+          description: Owning business portfolio ID.
+          type: string
+        connectionUpdated:
+          description: Whether the connection scope and discovery schedule were updated.
+          type: boolean
+        paymentMethodRequired:
+          description: Always true as a delivery prerequisite. This is not a live
+            funding-source check. Confirm payment or invoicing in Ads Manager.
+          type: boolean
+        adsManagerUrl:
+          description: Open the created account in Ads Manager.
+          format: uri
+          type: string
+        nextSteps:
+          description: Payment setup instructions for the user.
+          type: string
+        warnings:
+          description: Recovery instructions if the account could not be attached
+            to the connection.
+          items:
+            type: string
+          type: array
+      required:
+      - adAccountId
+      - adsManagerUrl
+      - businessId
+      - connectionUpdated
+      - nextSteps
+      - paymentMethodRequired
+      - warnings
     updateAdAccount_request:
       properties:
         accountId:

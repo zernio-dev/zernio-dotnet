@@ -265,6 +265,8 @@ docs/ConversionsApi.md
 docs/CreateAccountGroup201Response.md
 docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
+docs/CreateAdAccount201Response.md
+docs/CreateAdAccountRequest.md
 docs/CreateAdAudience201Response.md
 docs/CreateAdAudienceRequest.md
 docs/CreateAdCampaign200Response.md
@@ -2377,6 +2379,8 @@ src/Zernio.Test/Model/ConversionEventUserTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseGroupTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroupRequestTests.cs
+src/Zernio.Test/Model/CreateAdAccount201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdAccountRequestTests.cs
 src/Zernio.Test/Model/CreateAdAudience201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/CreateAdCampaign200ResponseTests.cs
@@ -4461,6 +4465,8 @@ src/Zernio/Model/ConversionEventUserClickIds.cs
 src/Zernio/Model/CreateAccountGroup201Response.cs
 src/Zernio/Model/CreateAccountGroup201ResponseGroup.cs
 src/Zernio/Model/CreateAccountGroupRequest.cs
+src/Zernio/Model/CreateAdAccount201Response.cs
+src/Zernio/Model/CreateAdAccountRequest.cs
 src/Zernio/Model/CreateAdAudience201Response.cs
 src/Zernio/Model/CreateAdAudienceRequest.cs
 src/Zernio/Model/CreateAdCampaign200Response.cs

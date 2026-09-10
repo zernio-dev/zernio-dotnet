@@ -91,6 +91,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAdAccount
+        /// </summary>
+        [Fact]
+        public void CreateAdAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdAccountRequest createAdAccountRequest = null;
+            //var response = instance.CreateAdAccount(createAdAccountRequest);
+            //Assert.IsType<CreateAdAccount201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateAdNegativeKeywordList
         /// </summary>
         [Fact]
