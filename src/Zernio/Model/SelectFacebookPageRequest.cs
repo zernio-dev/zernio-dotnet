@@ -24,90 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// SelectFacebookPageRequest
     /// </summary>
+    [JsonConverter(typeof(SelectFacebookPageRequestJsonConverter))]
     [DataContract(Name = "selectFacebookPage_request")]
-    public partial class SelectFacebookPageRequest : IValidatableObject
+    public partial class SelectFacebookPageRequest : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectFacebookPageRequest" /> class.
+        /// Initializes a new instance of the <see cref="SelectFacebookPageRequest" /> class
+        /// with the <see cref="SelectFacebookPageRequestOneOf" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SelectFacebookPageRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SelectFacebookPageRequest" /> class.
-        /// </summary>
-        /// <param name="profileId">Profile ID from your connection flow (required).</param>
-        /// <param name="pageId">The Facebook Page ID selected by the user (required).</param>
-        /// <param name="tempToken">Temporary Facebook access token from OAuth (required).</param>
-        /// <param name="userProfile">userProfile (required).</param>
-        /// <param name="redirectUrl">Optional custom redirect URL to return to after selection.</param>
-        public SelectFacebookPageRequest(string profileId = default, string pageId = default, string tempToken = default, SelectFacebookPageRequestUserProfile userProfile = default, string redirectUrl = default)
+        /// <param name="actualInstance">An instance of SelectFacebookPageRequestOneOf.</param>
+        public SelectFacebookPageRequest(SelectFacebookPageRequestOneOf actualInstance)
         {
-            // to ensure "profileId" is required (not null)
-            if (profileId == null)
-            {
-                throw new ArgumentNullException("profileId is a required property for SelectFacebookPageRequest and cannot be null");
-            }
-            this.ProfileId = profileId;
-            // to ensure "pageId" is required (not null)
-            if (pageId == null)
-            {
-                throw new ArgumentNullException("pageId is a required property for SelectFacebookPageRequest and cannot be null");
-            }
-            this.PageId = pageId;
-            // to ensure "tempToken" is required (not null)
-            if (tempToken == null)
-            {
-                throw new ArgumentNullException("tempToken is a required property for SelectFacebookPageRequest and cannot be null");
-            }
-            this.TempToken = tempToken;
-            // to ensure "userProfile" is required (not null)
-            if (userProfile == null)
-            {
-                throw new ArgumentNullException("userProfile is a required property for SelectFacebookPageRequest and cannot be null");
-            }
-            this.UserProfile = userProfile;
-            this.RedirectUrl = redirectUrl;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Profile ID from your connection flow
+        /// Initializes a new instance of the <see cref="SelectFacebookPageRequest" /> class
+        /// with the <see cref="SelectFacebookPageRequestOneOf1" /> class
         /// </summary>
-        /// <value>Profile ID from your connection flow</value>
-        [DataMember(Name = "profileId", IsRequired = true, EmitDefaultValue = true)]
-        public string ProfileId { get; set; }
+        /// <param name="actualInstance">An instance of SelectFacebookPageRequestOneOf1.</param>
+        public SelectFacebookPageRequest(SelectFacebookPageRequestOneOf1 actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// The Facebook Page ID selected by the user
+        /// Gets or Sets ActualInstance
         /// </summary>
-        /// <value>The Facebook Page ID selected by the user</value>
-        [DataMember(Name = "pageId", IsRequired = true, EmitDefaultValue = true)]
-        public string PageId { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(SelectFacebookPageRequestOneOf) || value is SelectFacebookPageRequestOneOf)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(SelectFacebookPageRequestOneOf1) || value is SelectFacebookPageRequestOneOf1)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: SelectFacebookPageRequestOneOf, SelectFacebookPageRequestOneOf1");
+                }
+            }
+        }
 
         /// <summary>
-        /// Temporary Facebook access token from OAuth
+        /// Get the actual instance of `SelectFacebookPageRequestOneOf`. If the actual instance is not `SelectFacebookPageRequestOneOf`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>Temporary Facebook access token from OAuth</value>
-        [DataMember(Name = "tempToken", IsRequired = true, EmitDefaultValue = true)]
-        public string TempToken { get; set; }
+        /// <returns>An instance of SelectFacebookPageRequestOneOf</returns>
+        public SelectFacebookPageRequestOneOf GetSelectFacebookPageRequestOneOf()
+        {
+            return (SelectFacebookPageRequestOneOf)this.ActualInstance;
+        }
 
         /// <summary>
-        /// Gets or Sets UserProfile
+        /// Get the actual instance of `SelectFacebookPageRequestOneOf1`. If the actual instance is not `SelectFacebookPageRequestOneOf1`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        [DataMember(Name = "userProfile", IsRequired = true, EmitDefaultValue = true)]
-        public SelectFacebookPageRequestUserProfile UserProfile { get; set; }
-
-        /// <summary>
-        /// Optional custom redirect URL to return to after selection
-        /// </summary>
-        /// <value>Optional custom redirect URL to return to after selection</value>
-        [DataMember(Name = "redirect_url", EmitDefaultValue = false)]
-        public string RedirectUrl { get; set; }
+        /// <returns>An instance of SelectFacebookPageRequestOneOf1</returns>
+        public SelectFacebookPageRequestOneOf1 GetSelectFacebookPageRequestOneOf1()
+        {
+            return (SelectFacebookPageRequestOneOf1)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,13 +114,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class SelectFacebookPageRequest {\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
-            sb.Append("  PageId: ").Append(PageId).Append("\n");
-            sb.Append("  TempToken: ").Append(TempToken).Append("\n");
-            sb.Append("  UserProfile: ").Append(UserProfile).Append("\n");
-            sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -130,19 +125,137 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, SelectFacebookPageRequest.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of SelectFacebookPageRequest
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of SelectFacebookPageRequest</returns>
+        public static SelectFacebookPageRequest FromJson(string jsonString)
+        {
+            SelectFacebookPageRequest newSelectFacebookPageRequest = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newSelectFacebookPageRequest;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SelectFacebookPageRequestOneOf).GetProperty("AdditionalProperties") == null)
+                {
+                    newSelectFacebookPageRequest = new SelectFacebookPageRequest(JsonConvert.DeserializeObject<SelectFacebookPageRequestOneOf>(jsonString, SelectFacebookPageRequest.SerializerSettings));
+                }
+                else
+                {
+                    newSelectFacebookPageRequest = new SelectFacebookPageRequest(JsonConvert.DeserializeObject<SelectFacebookPageRequestOneOf>(jsonString, SelectFacebookPageRequest.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SelectFacebookPageRequestOneOf");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SelectFacebookPageRequestOneOf: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SelectFacebookPageRequestOneOf1).GetProperty("AdditionalProperties") == null)
+                {
+                    newSelectFacebookPageRequest = new SelectFacebookPageRequest(JsonConvert.DeserializeObject<SelectFacebookPageRequestOneOf1>(jsonString, SelectFacebookPageRequest.SerializerSettings));
+                }
+                else
+                {
+                    newSelectFacebookPageRequest = new SelectFacebookPageRequest(JsonConvert.DeserializeObject<SelectFacebookPageRequestOneOf1>(jsonString, SelectFacebookPageRequest.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SelectFacebookPageRequestOneOf1");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SelectFacebookPageRequestOneOf1: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newSelectFacebookPageRequest;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for SelectFacebookPageRequest
+    /// </summary>
+    public class SelectFacebookPageRequestJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(SelectFacebookPageRequest).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return SelectFacebookPageRequest.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return SelectFacebookPageRequest.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

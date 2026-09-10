@@ -28,18 +28,18 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Decoded user profile object from the OAuth callback
+    /// Decoded user profile object from the OAuth callback.
     /// </summary>
-    [DataContract(Name = "selectFacebookPage_request_userProfile")]
-    public partial class SelectFacebookPageRequestUserProfile : IValidatableObject
+    [DataContract(Name = "selectFacebookPage_request_oneOf_userProfile")]
+    public partial class SelectFacebookPageRequestOneOfUserProfile : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectFacebookPageRequestUserProfile" /> class.
+        /// Initializes a new instance of the <see cref="SelectFacebookPageRequestOneOfUserProfile" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
         /// <param name="profilePicture">profilePicture.</param>
-        public SelectFacebookPageRequestUserProfile(string id = default, string name = default, string profilePicture = default)
+        public SelectFacebookPageRequestOneOfUserProfile(string id = default, string name = default, string profilePicture = default)
         {
             this.Id = id;
             this.Name = name;
@@ -71,7 +71,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SelectFacebookPageRequestUserProfile {\n");
+            sb.Append("class SelectFacebookPageRequestOneOfUserProfile {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ProfilePicture: ").Append(ProfilePicture).Append("\n");

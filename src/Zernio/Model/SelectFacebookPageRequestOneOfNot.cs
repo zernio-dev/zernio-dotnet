@@ -28,42 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SelectFacebookPage200Response
+    /// SelectFacebookPageRequestOneOfNot
     /// </summary>
-    [DataContract(Name = "selectFacebookPage_200_response")]
-    public partial class SelectFacebookPage200Response : IValidatableObject
+    [DataContract(Name = "selectFacebookPage_request_oneOf_not")]
+    public partial class SelectFacebookPageRequestOneOfNot : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectFacebookPage200Response" /> class.
+        /// Initializes a new instance of the <see cref="SelectFacebookPageRequestOneOfNot" /> class.
         /// </summary>
-        /// <param name="message">message.</param>
-        /// <param name="redirectUrl">Redirect URL when a custom redirect_url was provided or a business Page was selected..</param>
-        /// <param name="account">account.</param>
-        public SelectFacebookPage200Response(string message = default, string redirectUrl = default, SelectFacebookPage200ResponseAccount account = default)
+        [JsonConstructorAttribute]
+        protected SelectFacebookPageRequestOneOfNot() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SelectFacebookPageRequestOneOfNot" /> class.
+        /// </summary>
+        /// <param name="selectionToken">selectionToken (required).</param>
+        public SelectFacebookPageRequestOneOfNot(Object selectionToken = default)
         {
-            this.Message = message;
-            this.RedirectUrl = redirectUrl;
-            this.Account = account;
+            // to ensure "selectionToken" is required (not null)
+            if (selectionToken == null)
+            {
+                throw new ArgumentNullException("selectionToken is a required property for SelectFacebookPageRequestOneOfNot and cannot be null");
+            }
+            this.SelectionToken = selectionToken;
         }
 
         /// <summary>
-        /// Gets or Sets Message
+        /// Gets or Sets SelectionToken
         /// </summary>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
-
-        /// <summary>
-        /// Redirect URL when a custom redirect_url was provided or a business Page was selected.
-        /// </summary>
-        /// <value>Redirect URL when a custom redirect_url was provided or a business Page was selected.</value>
-        [DataMember(Name = "redirect_url", EmitDefaultValue = false)]
-        public string RedirectUrl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Account
-        /// </summary>
-        [DataMember(Name = "account", EmitDefaultValue = false)]
-        public SelectFacebookPage200ResponseAccount Account { get; set; }
+        [DataMember(Name = "selectionToken", IsRequired = true, EmitDefaultValue = true)]
+        public Object SelectionToken { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,10 +65,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SelectFacebookPage200Response {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
-            sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("class SelectFacebookPageRequestOneOfNot {\n");
+            sb.Append("  SelectionToken: ").Append(SelectionToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

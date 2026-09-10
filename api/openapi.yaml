@@ -8312,11 +8312,14 @@ paths:
         every previously scoped ad account (or every previous grant for an unscoped connection).
         Missing or unverifiable grants return 409 before changing the account.
 
-        Pass `pageId` to select a granted Page for creatives and lead forms. Otherwise the
-        previous Page or sole granted Page is selected. Multiple Pages without a selection
-        return 400 with available Page IDs; restart with pageId. With no Pages granted the
-        account can manage campaigns and sync insights but cannot create Page-based creatives
-        or list Page forms. Success redirects with connected=metaads, profileId and accountId.
+        Pass `pageId` to select a granted Page for creatives and lead forms. API integrations
+        otherwise reuse the previous Page or sole granted Page. Multiple Pages without a selection
+        return 400 with available Page IDs for API integrations; restart with pageId.
+        Dashboard session logins use the sole current grant automatically or open the existing
+        Facebook Page picker for several grants, including reconnects. Selection completes
+        the Meta Ads connection. With no Pages granted the callback returns
+        400 with instructions to connect again and grant a Page.
+        Success redirects with connected=metaads, profileId and accountId.
         Business login reports metadata.tokenType=system-user in GET /v1/accounts. An absent
         Meta expires_in leaves tokenExpiresAt absent; no personal-token re-exchange occurs.
         Subsequent classic requests can change the ad-account scope using the business token;
@@ -8569,7 +8572,10 @@ paths:
         \ The state expires after 30 minutes and binds the user, profile, Page selection\
         \ and ad-account scope. No bearer token is sent by the browser. Success reconnects\
         \ only metaads and redirects to the original redirect_url. Invalid state returns\
-        \ 400; inaccessible profiles or missing ads access cannot connect. No token\
+        \ 400; inaccessible profiles or missing ads access cannot connect. Dashboard\
+        \ logins with several Pages redirect to the Facebook Page picker with an encrypted\
+        \ selectionToken valid for ten minutes. Listing and selecting require the\
+        \ initiating user and current profile access. No plaintext platform token\
         \ is returned to the browser."
       operationId: completeMetaAdsBusinessLogin
       parameters:
@@ -8602,7 +8608,8 @@ paths:
         "307":
           description: "Redirect to the original callback URL with connected=metaads,\
             \ profileId and accountId on success; authorization denial redirects with\
-            \ an error."
+            \ an error. Dashboard logins requiring a Page choice redirect to /connect/facebook/select-page\
+            \ with selectionToken."
           headers:
             Location:
               example: https://example.com/callback?connected=metaads&profileId=PROFILE_ID&accountId=ACCOUNT_ID
@@ -8798,24 +8805,38 @@ paths:
       x-resource-group: accounts
   /v1/connect/facebook/select-page:
     get:
-      description: Returns the list of Facebook Pages the user can manage after OAuth.
-        Extract tempToken and userProfile from the OAuth redirect params and pass
-        them here. Use the X-Connect-Token header if connecting via API key.
+      description: "Returns Facebook Pages after OAuth. Classic connections require\
+        \ profileId and tempToken from the OAuth redirect. Use X-Connect-Token for\
+        \ headless connections. The dashboard business-login picker instead sends\
+        \ only selectionToken, an encrypted grant valid for ten minutes. This requires\
+        \ the initiating user and current profile access and returns only Page IDs\
+        \ and names. X-Connect-Token cannot authorize business selection."
       operationId: listFacebookPages
       parameters:
-      - description: Profile ID from your connection flow
+      - description: Profile ID from your classic connection flow. Required with tempToken.
         explode: true
         in: query
         name: profileId
-        required: true
+        required: false
         schema:
           type: string
         style: form
-      - description: Temporary Facebook access token from the OAuth callback redirect
+      - description: Temporary Facebook access token from the classic OAuth callback.
+          Required with profileId.
         explode: true
         in: query
         name: tempToken
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Encrypted dashboard business-login grant. Send alone instead
+          of profileId and tempToken. Expires after ten minutes.
+        example: ENCRYPTED_SELECTION_TOKEN
+        explode: true
+        in: query
+        name: selectionToken
+        required: false
         schema:
           type: string
         style: form
@@ -8837,7 +8858,11 @@ paths:
                 $ref: "#/components/schemas/listFacebookPages_200_response"
           description: List of Facebook Pages available for connection
         "400":
-          description: Missing required parameters (profileId or tempToken)
+          description: "Invalid or expired selectionToken, no granted Pages, or missing\
+            \ classic profileId and tempToken."
+        "403":
+          description: The caller is not the initiating user or no longer has profile
+            access.
         "401":
           $ref: "#/components/responses/Unauthorized"
         "500":
@@ -8853,10 +8878,19 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - meta
     post:
-      description: Complete the headless flow by saving the user's selected Facebook
-        page. Pass the userProfile from the OAuth redirect and use X-Connect-Token
-        if connecting via API key.
+      description: "Complete a classic Facebook Page connection with profileId, pageId,\
+        \ tempToken and userProfile. Use X-Connect-Token for headless connections.\
+        \ The dashboard business-login picker instead sends only selectionToken and\
+        \ pageId to complete a Meta Ads connection. The server verifies the initiating\
+        \ user, profile access, current grants and connection eligibility. The profile,\
+        \ platform token, ad-account scope and return URL come only from the encrypted\
+        \ grant. Business selection requires a session or bearer authentication for\
+        \ the initiating user; X-Connect-Token is not accepted. It returns redirect_url\
+        \ with connected=metaads on success or an eligibility error redirect."
       operationId: selectFacebookPage
       requestBody:
         content:
@@ -8890,10 +8924,10 @@ paths:
                   selectedPageName: My Brand Page
               schema:
                 $ref: "#/components/schemas/selectFacebookPage_200_response"
-          description: Facebook Page connected successfully
+          description: Facebook Page connected or business-login redirect returned.
         "400":
-          description: "Missing required fields (profileId, pageId, tempToken, or\
-            \ userProfile)"
+          description: "Invalid or expired selectionToken, invalid Page choice, forbidden\
+            \ grant overrides, or missing classic connection fields."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -8920,6 +8954,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - meta
   /v1/connect/instagram/select-account:
     get:
       description: |
@@ -66795,8 +66832,8 @@ components:
           items:
             $ref: "#/components/schemas/listFacebookPages_200_response_pages_inner"
           type: array
-    selectFacebookPage_request_userProfile:
-      description: Decoded user profile object from the OAuth callback
+    selectFacebookPage_request_oneOf_userProfile:
+      description: Decoded user profile object from the OAuth callback.
       properties:
         id:
           type: string
@@ -66804,21 +66841,28 @@ components:
           type: string
         profilePicture:
           type: string
-    selectFacebookPage_request:
+    selectFacebookPage_request_oneOf_not:
+      properties:
+        selectionToken: {}
+      required:
+      - selectionToken
+    selectFacebookPage_request_oneOf:
+      not:
+        $ref: "#/components/schemas/selectFacebookPage_request_oneOf_not"
       properties:
         profileId:
-          description: Profile ID from your connection flow
+          description: Profile ID from your classic connection flow.
           type: string
         pageId:
-          description: The Facebook Page ID selected by the user
+          description: The Facebook Page ID selected by the user.
           type: string
         tempToken:
-          description: Temporary Facebook access token from OAuth
+          description: Temporary Facebook access token from OAuth.
           type: string
         userProfile:
-          $ref: "#/components/schemas/selectFacebookPage_request_userProfile"
+          $ref: "#/components/schemas/selectFacebookPage_request_oneOf_userProfile"
         redirect_url:
-          description: Optional custom redirect URL to return to after selection
+          description: Optional custom redirect URL to return to after selection.
           format: uri
           type: string
       required:
@@ -66826,6 +66870,25 @@ components:
       - profileId
       - tempToken
       - userProfile
+    selectFacebookPage_request_oneOf_1:
+      additionalProperties: {}
+      properties:
+        selectionToken:
+          description: Encrypted dashboard business-login grant. Expires after ten
+            minutes.
+          example: ENCRYPTED_SELECTION_TOKEN
+          type: string
+        pageId:
+          description: A Page ID from the granted Pages returned by listFacebookPages.
+          pattern: ^\d+$
+          type: string
+      required:
+      - pageId
+      - selectionToken
+    selectFacebookPage_request:
+      oneOf:
+      - $ref: "#/components/schemas/selectFacebookPage_request_oneOf"
+      - $ref: "#/components/schemas/selectFacebookPage_request_oneOf_1"
     selectFacebookPage_200_response_account:
       example:
         accountId: accountId
@@ -66869,7 +66932,8 @@ components:
         message:
           type: string
         redirect_url:
-          description: Redirect URL if custom redirect_url was provided
+          description: Redirect URL when a custom redirect_url was provided or a business
+            Page was selected.
           type: string
         account:
           $ref: "#/components/schemas/selectFacebookPage_200_response_account"

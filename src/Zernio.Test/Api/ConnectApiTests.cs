@@ -454,9 +454,10 @@ namespace Zernio.Test.Api
         public void ListFacebookPagesTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string profileId = null;
-            //string tempToken = null;
-            //var response = instance.ListFacebookPages(profileId, tempToken);
+            //string? profileId = null;
+            //string? tempToken = null;
+            //string? selectionToken = null;
+            //var response = instance.ListFacebookPages(profileId, tempToken, selectionToken);
             //Assert.IsType<ListFacebookPages200Response>(response);
         }
 
