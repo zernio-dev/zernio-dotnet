@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum AREACODEUNAVAILABLE for value: AREA_CODE_UNAVAILABLE
             /// </summary>
             [EnumMember(Value = "AREA_CODE_UNAVAILABLE")]
-            AREACODEUNAVAILABLE = 2
+            AREACODEUNAVAILABLE = 2,
+
+            /// <summary>
+            /// Enum PHONENUMBERUNAVAILABLE for value: PHONE_NUMBER_UNAVAILABLE
+            /// </summary>
+            [EnumMember(Value = "PHONE_NUMBER_UNAVAILABLE")]
+            PHONENUMBERUNAVAILABLE = 3
         }
 
 

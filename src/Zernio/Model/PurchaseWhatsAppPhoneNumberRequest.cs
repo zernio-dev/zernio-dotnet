@@ -43,9 +43,10 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">Profile to associate the number with (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.  (default to &quot;US&quot;).</param>
+        /// <param name="phoneNumber">One exact number to buy, in E.164, taken from GET /v1/phone-numbers/available. Fails with 409 code PHONE_NUMBER_UNAVAILABLE when it is no longer available. .</param>
         /// <param name="purchaseIntentId">Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. .</param>
         /// <param name="allowMultiple">Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning).  (default to false).</param>
-        public PurchaseWhatsAppPhoneNumberRequest(string profileId = default, string country = @"US", string purchaseIntentId = default, bool allowMultiple = false)
+        public PurchaseWhatsAppPhoneNumberRequest(string profileId = default, string country = @"US", string phoneNumber = default, string purchaseIntentId = default, bool allowMultiple = false)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -55,6 +56,7 @@ namespace Zernio.Model
             this.ProfileId = profileId;
             // use default value if no "country" provided
             this.Country = country ?? @"US";
+            this.PhoneNumber = phoneNumber;
             this.PurchaseIntentId = purchaseIntentId;
             this.AllowMultiple = allowMultiple;
         }
@@ -72,6 +74,13 @@ namespace Zernio.Model
         /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl }. The customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. </value>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// One exact number to buy, in E.164, taken from GET /v1/phone-numbers/available. Fails with 409 code PHONE_NUMBER_UNAVAILABLE when it is no longer available. 
+        /// </summary>
+        /// <value>One exact number to buy, in E.164, taken from GET /v1/phone-numbers/available. Fails with 409 code PHONE_NUMBER_UNAVAILABLE when it is no longer available. </value>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. 
@@ -97,6 +106,7 @@ namespace Zernio.Model
             sb.Append("class PurchaseWhatsAppPhoneNumberRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  PurchaseIntentId: ").Append(PurchaseIntentId).Append("\n");
             sb.Append("  AllowMultiple: ").Append(AllowMultiple).Append("\n");
             sb.Append("}\n");
@@ -119,6 +129,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.PhoneNumber != null) {
+                // PhoneNumber (string) pattern
+                Regex regexPhoneNumber = new Regex(@"^\+[1-9]\d{6,14}$", RegexOptions.CultureInvariant);
+                if (!regexPhoneNumber.Match(this.PhoneNumber).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PhoneNumber, must match a pattern of " + regexPhoneNumber, new [] { "PhoneNumber" });
+                }
+            }
+
             // PurchaseIntentId (string) maxLength
             if (this.PurchaseIntentId != null && this.PurchaseIntentId.Length > 100)
             {

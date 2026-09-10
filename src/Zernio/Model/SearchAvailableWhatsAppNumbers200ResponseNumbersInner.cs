@@ -37,9 +37,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SearchAvailableWhatsAppNumbers200ResponseNumbersInner" /> class.
         /// </summary>
         /// <param name="phoneNumber">phoneNumber.</param>
-        public SearchAvailableWhatsAppNumbers200ResponseNumbersInner(string phoneNumber = default)
+        /// <param name="locality">locality.</param>
+        /// <param name="bestEffort">bestEffort.</param>
+        public SearchAvailableWhatsAppNumbers200ResponseNumbersInner(string phoneNumber = default, string locality = default, bool bestEffort = default)
         {
             this.PhoneNumber = phoneNumber;
+            this.Locality = locality;
+            this.BestEffort = bestEffort;
         }
 
         /// <summary>
@@ -47,6 +51,18 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Locality
+        /// </summary>
+        [DataMember(Name = "locality", EmitDefaultValue = false)]
+        public string Locality { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BestEffort
+        /// </summary>
+        [DataMember(Name = "bestEffort", EmitDefaultValue = true)]
+        public bool BestEffort { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +73,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SearchAvailableWhatsAppNumbers200ResponseNumbersInner {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  Locality: ").Append(Locality).Append("\n");
+            sb.Append("  BestEffort: ").Append(BestEffort).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

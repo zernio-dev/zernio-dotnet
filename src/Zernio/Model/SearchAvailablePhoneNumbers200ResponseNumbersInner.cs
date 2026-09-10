@@ -36,17 +36,22 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchAvailablePhoneNumbers200ResponseNumbersInner" /> class.
         /// </summary>
-        /// <param name="phoneNumber">phoneNumber.</param>
+        /// <param name="phoneNumber">E.164. Pass it as &#x60;phoneNumber&#x60; on POST /v1/phone-numbers/purchase to buy this exact number..</param>
         /// <param name="features">Provider capability list for this number (e.g. voice, sms, mms)..</param>
-        public SearchAvailablePhoneNumbers200ResponseNumbersInner(string phoneNumber = default, List<string> features = default)
+        /// <param name="locality">Town or rate center the number belongs to, as the carrier names it (e.g. WACO)..</param>
+        /// <param name="bestEffort">true when the carrier added this number because too few matched your filters, so it may be outside the requested prefix or locality..</param>
+        public SearchAvailablePhoneNumbers200ResponseNumbersInner(string phoneNumber = default, List<string> features = default, string locality = default, bool bestEffort = default)
         {
             this.PhoneNumber = phoneNumber;
             this.Features = features;
+            this.Locality = locality;
+            this.BestEffort = bestEffort;
         }
 
         /// <summary>
-        /// Gets or Sets PhoneNumber
+        /// E.164. Pass it as &#x60;phoneNumber&#x60; on POST /v1/phone-numbers/purchase to buy this exact number.
         /// </summary>
+        /// <value>E.164. Pass it as &#x60;phoneNumber&#x60; on POST /v1/phone-numbers/purchase to buy this exact number.</value>
         [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
         public string PhoneNumber { get; set; }
 
@@ -58,6 +63,20 @@ namespace Zernio.Model
         public List<string> Features { get; set; }
 
         /// <summary>
+        /// Town or rate center the number belongs to, as the carrier names it (e.g. WACO).
+        /// </summary>
+        /// <value>Town or rate center the number belongs to, as the carrier names it (e.g. WACO).</value>
+        [DataMember(Name = "locality", EmitDefaultValue = false)]
+        public string Locality { get; set; }
+
+        /// <summary>
+        /// true when the carrier added this number because too few matched your filters, so it may be outside the requested prefix or locality.
+        /// </summary>
+        /// <value>true when the carrier added this number because too few matched your filters, so it may be outside the requested prefix or locality.</value>
+        [DataMember(Name = "bestEffort", EmitDefaultValue = true)]
+        public bool BestEffort { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -67,6 +86,8 @@ namespace Zernio.Model
             sb.Append("class SearchAvailablePhoneNumbers200ResponseNumbersInner {\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Features: ").Append(Features).Append("\n");
+            sb.Append("  Locality: ").Append(Locality).Append("\n");
+            sb.Append("  BestEffort: ").Append(BestEffort).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PhoneNumber'
+        /// </summary>
+        [Fact]
+        public void PhoneNumberTest()
+        {
+            // TODO unit test for the property 'PhoneNumber'
+        }
+
+        /// <summary>
         /// Test the property 'PurchaseIntentId'
         /// </summary>
         [Fact]

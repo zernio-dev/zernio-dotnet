@@ -63,5 +63,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'PhoneNumber'
         }
+
+        /// <summary>
+        /// Test the property 'Locality'
+        /// </summary>
+        [Fact]
+        public void LocalityTest()
+        {
+            // TODO unit test for the property 'Locality'
+        }
+
+        /// <summary>
+        /// Test the property 'BestEffort'
+        /// </summary>
+        [Fact]
+        public void BestEffortTest()
+        {
+            // TODO unit test for the property 'BestEffort'
+        }
     }
 }

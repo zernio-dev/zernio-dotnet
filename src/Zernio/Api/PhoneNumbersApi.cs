@@ -366,7 +366,7 @@ namespace Zernio.Api
         /// Purchase phone number
         /// </summary>
         /// <remarks>
-        /// Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -377,7 +377,7 @@ namespace Zernio.Api
         /// Purchase phone number
         /// </summary>
         /// <remarks>
-        /// Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -498,7 +498,7 @@ namespace Zernio.Api
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -515,7 +515,7 @@ namespace Zernio.Api
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -1021,7 +1021,7 @@ namespace Zernio.Api
         /// Purchase phone number
         /// </summary>
         /// <remarks>
-        /// Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -1033,7 +1033,7 @@ namespace Zernio.Api
         /// Purchase phone number
         /// </summary>
         /// <remarks>
-        /// Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -1165,7 +1165,7 @@ namespace Zernio.Api
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -1183,7 +1183,7 @@ namespace Zernio.Api
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -3585,7 +3585,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Purchase phone number Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Purchase phone number Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -3597,7 +3597,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Purchase phone number Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Purchase phone number Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -3647,7 +3647,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Purchase phone number Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Purchase phone number Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -3660,7 +3660,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Purchase phone number Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+        /// Purchase phone number Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchasePhoneNumberRequest"></param>
@@ -4399,7 +4399,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -4417,7 +4417,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -4495,7 +4495,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
@@ -4514,7 +4514,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country"> (optional, default to &quot;US&quot;)</param>
