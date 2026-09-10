@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PreOrderable'
+        /// </summary>
+        [Fact]
+        public void PreOrderableTest()
+        {
+            // TODO unit test for the property 'PreOrderable'
+        }
+
+        /// <summary>
         /// Test the property 'AddressConstraint'
         /// </summary>
         [Fact]

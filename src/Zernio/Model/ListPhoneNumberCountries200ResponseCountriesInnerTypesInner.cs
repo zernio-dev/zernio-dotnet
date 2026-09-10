@@ -71,8 +71,10 @@ namespace Zernio.Model
         [DataMember(Name = "numberType", EmitDefaultValue = false)]
         public NumberTypeEnum? NumberType { get; set; }
         /// <summary>
-        /// Defines Tier
+        /// Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read.
         /// </summary>
+        /// <value>Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum TierEnum
         {
             /// <summary>
@@ -98,22 +100,52 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets Tier
+        /// Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read.
         /// </summary>
-        [DataMember(Name = "tier", EmitDefaultValue = false)]
+        /// <value>Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read.</value>
+        [DataMember(Name = "tier", EmitDefaultValue = true)]
         public TierEnum? Tier { get; set; }
+        /// <summary>
+        /// &#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order.
+        /// </summary>
+        /// <value>&#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum FulfilmentEnum
+        {
+            /// <summary>
+            /// Enum Instant for value: instant
+            /// </summary>
+            [EnumMember(Value = "instant")]
+            Instant = 1,
+
+            /// <summary>
+            /// Enum Request for value: request
+            /// </summary>
+            [EnumMember(Value = "request")]
+            Request = 2
+        }
+
+
+        /// <summary>
+        /// &#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order.
+        /// </summary>
+        /// <value>&#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order.</value>
+        [DataMember(Name = "fulfilment", EmitDefaultValue = false)]
+        public FulfilmentEnum? Fulfilment { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ListPhoneNumberCountries200ResponseCountriesInnerTypesInner" /> class.
         /// </summary>
         /// <param name="numberType">numberType.</param>
-        /// <param name="tier">tier.</param>
+        /// <param name="tier">Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read..</param>
         /// <param name="needsKyc">needsKyc.</param>
         /// <param name="monthlyCents">Price a NEW number of this type costs per month, in cents..</param>
         /// <param name="whatsappAvailable">Always false for toll_free (WhatsApp does not reliably register toll-free numbers)..</param>
         /// <param name="smsAvailable">smsAvailable.</param>
         /// <param name="callsAvailable">callsAvailable.</param>
         /// <param name="inStock">inStock.</param>
-        public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner(NumberTypeEnum? numberType = default, TierEnum? tier = default, bool needsKyc = default, int monthlyCents = default, bool whatsappAvailable = default, bool smsAvailable = default, bool callsAvailable = default, bool inStock = default)
+        /// <param name="fulfilment">&#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order..</param>
+        /// <param name="preOrderable">Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc) and the carrier sources the number after review, usually about 3 weeks and never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active..</param>
+        public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner(NumberTypeEnum? numberType = default, TierEnum? tier = default, bool needsKyc = default, int monthlyCents = default, bool whatsappAvailable = default, bool smsAvailable = default, bool callsAvailable = default, bool inStock = default, FulfilmentEnum? fulfilment = default, bool preOrderable = default)
         {
             this.NumberType = numberType;
             this.Tier = tier;
@@ -123,6 +155,8 @@ namespace Zernio.Model
             this.SmsAvailable = smsAvailable;
             this.CallsAvailable = callsAvailable;
             this.InStock = inStock;
+            this.Fulfilment = fulfilment;
+            this.PreOrderable = preOrderable;
         }
 
         /// <summary>
@@ -164,6 +198,13 @@ namespace Zernio.Model
         public bool InStock { get; set; }
 
         /// <summary>
+        /// Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc) and the carrier sources the number after review, usually about 3 weeks and never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.
+        /// </summary>
+        /// <value>Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc) and the carrier sources the number after review, usually about 3 weeks and never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.</value>
+        [DataMember(Name = "preOrderable", EmitDefaultValue = true)]
+        public bool PreOrderable { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -179,6 +220,8 @@ namespace Zernio.Model
             sb.Append("  SmsAvailable: ").Append(SmsAvailable).Append("\n");
             sb.Append("  CallsAvailable: ").Append(CallsAvailable).Append("\n");
             sb.Append("  InStock: ").Append(InStock).Append("\n");
+            sb.Append("  Fulfilment: ").Append(Fulfilment).Append("\n");
+            sb.Append("  PreOrderable: ").Append(PreOrderable).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

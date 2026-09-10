@@ -70,14 +70,16 @@ namespace Zernio.Model
         /// <param name="country">country.</param>
         /// <param name="numberType">numberType.</param>
         /// <param name="available">Whether deliverable voice inventory exists right now..</param>
+        /// <param name="preOrderable">Nothing deliverable now, but this pair can be pre-ordered: submit KYC as usual and the carrier sources the number after review (usually about 3 weeks, never guaranteed). Only document tiers (3/4) qualify..</param>
         /// <param name="addressConstraint">addressConstraint.</param>
         /// <param name="areas">For &#x60;geo&#x60; only: the area(s) the registered address must be in..</param>
         /// <param name="areaOptions">Live inventory grouped by area code. For US and CA this is the full country inventory (every area code with stock, recognizable metros listed first, then alphabetical); other countries are ordered largest stock first; they list the areas in the latest inventory page (up to 500 numbers, which for most countries is the entire pool). Empty when out of stock (or the area lookup failed). Pass a chosen &#x60;ndc&#x60; as &#x60;areaCode&#x60; on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area. .</param>
-        public CheckPhoneNumberAvailability200Response(string country = default, string numberType = default, bool available = default, AddressConstraintEnum? addressConstraint = default, List<string> areas = default, List<CheckPhoneNumberAvailability200ResponseAreaOptionsInner> areaOptions = default)
+        public CheckPhoneNumberAvailability200Response(string country = default, string numberType = default, bool available = default, bool preOrderable = default, AddressConstraintEnum? addressConstraint = default, List<string> areas = default, List<CheckPhoneNumberAvailability200ResponseAreaOptionsInner> areaOptions = default)
         {
             this.Country = country;
             this.NumberType = numberType;
             this.Available = available;
+            this.PreOrderable = preOrderable;
             this.AddressConstraint = addressConstraint;
             this.Areas = areas;
             this.AreaOptions = areaOptions;
@@ -101,6 +103,13 @@ namespace Zernio.Model
         /// <value>Whether deliverable voice inventory exists right now.</value>
         [DataMember(Name = "available", EmitDefaultValue = true)]
         public bool Available { get; set; }
+
+        /// <summary>
+        /// Nothing deliverable now, but this pair can be pre-ordered: submit KYC as usual and the carrier sources the number after review (usually about 3 weeks, never guaranteed). Only document tiers (3/4) qualify.
+        /// </summary>
+        /// <value>Nothing deliverable now, but this pair can be pre-ordered: submit KYC as usual and the carrier sources the number after review (usually about 3 weeks, never guaranteed). Only document tiers (3/4) qualify.</value>
+        [DataMember(Name = "preOrderable", EmitDefaultValue = true)]
+        public bool PreOrderable { get; set; }
 
         /// <summary>
         /// For &#x60;geo&#x60; only: the area(s) the registered address must be in.
@@ -127,6 +136,7 @@ namespace Zernio.Model
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("  Available: ").Append(Available).Append("\n");
+            sb.Append("  PreOrderable: ").Append(PreOrderable).Append("\n");
             sb.Append("  AddressConstraint: ").Append(AddressConstraint).Append("\n");
             sb.Append("  Areas: ").Append(Areas).Append("\n");
             sb.Append("  AreaOptions: ").Append(AreaOptions).Append("\n");

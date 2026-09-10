@@ -68,14 +68,23 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SubmitPhoneNumberKyc200Response" /> class.
         /// </summary>
         /// <param name="status">status.</param>
+        /// <param name="preOrder">True when nothing was in stock and this submission placed a pre-order. The number stays &#x60;pending_regulatory&#x60; until the carrier sources it (usually about 3 weeks) and is not billed until active. A pre-order is one number: &#x60;quantity&#x60; above 1 is rejected with 400..</param>
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="numbers">Every number provisioned from this submission. Length equals the requested &#x60;quantity&#x60; on full success (fewer if some orders failed; best-effort). The first element mirrors &#x60;phoneNumber&#x60;..</param>
-        public SubmitPhoneNumberKyc200Response(StatusEnum? status = default, SubmitPhoneNumberKyc200ResponsePhoneNumber phoneNumber = default, List<SubmitPhoneNumberKyc200ResponseNumbersInner> numbers = default)
+        public SubmitPhoneNumberKyc200Response(StatusEnum? status = default, bool preOrder = default, SubmitPhoneNumberKyc200ResponsePhoneNumber phoneNumber = default, List<SubmitPhoneNumberKyc200ResponseNumbersInner> numbers = default)
         {
             this.Status = status;
+            this.PreOrder = preOrder;
             this.PhoneNumber = phoneNumber;
             this.Numbers = numbers;
         }
+
+        /// <summary>
+        /// True when nothing was in stock and this submission placed a pre-order. The number stays &#x60;pending_regulatory&#x60; until the carrier sources it (usually about 3 weeks) and is not billed until active. A pre-order is one number: &#x60;quantity&#x60; above 1 is rejected with 400.
+        /// </summary>
+        /// <value>True when nothing was in stock and this submission placed a pre-order. The number stays &#x60;pending_regulatory&#x60; until the carrier sources it (usually about 3 weeks) and is not billed until active. A pre-order is one number: &#x60;quantity&#x60; above 1 is rejected with 400.</value>
+        [DataMember(Name = "preOrder", EmitDefaultValue = true)]
+        public bool PreOrder { get; set; }
 
         /// <summary>
         /// Gets or Sets PhoneNumber
@@ -99,6 +108,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SubmitPhoneNumberKyc200Response {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  PreOrder: ").Append(PreOrder).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Numbers: ").Append(Numbers).Append("\n");
             sb.Append("}\n");

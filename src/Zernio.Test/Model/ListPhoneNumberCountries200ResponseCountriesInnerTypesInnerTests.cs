@@ -126,5 +126,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'InStock'
         }
+
+        /// <summary>
+        /// Test the property 'Fulfilment'
+        /// </summary>
+        [Fact]
+        public void FulfilmentTest()
+        {
+            // TODO unit test for the property 'Fulfilment'
+        }
+
+        /// <summary>
+        /// Test the property 'PreOrderable'
+        /// </summary>
+        [Fact]
+        public void PreOrderableTest()
+        {
+            // TODO unit test for the property 'PreOrderable'
+        }
     }
 }

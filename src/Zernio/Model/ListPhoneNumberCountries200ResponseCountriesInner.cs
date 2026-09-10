@@ -77,8 +77,9 @@ namespace Zernio.Model
         /// <param name="smsAvailable">Whether this country&#39;s number type can do SMS. Use it to filter the picker when the buyer wants SMS (pair with &#x60;wantsSms&#x60; on purchase)..</param>
         /// <param name="outboundCallingAvailable">WhatsApp Business Calling (BIC) outbound availability, a Meta feature blocked in some countries. NOT the PSTN Calls feature (&#x60;callsAvailable&#x60;)..</param>
         /// <param name="inStock">Live carrier-stock snapshot (refreshed every 6h + on availability checks): false when NO offered type currently has deliverable inventory, so a purchase would fail. Treat as advisory; the purchase itself re-checks..</param>
+        /// <param name="preOrderable">At least one out-of-stock type here can be pre-ordered (see &#x60;types[].preOrderable&#x60;)..</param>
         /// <param name="types">Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. .</param>
-        public ListPhoneNumberCountries200ResponseCountriesInner(string code = default, TierEnum? tier = default, int monthlyCents = default, bool needsKyc = default, bool callsAvailable = default, bool whatsappAvailable = default, bool smsAvailable = default, bool outboundCallingAvailable = default, bool inStock = default, List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types = default)
+        public ListPhoneNumberCountries200ResponseCountriesInner(string code = default, TierEnum? tier = default, int monthlyCents = default, bool needsKyc = default, bool callsAvailable = default, bool whatsappAvailable = default, bool smsAvailable = default, bool outboundCallingAvailable = default, bool inStock = default, bool preOrderable = default, List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types = default)
         {
             this.Code = code;
             this.Tier = tier;
@@ -89,6 +90,7 @@ namespace Zernio.Model
             this.SmsAvailable = smsAvailable;
             this.OutboundCallingAvailable = outboundCallingAvailable;
             this.InStock = inStock;
+            this.PreOrderable = preOrderable;
             this.Types = types;
         }
 
@@ -148,6 +150,13 @@ namespace Zernio.Model
         public bool InStock { get; set; }
 
         /// <summary>
+        /// At least one out-of-stock type here can be pre-ordered (see &#x60;types[].preOrderable&#x60;).
+        /// </summary>
+        /// <value>At least one out-of-stock type here can be pre-ordered (see &#x60;types[].preOrderable&#x60;).</value>
+        [DataMember(Name = "preOrderable", EmitDefaultValue = true)]
+        public bool PreOrderable { get; set; }
+
+        /// <summary>
         /// Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. 
         /// </summary>
         /// <value>Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. </value>
@@ -171,6 +180,7 @@ namespace Zernio.Model
             sb.Append("  SmsAvailable: ").Append(SmsAvailable).Append("\n");
             sb.Append("  OutboundCallingAvailable: ").Append(OutboundCallingAvailable).Append("\n");
             sb.Append("  InStock: ").Append(InStock).Append("\n");
+            sb.Append("  PreOrderable: ").Append(PreOrderable).Append("\n");
             sb.Append("  Types: ").Append(Types).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
