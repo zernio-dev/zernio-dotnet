@@ -44,8 +44,11 @@ namespace Zernio.Model
         /// <param name="imageUrl">Image mode. The image to deliver for this rule&#39;s placements..</param>
         /// <param name="videoUrl">Video mode. The video to deliver for this rule&#39;s placements..</param>
         /// <param name="thumbnailUrl">Video mode (optional). Poster image for this rule&#39;s video; auto-generated when omitted..</param>
+        /// <param name="headline">One headline pinned to this rule. Omit to inherit the top-level headline..</param>
+        /// <param name="body">One primary text pinned to this rule. Omit to inherit the top-level body..</param>
+        /// <param name="description">One link description pinned to this rule. Omit to inherit the top-level description..</param>
         /// <param name="placements">placements (required).</param>
-        public CreateStandaloneAdRequestPlacementAssetsRulesInner(string imageUrl = default, string videoUrl = default, string thumbnailUrl = default, CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements placements = default)
+        public CreateStandaloneAdRequestPlacementAssetsRulesInner(string imageUrl = default, string videoUrl = default, string thumbnailUrl = default, string headline = default, string body = default, string description = default, CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements placements = default)
         {
             // to ensure "placements" is required (not null)
             if (placements == null)
@@ -56,6 +59,9 @@ namespace Zernio.Model
             this.ImageUrl = imageUrl;
             this.VideoUrl = videoUrl;
             this.ThumbnailUrl = thumbnailUrl;
+            this.Headline = headline;
+            this.Body = body;
+            this.Description = description;
         }
 
         /// <summary>
@@ -80,6 +86,27 @@ namespace Zernio.Model
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
+        /// One headline pinned to this rule. Omit to inherit the top-level headline.
+        /// </summary>
+        /// <value>One headline pinned to this rule. Omit to inherit the top-level headline.</value>
+        [DataMember(Name = "headline", EmitDefaultValue = false)]
+        public string Headline { get; set; }
+
+        /// <summary>
+        /// One primary text pinned to this rule. Omit to inherit the top-level body.
+        /// </summary>
+        /// <value>One primary text pinned to this rule. Omit to inherit the top-level body.</value>
+        [DataMember(Name = "body", EmitDefaultValue = false)]
+        public string Body { get; set; }
+
+        /// <summary>
+        /// One link description pinned to this rule. Omit to inherit the top-level description.
+        /// </summary>
+        /// <value>One link description pinned to this rule. Omit to inherit the top-level description.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
+
+        /// <summary>
         /// Gets or Sets Placements
         /// </summary>
         [DataMember(Name = "placements", IsRequired = true, EmitDefaultValue = true)]
@@ -96,6 +123,9 @@ namespace Zernio.Model
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
+            sb.Append("  Headline: ").Append(Headline).Append("\n");
+            sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Placements: ").Append(Placements).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -117,6 +147,36 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Headline (string) maxLength
+            if (this.Headline != null && this.Headline.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Headline, length must be less than 255.", new [] { "Headline" });
+            }
+
+            // Headline (string) minLength
+            if (this.Headline != null && this.Headline.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Headline, length must be greater than 1.", new [] { "Headline" });
+            }
+
+            // Body (string) minLength
+            if (this.Body != null && this.Body.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Body, length must be greater than 1.", new [] { "Body" });
+            }
+
+            // Description (string) maxLength
+            if (this.Description != null && this.Description.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 255.", new [] { "Description" });
+            }
+
+            // Description (string) minLength
+            if (this.Description != null && this.Description.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+            }
+
             yield break;
         }
     }

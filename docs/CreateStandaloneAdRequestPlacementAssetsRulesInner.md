@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 **ImageUrl** | **string** | Image mode. The image to deliver for this rule&#39;s placements. | [optional] 
 **VideoUrl** | **string** | Video mode. The video to deliver for this rule&#39;s placements. | [optional] 
 **ThumbnailUrl** | **string** | Video mode (optional). Poster image for this rule&#39;s video; auto-generated when omitted. | [optional] 
+**Headline** | **string** | One headline pinned to this rule. Omit to inherit the top-level headline. | [optional] 
+**Body** | **string** | One primary text pinned to this rule. Omit to inherit the top-level body. | [optional] 
+**Description** | **string** | One link description pinned to this rule. Omit to inherit the top-level description. | [optional] 
 **Placements** | [**CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements**](CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
