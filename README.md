@@ -698,6 +698,7 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**UnenrollContact**](docs/SequencesApi.md#unenrollcontact) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll contact
 *SequencesApi* | [**UpdateSequence**](docs/SequencesApi.md#updatesequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SlackApi* | [**ListSlackMembers**](docs/SlackApi.md#listslackmembers) | **GET** /v1/accounts/{accountId}/slack-members | List Slack workspace members
+*ToolsApi* | [**DownloadTikTokVideo**](docs/ToolsApi.md#downloadtiktokvideo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *TrackingTagsApi* | [**AddTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**CreateTrackingTag**](docs/TrackingTagsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
 *TrackingTagsApi* | [**GetAdTrackingTags**](docs/TrackingTagsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
@@ -1347,6 +1348,8 @@ Class | Method | HTTP request | Description
  - [Model.DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [Model.DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
  - [Model.DmButton](docs/DmButton.md)
+ - [Model.DownloadTikTokVideo200Response](docs/DownloadTikTokVideo200Response.md)
+ - [Model.DownloadTikTokVideo200ResponseFormatsInner](docs/DownloadTikTokVideo200ResponseFormatsInner.md)
  - [Model.DuplicateAd200Response](docs/DuplicateAd200Response.md)
  - [Model.DuplicateAdCampaign200Response](docs/DuplicateAdCampaign200Response.md)
  - [Model.DuplicateAdCampaignRequest](docs/DuplicateAdCampaignRequest.md)

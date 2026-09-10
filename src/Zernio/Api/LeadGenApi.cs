@@ -182,7 +182,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ListLeads200Response</returns>
         ListLeads200Response ListLeads(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default);
@@ -198,7 +198,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ApiResponse of ListLeads200Response</returns>
         ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default);
@@ -380,7 +380,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLeads200Response</returns>
@@ -397,7 +397,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLeads200Response)</returns>
@@ -1517,7 +1517,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ListLeads200Response</returns>
         public ListLeads200Response ListLeads(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default)
@@ -1534,7 +1534,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ApiResponse of ListLeads200Response</returns>
         public Zernio.Client.ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default)
@@ -1607,7 +1607,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLeads200Response</returns>
@@ -1625,7 +1625,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)</param>
         /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLeads200Response)</returns>

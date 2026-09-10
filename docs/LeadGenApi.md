@@ -671,7 +671,7 @@ namespace Example
             var accountId = "accountId_example";  // string? | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional) 
             var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
-            var since = 56;  // int? | Unix seconds; only leads created at/after this timestamp. (optional) 
+            var since = 1757404800;  // int? | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional) 
             var cursor = "cursor_example";  // string? | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional) 
 
             try
@@ -719,7 +719,7 @@ catch (ApiException e)
 | **accountId** | **string?** | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional]  |
 | **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
-| **since** | **int?** | Unix seconds; only leads created at/after this timestamp. | [optional]  |
+| **since** | **int?** | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. | [optional]  |
 | **cursor** | **string?** | Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). | [optional]  |
 
 ### Return type
@@ -743,6 +743,8 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

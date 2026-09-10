@@ -64,6 +64,8 @@ servers:
 security:
 - bearerAuth: []
 tags:
+- description: Media tools for authenticated API consumers.
+  name: Tools
 - description: |
     Create, schedule, list, update, and delete posts across all connected accounts.
   name: Posts
@@ -1133,6 +1135,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/YouTubeScopeMissingResponse"
           description: Missing YouTube Analytics scope
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: Get YouTube channel insights
       tags:
       - Analytics
@@ -2573,6 +2579,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/getYouTubeDemographics_412_response"
           description: YouTube Analytics scope not granted
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: Get YouTube demographics
       tags:
       - Analytics
@@ -3186,6 +3196,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/getYouTubeDailyViews_403_response"
           description: Access denied
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: Get Google Business Profile performance metrics
       tags:
       - Analytics
@@ -3271,6 +3285,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/getYouTubeDailyViews_403_response"
           description: Access denied
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: Get Google Business Profile search keywords
       tags:
       - Analytics
@@ -5666,6 +5684,14 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Account not found (or not owned by the authenticated user)
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
+        "401":
+          description: The platform authorization has expired. Reconnect the account.
+        "403":
+          description: The account is inactive or the platform denied access.
       summary: Sync an external post
       tags:
       - Analytics
@@ -6822,6 +6848,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       summary: List accounts
       tags:
       - Accounts
@@ -7442,6 +7470,10 @@ paths:
           description: X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED)
         "404":
           $ref: "#/components/responses/NotFound"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: List posts published on the platform
       tags:
       - Accounts
@@ -9231,6 +9263,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Failed to fetch reviews
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       security:
       - bearerAuth: []
       summary: Get reviews
@@ -12631,6 +12667,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/getLinkedInAggregateAnalytics_402_response"
           description: Account or post not found
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: Get LinkedIn post stats
       tags:
       - Analytics
@@ -17036,6 +17076,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Inbox addon required
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       security:
       - bearerAuth: []
       summary: List messages
@@ -17168,6 +17212,10 @@ paths:
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
           $ref: "#/components/responses/IdempotencyKeyReused"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       security:
       - bearerAuth: []
       summary: Send message
@@ -28439,6 +28487,8 @@ paths:
           description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: List comment-to-DM automations
@@ -28502,6 +28552,8 @@ paths:
         "409":
           description: Active per-post automation already exists for this platformPostId.
             Does not apply to account-wide automations.
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Create comment-to-DM automation
@@ -36999,6 +37051,8 @@ paths:
             missing poster also carries `creativeIndex` and `videoUrl` to
             identify the entry. An upstream 4xx status is forwarded instead
             of 502.
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Create standalone ad
@@ -37055,12 +37109,16 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Unix seconds; only leads created at/after this timestamp.
+      - description: Unix seconds; only leads created at/after this timestamp. Millisecond
+          timestamps return 400 with instructions to divide by 1000.
         explode: true
         in: query
         name: since
         required: false
         schema:
+          example: 1757404800
+          maximum: 253402300799
+          minimum: 1
           type: integer
         style: form
       - description: "Keyset cursor from a previous response's pagination.cursor (Meta:\
@@ -37085,6 +37143,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Ads add-on required.
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
       summary: List submitted leads
       tags:
       - Lead Gen
@@ -43704,6 +43766,75 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+  /v1/tools/tiktok/download:
+    get:
+      description: Get a download URL or list available formats for a TikTok video.
+        Requires Tools API access and uses the Tools API rate limit. Provider gateway
+        failures and provider-side access blocks return 503; an unavailable video
+        returns 404.
+      operationId: downloadTikTokVideo
+      parameters:
+      - description: TikTok video URL or numeric video ID.
+        example: https://www.tiktok.com/@example/video/7412345678901234567
+        explode: true
+        in: query
+        name: url
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Return a download URL or the available formats.
+        explode: true
+        in: query
+        name: action
+        required: false
+        schema:
+          default: download
+          enum:
+          - download
+          - formats
+          type: string
+        style: form
+      - description: Format ID from the formats response. Omit to select the first
+          available format.
+        explode: true
+        in: query
+        name: formatId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                title: TikTok by @example
+                format: MP4 • No watermark
+                downloadUrl: https://example.com/video.mp4
+              schema:
+                $ref: "#/components/schemas/downloadTikTokVideo_200_response"
+          description: Download URL or available formats.
+        "400":
+          description: "Missing or invalid url, action, or formatId."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Tools API access is required.
+        "404":
+          description: The video or a downloadable format was not found.
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "502":
+          $ref: "#/components/responses/UpstreamFailure"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+      summary: Download a TikTok video
+      tags:
+      - Tools
+      x-platforms:
+      - tiktok
 components:
   headers:
     BackfillRetryAfter:
@@ -43792,6 +43923,37 @@ components:
       description: "The account exists but is inactive or needs reconnection. Reconnect\
         \ it, then read GET /v1/accounts for its current account ID before retrying.\
         \ Code: ads_connection_required."
+    TemporarilyUnavailable:
+      content:
+        application/json:
+          example:
+            error: Temporary connection issue while reaching an upstream service.
+              Please retry the request.
+            type: api_error
+            code: temporarily_unavailable
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: An upstream service or database is temporarily unavailable. Retry
+        after the indicated delay. A timed-out write may have completed upstream;
+        check its outcome before resubmitting.
+      headers:
+        Retry-After:
+          description: Minimum delay in seconds before retrying.
+          explode: false
+          schema:
+            example: 5
+            type: integer
+          style: simple
+    UpstreamFailure:
+      content:
+        application/json:
+          example:
+            error: The platform could not complete the request.
+            type: platform_error
+            code: platform_api_error
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: The platform returned a server error.
     IdempotencyKeyInFlight:
       description: Same Idempotency-Key still processing; retry after a short backoff
     IdempotencyKeyReused:
@@ -89837,11 +89999,12 @@ components:
             Omit for an account-wide (any-post / any-story) automation.
           type: string
         postId:
-          description: "Zernio post ID. Optional and never required. Use it INSTEAD\
-            \ of platformPostId to bind a per-post automation to a not-yet-published\
-            \ Zernio post: the automation stays pending and arms itself when that\
-            \ post publishes. For a post already live on the platform, pass platformPostId\
-            \ alone and omit this."
+          description: "Zernio post ID (24 hexadecimal characters); platform IDs return\
+            \ 400. Optional and never required. Use it INSTEAD of platformPostId to\
+            \ bind a per-post automation to a not-yet-published Zernio post: the automation\
+            \ stays pending and arms itself when that post publishes. For a post already\
+            \ live on the platform, pass platformPostId alone and omit this."
+          pattern: "^[a-fA-F0-9]{24}$"
           type: string
         postTitle:
           description: Post content snippet for display
@@ -106456,6 +106619,88 @@ components:
       properties:
         permission:
           $ref: "#/components/schemas/listPartnershipAdPermissions_200_response_permissions_inner"
+    downloadTikTokVideo_200_response_formats_inner:
+      example:
+        ext: ext
+        hasVideo: true
+        hasAudio: true
+        width: 1.4658129805029452
+        fps: 5.962133916683182
+        id: id
+        label: label
+        type: type
+        height: 6.027456183070403
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        ext:
+          type: string
+        type:
+          type: string
+        height:
+          type: number
+        width:
+          type: number
+        fps:
+          type: number
+        hasAudio:
+          type: boolean
+        hasVideo:
+          type: boolean
+    downloadTikTokVideo_200_response:
+      example:
+        duration: 0.8008281904610115
+        cover: cover
+        formats:
+        - ext: ext
+          hasVideo: true
+          hasAudio: true
+          width: 1.4658129805029452
+          fps: 5.962133916683182
+          id: id
+          label: label
+          type: type
+          height: 6.027456183070403
+        - ext: ext
+          hasVideo: true
+          hasAudio: true
+          width: 1.4658129805029452
+          fps: 5.962133916683182
+          id: id
+          label: label
+          type: type
+          height: 6.027456183070403
+        success: true
+        format: format
+        downloadUrl: downloadUrl
+        title: title
+      properties:
+        success:
+          type: boolean
+        title:
+          type: string
+        format:
+          description: Selected format label for action=download.
+          type: string
+        downloadUrl:
+          description: Media download URL for action=download.
+          type: string
+        duration:
+          description: Duration in seconds for action=formats.
+          type: number
+        cover:
+          description: Thumbnail URL for action=formats.
+          type: string
+        formats:
+          description: Available formats for action=formats.
+          items:
+            $ref: "#/components/schemas/downloadTikTokVideo_200_response_formats_inner"
+          type: array
+      required:
+      - success
+      - title
     onWhatsAppAutomaticEvent_request_customData:
       description: Purchase events may carry the detected amount.
       properties:
