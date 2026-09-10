@@ -430,6 +430,7 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**UnlikeInboxComment**](docs/CommentsApi.md#unlikeinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *CommentsApi* | [**UnlikePost**](docs/CommentsApi.md#unlikepost) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post
 *ConnectApi* | [**AssignGoogleBusinessLocation**](docs/ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile
+*ConnectApi* | [**CompleteMetaAdsBusinessLogin**](docs/ConnectApi.md#completemetaadsbusinesslogin) | **GET** /v1/connect/meta-ads/callback | Complete Meta business login
 *ConnectApi* | [**CompleteTelegramConnect**](docs/ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**CompleteWhatsAppPhoneSelection**](docs/ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
 *ConnectApi* | [**ConfigureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity

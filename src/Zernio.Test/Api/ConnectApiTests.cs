@@ -68,6 +68,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CompleteMetaAdsBusinessLogin
+        /// </summary>
+        [Fact]
+        public void CompleteMetaAdsBusinessLoginTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string state = null;
+            //string? code = null;
+            //string? error = null;
+            //instance.CompleteMetaAdsBusinessLogin(state, code, error);
+        }
+
+        /// <summary>
         /// Test CompleteTelegramConnect
         /// </summary>
         [Fact]
@@ -113,13 +126,15 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string platform = null;
             //string profileId = null;
+            //string? loginMode = null;
+            //string? pageId = null;
             //string? accountId = null;
             //string? redirectUrl = null;
             //bool? headless = null;
             //bool? force = null;
             //string? adAccountId = null;
             //List<string>? adAccountIds = null;
-            //var response = instance.ConnectAds(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
+            //var response = instance.ConnectAds(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
             //Assert.IsType<ConnectAds200Response>(response);
         }
 

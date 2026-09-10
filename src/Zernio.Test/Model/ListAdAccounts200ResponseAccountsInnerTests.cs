@@ -83,6 +83,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BusinessId'
+        /// </summary>
+        [Fact]
+        public void BusinessIdTest()
+        {
+            // TODO unit test for the property 'BusinessId'
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessName'
+        /// </summary>
+        [Fact]
+        public void BusinessNameTest()
+        {
+            // TODO unit test for the property 'BusinessName'
+        }
+
+        /// <summary>
         /// Test the property 'Status'
         /// </summary>
         [Fact]

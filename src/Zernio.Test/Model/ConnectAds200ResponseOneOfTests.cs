@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TokenType'
+        /// </summary>
+        [Fact]
+        public void TokenTypeTest()
+        {
+            // TODO unit test for the property 'TokenType'
+        }
+
+        /// <summary>
         /// Test the property 'ScopedAdAccountIds'
         /// </summary>
         [Fact]

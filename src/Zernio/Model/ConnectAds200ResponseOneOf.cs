@@ -34,6 +34,27 @@ namespace Zernio.Model
     public partial class ConnectAds200ResponseOneOf : IValidatableObject
     {
         /// <summary>
+        /// Present for an existing business-login connection.
+        /// </summary>
+        /// <value>Present for an existing business-login connection.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TokenTypeEnum
+        {
+            /// <summary>
+            /// Enum SystemUser for value: system-user
+            /// </summary>
+            [EnumMember(Value = "system-user")]
+            SystemUser = 1
+        }
+
+
+        /// <summary>
+        /// Present for an existing business-login connection.
+        /// </summary>
+        /// <value>Present for an existing business-login connection.</value>
+        [DataMember(Name = "tokenType", EmitDefaultValue = false)]
+        public TokenTypeEnum? TokenType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ConnectAds200ResponseOneOf" /> class.
         /// </summary>
         /// <param name="alreadyConnected">alreadyConnected.</param>
@@ -41,14 +62,16 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="username">username.</param>
         /// <param name="displayName">displayName.</param>
+        /// <param name="tokenType">Present for an existing business-login connection..</param>
         /// <param name="scopedAdAccountIds">Echo of the persisted ad-account scope when the caller passed &#x60;adAccountId&#x60; / &#x60;adAccountIds&#x60;. Omitted when no scope is set. .</param>
-        public ConnectAds200ResponseOneOf(bool alreadyConnected = default, string accountId = default, string platform = default, string username = default, string displayName = default, List<string> scopedAdAccountIds = default)
+        public ConnectAds200ResponseOneOf(bool alreadyConnected = default, string accountId = default, string platform = default, string username = default, string displayName = default, TokenTypeEnum? tokenType = default, List<string> scopedAdAccountIds = default)
         {
             this.AlreadyConnected = alreadyConnected;
             this.AccountId = accountId;
             this.Platform = platform;
             this.Username = username;
             this.DisplayName = displayName;
+            this.TokenType = tokenType;
             this.ScopedAdAccountIds = scopedAdAccountIds;
         }
 
@@ -108,6 +131,7 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  TokenType: ").Append(TokenType).Append("\n");
             sb.Append("  ScopedAdAccountIds: ").Append(ScopedAdAccountIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
