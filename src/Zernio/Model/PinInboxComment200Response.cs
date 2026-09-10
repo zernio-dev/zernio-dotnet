@@ -28,44 +28,49 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SyncExternalPosts200ResponseSynced
+    /// PinInboxComment200Response
     /// </summary>
-    [DataContract(Name = "syncExternalPosts_200_response_synced")]
-    public partial class SyncExternalPosts200ResponseSynced : IValidatableObject
+    [DataContract(Name = "pinInboxComment_200_response")]
+    public partial class PinInboxComment200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SyncExternalPosts200ResponseSynced" /> class.
+        /// Initializes a new instance of the <see cref="PinInboxComment200Response" /> class.
         /// </summary>
-        /// <param name="postsFound">Posts returned by the platform listing during the on-demand sync.</param>
-        /// <param name="postsSynced">Posts inserted or updated in Zernio.</param>
-        /// <param name="skipped">True when the account was synced within the debounce window and no live fetch ran..</param>
-        public SyncExternalPosts200ResponseSynced(int postsFound = default, int postsSynced = default, bool skipped = default)
+        /// <param name="status">status.</param>
+        /// <param name="commentId">commentId.</param>
+        /// <param name="pinned">pinned.</param>
+        /// <param name="platform">platform.</param>
+        public PinInboxComment200Response(string status = default, string commentId = default, bool pinned = default, string platform = default)
         {
-            this.PostsFound = postsFound;
-            this.PostsSynced = postsSynced;
-            this.Skipped = skipped;
+            this.Status = status;
+            this.CommentId = commentId;
+            this.Pinned = pinned;
+            this.Platform = platform;
         }
 
         /// <summary>
-        /// Posts returned by the platform listing during the on-demand sync
+        /// Gets or Sets Status
         /// </summary>
-        /// <value>Posts returned by the platform listing during the on-demand sync</value>
-        [DataMember(Name = "postsFound", EmitDefaultValue = false)]
-        public int PostsFound { get; set; }
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public string Status { get; set; }
 
         /// <summary>
-        /// Posts inserted or updated in Zernio
+        /// Gets or Sets CommentId
         /// </summary>
-        /// <value>Posts inserted or updated in Zernio</value>
-        [DataMember(Name = "postsSynced", EmitDefaultValue = false)]
-        public int PostsSynced { get; set; }
+        [DataMember(Name = "commentId", EmitDefaultValue = false)]
+        public string CommentId { get; set; }
 
         /// <summary>
-        /// True when the account was synced within the debounce window and no live fetch ran.
+        /// Gets or Sets Pinned
         /// </summary>
-        /// <value>True when the account was synced within the debounce window and no live fetch ran.</value>
-        [DataMember(Name = "skipped", EmitDefaultValue = true)]
-        public bool Skipped { get; set; }
+        [DataMember(Name = "pinned", EmitDefaultValue = true)]
+        public bool Pinned { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Platform
+        /// </summary>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public string Platform { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,10 +79,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SyncExternalPosts200ResponseSynced {\n");
-            sb.Append("  PostsFound: ").Append(PostsFound).Append("\n");
-            sb.Append("  PostsSynced: ").Append(PostsSynced).Append("\n");
-            sb.Append("  Skipped: ").Append(Skipped).Append("\n");
+            sb.Append("class PinInboxComment200Response {\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  CommentId: ").Append(CommentId).Append("\n");
+            sb.Append("  Pinned: ").Append(Pinned).Append("\n");
+            sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -161,6 +161,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test PinInboxComment
+        /// </summary>
+        [Fact]
+        public void PinInboxCommentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string postId = null;
+            //string commentId = null;
+            //PinInboxCommentRequest pinInboxCommentRequest = null;
+            //var response = instance.PinInboxComment(postId, commentId, pinInboxCommentRequest);
+            //Assert.IsType<PinInboxComment200Response>(response);
+        }
+
+        /// <summary>
         /// Test ReplyToInboxPost
         /// </summary>
         [Fact]
@@ -243,6 +257,20 @@ namespace Zernio.Test.Api
             //string? likeUri = null;
             //var response = instance.UnlikePost(postId, accountId, likeUri);
             //Assert.IsType<UnlikePost200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UnpinInboxComment
+        /// </summary>
+        [Fact]
+        public void UnpinInboxCommentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string postId = null;
+            //string commentId = null;
+            //string accountId = null;
+            //var response = instance.UnpinInboxComment(postId, commentId, accountId);
+            //Assert.IsType<PinInboxComment200Response>(response);
         }
     }
 }

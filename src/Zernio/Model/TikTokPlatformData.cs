@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="TikTokPlatformData" /> class.
         /// </summary>
         /// <param name="draft">When true, sends the post to the TikTok Creator Inbox as a draft instead of publishing immediately. The creator receives an inbox notification to complete posting via TikTok&#39;s editing flow. Maps to TikTok API post_mode: \&quot;MEDIA_UPLOAD\&quot; (photos) or the dedicated inbox endpoint (videos). When false or omitted, publishes directly via post_mode: \&quot;DIRECT_POST\&quot;. Note: publish_type is not a supported field. Use this field instead. .</param>
-        /// <param name="privacyLevel">One of the values returned by the TikTok creator info API for the account.</param>
+        /// <param name="privacyLevel">One of the values returned by the TikTok creator info API for the account. Accounts connected through the TikTok for Business app publish videos as public only: a non-public value on a video post is rejected at creation unless draft is true (photo posts keep every level)..</param>
         /// <param name="allowComment">Allow comments on the post.</param>
         /// <param name="allowDuet">Allow duets (required for video posts).</param>
         /// <param name="allowStitch">Allow stitches (required for video posts).</param>
@@ -142,9 +142,9 @@ namespace Zernio.Model
         public bool Draft { get; set; }
 
         /// <summary>
-        /// One of the values returned by the TikTok creator info API for the account
+        /// One of the values returned by the TikTok creator info API for the account. Accounts connected through the TikTok for Business app publish videos as public only: a non-public value on a video post is rejected at creation unless draft is true (photo posts keep every level).
         /// </summary>
-        /// <value>One of the values returned by the TikTok creator info API for the account</value>
+        /// <value>One of the values returned by the TikTok creator info API for the account. Accounts connected through the TikTok for Business app publish videos as public only: a non-public value on a video post is rejected at creation unless draft is true (photo posts keep every level).</value>
         [DataMember(Name = "privacyLevel", EmitDefaultValue = false)]
         public string PrivacyLevel { get; set; }
 

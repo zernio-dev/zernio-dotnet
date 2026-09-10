@@ -11,12 +11,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**LikeInboxComment**](CommentsApi.md#likeinboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment |
 | [**LikePost**](CommentsApi.md#likepost) | **POST** /v1/inbox/posts/{postId}/like | Like post |
 | [**ListInboxComments**](CommentsApi.md#listinboxcomments) | **GET** /v1/inbox/comments | List commented posts |
+| [**PinInboxComment**](CommentsApi.md#pininboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/pin | Pin comment |
 | [**ReplyToInboxPost**](CommentsApi.md#replytoinboxpost) | **POST** /v1/inbox/comments/{postId} | Reply to comment |
 | [**SendPrivateReplyToComment**](CommentsApi.md#sendprivatereplytocomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply |
 | [**SetCommentModeration**](CommentsApi.md#setcommentmoderation) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status |
 | [**UnhideInboxComment**](CommentsApi.md#unhideinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment |
 | [**UnlikeInboxComment**](CommentsApi.md#unlikeinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment |
 | [**UnlikePost**](CommentsApi.md#unlikepost) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post |
+| [**UnpinInboxComment**](CommentsApi.md#unpininboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/pin | Unpin comment |
 
 <a id="deleteinboxcomment"></a>
 # **DeleteInboxComment**
@@ -238,7 +240,7 @@ catch (ApiException e)
 
 Get post comments
 
-Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as `postId` is also supported and returns that comment's replies instead of the post's top-level comments. This is not available on YouTube, where `postId` must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the `comment.received` webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as `postId` is also supported and returns that comment's replies instead of the post's top-level comments. This is not available on YouTube, where `postId` must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the `comment.received` webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: `postId` is the TikTok video id, each top-level comment carries up to three inline replies, and `commentId` pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code `PLATFORM_LIMITATION`. 
 
 ### Example
 ```csharp
@@ -269,7 +271,7 @@ namespace Example
             var subreddit = "subreddit_example";  // string? | (Reddit only) Subreddit name (optional) 
             var limit = 25;  // int? | Maximum number of comments to return (optional)  (default to 25)
             var cursor = "cursor_example";  // string? | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional) 
-            var commentId = "commentId_example";  // string? | (Reddit only) Get replies to a specific comment (optional) 
+            var commentId = "commentId_example";  // string? | (Reddit and TikTok only) Get replies to a specific comment (optional) 
 
             try
             {
@@ -317,7 +319,7 @@ catch (ApiException e)
 | **subreddit** | **string?** | (Reddit only) Subreddit name | [optional]  |
 | **limit** | **int?** | Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **string?** | Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional]  |
-| **commentId** | **string?** | (Reddit only) Get replies to a specific comment | [optional]  |
+| **commentId** | **string?** | (Reddit and TikTok only) Get replies to a specific comment | [optional]  |
 
 ### Return type
 
@@ -351,7 +353,7 @@ catch (ApiException e)
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
 
 ### Example
 ```csharp
@@ -777,6 +779,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="pininboxcomment"></a>
+# **PinInboxComment**
+> PinInboxComment200Response PinInboxComment (string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest)
+
+Pin comment
+
+Pin a top-level comment to the top of a post's comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class PinInboxCommentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommentsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var commentId = "commentId_example";  // string | 
+            var pinInboxCommentRequest = new PinInboxCommentRequest(); // PinInboxCommentRequest | 
+
+            try
+            {
+                // Pin comment
+                PinInboxComment200Response result = apiInstance.PinInboxComment(postId, commentId, pinInboxCommentRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommentsApi.PinInboxComment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PinInboxCommentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Pin comment
+    ApiResponse<PinInboxComment200Response> response = apiInstance.PinInboxCommentWithHttpInfo(postId, commentId, pinInboxCommentRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommentsApi.PinInboxCommentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **commentId** | **string** |  |  |
+| **pinInboxCommentRequest** | [**PinInboxCommentRequest**](PinInboxCommentRequest.md) |  |  |
+
+### Return type
+
+[**PinInboxComment200Response**](PinInboxComment200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment pinned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="replytoinboxpost"></a>
 # **ReplyToInboxPost**
 > ReplyToInboxPost200Response ReplyToInboxPost (string postId, ReplyToInboxPostRequest replyToInboxPostRequest, string? idempotencyKey = null)
@@ -1105,7 +1212,7 @@ catch (ApiException e)
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
 
 ### Example
 ```csharp
@@ -1414,6 +1521,111 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="unpininboxcomment"></a>
+# **UnpinInboxComment**
+> PinInboxComment200Response UnpinInboxComment (string postId, string commentId, string accountId)
+
+Unpin comment
+
+Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UnpinInboxCommentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommentsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var commentId = "commentId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Unpin comment
+                PinInboxComment200Response result = apiInstance.UnpinInboxComment(postId, commentId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommentsApi.UnpinInboxComment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UnpinInboxCommentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Unpin comment
+    ApiResponse<PinInboxComment200Response> response = apiInstance.UnpinInboxCommentWithHttpInfo(postId, commentId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommentsApi.UnpinInboxCommentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **commentId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**PinInboxComment200Response**](PinInboxComment200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment unpinned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

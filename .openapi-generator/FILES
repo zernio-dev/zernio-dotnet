@@ -1308,6 +1308,8 @@ docs/Pending.md
 docs/PhoneNumberStockWatch.md
 docs/PhoneNumbersApi.md
 docs/PinDiscordMessage200Response.md
+docs/PinInboxComment200Response.md
+docs/PinInboxCommentRequest.md
 docs/PinterestPlatformData.md
 docs/PlatformAnalytics.md
 docs/PlatformTarget.md
@@ -3419,6 +3421,8 @@ src/Zernio.Test/Model/PauseWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/PendingTests.cs
 src/Zernio.Test/Model/PhoneNumberStockWatchTests.cs
 src/Zernio.Test/Model/PinDiscordMessage200ResponseTests.cs
+src/Zernio.Test/Model/PinInboxComment200ResponseTests.cs
+src/Zernio.Test/Model/PinInboxCommentRequestTests.cs
 src/Zernio.Test/Model/PinterestPlatformDataTests.cs
 src/Zernio.Test/Model/PlatformAnalyticsTests.cs
 src/Zernio.Test/Model/PlatformTargetAccountIdTests.cs
@@ -5522,6 +5526,8 @@ src/Zernio/Model/PauseWorkflow200Response.cs
 src/Zernio/Model/Pending.cs
 src/Zernio/Model/PhoneNumberStockWatch.cs
 src/Zernio/Model/PinDiscordMessage200Response.cs
+src/Zernio/Model/PinInboxComment200Response.cs
+src/Zernio/Model/PinInboxCommentRequest.cs
 src/Zernio/Model/PinterestPlatformData.cs
 src/Zernio/Model/PlatformAnalytics.cs
 src/Zernio/Model/PlatformTarget.cs

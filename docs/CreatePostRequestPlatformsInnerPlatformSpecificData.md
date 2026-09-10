@@ -56,7 +56,7 @@ Name | Type | Description | Notes
 **Event** | [**GoogleBusinessPlatformDataEvent**](GoogleBusinessPlatformDataEvent.md) |  | [optional] 
 **Offer** | [**GoogleBusinessPlatformDataOffer**](GoogleBusinessPlatformDataOffer.md) |  | [optional] 
 **Draft** | **bool** | When true, sends the post to the TikTok Creator Inbox as a draft instead of publishing immediately. The creator receives an inbox notification to complete posting via TikTok&#39;s editing flow. Maps to TikTok API post_mode: \&quot;MEDIA_UPLOAD\&quot; (photos) or the dedicated inbox endpoint (videos). When false or omitted, publishes directly via post_mode: \&quot;DIRECT_POST\&quot;. Note: publish_type is not a supported field. Use this field instead.  | [optional] 
-**PrivacyLevel** | **string** | One of the values returned by the TikTok creator info API for the account | [optional] 
+**PrivacyLevel** | **string** | One of the values returned by the TikTok creator info API for the account. Accounts connected through the TikTok for Business app publish videos as public only: a non-public value on a video post is rejected at creation unless draft is true (photo posts keep every level). | [optional] 
 **AllowComment** | **bool** | Allow comments on the post | [optional] 
 **AllowDuet** | **bool** | Allow duets (required for video posts) | [optional] 
 **AllowStitch** | **bool** | Allow stitches (required for video posts) | [optional] 

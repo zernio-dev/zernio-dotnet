@@ -28,44 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SyncExternalPosts200ResponseSynced
+    /// PinInboxCommentRequest
     /// </summary>
-    [DataContract(Name = "syncExternalPosts_200_response_synced")]
-    public partial class SyncExternalPosts200ResponseSynced : IValidatableObject
+    [DataContract(Name = "pinInboxComment_request")]
+    public partial class PinInboxCommentRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SyncExternalPosts200ResponseSynced" /> class.
+        /// Initializes a new instance of the <see cref="PinInboxCommentRequest" /> class.
         /// </summary>
-        /// <param name="postsFound">Posts returned by the platform listing during the on-demand sync.</param>
-        /// <param name="postsSynced">Posts inserted or updated in Zernio.</param>
-        /// <param name="skipped">True when the account was synced within the debounce window and no live fetch ran..</param>
-        public SyncExternalPosts200ResponseSynced(int postsFound = default, int postsSynced = default, bool skipped = default)
+        [JsonConstructorAttribute]
+        protected PinInboxCommentRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PinInboxCommentRequest" /> class.
+        /// </summary>
+        /// <param name="accountId">The social account ID (required).</param>
+        public PinInboxCommentRequest(string accountId = default)
         {
-            this.PostsFound = postsFound;
-            this.PostsSynced = postsSynced;
-            this.Skipped = skipped;
+            // to ensure "accountId" is required (not null)
+            if (accountId == null)
+            {
+                throw new ArgumentNullException("accountId is a required property for PinInboxCommentRequest and cannot be null");
+            }
+            this.AccountId = accountId;
         }
 
         /// <summary>
-        /// Posts returned by the platform listing during the on-demand sync
+        /// The social account ID
         /// </summary>
-        /// <value>Posts returned by the platform listing during the on-demand sync</value>
-        [DataMember(Name = "postsFound", EmitDefaultValue = false)]
-        public int PostsFound { get; set; }
-
-        /// <summary>
-        /// Posts inserted or updated in Zernio
-        /// </summary>
-        /// <value>Posts inserted or updated in Zernio</value>
-        [DataMember(Name = "postsSynced", EmitDefaultValue = false)]
-        public int PostsSynced { get; set; }
-
-        /// <summary>
-        /// True when the account was synced within the debounce window and no live fetch ran.
-        /// </summary>
-        /// <value>True when the account was synced within the debounce window and no live fetch ran.</value>
-        [DataMember(Name = "skipped", EmitDefaultValue = true)]
-        public bool Skipped { get; set; }
+        /// <value>The social account ID</value>
+        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,10 +66,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SyncExternalPosts200ResponseSynced {\n");
-            sb.Append("  PostsFound: ").Append(PostsFound).Append("\n");
-            sb.Append("  PostsSynced: ").Append(PostsSynced).Append("\n");
-            sb.Append("  Skipped: ").Append(Skipped).Append("\n");
+            sb.Append("class PinInboxCommentRequest {\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -427,12 +427,14 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**LikeInboxComment**](docs/CommentsApi.md#likeinboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment
 *CommentsApi* | [**LikePost**](docs/CommentsApi.md#likepost) | **POST** /v1/inbox/posts/{postId}/like | Like post
 *CommentsApi* | [**ListInboxComments**](docs/CommentsApi.md#listinboxcomments) | **GET** /v1/inbox/comments | List commented posts
+*CommentsApi* | [**PinInboxComment**](docs/CommentsApi.md#pininboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/pin | Pin comment
 *CommentsApi* | [**ReplyToInboxPost**](docs/CommentsApi.md#replytoinboxpost) | **POST** /v1/inbox/comments/{postId} | Reply to comment
 *CommentsApi* | [**SendPrivateReplyToComment**](docs/CommentsApi.md#sendprivatereplytocomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply
 *CommentsApi* | [**SetCommentModeration**](docs/CommentsApi.md#setcommentmoderation) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status
 *CommentsApi* | [**UnhideInboxComment**](docs/CommentsApi.md#unhideinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**UnlikeInboxComment**](docs/CommentsApi.md#unlikeinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *CommentsApi* | [**UnlikePost**](docs/CommentsApi.md#unlikepost) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post
+*CommentsApi* | [**UnpinInboxComment**](docs/CommentsApi.md#unpininboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/pin | Unpin comment
 *ConnectApi* | [**AssignGoogleBusinessLocation**](docs/ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile
 *ConnectApi* | [**CompleteMetaAdsBusinessLogin**](docs/ConnectApi.md#completemetaadsbusinesslogin) | **GET** /v1/connect/meta-ads/callback | Complete Meta business login
 *ConnectApi* | [**CompleteTelegramConnect**](docs/ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status
@@ -2130,6 +2132,8 @@ Class | Method | HTTP request | Description
  - [Model.Pending](docs/Pending.md)
  - [Model.PhoneNumberStockWatch](docs/PhoneNumberStockWatch.md)
  - [Model.PinDiscordMessage200Response](docs/PinDiscordMessage200Response.md)
+ - [Model.PinInboxComment200Response](docs/PinInboxComment200Response.md)
+ - [Model.PinInboxCommentRequest](docs/PinInboxCommentRequest.md)
  - [Model.PinterestPlatformData](docs/PinterestPlatformData.md)
  - [Model.PlatformAnalytics](docs/PlatformAnalytics.md)
  - [Model.PlatformTarget](docs/PlatformTarget.md)

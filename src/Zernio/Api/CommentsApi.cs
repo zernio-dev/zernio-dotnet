@@ -82,7 +82,7 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -90,7 +90,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <returns>GetInboxPostComments200Response</returns>
         GetInboxPostComments200Response GetInboxPostComments(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default);
 
@@ -98,7 +98,7 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -106,14 +106,14 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <returns>ApiResponse of GetInboxPostComments200Response</returns>
         ApiResponse<GetInboxPostComments200Response> GetInboxPostCommentsWithHttpInfo(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default);
         /// <summary>
         /// Hide comment
         /// </summary>
         /// <remarks>
-        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -126,7 +126,7 @@ namespace Zernio.Api
         /// Hide comment
         /// </summary>
         /// <remarks>
-        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -220,6 +220,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListInboxComments200Response</returns>
         ApiResponse<ListInboxComments200Response> ListInboxCommentsWithHttpInfo(string? profileId = default, string? platform = default, int? minComments = default, DateTime? since = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default);
         /// <summary>
+        /// Pin comment
+        /// </summary>
+        /// <remarks>
+        /// Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <returns>PinInboxComment200Response</returns>
+        PinInboxComment200Response PinInboxComment(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest);
+
+        /// <summary>
+        /// Pin comment
+        /// </summary>
+        /// <remarks>
+        /// Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <returns>ApiResponse of PinInboxComment200Response</returns>
+        ApiResponse<PinInboxComment200Response> PinInboxCommentWithHttpInfo(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest);
+        /// <summary>
         /// Reply to comment
         /// </summary>
         /// <remarks>
@@ -298,7 +323,7 @@ namespace Zernio.Api
         /// Unhide comment
         /// </summary>
         /// <remarks>
-        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -311,7 +336,7 @@ namespace Zernio.Api
         /// Unhide comment
         /// </summary>
         /// <remarks>
-        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -371,6 +396,31 @@ namespace Zernio.Api
         /// <param name="likeUri">(Bluesky only) The like URI returned when liking (optional)</param>
         /// <returns>ApiResponse of UnlikePost200Response</returns>
         ApiResponse<UnlikePost200Response> UnlikePostWithHttpInfo(string postId, string accountId, string? likeUri = default);
+        /// <summary>
+        /// Unpin comment
+        /// </summary>
+        /// <remarks>
+        /// Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>PinInboxComment200Response</returns>
+        PinInboxComment200Response UnpinInboxComment(string postId, string commentId, string accountId);
+
+        /// <summary>
+        /// Unpin comment
+        /// </summary>
+        /// <remarks>
+        /// Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of PinInboxComment200Response</returns>
+        ApiResponse<PinInboxComment200Response> UnpinInboxCommentWithHttpInfo(string postId, string commentId, string accountId);
         #endregion Synchronous Operations
     }
 
@@ -438,7 +488,7 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -446,7 +496,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxPostComments200Response</returns>
         System.Threading.Tasks.Task<GetInboxPostComments200Response> GetInboxPostCommentsAsync(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -455,7 +505,7 @@ namespace Zernio.Api
         /// Get post comments
         /// </summary>
         /// <remarks>
-        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -463,7 +513,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxPostComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetInboxPostComments200Response>> GetInboxPostCommentsWithHttpInfoAsync(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -471,7 +521,7 @@ namespace Zernio.Api
         /// Hide comment
         /// </summary>
         /// <remarks>
-        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -485,7 +535,7 @@ namespace Zernio.Api
         /// Hide comment
         /// </summary>
         /// <remarks>
-        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -586,6 +636,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListInboxComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListInboxComments200Response>> ListInboxCommentsWithHttpInfoAsync(string? profileId = default, string? platform = default, int? minComments = default, DateTime? since = default, string? sortBy = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Pin comment
+        /// </summary>
+        /// <remarks>
+        /// Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PinInboxComment200Response</returns>
+        System.Threading.Tasks.Task<PinInboxComment200Response> PinInboxCommentAsync(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pin comment
+        /// </summary>
+        /// <remarks>
+        /// Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PinInboxComment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PinInboxComment200Response>> PinInboxCommentWithHttpInfoAsync(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Reply to comment
         /// </summary>
         /// <remarks>
@@ -670,7 +747,7 @@ namespace Zernio.Api
         /// Unhide comment
         /// </summary>
         /// <remarks>
-        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -684,7 +761,7 @@ namespace Zernio.Api
         /// Unhide comment
         /// </summary>
         /// <remarks>
-        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -749,6 +826,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnlikePost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnlikePost200Response>> UnlikePostWithHttpInfoAsync(string postId, string accountId, string? likeUri = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Unpin comment
+        /// </summary>
+        /// <remarks>
+        /// Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PinInboxComment200Response</returns>
+        System.Threading.Tasks.Task<PinInboxComment200Response> UnpinInboxCommentAsync(string postId, string commentId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unpin comment
+        /// </summary>
+        /// <remarks>
+        /// Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PinInboxComment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PinInboxComment200Response>> UnpinInboxCommentWithHttpInfoAsync(string postId, string commentId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1275,7 +1379,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -1283,7 +1387,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <returns>GetInboxPostComments200Response</returns>
         public GetInboxPostComments200Response GetInboxPostComments(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default)
         {
@@ -1292,7 +1396,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -1300,7 +1404,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <returns>ApiResponse of GetInboxPostComments200Response</returns>
         public Zernio.Client.ApiResponse<GetInboxPostComments200Response> GetInboxPostCommentsWithHttpInfo(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default)
         {
@@ -1367,7 +1471,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -1375,7 +1479,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxPostComments200Response</returns>
         public async System.Threading.Tasks.Task<GetInboxPostComments200Response> GetInboxPostCommentsAsync(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1385,7 +1489,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+        /// Get post comments Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies.</param>
@@ -1393,7 +1497,7 @@ namespace Zernio.Api
         /// <param name="subreddit">(Reddit only) Subreddit name (optional)</param>
         /// <param name="limit">Maximum number of comments to return (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)</param>
-        /// <param name="commentId">(Reddit only) Get replies to a specific comment (optional)</param>
+        /// <param name="commentId">(Reddit and TikTok only) Get replies to a specific comment (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxPostComments200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetInboxPostComments200Response>> GetInboxPostCommentsWithHttpInfoAsync(string postId, string accountId, string? subreddit = default, int? limit = default, string? cursor = default, string? commentId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1464,7 +1568,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1478,7 +1582,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1540,7 +1644,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1555,7 +1659,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+        /// Hide comment Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2142,6 +2246,163 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Pin comment Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <returns>PinInboxComment200Response</returns>
+        public PinInboxComment200Response PinInboxComment(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest)
+        {
+            Zernio.Client.ApiResponse<PinInboxComment200Response> localVarResponse = PinInboxCommentWithHttpInfo(postId, commentId, pinInboxCommentRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pin comment Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <returns>ApiResponse of PinInboxComment200Response</returns>
+        public Zernio.Client.ApiResponse<PinInboxComment200Response> PinInboxCommentWithHttpInfo(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->PinInboxComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->PinInboxComment");
+
+            // verify the required parameter 'pinInboxCommentRequest' is set
+            if (pinInboxCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'pinInboxCommentRequest' when calling CommentsApi->PinInboxComment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.Data = pinInboxCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<PinInboxComment200Response>("/v1/inbox/comments/{postId}/{commentId}/pin", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PinInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pin comment Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PinInboxComment200Response</returns>
+        public async System.Threading.Tasks.Task<PinInboxComment200Response> PinInboxCommentAsync(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<PinInboxComment200Response> localVarResponse = await PinInboxCommentWithHttpInfoAsync(postId, commentId, pinInboxCommentRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pin comment Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="pinInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PinInboxComment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PinInboxComment200Response>> PinInboxCommentWithHttpInfoAsync(string postId, string commentId, PinInboxCommentRequest pinInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->PinInboxComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->PinInboxComment");
+
+            // verify the required parameter 'pinInboxCommentRequest' is set
+            if (pinInboxCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'pinInboxCommentRequest' when calling CommentsApi->PinInboxComment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.Data = pinInboxCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PinInboxComment200Response>("/v1/inbox/comments/{postId}/{commentId}/pin", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PinInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Reply to comment Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2611,7 +2872,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2625,7 +2886,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2686,7 +2947,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2701,7 +2962,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+        /// Unhide comment Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -3079,6 +3340,161 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UnlikePost", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unpin comment Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>PinInboxComment200Response</returns>
+        public PinInboxComment200Response UnpinInboxComment(string postId, string commentId, string accountId)
+        {
+            Zernio.Client.ApiResponse<PinInboxComment200Response> localVarResponse = UnpinInboxCommentWithHttpInfo(postId, commentId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unpin comment Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of PinInboxComment200Response</returns>
+        public Zernio.Client.ApiResponse<PinInboxComment200Response> UnpinInboxCommentWithHttpInfo(string postId, string commentId, string accountId)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->UnpinInboxComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->UnpinInboxComment");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling CommentsApi->UnpinInboxComment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<PinInboxComment200Response>("/v1/inbox/comments/{postId}/{commentId}/pin", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnpinInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unpin comment Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PinInboxComment200Response</returns>
+        public async System.Threading.Tasks.Task<PinInboxComment200Response> UnpinInboxCommentAsync(string postId, string commentId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<PinInboxComment200Response> localVarResponse = await UnpinInboxCommentWithHttpInfoAsync(postId, commentId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unpin comment Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PinInboxComment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PinInboxComment200Response>> UnpinInboxCommentWithHttpInfoAsync(string postId, string commentId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->UnpinInboxComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->UnpinInboxComment");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling CommentsApi->UnpinInboxComment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<PinInboxComment200Response>("/v1/inbox/comments/{postId}/{commentId}/pin", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnpinInboxComment", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
