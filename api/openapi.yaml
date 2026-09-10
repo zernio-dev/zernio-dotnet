@@ -30309,6 +30309,10 @@ paths:
         | `platformSpecificData.spendCap` | Yes | 400 | 400 |
         | `accountId` (empty campaigns) | Yes | - | - |
 
+        Meta budget edits check the live campaign budget, so an older local ABO stamp
+        cannot block a CBO campaign. A successful edit repairs local ad budget fields.
+        A live ABO campaign still returns 409 with the ad-set budget endpoint.
+
         On Google: `LOWEST_COST_WITHOUT_CAP` = Maximize Conversions, `COST_CAP` +
         `bidAmount` = Target CPA, `LOWEST_COST_WITH_MIN_ROAS` + `roasAverageFloor` =
         Target ROAS, `LOWEST_COST_WITH_BID_CAP` + `bidAmount` = Maximize Clicks with a
@@ -30337,11 +30341,10 @@ paths:
         content:
           application/json:
             example:
-              platform: google
+              platform: facebook
               budget:
-                amount: 5
+                amount: 8
                 type: daily
-              allowSharedBudgetUpdate: false
             schema:
               $ref: "#/components/schemas/updateAdCampaign_request"
         required: true
@@ -101977,6 +101980,10 @@ components:
               - `campaign`: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The
                 budget AND `bidStrategy` are set on the CAMPAIGN, and Meta distributes spend
                 across ad sets automatically.
+            The returned ad stores the applied `budgetLevel` and budget in `campaignBudget`
+            for CBO or `adSetBudget` for ABO. Edit CBO budgets with
+            `PUT /v1/ads/campaigns/{campaignId}` and ABO budgets with
+            `PUT /v1/ads/ad-sets/{adSetId}`.
             Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore
             this field. Ignored on the attach shape (`adSetId`), which inherits the existing budget.
           enum:
