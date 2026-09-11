@@ -28,36 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetLeadForm200Response
+    /// MetaLeadFormLegalContentPrivacyPolicy
     /// </summary>
-    [DataContract(Name = "getLeadForm_200_response")]
-    public partial class GetLeadForm200Response : IValidatableObject
+    [DataContract(Name = "MetaLeadForm_legal_content_privacy_policy")]
+    public partial class MetaLeadFormLegalContentPrivacyPolicy : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetLeadForm200Response" /> class.
+        /// Initializes a new instance of the <see cref="MetaLeadFormLegalContentPrivacyPolicy" /> class.
         /// </summary>
-        /// <param name="status">status.</param>
-        /// <param name="form">form.</param>
-        public GetLeadForm200Response(string status = default, GetLeadForm200ResponseForm form = default)
+        /// <param name="url">url.</param>
+        /// <param name="linkText">linkText.</param>
+        public MetaLeadFormLegalContentPrivacyPolicy(string url = default, string linkText = default)
         {
-            this.Status = status;
-            this.Form = form;
+            this.Url = url;
+            this.LinkText = linkText;
         }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or Sets Url
         /// </summary>
-        /*
-        <example>success</example>
-        */
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
+        [DataMember(Name = "url", EmitDefaultValue = false)]
+        public string Url { get; set; }
 
         /// <summary>
-        /// Gets or Sets Form
+        /// Gets or Sets LinkText
         /// </summary>
-        [DataMember(Name = "form", EmitDefaultValue = false)]
-        public GetLeadForm200ResponseForm Form { get; set; }
+        [DataMember(Name = "link_text", EmitDefaultValue = false)]
+        public string LinkText { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetLeadForm200Response {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Form: ").Append(Form).Append("\n");
+            sb.Append("class MetaLeadFormLegalContentPrivacyPolicy {\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  LinkText: ").Append(LinkText).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -98,23 +98,28 @@ namespace Zernio.Api
         /// <summary>
         /// Get a lead form
         /// </summary>
+        /// <remarks>
+        /// Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
+        /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>GetLeadForm200Response</returns>
-        GetLeadForm200Response GetLeadForm(string formId, string accountId);
+        GetLeadForm200Response GetLeadForm(string formId, string accountId, string? fields = default);
 
         /// <summary>
         /// Get a lead form
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
-        ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId);
+        ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId, string? fields = default);
         /// <summary>
         /// List leads for a single form
         /// </summary>
@@ -215,7 +220,7 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -228,7 +233,7 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -288,27 +293,29 @@ namespace Zernio.Api
         /// Get a lead form
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLeadForm200Response</returns>
-        System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a lead form
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List leads for a single form
         /// </summary>
@@ -616,7 +623,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -629,7 +636,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -684,7 +691,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -698,7 +705,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
@@ -1029,26 +1036,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a lead form 
+        /// Get a lead form Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>GetLeadForm200Response</returns>
-        public GetLeadForm200Response GetLeadForm(string formId, string accountId)
+        public GetLeadForm200Response GetLeadForm(string formId, string accountId, string? fields = default)
         {
-            Zernio.Client.ApiResponse<GetLeadForm200Response> localVarResponse = GetLeadFormWithHttpInfo(formId, accountId);
+            Zernio.Client.ApiResponse<GetLeadForm200Response> localVarResponse = GetLeadFormWithHttpInfo(formId, accountId, fields);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a lead form 
+        /// Get a lead form Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
-        public Zernio.Client.ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId)
+        public Zernio.Client.ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId, string? fields = default)
         {
             // verify the required parameter 'formId' is set
             if (formId == null)
@@ -1076,6 +1085,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -1097,28 +1110,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a lead form 
+        /// Get a lead form Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLeadForm200Response</returns>
-        public async System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetLeadForm200Response> localVarResponse = await GetLeadFormWithHttpInfoAsync(formId, accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetLeadForm200Response> localVarResponse = await GetLeadFormWithHttpInfoAsync(formId, accountId, fields, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a lead form 
+        /// Get a lead form Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
         /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'formId' is set
             if (formId == null)
@@ -1148,6 +1163,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

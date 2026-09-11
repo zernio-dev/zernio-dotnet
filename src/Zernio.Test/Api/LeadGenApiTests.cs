@@ -101,7 +101,8 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string formId = null;
             //string accountId = null;
-            //var response = instance.GetLeadForm(formId, accountId);
+            //string? fields = null;
+            //var response = instance.GetLeadForm(formId, accountId, fields);
             //Assert.IsType<GetLeadForm200Response>(response);
         }
 

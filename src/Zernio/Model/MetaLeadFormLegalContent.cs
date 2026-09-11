@@ -28,36 +28,42 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetLeadForm200Response
+    /// Privacy policy and custom disclaimer as Meta stores them.
     /// </summary>
-    [DataContract(Name = "getLeadForm_200_response")]
-    public partial class GetLeadForm200Response : IValidatableObject
+    [DataContract(Name = "MetaLeadForm_legal_content")]
+    public partial class MetaLeadFormLegalContent : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetLeadForm200Response" /> class.
+        /// Initializes a new instance of the <see cref="MetaLeadFormLegalContent" /> class.
         /// </summary>
-        /// <param name="status">status.</param>
-        /// <param name="form">form.</param>
-        public GetLeadForm200Response(string status = default, GetLeadForm200ResponseForm form = default)
+        /// <param name="id">id.</param>
+        /// <param name="privacyPolicy">privacyPolicy.</param>
+        /// <param name="customDisclaimer">Set in Meta form builder only; there is no create parameter for it..</param>
+        public MetaLeadFormLegalContent(string id = default, MetaLeadFormLegalContentPrivacyPolicy privacyPolicy = default, Object customDisclaimer = default)
         {
-            this.Status = status;
-            this.Form = form;
+            this.Id = id;
+            this.PrivacyPolicy = privacyPolicy;
+            this.CustomDisclaimer = customDisclaimer;
         }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or Sets Id
         /// </summary>
-        /*
-        <example>success</example>
-        */
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Form
+        /// Gets or Sets PrivacyPolicy
         /// </summary>
-        [DataMember(Name = "form", EmitDefaultValue = false)]
-        public GetLeadForm200ResponseForm Form { get; set; }
+        [DataMember(Name = "privacy_policy", EmitDefaultValue = false)]
+        public MetaLeadFormLegalContentPrivacyPolicy PrivacyPolicy { get; set; }
+
+        /// <summary>
+        /// Set in Meta form builder only; there is no create parameter for it.
+        /// </summary>
+        /// <value>Set in Meta form builder only; there is no create parameter for it.</value>
+        [DataMember(Name = "custom_disclaimer", EmitDefaultValue = false)]
+        public Object CustomDisclaimer { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +72,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetLeadForm200Response {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Form: ").Append(Form).Append("\n");
+            sb.Append("class MetaLeadFormLegalContent {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  PrivacyPolicy: ").Append(PrivacyPolicy).Append("\n");
+            sb.Append("  CustomDisclaimer: ").Append(CustomDisclaimer).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
