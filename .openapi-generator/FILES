@@ -952,6 +952,8 @@ docs/GooglePmaxAssetGroup.md
 docs/GooglePmaxAssetGroupAssetsInner.md
 docs/GooglePmaxAssetGroupInput.md
 docs/GooglePmaxAssetGroupInputImages.md
+docs/GooglePmaxAssetGroupUpdate.md
+docs/GooglePmaxAssetGroupUpdateImages.md
 docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
@@ -3084,6 +3086,8 @@ src/Zernio.Test/Model/GooglePmaxAssetGroupAssetsInnerTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupInputImagesTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupInputTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupTests.cs
+src/Zernio.Test/Model/GooglePmaxAssetGroupUpdateImagesTests.cs
+src/Zernio.Test/Model/GooglePmaxAssetGroupUpdateTests.cs
 src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
@@ -5197,6 +5201,8 @@ src/Zernio/Model/GooglePmaxAssetGroup.cs
 src/Zernio/Model/GooglePmaxAssetGroupAssetsInner.cs
 src/Zernio/Model/GooglePmaxAssetGroupInput.cs
 src/Zernio/Model/GooglePmaxAssetGroupInputImages.cs
+src/Zernio/Model/GooglePmaxAssetGroupUpdate.cs
+src/Zernio/Model/GooglePmaxAssetGroupUpdateImages.cs
 src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs

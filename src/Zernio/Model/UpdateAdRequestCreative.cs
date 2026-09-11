@@ -58,6 +58,9 @@ namespace Zernio.Model
         /// <param name="promotion">promotion.</param>
         /// <param name="creativeFeatures">Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta..</param>
         /// <param name="headline">Meta and LinkedIn (TikTok has no headline slot).</param>
+        /// <param name="longHeadline">Google Display only. Replaces the responsive display ad&#39;s long headline..</param>
+        /// <param name="businessName">Google Display only. Replaces the responsive display ad&#39;s business name..</param>
+        /// <param name="squareImageUrl">Google Display only. Uploaded as a new square (1:1) marketing image asset that replaces the current one..</param>
         /// <param name="body">body.</param>
         /// <param name="description">Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description)..</param>
         /// <param name="callToAction">callToAction.</param>
@@ -66,11 +69,14 @@ namespace Zernio.Model
         /// <param name="videoUrl">videoUrl.</param>
         /// <param name="videoId">Meta only. Reuse an already-uploaded ad video (from POST /v1/ads/videos or GET /v1/ads/videos) instead of re-uploading via videoUrl..</param>
         /// <param name="existingCreativeId">Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored..</param>
-        public UpdateAdRequestCreative(MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, string headline = default, string body = default, string description = default, string callToAction = default, string linkUrl = default, string imageUrl = default, string videoUrl = default, string videoId = default, string existingCreativeId = default)
+        public UpdateAdRequestCreative(MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, string headline = default, string longHeadline = default, string businessName = default, string squareImageUrl = default, string body = default, string description = default, string callToAction = default, string linkUrl = default, string imageUrl = default, string videoUrl = default, string videoId = default, string existingCreativeId = default)
         {
             this.Promotion = promotion;
             this.CreativeFeatures = creativeFeatures;
             this.Headline = headline;
+            this.LongHeadline = longHeadline;
+            this.BusinessName = businessName;
+            this.SquareImageUrl = squareImageUrl;
             this.Body = body;
             this.Description = description;
             this.CallToAction = callToAction;
@@ -103,6 +109,27 @@ namespace Zernio.Model
         /// <value>Meta and LinkedIn (TikTok has no headline slot)</value>
         [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
+
+        /// <summary>
+        /// Google Display only. Replaces the responsive display ad&#39;s long headline.
+        /// </summary>
+        /// <value>Google Display only. Replaces the responsive display ad&#39;s long headline.</value>
+        [DataMember(Name = "longHeadline", EmitDefaultValue = false)]
+        public string LongHeadline { get; set; }
+
+        /// <summary>
+        /// Google Display only. Replaces the responsive display ad&#39;s business name.
+        /// </summary>
+        /// <value>Google Display only. Replaces the responsive display ad&#39;s business name.</value>
+        [DataMember(Name = "businessName", EmitDefaultValue = false)]
+        public string BusinessName { get; set; }
+
+        /// <summary>
+        /// Google Display only. Uploaded as a new square (1:1) marketing image asset that replaces the current one.
+        /// </summary>
+        /// <value>Google Display only. Uploaded as a new square (1:1) marketing image asset that replaces the current one.</value>
+        [DataMember(Name = "squareImageUrl", EmitDefaultValue = false)]
+        public string SquareImageUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Body
@@ -166,6 +193,9 @@ namespace Zernio.Model
             sb.Append("  Promotion: ").Append(Promotion).Append("\n");
             sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
+            sb.Append("  LongHeadline: ").Append(LongHeadline).Append("\n");
+            sb.Append("  BusinessName: ").Append(BusinessName).Append("\n");
+            sb.Append("  SquareImageUrl: ").Append(SquareImageUrl).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  CallToAction: ").Append(CallToAction).Append("\n");
@@ -194,6 +224,30 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // LongHeadline (string) maxLength
+            if (this.LongHeadline != null && this.LongHeadline.Length > 90)
+            {
+                yield return new ValidationResult("Invalid value for LongHeadline, length must be less than 90.", new [] { "LongHeadline" });
+            }
+
+            // LongHeadline (string) minLength
+            if (this.LongHeadline != null && this.LongHeadline.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for LongHeadline, length must be greater than 1.", new [] { "LongHeadline" });
+            }
+
+            // BusinessName (string) maxLength
+            if (this.BusinessName != null && this.BusinessName.Length > 25)
+            {
+                yield return new ValidationResult("Invalid value for BusinessName, length must be less than 25.", new [] { "BusinessName" });
+            }
+
+            // BusinessName (string) minLength
+            if (this.BusinessName != null && this.BusinessName.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for BusinessName, length must be greater than 1.", new [] { "BusinessName" });
+            }
+
             // Description (string) maxLength
             if (this.Description != null && this.Description.Length > 255)
             {

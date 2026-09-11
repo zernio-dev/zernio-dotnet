@@ -83,6 +83,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LongHeadline'
+        /// </summary>
+        [Fact]
+        public void LongHeadlineTest()
+        {
+            // TODO unit test for the property 'LongHeadline'
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessName'
+        /// </summary>
+        [Fact]
+        public void BusinessNameTest()
+        {
+            // TODO unit test for the property 'BusinessName'
+        }
+
+        /// <summary>
+        /// Test the property 'SquareImageUrl'
+        /// </summary>
+        [Fact]
+        public void SquareImageUrlTest()
+        {
+            // TODO unit test for the property 'SquareImageUrl'
+        }
+
+        /// <summary>
         /// Test the property 'Body'
         /// </summary>
         [Fact]

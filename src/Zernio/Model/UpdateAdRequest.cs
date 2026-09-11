@@ -61,19 +61,21 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdRequest" /> class.
         /// </summary>
-        /// <param name="headlines">Google RSA only. Replaces the complete headline list. No padding or truncation on update..</param>
-        /// <param name="descriptions">Google RSA only. Replaces the complete description list. No padding or truncation on update..</param>
-        /// <param name="finalUrls">Google RSA only. Replaces final URLs. Omitted lists stay unchanged..</param>
+        /// <param name="headlines">Google Search and Display only. Replaces the complete headline list. Search takes 3-15, Display 1-5 and rejects pinnedField; the count is checked once the ad&#39;s channel is known. No padding or truncation on update..</param>
+        /// <param name="descriptions">Google Search and Display only. Replaces the complete description list. Search takes 2-4, Display 1-5 and rejects pinnedField. No padding or truncation on update..</param>
+        /// <param name="finalUrls">Google Search and Display only. Replaces final URLs. Omitted lists stay unchanged. For Performance Max use assetGroup.finalUrl..</param>
+        /// <param name="assetGroup">Google Performance Max only. Replaces whole asset roles on the ad&#39;s asset group. Returns 422 on any other platform or channel..</param>
         /// <param name="status">status.</param>
         /// <param name="budget">budget.</param>
         /// <param name="targeting">targeting.</param>
         /// <param name="creative">creative.</param>
         /// <param name="name">Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501..</param>
-        public UpdateAdRequest(List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, StatusEnum? status = default, UpdateAdRequestBudget budget = default, UpdateAdRequestTargeting targeting = default, UpdateAdRequestCreative creative = default, string name = default)
+        public UpdateAdRequest(List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, GooglePmaxAssetGroupUpdate assetGroup = default, StatusEnum? status = default, UpdateAdRequestBudget budget = default, UpdateAdRequestTargeting targeting = default, UpdateAdRequestCreative creative = default, string name = default)
         {
             this.Headlines = headlines;
             this.Descriptions = descriptions;
             this.FinalUrls = finalUrls;
+            this.AssetGroup = assetGroup;
             this.Status = status;
             this.Budget = budget;
             this.Targeting = targeting;
@@ -82,25 +84,32 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Google RSA only. Replaces the complete headline list. No padding or truncation on update.
+        /// Google Search and Display only. Replaces the complete headline list. Search takes 3-15, Display 1-5 and rejects pinnedField; the count is checked once the ad&#39;s channel is known. No padding or truncation on update.
         /// </summary>
-        /// <value>Google RSA only. Replaces the complete headline list. No padding or truncation on update.</value>
+        /// <value>Google Search and Display only. Replaces the complete headline list. Search takes 3-15, Display 1-5 and rejects pinnedField; the count is checked once the ad&#39;s channel is known. No padding or truncation on update.</value>
         [DataMember(Name = "headlines", EmitDefaultValue = false)]
         public List<GoogleRsaHeadline> Headlines { get; set; }
 
         /// <summary>
-        /// Google RSA only. Replaces the complete description list. No padding or truncation on update.
+        /// Google Search and Display only. Replaces the complete description list. Search takes 2-4, Display 1-5 and rejects pinnedField. No padding or truncation on update.
         /// </summary>
-        /// <value>Google RSA only. Replaces the complete description list. No padding or truncation on update.</value>
+        /// <value>Google Search and Display only. Replaces the complete description list. Search takes 2-4, Display 1-5 and rejects pinnedField. No padding or truncation on update.</value>
         [DataMember(Name = "descriptions", EmitDefaultValue = false)]
         public List<GoogleRsaDescription> Descriptions { get; set; }
 
         /// <summary>
-        /// Google RSA only. Replaces final URLs. Omitted lists stay unchanged.
+        /// Google Search and Display only. Replaces final URLs. Omitted lists stay unchanged. For Performance Max use assetGroup.finalUrl.
         /// </summary>
-        /// <value>Google RSA only. Replaces final URLs. Omitted lists stay unchanged.</value>
+        /// <value>Google Search and Display only. Replaces final URLs. Omitted lists stay unchanged. For Performance Max use assetGroup.finalUrl.</value>
         [DataMember(Name = "finalUrls", EmitDefaultValue = false)]
         public List<string> FinalUrls { get; set; }
+
+        /// <summary>
+        /// Google Performance Max only. Replaces whole asset roles on the ad&#39;s asset group. Returns 422 on any other platform or channel.
+        /// </summary>
+        /// <value>Google Performance Max only. Replaces whole asset roles on the ad&#39;s asset group. Returns 422 on any other platform or channel.</value>
+        [DataMember(Name = "assetGroup", EmitDefaultValue = false)]
+        public GooglePmaxAssetGroupUpdate AssetGroup { get; set; }
 
         /// <summary>
         /// Gets or Sets Budget
@@ -138,6 +147,7 @@ namespace Zernio.Model
             sb.Append("  Headlines: ").Append(Headlines).Append("\n");
             sb.Append("  Descriptions: ").Append(Descriptions).Append("\n");
             sb.Append("  FinalUrls: ").Append(FinalUrls).Append("\n");
+            sb.Append("  AssetGroup: ").Append(AssetGroup).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Targeting: ").Append(Targeting).Append("\n");
