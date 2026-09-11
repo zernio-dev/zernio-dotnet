@@ -107267,6 +107267,17 @@ components:
         reason:
           nullable: true
           type: string
+    onWhatsAppNumberActionRequired_request_requirements_inner:
+      properties:
+        requirementId:
+          description: "Same id as fields[].requirementId on the remediation endpoint."
+        label:
+          type: string
+        status:
+          enum:
+          - approved
+          - pending
+          - declined
     onWhatsAppNumberActionRequired_request:
       properties:
         id:
@@ -107283,6 +107294,15 @@ components:
           type: string
         reason:
           type: string
+        requirements:
+          description: Every requirement on the order with the reviewer's current
+            verdict. Omitted when the order's requirements could not be read.
+          items:
+            $ref: "#/components/schemas/onWhatsAppNumberActionRequired_request_requirements_inner"
+        reviewedAt:
+          description: When the reviewer last commented on the order. Omitted when
+            there is no reviewer comment.
+          format: date-time
         number:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
     onWhatsAppNumberVerificationRequired_request:

@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Requirements'
+        /// </summary>
+        [Fact]
+        public void RequirementsTest()
+        {
+            // TODO unit test for the property 'Requirements'
+        }
+
+        /// <summary>
+        /// Test the property 'ReviewedAt'
+        /// </summary>
+        [Fact]
+        public void ReviewedAtTest()
+        {
+            // TODO unit test for the property 'ReviewedAt'
+        }
+
+        /// <summary>
         /// Test the property 'Number'
         /// </summary>
         [Fact]

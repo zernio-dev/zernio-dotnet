@@ -59,13 +59,17 @@ namespace Zernio.Model
         /// <param name="varEvent">varEvent.</param>
         /// <param name="timestamp">UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt..</param>
         /// <param name="reason">reason.</param>
+        /// <param name="requirements">Every requirement on the order with the reviewer&#39;s current verdict. Omitted when the order&#39;s requirements could not be read..</param>
+        /// <param name="reviewedAt">When the reviewer last commented on the order. Omitted when there is no reviewer comment..</param>
         /// <param name="number">number.</param>
-        public OnWhatsAppNumberActionRequiredRequest(string id = default, EventEnum? varEvent = default, DateTime timestamp = default, string reason = default, OnWhatsAppNumberDeclinedRequestNumber number = default)
+        public OnWhatsAppNumberActionRequiredRequest(string id = default, EventEnum? varEvent = default, DateTime timestamp = default, string reason = default, List<OnWhatsAppNumberActionRequiredRequestRequirementsInner> requirements = default, DateTime reviewedAt = default, OnWhatsAppNumberDeclinedRequestNumber number = default)
         {
             this.Id = id;
             this.Event = varEvent;
             this.Timestamp = timestamp;
             this.Reason = reason;
+            this.Requirements = requirements;
+            this.ReviewedAt = reviewedAt;
             this.Number = number;
         }
 
@@ -89,6 +93,20 @@ namespace Zernio.Model
         public string Reason { get; set; }
 
         /// <summary>
+        /// Every requirement on the order with the reviewer&#39;s current verdict. Omitted when the order&#39;s requirements could not be read.
+        /// </summary>
+        /// <value>Every requirement on the order with the reviewer&#39;s current verdict. Omitted when the order&#39;s requirements could not be read.</value>
+        [DataMember(Name = "requirements", EmitDefaultValue = false)]
+        public List<OnWhatsAppNumberActionRequiredRequestRequirementsInner> Requirements { get; set; }
+
+        /// <summary>
+        /// When the reviewer last commented on the order. Omitted when there is no reviewer comment.
+        /// </summary>
+        /// <value>When the reviewer last commented on the order. Omitted when there is no reviewer comment.</value>
+        [DataMember(Name = "reviewedAt", EmitDefaultValue = false)]
+        public DateTime ReviewedAt { get; set; }
+
+        /// <summary>
         /// Gets or Sets Number
         /// </summary>
         [DataMember(Name = "number", EmitDefaultValue = false)]
@@ -106,6 +124,8 @@ namespace Zernio.Model
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  Requirements: ").Append(Requirements).Append("\n");
+            sb.Append("  ReviewedAt: ").Append(ReviewedAt).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

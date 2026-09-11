@@ -1295,6 +1295,7 @@ docs/OnVerificationFailedRequestVerification.md
 docs/OnWhatsAppAutomaticEventRequest.md
 docs/OnWhatsAppAutomaticEventRequestCustomData.md
 docs/OnWhatsAppNumberActionRequiredRequest.md
+docs/OnWhatsAppNumberActionRequiredRequestRequirementsInner.md
 docs/OnWhatsAppNumberActivatedRequest.md
 docs/OnWhatsAppNumberActivatedRequestNumber.md
 docs/OnWhatsAppNumberDeclinedRequest.md
@@ -3414,6 +3415,7 @@ src/Zernio.Test/Model/OnVerificationFailedRequestTests.cs
 src/Zernio.Test/Model/OnVerificationFailedRequestVerificationTests.cs
 src/Zernio.Test/Model/OnWhatsAppAutomaticEventRequestCustomDataTests.cs
 src/Zernio.Test/Model/OnWhatsAppAutomaticEventRequestTests.cs
+src/Zernio.Test/Model/OnWhatsAppNumberActionRequiredRequestRequirementsInnerTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActionRequiredRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestNumberTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestTests.cs
@@ -5526,6 +5528,7 @@ src/Zernio/Model/OnVerificationFailedRequestVerification.cs
 src/Zernio/Model/OnWhatsAppAutomaticEventRequest.cs
 src/Zernio/Model/OnWhatsAppAutomaticEventRequestCustomData.cs
 src/Zernio/Model/OnWhatsAppNumberActionRequiredRequest.cs
+src/Zernio/Model/OnWhatsAppNumberActionRequiredRequestRequirementsInner.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequestNumber.cs
 src/Zernio/Model/OnWhatsAppNumberDeclinedRequest.cs
