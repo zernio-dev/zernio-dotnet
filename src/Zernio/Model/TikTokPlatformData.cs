@@ -108,11 +108,11 @@ namespace Zernio.Model
         /// <param name="expressConsentGiven">User has given express consent for posting.</param>
         /// <param name="mediaType">Optional override. Defaults based on provided media items..</param>
         /// <param name="videoCoverTimestampMs">Optional for video posts. Timestamp in milliseconds to select which frame to use as thumbnail (defaults to 1000ms/1 second). Ignored when videoCoverImageUrl is provided..</param>
-        /// <param name="videoCoverImageUrl">Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided..</param>
+        /// <param name="videoCoverImageUrl">Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Accounts connected through the TikTok for Business app instead pass the URL to TikTok as the cover directly, with no stitching, and the URL must resolve on a domain we have verified with TikTok. Overrides videoCoverTimestampMs when provided..</param>
         /// <param name="photoCoverIndex">Optional for photo carousels. Index of image to use as cover, 0-based (defaults to 0/first image)..</param>
         /// <param name="autoAddMusic">When true, TikTok may add recommended music (photos only).</param>
-        /// <param name="videoMadeWithAi">Set true to disclose AI-generated content.</param>
-        /// <param name="description">Optional long-form description for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated..</param>
+        /// <param name="videoMadeWithAi">Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app..</param>
+        /// <param name="description">Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted..</param>
         public TikTokPlatformData(bool draft = default, string privacyLevel = default, bool allowComment = default, bool allowDuet = default, bool allowStitch = default, CommercialContentTypeEnum? commercialContentType = default, bool brandPartnerPromote = default, bool isBrandOrganicPost = default, bool contentPreviewConfirmed = default, bool expressConsentGiven = default, MediaTypeEnum? mediaType = default, int videoCoverTimestampMs = default, string videoCoverImageUrl = default, int photoCoverIndex = default, bool autoAddMusic = default, bool videoMadeWithAi = default, string description = default)
         {
             this.Draft = draft;
@@ -205,9 +205,9 @@ namespace Zernio.Model
         public int VideoCoverTimestampMs { get; set; }
 
         /// <summary>
-        /// Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided.
+        /// Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Accounts connected through the TikTok for Business app instead pass the URL to TikTok as the cover directly, with no stitching, and the URL must resolve on a domain we have verified with TikTok. Overrides videoCoverTimestampMs when provided.
         /// </summary>
-        /// <value>Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided.</value>
+        /// <value>Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Accounts connected through the TikTok for Business app instead pass the URL to TikTok as the cover directly, with no stitching, and the URL must resolve on a domain we have verified with TikTok. Overrides videoCoverTimestampMs when provided.</value>
         [DataMember(Name = "videoCoverImageUrl", EmitDefaultValue = false)]
         public string VideoCoverImageUrl { get; set; }
 
@@ -226,16 +226,16 @@ namespace Zernio.Model
         public bool AutoAddMusic { get; set; }
 
         /// <summary>
-        /// Set true to disclose AI-generated content
+        /// Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app.
         /// </summary>
-        /// <value>Set true to disclose AI-generated content</value>
+        /// <value>Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app.</value>
         [DataMember(Name = "videoMadeWithAi", EmitDefaultValue = true)]
         public bool VideoMadeWithAi { get; set; }
 
         /// <summary>
-        /// Optional long-form description for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated.
+        /// Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted.
         /// </summary>
-        /// <value>Optional long-form description for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated.</value>
+        /// <value>Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
