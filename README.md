@@ -453,6 +453,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**GetFacebookPages**](docs/ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**GetGmbLocations**](docs/ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
 *ConnectApi* | [**GetLinkedInOrganizations**](docs/ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
+*ConnectApi* | [**GetPageWebhookSubscription**](docs/ConnectApi.md#getpagewebhooksubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page's webhook subscription
 *ConnectApi* | [**GetPendingOAuthData**](docs/ConnectApi.md#getpendingoauthdata) | **GET** /v1/connect/pending-data | Get pending OAuth data
 *ConnectApi* | [**GetPinterestBoards**](docs/ConnectApi.md#getpinterestboards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards
 *ConnectApi* | [**GetRedditFlairs**](docs/ConnectApi.md#getredditflairs) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs
@@ -473,6 +474,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**ListSlackChannels**](docs/ConnectApi.md#listslackchannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker
 *ConnectApi* | [**ListSnapchatProfiles**](docs/ConnectApi.md#listsnapchatprofiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**ListWhatsAppPhoneNumbers**](docs/ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
+*ConnectApi* | [**ResyncPageWebhookSubscription**](docs/ConnectApi.md#resyncpagewebhooksubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio's webhooks
 *ConnectApi* | [**SelectFacebookPage**](docs/ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**SelectGoogleBusinessLocation**](docs/ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location
 *ConnectApi* | [**SelectInstagramAccount**](docs/ConnectApi.md#selectinstagramaccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect
@@ -1638,6 +1640,7 @@ Class | Method | HTTP request | Description
  - [Model.GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
  - [Model.GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)
  - [Model.GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
+ - [Model.GetPageWebhookSubscription200Response](docs/GetPageWebhookSubscription200Response.md)
  - [Model.GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
  - [Model.GetPendingOAuthData200ResponseOrganizationsInner](docs/GetPendingOAuthData200ResponseOrganizationsInner.md)
  - [Model.GetPhoneNumber200Response](docs/GetPhoneNumber200Response.md)
@@ -2107,8 +2110,6 @@ Class | Method | HTTP request | Description
  - [Model.MetaInstagramIdentityRef](docs/MetaInstagramIdentityRef.md)
  - [Model.MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
  - [Model.MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
- - [Model.MetaPromotion](docs/MetaPromotion.md)
- - [Model.MetaPromotionStatus](docs/MetaPromotionStatus.md)
  - [Model.Money](docs/Money.md)
  - [Model.MoneyAmount](docs/MoneyAmount.md)
  - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
@@ -2250,6 +2251,7 @@ Class | Method | HTTP request | Description
  - [Model.RespondToSmsRegistrationReviewRequest](docs/RespondToSmsRegistrationReviewRequest.md)
  - [Model.RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [Model.RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
+ - [Model.ResyncPageWebhookSubscription200Response](docs/ResyncPageWebhookSubscription200Response.md)
  - [Model.RetryPost207Response](docs/RetryPost207Response.md)
  - [Model.RetweetPost200Response](docs/RetweetPost200Response.md)
  - [Model.RetweetPostRequest](docs/RetweetPostRequest.md)

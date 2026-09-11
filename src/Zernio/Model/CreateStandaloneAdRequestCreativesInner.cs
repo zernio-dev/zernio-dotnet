@@ -229,7 +229,6 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestCreativesInner" /> class.
         /// </summary>
-        /// <param name="promotion">Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer..</param>
         /// <param name="creativeFeatures">Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults..</param>
         /// <param name="name">Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position)..</param>
         /// <param name="headline">headline (required).</param>
@@ -239,7 +238,7 @@ namespace Zernio.Model
         /// <param name="video">video.</param>
         /// <param name="linkUrl">linkUrl (required).</param>
         /// <param name="callToAction">callToAction (required).</param>
-        public CreateStandaloneAdRequestCreativesInner(MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, string name = default, string headline = default, string body = default, string description = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
+        public CreateStandaloneAdRequestCreativesInner(Dictionary<string, InnerEnum> creativeFeatures = default, string name = default, string headline = default, string body = default, string description = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
         {
             // to ensure "headline" is required (not null)
             if (headline == null)
@@ -260,20 +259,12 @@ namespace Zernio.Model
             }
             this.LinkUrl = linkUrl;
             this.CallToAction = callToAction;
-            this.Promotion = promotion;
             this.CreativeFeatures = creativeFeatures;
             this.Name = name;
             this.Description = description;
             this.ImageUrl = imageUrl;
             this.Video = video;
         }
-
-        /// <summary>
-        /// Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer.
-        /// </summary>
-        /// <value>Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer.</value>
-        [DataMember(Name = "promotion", EmitDefaultValue = false)]
-        public MetaPromotion Promotion { get; set; }
 
         /// <summary>
         /// Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults.
@@ -338,7 +329,6 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateStandaloneAdRequestCreativesInner {\n");
-            sb.Append("  Promotion: ").Append(Promotion).Append("\n");
             sb.Append("  CreativeFeatures: ").Append(CreativeFeatures).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");

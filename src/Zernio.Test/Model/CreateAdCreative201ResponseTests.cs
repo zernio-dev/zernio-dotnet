@@ -72,23 +72,5 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'CreativeId'
         }
-
-        /// <summary>
-        /// Test the property 'Promotion'
-        /// </summary>
-        [Fact]
-        public void PromotionTest()
-        {
-            // TODO unit test for the property 'Promotion'
-        }
-
-        /// <summary>
-        /// Test the property 'PromotionStatus'
-        /// </summary>
-        [Fact]
-        public void PromotionStatusTest()
-        {
-            // TODO unit test for the property 'PromotionStatus'
-        }
     }
 }

@@ -106,7 +106,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="node">node.</param>
         /// <param name="status">status.</param>
-        /// <param name="reason">Why the node could not be validated (only on skipped)..</param>
+        /// <param name="reason">Why the node could not be validated (on skipped), or what the dry run could not check and what the request would do as sent (on validated). A Performance Max validation with no location targeting reports here that the campaign would run worldwide..</param>
         public CreateStandaloneAd200ResponseResultsInner(NodeEnum? node = default, StatusEnum? status = default, string reason = default)
         {
             this.Node = node;
@@ -115,9 +115,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Why the node could not be validated (only on skipped).
+        /// Why the node could not be validated (on skipped), or what the dry run could not check and what the request would do as sent (on validated). A Performance Max validation with no location targeting reports here that the campaign would run worldwide.
         /// </summary>
-        /// <value>Why the node could not be validated (only on skipped).</value>
+        /// <value>Why the node could not be validated (on skipped), or what the dry run could not check and what the request would do as sent (on validated). A Performance Max validation with no location targeting reports here that the campaign would run worldwide.</value>
         [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 

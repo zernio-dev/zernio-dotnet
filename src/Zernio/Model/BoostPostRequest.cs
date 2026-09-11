@@ -246,7 +246,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BoostPostRequest" /> class.
         /// </summary>
-        /// <param name="creativeFeatures">Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta..</param>
+        /// <param name="creativeFeatures">Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle is rejected by Meta..</param>
         /// <param name="postId">Zernio post ID (provide this or platformPostId).</param>
         /// <param name="platformPostId">Platform post ID (alternative to postId).</param>
         /// <param name="accountId">Account ID (required).</param>
@@ -332,9 +332,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+        /// Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle is rejected by Meta.
         /// </summary>
-        /// <value>Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.</value>
+        /// <value>Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle is rejected by Meta.</value>
         /*
         <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
         */

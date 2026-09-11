@@ -803,6 +803,7 @@ docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
 docs/GetMessengerMenu200Response.md
+docs/GetPageWebhookSubscription200Response.md
 docs/GetPendingOAuthData200Response.md
 docs/GetPendingOAuthData200ResponseOrganizationsInner.md
 docs/GetPhoneNumber200Response.md
@@ -1282,8 +1283,6 @@ docs/MetaAdsPlatformData.md
 docs/MetaInstagramIdentityRef.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
-docs/MetaPromotion.md
-docs/MetaPromotionStatus.md
 docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
@@ -1431,6 +1430,7 @@ docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
+docs/ResyncPageWebhookSubscription200Response.md
 docs/RetryPost207Response.md
 docs/RetweetPost200Response.md
 docs/RetweetPostRequest.md
@@ -2937,6 +2937,7 @@ src/Zernio.Test/Model/GetMediaPresignedUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
 src/Zernio.Test/Model/GetMessageAttachment200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerMenu200ResponseTests.cs
+src/Zernio.Test/Model/GetPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseTests.cs
 src/Zernio.Test/Model/GetPhoneNumber200ResponsePhoneNumberTests.cs
@@ -3406,8 +3407,6 @@ src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
 src/Zernio.Test/Model/MetaInstagramIdentityRefTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataContextCardTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
-src/Zernio.Test/Model/MetaPromotionStatusTests.cs
-src/Zernio.Test/Model/MetaPromotionTests.cs
 src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
@@ -3549,6 +3548,7 @@ src/Zernio.Test/Model/RespondToSmsRegistrationReview200ResponseTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
+src/Zernio.Test/Model/ResyncPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/RetryPost207ResponseTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
 src/Zernio.Test/Model/RetweetPostRequestTests.cs
@@ -5052,6 +5052,7 @@ src/Zernio/Model/GetMediaPresignedUrl200Response.cs
 src/Zernio/Model/GetMediaPresignedUrlRequest.cs
 src/Zernio/Model/GetMessageAttachment200Response.cs
 src/Zernio/Model/GetMessengerMenu200Response.cs
+src/Zernio/Model/GetPageWebhookSubscription200Response.cs
 src/Zernio/Model/GetPendingOAuthData200Response.cs
 src/Zernio/Model/GetPendingOAuthData200ResponseOrganizationsInner.cs
 src/Zernio/Model/GetPhoneNumber200Response.cs
@@ -5521,8 +5522,6 @@ src/Zernio/Model/MetaAdsPlatformData.cs
 src/Zernio/Model/MetaInstagramIdentityRef.cs
 src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
-src/Zernio/Model/MetaPromotion.cs
-src/Zernio/Model/MetaPromotionStatus.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
@@ -5664,6 +5663,7 @@ src/Zernio/Model/RespondToSmsRegistrationReview200Response.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequest.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
+src/Zernio/Model/ResyncPageWebhookSubscription200Response.cs
 src/Zernio/Model/RetryPost207Response.cs
 src/Zernio/Model/RetweetPost200Response.cs
 src/Zernio/Model/RetweetPostRequest.cs

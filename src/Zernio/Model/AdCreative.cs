@@ -33,12 +33,6 @@ namespace Zernio.Model
     [DataContract(Name = "Ad_creative")]
     public partial class AdCreative : IValidatableObject
     {
-
-        /// <summary>
-        /// Gets or Sets PromotionStatus
-        /// </summary>
-        [DataMember(Name = "promotionStatus", EmitDefaultValue = false)]
-        public MetaPromotionStatus? PromotionStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AdCreative" /> class.
         /// </summary>
@@ -51,8 +45,6 @@ namespace Zernio.Model
         /// <param name="imageUrl">Alternative image URL.</param>
         /// <param name="videoId">Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token..</param>
         /// <param name="videoUrl">Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads..</param>
-        /// <param name="promotion">Meta offer read from the live creative on creation or GET /v1/ads/{adId}. Null when metadata is not returned or cannot be read. Requested values are never echoed as applied..</param>
-        /// <param name="promotionStatus">promotionStatus.</param>
         /// <param name="creativeId">Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create..</param>
         /// <param name="objectType">Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews: when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available..</param>
         /// <param name="objectStoryId">Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent, because Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead..</param>
@@ -72,7 +64,7 @@ namespace Zernio.Model
         /// <param name="pinterestImageUrl">pinterestImageUrl.</param>
         /// <param name="pinterestTitle">pinterestTitle.</param>
         /// <param name="pinterestDescription">pinterestDescription.</param>
-        public AdCreative(GooglePmaxAssetGroupInput assetGroup = default, string assetGroupResourceName = default, List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, MetaPromotion promotion = default, MetaPromotionStatus? promotionStatus = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
+        public AdCreative(GooglePmaxAssetGroupInput assetGroup = default, string assetGroupResourceName = default, List<GoogleRsaHeadline> headlines = default, List<GoogleRsaDescription> descriptions = default, List<string> finalUrls = default, string thumbnailUrl = default, string imageUrl = default, string videoId = default, string videoUrl = default, string creativeId = default, string objectType = default, string objectStoryId = default, string effectiveObjectStoryId = default, string pageId = default, string effectiveInstagramMediaId = default, string instagramUserId = default, string instagramPermalinkUrl = default, List<string> mediaUrls = default, bool? isServing = default, List<string> servingHoldReasons = default, string body = default, string googleHeadline = default, string googleDescription = default, string linkUrl = default, string whatsappPhoneNumber = default, string pinterestImageUrl = default, string pinterestTitle = default, string pinterestDescription = default)
         {
             this.AssetGroup = assetGroup;
             this.AssetGroupResourceName = assetGroupResourceName;
@@ -83,8 +75,6 @@ namespace Zernio.Model
             this.ImageUrl = imageUrl;
             this.VideoId = videoId;
             this.VideoUrl = videoUrl;
-            this.Promotion = promotion;
-            this.PromotionStatus = promotionStatus;
             this.CreativeId = creativeId;
             this.ObjectType = objectType;
             this.ObjectStoryId = objectStoryId;
@@ -171,13 +161,6 @@ namespace Zernio.Model
         /// <value>Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads.</value>
         [DataMember(Name = "videoUrl", EmitDefaultValue = true)]
         public string VideoUrl { get; set; }
-
-        /// <summary>
-        /// Meta offer read from the live creative on creation or GET /v1/ads/{adId}. Null when metadata is not returned or cannot be read. Requested values are never echoed as applied.
-        /// </summary>
-        /// <value>Meta offer read from the live creative on creation or GET /v1/ads/{adId}. Null when metadata is not returned or cannot be read. Requested values are never echoed as applied.</value>
-        [DataMember(Name = "promotion", EmitDefaultValue = false)]
-        public MetaPromotion Promotion { get; set; }
 
         /// <summary>
         /// Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create.
@@ -332,8 +315,6 @@ namespace Zernio.Model
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoId: ").Append(VideoId).Append("\n");
             sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
-            sb.Append("  Promotion: ").Append(Promotion).Append("\n");
-            sb.Append("  PromotionStatus: ").Append(PromotionStatus).Append("\n");
             sb.Append("  CreativeId: ").Append(CreativeId).Append("\n");
             sb.Append("  ObjectType: ").Append(ObjectType).Append("\n");
             sb.Append("  ObjectStoryId: ").Append(ObjectStoryId).Append("\n");

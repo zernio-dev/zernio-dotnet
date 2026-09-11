@@ -296,6 +296,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetPageWebhookSubscription
+        /// </summary>
+        [Fact]
+        public void GetPageWebhookSubscriptionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetPageWebhookSubscription(accountId);
+            //Assert.IsType<GetPageWebhookSubscription200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetPendingOAuthData
         /// </summary>
         [Fact]
@@ -558,6 +570,18 @@ namespace Zernio.Test.Api
             //string? xConnectToken = null;
             //var response = instance.ListWhatsAppPhoneNumbers(profileId, tempToken, xConnectToken);
             //Assert.IsType<ListWhatsAppPhoneNumbers200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ResyncPageWebhookSubscription
+        /// </summary>
+        [Fact]
+        public void ResyncPageWebhookSubscriptionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.ResyncPageWebhookSubscription(accountId);
+            //Assert.IsType<ResyncPageWebhookSubscription200Response>(response);
         }
 
         /// <summary>

@@ -98,10 +98,10 @@ namespace Zernio.Model
         /// <param name="imageHash">Existing library image hash (POST /v1/ads/images or GET /v1/ads/images)..</param>
         /// <param name="carouselCards">carouselCards.</param>
         /// <param name="urlTags">Appended to every outbound URL (e.g. utm_source&#x3D;fb)..</param>
-        /// <param name="promotion">promotion.</param>
-        /// <param name="creativeFeatures">Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion..</param>
+        /// <param name="promotion">Not supported. Meta validates creative_sourcing_spec.promotion_metadata_spec on the create call and then discards it, so a Promotion set through the Marketing API never reaches the creative. Any object is rejected with 400 invalid_field_value. Send null or omit the field, and set the Promotion on the ad in Ads Manager. Verified on 2026-09-11 across Graph v19.0 to v25.0 and every write path..</param>
+        /// <param name="creativeFeatures">Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting..</param>
         /// <param name="multiAdvertiser">Meta only. Multi-advertiser ads: whether Meta may show this ad alongside other advertisers&#39; in one unit. Meta auto-enrols since Aug 2024, so send OPT_OUT to leave. It is a top-level creative field, NOT a &#x60;creativeFeatures&#x60; key, and Meta rejects it there..</param>
-        public CreateAdCreativeRequest(string accountId = default, string adAccountId = default, string headline = default, string body = default, string description = default, string callToAction = @"LEARN_MORE", string linkUrl = default, string imageUrl = default, string imageHash = default, List<CreateAdCreativeRequestCarouselCardsInner> carouselCards = default, string urlTags = default, MetaPromotion promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default)
+        public CreateAdCreativeRequest(string accountId = default, string adAccountId = default, string headline = default, string body = default, string description = default, string callToAction = @"LEARN_MORE", string linkUrl = default, string imageUrl = default, string imageHash = default, List<CreateAdCreativeRequestCarouselCardsInner> carouselCards = default, string urlTags = default, Object promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -220,15 +220,16 @@ namespace Zernio.Model
         public string UrlTags { get; set; }
 
         /// <summary>
-        /// Gets or Sets Promotion
+        /// Not supported. Meta validates creative_sourcing_spec.promotion_metadata_spec on the create call and then discards it, so a Promotion set through the Marketing API never reaches the creative. Any object is rejected with 400 invalid_field_value. Send null or omit the field, and set the Promotion on the ad in Ads Manager. Verified on 2026-09-11 across Graph v19.0 to v25.0 and every write path.
         /// </summary>
-        [DataMember(Name = "promotion", EmitDefaultValue = false)]
-        public MetaPromotion Promotion { get; set; }
+        /// <value>Not supported. Meta validates creative_sourcing_spec.promotion_metadata_spec on the create call and then discards it, so a Promotion set through the Marketing API never reaches the creative. Any object is rejected with 400 invalid_field_value. Send null or omit the field, and set the Promotion on the ad in Ads Manager. Verified on 2026-09-11 across Graph v19.0 to v25.0 and every write path.</value>
+        [DataMember(Name = "promotion", EmitDefaultValue = true)]
+        public Object Promotion { get; set; }
 
         /// <summary>
-        /// Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.
+        /// Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting.
         /// </summary>
-        /// <value>Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.</value>
+        /// <value>Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting.</value>
         /*
         <example>{auto_promotion_tag&#x3D;OPT_IN}</example>
         */

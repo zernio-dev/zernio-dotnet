@@ -79,7 +79,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateAdRequestTargetingDevicesInnerOneOf" /> class.
         /// </summary>
         /// <param name="device">device (required).</param>
-        /// <param name="bidModifier">Google device bid modifier, 0.1 to 10 (minus 90% to plus 900%). Omit a device to exclude it..</param>
+        /// <param name="bidModifier">Google device bid modifier. 0 switches the device off (minus 100%); otherwise 0.1 to 10 (minus 90% to plus 900%). Google rejects any value between 0 and 0.1..</param>
         public UpdateAdRequestTargetingDevicesInnerOneOf(DeviceEnum device = default, decimal bidModifier = default)
         {
             this.Device = device;
@@ -87,9 +87,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Google device bid modifier, 0.1 to 10 (minus 90% to plus 900%). Omit a device to exclude it.
+        /// Google device bid modifier. 0 switches the device off (minus 100%); otherwise 0.1 to 10 (minus 90% to plus 900%). Google rejects any value between 0 and 0.1.
         /// </summary>
-        /// <value>Google device bid modifier, 0.1 to 10 (minus 90% to plus 900%). Omit a device to exclude it.</value>
+        /// <value>Google device bid modifier. 0 switches the device off (minus 100%); otherwise 0.1 to 10 (minus 90% to plus 900%). Google rejects any value between 0 and 0.1.</value>
         [DataMember(Name = "bidModifier", EmitDefaultValue = false)]
         public decimal BidModifier { get; set; }
 
@@ -130,9 +130,9 @@ namespace Zernio.Model
             }
 
             // BidModifier (decimal) minimum
-            if (this.BidModifier < (decimal)0.1)
+            if (this.BidModifier < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for BidModifier, must be a value greater than or equal to 0.1.", new [] { "BidModifier" });
+                yield return new ValidationResult("Invalid value for BidModifier, must be a value greater than or equal to 0.", new [] { "BidModifier" });
             }
 
             yield break;

@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Create a standalone creative
         /// </summary>
         /// <remarks>
-        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -43,7 +43,7 @@ namespace Zernio.Api
         /// Create a standalone creative
         /// </summary>
         /// <remarks>
-        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -469,7 +469,7 @@ namespace Zernio.Api
         /// Create a standalone creative
         /// </summary>
         /// <remarks>
-        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -481,7 +481,7 @@ namespace Zernio.Api
         /// Create a standalone creative
         /// </summary>
         /// <remarks>
-        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -1143,7 +1143,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -1155,7 +1155,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -1205,7 +1205,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>
@@ -1218,7 +1218,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+        /// Create a standalone creative Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdCreativeRequest"></param>

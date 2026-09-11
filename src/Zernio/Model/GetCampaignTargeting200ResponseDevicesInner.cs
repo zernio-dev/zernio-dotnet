@@ -75,7 +75,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="device">device.</param>
         /// <param name="included">included.</param>
-        /// <param name="bidModifier">Always null on this read (see description)..</param>
+        /// <param name="bidModifier">Google&#39;s bid adjustment for this device: null when it has none, 0 when the device is switched off, otherwise 0.1 to 10..</param>
         public GetCampaignTargeting200ResponseDevicesInner(DeviceEnum? device = default, bool included = default, decimal? bidModifier = default)
         {
             this.Device = device;
@@ -90,9 +90,9 @@ namespace Zernio.Model
         public bool Included { get; set; }
 
         /// <summary>
-        /// Always null on this read (see description).
+        /// Google&#39;s bid adjustment for this device: null when it has none, 0 when the device is switched off, otherwise 0.1 to 10.
         /// </summary>
-        /// <value>Always null on this read (see description).</value>
+        /// <value>Google&#39;s bid adjustment for this device: null when it has none, 0 when the device is switched off, otherwise 0.1 to 10.</value>
         [DataMember(Name = "bidModifier", EmitDefaultValue = true)]
         public decimal? BidModifier { get; set; }
 
