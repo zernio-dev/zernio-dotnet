@@ -52,10 +52,10 @@ namespace Zernio.Model
             Facebook = 2,
 
             /// <summary>
-            /// Enum Twitter for value: twitter
+            /// Enum Threads for value: threads
             /// </summary>
-            [EnumMember(Value = "twitter")]
-            Twitter = 3,
+            [EnumMember(Value = "threads")]
+            Threads = 3,
 
             /// <summary>
             /// Enum Youtube for value: youtube

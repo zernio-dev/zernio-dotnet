@@ -47686,9 +47686,9 @@ components:
       - timestamp
     WebhookPayloadComment:
       description: "Webhook payload for comment received events (Instagram, Facebook,\
-        \ X, YouTube, LinkedIn, Bluesky, Reddit, TikTok). TikTok events carry only\
-        \ the author id: the comment.update webhook has no username, picture or owner\
-        \ flag."
+        \ Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT\
+        \ fire this event. TikTok events carry only the author id: the comment.update\
+        \ webhook has no username, picture or owner flag."
       example:
         post:
           imageUrl: imageUrl
@@ -108916,7 +108916,7 @@ components:
           enum:
           - instagram
           - facebook
-          - twitter
+          - threads
           - youtube
           - linkedin
           - bluesky
@@ -114843,7 +114843,7 @@ x-documentation:
     - `message.failed` - An outgoing message failed delivery (WhatsApp, SMS; on SMS the carrier's error code rides in `error`)
     - `reaction.received` - A participant added or removed an emoji reaction on a message (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)
     - `referral.received` - Someone opened an existing Instagram/Messenger thread through an ig.me/m.me `ref` link or a returning Messenger ad click; carries Meta's referral object (a referral that rides an inbound message arrives on `message.received` under `metadata.referral` instead)
-    - `comment.received` - New comment received on a post
+    - `comment.received` - New comment received on a post (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event
     - `review.new` - New review posted on a connected account (Google Business Profile)
     - `review.updated` - A Google Business Profile reviewer edited their review text or rating, or a reply was posted through `POST /v1/inbox/reviews/{reviewId}/reply`. A reply written directly in Google's own interface does NOT fire this event, because Google emits no notification for it.
     - `lead.received` - New lead submitted against a Meta Lead Gen (Instant) Form. `lead.fields` is the question-key → answer map; `lead.formId`/`lead.adId` give provenance.

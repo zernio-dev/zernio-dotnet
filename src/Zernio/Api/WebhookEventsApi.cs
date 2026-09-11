@@ -221,7 +221,7 @@ namespace Zernio.Api
         /// Comment received event
         /// </summary>
         /// <remarks>
-        /// Fired when a new comment is received on a tracked post.
+        /// Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -232,7 +232,7 @@ namespace Zernio.Api
         /// Comment received event
         /// </summary>
         /// <remarks>
-        /// Fired when a new comment is received on a tracked post.
+        /// Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -1361,7 +1361,7 @@ namespace Zernio.Api
         /// Comment received event
         /// </summary>
         /// <remarks>
-        /// Fired when a new comment is received on a tracked post.
+        /// Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -1373,7 +1373,7 @@ namespace Zernio.Api
         /// Comment received event
         /// </summary>
         /// <remarks>
-        /// Fired when a new comment is received on a tracked post.
+        /// Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -3708,7 +3708,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Comment received event Fired when a new comment is received on a tracked post.
+        /// Comment received event Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -3719,7 +3719,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Comment received event Fired when a new comment is received on a tracked post.
+        /// Comment received event Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -3768,7 +3768,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Comment received event Fired when a new comment is received on a tracked post.
+        /// Comment received event Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>
@@ -3780,7 +3780,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Comment received event Fired when a new comment is received on a tracked post.
+        /// Comment received event Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadComment"></param>

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Webhook payload for comment received events (Instagram, Facebook, X, YouTube, LinkedIn, Bluesky, Reddit, TikTok). TikTok events carry only the author id: the comment.update webhook has no username, picture or owner flag.
+    /// Webhook payload for comment received events (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event. TikTok events carry only the author id: the comment.update webhook has no username, picture or owner flag.
     /// </summary>
     [DataContract(Name = "WebhookPayloadComment")]
     public partial class WebhookPayloadComment : IValidatableObject
