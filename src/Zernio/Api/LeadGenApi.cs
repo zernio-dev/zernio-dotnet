@@ -36,7 +36,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <returns>ArchiveLeadForm200Response</returns>
         ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId);
 
@@ -48,14 +48,14 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <returns>ApiResponse of ArchiveLeadForm200Response</returns>
         ApiResponse<ArchiveLeadForm200Response> ArchiveLeadFormWithHttpInfo(string formId, string accountId);
         /// <summary>
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -103,7 +103,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>GetLeadForm200Response</returns>
         GetLeadForm200Response GetLeadForm(string formId, string accountId, string? fields = default);
@@ -116,7 +116,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
         ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId, string? fields = default);
@@ -153,10 +153,10 @@ namespace Zernio.Api
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -167,10 +167,10 @@ namespace Zernio.Api
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -224,7 +224,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ArchiveLeadForm200Response</returns>
         System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -237,7 +237,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ArchiveLeadForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ArchiveLeadForm200Response>> ArchiveLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -245,7 +245,7 @@ namespace Zernio.Api
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -257,7 +257,7 @@ namespace Zernio.Api
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -297,7 +297,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLeadForm200Response</returns>
@@ -311,7 +311,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
@@ -351,10 +351,10 @@ namespace Zernio.Api
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -366,10 +366,10 @@ namespace Zernio.Api
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -627,7 +627,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <returns>ArchiveLeadForm200Response</returns>
         public ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId)
         {
@@ -640,7 +640,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <returns>ApiResponse of ArchiveLeadForm200Response</returns>
         public Zernio.Client.ApiResponse<ArchiveLeadForm200Response> ArchiveLeadFormWithHttpInfo(string formId, string accountId)
         {
@@ -695,7 +695,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ArchiveLeadForm200Response</returns>
         public async System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -709,7 +709,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ArchiveLeadForm200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ArchiveLeadForm200Response>> ArchiveLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -764,7 +764,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -776,7 +776,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -826,7 +826,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -839,7 +839,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -1040,7 +1040,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>GetLeadForm200Response</returns>
         public GetLeadForm200Response GetLeadForm(string formId, string accountId, string? fields = default)
@@ -1054,7 +1054,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
         public Zernio.Client.ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId, string? fields = default)
@@ -1114,7 +1114,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLeadForm200Response</returns>
@@ -1129,7 +1129,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
-        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
+        /// <param name="accountId">Connected Meta ads, facebook or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="fields">Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
@@ -1366,10 +1366,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -1381,10 +1381,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -1445,10 +1445,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
@@ -1461,10 +1461,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected Facebook, Meta ads business-login or LinkedIn ads account ID.</param>
+        /// <param name="accountId">Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile.</param>
         /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>

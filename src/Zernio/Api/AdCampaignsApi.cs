@@ -391,6 +391,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAd200Response</returns>
         ApiResponse<GetAd200Response> GetAdWithHttpInfo(string adId);
         /// <summary>
+        /// Get live campaign details
+        /// </summary>
+        /// <remarks>
+        /// Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <returns>GetAdCampaignDetails200Response</returns>
+        GetAdCampaignDetails200Response GetAdCampaignDetails(string campaignId, string accountId, string? fields = default);
+
+        /// <summary>
+        /// Get live campaign details
+        /// </summary>
+        /// <remarks>
+        /// Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <returns>ApiResponse of GetAdCampaignDetails200Response</returns>
+        ApiResponse<GetAdCampaignDetails200Response> GetAdCampaignDetailsWithHttpInfo(string campaignId, string accountId, string? fields = default);
+        /// <summary>
         /// Get live ad-set details
         /// </summary>
         /// <remarks>
@@ -1624,6 +1649,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAd200Response>> GetAdWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get live campaign details
+        /// </summary>
+        /// <remarks>
+        /// Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdCampaignDetails200Response</returns>
+        System.Threading.Tasks.Task<GetAdCampaignDetails200Response> GetAdCampaignDetailsAsync(string campaignId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get live campaign details
+        /// </summary>
+        /// <remarks>
+        /// Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdCampaignDetails200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdCampaignDetails200Response>> GetAdCampaignDetailsWithHttpInfoAsync(string campaignId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get live ad-set details
         /// </summary>
@@ -4942,6 +4994,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get live campaign details Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <returns>GetAdCampaignDetails200Response</returns>
+        public GetAdCampaignDetails200Response GetAdCampaignDetails(string campaignId, string accountId, string? fields = default)
+        {
+            Zernio.Client.ApiResponse<GetAdCampaignDetails200Response> localVarResponse = GetAdCampaignDetailsWithHttpInfo(campaignId, accountId, fields);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get live campaign details Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <returns>ApiResponse of GetAdCampaignDetails200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdCampaignDetails200Response> GetAdCampaignDetailsWithHttpInfo(string campaignId, string accountId, string? fields = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->GetAdCampaignDetails");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetAdCampaignDetails");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdCampaignDetails200Response>("/v1/ads/campaigns/{campaignId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdCampaignDetails", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get live campaign details Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdCampaignDetails200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdCampaignDetails200Response> GetAdCampaignDetailsAsync(string campaignId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdCampaignDetails200Response> localVarResponse = await GetAdCampaignDetailsWithHttpInfoAsync(campaignId, accountId, fields, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get live campaign details Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Meta campaign id (platformCampaignId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdCampaignDetails200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdCampaignDetails200Response>> GetAdCampaignDetailsWithHttpInfoAsync(string campaignId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->GetAdCampaignDetails");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetAdCampaignDetails");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdCampaignDetails200Response>("/v1/ads/campaigns/{campaignId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdCampaignDetails", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

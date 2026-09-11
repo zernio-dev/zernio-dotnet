@@ -245,6 +245,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**DuplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**DuplicateAdSet**](docs/AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
 *AdCampaignsApi* | [**GetAd**](docs/AdCampaignsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
+*AdCampaignsApi* | [**GetAdCampaignDetails**](docs/AdCampaignsApi.md#getadcampaigndetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details
 *AdCampaignsApi* | [**GetAdSetDetails**](docs/AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**GetAdTree**](docs/AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**GetAdsTimeline**](docs/AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics
@@ -1439,6 +1440,7 @@ Class | Method | HTTP request | Description
  - [Model.GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [Model.GetAdAnalytics202Response](docs/GetAdAnalytics202Response.md)
  - [Model.GetAdAudience200Response](docs/GetAdAudience200Response.md)
+ - [Model.GetAdCampaignDetails200Response](docs/GetAdCampaignDetails200Response.md)
  - [Model.GetAdComments200Response](docs/GetAdComments200Response.md)
  - [Model.GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [Model.GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)

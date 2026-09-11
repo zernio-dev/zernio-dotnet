@@ -602,6 +602,7 @@ docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAnalytics202Response.md
 docs/GetAdAudience200Response.md
+docs/GetAdCampaignDetails200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
@@ -2743,6 +2744,7 @@ src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAnalytics202ResponseTests.cs
 src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
+src/Zernio.Test/Model/GetAdCampaignDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
@@ -4865,6 +4867,7 @@ src/Zernio/Model/GetAdAccountFinance200Response.cs
 src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
 src/Zernio/Model/GetAdAnalytics202Response.cs
 src/Zernio/Model/GetAdAudience200Response.cs
+src/Zernio/Model/GetAdCampaignDetails200Response.cs
 src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
 src/Zernio/Model/GetAdComments200ResponsePagination.cs
