@@ -52,7 +52,7 @@ namespace Example
             var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Earliest delivery date (YYYY-MM-DD). (optional) 
             var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Latest delivery date (YYYY-MM-DD). (optional) 
             var searchType = "KEYWORD_UNORDERED";  // string? | Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional)  (default to KEYWORD_UNORDERED)
-            var fields = "fields_example";  // string? | Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional) 
+            var fields = id,page_name,ad_delivery_start_time,ad_creative_bodies;  // string? | Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional) 
             var limit = 25;  // int? | Rows per page. LinkedIn accepts at most 25. (optional)  (default to 25)
             var after = "after_example";  // string? | paging.after of the previous page. (optional) 
 
@@ -111,7 +111,7 @@ catch (ApiException e)
 | **since** | **DateOnly?** | Earliest delivery date (YYYY-MM-DD). | [optional]  |
 | **until** | **DateOnly?** | Latest delivery date (YYYY-MM-DD). | [optional]  |
 | **searchType** | **string?** | Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). | [optional] [default to KEYWORD_UNORDERED] |
-| **fields** | **string?** | Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. | [optional]  |
+| **fields** | **string?** | Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional]  |
 | **limit** | **int?** | Rows per page. LinkedIn accepts at most 25. | [optional] [default to 25] |
 | **after** | **string?** | paging.after of the previous page. | [optional]  |
 

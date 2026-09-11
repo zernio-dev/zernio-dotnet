@@ -1767,7 +1767,7 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Meta ad set id (platformAdSetId).
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-            var fields = "fields_example";  // string? | Comma-separated Graph field override (supports nested {} projections). (optional) 
+            var fields = id,status,ads.limit(100){id,name,status,issues_info};  // string? | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional) 
 
             try
             {
@@ -1812,7 +1812,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adSetId** | **string** | Meta ad set id (platformAdSetId). |  |
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
-| **fields** | **string?** | Comma-separated Graph field override (supports nested {} projections). | [optional]  |
+| **fields** | **string?** | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional]  |
 
 ### Return type
 

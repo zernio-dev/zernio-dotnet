@@ -49,7 +49,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <returns>SearchAdLibrary200Response</returns>
@@ -76,7 +76,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of SearchAdLibrary200Response</returns>
@@ -111,7 +111,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -139,7 +139,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -376,7 +376,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <returns>SearchAdLibrary200Response</returns>
@@ -404,7 +404,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of SearchAdLibrary200Response</returns>
@@ -532,7 +532,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -561,7 +561,7 @@ namespace Zernio.Api
         /// <param name="since">Earliest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="until">Latest delivery date (YYYY-MM-DD). (optional)</param>
         /// <param name="searchType">Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)</param>
-        /// <param name="fields">Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)</param>
+        /// <param name="fields">Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page. LinkedIn accepts at most 25. (optional, default to 25)</param>
         /// <param name="after">paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

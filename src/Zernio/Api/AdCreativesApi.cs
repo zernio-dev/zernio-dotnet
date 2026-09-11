@@ -127,7 +127,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>GetAdCreative200Response</returns>
         GetAdCreative200Response GetAdCreative(string creativeId, string accountId, string? fields = default);
 
@@ -140,7 +140,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>ApiResponse of GetAdCreative200Response</returns>
         ApiResponse<GetAdCreative200Response> GetAdCreativeWithHttpInfo(string creativeId, string accountId, string? fields = default);
         /// <summary>
@@ -242,7 +242,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdCreatives200Response</returns>
@@ -257,7 +257,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdCreatives200Response</returns>
@@ -271,7 +271,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdImages200Response</returns>
@@ -286,7 +286,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdImages200Response</returns>
@@ -300,7 +300,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdVideos200Response</returns>
@@ -315,7 +315,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdVideos200Response</returns>
@@ -572,7 +572,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdCreative200Response</returns>
         System.Threading.Tasks.Task<GetAdCreative200Response> GetAdCreativeAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
@@ -586,7 +586,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdCreative200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdCreative200Response>> GetAdCreativeWithHttpInfoAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
@@ -697,7 +697,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -713,7 +713,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -728,7 +728,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -744,7 +744,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -759,7 +759,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -775,7 +775,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1702,7 +1702,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>GetAdCreative200Response</returns>
         public GetAdCreative200Response GetAdCreative(string creativeId, string accountId, string? fields = default)
         {
@@ -1716,7 +1716,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>ApiResponse of GetAdCreative200Response</returns>
         public Zernio.Client.ApiResponse<GetAdCreative200Response> GetAdCreativeWithHttpInfo(string creativeId, string accountId, string? fields = default)
         {
@@ -1776,7 +1776,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdCreative200Response</returns>
         public async System.Threading.Tasks.Task<GetAdCreative200Response> GetAdCreativeAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1791,7 +1791,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="creativeId">Platform creative id</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdCreative200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdCreative200Response>> GetAdCreativeWithHttpInfoAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2403,7 +2403,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdCreatives200Response</returns>
@@ -2419,7 +2419,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdCreatives200Response</returns>
@@ -2489,7 +2489,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2506,7 +2506,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2580,7 +2580,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdImages200Response</returns>
@@ -2596,7 +2596,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdImages200Response</returns>
@@ -2666,7 +2666,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2683,7 +2683,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2757,7 +2757,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdVideos200Response</returns>
@@ -2773,7 +2773,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdVideos200Response</returns>
@@ -2843,7 +2843,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2860,7 +2860,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

@@ -31089,12 +31089,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers, so a nested edge can be paged explicitly: without\
+          \ a .limit() modifier the expansion runs at the Meta default page size and\
+          \ the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "id,status,ads.limit(100){id,name,status,issues_info}"
           type: string
         style: form
       responses:
@@ -34180,12 +34184,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers, so a nested edge can be paged explicitly: without\
+          \ a .limit() modifier the expansion runs at the Meta default page size and\
+          \ the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "id,name,type,cells{id,name,treatment_percentage}"
           type: string
         style: form
       - description: Rows per page
@@ -34706,12 +34714,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers, so a nested edge can be paged explicitly: without\
+          \ a .limit() modifier the expansion runs at the Meta default page size and\
+          \ the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "id,name,status,object_story_spec{page_id,link_data{link,message}}"
           type: string
         style: form
       - description: Rows per page
@@ -34898,12 +34910,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers, so a nested edge can be paged explicitly: without\
+          \ a .limit() modifier the expansion runs at the Meta default page size and\
+          \ the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "id,name,status,object_story_spec{page_id,link_data{link,message}}"
           type: string
         style: form
       responses:
@@ -37639,12 +37655,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers, so a nested edge can be paged explicitly: without\
+          \ a .limit() modifier the expansion runs at the Meta default page size and\
+          \ the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "hash,url,name,width,height,status"
           type: string
         style: form
       - description: Rows per page
@@ -37770,12 +37790,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph field override (supports nested {} projections)."
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers, so a nested edge can be paged explicitly: without\
+          \ a .limit() modifier the expansion runs at the Meta default page size and\
+          \ the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "id,title,status,thumbnails,length"
           type: string
         style: form
       - description: Rows per page
@@ -38349,13 +38373,16 @@ paths:
           - KEYWORD_EXACT_PHRASE
           type: string
         style: form
-      - description: "Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution\
-          \ for political ads."
+      - description: "Meta only. Comma-separated Graph field override. Supports nested\
+          \ {} projections and Graph field modifiers, so a nested edge can be paged\
+          \ explicitly: without a .limit() modifier the expansion runs at the Meta\
+          \ default page size and the tail is dropped silently."
         explode: true
         in: query
         name: fields
         required: false
         schema:
+          example: "id,page_name,ad_delivery_start_time,ad_creative_bodies"
           type: string
         style: form
       - description: Rows per page. LinkedIn accepts at most 25.

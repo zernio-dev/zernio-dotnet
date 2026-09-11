@@ -401,7 +401,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>GetAdSetDetails200Response</returns>
         GetAdSetDetails200Response GetAdSetDetails(string adSetId, string accountId, string? fields = default);
 
@@ -414,7 +414,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>ApiResponse of GetAdSetDetails200Response</returns>
         ApiResponse<GetAdSetDetails200Response> GetAdSetDetailsWithHttpInfo(string adSetId, string accountId, string? fields = default);
         /// <summary>
@@ -1637,7 +1637,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdSetDetails200Response</returns>
         System.Threading.Tasks.Task<GetAdSetDetails200Response> GetAdSetDetailsAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1651,7 +1651,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdSetDetails200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdSetDetails200Response>> GetAdSetDetailsWithHttpInfoAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
@@ -4970,7 +4970,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>GetAdSetDetails200Response</returns>
         public GetAdSetDetails200Response GetAdSetDetails(string adSetId, string accountId, string? fields = default)
         {
@@ -4984,7 +4984,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <returns>ApiResponse of GetAdSetDetails200Response</returns>
         public Zernio.Client.ApiResponse<GetAdSetDetails200Response> GetAdSetDetailsWithHttpInfo(string adSetId, string accountId, string? fields = default)
         {
@@ -5044,7 +5044,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdSetDetails200Response</returns>
         public async System.Threading.Tasks.Task<GetAdSetDetails200Response> GetAdSetDetailsAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5059,7 +5059,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="fields">Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdSetDetails200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdSetDetails200Response>> GetAdSetDetailsWithHttpInfoAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
