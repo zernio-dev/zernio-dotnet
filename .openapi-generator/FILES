@@ -1710,6 +1710,7 @@ docs/UpdateAdRequestTargetingDevicesInnerOneOf.md
 docs/UpdateAdRequestTargetingInterestsInner.md
 docs/UpdateAdRequestTargetingKeywordsInner.md
 docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md
+docs/UpdateAdRequestTargetingLocations.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
@@ -3816,6 +3817,7 @@ src/Zernio.Test/Model/UpdateAdRequestTargetingDevicesInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingInterestsInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingKeywordsInnerOneOfTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingKeywordsInnerTests.cs
+src/Zernio.Test/Model/UpdateAdRequestTargetingLocationsTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSet200ResponseTests.cs
@@ -5930,6 +5932,7 @@ src/Zernio/Model/UpdateAdRequestTargetingDevicesInnerOneOf.cs
 src/Zernio/Model/UpdateAdRequestTargetingInterestsInner.cs
 src/Zernio/Model/UpdateAdRequestTargetingKeywordsInner.cs
 src/Zernio/Model/UpdateAdRequestTargetingKeywordsInnerOneOf.cs
+src/Zernio/Model/UpdateAdRequestTargetingLocations.cs
 src/Zernio/Model/UpdateAdSet200Response.cs
 src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs

@@ -110,6 +110,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Locations'
+        /// </summary>
+        [Fact]
+        public void LocationsTest()
+        {
+            // TODO unit test for the property 'Locations'
+        }
+
+        /// <summary>
+        /// Test the property 'Languages'
+        /// </summary>
+        [Fact]
+        public void LanguagesTest()
+        {
+            // TODO unit test for the property 'Languages'
+        }
+
+        /// <summary>
         /// Test the property 'Interests'
         /// </summary>
         [Fact]

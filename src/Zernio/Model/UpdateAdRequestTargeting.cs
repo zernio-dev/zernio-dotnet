@@ -65,10 +65,12 @@ namespace Zernio.Model
         /// <param name="devices">Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }..</param>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
-        /// <param name="countries">countries.</param>
+        /// <param name="countries">ISO 3166-1 alpha-2 codes. On Google this is the FULL new country set for the campaign (same contract as &#x60;locations&#x60;); on LinkedIn it replaces the campaign&#39;s geo criteria..</param>
+        /// <param name="locations">locations.</param>
+        /// <param name="languages">Google only. The FULL new language set for the campaign, as Google language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;). An unknown code returns 400..</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
         /// <param name="advantageAudience">Meta only. Omit to preserve the existing setting on update. 0 &#x3D; disabled, 1 &#x3D; enabled..</param>
-        public UpdateAdRequestTargeting(List<UpdateAdRequestTargetingKeywordsInner> keywords = default, List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = default, List<UpdateAdRequestTargetingDevicesInner> devices = default, int ageMin = default, int ageMax = default, List<string> countries = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
+        public UpdateAdRequestTargeting(List<UpdateAdRequestTargetingKeywordsInner> keywords = default, List<UpdateAdRequestTargetingKeywordsInner> negativeKeywords = default, List<UpdateAdRequestTargetingDevicesInner> devices = default, int ageMin = default, int ageMax = default, List<string> countries = default, UpdateAdRequestTargetingLocations locations = default, List<string> languages = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
         {
             this.Keywords = keywords;
             this.NegativeKeywords = negativeKeywords;
@@ -76,6 +78,8 @@ namespace Zernio.Model
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
             this.Countries = countries;
+            this.Locations = locations;
+            this.Languages = languages;
             this.Interests = interests;
             this.AdvantageAudience = advantageAudience;
         }
@@ -114,10 +118,24 @@ namespace Zernio.Model
         public int AgeMax { get; set; }
 
         /// <summary>
-        /// Gets or Sets Countries
+        /// ISO 3166-1 alpha-2 codes. On Google this is the FULL new country set for the campaign (same contract as &#x60;locations&#x60;); on LinkedIn it replaces the campaign&#39;s geo criteria.
         /// </summary>
+        /// <value>ISO 3166-1 alpha-2 codes. On Google this is the FULL new country set for the campaign (same contract as &#x60;locations&#x60;); on LinkedIn it replaces the campaign&#39;s geo criteria.</value>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Locations
+        /// </summary>
+        [DataMember(Name = "locations", EmitDefaultValue = false)]
+        public UpdateAdRequestTargetingLocations Locations { get; set; }
+
+        /// <summary>
+        /// Google only. The FULL new language set for the campaign, as Google language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;). An unknown code returns 400.
+        /// </summary>
+        /// <value>Google only. The FULL new language set for the campaign, as Google language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;). An unknown code returns 400.</value>
+        [DataMember(Name = "languages", EmitDefaultValue = false)]
+        public List<string> Languages { get; set; }
 
         /// <summary>
         /// Interest objects from /v1/ads/interests. Each must include id and name.
@@ -140,6 +158,8 @@ namespace Zernio.Model
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("  Interests: ").Append(Interests).Append("\n");
             sb.Append("  AdvantageAudience: ").Append(AdvantageAudience).Append("\n");
             sb.Append("}\n");
