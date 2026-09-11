@@ -127,10 +127,10 @@ namespace Zernio.Model
         /// <param name="workPositions">Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments..</param>
         /// <param name="workEmployers">Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer..</param>
         /// <param name="workIndustries">Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments..</param>
-        /// <param name="industries">LinkedIn B2B only. Industry URN id fragments..</param>
-        /// <param name="companySizes">LinkedIn B2B only..</param>
-        /// <param name="seniorities">LinkedIn B2B only..</param>
-        /// <param name="jobFunctions">LinkedIn B2B only..</param>
+        /// <param name="industries">LinkedIn B2B only. Industry URN id fragments, or the full urn:li:industry:* URN from /v1/ads/targeting/search?dimension&#x3D;industry..</param>
+        /// <param name="companySizes">LinkedIn B2B only. Single-letter size codes (A to I), or the full urn:li:staffCountRange:* URN from /v1/ads/targeting/search?dimension&#x3D;companySize..</param>
+        /// <param name="seniorities">LinkedIn B2B only. Seniority URN id fragments, or the full urn:li:seniority:* URN from /v1/ads/targeting/search?dimension&#x3D;seniority..</param>
+        /// <param name="jobFunctions">LinkedIn B2B only. Function URN id fragments, or the full urn:li:function:* URN from /v1/ads/targeting/search?dimension&#x3D;jobFunction..</param>
         /// <param name="audienceInclude">Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400)..</param>
         /// <param name="audienceExclude">Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400)..</param>
         public TargetingSpec(List<string> userOs = default, List<string> userDevice = default, List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
@@ -281,30 +281,30 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestBehaviorsInner> WorkIndustries { get; set; }
 
         /// <summary>
-        /// LinkedIn B2B only. Industry URN id fragments.
+        /// LinkedIn B2B only. Industry URN id fragments, or the full urn:li:industry:* URN from /v1/ads/targeting/search?dimension&#x3D;industry.
         /// </summary>
-        /// <value>LinkedIn B2B only. Industry URN id fragments.</value>
+        /// <value>LinkedIn B2B only. Industry URN id fragments, or the full urn:li:industry:* URN from /v1/ads/targeting/search?dimension&#x3D;industry.</value>
         [DataMember(Name = "industries", EmitDefaultValue = false)]
         public List<string> Industries { get; set; }
 
         /// <summary>
-        /// LinkedIn B2B only.
+        /// LinkedIn B2B only. Single-letter size codes (A to I), or the full urn:li:staffCountRange:* URN from /v1/ads/targeting/search?dimension&#x3D;companySize.
         /// </summary>
-        /// <value>LinkedIn B2B only.</value>
+        /// <value>LinkedIn B2B only. Single-letter size codes (A to I), or the full urn:li:staffCountRange:* URN from /v1/ads/targeting/search?dimension&#x3D;companySize.</value>
         [DataMember(Name = "companySizes", EmitDefaultValue = false)]
         public List<string> CompanySizes { get; set; }
 
         /// <summary>
-        /// LinkedIn B2B only.
+        /// LinkedIn B2B only. Seniority URN id fragments, or the full urn:li:seniority:* URN from /v1/ads/targeting/search?dimension&#x3D;seniority.
         /// </summary>
-        /// <value>LinkedIn B2B only.</value>
+        /// <value>LinkedIn B2B only. Seniority URN id fragments, or the full urn:li:seniority:* URN from /v1/ads/targeting/search?dimension&#x3D;seniority.</value>
         [DataMember(Name = "seniorities", EmitDefaultValue = false)]
         public List<string> Seniorities { get; set; }
 
         /// <summary>
-        /// LinkedIn B2B only.
+        /// LinkedIn B2B only. Function URN id fragments, or the full urn:li:function:* URN from /v1/ads/targeting/search?dimension&#x3D;jobFunction.
         /// </summary>
-        /// <value>LinkedIn B2B only.</value>
+        /// <value>LinkedIn B2B only. Function URN id fragments, or the full urn:li:function:* URN from /v1/ads/targeting/search?dimension&#x3D;jobFunction.</value>
         [DataMember(Name = "jobFunctions", EmitDefaultValue = false)]
         public List<string> JobFunctions { get; set; }
 
