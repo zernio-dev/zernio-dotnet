@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **PlatformPostUrl** | **string** |  | [optional] 
 **IsExternal** | **bool** |  | [optional] 
+**IsAd** | **bool** | True when this post&#39;s metrics include paid delivery, so organic reporting should exclude it. Set for LinkedIn dark posts and for TikTok posts that one of your TikTok ads promotes (Spark / boosted). TikTok exposes no ad flag of its own, so a video created by an uploaded-asset (non-Spark) TikTok ad is posted to the profile with a fresh organic id and cannot be detected: those still report as false. | [optional] 
 **ProfileId** | **string** |  | [optional] 
 **ThumbnailUrl** | **string** |  | [optional] 
 **MediaType** | **string** |  | [optional] 

@@ -96,6 +96,7 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="platformPostUrl">platformPostUrl.</param>
         /// <param name="isExternal">isExternal.</param>
+        /// <param name="isAd">True when this post&#39;s metrics include paid delivery, so organic reporting should exclude it. Set for LinkedIn dark posts and for TikTok posts that one of your TikTok ads promotes (Spark / boosted). TikTok exposes no ad flag of its own, so a video created by an uploaded-asset (non-Spark) TikTok ad is posted to the profile with a fresh organic id and cannot be detected: those still report as false..</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
@@ -104,7 +105,7 @@ namespace Zernio.Model
         /// <param name="isAiGenerated">Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it..</param>
         /// <param name="isSharedToFeed">Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it..</param>
         /// <param name="mediaAudioType">Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it..</param>
-        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsListResponsePostsInnerMediaItemsInner> mediaItems = default, string mediaProductType = default, bool isAiGenerated = default, bool isSharedToFeed = default, string mediaAudioType = default)
+        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, bool isAd = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsListResponsePostsInnerMediaItemsInner> mediaItems = default, string mediaProductType = default, bool isAiGenerated = default, bool isSharedToFeed = default, string mediaAudioType = default)
         {
             this.Id = id;
             this.LatePostId = latePostId;
@@ -117,6 +118,7 @@ namespace Zernio.Model
             this.Platform = platform;
             this.PlatformPostUrl = platformPostUrl;
             this.IsExternal = isExternal;
+            this.IsAd = isAd;
             this.ProfileId = profileId;
             this.ThumbnailUrl = thumbnailUrl;
             this.MediaType = mediaType;
@@ -195,6 +197,13 @@ namespace Zernio.Model
         public bool IsExternal { get; set; }
 
         /// <summary>
+        /// True when this post&#39;s metrics include paid delivery, so organic reporting should exclude it. Set for LinkedIn dark posts and for TikTok posts that one of your TikTok ads promotes (Spark / boosted). TikTok exposes no ad flag of its own, so a video created by an uploaded-asset (non-Spark) TikTok ad is posted to the profile with a fresh organic id and cannot be detected: those still report as false.
+        /// </summary>
+        /// <value>True when this post&#39;s metrics include paid delivery, so organic reporting should exclude it. Set for LinkedIn dark posts and for TikTok posts that one of your TikTok ads promotes (Spark / boosted). TikTok exposes no ad flag of its own, so a video created by an uploaded-asset (non-Spark) TikTok ad is posted to the profile with a fresh organic id and cannot be detected: those still report as false.</value>
+        [DataMember(Name = "isAd", EmitDefaultValue = true)]
+        public bool IsAd { get; set; }
+
+        /// <summary>
         /// Gets or Sets ProfileId
         /// </summary>
         [DataMember(Name = "profileId", EmitDefaultValue = true)]
@@ -260,6 +269,7 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");
+            sb.Append("  IsAd: ").Append(IsAd).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  MediaType: ").Append(MediaType).Append("\n");
