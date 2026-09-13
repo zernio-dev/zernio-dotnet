@@ -452,6 +452,9 @@ docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.md
 docs/CreateWorkflow200Response.md
 docs/CreateWorkflow200ResponseWorkflow.md
 docs/CreateWorkflowRequest.md
+docs/CreateYoutubePlaylist201Response.md
+docs/CreateYoutubePlaylist201ResponsePlaylist.md
+docs/CreateYoutubePlaylistRequest.md
 docs/CrosspostDiscordMessage200Response.md
 docs/CtwaAdRequestBody.md
 docs/CtwaAdRequestBodyCitiesInner.md
@@ -2604,6 +2607,9 @@ src/Zernio.Test/Model/CreateWhatsAppTemplateRequestTests.cs
 src/Zernio.Test/Model/CreateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/CreateWorkflow200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/CreateWorkflowRequestTests.cs
+src/Zernio.Test/Model/CreateYoutubePlaylist201ResponsePlaylistTests.cs
+src/Zernio.Test/Model/CreateYoutubePlaylist201ResponseTests.cs
+src/Zernio.Test/Model/CreateYoutubePlaylistRequestTests.cs
 src/Zernio.Test/Model/CrosspostDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCitiesInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCreativesInnerTests.cs
@@ -4727,6 +4733,9 @@ src/Zernio/Model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUr
 src/Zernio/Model/CreateWorkflow200Response.cs
 src/Zernio/Model/CreateWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/CreateWorkflowRequest.cs
+src/Zernio/Model/CreateYoutubePlaylist201Response.cs
+src/Zernio/Model/CreateYoutubePlaylist201ResponsePlaylist.cs
+src/Zernio/Model/CreateYoutubePlaylistRequest.cs
 src/Zernio/Model/CrosspostDiscordMessage200Response.cs
 src/Zernio/Model/CtwaAdRequestBody.cs
 src/Zernio/Model/CtwaAdRequestBodyCitiesInner.cs

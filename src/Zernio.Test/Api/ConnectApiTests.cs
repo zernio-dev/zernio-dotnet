@@ -235,6 +235,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateYoutubePlaylist
+        /// </summary>
+        [Fact]
+        public void CreateYoutubePlaylistTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //CreateYoutubePlaylistRequest createYoutubePlaylistRequest = null;
+            //var response = instance.CreateYoutubePlaylist(accountId, createYoutubePlaylistRequest);
+            //Assert.IsType<CreateYoutubePlaylist201Response>(response);
+        }
+
+        /// <summary>
         /// Test GetConnectUrl
         /// </summary>
         [Fact]

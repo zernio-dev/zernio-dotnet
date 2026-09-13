@@ -353,6 +353,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreatePinterestBoard201Response</returns>
         ApiResponse<CreatePinterestBoard201Response> CreatePinterestBoardWithHttpInfo(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest);
         /// <summary>
+        /// Create YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <returns>CreateYoutubePlaylist201Response</returns>
+        CreateYoutubePlaylist201Response CreateYoutubePlaylist(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest);
+
+        /// <summary>
+        /// Create YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <returns>ApiResponse of CreateYoutubePlaylist201Response</returns>
+        ApiResponse<CreateYoutubePlaylist201Response> CreateYoutubePlaylistWithHttpInfo(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest);
+        /// <summary>
         /// Get OAuth connect URL
         /// </summary>
         /// <remarks>
@@ -1649,6 +1672,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreatePinterestBoard201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreatePinterestBoard201Response>> CreatePinterestBoardWithHttpInfoAsync(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateYoutubePlaylist201Response</returns>
+        System.Threading.Tasks.Task<CreateYoutubePlaylist201Response> CreateYoutubePlaylistAsync(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateYoutubePlaylist201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateYoutubePlaylist201Response>> CreateYoutubePlaylistWithHttpInfoAsync(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get OAuth connect URL
         /// </summary>
@@ -4840,6 +4888,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreatePinterestBoard", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create YouTube playlist Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <returns>CreateYoutubePlaylist201Response</returns>
+        public CreateYoutubePlaylist201Response CreateYoutubePlaylist(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest)
+        {
+            Zernio.Client.ApiResponse<CreateYoutubePlaylist201Response> localVarResponse = CreateYoutubePlaylistWithHttpInfo(accountId, createYoutubePlaylistRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create YouTube playlist Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <returns>ApiResponse of CreateYoutubePlaylist201Response</returns>
+        public Zernio.Client.ApiResponse<CreateYoutubePlaylist201Response> CreateYoutubePlaylistWithHttpInfo(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->CreateYoutubePlaylist");
+
+            // verify the required parameter 'createYoutubePlaylistRequest' is set
+            if (createYoutubePlaylistRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createYoutubePlaylistRequest' when calling ConnectApi->CreateYoutubePlaylist");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createYoutubePlaylistRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateYoutubePlaylist201Response>("/v1/accounts/{accountId}/youtube-playlists", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateYoutubePlaylist", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create YouTube playlist Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateYoutubePlaylist201Response</returns>
+        public async System.Threading.Tasks.Task<CreateYoutubePlaylist201Response> CreateYoutubePlaylistAsync(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateYoutubePlaylist201Response> localVarResponse = await CreateYoutubePlaylistWithHttpInfoAsync(accountId, createYoutubePlaylistRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create YouTube playlist Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createYoutubePlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateYoutubePlaylist201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateYoutubePlaylist201Response>> CreateYoutubePlaylistWithHttpInfoAsync(string accountId, CreateYoutubePlaylistRequest createYoutubePlaylistRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->CreateYoutubePlaylist");
+
+            // verify the required parameter 'createYoutubePlaylistRequest' is set
+            if (createYoutubePlaylistRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createYoutubePlaylistRequest' when calling ConnectApi->CreateYoutubePlaylist");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createYoutubePlaylistRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateYoutubePlaylist201Response>("/v1/accounts/{accountId}/youtube-playlists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateYoutubePlaylist", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
