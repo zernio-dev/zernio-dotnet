@@ -110,10 +110,12 @@ namespace Zernio.Model
         /// <param name="videoCoverTimestampMs">Optional for video posts. Timestamp in milliseconds to select which frame to use as thumbnail (defaults to 1000ms/1 second). Ignored when videoCoverImageUrl is provided..</param>
         /// <param name="videoCoverImageUrl">Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). Any downloadable URL works: we rehost it ourselves. The image is stitched as a single frame at the start of the video to serve as the cover. Accounts connected through the TikTok for Business app hand it to TikTok as the cover instead, with no stitching, falling back to videoCoverTimestampMs without it. Overrides videoCoverTimestampMs when provided..</param>
         /// <param name="photoCoverIndex">Optional for photo carousels. Index of image to use as cover, 0-based (defaults to 0/first image)..</param>
-        /// <param name="autoAddMusic">When true, TikTok may add recommended music (photos only).</param>
+        /// <param name="autoAddMusic">When true, TikTok may add recommended music (photos only). With the brand-organic or branded-content toggle on, TikTok allows Commercial Music Library tracks only, so this attaches nothing there; use musicSoundInfo instead..</param>
+        /// <param name="musicSoundInfo">musicSoundInfo.</param>
+        /// <param name="videoOriginalSoundVolume">Volume of the video&#39;s own sound when a commercial track is attached (0 to 100). Requires musicSoundInfo. Video posts only..</param>
         /// <param name="videoMadeWithAi">Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app..</param>
         /// <param name="description">Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted..</param>
-        public TikTokPlatformData(bool draft = default, string privacyLevel = default, bool allowComment = default, bool allowDuet = default, bool allowStitch = default, CommercialContentTypeEnum? commercialContentType = default, bool brandPartnerPromote = default, bool isBrandOrganicPost = default, bool contentPreviewConfirmed = default, bool expressConsentGiven = default, MediaTypeEnum? mediaType = default, int videoCoverTimestampMs = default, string videoCoverImageUrl = default, int photoCoverIndex = default, bool autoAddMusic = default, bool videoMadeWithAi = default, string description = default)
+        public TikTokPlatformData(bool draft = default, string privacyLevel = default, bool allowComment = default, bool allowDuet = default, bool allowStitch = default, CommercialContentTypeEnum? commercialContentType = default, bool brandPartnerPromote = default, bool isBrandOrganicPost = default, bool contentPreviewConfirmed = default, bool expressConsentGiven = default, MediaTypeEnum? mediaType = default, int videoCoverTimestampMs = default, string videoCoverImageUrl = default, int photoCoverIndex = default, bool autoAddMusic = default, TikTokPlatformDataMusicSoundInfo musicSoundInfo = default, int videoOriginalSoundVolume = default, bool videoMadeWithAi = default, string description = default)
         {
             this.Draft = draft;
             this.PrivacyLevel = privacyLevel;
@@ -130,6 +132,8 @@ namespace Zernio.Model
             this.VideoCoverImageUrl = videoCoverImageUrl;
             this.PhotoCoverIndex = photoCoverIndex;
             this.AutoAddMusic = autoAddMusic;
+            this.MusicSoundInfo = musicSoundInfo;
+            this.VideoOriginalSoundVolume = videoOriginalSoundVolume;
             this.VideoMadeWithAi = videoMadeWithAi;
             this.Description = description;
         }
@@ -219,11 +223,24 @@ namespace Zernio.Model
         public int PhotoCoverIndex { get; set; }
 
         /// <summary>
-        /// When true, TikTok may add recommended music (photos only)
+        /// When true, TikTok may add recommended music (photos only). With the brand-organic or branded-content toggle on, TikTok allows Commercial Music Library tracks only, so this attaches nothing there; use musicSoundInfo instead.
         /// </summary>
-        /// <value>When true, TikTok may add recommended music (photos only)</value>
+        /// <value>When true, TikTok may add recommended music (photos only). With the brand-organic or branded-content toggle on, TikTok allows Commercial Music Library tracks only, so this attaches nothing there; use musicSoundInfo instead.</value>
         [DataMember(Name = "autoAddMusic", EmitDefaultValue = true)]
         public bool AutoAddMusic { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MusicSoundInfo
+        /// </summary>
+        [DataMember(Name = "musicSoundInfo", EmitDefaultValue = false)]
+        public TikTokPlatformDataMusicSoundInfo MusicSoundInfo { get; set; }
+
+        /// <summary>
+        /// Volume of the video&#39;s own sound when a commercial track is attached (0 to 100). Requires musicSoundInfo. Video posts only.
+        /// </summary>
+        /// <value>Volume of the video&#39;s own sound when a commercial track is attached (0 to 100). Requires musicSoundInfo. Video posts only.</value>
+        [DataMember(Name = "videoOriginalSoundVolume", EmitDefaultValue = false)]
+        public int VideoOriginalSoundVolume { get; set; }
 
         /// <summary>
         /// Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app.
@@ -262,6 +279,8 @@ namespace Zernio.Model
             sb.Append("  VideoCoverImageUrl: ").Append(VideoCoverImageUrl).Append("\n");
             sb.Append("  PhotoCoverIndex: ").Append(PhotoCoverIndex).Append("\n");
             sb.Append("  AutoAddMusic: ").Append(AutoAddMusic).Append("\n");
+            sb.Append("  MusicSoundInfo: ").Append(MusicSoundInfo).Append("\n");
+            sb.Append("  VideoOriginalSoundVolume: ").Append(VideoOriginalSoundVolume).Append("\n");
             sb.Append("  VideoMadeWithAi: ").Append(VideoMadeWithAi).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
@@ -294,6 +313,18 @@ namespace Zernio.Model
             if (this.PhotoCoverIndex < (int)0)
             {
                 yield return new ValidationResult("Invalid value for PhotoCoverIndex, must be a value greater than or equal to 0.", new [] { "PhotoCoverIndex" });
+            }
+
+            // VideoOriginalSoundVolume (int) maximum
+            if (this.VideoOriginalSoundVolume > (int)100)
+            {
+                yield return new ValidationResult("Invalid value for VideoOriginalSoundVolume, must be a value less than or equal to 100.", new [] { "VideoOriginalSoundVolume" });
+            }
+
+            // VideoOriginalSoundVolume (int) minimum
+            if (this.VideoOriginalSoundVolume < (int)0)
+            {
+                yield return new ValidationResult("Invalid value for VideoOriginalSoundVolume, must be a value greater than or equal to 0.", new [] { "VideoOriginalSoundVolume" });
             }
 
             // Description (string) maxLength

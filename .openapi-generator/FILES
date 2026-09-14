@@ -1235,6 +1235,9 @@ docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListTikTokAdPixels200Response.md
 docs/ListTikTokAdPixels200ResponsePixelsInner.md
 docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md
+docs/ListTikTokCommercialMusic200Response.md
+docs/ListTikTokCommercialMusic200ResponseTracksInner.md
+docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md
 docs/ListTrackingTagSharedAccounts200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
@@ -1661,6 +1664,7 @@ docs/ThreadsPlatformData.md
 docs/TikTokDryRunVerdict.md
 docs/TikTokDryRunVerdictTiktokInner.md
 docs/TikTokPlatformData.md
+docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
 docs/TrackingTagsApi.md
@@ -3376,6 +3380,9 @@ src/Zernio.Test/Model/ListSnapchatProfiles200ResponseTests.cs
 src/Zernio.Test/Model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInnerTests.cs
 src/Zernio.Test/Model/ListTikTokAdPixels200ResponsePixelsInnerTests.cs
 src/Zernio.Test/Model/ListTikTokAdPixels200ResponseTests.cs
+src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTests.cs
+src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTracksInnerClipTests.cs
+src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTracksInnerTests.cs
 src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
@@ -3786,6 +3793,7 @@ src/Zernio.Test/Model/TestWebhookRequestTests.cs
 src/Zernio.Test/Model/ThreadsPlatformDataTests.cs
 src/Zernio.Test/Model/TikTokDryRunVerdictTests.cs
 src/Zernio.Test/Model/TikTokDryRunVerdictTiktokInnerTests.cs
+src/Zernio.Test/Model/TikTokPlatformDataMusicSoundInfoTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
 src/Zernio.Test/Model/TrackingTagTests.cs
 src/Zernio.Test/Model/TransferVoiceCall200ResponseTests.cs
@@ -5503,6 +5511,9 @@ src/Zernio/Model/ListSnapchatProfiles200ResponsePublicProfilesInner.cs
 src/Zernio/Model/ListTikTokAdPixels200Response.cs
 src/Zernio/Model/ListTikTokAdPixels200ResponsePixelsInner.cs
 src/Zernio/Model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.cs
+src/Zernio/Model/ListTikTokCommercialMusic200Response.cs
+src/Zernio/Model/ListTikTokCommercialMusic200ResponseTracksInner.cs
+src/Zernio/Model/ListTikTokCommercialMusic200ResponseTracksInnerClip.cs
 src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
 src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
@@ -5914,6 +5925,7 @@ src/Zernio/Model/ThreadsPlatformData.cs
 src/Zernio/Model/TikTokDryRunVerdict.cs
 src/Zernio/Model/TikTokDryRunVerdictTiktokInner.cs
 src/Zernio/Model/TikTokPlatformData.cs
+src/Zernio/Model/TikTokPlatformDataMusicSoundInfo.cs
 src/Zernio/Model/TrackingTag.cs
 src/Zernio/Model/TransferVoiceCall200Response.cs
 src/Zernio/Model/TransferVoiceCallRequest.cs

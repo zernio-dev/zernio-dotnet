@@ -267,6 +267,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AccountsListResponse</returns>
         ApiResponse<AccountsListResponse> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
         /// <summary>
+        /// List trending commercial music
+        /// </summary>
+        /// <remarks>
+        /// Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <returns>ListTikTokCommercialMusic200Response</returns>
+        ListTikTokCommercialMusic200Response ListTikTokCommercialMusic(string accountId, string? countryCode = default);
+
+        /// <summary>
+        /// List trending commercial music
+        /// </summary>
+        /// <remarks>
+        /// Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <returns>ApiResponse of ListTikTokCommercialMusic200Response</returns>
+        ApiResponse<ListTikTokCommercialMusic200Response> ListTikTokCommercialMusicWithHttpInfo(string accountId, string? countryCode = default);
+        /// <summary>
         /// Move account to another profile
         /// </summary>
         /// <remarks>
@@ -625,6 +648,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountsListResponse>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List trending commercial music
+        /// </summary>
+        /// <remarks>
+        /// Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListTikTokCommercialMusic200Response</returns>
+        System.Threading.Tasks.Task<ListTikTokCommercialMusic200Response> ListTikTokCommercialMusicAsync(string accountId, string? countryCode = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List trending commercial music
+        /// </summary>
+        /// <remarks>
+        /// Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListTikTokCommercialMusic200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListTikTokCommercialMusic200Response>> ListTikTokCommercialMusicWithHttpInfoAsync(string accountId, string? countryCode = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Move account to another profile
         /// </summary>
@@ -2366,6 +2414,145 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List trending commercial music Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <returns>ListTikTokCommercialMusic200Response</returns>
+        public ListTikTokCommercialMusic200Response ListTikTokCommercialMusic(string accountId, string? countryCode = default)
+        {
+            Zernio.Client.ApiResponse<ListTikTokCommercialMusic200Response> localVarResponse = ListTikTokCommercialMusicWithHttpInfo(accountId, countryCode);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List trending commercial music Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <returns>ApiResponse of ListTikTokCommercialMusic200Response</returns>
+        public Zernio.Client.ApiResponse<ListTikTokCommercialMusic200Response> ListTikTokCommercialMusicWithHttpInfo(string accountId, string? countryCode = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->ListTikTokCommercialMusic");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (countryCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "countryCode", countryCode));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListTikTokCommercialMusic200Response>("/v1/accounts/{accountId}/tiktok/commercial-music", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListTikTokCommercialMusic", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List trending commercial music Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListTikTokCommercialMusic200Response</returns>
+        public async System.Threading.Tasks.Task<ListTikTokCommercialMusic200Response> ListTikTokCommercialMusicAsync(string accountId, string? countryCode = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListTikTokCommercialMusic200Response> localVarResponse = await ListTikTokCommercialMusicWithHttpInfoAsync(accountId, countryCode, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List trending commercial music Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="countryCode">Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListTikTokCommercialMusic200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListTikTokCommercialMusic200Response>> ListTikTokCommercialMusicWithHttpInfoAsync(string accountId, string? countryCode = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->ListTikTokCommercialMusic");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (countryCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "countryCode", countryCode));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListTikTokCommercialMusic200Response>("/v1/accounts/{accountId}/tiktok/commercial-music", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListTikTokCommercialMusic", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -191,6 +191,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MusicSoundInfo'
+        /// </summary>
+        [Fact]
+        public void MusicSoundInfoTest()
+        {
+            // TODO unit test for the property 'MusicSoundInfo'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoOriginalSoundVolume'
+        /// </summary>
+        [Fact]
+        public void VideoOriginalSoundVolumeTest()
+        {
+            // TODO unit test for the property 'VideoOriginalSoundVolume'
+        }
+
+        /// <summary>
         /// Test the property 'VideoMadeWithAi'
         /// </summary>
         [Fact]

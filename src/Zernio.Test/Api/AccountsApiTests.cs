@@ -189,6 +189,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListTikTokCommercialMusic
+        /// </summary>
+        [Fact]
+        public void ListTikTokCommercialMusicTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? countryCode = null;
+            //var response = instance.ListTikTokCommercialMusic(accountId, countryCode);
+            //Assert.IsType<ListTikTokCommercialMusic200Response>(response);
+        }
+
+        /// <summary>
         /// Test MoveAccountToProfile
         /// </summary>
         [Fact]

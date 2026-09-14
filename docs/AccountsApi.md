@@ -14,6 +14,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetSlackSettings**](AccountsApi.md#getslacksettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**GetTikTokCreatorInfo**](AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**ListAccounts**](AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts |
+| [**ListTikTokCommercialMusic**](AccountsApi.md#listtiktokcommercialmusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**MoveAccountToProfile**](AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**UpdateBlueskySettings**](AccountsApi.md#updateblueskysettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
@@ -1055,6 +1056,108 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listtiktokcommercialmusic"></a>
+# **ListTikTokCommercialMusic**
+> ListTikTokCommercialMusic200Response ListTikTokCommercialMusic (string accountId, string? countryCode = null)
+
+List trending commercial music
+
+Returns the 100 currently trending tracks of TikTok's Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTikTokCommercialMusicExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The TikTok account ID
+            var countryCode = "countryCode_example";  // string? | Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok's global chart. (optional) 
+
+            try
+            {
+                // List trending commercial music
+                ListTikTokCommercialMusic200Response result = apiInstance.ListTikTokCommercialMusic(accountId, countryCode);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.ListTikTokCommercialMusic: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTikTokCommercialMusicWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List trending commercial music
+    ApiResponse<ListTikTokCommercialMusic200Response> response = apiInstance.ListTikTokCommercialMusicWithHttpInfo(accountId, countryCode);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListTikTokCommercialMusicWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The TikTok account ID |  |
+| **countryCode** | **string?** | Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. | [optional]  |
+
+### Return type
+
+[**ListTikTokCommercialMusic200Response**](ListTikTokCommercialMusic200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The trending tracks, rank 1 first |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
