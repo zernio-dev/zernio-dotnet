@@ -155,6 +155,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PlatformError'
+        /// </summary>
+        [Fact]
+        public void PlatformErrorTest()
+        {
+            // TODO unit test for the property 'PlatformError'
+        }
+
+        /// <summary>
+        /// Test the property 'PrivateReplyConsumed'
+        /// </summary>
+        [Fact]
+        public void PrivateReplyConsumedTest()
+        {
+            // TODO unit test for the property 'PrivateReplyConsumed'
+        }
+
+        /// <summary>
         /// Test the property 'CommentReplyStatus'
         /// </summary>
         [Fact]

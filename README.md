@@ -1495,6 +1495,7 @@ Class | Method | HTTP request | Description
  - [Model.GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [Model.GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
  - [Model.GetCommentAutomation200ResponseLogsInner](docs/GetCommentAutomation200ResponseLogsInner.md)
+ - [Model.GetCommentAutomation200ResponseLogsInnerPlatformError](docs/GetCommentAutomation200ResponseLogsInnerPlatformError.md)
  - [Model.GetConnectUrl200Response](docs/GetConnectUrl200Response.md)
  - [Model.GetContact200Response](docs/GetContact200Response.md)
  - [Model.GetContact200ResponseChannelsInner](docs/GetContact200ResponseChannelsInner.md)

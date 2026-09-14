@@ -203,11 +203,13 @@ namespace Zernio.Model
         /// <param name="commenterIsFollower">Follow relationship at decision time. Absent when Instagram would not tell us (the commenter never messaged the account)..</param>
         /// <param name="commenterFollowerCount">commenterFollowerCount.</param>
         /// <param name="error">DM error message if status is failed.</param>
+        /// <param name="platformError">platformError.</param>
+        /// <param name="privateReplyConsumed">True when the failed send spent the comment&#39;s single Instagram private reply (subcode 1545133 or 2534023), the same rule as &#x60;details.privateReplyConsumed&#x60; on the private-reply endpoint. Absent on direct DMs, on Facebook, and on rows written before this field existed..</param>
         /// <param name="commentReplyStatus">Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case)..</param>
         /// <param name="commentReplyError">Public-reply error message if commentReplyStatus is failed.</param>
         /// <param name="nextDueAt">When the next queued send fires. Present only while something is still pending..</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetCommentAutomation200ResponseLogsInner(string id = default, string commentId = default, string commenterId = default, string commenterName = default, string commentText = default, SourceEnum? source = default, StatusEnum? status = default, AudienceOutcomeEnum? audienceOutcome = default, bool commenterIsFollower = default, int commenterFollowerCount = default, string error = default, CommentReplyStatusEnum? commentReplyStatus = default, string commentReplyError = default, DateTime nextDueAt = default, DateTime createdAt = default)
+        public GetCommentAutomation200ResponseLogsInner(string id = default, string commentId = default, string commenterId = default, string commenterName = default, string commentText = default, SourceEnum? source = default, StatusEnum? status = default, AudienceOutcomeEnum? audienceOutcome = default, bool commenterIsFollower = default, int commenterFollowerCount = default, string error = default, GetCommentAutomation200ResponseLogsInnerPlatformError platformError = default, bool privateReplyConsumed = default, CommentReplyStatusEnum? commentReplyStatus = default, string commentReplyError = default, DateTime nextDueAt = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.CommentId = commentId;
@@ -220,6 +222,8 @@ namespace Zernio.Model
             this.CommenterIsFollower = commenterIsFollower;
             this.CommenterFollowerCount = commenterFollowerCount;
             this.Error = error;
+            this.PlatformError = platformError;
+            this.PrivateReplyConsumed = privateReplyConsumed;
             this.CommentReplyStatus = commentReplyStatus;
             this.CommentReplyError = commentReplyError;
             this.NextDueAt = nextDueAt;
@@ -277,6 +281,19 @@ namespace Zernio.Model
         public string Error { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformError
+        /// </summary>
+        [DataMember(Name = "platformError", EmitDefaultValue = false)]
+        public GetCommentAutomation200ResponseLogsInnerPlatformError PlatformError { get; set; }
+
+        /// <summary>
+        /// True when the failed send spent the comment&#39;s single Instagram private reply (subcode 1545133 or 2534023), the same rule as &#x60;details.privateReplyConsumed&#x60; on the private-reply endpoint. Absent on direct DMs, on Facebook, and on rows written before this field existed.
+        /// </summary>
+        /// <value>True when the failed send spent the comment&#39;s single Instagram private reply (subcode 1545133 or 2534023), the same rule as &#x60;details.privateReplyConsumed&#x60; on the private-reply endpoint. Absent on direct DMs, on Facebook, and on rows written before this field existed.</value>
+        [DataMember(Name = "privateReplyConsumed", EmitDefaultValue = true)]
+        public bool PrivateReplyConsumed { get; set; }
+
+        /// <summary>
         /// Public-reply error message if commentReplyStatus is failed
         /// </summary>
         /// <value>Public-reply error message if commentReplyStatus is failed</value>
@@ -315,6 +332,8 @@ namespace Zernio.Model
             sb.Append("  CommenterIsFollower: ").Append(CommenterIsFollower).Append("\n");
             sb.Append("  CommenterFollowerCount: ").Append(CommenterFollowerCount).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  PlatformError: ").Append(PlatformError).Append("\n");
+            sb.Append("  PrivateReplyConsumed: ").Append(PrivateReplyConsumed).Append("\n");
             sb.Append("  CommentReplyStatus: ").Append(CommentReplyStatus).Append("\n");
             sb.Append("  CommentReplyError: ").Append(CommentReplyError).Append("\n");
             sb.Append("  NextDueAt: ").Append(NextDueAt).Append("\n");

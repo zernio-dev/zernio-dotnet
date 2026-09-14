@@ -656,6 +656,7 @@ docs/GetCampaignTargeting200ResponseLocationsInner.md
 docs/GetCommentAutomation200Response.md
 docs/GetCommentAutomation200ResponseAutomation.md
 docs/GetCommentAutomation200ResponseLogsInner.md
+docs/GetCommentAutomation200ResponseLogsInnerPlatformError.md
 docs/GetConnectUrl200Response.md
 docs/GetContact200Response.md
 docs/GetContact200ResponseChannelsInner.md
@@ -2799,6 +2800,7 @@ src/Zernio.Test/Model/GetCampaignTargeting200ResponseLanguagesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseAutomationTests.cs
+src/Zernio.Test/Model/GetCommentAutomation200ResponseLogsInnerPlatformErrorTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseTests.cs
 src/Zernio.Test/Model/GetConnectUrl200ResponseTests.cs
@@ -4927,6 +4929,7 @@ src/Zernio/Model/GetCampaignTargeting200ResponseLocationsInner.cs
 src/Zernio/Model/GetCommentAutomation200Response.cs
 src/Zernio/Model/GetCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/GetCommentAutomation200ResponseLogsInner.cs
+src/Zernio/Model/GetCommentAutomation200ResponseLogsInnerPlatformError.cs
 src/Zernio/Model/GetConnectUrl200Response.cs
 src/Zernio/Model/GetContact200Response.cs
 src/Zernio/Model/GetContact200ResponseChannelsInner.cs
