@@ -24,56 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// CreateInboxConversation404Response
     /// </summary>
+    [JsonConverter(typeof(CreateInboxConversation404ResponseJsonConverter))]
     [DataContract(Name = "createInboxConversation_404_response")]
-    public partial class CreateInboxConversation404Response : IValidatableObject
+    public partial class CreateInboxConversation404Response : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Defines Code
+        /// Initializes a new instance of the <see cref="CreateInboxConversation404Response" /> class
+        /// with the <see cref="CreateInboxConversation404ResponseAnyOf" /> class
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CodeEnum
+        /// <param name="actualInstance">An instance of CreateInboxConversation404ResponseAnyOf.</param>
+        public CreateInboxConversation404Response(CreateInboxConversation404ResponseAnyOf actualInstance)
         {
-            /// <summary>
-            /// Enum AccountNotFound for value: account_not_found
-            /// </summary>
-            [EnumMember(Value = "account_not_found")]
-            AccountNotFound = 1,
-
-            /// <summary>
-            /// Enum PARTICIPANTNOTFOUND for value: PARTICIPANT_NOT_FOUND
-            /// </summary>
-            [EnumMember(Value = "PARTICIPANT_NOT_FOUND")]
-            PARTICIPANTNOTFOUND = 2
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public CodeEnum? Code { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateInboxConversation404Response" /> class.
-        /// </summary>
-        /// <param name="error">error.</param>
-        /// <param name="code">code.</param>
-        public CreateInboxConversation404Response(string error = default, CodeEnum? code = default)
-        {
-            this.Error = error;
-            this.Code = code;
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Initializes a new instance of the <see cref="CreateInboxConversation404Response" /> class
+        /// with the <see cref="WhatsAppTemplateLookupError" /> class
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        /// <param name="actualInstance">An instance of WhatsAppTemplateLookupError.</param>
+        public CreateInboxConversation404Response(WhatsAppTemplateLookupError actualInstance)
+        {
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
+
+        /// <summary>
+        /// Gets or Sets ActualInstance
+        /// </summary>
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(CreateInboxConversation404ResponseAnyOf))
+                {
+                    _actualInstance = value;
+                }
+                else if (value.GetType() == typeof(WhatsAppTemplateLookupError))
+                {
+                    _actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CreateInboxConversation404ResponseAnyOf, WhatsAppTemplateLookupError");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CreateInboxConversation404ResponseAnyOf`. If the actual instance is not `CreateInboxConversation404ResponseAnyOf`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CreateInboxConversation404ResponseAnyOf</returns>
+        public CreateInboxConversation404ResponseAnyOf GetCreateInboxConversation404ResponseAnyOf()
+        {
+            return (CreateInboxConversation404ResponseAnyOf)ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `WhatsAppTemplateLookupError`. If the actual instance is not `WhatsAppTemplateLookupError`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of WhatsAppTemplateLookupError</returns>
+        public WhatsAppTemplateLookupError GetWhatsAppTemplateLookupError()
+        {
+            return (WhatsAppTemplateLookupError)ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -81,10 +114,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CreateInboxConversation404Response {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  ActualInstance: ").Append(ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,9 +125,51 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(ActualInstance, CreateInboxConversation404Response.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of CreateInboxConversation404Response
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CreateInboxConversation404Response</returns>
+        public static CreateInboxConversation404Response FromJson(string jsonString)
+        {
+            CreateInboxConversation404Response newCreateInboxConversation404Response = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCreateInboxConversation404Response;
+            }
+
+            try
+            {
+                newCreateInboxConversation404Response = new CreateInboxConversation404Response(JsonConvert.DeserializeObject<CreateInboxConversation404ResponseAnyOf>(jsonString, CreateInboxConversation404Response.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newCreateInboxConversation404Response;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreateInboxConversation404ResponseAnyOf: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                newCreateInboxConversation404Response = new CreateInboxConversation404Response(JsonConvert.DeserializeObject<WhatsAppTemplateLookupError>(jsonString, CreateInboxConversation404Response.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newCreateInboxConversation404Response;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into WhatsAppTemplateLookupError: {1}", jsonString, exception.ToString()));
+            }
+
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
 
         /// <summary>
@@ -103,9 +177,57 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CreateInboxConversation404Response
+    /// </summary>
+    public class CreateInboxConversation404ResponseJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CreateInboxConversation404Response).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return CreateInboxConversation404Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreateInboxConversation404Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

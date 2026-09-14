@@ -80,28 +80,34 @@ namespace Zernio.Model
             MISSINGPARTICIPANT = 2,
 
             /// <summary>
+            /// Enum INVALIDTEMPLATEHEADER for value: INVALID_TEMPLATE_HEADER
+            /// </summary>
+            [EnumMember(Value = "INVALID_TEMPLATE_HEADER")]
+            INVALIDTEMPLATEHEADER = 3,
+
+            /// <summary>
             /// Enum DIRECTSENDNOTELIGIBLE for value: DIRECT_SEND_NOT_ELIGIBLE
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_NOT_ELIGIBLE")]
-            DIRECTSENDNOTELIGIBLE = 3,
+            DIRECTSENDNOTELIGIBLE = 4,
 
             /// <summary>
             /// Enum DIRECTSENDLIMITED for value: DIRECT_SEND_LIMITED
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_LIMITED")]
-            DIRECTSENDLIMITED = 4,
+            DIRECTSENDLIMITED = 5,
 
             /// <summary>
             /// Enum DIRECTSENDBLOCKED for value: DIRECT_SEND_BLOCKED
             /// </summary>
             [EnumMember(Value = "DIRECT_SEND_BLOCKED")]
-            DIRECTSENDBLOCKED = 5,
+            DIRECTSENDBLOCKED = 6,
 
             /// <summary>
             /// Enum PlatformApiError for value: platform_api_error
             /// </summary>
             [EnumMember(Value = "platform_api_error")]
-            PlatformApiError = 6
+            PlatformApiError = 7
         }
 
 
@@ -117,7 +123,7 @@ namespace Zernio.Model
         /// <param name="error">error.</param>
         /// <param name="type">Present on Meta pass-through rejections: platform_error when Meta rejected the send (see platform/platformError below), invalid_request_error for validation failures..</param>
         /// <param name="code">Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED mean the WhatsApp Business Account needs Meta to grant or restore Direct Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its own; platform_api_error means Meta itself rejected the send (see platformError)..</param>
-        /// <param name="platform">Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook)..</param>
+        /// <param name="platform">Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook, whatsapp)..</param>
         /// <param name="platformError">platformError.</param>
         public SendInboxMessage400Response(string error = default, TypeEnum? type = default, CodeEnum? code = default, string platform = default, SendInboxMessage400ResponsePlatformError platformError = default)
         {
@@ -135,9 +141,9 @@ namespace Zernio.Model
         public string Error { get; set; }
 
         /// <summary>
-        /// Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook).
+        /// Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook, whatsapp).
         /// </summary>
-        /// <value>Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook).</value>
+        /// <value>Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook, whatsapp).</value>
         [DataMember(Name = "platform", EmitDefaultValue = false)]
         public string Platform { get; set; }
 

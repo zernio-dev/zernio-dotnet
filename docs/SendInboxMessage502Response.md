@@ -1,12 +1,13 @@
-# Zernio.Model.CreateInboxConversation400Response
+# Zernio.Model.SendInboxMessage502Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Error** | **string** |  | 
+**Type** | **string** | Error class for programmatic handling. | 
 **Code** | **string** |  | 
-**Type** | **string** |  | 
+**Param** | **string** | The request field that caused the error, when applicable. | [optional] 
 **Platform** | **string** |  | 
 **PlatformError** | [**WhatsAppTemplateLookupErrorPlatformError**](WhatsAppTemplateLookupErrorPlatformError.md) |  | [optional] 
 **Details** | [**WhatsAppTemplateLookupErrorDetails**](WhatsAppTemplateLookupErrorDetails.md) |  | 

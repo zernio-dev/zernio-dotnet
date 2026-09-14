@@ -29,18 +29,18 @@ using System.Reflection;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateInboxConversation429Response
+    /// SendInboxMessage502Response
     /// </summary>
-    [JsonConverter(typeof(CreateInboxConversation429ResponseJsonConverter))]
-    [DataContract(Name = "createInboxConversation_429_response")]
-    public partial class CreateInboxConversation429Response : AbstractOpenAPISchema, IValidatableObject
+    [JsonConverter(typeof(SendInboxMessage502ResponseJsonConverter))]
+    [DataContract(Name = "sendInboxMessage_502_response")]
+    public partial class SendInboxMessage502Response : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateInboxConversation429Response" /> class
-        /// with the <see cref="CreateInboxConversation429ResponseAnyOf" /> class
+        /// Initializes a new instance of the <see cref="SendInboxMessage502Response" /> class
+        /// with the <see cref="ErrorResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of CreateInboxConversation429ResponseAnyOf.</param>
-        public CreateInboxConversation429Response(CreateInboxConversation429ResponseAnyOf actualInstance)
+        /// <param name="actualInstance">An instance of ErrorResponse.</param>
+        public SendInboxMessage502Response(ErrorResponse actualInstance)
         {
             IsNullable = false;
             SchemaType= "anyOf";
@@ -48,11 +48,11 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateInboxConversation429Response" /> class
+        /// Initializes a new instance of the <see cref="SendInboxMessage502Response" /> class
         /// with the <see cref="WhatsAppTemplateLookupError" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of WhatsAppTemplateLookupError.</param>
-        public CreateInboxConversation429Response(WhatsAppTemplateLookupError actualInstance)
+        public SendInboxMessage502Response(WhatsAppTemplateLookupError actualInstance)
         {
             IsNullable = false;
             SchemaType= "anyOf";
@@ -73,7 +73,7 @@ namespace Zernio.Model
             }
             set
             {
-                if (value.GetType() == typeof(CreateInboxConversation429ResponseAnyOf))
+                if (value.GetType() == typeof(ErrorResponse))
                 {
                     _actualInstance = value;
                 }
@@ -83,19 +83,19 @@ namespace Zernio.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: CreateInboxConversation429ResponseAnyOf, WhatsAppTemplateLookupError");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ErrorResponse, WhatsAppTemplateLookupError");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `CreateInboxConversation429ResponseAnyOf`. If the actual instance is not `CreateInboxConversation429ResponseAnyOf`,
+        /// Get the actual instance of `ErrorResponse`. If the actual instance is not `ErrorResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of CreateInboxConversation429ResponseAnyOf</returns>
-        public CreateInboxConversation429ResponseAnyOf GetCreateInboxConversation429ResponseAnyOf()
+        /// <returns>An instance of ErrorResponse</returns>
+        public ErrorResponse GetErrorResponse()
         {
-            return (CreateInboxConversation429ResponseAnyOf)ActualInstance;
+            return (ErrorResponse)ActualInstance;
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreateInboxConversation429Response {\n");
+            sb.Append("class SendInboxMessage502Response {\n");
             sb.Append("  ActualInstance: ").Append(ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -127,40 +127,40 @@ namespace Zernio.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(ActualInstance, CreateInboxConversation429Response.SerializerSettings);
+            return JsonConvert.SerializeObject(ActualInstance, SendInboxMessage502Response.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of CreateInboxConversation429Response
+        /// Converts the JSON string into an instance of SendInboxMessage502Response
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of CreateInboxConversation429Response</returns>
-        public static CreateInboxConversation429Response FromJson(string jsonString)
+        /// <returns>An instance of SendInboxMessage502Response</returns>
+        public static SendInboxMessage502Response FromJson(string jsonString)
         {
-            CreateInboxConversation429Response newCreateInboxConversation429Response = null;
+            SendInboxMessage502Response newSendInboxMessage502Response = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newCreateInboxConversation429Response;
+                return newSendInboxMessage502Response;
             }
 
             try
             {
-                newCreateInboxConversation429Response = new CreateInboxConversation429Response(JsonConvert.DeserializeObject<CreateInboxConversation429ResponseAnyOf>(jsonString, CreateInboxConversation429Response.SerializerSettings));
+                newSendInboxMessage502Response = new SendInboxMessage502Response(JsonConvert.DeserializeObject<ErrorResponse>(jsonString, SendInboxMessage502Response.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newCreateInboxConversation429Response;
+                return newSendInboxMessage502Response;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreateInboxConversation429ResponseAnyOf: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ErrorResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
-                newCreateInboxConversation429Response = new CreateInboxConversation429Response(JsonConvert.DeserializeObject<WhatsAppTemplateLookupError>(jsonString, CreateInboxConversation429Response.SerializerSettings));
+                newSendInboxMessage502Response = new SendInboxMessage502Response(JsonConvert.DeserializeObject<WhatsAppTemplateLookupError>(jsonString, SendInboxMessage502Response.SerializerSettings));
                 // deserialization is considered successful at this point if no exception has been thrown.
-                return newCreateInboxConversation429Response;
+                return newSendInboxMessage502Response;
             }
             catch (Exception exception)
             {
@@ -184,9 +184,9 @@ namespace Zernio.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for CreateInboxConversation429Response
+    /// Custom JSON converter for SendInboxMessage502Response
     /// </summary>
-    public class CreateInboxConversation429ResponseJsonConverter : JsonConverter
+    public class SendInboxMessage502ResponseJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -196,7 +196,7 @@ namespace Zernio.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(CreateInboxConversation429Response).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(SendInboxMessage502Response).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -212,9 +212,9 @@ namespace Zernio.Model
             switch(reader.TokenType) 
             {
                 case JsonToken.StartObject:
-                    return CreateInboxConversation429Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                    return SendInboxMessage502Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
                 case JsonToken.StartArray:
-                    return CreateInboxConversation429Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                    return SendInboxMessage502Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
                 default:
                     return null;
             }

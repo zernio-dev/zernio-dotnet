@@ -28,53 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Instagram, Facebook, or WhatsApp. Meta&#39;s diagnostic fields for the rejected send or template lookup. WhatsApp lookup errors retain only code, message, and error_data.details. Absent when the failure did not come from Meta.
+    /// Safe provider headers retained from the lookup response.
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_400_response_platformError")]
-    public partial class SendInboxMessage400ResponsePlatformError : IValidatableObject
+    [DataContract(Name = "WhatsAppTemplateLookupError_details_providerHeaders")]
+    public partial class WhatsAppTemplateLookupErrorDetailsProviderHeaders : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessage400ResponsePlatformError" /> class.
+        /// Initializes a new instance of the <see cref="WhatsAppTemplateLookupErrorDetailsProviderHeaders" /> class.
         /// </summary>
-        /// <param name="code">Meta error code.</param>
-        /// <param name="subcode">Meta error_subcode.</param>
-        /// <param name="fbtraceId">Meta fbtrace_id, quote this in a Meta bug report.</param>
-        /// <param name="type">Meta error type (e.g. OAuthException).</param>
-        public SendInboxMessage400ResponsePlatformError(int code = default, int subcode = default, string fbtraceId = default, string type = default)
+        /// <param name="retryAfter">retryAfter.</param>
+        /// <param name="xAppUsage">xAppUsage.</param>
+        /// <param name="xBusinessUseCaseUsage">xBusinessUseCaseUsage.</param>
+        public WhatsAppTemplateLookupErrorDetailsProviderHeaders(string retryAfter = default, string xAppUsage = default, string xBusinessUseCaseUsage = default)
         {
-            this.Code = code;
-            this.Subcode = subcode;
-            this.FbtraceId = fbtraceId;
-            this.Type = type;
+            this.RetryAfter = retryAfter;
+            this.XAppUsage = xAppUsage;
+            this.XBusinessUseCaseUsage = xBusinessUseCaseUsage;
         }
 
         /// <summary>
-        /// Meta error code
+        /// Gets or Sets RetryAfter
         /// </summary>
-        /// <value>Meta error code</value>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public int Code { get; set; }
+        [DataMember(Name = "retry-after", EmitDefaultValue = false)]
+        public string RetryAfter { get; set; }
 
         /// <summary>
-        /// Meta error_subcode
+        /// Gets or Sets XAppUsage
         /// </summary>
-        /// <value>Meta error_subcode</value>
-        [DataMember(Name = "subcode", EmitDefaultValue = false)]
-        public int Subcode { get; set; }
+        [DataMember(Name = "x-app-usage", EmitDefaultValue = false)]
+        public string XAppUsage { get; set; }
 
         /// <summary>
-        /// Meta fbtrace_id, quote this in a Meta bug report
+        /// Gets or Sets XBusinessUseCaseUsage
         /// </summary>
-        /// <value>Meta fbtrace_id, quote this in a Meta bug report</value>
-        [DataMember(Name = "fbtraceId", EmitDefaultValue = false)]
-        public string FbtraceId { get; set; }
-
-        /// <summary>
-        /// Meta error type (e.g. OAuthException)
-        /// </summary>
-        /// <value>Meta error type (e.g. OAuthException)</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public string Type { get; set; }
+        [DataMember(Name = "x-business-use-case-usage", EmitDefaultValue = false)]
+        public string XBusinessUseCaseUsage { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,11 +71,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessage400ResponsePlatformError {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Subcode: ").Append(Subcode).Append("\n");
-            sb.Append("  FbtraceId: ").Append(FbtraceId).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class WhatsAppTemplateLookupErrorDetailsProviderHeaders {\n");
+            sb.Append("  RetryAfter: ").Append(RetryAfter).Append("\n");
+            sb.Append("  XAppUsage: ").Append(XAppUsage).Append("\n");
+            sb.Append("  XBusinessUseCaseUsage: ").Append(XBusinessUseCaseUsage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

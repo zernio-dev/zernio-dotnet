@@ -1,12 +1,12 @@
-# Zernio.Model.CreateInboxConversation400Response
+# Zernio.Model.WhatsAppTemplateLookupError
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Error** | **string** |  | 
-**Code** | **string** |  | 
 **Type** | **string** |  | 
+**Code** | **string** |  | 
 **Platform** | **string** |  | 
 **PlatformError** | [**WhatsAppTemplateLookupErrorPlatformError**](WhatsAppTemplateLookupErrorPlatformError.md) |  | [optional] 
 **Details** | [**WhatsAppTemplateLookupErrorDetails**](WhatsAppTemplateLookupErrorDetails.md) |  | 
