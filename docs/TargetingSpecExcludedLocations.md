@@ -6,6 +6,7 @@ Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded citi
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Countries** | **List&lt;string&gt;** |  | [optional] 
+**CountryGroups** | **List&lt;TargetingSpecExcludedLocations.CountryGroupsEnum&gt;** | Meta only. Continents and trade blocs to exclude (&#x60;excluded_geo_locations.country_groups&#x60;). | [optional] 
 **Regions** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.md) |  | [optional] 
 **Cities** | [**List&lt;TargetingSpecExcludedLocationsCitiesInner&gt;**](TargetingSpecExcludedLocationsCitiesInner.md) | Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities. | [optional] 
 **Zips** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.md) |  | [optional] 

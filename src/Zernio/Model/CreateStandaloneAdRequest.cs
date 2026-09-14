@@ -515,6 +515,133 @@ namespace Zernio.Model
         [DataMember(Name = "callToAction", EmitDefaultValue = false)]
         public CallToActionEnum? CallToAction { get; set; }
         /// <summary>
+        /// Defines CountryGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CountryGroupsEnum
+        {
+            /// <summary>
+            /// Enum Africa for value: africa
+            /// </summary>
+            [EnumMember(Value = "africa")]
+            Africa = 1,
+
+            /// <summary>
+            /// Enum Asia for value: asia
+            /// </summary>
+            [EnumMember(Value = "asia")]
+            Asia = 2,
+
+            /// <summary>
+            /// Enum Europe for value: europe
+            /// </summary>
+            [EnumMember(Value = "europe")]
+            Europe = 3,
+
+            /// <summary>
+            /// Enum NorthAmerica for value: north_america
+            /// </summary>
+            [EnumMember(Value = "north_america")]
+            NorthAmerica = 4,
+
+            /// <summary>
+            /// Enum SouthAmerica for value: south_america
+            /// </summary>
+            [EnumMember(Value = "south_america")]
+            SouthAmerica = 5,
+
+            /// <summary>
+            /// Enum Oceania for value: oceania
+            /// </summary>
+            [EnumMember(Value = "oceania")]
+            Oceania = 6,
+
+            /// <summary>
+            /// Enum CentralAmerica for value: central_america
+            /// </summary>
+            [EnumMember(Value = "central_america")]
+            CentralAmerica = 7,
+
+            /// <summary>
+            /// Enum Caribbean for value: caribbean
+            /// </summary>
+            [EnumMember(Value = "caribbean")]
+            Caribbean = 8,
+
+            /// <summary>
+            /// Enum Eea for value: eea
+            /// </summary>
+            [EnumMember(Value = "eea")]
+            Eea = 9,
+
+            /// <summary>
+            /// Enum EuroArea for value: euro_area
+            /// </summary>
+            [EnumMember(Value = "euro_area")]
+            EuroArea = 10,
+
+            /// <summary>
+            /// Enum Nafta for value: nafta
+            /// </summary>
+            [EnumMember(Value = "nafta")]
+            Nafta = 11,
+
+            /// <summary>
+            /// Enum Mercosur for value: mercosur
+            /// </summary>
+            [EnumMember(Value = "mercosur")]
+            Mercosur = 12,
+
+            /// <summary>
+            /// Enum Afta for value: afta
+            /// </summary>
+            [EnumMember(Value = "afta")]
+            Afta = 13,
+
+            /// <summary>
+            /// Enum Apec for value: apec
+            /// </summary>
+            [EnumMember(Value = "apec")]
+            Apec = 14,
+
+            /// <summary>
+            /// Enum Gcc for value: gcc
+            /// </summary>
+            [EnumMember(Value = "gcc")]
+            Gcc = 15,
+
+            /// <summary>
+            /// Enum Cisfta for value: cisfta
+            /// </summary>
+            [EnumMember(Value = "cisfta")]
+            Cisfta = 16,
+
+            /// <summary>
+            /// Enum EmergingMarkets for value: emerging_markets
+            /// </summary>
+            [EnumMember(Value = "emerging_markets")]
+            EmergingMarkets = 17,
+
+            /// <summary>
+            /// Enum ItunesAppStore for value: itunes_app_store
+            /// </summary>
+            [EnumMember(Value = "itunes_app_store")]
+            ItunesAppStore = 18,
+
+            /// <summary>
+            /// Enum AndroidFreeStore for value: android_free_store
+            /// </summary>
+            [EnumMember(Value = "android_free_store")]
+            AndroidFreeStore = 19,
+
+            /// <summary>
+            /// Enum AndroidPaidStore for value: android_paid_store
+            /// </summary>
+            [EnumMember(Value = "android_paid_store")]
+            AndroidPaidStore = 20
+        }
+
+        /// <summary>
         /// Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. 
         /// </summary>
         /// <value>Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. </value>
@@ -800,6 +927,7 @@ namespace Zernio.Model
         /// <param name="organizationId">LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad. Accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform..</param>
         /// <param name="targeting">Nested targeting object, the same TargetingSpec shape as &#x60;POST /v1/ads/boost&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences. Merged UNDER the flat inline targeting fields below: &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields (a flat field present on the body replaces the nested value entirely). Both forms are equivalent; use whichever your integration already builds. .</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn and OpenAI Ads currently honour country-level targeting only; any other targeting field returns 400 for OpenAI Ads.).</param>
+        /// <param name="countryGroups">Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. .</param>
         /// <param name="cities">City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;. .</param>
         /// <param name="regions">Region-level (state/province) geo targeting (Meta and TikTok). Each region is targeted by the platform&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. .</param>
         /// <param name="ageMin">ageMin.</param>
@@ -860,7 +988,7 @@ namespace Zernio.Model
         /// <param name="isSkadnetworkAttribution">Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign..</param>
         /// <param name="campaignAttribution">Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create..</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, AdTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, string billingEvent = default, BuyingTypeEnum? buyingType = BuyingTypeEnum.AUCTION, string rfPredictionId = default, Object promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default, bool validateOnly = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, List<string> bodies = default, List<string> headlines = default, List<string> descriptions = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, TargetingSpec targeting = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = default, string defaultLocale = default, List<CreateStandaloneAdRequestTranslationsInner> translations = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, GooglePmaxAssetGroupInput assetGroup = default, List<KeywordEntry> keywords = default, List<KeywordEntry> negativeKeywords = default, List<KeywordEntry> campaignNegativeKeywords = default, List<CreateStandaloneAdRequestAdditionalHeadlinesInner> additionalHeadlines = default, List<CreateStandaloneAdRequestAdditionalDescriptionsInner> additionalDescriptions = default, List<CreateStandaloneAdRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, string valueRuleSetId = default, bool valueRulesApplied = default, CreateStandaloneAdRequestPlatformSpecificData platformSpecificData = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, bool smartPlus = default, List<string> userOs = default, List<string> userDevice = default, bool isSkadnetworkAttribution = default, CampaignAttributionEnum? campaignAttribution = default, AdPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, AdTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, string billingEvent = default, BuyingTypeEnum? buyingType = BuyingTypeEnum.AUCTION, string rfPredictionId = default, Object promotion = default, Dictionary<string, InnerEnum> creativeFeatures = default, MultiAdvertiserEnum? multiAdvertiser = default, bool validateOnly = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, List<string> bodies = default, List<string> headlines = default, List<string> descriptions = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, TargetingSpec targeting = default, List<string> countries = default, List<CountryGroupsEnum> countryGroups = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, List<string> specialAdCategoryCountry = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = default, string defaultLocale = default, List<CreateStandaloneAdRequestTranslationsInner> translations = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, GooglePmaxAssetGroupInput assetGroup = default, List<KeywordEntry> keywords = default, List<KeywordEntry> negativeKeywords = default, List<KeywordEntry> campaignNegativeKeywords = default, List<CreateStandaloneAdRequestAdditionalHeadlinesInner> additionalHeadlines = default, List<CreateStandaloneAdRequestAdditionalDescriptionsInner> additionalDescriptions = default, List<CreateStandaloneAdRequestSitelinksInner> sitelinks = default, List<string> callouts = default, List<CreateStandaloneAdRequestStructuredSnippetsInner> structuredSnippets = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, string valueRuleSetId = default, bool valueRulesApplied = default, CreateStandaloneAdRequestPlatformSpecificData platformSpecificData = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, bool smartPlus = default, List<string> userOs = default, List<string> userDevice = default, bool isSkadnetworkAttribution = default, CampaignAttributionEnum? campaignAttribution = default, AdPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -921,6 +1049,7 @@ namespace Zernio.Model
             this.OrganizationId = organizationId;
             this.Targeting = targeting;
             this.Countries = countries;
+            this.CountryGroups = countryGroups;
             this.Cities = cities;
             this.Regions = regions;
             this.AgeMin = ageMin;
@@ -1231,6 +1360,13 @@ namespace Zernio.Model
         /// <value>ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn and OpenAI Ads currently honour country-level targeting only; any other targeting field returns 400 for OpenAI Ads.)</value>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
+
+        /// <summary>
+        /// Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. 
+        /// </summary>
+        /// <value>Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. </value>
+        [DataMember(Name = "countryGroups", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequest.CountryGroupsEnum> CountryGroups { get; set; }
 
         /// <summary>
         /// City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;. 
@@ -1654,6 +1790,7 @@ namespace Zernio.Model
             sb.Append("  OrganizationId: ").Append(OrganizationId).Append("\n");
             sb.Append("  Targeting: ").Append(Targeting).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  CountryGroups: ").Append(CountryGroups).Append("\n");
             sb.Append("  Cities: ").Append(Cities).Append("\n");
             sb.Append("  Regions: ").Append(Regions).Append("\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");

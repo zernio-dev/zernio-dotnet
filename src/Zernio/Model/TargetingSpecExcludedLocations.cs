@@ -34,18 +34,147 @@ namespace Zernio.Model
     public partial class TargetingSpecExcludedLocations : IValidatableObject
     {
         /// <summary>
+        /// Defines CountryGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CountryGroupsEnum
+        {
+            /// <summary>
+            /// Enum Africa for value: africa
+            /// </summary>
+            [EnumMember(Value = "africa")]
+            Africa = 1,
+
+            /// <summary>
+            /// Enum Asia for value: asia
+            /// </summary>
+            [EnumMember(Value = "asia")]
+            Asia = 2,
+
+            /// <summary>
+            /// Enum Europe for value: europe
+            /// </summary>
+            [EnumMember(Value = "europe")]
+            Europe = 3,
+
+            /// <summary>
+            /// Enum NorthAmerica for value: north_america
+            /// </summary>
+            [EnumMember(Value = "north_america")]
+            NorthAmerica = 4,
+
+            /// <summary>
+            /// Enum SouthAmerica for value: south_america
+            /// </summary>
+            [EnumMember(Value = "south_america")]
+            SouthAmerica = 5,
+
+            /// <summary>
+            /// Enum Oceania for value: oceania
+            /// </summary>
+            [EnumMember(Value = "oceania")]
+            Oceania = 6,
+
+            /// <summary>
+            /// Enum CentralAmerica for value: central_america
+            /// </summary>
+            [EnumMember(Value = "central_america")]
+            CentralAmerica = 7,
+
+            /// <summary>
+            /// Enum Caribbean for value: caribbean
+            /// </summary>
+            [EnumMember(Value = "caribbean")]
+            Caribbean = 8,
+
+            /// <summary>
+            /// Enum Eea for value: eea
+            /// </summary>
+            [EnumMember(Value = "eea")]
+            Eea = 9,
+
+            /// <summary>
+            /// Enum EuroArea for value: euro_area
+            /// </summary>
+            [EnumMember(Value = "euro_area")]
+            EuroArea = 10,
+
+            /// <summary>
+            /// Enum Nafta for value: nafta
+            /// </summary>
+            [EnumMember(Value = "nafta")]
+            Nafta = 11,
+
+            /// <summary>
+            /// Enum Mercosur for value: mercosur
+            /// </summary>
+            [EnumMember(Value = "mercosur")]
+            Mercosur = 12,
+
+            /// <summary>
+            /// Enum Afta for value: afta
+            /// </summary>
+            [EnumMember(Value = "afta")]
+            Afta = 13,
+
+            /// <summary>
+            /// Enum Apec for value: apec
+            /// </summary>
+            [EnumMember(Value = "apec")]
+            Apec = 14,
+
+            /// <summary>
+            /// Enum Gcc for value: gcc
+            /// </summary>
+            [EnumMember(Value = "gcc")]
+            Gcc = 15,
+
+            /// <summary>
+            /// Enum Cisfta for value: cisfta
+            /// </summary>
+            [EnumMember(Value = "cisfta")]
+            Cisfta = 16,
+
+            /// <summary>
+            /// Enum EmergingMarkets for value: emerging_markets
+            /// </summary>
+            [EnumMember(Value = "emerging_markets")]
+            EmergingMarkets = 17,
+
+            /// <summary>
+            /// Enum ItunesAppStore for value: itunes_app_store
+            /// </summary>
+            [EnumMember(Value = "itunes_app_store")]
+            ItunesAppStore = 18,
+
+            /// <summary>
+            /// Enum AndroidFreeStore for value: android_free_store
+            /// </summary>
+            [EnumMember(Value = "android_free_store")]
+            AndroidFreeStore = 19,
+
+            /// <summary>
+            /// Enum AndroidPaidStore for value: android_paid_store
+            /// </summary>
+            [EnumMember(Value = "android_paid_store")]
+            AndroidPaidStore = 20
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TargetingSpecExcludedLocations" /> class.
         /// </summary>
         /// <param name="countries">countries.</param>
+        /// <param name="countryGroups">Meta only. Continents and trade blocs to exclude (&#x60;excluded_geo_locations.country_groups&#x60;)..</param>
         /// <param name="regions">regions.</param>
         /// <param name="cities">Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities..</param>
         /// <param name="zips">zips.</param>
         /// <param name="places">Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
         /// <param name="neighborhoods">Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
         /// <param name="customLocations">Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape..</param>
-        public TargetingSpecExcludedLocations(List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecExcludedLocationsCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<TargetingSpecExcludedLocationsPlacesInner> places = default, List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods = default, List<TargetingSpecCustomLocationsInner> customLocations = default)
+        public TargetingSpecExcludedLocations(List<string> countries = default, List<CountryGroupsEnum> countryGroups = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecExcludedLocationsCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<TargetingSpecExcludedLocationsPlacesInner> places = default, List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods = default, List<TargetingSpecCustomLocationsInner> customLocations = default)
         {
             this.Countries = countries;
+            this.CountryGroups = countryGroups;
             this.Regions = regions;
             this.Cities = cities;
             this.Zips = zips;
@@ -59,6 +188,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
+
+        /// <summary>
+        /// Meta only. Continents and trade blocs to exclude (&#x60;excluded_geo_locations.country_groups&#x60;).
+        /// </summary>
+        /// <value>Meta only. Continents and trade blocs to exclude (&#x60;excluded_geo_locations.country_groups&#x60;).</value>
+        [DataMember(Name = "countryGroups", EmitDefaultValue = false)]
+        public List<TargetingSpecExcludedLocations.CountryGroupsEnum> CountryGroups { get; set; }
 
         /// <summary>
         /// Gets or Sets Regions
@@ -109,6 +245,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class TargetingSpecExcludedLocations {\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  CountryGroups: ").Append(CountryGroups).Append("\n");
             sb.Append("  Regions: ").Append(Regions).Append("\n");
             sb.Append("  Cities: ").Append(Cities).Append("\n");
             sb.Append("  Zips: ").Append(Zips).Append("\n");
