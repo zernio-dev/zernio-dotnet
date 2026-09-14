@@ -36,7 +36,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListTikTokCommercialMusic200ResponseTracksInner" /> class.
         /// </summary>
-        /// <param name="id">The commercial_music_id to send as musicSoundId.</param>
+        /// <param name="id">The id to send as musicSoundId (the full track&#39;s song clip id). TikTok rejects the commercial music id itself at publish time..</param>
+        /// <param name="commercialMusicId">TikTok&#39;s commercial_music_id, for reference only.</param>
         /// <param name="name">name.</param>
         /// <param name="artist">artist.</param>
         /// <param name="durationSec">durationSec.</param>
@@ -45,9 +46,10 @@ namespace Zernio.Model
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="rank">Position in the trending chart, 1 first.</param>
         /// <param name="clip">clip.</param>
-        public ListTikTokCommercialMusic200ResponseTracksInner(string id = default, string name = default, string artist = default, int durationSec = default, List<string> genres = default, string previewUrl = default, string thumbnailUrl = default, int rank = default, ListTikTokCommercialMusic200ResponseTracksInnerClip clip = default)
+        public ListTikTokCommercialMusic200ResponseTracksInner(string id = default, string commercialMusicId = default, string name = default, string artist = default, int durationSec = default, List<string> genres = default, string previewUrl = default, string thumbnailUrl = default, int rank = default, ListTikTokCommercialMusic200ResponseTracksInnerClip clip = default)
         {
             this.Id = id;
+            this.CommercialMusicId = commercialMusicId;
             this.Name = name;
             this.Artist = artist;
             this.DurationSec = durationSec;
@@ -59,11 +61,18 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The commercial_music_id to send as musicSoundId
+        /// The id to send as musicSoundId (the full track&#39;s song clip id). TikTok rejects the commercial music id itself at publish time.
         /// </summary>
-        /// <value>The commercial_music_id to send as musicSoundId</value>
+        /// <value>The id to send as musicSoundId (the full track&#39;s song clip id). TikTok rejects the commercial music id itself at publish time.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// TikTok&#39;s commercial_music_id, for reference only
+        /// </summary>
+        /// <value>TikTok&#39;s commercial_music_id, for reference only</value>
+        [DataMember(Name = "commercialMusicId", EmitDefaultValue = false)]
+        public string CommercialMusicId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -124,6 +133,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListTikTokCommercialMusic200ResponseTracksInner {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  CommercialMusicId: ").Append(CommercialMusicId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Artist: ").Append(Artist).Append("\n");
             sb.Append("  DurationSec: ").Append(DurationSec).Append("\n");

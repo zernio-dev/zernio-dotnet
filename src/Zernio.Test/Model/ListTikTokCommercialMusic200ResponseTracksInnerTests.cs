@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CommercialMusicId'
+        /// </summary>
+        [Fact]
+        public void CommercialMusicIdTest()
+        {
+            // TODO unit test for the property 'CommercialMusicId'
+        }
+
+        /// <summary>
         /// Test the property 'Name'
         /// </summary>
         [Fact]

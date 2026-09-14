@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// The trending excerpt of the track, when TikTok provides one
+    /// The trending excerpt of the track, when TikTok provides one. Its id is also accepted as musicSoundId.
     /// </summary>
     [DataContract(Name = "listTikTokCommercialMusic_200_response_tracks_inner_clip")]
     public partial class ListTikTokCommercialMusic200ResponseTracksInnerClip : IValidatableObject
@@ -36,13 +36,21 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListTikTokCommercialMusic200ResponseTracksInnerClip" /> class.
         /// </summary>
+        /// <param name="id">id.</param>
         /// <param name="durationSec">durationSec.</param>
         /// <param name="previewUrl">previewUrl.</param>
-        public ListTikTokCommercialMusic200ResponseTracksInnerClip(int durationSec = default, string previewUrl = default)
+        public ListTikTokCommercialMusic200ResponseTracksInnerClip(string id = default, int durationSec = default, string previewUrl = default)
         {
+            this.Id = id;
             this.DurationSec = durationSec;
             this.PreviewUrl = previewUrl;
         }
+
+        /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or Sets DurationSec
@@ -64,6 +72,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListTikTokCommercialMusic200ResponseTracksInnerClip {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  DurationSec: ").Append(DurationSec).Append("\n");
             sb.Append("  PreviewUrl: ").Append(PreviewUrl).Append("\n");
             sb.Append("}\n");

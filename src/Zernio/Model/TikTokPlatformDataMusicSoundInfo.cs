@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TikTokPlatformDataMusicSoundInfo" /> class.
         /// </summary>
-        /// <param name="musicSoundId">The commercial_music_id of the track. (required).</param>
+        /// <param name="musicSoundId">The id field of a track from GET /v1/accounts/{accountId}/tiktok/commercial-music (a song clip id). TikTok fails the publish with a generic 51065 when given the commercial music id instead. (required).</param>
         /// <param name="musicSoundVolume">Track volume. TikTok defaults an omitted volume to 0, which publishes the track silently, so we default to the app&#39;s 50. Video posts only. (default to 50).</param>
         /// <param name="musicSoundStart">Start point of the track in milliseconds (default 0). Video posts only..</param>
         /// <param name="musicSoundEnd">End point of the track in milliseconds (default: the video length). Must be greater than musicSoundStart. Video posts only..</param>
@@ -59,9 +59,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The commercial_music_id of the track.
+        /// The id field of a track from GET /v1/accounts/{accountId}/tiktok/commercial-music (a song clip id). TikTok fails the publish with a generic 51065 when given the commercial music id instead.
         /// </summary>
-        /// <value>The commercial_music_id of the track.</value>
+        /// <value>The id field of a track from GET /v1/accounts/{accountId}/tiktok/commercial-music (a song clip id). TikTok fails the publish with a generic 51065 when given the commercial music id instead.</value>
         [DataMember(Name = "musicSoundId", IsRequired = true, EmitDefaultValue = true)]
         public string MusicSoundId { get; set; }
 
