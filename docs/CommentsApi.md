@@ -696,7 +696,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CommentsApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
-            var platform = "facebook";  // string? | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only. (optional) 
+            var platform = "facebook";  // string? | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only. `tiktok` covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under `meta.accountsSkipped`. (optional) 
             var minComments = 56;  // int? | Minimum comment count (optional) 
             var since = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Posts created after this date (optional) 
             var sortBy = "date";  // string? | Sort field (optional)  (default to date)
@@ -747,7 +747,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
-| **platform** | **string?** | Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. | [optional]  |
+| **platform** | **string?** | Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. | [optional]  |
 | **minComments** | **int?** | Minimum comment count | [optional]  |
 | **since** | **DateTime?** | Posts created after this date | [optional]  |
 | **sortBy** | **string?** | Sort field | [optional] [default to date] |

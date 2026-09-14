@@ -190,7 +190,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -209,7 +209,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -604,7 +604,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -624,7 +624,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -2029,7 +2029,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -2049,7 +2049,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -2137,7 +2137,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
@@ -2158,7 +2158,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile ID (optional)</param>
-        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)</param>
+        /// <param name="platform">Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. (optional)</param>
         /// <param name="minComments">Minimum comment count (optional)</param>
         /// <param name="since">Posts created after this date (optional)</param>
         /// <param name="sortBy">Sort field (optional, default to date)</param>
