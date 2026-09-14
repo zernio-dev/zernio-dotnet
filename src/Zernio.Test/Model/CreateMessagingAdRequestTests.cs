@@ -272,6 +272,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CountryGroups'
+        /// </summary>
+        [Fact]
+        public void CountryGroupsTest()
+        {
+            // TODO unit test for the property 'CountryGroups'
+        }
+
+        /// <summary>
         /// Test the property 'CustomLocations'
         /// </summary>
         [Fact]

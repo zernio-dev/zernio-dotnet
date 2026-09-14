@@ -80,6 +80,133 @@ namespace Zernio.Model
         [DataMember(Name = "budgetType", EmitDefaultValue = false)]
         public BudgetTypeEnum? BudgetType { get; set; }
         /// <summary>
+        /// Defines CountryGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CountryGroupsEnum
+        {
+            /// <summary>
+            /// Enum Africa for value: africa
+            /// </summary>
+            [EnumMember(Value = "africa")]
+            Africa = 1,
+
+            /// <summary>
+            /// Enum Asia for value: asia
+            /// </summary>
+            [EnumMember(Value = "asia")]
+            Asia = 2,
+
+            /// <summary>
+            /// Enum Europe for value: europe
+            /// </summary>
+            [EnumMember(Value = "europe")]
+            Europe = 3,
+
+            /// <summary>
+            /// Enum NorthAmerica for value: north_america
+            /// </summary>
+            [EnumMember(Value = "north_america")]
+            NorthAmerica = 4,
+
+            /// <summary>
+            /// Enum SouthAmerica for value: south_america
+            /// </summary>
+            [EnumMember(Value = "south_america")]
+            SouthAmerica = 5,
+
+            /// <summary>
+            /// Enum Oceania for value: oceania
+            /// </summary>
+            [EnumMember(Value = "oceania")]
+            Oceania = 6,
+
+            /// <summary>
+            /// Enum CentralAmerica for value: central_america
+            /// </summary>
+            [EnumMember(Value = "central_america")]
+            CentralAmerica = 7,
+
+            /// <summary>
+            /// Enum Caribbean for value: caribbean
+            /// </summary>
+            [EnumMember(Value = "caribbean")]
+            Caribbean = 8,
+
+            /// <summary>
+            /// Enum Eea for value: eea
+            /// </summary>
+            [EnumMember(Value = "eea")]
+            Eea = 9,
+
+            /// <summary>
+            /// Enum EuroArea for value: euro_area
+            /// </summary>
+            [EnumMember(Value = "euro_area")]
+            EuroArea = 10,
+
+            /// <summary>
+            /// Enum Nafta for value: nafta
+            /// </summary>
+            [EnumMember(Value = "nafta")]
+            Nafta = 11,
+
+            /// <summary>
+            /// Enum Mercosur for value: mercosur
+            /// </summary>
+            [EnumMember(Value = "mercosur")]
+            Mercosur = 12,
+
+            /// <summary>
+            /// Enum Afta for value: afta
+            /// </summary>
+            [EnumMember(Value = "afta")]
+            Afta = 13,
+
+            /// <summary>
+            /// Enum Apec for value: apec
+            /// </summary>
+            [EnumMember(Value = "apec")]
+            Apec = 14,
+
+            /// <summary>
+            /// Enum Gcc for value: gcc
+            /// </summary>
+            [EnumMember(Value = "gcc")]
+            Gcc = 15,
+
+            /// <summary>
+            /// Enum Cisfta for value: cisfta
+            /// </summary>
+            [EnumMember(Value = "cisfta")]
+            Cisfta = 16,
+
+            /// <summary>
+            /// Enum EmergingMarkets for value: emerging_markets
+            /// </summary>
+            [EnumMember(Value = "emerging_markets")]
+            EmergingMarkets = 17,
+
+            /// <summary>
+            /// Enum ItunesAppStore for value: itunes_app_store
+            /// </summary>
+            [EnumMember(Value = "itunes_app_store")]
+            ItunesAppStore = 18,
+
+            /// <summary>
+            /// Enum AndroidFreeStore for value: android_free_store
+            /// </summary>
+            [EnumMember(Value = "android_free_store")]
+            AndroidFreeStore = 19,
+
+            /// <summary>
+            /// Enum AndroidPaidStore for value: android_paid_store
+            /// </summary>
+            [EnumMember(Value = "android_paid_store")]
+            AndroidPaidStore = 20
+        }
+
+        /// <summary>
         /// Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). 
         /// </summary>
         /// <value>Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). </value>
@@ -261,6 +388,7 @@ namespace Zernio.Model
         /// <param name="regions">Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region). .</param>
         /// <param name="zips">ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search. .</param>
         /// <param name="metros">DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;). .</param>
+        /// <param name="countryGroups">Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. .</param>
         /// <param name="customLocations">Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. .</param>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
@@ -278,7 +406,7 @@ namespace Zernio.Model
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         /// <param name="regionalRegulatedCategories">Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. BRAZIL_REGULATION, SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV). Forwarded to the ad set..</param>
         /// <param name="regionalRegulationIdentities">Meta only. Beneficiary/payer entity IDs required alongside regionalRegulatedCategories. Values are numeric IDs from the advertiser&#39;s Meta verification/authorization setup. Keys depend on the declared category: BRAZIL_REGULATION and THAILAND_UNIVERSAL use universal_beneficiary / universal_payer; SINGAPORE_UNIVERSAL uses singapore_universal_beneficiary / singapore_universal_payer; TAIWAN_UNIVERSAL uses taiwan_universal_beneficiary / taiwan_universal_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary / taiwan_finserv_payer; AUSTRALIA_FINSERV uses australia_finserv_beneficiary / australia_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer. Both beneficiary and payer must be included. If omitted and the advertiser has set defaults in Meta Ads Manager advertising settings, Meta auto-fills them. .</param>
-        public CtwaAdRequestBody(Dictionary<string, InnerEnum> creativeFeatures = default, AdTracking tracking = default, string accountId = default, string adAccountId = default, string name = default, string existingPostId = default, string objectStoryId = default, string whatsappPhoneNumber = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default)
+        public CtwaAdRequestBody(Dictionary<string, InnerEnum> creativeFeatures = default, AdTracking tracking = default, string accountId = default, string adAccountId = default, string name = default, string existingPostId = default, string objectStoryId = default, string whatsappPhoneNumber = default, string headline = default, string body = default, string imageUrl = default, CtwaAdRequestBodyVideo video = default, CtwaAdRequestBodyWelcomeMessage welcomeMessage = default, List<CtwaAdRequestBodyCreativesInner> creatives = default, string adSetId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CtwaAdRequestBodyCitiesInner> cities = default, List<CtwaAdRequestBodyRegionsInner> regions = default, List<CtwaAdRequestBodyZipsInner> zips = default, List<CtwaAdRequestBodyZipsInner> metros = default, List<CountryGroupsEnum> countryGroups = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CtwaAdRequestBodyPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, List<string> regionalRegulatedCategories = default, Dictionary<string, int> regionalRegulationIdentities = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -319,6 +447,7 @@ namespace Zernio.Model
             this.Regions = regions;
             this.Zips = zips;
             this.Metros = metros;
+            this.CountryGroups = countryGroups;
             this.CustomLocations = customLocations;
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
@@ -500,6 +629,13 @@ namespace Zernio.Model
         public List<CtwaAdRequestBodyZipsInner> Metros { get; set; }
 
         /// <summary>
+        /// Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. 
+        /// </summary>
+        /// <value>Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. </value>
+        [DataMember(Name = "countryGroups", EmitDefaultValue = false)]
+        public List<CtwaAdRequestBody.CountryGroupsEnum> CountryGroups { get; set; }
+
+        /// <summary>
         /// Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. 
         /// </summary>
         /// <value>Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. </value>
@@ -611,6 +747,7 @@ namespace Zernio.Model
             sb.Append("  Regions: ").Append(Regions).Append("\n");
             sb.Append("  Zips: ").Append(Zips).Append("\n");
             sb.Append("  Metros: ").Append(Metros).Append("\n");
+            sb.Append("  CountryGroups: ").Append(CountryGroups).Append("\n");
             sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");

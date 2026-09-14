@@ -34,6 +34,133 @@ namespace Zernio.Model
     public partial class TargetingSpec : IValidatableObject
     {
         /// <summary>
+        /// Defines CountryGroups
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CountryGroupsEnum
+        {
+            /// <summary>
+            /// Enum Africa for value: africa
+            /// </summary>
+            [EnumMember(Value = "africa")]
+            Africa = 1,
+
+            /// <summary>
+            /// Enum Asia for value: asia
+            /// </summary>
+            [EnumMember(Value = "asia")]
+            Asia = 2,
+
+            /// <summary>
+            /// Enum Europe for value: europe
+            /// </summary>
+            [EnumMember(Value = "europe")]
+            Europe = 3,
+
+            /// <summary>
+            /// Enum NorthAmerica for value: north_america
+            /// </summary>
+            [EnumMember(Value = "north_america")]
+            NorthAmerica = 4,
+
+            /// <summary>
+            /// Enum SouthAmerica for value: south_america
+            /// </summary>
+            [EnumMember(Value = "south_america")]
+            SouthAmerica = 5,
+
+            /// <summary>
+            /// Enum Oceania for value: oceania
+            /// </summary>
+            [EnumMember(Value = "oceania")]
+            Oceania = 6,
+
+            /// <summary>
+            /// Enum CentralAmerica for value: central_america
+            /// </summary>
+            [EnumMember(Value = "central_america")]
+            CentralAmerica = 7,
+
+            /// <summary>
+            /// Enum Caribbean for value: caribbean
+            /// </summary>
+            [EnumMember(Value = "caribbean")]
+            Caribbean = 8,
+
+            /// <summary>
+            /// Enum Eea for value: eea
+            /// </summary>
+            [EnumMember(Value = "eea")]
+            Eea = 9,
+
+            /// <summary>
+            /// Enum EuroArea for value: euro_area
+            /// </summary>
+            [EnumMember(Value = "euro_area")]
+            EuroArea = 10,
+
+            /// <summary>
+            /// Enum Nafta for value: nafta
+            /// </summary>
+            [EnumMember(Value = "nafta")]
+            Nafta = 11,
+
+            /// <summary>
+            /// Enum Mercosur for value: mercosur
+            /// </summary>
+            [EnumMember(Value = "mercosur")]
+            Mercosur = 12,
+
+            /// <summary>
+            /// Enum Afta for value: afta
+            /// </summary>
+            [EnumMember(Value = "afta")]
+            Afta = 13,
+
+            /// <summary>
+            /// Enum Apec for value: apec
+            /// </summary>
+            [EnumMember(Value = "apec")]
+            Apec = 14,
+
+            /// <summary>
+            /// Enum Gcc for value: gcc
+            /// </summary>
+            [EnumMember(Value = "gcc")]
+            Gcc = 15,
+
+            /// <summary>
+            /// Enum Cisfta for value: cisfta
+            /// </summary>
+            [EnumMember(Value = "cisfta")]
+            Cisfta = 16,
+
+            /// <summary>
+            /// Enum EmergingMarkets for value: emerging_markets
+            /// </summary>
+            [EnumMember(Value = "emerging_markets")]
+            EmergingMarkets = 17,
+
+            /// <summary>
+            /// Enum ItunesAppStore for value: itunes_app_store
+            /// </summary>
+            [EnumMember(Value = "itunes_app_store")]
+            ItunesAppStore = 18,
+
+            /// <summary>
+            /// Enum AndroidFreeStore for value: android_free_store
+            /// </summary>
+            [EnumMember(Value = "android_free_store")]
+            AndroidFreeStore = 19,
+
+            /// <summary>
+            /// Enum AndroidPaidStore for value: android_paid_store
+            /// </summary>
+            [EnumMember(Value = "android_paid_store")]
+            AndroidPaidStore = 20
+        }
+
+        /// <summary>
         /// Restrict by gender. &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.
         /// </summary>
         /// <value>Restrict by gender. &#39;all&#39; (default) targets everyone. Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X.</value>
@@ -115,6 +242,7 @@ namespace Zernio.Model
         /// <param name="cities">City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits; both must be set together or both omitted. &#x60;radius&#x60; is only honoured on platforms whose capability map allows city radius (Meta)..</param>
         /// <param name="zips">Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;). Supported on Meta, Google, TikTok, Pinterest, X..</param>
         /// <param name="metros">DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;)..</param>
+        /// <param name="countryGroups">Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. .</param>
         /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support..</param>
         /// <param name="excludedLocations">excludedLocations.</param>
         /// <param name="ageMin">Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 &#x3D; 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there..</param>
@@ -133,7 +261,7 @@ namespace Zernio.Model
         /// <param name="jobFunctions">LinkedIn B2B only. Function URN id fragments, or the full urn:li:function:* URN from /v1/ads/targeting/search?dimension&#x3D;jobFunction..</param>
         /// <param name="audienceInclude">Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400)..</param>
         /// <param name="audienceExclude">Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400)..</param>
-        public TargetingSpec(List<string> userOs = default, List<string> userDevice = default, List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
+        public TargetingSpec(List<string> userOs = default, List<string> userDevice = default, List<string> countries = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> regions = default, List<TargetingSpecCitiesInner> cities = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> zips = default, List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> metros = default, List<CountryGroupsEnum> countryGroups = default, List<TargetingSpecCustomLocationsInner> customLocations = default, TargetingSpecExcludedLocations excludedLocations = default, int ageMin = default, int ageMax = default, GenderEnum? gender = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, List<CreateStandaloneAdRequestBehaviorsInner> workPositions = default, List<CreateStandaloneAdRequestBehaviorsInner> workEmployers = default, List<CreateStandaloneAdRequestBehaviorsInner> workIndustries = default, List<string> industries = default, List<string> companySizes = default, List<string> seniorities = default, List<string> jobFunctions = default, List<string> audienceInclude = default, List<string> audienceExclude = default)
         {
             this.UserOs = userOs;
             this.UserDevice = userDevice;
@@ -142,6 +270,7 @@ namespace Zernio.Model
             this.Cities = cities;
             this.Zips = zips;
             this.Metros = metros;
+            this.CountryGroups = countryGroups;
             this.CustomLocations = customLocations;
             this.ExcludedLocations = excludedLocations;
             this.AgeMin = ageMin;
@@ -210,6 +339,13 @@ namespace Zernio.Model
         /// <value>DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;).</value>
         [DataMember(Name = "metros", EmitDefaultValue = false)]
         public List<UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner> Metros { get; set; }
+
+        /// <summary>
+        /// Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. 
+        /// </summary>
+        /// <value>Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. </value>
+        [DataMember(Name = "countryGroups", EmitDefaultValue = false)]
+        public List<TargetingSpec.CountryGroupsEnum> CountryGroups { get; set; }
 
         /// <summary>
         /// Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support.
@@ -337,6 +473,7 @@ namespace Zernio.Model
             sb.Append("  Cities: ").Append(Cities).Append("\n");
             sb.Append("  Zips: ").Append(Zips).Append("\n");
             sb.Append("  Metros: ").Append(Metros).Append("\n");
+            sb.Append("  CountryGroups: ").Append(CountryGroups).Append("\n");
             sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
             sb.Append("  ExcludedLocations: ").Append(ExcludedLocations).Append("\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
