@@ -39,12 +39,16 @@ namespace Zernio.Model
         /// <param name="code">code.</param>
         /// <param name="title">title.</param>
         /// <param name="message">message.</param>
-        /// <param name="explanation">Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. .</param>
-        public WebhookPayloadMessageDeliveryStatusError(int code = default, string title = default, string message = default, string explanation = default)
+        /// <param name="details">Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS..</param>
+        /// <param name="href">Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one..</param>
+        /// <param name="explanation">Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected, or for 131031, that Meta restricted the WhatsApp Business Account). Null for unmapped codes; fall back to title/message. .</param>
+        public WebhookPayloadMessageDeliveryStatusError(int code = default, string title = default, string message = default, string details = default, string href = default, string explanation = default)
         {
             this.Code = code;
             this.Title = title;
             this.Message = message;
+            this.Details = details;
+            this.Href = href;
             this.Explanation = explanation;
         }
 
@@ -67,9 +71,23 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
-        /// Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. 
+        /// Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS.
         /// </summary>
-        /// <value>Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. </value>
+        /// <value>Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS.</value>
+        [DataMember(Name = "details", EmitDefaultValue = false)]
+        public string Details { get; set; }
+
+        /// <summary>
+        /// Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one.
+        /// </summary>
+        /// <value>Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one.</value>
+        [DataMember(Name = "href", EmitDefaultValue = false)]
+        public string Href { get; set; }
+
+        /// <summary>
+        /// Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected, or for 131031, that Meta restricted the WhatsApp Business Account). Null for unmapped codes; fall back to title/message. 
+        /// </summary>
+        /// <value>Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected, or for 131031, that Meta restricted the WhatsApp Business Account). Null for unmapped codes; fall back to title/message. </value>
         [DataMember(Name = "explanation", EmitDefaultValue = true)]
         public string Explanation { get; set; }
 
@@ -84,6 +102,8 @@ namespace Zernio.Model
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Details: ").Append(Details).Append("\n");
+            sb.Append("  Href: ").Append(Href).Append("\n");
             sb.Append("  Explanation: ").Append(Explanation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

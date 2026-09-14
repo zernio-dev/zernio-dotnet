@@ -39,11 +39,15 @@ namespace Zernio.Model
         /// <param name="code">code.</param>
         /// <param name="title">title.</param>
         /// <param name="message">message.</param>
-        public GetInboxConversationMessages200ResponseMessagesInnerDeliveryError(int code = default, string title = default, string message = default)
+        /// <param name="details">Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS..</param>
+        /// <param name="href">Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one..</param>
+        public GetInboxConversationMessages200ResponseMessagesInnerDeliveryError(int code = default, string title = default, string message = default, string details = default, string href = default)
         {
             this.Code = code;
             this.Title = title;
             this.Message = message;
+            this.Details = details;
+            this.Href = href;
         }
 
         /// <summary>
@@ -65,6 +69,20 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
+        /// Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS.
+        /// </summary>
+        /// <value>Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS.</value>
+        [DataMember(Name = "details", EmitDefaultValue = false)]
+        public string Details { get; set; }
+
+        /// <summary>
+        /// Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one.
+        /// </summary>
+        /// <value>Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one.</value>
+        [DataMember(Name = "href", EmitDefaultValue = false)]
+        public string Href { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -75,6 +93,8 @@ namespace Zernio.Model
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Details: ").Append(Details).Append("\n");
+            sb.Append("  Href: ").Append(Href).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
