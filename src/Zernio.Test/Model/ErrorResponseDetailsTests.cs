@@ -72,5 +72,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'QuotaScope'
         }
+
+        /// <summary>
+        /// Test the property 'BudgetScope'
+        /// </summary>
+        [Fact]
+        public void BudgetScopeTest()
+        {
+            // TODO unit test for the property 'BudgetScope'
+        }
     }
 }

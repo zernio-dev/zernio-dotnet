@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent.  On a Google Ads 429 it carries &#x60;quotaExhausted: true&#x60;, which marks the failure as Google&#39;s own ads quota rather than a Zernio rate limit, so you can keep calling other platforms instead of backing off everywhere. When Google names the scope it also carries &#x60;quotaScope&#x60;: &#x60;DEVELOPER&#x60; means the shared developer-token budget (every Google account is affected and there is nothing to change on your side), &#x60;ACCOUNT&#x60; means your own ad account. A Meta 429 carries neither field. 
+    /// Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent.  On a Google Ads 429 it carries &#x60;quotaExhausted: true&#x60;, which marks the failure as Google&#39;s own ads quota rather than a Zernio rate limit, so you can keep calling other platforms instead of backing off everywhere. When Google names the scope it also carries &#x60;quotaScope&#x60;: &#x60;DEVELOPER&#x60; means the shared developer-token budget (every Google account is affected and there is nothing to change on your side), &#x60;ACCOUNT&#x60; means your own ad account. A Meta 429 carries neither field.  A Zernio Google Ads budget 429 carries &#x60;budgetScope&#x60; instead, and never &#x60;quotaExhausted&#x60;: these are Zernio&#39;s own limits, applied before the call reaches Google. &#x60;user&#x60; is your own burst or daily allowance, so the work is yours to reschedule; &#x60;platform&#x60; is the fleet-wide daily budget shared with every other customer, so only waiting for the reset clears it. The two scopes are separate axes from &#x60;quotaScope&#x60;, not the same pool named twice. 
     /// </summary>
     [DataContract(Name = "ErrorResponse_details")]
     public partial class ErrorResponseDetails : IValidatableObject
@@ -61,14 +61,43 @@ namespace Zernio.Model
         [DataMember(Name = "quotaScope", EmitDefaultValue = false)]
         public QuotaScopeEnum? QuotaScope { get; set; }
         /// <summary>
+        /// Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers.
+        /// </summary>
+        /// <value>Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BudgetScopeEnum
+        {
+            /// <summary>
+            /// Enum User for value: user
+            /// </summary>
+            [EnumMember(Value = "user")]
+            User = 1,
+
+            /// <summary>
+            /// Enum Platform for value: platform
+            /// </summary>
+            [EnumMember(Value = "platform")]
+            Platform = 2
+        }
+
+
+        /// <summary>
+        /// Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers.
+        /// </summary>
+        /// <value>Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers.</value>
+        [DataMember(Name = "budgetScope", EmitDefaultValue = false)]
+        public BudgetScopeEnum? BudgetScope { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ErrorResponseDetails" /> class.
         /// </summary>
         /// <param name="quotaExhausted">Google Ads 429 only. True when the upstream Google Ads quota is spent rather than a Zernio limit..</param>
         /// <param name="quotaScope">Google Ads 429 only, when Google names the scope. DEVELOPER is the shared developer-token budget; ACCOUNT is your ad account..</param>
-        public ErrorResponseDetails(bool quotaExhausted = default, QuotaScopeEnum? quotaScope = default)
+        /// <param name="budgetScope">Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers..</param>
+        public ErrorResponseDetails(bool quotaExhausted = default, QuotaScopeEnum? quotaScope = default, BudgetScopeEnum? budgetScope = default)
         {
             this.QuotaExhausted = quotaExhausted;
             this.QuotaScope = quotaScope;
+            this.BudgetScope = budgetScope;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -95,6 +124,7 @@ namespace Zernio.Model
             sb.Append("class ErrorResponseDetails {\n");
             sb.Append("  QuotaExhausted: ").Append(QuotaExhausted).Append("\n");
             sb.Append("  QuotaScope: ").Append(QuotaScope).Append("\n");
+            sb.Append("  BudgetScope: ").Append(BudgetScope).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
