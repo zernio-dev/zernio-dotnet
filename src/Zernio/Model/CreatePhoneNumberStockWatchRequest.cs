@@ -82,7 +82,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="country">ISO 3166-1 alpha-2 code of a country listed by GET /v1/phone-numbers/countries. (required).</param>
         /// <param name="numberType">Narrow the watch to one number type. Omit to be notified when any type in the country is back..</param>
-        public CreatePhoneNumberStockWatchRequest(string country = default, NumberTypeEnum? numberType = default)
+        /// <param name="areaCode">Narrow the watch to one area code (NDC). Requires numberType..</param>
+        public CreatePhoneNumberStockWatchRequest(string country = default, NumberTypeEnum? numberType = default, string areaCode = default)
         {
             // to ensure "country" is required (not null)
             if (country == null)
@@ -91,6 +92,7 @@ namespace Zernio.Model
             }
             this.Country = country;
             this.NumberType = numberType;
+            this.AreaCode = areaCode;
         }
 
         /// <summary>
@@ -99,6 +101,13 @@ namespace Zernio.Model
         /// <value>ISO 3166-1 alpha-2 code of a country listed by GET /v1/phone-numbers/countries.</value>
         [DataMember(Name = "country", IsRequired = true, EmitDefaultValue = true)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// Narrow the watch to one area code (NDC). Requires numberType.
+        /// </summary>
+        /// <value>Narrow the watch to one area code (NDC). Requires numberType.</value>
+        [DataMember(Name = "areaCode", EmitDefaultValue = false)]
+        public string AreaCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,6 +119,7 @@ namespace Zernio.Model
             sb.Append("class CreatePhoneNumberStockWatchRequest {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
+            sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,6 +150,15 @@ namespace Zernio.Model
             if (this.Country != null && this.Country.Length < 2)
             {
                 yield return new ValidationResult("Invalid value for Country, length must be greater than 2.", new [] { "Country" });
+            }
+
+            if (this.AreaCode != null) {
+                // AreaCode (string) pattern
+                Regex regexAreaCode = new Regex(@"^\d{1,4}$", RegexOptions.CultureInvariant);
+                if (!regexAreaCode.Match(this.AreaCode).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AreaCode, must match a pattern of " + regexAreaCode, new [] { "AreaCode" });
+                }
             }
 
             yield break;

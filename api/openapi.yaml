@@ -7645,6 +7645,49 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+  /v1/accounts/{accountId}/tiktok/locations:
+    get:
+      description: "Searches the location tags a TikTok account connected through\
+        \ the TikTok for Business app can attach to a video post. Send a result's\
+        \ id and name as tiktokSettings.locationId and locationName when creating\
+        \ a post. TikTok answers the 20 closest matches and fills the list with fuzzy\
+        \ matches when nothing matches, so an unrelated result does not mean the place\
+        \ is missing."
+      operationId: searchTikTokLocations
+      parameters:
+      - description: The TikTok account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Place name to search, for example a city, a venue or an address"
+        explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          maxLength: 100
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchTikTokLocations_200_response"
+          description: "The closest location tags, best match first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          description: Account not found
+      summary: Search TikTok location tags
+      tags:
+      - Accounts
+      x-resource-group: accounts
   /v1/accounts/{accountId}/tiktok/creator-info:
     get:
       description: "Returns TikTok creator details, available privacy levels, posting\
@@ -18486,7 +18529,7 @@ paths:
   /v1/inbox/comments/{postId}:
     delete:
       description: |
-        Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn.
+        Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only).
         Requires accountId and commentId query parameters.
       operationId: deleteInboxComment
       parameters:
@@ -20196,6 +20239,16 @@ paths:
               schema:
                 $ref: "#/components/schemas/replyToInboxReview_200_response"
           description: Reply posted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Facebook refused the reply for this review (code platform_api_error,\
+            \ platform facebook, Meta error 12 echoed in platformError). Permanent\
+            \ for that review: Graph cannot address its underlying post, and it usually\
+            \ already carries a reply from the Page, which the review listing reports\
+            \ under hasReply. Do not retry."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -25159,6 +25212,11 @@ paths:
         GET /v1/phone-numbers/countries can also be watched, but anything with
         `preOrderable: true` does not need a watch: submit KYC and the carrier
         sources the number to order.
+
+        Pass `areaCode` (with `numberType`) to watch one sold-out area, for
+        example an entry of `soldOutAreas` from
+        GET /v1/phone-numbers/availability. Area stock is checked live on the
+        same 6h cadence.
       operationId: createPhoneNumberStockWatch
       requestBody:
         content:
@@ -25185,8 +25243,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
-          description: "The country is in stock right now (buy instead of watching),\
-            \ or the 20-country watch limit is reached (code invalid_resource_state)."
+          description: "The country (or the watched area) is in stock right now (buy\
+            \ instead of watching), or the 20-watch limit is reached (code invalid_resource_state)."
       security:
       - bearerAuth: []
       summary: Watch an out-of-stock country
@@ -30378,6 +30436,197 @@ paths:
       - pinterest
       - x
       - openai
+  /v1/ads/campaigns/{campaignId}/ad-schedule:
+    get:
+      description: |
+        The windows a Google campaign serves in, with the bid modifier on each, plus the
+        criterion ids Google minted for them.
+
+        An EMPTY `schedule` is meaningful and is not a failed lookup: Google has no
+        "all day" criterion, so a campaign with no ad schedule serves around the clock.
+        `servesAroundTheClock` states that explicitly.
+
+        Set `includePerformance=true` to also get delivery split by day of week and by hour,
+        which is the evidence for deciding what the schedule should be. It is one extra
+        Google call segmented by both dimensions at once, so the two views always agree.
+
+        Google Ads only. The response carries `cachedAt` and `stale`, set when a
+        quota-exhausted call falls back to the last-good copy instead of a live read.
+      operationId: getCampaignAdSchedule
+      parameters:
+      - description: Numeric Google platform campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Disambiguates the campaign id when the connection spans platforms.
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - google
+          type: string
+        style: form
+      - description: Also return delivery by day of week and by hour. Costs one extra
+          Google call.
+        explode: true
+        in: query
+        name: includePerformance
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Trailing window for the performance split. Ignored when fromDate
+          and toDate are both given.
+        explode: true
+        in: query
+        name: windowDays
+        required: false
+        schema:
+          default: 30
+          maximum: 90
+          minimum: 1
+          type: integer
+        style: form
+      - description: Start of an explicit performance range (YYYY-MM-DD). Use together
+          with toDate.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of an explicit performance range (YYYY-MM-DD). Must be on
+          or after fromDate.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignAdSchedule_200_response"
+          description: The campaign's ad schedule
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "501":
+          description: "Not a Google Ads campaign: ad schedules are a Google criterion."
+      security:
+      - bearerAuth: []
+      summary: Read a campaign's ad schedule (dayparting)
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+    put:
+      description: |
+        Replaces the campaign's whole ad schedule with the windows you send. This is a
+        REPLACE, not a merge: windows you leave out stop serving.
+
+        Send `schedule: []` to clear dayparting, which returns the campaign to serving around
+        the clock.
+
+        Google rules enforced here, so you get a named field instead of a criterion error:
+        at most 6 windows per day, a window must end after it starts, windows on the same day
+        may not overlap, `endHour` 24 is midnight and cannot carry minutes, and minutes are
+        quarter-hours only (0, 15, 30, 45). `bidModifier` is 0.1-10.0; Google's 0 means
+        "off" for devices only, so a window is switched off by leaving it out.
+
+        Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and
+        12:00-17:00 on the same day are adjacent and both valid.
+
+        Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on
+        update), so this removes the live criteria and creates the new ones in a single atomic
+        mutate. The response is read back from Google and carries the new criterion ids.
+      operationId: updateCampaignAdSchedule
+      parameters:
+      - description: Numeric Google platform campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              officeHours:
+                summary: "Weekday office hours, bidding up over lunch"
+                value:
+                  schedule:
+                  - dayOfWeek: MONDAY
+                    startHour: 9
+                    endHour: 17
+                  - dayOfWeek: TUESDAY
+                    startHour: 9
+                    endHour: 17
+                  - dayOfWeek: WEDNESDAY
+                    startHour: 9
+                    endHour: 12
+                    bidModifier: 1.5
+                  - dayOfWeek: WEDNESDAY
+                    startHour: 12
+                    endHour: 17
+              clearSchedule:
+                summary: Serve around the clock again
+                value:
+                  schedule: []
+            schema:
+              $ref: "#/components/schemas/updateCampaignAdSchedule_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCampaignAdSchedule_200_response"
+          description: The schedule as Google stored it
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "The schedule breaks a Google rule: too many windows on a day,\
+            \ an overlap, a window that ends before it starts, minutes on hour 24,\
+            \ or a bid modifier outside 0.1-10.0."
+        "501":
+          description: "Not a Google Ads campaign: ad schedules are a Google criterion."
+      security:
+      - bearerAuth: []
+      summary: Replace a campaign's ad schedule (dayparting)
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
   /v1/ads/campaigns/{campaignId}/bidding:
     get:
       description: |
@@ -32125,12 +32374,18 @@ paths:
         the campaign's live criteria and sends the removes and the creates in ONE
         `googleAds:mutate`, so the campaign is never left with a half-applied set; criteria
         already in the list keep their criterion ID and history. Excluded (negative)
-        locations are left untouched. Two cases are refused rather than applied: an empty
-        location list returns 400 (a Google campaign with no location criteria targets every
-        country, which is never what "remove my locations" means, so omit the field instead),
-        and radius targeting (`customLocations`) returns 422 because it is a separate Google
-        criterion type that this replacement neither creates nor removes. Send either
-        `targeting.locations` or the top-level geo fields, not both: mixing them returns 400.
+        locations are left untouched. An empty location list returns 400 (a Google campaign
+        with no location criteria targets every country, which is never what "remove my
+        locations" means, so omit the field instead). Send either `targeting.locations` or the
+        top-level geo fields, not both: mixing them returns 400.
+
+        **Google radius targeting:** `customLocations` is editable and is replaced the same
+        way, but as its OWN set. Google models a place (LOCATION) and a point plus radius
+        (PROXIMITY) as different criterion types, so the two are independent: sending
+        `customLocations` replaces every radius and leaves the cities and countries alone,
+        and sending places replaces those and leaves the radius alone. Send
+        `customLocations: []` to drop radius targeting entirely. A circle you re-send
+        unchanged keeps its criterion ID rather than being removed and recreated.
 
         **Google keyword replacement:** These edits affect the ad's entire ad group,
         including sibling ads. Positive (`targeting.keywords`) and negative
@@ -38407,15 +38662,20 @@ paths:
         TikTok geo searches return every matching level in one list (`type` is
         `country`, `region`, `city`, `district`, or `metro` for DMA areas), and
         `geoType` is not applied. Results are scoped to the advertiser's targetable
-        markets, and every id is usable in `regions`/`cities`/`metros` keys on
-        `POST /v1/ads/create`.
+        markets. A `country` result's id is its ISO 3166-1 alpha-2 code, for
+        `targeting.countries`; every other id is TikTok's numeric location id,
+        usable in `regions`/`cities`/`metros` keys on `POST /v1/ads/create`.
 
         LinkedIn geo searches also return every matching level in one list, and
         neither `geoType` nor `countryCode` is applied: LinkedIn's typeahead only
         returns a name and a URN per result, with no level or country field to
-        filter on. Every result has `type` set to `location`, and its id is a
-        `urn:li:geo:*` URN usable as a `regions[].key` on `POST /v1/ads/create`,
-        `POST /v1/ads/boost` and `POST /v1/ads/targeting/reach-estimate`.
+        filter on. A result whose URN is a country Zernio holds a code for has
+        `type: country` and its ISO 3166-1 alpha-2 code as the id, for
+        `targeting.countries`. Every other result has `type: region` and keeps
+        its `urn:li:geo:*` URN as the id, usable as a `regions[].key` on
+        `POST /v1/ads/create`, `POST /v1/ads/boost` and
+        `POST /v1/ads/targeting/reach-estimate` (LinkedIn puts countries and
+        regions in the same `locations` facet, so both target the same way).
 
         LinkedIn B2B searches (`industry`, `jobFunction`, `seniority`, `companySize`) return the
         full URN to pass straight back, so no URN id fragment has to be assembled by hand:
@@ -38431,11 +38691,13 @@ paths:
         `target_type` is an open taxonomy that does not map one-to-one onto the
         `geoType` enum), so filter client-side on the returned `type` (`country`,
         `region`, `city`, `zip`, `metro`, or the lowercased Google target type for
-        rarer levels). `countryCode` scopes the search to one country. Each id is
-        Google's numeric criterion id, usable as a `regions`/`cities`/`zips`/`metros`
-        `key` on `POST /v1/ads/create`. Google city radius is not supported (pass a
-        `customLocations` lat/lng pin for a radius); country targeting also accepts
-        plain ISO codes via `countries` with no search call.
+        rarer levels). `countryCode` scopes the search to one country. A `country`
+        result's id is its ISO 3166-1 alpha-2 code, for `targeting.countries`;
+        every other id is Google's numeric criterion id, usable as a
+        `regions`/`cities`/`zips`/`metros` `key` on `POST /v1/ads/create`. Google
+        city radius is not supported (pass a `customLocations` lat/lng pin for a
+        radius); country targeting also accepts plain ISO codes via `countries`
+        with no search call.
 
         Pinterest resolves against three whole-catalog endpoints (interests, locations,
         regions) with no server-side query or pagination, so matching, ranking and the
@@ -46027,7 +46289,8 @@ components:
         platformError:
           key: ""
         details:
-          key: ""
+          quotaScope: DEVELOPER
+          quotaExhausted: true
         error: error
         type: invalid_request_error
         platform: platform
@@ -46064,11 +46327,7 @@ components:
             error_subcode, error_user_title, and error_user_msg.
           type: object
         details:
-          additionalProperties: true
-          description: "Additional structured context (e.g. field-level validation\
-            \ errors), for example `privateReplyConsumed` on the private-reply endpoint's\
-            \ 400 when the comment's single reply is already spent."
-          type: object
+          $ref: "#/components/schemas/ErrorResponse_details"
     CommentAutomationAudience:
       description: |
         Who a comment automation answers. Instagram only - Meta exposes the follow
@@ -48099,6 +48358,7 @@ components:
       example:
         country: country
         createdAt: 2000-01-23T04:56:07.000+00:00
+        areaCode: areaCode
         numberType: local
         id: id
         countryName: countryName
@@ -48119,6 +48379,11 @@ components:
           - national
           - toll_free
           - null
+          nullable: true
+          type: string
+        areaCode:
+          description: "The watched area code (NDC), or null when the watch covers\
+            \ every area."
           nullable: true
           type: string
         createdAt:
@@ -48142,6 +48407,8 @@ components:
             numberType: numberType
           - availableCount: 0
             numberType: numberType
+          areaCode: areaCode
+          areaName: areaName
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -52136,6 +52403,25 @@ components:
             \ on a direct photo post is rejected at creation rather than published\
             \ undisclosed. Send draft true to publish such a photo post and set the\
             \ disclosure in the TikTok app."
+          type: boolean
+        locationId:
+          description: "Location tag to attach, as the id of a result from GET /v1/accounts/{accountId}/tiktok/locations.\
+            \ Accounts connected through the TikTok for Business app and video posts\
+            \ only: a developer-app account rejects the post at publish time with\
+            \ a message that says so, and a direct photo post is rejected at creation\
+            \ since the business photo endpoint has no location field. Requires locationName.\
+            \ Ignored on drafts, where TikTok ignores every post_info field."
+          type: string
+        locationName:
+          description: "Display name of the location tag, as returned next to its\
+            \ id. Required with locationId; a locationId without it is rejected at\
+            \ creation."
+          type: string
+        isAdsOnly:
+          description: "Set true to publish the video as an \"Only show in ads\" post:\
+            \ it is kept off the profile and exists to be used as a Spark Ad. Accounts\
+            \ connected through the TikTok for Business app and video posts only,\
+            \ with the same rejections as locationId. Ignored on drafts."
           type: boolean
         description:
           description: "Optional long-form caption for photo posts (max 4000 chars).\
@@ -61947,6 +62233,11 @@ components:
         campaignId: campaignId
         matchType: exact
         platform: google
+        quality:
+          score: 6
+          adRelevance: BELOW_AVERAGE
+          expectedCtr: BELOW_AVERAGE
+          landingPageExperience: BELOW_AVERAGE
         accountId: accountId
         negative: true
         adSetStatus: adSetStatus
@@ -61956,13 +62247,13 @@ components:
         qualityScore: 0
         id: id
         metrics:
-          conversions: 2.3021358869347655
-          cost: 5.637376656633329
-          firstPageCpc: 7.061401241503109
-          clicks: 1
-          windowDays: 6
+          conversions: 7.061401241503109
+          cost: 2.3021358869347655
+          firstPageCpc: 9.301444243932576
+          clicks: 5
+          windowDays: 1
           impressions: 5
-          firstPositionCpc: 9.301444243932576
+          firstPositionCpc: 3.616076749251911
         keyword: keyword
         campaignName: campaignName
         syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -62016,15 +62307,75 @@ components:
         negative:
           type: boolean
         qualityScore:
-          description: "Google Quality Score, 1-10. Null when unrated."
+          description: "Deprecated, use `quality.score`. Google Quality Score, 1-10.\
+            \ Null when unrated."
           nullable: true
           type: integer
+        quality:
+          $ref: "#/components/schemas/AdKeyword_quality"
         syncedAt:
           format: date-time
           nullable: true
           type: string
         metrics:
           $ref: "#/components/schemas/AdKeyword_metrics"
+    AdScheduleWindow:
+      description: "One ad schedule window as Google stores it. Half-open: it is exclusive\
+        \ of the end minute, so 09:00-12:00 and 12:00-17:00 are adjacent, not overlapping."
+      example:
+        endHour: 3
+        dayOfWeek: MONDAY
+        criterionId: criterionId
+        bidModifier: 5.637376656633329
+        startHour: 1
+        resourceName: resourceName
+        startMinute: 6
+        endMinute: 5
+      properties:
+        criterionId:
+          description: "Google campaign criterion id. Changes whenever the window\
+            \ is rewritten, because Google cannot edit a schedule in place."
+          type: string
+        resourceName:
+          type: string
+        dayOfWeek:
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+          type: string
+        startHour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        endHour:
+          description: 24 means midnight at the end of the day.
+          maximum: 24
+          minimum: 0
+          type: integer
+        endMinute:
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        bidModifier:
+          description: "Bid adjustment for this window, 0.1-10.0. Null when the window\
+            \ runs at the campaign bid."
+          nullable: true
+          type: number
     KeywordEntry:
       description: "A Google Search keyword: a bare string (BROAD match), or an object\
         \ naming the match type."
@@ -66953,6 +67304,35 @@ components:
         tracks:
           items:
             $ref: "#/components/schemas/listTikTokCommercialMusic_200_response_tracks_inner"
+          type: array
+    searchTikTokLocations_200_response_locations_inner:
+      example:
+        address: address
+        name: name
+        id: id
+      properties:
+        id:
+          description: The value to send as locationId
+          type: string
+        name:
+          description: The value to send as locationName
+          type: string
+        address:
+          description: "Address or region TikTok shows for the place, for disambiguation"
+          type: string
+    searchTikTokLocations_200_response:
+      example:
+        locations:
+        - address: address
+          name: name
+          id: id
+        - address: address
+          name: name
+          id: id
+      properties:
+        locations:
+          items:
+            $ref: "#/components/schemas/searchTikTokLocations_200_response_locations_inner"
           type: array
     getTikTokCreatorInfo_200_response_creator:
       example:
@@ -84396,10 +84776,33 @@ components:
           description: "Numbers available in this area: country-wide count for US/CA,\
             \ numbers seen on the latest inventory page otherwise."
           type: integer
+    checkPhoneNumberAvailability_200_response_soldOutAreas_inner:
+      example:
+        name: name
+        ndc: ndc
+        preOrderable: true
+      properties:
+        ndc:
+          description: Area code (national destination code).
+          type: string
+        name:
+          description: Area name.
+          type: string
+        preOrderable:
+          description: "Whether this area can be pre-ordered: the carrier sources\
+            \ a number in it (usually 2 to 4 weeks, never guaranteed)."
+          type: boolean
     checkPhoneNumberAvailability_200_response:
       example:
         country: country
         numberType: numberType
+        soldOutAreas:
+        - name: name
+          ndc: ndc
+          preOrderable: true
+        - name: name
+          ndc: ndc
+          preOrderable: true
         addressConstraint: geo
         available: true
         areas:
@@ -84444,6 +84847,12 @@ components:
             Live inventory grouped by area code. For US and CA this is the full country inventory (every area code with stock, recognizable metros listed first, then alphabetical); other countries are ordered largest stock first; they list the areas in the latest inventory page (up to 500 numbers, which for most countries is the entire pool). Empty when out of stock (or the area lookup failed). Pass a chosen `ndc` as `areaCode` on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area.
           items:
             $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaOptions_inner"
+          type: array
+        soldOutAreas:
+          description: |
+            Areas that had stock in the last 90 days and have none now. Pass one as `areaCode` with `preOrder: true` on the KYC submit when `preOrderable` is true, or watch it with POST /v1/phone-numbers/stock-watches.
+          items:
+            $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_soldOutAreas_inner"
           type: array
     purchaseWhatsAppPhoneNumber_request:
       properties:
@@ -84818,6 +85227,12 @@ components:
         documentId:
           description: Id from POST /v1/phone-numbers/kyc/upload-document.
           type: string
+        issuedAt:
+          description: "Date printed on the document (YYYY-MM-DD), for slots the regulator\
+            \ windows such as proof of address. The pre-submit review trusts it over\
+            \ its own read of the PDF."
+          format: date
+          type: string
       required:
       - documentId
       - requirementId
@@ -84896,6 +85311,11 @@ components:
             \ echoes the areaCode picked at purchase time so it can be passed here."
           pattern: "^\\d{1,4}$"
           type: string
+        preOrder:
+          description: "With areaCode: pre-order that area when it has no stock (an\
+            \ area listed in soldOutAreas with preOrderable true) instead of failing\
+            \ with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area."
+          type: boolean
         endUserFirstName:
           description: End user's legal first name. Required when the country has
             an action/ID-verification (Onfido) requirement.
@@ -85859,6 +86279,12 @@ components:
         documentId:
           description: Id of a document already uploaded out-of-band.
           type: string
+        issuedAt:
+          description: "Date printed on the document (YYYY-MM-DD), for slots the regulator\
+            \ windows such as proof of address. The pre-submit review trusts it over\
+            \ its own read of the PDF."
+          format: date
+          type: string
       required:
       - requirementId
     respondToPhoneNumberReviewer_request:
@@ -86093,6 +86519,11 @@ components:
             \ echoes the areaCode picked at purchase time so it can be passed here."
           pattern: "^\\d{1,4}$"
           type: string
+        preOrder:
+          description: "With areaCode: pre-order that area when it has no stock (an\
+            \ area listed in soldOutAreas with preOrderable true) instead of failing\
+            \ with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area."
+          type: boolean
         endUserFirstName:
           description: End user's legal first name. Required when the country has
             an action/ID-verification (Onfido) requirement.
@@ -86380,11 +86811,13 @@ components:
         watches:
         - country: country
           createdAt: 2000-01-23T04:56:07.000+00:00
+          areaCode: areaCode
           numberType: local
           id: id
           countryName: countryName
         - country: country
           createdAt: 2000-01-23T04:56:07.000+00:00
+          areaCode: areaCode
           numberType: local
           id: id
           countryName: countryName
@@ -86408,6 +86841,10 @@ components:
           - mobile
           - national
           - toll_free
+          type: string
+        areaCode:
+          description: Narrow the watch to one area code (NDC). Requires numberType.
+          pattern: "^\\d{1,4}$"
           type: string
       required:
       - country
@@ -93108,6 +93545,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -93117,13 +93559,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -93133,6 +93575,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -93142,13 +93589,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -93209,6 +93656,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -93218,13 +93670,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -93234,6 +93686,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -93243,13 +93700,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -93286,6 +93743,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -93295,13 +93757,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -93553,10 +94015,10 @@ components:
         promotedObject:
           $ref: "#/components/schemas/AdPromotedObject"
         buyingType:
-          default: AUCTION
-          description: "Meta only. Defaults to AUCTION and is explicitly sent on new\
-            \ campaigns, including validateOnly. SKAdNetwork app promotion requires\
-            \ AUCTION."
+          description: "Meta only. OMIT on non-Meta platforms (Google Ads, etc.):\
+            \ any value is rejected with a 400. On Meta the server applies AUCTION\
+            \ when omitted, so it does not need to be sent; RESERVED = Reach & Frequency.\
+            \ SKAdNetwork app promotion requires AUCTION."
           enum:
           - AUCTION
           - RESERVED
@@ -93725,6 +94187,255 @@ components:
           items:
             type: string
           type: array
+    getCampaignAdSchedule_200_response_performance_byDayOfWeek_inner:
+      example:
+        conversions: 2.027123023002322
+        dayOfWeek: MONDAY
+        cost: 3.616076749251911
+        clicks: 9
+        impressions: 7
+      properties:
+        dayOfWeek:
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+          type: string
+        impressions:
+          type: integer
+        clicks:
+          type: integer
+        cost:
+          description: "Account currency, not USD-normalized."
+          type: number
+        conversions:
+          type: number
+    getCampaignAdSchedule_200_response_performance_byHour_inner:
+      example:
+        conversions: 1.4894159098541704
+        cost: 1.0246457001441578
+        hour: 9
+        clicks: 1
+        impressions: 7
+      properties:
+        hour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        impressions:
+          type: integer
+        clicks:
+          type: integer
+        cost:
+          description: "Account currency, not USD-normalized."
+          type: number
+        conversions:
+          type: number
+    getCampaignAdSchedule_200_response_performance:
+      description: Only present when includePerformance=true.
+      example:
+        byDayOfWeek:
+        - conversions: 2.027123023002322
+          dayOfWeek: MONDAY
+          cost: 3.616076749251911
+          clicks: 9
+          impressions: 7
+        - conversions: 2.027123023002322
+          dayOfWeek: MONDAY
+          cost: 3.616076749251911
+          clicks: 9
+          impressions: 7
+        windowDays: 2
+        byHour:
+        - conversions: 1.4894159098541704
+          cost: 1.0246457001441578
+          hour: 9
+          clicks: 1
+          impressions: 7
+        - conversions: 1.4894159098541704
+          cost: 1.0246457001441578
+          hour: 9
+          clicks: 1
+          impressions: 7
+      properties:
+        windowDays:
+          description: "The trailing window used, or null when an explicit fromDate/toDate\
+            \ range was given."
+          nullable: true
+          type: integer
+        byDayOfWeek:
+          description: "One entry per day that delivered, Monday first."
+          items:
+            $ref: "#/components/schemas/getCampaignAdSchedule_200_response_performance_byDayOfWeek_inner"
+          type: array
+        byHour:
+          description: "One entry per hour that delivered, 0-23 in the account time\
+            \ zone."
+          items:
+            $ref: "#/components/schemas/getCampaignAdSchedule_200_response_performance_byHour_inner"
+          type: array
+    getCampaignAdSchedule_200_response:
+      example:
+        schedule:
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        stale: true
+        performance:
+          byDayOfWeek:
+          - conversions: 2.027123023002322
+            dayOfWeek: MONDAY
+            cost: 3.616076749251911
+            clicks: 9
+            impressions: 7
+          - conversions: 2.027123023002322
+            dayOfWeek: MONDAY
+            cost: 3.616076749251911
+            clicks: 9
+            impressions: 7
+          windowDays: 2
+          byHour:
+          - conversions: 1.4894159098541704
+            cost: 1.0246457001441578
+            hour: 9
+            clicks: 1
+            impressions: 7
+          - conversions: 1.4894159098541704
+            cost: 1.0246457001441578
+            hour: 9
+            clicks: 1
+            impressions: 7
+        campaignId: campaignId
+        servesAroundTheClock: true
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        campaignId:
+          type: string
+        schedule:
+          items:
+            $ref: "#/components/schemas/AdScheduleWindow"
+          type: array
+        servesAroundTheClock:
+          description: "True when the campaign carries no ad schedule at all, so it\
+            \ can serve at any time."
+          type: boolean
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when a quota-exhausted read served the last-good copy.
+          type: boolean
+        performance:
+          $ref: "#/components/schemas/getCampaignAdSchedule_200_response_performance"
+    updateCampaignAdSchedule_request_schedule_inner:
+      properties:
+        dayOfWeek:
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+          type: string
+        startHour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          default: 0
+          description: Quarter-hours only.
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        endHour:
+          description: 24 means midnight at the end of the day.
+          maximum: 24
+          minimum: 0
+          type: integer
+        endMinute:
+          default: 0
+          description: Quarter-hours only. Must be 0 when endHour is 24.
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        bidModifier:
+          description: Bid adjustment for this window. Null runs it at the campaign
+            bid.
+          maximum: 10
+          minimum: 0.1
+          nullable: true
+          type: number
+      required:
+      - dayOfWeek
+      - endHour
+      - startHour
+    updateCampaignAdSchedule_request:
+      properties:
+        schedule:
+          description: "The complete set of windows. Required, so clearing the schedule\
+            \ is always deliberate rather than an omission."
+          items:
+            $ref: "#/components/schemas/updateCampaignAdSchedule_request_schedule_inner"
+          maxItems: 42
+          type: array
+      required:
+      - schedule
+    updateCampaignAdSchedule_200_response:
+      example:
+        schedule:
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        campaignId: campaignId
+        servesAroundTheClock: true
+      properties:
+        campaignId:
+          type: string
+        schedule:
+          items:
+            $ref: "#/components/schemas/AdScheduleWindow"
+          type: array
+        servesAroundTheClock:
+          type: boolean
     getCampaignBidding_200_response:
       allOf:
       - properties:
@@ -101696,6 +102407,34 @@ components:
           items:
             $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
           type: array
+    boostPost_request_promotedObject:
+      description: |
+        TikTok-only on this endpoint. The pixel a Website Conversion ad group
+        optimizes toward, so a Spark Ad built from an existing organic post can
+        optimize for a conversion instead of only engagement or traffic.
+
+        Required when `goal` is `conversions`, and BOTH fields are required:
+        TikTok refuses a conversion ad group with no pixel ("Please select a
+        pixel") and equally one that has a pixel but no event ("Select a pixel
+        event."), because the event is what the ad group optimizes toward. Ignored
+        on every other goal, since only a WEB_CONVERSIONS ad group accepts them.
+
+        Combine freely with `platformPostId` + `sparkAuthCode`: the pixel lives on
+        the ad group and the Spark item on the creative, so they never conflict.
+      properties:
+        pixelId:
+          description: "TikTok Pixel. Either the numeric pixel id or the alphanumeric\
+            \ pixel code from Events Manager, which is resolved for you."
+          type: string
+        customEventType:
+          description: "Optimization event, as a TikTok optimization_event code (e.g.\
+            \ ON_WEB_ORDER, SHOPPING, FORM) or the exact event name shown in Events\
+            \ Manager, which is resolved to its code. The event must already exist\
+            \ on that pixel, or TikTok rejects the ad group."
+          type: string
+      required:
+      - customEventType
+      - pixelId
     boostPost_request:
       properties:
         creativeFeatures:
@@ -101916,6 +102655,8 @@ components:
             code in their TikTok app's Promote settings and shares it with the
             advertiser. Maps to `auth_code` on the creative entry of /v2/ad/create/.
           type: string
+        promotedObject:
+          $ref: "#/components/schemas/boostPost_request_promotedObject"
         dsaBeneficiary:
           description: |
             Legal entity that benefits from the ad. Required when targeting EU users
@@ -104860,8 +105601,10 @@ components:
         type: type
       properties:
         id:
-          description: The platform's opaque id. Use as a geo `key` (regions/cities/zips/metros)
-            or an entity `id` (interests/behaviors) in TargetingSpec.
+          description: "The platform's opaque id. Use as a geo `key` (regions/cities/zips/metros)\
+            \ or an entity `id` (interests/behaviors) in TargetingSpec. A `country`\
+            \ result is the exception on every platform: its id is the ISO 3166-1\
+            \ alpha-2 code, which is what `targeting.countries` takes."
           type: string
         name:
           description: Human-readable label.
@@ -109200,6 +109943,34 @@ components:
           description: When these metrics were last refreshed
           format: date-time
           type: string
+    ErrorResponse_details:
+      additionalProperties: true
+      description: |
+        Additional structured context (e.g. field-level validation errors), for example
+        `privateReplyConsumed` on the private-reply endpoint's 400 when the comment's
+        single reply is already spent.
+
+        On a Google Ads 429 it carries `quotaExhausted: true`, which marks the failure as
+        Google's own ads quota rather than a Zernio rate limit, so you can keep calling
+        other platforms instead of backing off everywhere. When Google names the scope it
+        also carries `quotaScope`: `DEVELOPER` means the shared developer-token budget
+        (every Google account is affected and there is nothing to change on your side),
+        `ACCOUNT` means your own ad account. A Meta 429 carries neither field.
+      example:
+        quotaScope: DEVELOPER
+        quotaExhausted: true
+      properties:
+        quotaExhausted:
+          description: Google Ads 429 only. True when the upstream Google Ads quota
+            is spent rather than a Zernio limit.
+          type: boolean
+        quotaScope:
+          description: "Google Ads 429 only, when Google names the scope. DEVELOPER\
+            \ is the shared developer-token budget; ACCOUNT is your ad account."
+          enum:
+          - DEVELOPER
+          - ACCOUNT
+          type: string
     CommentAutomationTemplateElement_buttons_inner:
       example:
         payload: payload
@@ -109915,6 +110686,8 @@ components:
           numberType: numberType
         - availableCount: 0
           numberType: numberType
+        areaCode: areaCode
+        areaName: areaName
       properties:
         country:
           description: ISO 3166-1 alpha-2 country code of the watched country.
@@ -109925,6 +110698,13 @@ components:
           items:
             $ref: "#/components/schemas/WebhookPayloadPhoneNumberStockAvailable_stock_types_inner"
           type: array
+        areaCode:
+          description: "Set when the watch named an area: the area code (NDC) that\
+            \ is back in stock."
+          type: string
+        areaName:
+          description: "The name of that area, when known."
+          type: string
       required:
       - country
       - types
@@ -110190,8 +110970,11 @@ components:
           type: string
         isOwnAccount:
           description: "True when this comment was authored by the connected account\
-            \ itself (Meta re-delivers the account's own replies as comments events).\
-            \ Populated on the Instagram and Facebook realtime webhooks only; absent\
+            \ itself. Populated on the Instagram and Facebook realtime webhooks (Meta\
+            \ re-delivers the account's own replies as comments events) and on TikTok,\
+            \ where it is inferred: comments created through this API are always flagged,\
+            \ and once the account's own author identifier is known (from one of those\
+            \ or from a comments listing) every author is compared against it. Absent\
             \ means not evaluated, never \"not the account\"."
           type: boolean
         instagramProfile:
@@ -115713,17 +116496,63 @@ components:
           type: string
         page_id:
           type: string
+    AdKeyword_quality:
+      description: |
+        Google Quality Score and the three component ratings behind it
+        (`ad_group_criterion.quality_info`). Every field is null until Google has rated the
+        keyword: a keyword with too little traffic is unrated, and negatives are never rated.
+        Google's own UNKNOWN / UNSPECIFIED buckets are reported as null so "unrated" has a
+        single representation.
+      example:
+        score: 6
+        adRelevance: BELOW_AVERAGE
+        expectedCtr: BELOW_AVERAGE
+        landingPageExperience: BELOW_AVERAGE
+      properties:
+        score:
+          description: "Quality Score, 1-10."
+          nullable: true
+          type: integer
+        expectedCtr:
+          description: How the click-through rate compares with other ads in the same
+            position (`search_predicted_ctr`).
+          enum:
+          - BELOW_AVERAGE
+          - AVERAGE
+          - ABOVE_AVERAGE
+          - null
+          nullable: true
+          type: string
+        adRelevance:
+          description: How closely the ad matches the intent behind the search (`creative_quality_score`).
+          enum:
+          - BELOW_AVERAGE
+          - AVERAGE
+          - ABOVE_AVERAGE
+          - null
+          nullable: true
+          type: string
+        landingPageExperience:
+          description: How relevant and useful the landing page is to people who click
+            (`post_click_quality_score`).
+          enum:
+          - BELOW_AVERAGE
+          - AVERAGE
+          - ABOVE_AVERAGE
+          - null
+          nullable: true
+          type: string
     AdKeyword_metrics:
       description: Trailing 30-day window. Null on rows synced before the metrics
         columns existed (re-synced on the keyword's next weekly sweep).
       example:
-        conversions: 2.3021358869347655
-        cost: 5.637376656633329
-        firstPageCpc: 7.061401241503109
-        clicks: 1
-        windowDays: 6
+        conversions: 7.061401241503109
+        cost: 2.3021358869347655
+        firstPageCpc: 9.301444243932576
+        clicks: 5
+        windowDays: 1
         impressions: 5
-        firstPositionCpc: 9.301444243932576
+        firstPositionCpc: 3.616076749251911
       properties:
         windowDays:
           type: integer

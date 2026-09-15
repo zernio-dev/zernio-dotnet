@@ -215,6 +215,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test SearchTikTokLocations
+        /// </summary>
+        [Fact]
+        public void SearchTikTokLocationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string query = null;
+            //var response = instance.SearchTikTokLocations(accountId, query);
+            //Assert.IsType<SearchTikTokLocations200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAccount
         /// </summary>
         [Fact]

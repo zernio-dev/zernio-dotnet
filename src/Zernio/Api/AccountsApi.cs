@@ -313,6 +313,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of MoveAccountToProfile200Response</returns>
         ApiResponse<MoveAccountToProfile200Response> MoveAccountToProfileWithHttpInfo(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest);
         /// <summary>
+        /// Search TikTok location tags
+        /// </summary>
+        /// <remarks>
+        /// Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <returns>SearchTikTokLocations200Response</returns>
+        SearchTikTokLocations200Response SearchTikTokLocations(string accountId, string query);
+
+        /// <summary>
+        /// Search TikTok location tags
+        /// </summary>
+        /// <remarks>
+        /// Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <returns>ApiResponse of SearchTikTokLocations200Response</returns>
+        ApiResponse<SearchTikTokLocations200Response> SearchTikTokLocationsWithHttpInfo(string accountId, string query);
+        /// <summary>
         /// Update account
         /// </summary>
         /// <remarks>
@@ -698,6 +721,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MoveAccountToProfile200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<MoveAccountToProfile200Response>> MoveAccountToProfileWithHttpInfoAsync(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Search TikTok location tags
+        /// </summary>
+        /// <remarks>
+        /// Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchTikTokLocations200Response</returns>
+        System.Threading.Tasks.Task<SearchTikTokLocations200Response> SearchTikTokLocationsAsync(string accountId, string query, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Search TikTok location tags
+        /// </summary>
+        /// <remarks>
+        /// Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchTikTokLocations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchTikTokLocations200Response>> SearchTikTokLocationsWithHttpInfoAsync(string accountId, string query, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update account
         /// </summary>
@@ -2696,6 +2744,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("MoveAccountToProfile", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search TikTok location tags Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <returns>SearchTikTokLocations200Response</returns>
+        public SearchTikTokLocations200Response SearchTikTokLocations(string accountId, string query)
+        {
+            Zernio.Client.ApiResponse<SearchTikTokLocations200Response> localVarResponse = SearchTikTokLocationsWithHttpInfo(accountId, query);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search TikTok location tags Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <returns>ApiResponse of SearchTikTokLocations200Response</returns>
+        public Zernio.Client.ApiResponse<SearchTikTokLocations200Response> SearchTikTokLocationsWithHttpInfo(string accountId, string query)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->SearchTikTokLocations");
+
+            // verify the required parameter 'query' is set
+            if (query == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'query' when calling AccountsApi->SearchTikTokLocations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<SearchTikTokLocations200Response>("/v1/accounts/{accountId}/tiktok/locations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchTikTokLocations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search TikTok location tags Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchTikTokLocations200Response</returns>
+        public async System.Threading.Tasks.Task<SearchTikTokLocations200Response> SearchTikTokLocationsAsync(string accountId, string query, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SearchTikTokLocations200Response> localVarResponse = await SearchTikTokLocationsWithHttpInfoAsync(accountId, query, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search TikTok location tags Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="query">Place name to search, for example a city, a venue or an address</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchTikTokLocations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchTikTokLocations200Response>> SearchTikTokLocationsWithHttpInfoAsync(string accountId, string query, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->SearchTikTokLocations");
+
+            // verify the required parameter 'query' is set
+            if (query == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'query' when calling AccountsApi->SearchTikTokLocations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchTikTokLocations200Response>("/v1/accounts/{accountId}/tiktok/locations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchTikTokLocations", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

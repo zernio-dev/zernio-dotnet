@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchAdTargeting200ResponseResultsInner" /> class.
         /// </summary>
-        /// <param name="id">The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec. (required).</param>
+        /// <param name="id">The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec. A &#x60;country&#x60; result is the exception on every platform: its id is the ISO 3166-1 alpha-2 code, which is what &#x60;targeting.countries&#x60; takes. (required).</param>
         /// <param name="name">Human-readable label. (required).</param>
         /// <param name="type">What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income, industry, jobFunction, seniority, companySize). (required).</param>
         /// <param name="path">Optional breadcrumb of parent labels (e.g. [&#39;United States&#39;, &#39;California&#39;, &#39;Los Angeles&#39;]). Disambiguates same-named results..</param>
@@ -71,9 +71,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec.
+        /// The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec. A &#x60;country&#x60; result is the exception on every platform: its id is the ISO 3166-1 alpha-2 code, which is what &#x60;targeting.countries&#x60; takes.
         /// </summary>
-        /// <value>The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec.</value>
+        /// <value>The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec. A &#x60;country&#x60; result is the exception on every platform: its id is the ISO 3166-1 alpha-2 code, which is what &#x60;targeting.countries&#x60; takes.</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 

@@ -677,6 +677,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LocationName'
+        /// </summary>
+        [Fact]
+        public void LocationNameTest()
+        {
+            // TODO unit test for the property 'LocationName'
+        }
+
+        /// <summary>
+        /// Test the property 'IsAdsOnly'
+        /// </summary>
+        [Fact]
+        public void IsAdsOnlyTest()
+        {
+            // TODO unit test for the property 'IsAdsOnly'
+        }
+
+        /// <summary>
         /// Test the property 'Description'
         /// </summary>
         [Fact]

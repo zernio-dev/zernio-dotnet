@@ -114,8 +114,11 @@ namespace Zernio.Model
         /// <param name="musicSoundInfo">musicSoundInfo.</param>
         /// <param name="videoOriginalSoundVolume">Volume of the video&#39;s own sound when a commercial track is attached (0 to 100). Requires musicSoundInfo. Video posts only..</param>
         /// <param name="videoMadeWithAi">Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app..</param>
+        /// <param name="locationId">Location tag to attach, as the id of a result from GET /v1/accounts/{accountId}/tiktok/locations. Accounts connected through the TikTok for Business app and video posts only: a developer-app account rejects the post at publish time with a message that says so, and a direct photo post is rejected at creation since the business photo endpoint has no location field. Requires locationName. Ignored on drafts, where TikTok ignores every post_info field..</param>
+        /// <param name="locationName">Display name of the location tag, as returned next to its id. Required with locationId; a locationId without it is rejected at creation..</param>
+        /// <param name="isAdsOnly">Set true to publish the video as an \&quot;Only show in ads\&quot; post: it is kept off the profile and exists to be used as a Spark Ad. Accounts connected through the TikTok for Business app and video posts only, with the same rejections as locationId. Ignored on drafts..</param>
         /// <param name="description">Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted..</param>
-        public TikTokPlatformData(bool draft = default, string privacyLevel = default, bool allowComment = default, bool allowDuet = default, bool allowStitch = default, CommercialContentTypeEnum? commercialContentType = default, bool brandPartnerPromote = default, bool isBrandOrganicPost = default, bool contentPreviewConfirmed = default, bool expressConsentGiven = default, MediaTypeEnum? mediaType = default, int videoCoverTimestampMs = default, string videoCoverImageUrl = default, int photoCoverIndex = default, bool autoAddMusic = default, TikTokPlatformDataMusicSoundInfo musicSoundInfo = default, int videoOriginalSoundVolume = default, bool videoMadeWithAi = default, string description = default)
+        public TikTokPlatformData(bool draft = default, string privacyLevel = default, bool allowComment = default, bool allowDuet = default, bool allowStitch = default, CommercialContentTypeEnum? commercialContentType = default, bool brandPartnerPromote = default, bool isBrandOrganicPost = default, bool contentPreviewConfirmed = default, bool expressConsentGiven = default, MediaTypeEnum? mediaType = default, int videoCoverTimestampMs = default, string videoCoverImageUrl = default, int photoCoverIndex = default, bool autoAddMusic = default, TikTokPlatformDataMusicSoundInfo musicSoundInfo = default, int videoOriginalSoundVolume = default, bool videoMadeWithAi = default, string locationId = default, string locationName = default, bool isAdsOnly = default, string description = default)
         {
             this.Draft = draft;
             this.PrivacyLevel = privacyLevel;
@@ -135,6 +138,9 @@ namespace Zernio.Model
             this.MusicSoundInfo = musicSoundInfo;
             this.VideoOriginalSoundVolume = videoOriginalSoundVolume;
             this.VideoMadeWithAi = videoMadeWithAi;
+            this.LocationId = locationId;
+            this.LocationName = locationName;
+            this.IsAdsOnly = isAdsOnly;
             this.Description = description;
         }
 
@@ -250,6 +256,27 @@ namespace Zernio.Model
         public bool VideoMadeWithAi { get; set; }
 
         /// <summary>
+        /// Location tag to attach, as the id of a result from GET /v1/accounts/{accountId}/tiktok/locations. Accounts connected through the TikTok for Business app and video posts only: a developer-app account rejects the post at publish time with a message that says so, and a direct photo post is rejected at creation since the business photo endpoint has no location field. Requires locationName. Ignored on drafts, where TikTok ignores every post_info field.
+        /// </summary>
+        /// <value>Location tag to attach, as the id of a result from GET /v1/accounts/{accountId}/tiktok/locations. Accounts connected through the TikTok for Business app and video posts only: a developer-app account rejects the post at publish time with a message that says so, and a direct photo post is rejected at creation since the business photo endpoint has no location field. Requires locationName. Ignored on drafts, where TikTok ignores every post_info field.</value>
+        [DataMember(Name = "locationId", EmitDefaultValue = false)]
+        public string LocationId { get; set; }
+
+        /// <summary>
+        /// Display name of the location tag, as returned next to its id. Required with locationId; a locationId without it is rejected at creation.
+        /// </summary>
+        /// <value>Display name of the location tag, as returned next to its id. Required with locationId; a locationId without it is rejected at creation.</value>
+        [DataMember(Name = "locationName", EmitDefaultValue = false)]
+        public string LocationName { get; set; }
+
+        /// <summary>
+        /// Set true to publish the video as an \&quot;Only show in ads\&quot; post: it is kept off the profile and exists to be used as a Spark Ad. Accounts connected through the TikTok for Business app and video posts only, with the same rejections as locationId. Ignored on drafts.
+        /// </summary>
+        /// <value>Set true to publish the video as an \&quot;Only show in ads\&quot; post: it is kept off the profile and exists to be used as a Spark Ad. Accounts connected through the TikTok for Business app and video posts only, with the same rejections as locationId. Ignored on drafts.</value>
+        [DataMember(Name = "isAdsOnly", EmitDefaultValue = true)]
+        public bool IsAdsOnly { get; set; }
+
+        /// <summary>
         /// Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted.
         /// </summary>
         /// <value>Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted.</value>
@@ -282,6 +309,9 @@ namespace Zernio.Model
             sb.Append("  MusicSoundInfo: ").Append(MusicSoundInfo).Append("\n");
             sb.Append("  VideoOriginalSoundVolume: ").Append(VideoOriginalSoundVolume).Append("\n");
             sb.Append("  VideoMadeWithAi: ").Append(VideoMadeWithAi).Append("\n");
+            sb.Append("  LocationId: ").Append(LocationId).Append("\n");
+            sb.Append("  LocationName: ").Append(LocationName).Append("\n");
+            sb.Append("  IsAdsOnly: ").Append(IsAdsOnly).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

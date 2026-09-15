@@ -43,7 +43,9 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="country">ISO 3166-1 alpha-2 country code of the watched country. (required).</param>
         /// <param name="types">Number types deliverable at sweep time. Only types with stock are listed. (required).</param>
-        public WebhookPayloadPhoneNumberStockAvailableStock(string country = default, List<WebhookPayloadPhoneNumberStockAvailableStockTypesInner> types = default)
+        /// <param name="areaCode">Set when the watch named an area: the area code (NDC) that is back in stock..</param>
+        /// <param name="areaName">The name of that area, when known..</param>
+        public WebhookPayloadPhoneNumberStockAvailableStock(string country = default, List<WebhookPayloadPhoneNumberStockAvailableStockTypesInner> types = default, string areaCode = default, string areaName = default)
         {
             // to ensure "country" is required (not null)
             if (country == null)
@@ -57,6 +59,8 @@ namespace Zernio.Model
                 throw new ArgumentNullException("types is a required property for WebhookPayloadPhoneNumberStockAvailableStock and cannot be null");
             }
             this.Types = types;
+            this.AreaCode = areaCode;
+            this.AreaName = areaName;
         }
 
         /// <summary>
@@ -74,6 +78,20 @@ namespace Zernio.Model
         public List<WebhookPayloadPhoneNumberStockAvailableStockTypesInner> Types { get; set; }
 
         /// <summary>
+        /// Set when the watch named an area: the area code (NDC) that is back in stock.
+        /// </summary>
+        /// <value>Set when the watch named an area: the area code (NDC) that is back in stock.</value>
+        [DataMember(Name = "areaCode", EmitDefaultValue = false)]
+        public string AreaCode { get; set; }
+
+        /// <summary>
+        /// The name of that area, when known.
+        /// </summary>
+        /// <value>The name of that area, when known.</value>
+        [DataMember(Name = "areaName", EmitDefaultValue = false)]
+        public string AreaName { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -83,6 +101,8 @@ namespace Zernio.Model
             sb.Append("class WebhookPayloadPhoneNumberStockAvailableStock {\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Types: ").Append(Types).Append("\n");
+            sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
+            sb.Append("  AreaName: ").Append(AreaName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

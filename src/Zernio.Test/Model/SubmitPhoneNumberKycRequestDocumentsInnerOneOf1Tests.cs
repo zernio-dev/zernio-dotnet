@@ -72,5 +72,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'DocumentId'
         }
+
+        /// <summary>
+        /// Test the property 'IssuedAt'
+        /// </summary>
+        [Fact]
+        public void IssuedAtTest()
+        {
+            // TODO unit test for the property 'IssuedAt'
+        }
     }
 }

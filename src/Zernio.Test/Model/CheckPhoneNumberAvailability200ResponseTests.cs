@@ -117,5 +117,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AreaOptions'
         }
+
+        /// <summary>
+        /// Test the property 'SoldOutAreas'
+        /// </summary>
+        [Fact]
+        public void SoldOutAreasTest()
+        {
+            // TODO unit test for the property 'SoldOutAreas'
+        }
     }
 }

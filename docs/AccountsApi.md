@@ -16,6 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAccounts**](AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts |
 | [**ListTikTokCommercialMusic**](AccountsApi.md#listtiktokcommercialmusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**MoveAccountToProfile**](AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
+| [**SearchTikTokLocations**](AccountsApi.md#searchtiktoklocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
 | [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**UpdateBlueskySettings**](AccountsApi.md#updateblueskysettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
 | [**UpdateSlackSettings**](AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
@@ -1262,6 +1263,108 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | API key does not have access to the source account or target profile |  -  |
 | **404** | Account or target profile not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="searchtiktoklocations"></a>
+# **SearchTikTokLocations**
+> SearchTikTokLocations200Response SearchTikTokLocations (string accountId, string query)
+
+Search TikTok location tags
+
+Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result's id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SearchTikTokLocationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The TikTok account ID
+            var query = "query_example";  // string | Place name to search, for example a city, a venue or an address
+
+            try
+            {
+                // Search TikTok location tags
+                SearchTikTokLocations200Response result = apiInstance.SearchTikTokLocations(accountId, query);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.SearchTikTokLocations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SearchTikTokLocationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Search TikTok location tags
+    ApiResponse<SearchTikTokLocations200Response> response = apiInstance.SearchTikTokLocationsWithHttpInfo(accountId, query);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.SearchTikTokLocationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The TikTok account ID |  |
+| **query** | **string** | Place name to search, for example a city, a venue or an address |  |
+
+### Return type
+
+[**SearchTikTokLocations200Response**](SearchTikTokLocations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The closest location tags, best match first |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

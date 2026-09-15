@@ -174,6 +174,7 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**ListAccounts**](docs/AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**ListTikTokCommercialMusic**](docs/AccountsApi.md#listtiktokcommercialmusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**MoveAccountToProfile**](docs/AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
+*AccountsApi* | [**SearchTikTokLocations**](docs/AccountsApi.md#searchtiktoklocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**UpdateBlueskySettings**](docs/AccountsApi.md#updateblueskysettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
 *AccountsApi* | [**UpdateSlackSettings**](docs/AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
@@ -250,6 +251,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**GetAdSetDetails**](docs/AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**GetAdTree**](docs/AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**GetAdsTimeline**](docs/AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics
+*AdCampaignsApi* | [**GetCampaignAdSchedule**](docs/AdCampaignsApi.md#getcampaignadschedule) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign's ad schedule (dayparting)
 *AdCampaignsApi* | [**GetCampaignBidding**](docs/AdCampaignsApi.md#getcampaignbidding) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign's current bidding
 *AdCampaignsApi* | [**GetCampaignTargeting**](docs/AdCampaignsApi.md#getcampaigntargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign's device, location, and language targeting
 *AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns
@@ -276,6 +278,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**UpdateAdSetStatus**](docs/AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdCampaignsApi* | [**UpdateAdStatus**](docs/AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdCampaignsApi* | [**UpdateBidStrategy**](docs/AdCampaignsApi.md#updatebidstrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy
+*AdCampaignsApi* | [**UpdateCampaignAdSchedule**](docs/AdCampaignsApi.md#updatecampaignadschedule) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign's ad schedule (dayparting)
 *AdCampaignsApi* | [**UpdateCampaignAssets**](docs/AdCampaignsApi.md#updatecampaignassets) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets
 *AdCampaignsApi* | [**UpdateCampaignTargeting**](docs/AdCampaignsApi.md#updatecampaigntargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign's device, location, or language targeting
 *AdCreativesApi* | [**CreateAdCreative**](docs/AdCreativesApi.md#createadcreative) | **POST** /v1/ads/creatives | Create a standalone creative
@@ -894,12 +897,14 @@ Class | Method | HTTP request | Description
  - [Model.AdFunnelCounts](docs/AdFunnelCounts.md)
  - [Model.AdKeyword](docs/AdKeyword.md)
  - [Model.AdKeywordMetrics](docs/AdKeywordMetrics.md)
+ - [Model.AdKeywordQuality](docs/AdKeywordQuality.md)
  - [Model.AdMetrics](docs/AdMetrics.md)
  - [Model.AdNegativeKeywordList](docs/AdNegativeKeywordList.md)
  - [Model.AdNegativeKeywordListKeyword](docs/AdNegativeKeywordListKeyword.md)
  - [Model.AdPromotedObject](docs/AdPromotedObject.md)
  - [Model.AdReviewStatus](docs/AdReviewStatus.md)
  - [Model.AdSchedule](docs/AdSchedule.md)
+ - [Model.AdScheduleWindow](docs/AdScheduleWindow.md)
  - [Model.AdStatus](docs/AdStatus.md)
  - [Model.AdTracking](docs/AdTracking.md)
  - [Model.AdTreeAdSet](docs/AdTreeAdSet.md)
@@ -997,6 +1002,7 @@ Class | Method | HTTP request | Description
  - [Model.BoostPostRequest](docs/BoostPostRequest.md)
  - [Model.BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
  - [Model.BoostPostRequestPlatformSpecificData](docs/BoostPostRequestPlatformSpecificData.md)
+ - [Model.BoostPostRequestPromotedObject](docs/BoostPostRequestPromotedObject.md)
  - [Model.BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
  - [Model.BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
  - [Model.BoostPostRequestTargetingCitiesInner](docs/BoostPostRequestTargetingCitiesInner.md)
@@ -1067,6 +1073,7 @@ Class | Method | HTTP request | Description
  - [Model.ChannelPickerTeam](docs/ChannelPickerTeam.md)
  - [Model.CheckPhoneNumberAvailability200Response](docs/CheckPhoneNumberAvailability200Response.md)
  - [Model.CheckPhoneNumberAvailability200ResponseAreaOptionsInner](docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md)
+ - [Model.CheckPhoneNumberAvailability200ResponseSoldOutAreasInner](docs/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md)
  - [Model.CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
  - [Model.CheckPhoneNumberPortability200ResponseResultsInner](docs/CheckPhoneNumberPortability200ResponseResultsInner.md)
  - [Model.CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)
@@ -1400,6 +1407,7 @@ Class | Method | HTTP request | Description
  - [Model.EnrollContacts200ResponseResultsInner](docs/EnrollContacts200ResponseResultsInner.md)
  - [Model.EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
+ - [Model.ErrorResponseDetails](docs/ErrorResponseDetails.md)
  - [Model.EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
  - [Model.EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Model.Expired](docs/Expired.md)
@@ -1491,6 +1499,10 @@ Class | Method | HTTP request | Description
  - [Model.GetCallsUsage200Response](docs/GetCallsUsage200Response.md)
  - [Model.GetCallsUsage200ResponseGroupsInner](docs/GetCallsUsage200ResponseGroupsInner.md)
  - [Model.GetCallsUsage200ResponseTotals](docs/GetCallsUsage200ResponseTotals.md)
+ - [Model.GetCampaignAdSchedule200Response](docs/GetCampaignAdSchedule200Response.md)
+ - [Model.GetCampaignAdSchedule200ResponsePerformance](docs/GetCampaignAdSchedule200ResponsePerformance.md)
+ - [Model.GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner](docs/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.md)
+ - [Model.GetCampaignAdSchedule200ResponsePerformanceByHourInner](docs/GetCampaignAdSchedule200ResponsePerformanceByHourInner.md)
  - [Model.GetCampaignAnalytics202Response](docs/GetCampaignAnalytics202Response.md)
  - [Model.GetCampaignBidding200Response](docs/GetCampaignBidding200Response.md)
  - [Model.GetCampaignTargeting200Response](docs/GetCampaignTargeting200Response.md)
@@ -2312,6 +2324,8 @@ Class | Method | HTTP request | Description
  - [Model.SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [Model.SearchInstagramAudio200Response](docs/SearchInstagramAudio200Response.md)
  - [Model.SearchReddit200Response](docs/SearchReddit200Response.md)
+ - [Model.SearchTikTokLocations200Response](docs/SearchTikTokLocations200Response.md)
+ - [Model.SearchTikTokLocations200ResponseLocationsInner](docs/SearchTikTokLocations200ResponseLocationsInner.md)
  - [Model.SearchTweets200Response](docs/SearchTweets200Response.md)
  - [Model.SearchTweets200ResponseMeta](docs/SearchTweets200ResponseMeta.md)
  - [Model.SearchTweets200ResponsePagination](docs/SearchTweets200ResponsePagination.md)
@@ -2578,6 +2592,9 @@ Class | Method | HTTP request | Description
  - [Model.UpdateBusinessAgentSettingsRequestFollowup](docs/UpdateBusinessAgentSettingsRequestFollowup.md)
  - [Model.UpdateBusinessAgentSettingsRequestHandoff](docs/UpdateBusinessAgentSettingsRequestHandoff.md)
  - [Model.UpdateBusinessAgentSettingsRequestRollout](docs/UpdateBusinessAgentSettingsRequestRollout.md)
+ - [Model.UpdateCampaignAdSchedule200Response](docs/UpdateCampaignAdSchedule200Response.md)
+ - [Model.UpdateCampaignAdScheduleRequest](docs/UpdateCampaignAdScheduleRequest.md)
+ - [Model.UpdateCampaignAdScheduleRequestScheduleInner](docs/UpdateCampaignAdScheduleRequestScheduleInner.md)
  - [Model.UpdateCampaignAssets200Response](docs/UpdateCampaignAssets200Response.md)
  - [Model.UpdateCampaignAssetsRequest](docs/UpdateCampaignAssetsRequest.md)
  - [Model.UpdateCampaignTargeting200Response](docs/UpdateCampaignTargeting200Response.md)

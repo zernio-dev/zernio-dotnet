@@ -132,10 +132,11 @@ namespace Zernio.Model
         /// <param name="matchType">matchType.</param>
         /// <param name="status">status.</param>
         /// <param name="negative">negative.</param>
-        /// <param name="qualityScore">Google Quality Score, 1-10. Null when unrated..</param>
+        /// <param name="qualityScore">Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated..</param>
+        /// <param name="quality">quality.</param>
         /// <param name="syncedAt">syncedAt.</param>
         /// <param name="metrics">metrics.</param>
-        public AdKeyword(string id = default, string accountId = default, string profileId = default, PlatformEnum? platform = default, string adAccountId = default, string campaignId = default, string campaignName = default, string campaignStatus = default, string adSetId = default, string adSetName = default, string adSetStatus = default, string keyword = default, MatchTypeEnum? matchType = default, StatusEnum? status = default, bool negative = default, int? qualityScore = default, DateTime? syncedAt = default, AdKeywordMetrics metrics = default)
+        public AdKeyword(string id = default, string accountId = default, string profileId = default, PlatformEnum? platform = default, string adAccountId = default, string campaignId = default, string campaignName = default, string campaignStatus = default, string adSetId = default, string adSetName = default, string adSetStatus = default, string keyword = default, MatchTypeEnum? matchType = default, StatusEnum? status = default, bool negative = default, int? qualityScore = default, AdKeywordQuality quality = default, DateTime? syncedAt = default, AdKeywordMetrics metrics = default)
         {
             this.Id = id;
             this.AccountId = accountId;
@@ -153,6 +154,7 @@ namespace Zernio.Model
             this.Status = status;
             this.Negative = negative;
             this.QualityScore = qualityScore;
+            this.Quality = quality;
             this.SyncedAt = syncedAt;
             this.Metrics = metrics;
         }
@@ -233,11 +235,17 @@ namespace Zernio.Model
         public bool Negative { get; set; }
 
         /// <summary>
-        /// Google Quality Score, 1-10. Null when unrated.
+        /// Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated.
         /// </summary>
-        /// <value>Google Quality Score, 1-10. Null when unrated.</value>
+        /// <value>Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated.</value>
         [DataMember(Name = "qualityScore", EmitDefaultValue = true)]
         public int? QualityScore { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Quality
+        /// </summary>
+        [DataMember(Name = "quality", EmitDefaultValue = false)]
+        public AdKeywordQuality Quality { get; set; }
 
         /// <summary>
         /// Gets or Sets SyncedAt
@@ -275,6 +283,7 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Negative: ").Append(Negative).Append("\n");
             sb.Append("  QualityScore: ").Append(QualityScore).Append("\n");
+            sb.Append("  Quality: ").Append(Quality).Append("\n");
             sb.Append("  SyncedAt: ").Append(SyncedAt).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
             sb.Append("}\n");

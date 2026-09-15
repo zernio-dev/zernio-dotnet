@@ -19,7 +19,8 @@ Name | Type | Description | Notes
 **MatchType** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **Negative** | **bool** |  | [optional] 
-**QualityScore** | **int?** | Google Quality Score, 1-10. Null when unrated. | [optional] 
+**QualityScore** | **int?** | Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated. | [optional] 
+**Quality** | [**AdKeywordQuality**](AdKeywordQuality.md) |  | [optional] 
 **SyncedAt** | **DateTime?** |  | [optional] 
 **Metrics** | [**AdKeywordMetrics**](AdKeywordMetrics.md) |  | [optional] 
 

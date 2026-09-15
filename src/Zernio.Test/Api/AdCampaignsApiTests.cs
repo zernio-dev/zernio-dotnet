@@ -332,6 +332,23 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetCampaignAdSchedule
+        /// </summary>
+        [Fact]
+        public void GetCampaignAdScheduleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //string? platform = null;
+            //bool? includePerformance = null;
+            //int? windowDays = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //var response = instance.GetCampaignAdSchedule(campaignId, platform, includePerformance, windowDays, fromDate, toDate);
+            //Assert.IsType<GetCampaignAdSchedule200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetCampaignBidding
         /// </summary>
         [Fact]
@@ -707,6 +724,19 @@ namespace Zernio.Test.Api
             //UpdateBidStrategyRequest updateBidStrategyRequest = null;
             //var response = instance.UpdateBidStrategy(strategyId, updateBidStrategyRequest);
             //Assert.IsType<UpdateBidStrategy200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateCampaignAdSchedule
+        /// </summary>
+        [Fact]
+        public void UpdateCampaignAdScheduleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest = null;
+            //var response = instance.UpdateCampaignAdSchedule(campaignId, updateCampaignAdScheduleRequest);
+            //Assert.IsType<UpdateCampaignAdSchedule200Response>(response);
         }
 
         /// <summary>

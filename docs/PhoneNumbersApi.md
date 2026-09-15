@@ -546,7 +546,7 @@ catch (ApiException e)
 
 Watch an out-of-stock country
 
-Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the `phone_number.stock_available` webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked `fulfilment: request` by GET /v1/phone-numbers/countries can also be watched, but anything with `preOrderable: true` does not need a watch: submit KYC and the carrier sources the number to order. 
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the `phone_number.stock_available` webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked `fulfilment: request` by GET /v1/phone-numbers/countries can also be watched, but anything with `preOrderable: true` does not need a watch: submit KYC and the carrier sources the number to order.  Pass `areaCode` (with `numberType`) to watch one sold-out area, for example an entry of `soldOutAreas` from GET /v1/phone-numbers/availability. Area stock is checked live on the same 6h cadence. 
 
 ### Example
 ```csharp
@@ -638,7 +638,7 @@ catch (ApiException e)
 | **200** | A watch for this country and type already existed; returned unchanged. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **409** | The country is in stock right now (buy instead of watching), or the 20-country watch limit is reached (code invalid_resource_state). |  -  |
+| **409** | The country (or the watched area) is in stock right now (buy instead of watching), or the 20-watch limit is reached (code invalid_resource_state). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

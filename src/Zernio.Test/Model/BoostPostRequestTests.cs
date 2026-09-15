@@ -308,6 +308,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PromotedObject'
+        /// </summary>
+        [Fact]
+        public void PromotedObjectTest()
+        {
+            // TODO unit test for the property 'PromotedObject'
+        }
+
+        /// <summary>
         /// Test the property 'DsaBeneficiary'
         /// </summary>
         [Fact]

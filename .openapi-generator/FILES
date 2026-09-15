@@ -31,6 +31,7 @@ docs/AdFunnelCounts.md
 docs/AdInsightsApi.md
 docs/AdKeyword.md
 docs/AdKeywordMetrics.md
+docs/AdKeywordQuality.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdNegativeKeywordList.md
@@ -38,6 +39,7 @@ docs/AdNegativeKeywordListKeyword.md
 docs/AdPromotedObject.md
 docs/AdReviewStatus.md
 docs/AdSchedule.md
+docs/AdScheduleWindow.md
 docs/AdStatus.md
 docs/AdTargetingApi.md
 docs/AdTracking.md
@@ -138,6 +140,7 @@ docs/BookmarkPostRequest.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestBudget.md
 docs/BoostPostRequestPlatformSpecificData.md
+docs/BoostPostRequestPromotedObject.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
@@ -211,6 +214,7 @@ docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
 docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
+docs/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md
 docs/CheckPhoneNumberPortability200Response.md
 docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
@@ -552,6 +556,7 @@ docs/EnrollContacts200Response.md
 docs/EnrollContacts200ResponseResultsInner.md
 docs/EnrollContactsRequest.md
 docs/ErrorResponse.md
+docs/ErrorResponseDetails.md
 docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
 docs/Expired.md
@@ -651,6 +656,10 @@ docs/GetCall200Response.md
 docs/GetCallsUsage200Response.md
 docs/GetCallsUsage200ResponseGroupsInner.md
 docs/GetCallsUsage200ResponseTotals.md
+docs/GetCampaignAdSchedule200Response.md
+docs/GetCampaignAdSchedule200ResponsePerformance.md
+docs/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.md
+docs/GetCampaignAdSchedule200ResponsePerformanceByHourInner.md
 docs/GetCampaignAnalytics202Response.md
 docs/GetCampaignBidding200Response.md
 docs/GetCampaignTargeting200Response.md
@@ -1490,6 +1499,8 @@ docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
+docs/SearchTikTokLocations200Response.md
+docs/SearchTikTokLocations200ResponseLocationsInner.md
 docs/SearchTweets200Response.md
 docs/SearchTweets200ResponseMeta.md
 docs/SearchTweets200ResponsePagination.md
@@ -1761,6 +1772,9 @@ docs/UpdateBusinessAgentSettingsRequest.md
 docs/UpdateBusinessAgentSettingsRequestFollowup.md
 docs/UpdateBusinessAgentSettingsRequestHandoff.md
 docs/UpdateBusinessAgentSettingsRequestRollout.md
+docs/UpdateCampaignAdSchedule200Response.md
+docs/UpdateCampaignAdScheduleRequest.md
+docs/UpdateCampaignAdScheduleRequestScheduleInner.md
 docs/UpdateCampaignAssets200Response.md
 docs/UpdateCampaignAssetsRequest.md
 docs/UpdateCampaignTargeting200Response.md
@@ -2212,6 +2226,7 @@ src/Zernio.Test/Model/AdDailyMetricsTests.cs
 src/Zernio.Test/Model/AdEngagementCountsTests.cs
 src/Zernio.Test/Model/AdFunnelCountsTests.cs
 src/Zernio.Test/Model/AdKeywordMetricsTests.cs
+src/Zernio.Test/Model/AdKeywordQualityTests.cs
 src/Zernio.Test/Model/AdKeywordTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
 src/Zernio.Test/Model/AdNegativeKeywordListKeywordTests.cs
@@ -2219,6 +2234,7 @@ src/Zernio.Test/Model/AdNegativeKeywordListTests.cs
 src/Zernio.Test/Model/AdPromotedObjectTests.cs
 src/Zernio.Test/Model/AdReviewStatusTests.cs
 src/Zernio.Test/Model/AdScheduleTests.cs
+src/Zernio.Test/Model/AdScheduleWindowTests.cs
 src/Zernio.Test/Model/AdStatusTests.cs
 src/Zernio.Test/Model/AdTests.cs
 src/Zernio.Test/Model/AdTrackingTests.cs
@@ -2316,6 +2332,7 @@ src/Zernio.Test/Model/BookmarkPost200ResponseTests.cs
 src/Zernio.Test/Model/BookmarkPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
 src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
+src/Zernio.Test/Model/BoostPostRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCitiesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCustomLocationsInnerTests.cs
@@ -2386,6 +2403,7 @@ src/Zernio.Test/Model/ChannelPickerChannelsInnerTests.cs
 src/Zernio.Test/Model/ChannelPickerTeamTests.cs
 src/Zernio.Test/Model/ChannelPickerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInnerTests.cs
+src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseTests.cs
@@ -2719,6 +2737,7 @@ src/Zernio.Test/Model/EndVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/EnrollContacts200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/EnrollContacts200ResponseTests.cs
 src/Zernio.Test/Model/EnrollContactsRequestTests.cs
+src/Zernio.Test/Model/ErrorResponseDetailsTests.cs
 src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
@@ -2811,6 +2830,10 @@ src/Zernio.Test/Model/GetCall200ResponseTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetCallsUsage200ResponseTotalsTests.cs
+src/Zernio.Test/Model/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInnerTests.cs
+src/Zernio.Test/Model/GetCampaignAdSchedule200ResponsePerformanceByHourInnerTests.cs
+src/Zernio.Test/Model/GetCampaignAdSchedule200ResponsePerformanceTests.cs
+src/Zernio.Test/Model/GetCampaignAdSchedule200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignAnalytics202ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignBidding200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseDevicesInnerTests.cs
@@ -3632,6 +3655,8 @@ src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaTests.cs
 src/Zernio.Test/Model/SearchInboxConversations200ResponseTests.cs
 src/Zernio.Test/Model/SearchInstagramAudio200ResponseTests.cs
 src/Zernio.Test/Model/SearchReddit200ResponseTests.cs
+src/Zernio.Test/Model/SearchTikTokLocations200ResponseLocationsInnerTests.cs
+src/Zernio.Test/Model/SearchTikTokLocations200ResponseTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponseMetaTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponsePaginationTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponseTests.cs
@@ -3898,6 +3923,9 @@ src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestFollowupTests.cs
 src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestHandoffTests.cs
 src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestRolloutTests.cs
 src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestTests.cs
+src/Zernio.Test/Model/UpdateCampaignAdSchedule200ResponseTests.cs
+src/Zernio.Test/Model/UpdateCampaignAdScheduleRequestScheduleInnerTests.cs
+src/Zernio.Test/Model/UpdateCampaignAdScheduleRequestTests.cs
 src/Zernio.Test/Model/UpdateCampaignAssets200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseDevicesInnerTests.cs
@@ -4355,12 +4383,14 @@ src/Zernio/Model/AdEngagementCounts.cs
 src/Zernio/Model/AdFunnelCounts.cs
 src/Zernio/Model/AdKeyword.cs
 src/Zernio/Model/AdKeywordMetrics.cs
+src/Zernio/Model/AdKeywordQuality.cs
 src/Zernio/Model/AdMetrics.cs
 src/Zernio/Model/AdNegativeKeywordList.cs
 src/Zernio/Model/AdNegativeKeywordListKeyword.cs
 src/Zernio/Model/AdPromotedObject.cs
 src/Zernio/Model/AdReviewStatus.cs
 src/Zernio/Model/AdSchedule.cs
+src/Zernio/Model/AdScheduleWindow.cs
 src/Zernio/Model/AdStatus.cs
 src/Zernio/Model/AdTracking.cs
 src/Zernio/Model/AdTreeAdSet.cs
@@ -4458,6 +4488,7 @@ src/Zernio/Model/BookmarkPostRequest.cs
 src/Zernio/Model/BoostPostRequest.cs
 src/Zernio/Model/BoostPostRequestBudget.cs
 src/Zernio/Model/BoostPostRequestPlatformSpecificData.cs
+src/Zernio/Model/BoostPostRequestPromotedObject.cs
 src/Zernio/Model/BoostPostRequestSchedule.cs
 src/Zernio/Model/BoostPostRequestTargeting.cs
 src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
@@ -4528,6 +4559,7 @@ src/Zernio/Model/ChannelPickerChannelsInner.cs
 src/Zernio/Model/ChannelPickerTeam.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200Response.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.cs
+src/Zernio/Model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.cs
 src/Zernio/Model/CheckPhoneNumberPortability200Response.cs
 src/Zernio/Model/CheckPhoneNumberPortability200ResponseResultsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortabilityRequest.cs
@@ -4861,6 +4893,7 @@ src/Zernio/Model/EnrollContacts200Response.cs
 src/Zernio/Model/EnrollContacts200ResponseResultsInner.cs
 src/Zernio/Model/EnrollContactsRequest.cs
 src/Zernio/Model/ErrorResponse.cs
+src/Zernio/Model/ErrorResponseDetails.cs
 src/Zernio/Model/EstimateAdReach200Response.cs
 src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/Expired.cs
@@ -4952,6 +4985,10 @@ src/Zernio/Model/GetCall200Response.cs
 src/Zernio/Model/GetCallsUsage200Response.cs
 src/Zernio/Model/GetCallsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetCallsUsage200ResponseTotals.cs
+src/Zernio/Model/GetCampaignAdSchedule200Response.cs
+src/Zernio/Model/GetCampaignAdSchedule200ResponsePerformance.cs
+src/Zernio/Model/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.cs
+src/Zernio/Model/GetCampaignAdSchedule200ResponsePerformanceByHourInner.cs
 src/Zernio/Model/GetCampaignAnalytics202Response.cs
 src/Zernio/Model/GetCampaignBidding200Response.cs
 src/Zernio/Model/GetCampaignTargeting200Response.cs
@@ -5773,6 +5810,8 @@ src/Zernio/Model/SearchInboxConversations200ResponseMeta.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMetaFailedAccountsInner.cs
 src/Zernio/Model/SearchInstagramAudio200Response.cs
 src/Zernio/Model/SearchReddit200Response.cs
+src/Zernio/Model/SearchTikTokLocations200Response.cs
+src/Zernio/Model/SearchTikTokLocations200ResponseLocationsInner.cs
 src/Zernio/Model/SearchTweets200Response.cs
 src/Zernio/Model/SearchTweets200ResponseMeta.cs
 src/Zernio/Model/SearchTweets200ResponsePagination.cs
@@ -6039,6 +6078,9 @@ src/Zernio/Model/UpdateBusinessAgentSettingsRequest.cs
 src/Zernio/Model/UpdateBusinessAgentSettingsRequestFollowup.cs
 src/Zernio/Model/UpdateBusinessAgentSettingsRequestHandoff.cs
 src/Zernio/Model/UpdateBusinessAgentSettingsRequestRollout.cs
+src/Zernio/Model/UpdateCampaignAdSchedule200Response.cs
+src/Zernio/Model/UpdateCampaignAdScheduleRequest.cs
+src/Zernio/Model/UpdateCampaignAdScheduleRequestScheduleInner.cs
 src/Zernio/Model/UpdateCampaignAssets200Response.cs
 src/Zernio/Model/UpdateCampaignAssetsRequest.cs
 src/Zernio/Model/UpdateCampaignTargeting200Response.cs

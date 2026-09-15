@@ -84,8 +84,9 @@ namespace Zernio.Model
         /// <param name="country">ISO 3166-1 alpha-2. (required).</param>
         /// <param name="countryName">countryName (required).</param>
         /// <param name="numberType">The watched number type, or null when the watch covers every type in the country. (required).</param>
+        /// <param name="areaCode">The watched area code (NDC), or null when the watch covers every area..</param>
         /// <param name="createdAt">createdAt (required).</param>
-        public PhoneNumberStockWatch(string id = default, string country = default, string countryName = default, NumberTypeEnum numberType = default, DateTime createdAt = default)
+        public PhoneNumberStockWatch(string id = default, string country = default, string countryName = default, NumberTypeEnum numberType = default, string areaCode = default, DateTime createdAt = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -107,6 +108,7 @@ namespace Zernio.Model
             this.CountryName = countryName;
             this.NumberType = numberType;
             this.CreatedAt = createdAt;
+            this.AreaCode = areaCode;
         }
 
         /// <summary>
@@ -129,6 +131,13 @@ namespace Zernio.Model
         public string CountryName { get; set; }
 
         /// <summary>
+        /// The watched area code (NDC), or null when the watch covers every area.
+        /// </summary>
+        /// <value>The watched area code (NDC), or null when the watch covers every area.</value>
+        [DataMember(Name = "areaCode", EmitDefaultValue = true)]
+        public string AreaCode { get; set; }
+
+        /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
@@ -146,6 +155,7 @@ namespace Zernio.Model
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CountryName: ").Append(CountryName).Append("\n");
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
+            sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

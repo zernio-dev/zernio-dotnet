@@ -43,7 +43,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="requirementId">requirementId (required).</param>
         /// <param name="documentId">Id from POST /v1/phone-numbers/kyc/upload-document. (required).</param>
-        public SubmitPhoneNumberKycRequestDocumentsInnerOneOf1(string requirementId = default, string documentId = default)
+        /// <param name="issuedAt">Date printed on the document (YYYY-MM-DD), for slots the regulator windows such as proof of address. The pre-submit review trusts it over its own read of the PDF..</param>
+        public SubmitPhoneNumberKycRequestDocumentsInnerOneOf1(string requirementId = default, string documentId = default, DateOnly issuedAt = default)
         {
             // to ensure "requirementId" is required (not null)
             if (requirementId == null)
@@ -57,6 +58,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("documentId is a required property for SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 and cannot be null");
             }
             this.DocumentId = documentId;
+            this.IssuedAt = issuedAt;
         }
 
         /// <summary>
@@ -73,6 +75,13 @@ namespace Zernio.Model
         public string DocumentId { get; set; }
 
         /// <summary>
+        /// Date printed on the document (YYYY-MM-DD), for slots the regulator windows such as proof of address. The pre-submit review trusts it over its own read of the PDF.
+        /// </summary>
+        /// <value>Date printed on the document (YYYY-MM-DD), for slots the regulator windows such as proof of address. The pre-submit review trusts it over its own read of the PDF.</value>
+        [DataMember(Name = "issuedAt", EmitDefaultValue = false)]
+        public DateOnly IssuedAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -82,6 +91,7 @@ namespace Zernio.Model
             sb.Append("class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {\n");
             sb.Append("  RequirementId: ").Append(RequirementId).Append("\n");
             sb.Append("  DocumentId: ").Append(DocumentId).Append("\n");
+            sb.Append("  IssuedAt: ").Append(IssuedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

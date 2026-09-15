@@ -200,6 +200,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Quality'
+        /// </summary>
+        [Fact]
+        public void QualityTest()
+        {
+            // TODO unit test for the property 'Quality'
+        }
+
+        /// <summary>
         /// Test the property 'SyncedAt'
         /// </summary>
         [Fact]
