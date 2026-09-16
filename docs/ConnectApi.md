@@ -577,7 +577,7 @@ catch (ApiException e)
 
 <a id="connectads"></a>
 # **ConnectAds**
-> ConnectAds200Response ConnectAds (string platform, string profileId, string? loginMode = null, string? pageId = null, string? accountId = null, string? redirectUrl = null, bool? headless = null, bool? force = null, string? adAccountId = null, List<string>? adAccountIds = null)
+> ConnectAds200Response ConnectAds (string platform, string profileId, string? loginMode = null, string? permissionLevel = null, string? pageId = null, string? accountId = null, string? redirectUrl = null, bool? headless = null, bool? force = null, string? adAccountId = null, List<string>? adAccountIds = null)
 
 Connect ads for a platform
 
@@ -610,6 +610,7 @@ namespace Example
             var platform = "facebook";  // string | Platform to connect ads for. Only platforms with ads support are accepted.  In classic mode, `instagram` requires an Instagram account connected with loginMethod=facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. 
             var profileId = "profileId_example";  // string | Your Zernio profile ID
             var loginMode = business;  // string? | Meta ads authorization mode. Business login is opt-in for Facebook and Instagram; classic preserves the posting-account flow. (optional)  (default to classic)
+            var permissionLevel = advertise;  // string? | Business login only. Ad-account permission the connection's system user will hold. `full` asks the owner for Full control (MANAGE; required to create pixels and other account-level assets through Zernio). `advertise` asks for Manage campaigns (ADVERTISE), enough for campaigns, ad sets, creatives, ads, media and reporting, for owners who will not grant billing-level control to an integration. Either way Meta only lets a business admin complete the grant. 503 if the advertise configuration is not set up. (optional)  (default to full)
             var pageId = 811889972008357;  // string? | Business login only. Facebook Page ID to select from the token grants for ad creatives and lead forms. (optional) 
             var accountId = "accountId_example";  // string? | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok`: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms.  (optional) 
             var redirectUrl = "redirectUrl_example";  // string? | Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (`tiktok`, `twitter`) and standalone (`googleads`) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success `tiktok`, `twitter` and `googleads` land on the URL unchanged, while the same-token platforms (`facebook`, `instagram`, `linkedin`, `pinterest`) append `connected`, `profileId`, `accountId`, `username` and, on API-key calls, `connect_token`. On failure the same error contract applies as on GET /v1/connect/{platform}: `error` and `platform` are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows `platform` carries the ads platform id (`tiktokads`, `xads`, `googleads`), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  (optional) 
@@ -621,7 +622,7 @@ namespace Example
             try
             {
                 // Connect ads for a platform
-                ConnectAds200Response result = apiInstance.ConnectAds(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
+                ConnectAds200Response result = apiInstance.ConnectAds(platform, profileId, loginMode, permissionLevel, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -642,7 +643,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Connect ads for a platform
-    ApiResponse<ConnectAds200Response> response = apiInstance.ConnectAdsWithHttpInfo(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
+    ApiResponse<ConnectAds200Response> response = apiInstance.ConnectAdsWithHttpInfo(platform, profileId, loginMode, permissionLevel, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -662,6 +663,7 @@ catch (ApiException e)
 | **platform** | **string** | Platform to connect ads for. Only platforms with ads support are accepted.  In classic mode, &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts.  |  |
 | **profileId** | **string** | Your Zernio profile ID |  |
 | **loginMode** | **string?** | Meta ads authorization mode. Business login is opt-in for Facebook and Instagram; classic preserves the posting-account flow. | [optional] [default to classic] |
+| **permissionLevel** | **string?** | Business login only. Ad-account permission the connection&#39;s system user will hold. &#x60;full&#x60; asks the owner for Full control (MANAGE; required to create pixels and other account-level assets through Zernio). &#x60;advertise&#x60; asks for Manage campaigns (ADVERTISE), enough for campaigns, ad sets, creatives, ads, media and reporting, for owners who will not grant billing-level control to an integration. Either way Meta only lets a business admin complete the grant. 503 if the advertise configuration is not set up. | [optional] [default to full] |
 | **pageId** | **string?** | Business login only. Facebook Page ID to select from the token grants for ad creatives and lead forms. | [optional]  |
 | **accountId** | **string?** | Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional]  |
 | **redirectUrl** | **string?** | Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  | [optional]  |
