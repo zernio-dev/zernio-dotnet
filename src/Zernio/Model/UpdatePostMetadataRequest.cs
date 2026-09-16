@@ -103,7 +103,7 @@ namespace Zernio.Model
         /// <param name="tags">Array of keyword tags (max 500 characters combined for YouTube).</param>
         /// <param name="categoryId">YouTube video category ID.</param>
         /// <param name="privacyStatus">Video privacy setting.</param>
-        /// <param name="thumbnailUrl">Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails..</param>
+        /// <param name="thumbnailUrl">Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 50 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails..</param>
         /// <param name="madeForKids">COPPA compliance flag. Set true for child-directed content (restricts comments, notifications, ad targeting)..</param>
         /// <param name="containsSyntheticMedia">AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label..</param>
         /// <param name="playlistId">YouTube playlist ID to add the video to (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Only playlists owned by the channel are supported..</param>
@@ -166,9 +166,9 @@ namespace Zernio.Model
         public string CategoryId { get; set; }
 
         /// <summary>
-        /// Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
+        /// Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 50 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
         /// </summary>
-        /// <value>Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.</value>
+        /// <value>Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 50 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.</value>
         [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
         public string ThumbnailUrl { get; set; }
 

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Tags** | **List&lt;string&gt;** | Array of keyword tags (max 500 characters combined for YouTube) | [optional] 
 **CategoryId** | **string** | YouTube video category ID | [optional] 
 **PrivacyStatus** | **string** | Video privacy setting | [optional] 
-**ThumbnailUrl** | **string** | Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails. | [optional] 
+**ThumbnailUrl** | **string** | Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 50 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails. | [optional] 
 **MadeForKids** | **bool** | COPPA compliance flag. Set true for child-directed content (restricts comments, notifications, ad targeting). | [optional] 
 **ContainsSyntheticMedia** | **bool** | AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label. | [optional] 
 **PlaylistId** | **string** | YouTube playlist ID to add the video to (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Only playlists owned by the channel are supported. | [optional] 
