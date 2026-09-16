@@ -21,6 +21,9 @@ Name | Type | Description | Notes
 **ReelsSkipRate** | **decimal** | Instagram Reels skip rate, 0 to 1 | 
 **CompletionRate** | **decimal** | TikTok business lane: share of viewers who watched to the end, 0 to 1 | 
 **ProfileViews** | **int** | TikTok business lane: profile views attributed to the post | 
+**WebsiteClicks** | **int** | TikTok business lane: website-link clicks attributed to the post (also inside clicks) | 
+**ImpressionSources** | **Dictionary&lt;string, decimal&gt;** | TikTok business lane: share of views by surface (forYou, follow, search, personalProfile, sound, directMessage, other), fractions 0 to 1. Empty object elsewhere. | 
+**AudienceTypes** | **Dictionary&lt;string, decimal&gt;** | TikTok business lane: follower / nonFollower and newViewer / returnViewer shares, fractions 0 to 1. Empty object elsewhere. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
