@@ -1378,6 +1378,7 @@ docs/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.md
 docs/PurchasePhoneNumber200ResponseOneOf2.md
 docs/PurchasePhoneNumber202Response.md
 docs/PurchasePhoneNumber409Response.md
+docs/PurchasePhoneNumber503Response.md
 docs/PurchasePhoneNumberRequest.md
 docs/PurchaseWhatsAppPhoneNumber200Response.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md
@@ -3539,6 +3540,7 @@ src/Zernio.Test/Model/PurchasePhoneNumber200ResponseOneOfTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber202ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber409ResponseTests.cs
+src/Zernio.Test/Model/PurchasePhoneNumber503ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumberRequestTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumberTests.cs
@@ -5694,6 +5696,7 @@ src/Zernio/Model/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.cs
 src/Zernio/Model/PurchasePhoneNumber200ResponseOneOf2.cs
 src/Zernio/Model/PurchasePhoneNumber202Response.cs
 src/Zernio/Model/PurchasePhoneNumber409Response.cs
+src/Zernio/Model/PurchasePhoneNumber503Response.cs
 src/Zernio/Model/PurchasePhoneNumberRequest.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.cs
