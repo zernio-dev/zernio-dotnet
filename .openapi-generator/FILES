@@ -847,6 +847,7 @@ docs/GetPostTimeline403Response.md
 docs/GetPostTimeline404Response.md
 docs/GetPostingFrequency200Response.md
 docs/GetPostingFrequency200ResponseFrequencyInner.md
+docs/GetProduct200Response.md
 docs/GetRedditFlairs200Response.md
 docs/GetRedditFlairs200ResponseFlairsInner.md
 docs/GetRedditSubreddits200Response.md
@@ -1222,6 +1223,7 @@ docs/ListPhoneNumbers200ResponseSandbox.md
 docs/ListPhoneNumbers200ResponseSandboxTemplate.md
 docs/ListPinterestBoardsForSelection200Response.md
 docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md
+docs/ListProducts200Response.md
 docs/ListQueueSlots200Response.md
 docs/ListQueueSlots200ResponseOneOf.md
 docs/ListSequenceEnrollments200Response.md
@@ -1364,6 +1366,13 @@ docs/PreflightSmsRegistration200Response.md
 docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
 docs/PreflightSmsRegistration200ResponseComposed.md
 docs/PreflightSmsRegistrationRequest.md
+docs/Product.md
+docs/ProductImage.md
+docs/ProductOptionsInner.md
+docs/ProductSeo.md
+docs/ProductVariant.md
+docs/ProductVariantSelectedOptionsInner.md
+docs/ProductsApi.md
 docs/Profile.md
 docs/ProfileCreateResponse.md
 docs/ProfileDeleteResponse.md
@@ -1855,6 +1864,11 @@ docs/UpdatePostMetadata200Response.md
 docs/UpdatePostMetadataRequest.md
 docs/UpdatePostRequest.md
 docs/UpdatePostRequestPlatformsInner.md
+docs/UpdateProductRequest.md
+docs/UpdateProductRequestSeo.md
+docs/UpdateProductRequestVariantsInner.md
+docs/UpdateProductRequestVariantsInnerCompareAtPrice.md
+docs/UpdateProductRequestVariantsInnerPrice.md
 docs/UpdateProfileRequest.md
 docs/UpdateQueueSlotRequest.md
 docs/UpdateRedditSubredditsRequest.md
@@ -2185,6 +2199,7 @@ src/Zernio.Test/Api/MessagesApiTests.cs
 src/Zernio.Test/Api/MessagingAdsApiTests.cs
 src/Zernio.Test/Api/PhoneNumbersApiTests.cs
 src/Zernio.Test/Api/PostsApiTests.cs
+src/Zernio.Test/Api/ProductsApiTests.cs
 src/Zernio.Test/Api/ProfilesApiTests.cs
 src/Zernio.Test/Api/QueueApiTests.cs
 src/Zernio.Test/Api/ReachAndFrequencyApiTests.cs
@@ -3022,6 +3037,7 @@ src/Zernio.Test/Model/GetPostTimeline403ResponseTests.cs
 src/Zernio.Test/Model/GetPostTimeline404ResponseTests.cs
 src/Zernio.Test/Model/GetPostingFrequency200ResponseFrequencyInnerTests.cs
 src/Zernio.Test/Model/GetPostingFrequency200ResponseTests.cs
+src/Zernio.Test/Model/GetProduct200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditFlairs200ResponseFlairsInnerTests.cs
 src/Zernio.Test/Model/GetRedditFlairs200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditSubreddits200ResponseSubredditsInnerTests.cs
@@ -3392,6 +3408,7 @@ src/Zernio.Test/Model/ListPhoneNumbers200ResponseSandboxTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseTests.cs
 src/Zernio.Test/Model/ListPinterestBoardsForSelection200ResponseBoardsInnerTests.cs
 src/Zernio.Test/Model/ListPinterestBoardsForSelection200ResponseTests.cs
+src/Zernio.Test/Model/ListProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListQueueSlots200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ListQueueSlots200ResponseTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseEnrollmentsInnerTests.cs
@@ -3527,6 +3544,12 @@ src/Zernio.Test/Model/PreflightSmsRegistration200ResponseAdvisoriesInnerTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseComposedTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistrationRequestTests.cs
+src/Zernio.Test/Model/ProductImageTests.cs
+src/Zernio.Test/Model/ProductOptionsInnerTests.cs
+src/Zernio.Test/Model/ProductSeoTests.cs
+src/Zernio.Test/Model/ProductTests.cs
+src/Zernio.Test/Model/ProductVariantSelectedOptionsInnerTests.cs
+src/Zernio.Test/Model/ProductVariantTests.cs
 src/Zernio.Test/Model/ProfileCreateResponseTests.cs
 src/Zernio.Test/Model/ProfileDeleteResponseTests.cs
 src/Zernio.Test/Model/ProfileGetResponseTests.cs
@@ -4007,6 +4030,11 @@ src/Zernio.Test/Model/UpdatePostMetadata200ResponseTests.cs
 src/Zernio.Test/Model/UpdatePostMetadataRequestTests.cs
 src/Zernio.Test/Model/UpdatePostRequestPlatformsInnerTests.cs
 src/Zernio.Test/Model/UpdatePostRequestTests.cs
+src/Zernio.Test/Model/UpdateProductRequestSeoTests.cs
+src/Zernio.Test/Model/UpdateProductRequestTests.cs
+src/Zernio.Test/Model/UpdateProductRequestVariantsInnerCompareAtPriceTests.cs
+src/Zernio.Test/Model/UpdateProductRequestVariantsInnerPriceTests.cs
+src/Zernio.Test/Model/UpdateProductRequestVariantsInnerTests.cs
 src/Zernio.Test/Model/UpdateProfileRequestTests.cs
 src/Zernio.Test/Model/UpdateQueueSlotRequestTests.cs
 src/Zernio.Test/Model/UpdateRedditSubredditsRequestTests.cs
@@ -4323,6 +4351,7 @@ src/Zernio/Api/MessagesApi.cs
 src/Zernio/Api/MessagingAdsApi.cs
 src/Zernio/Api/PhoneNumbersApi.cs
 src/Zernio/Api/PostsApi.cs
+src/Zernio/Api/ProductsApi.cs
 src/Zernio/Api/ProfilesApi.cs
 src/Zernio/Api/QueueApi.cs
 src/Zernio/Api/ReachAndFrequencyApi.cs
@@ -5178,6 +5207,7 @@ src/Zernio/Model/GetPostTimeline403Response.cs
 src/Zernio/Model/GetPostTimeline404Response.cs
 src/Zernio/Model/GetPostingFrequency200Response.cs
 src/Zernio/Model/GetPostingFrequency200ResponseFrequencyInner.cs
+src/Zernio/Model/GetProduct200Response.cs
 src/Zernio/Model/GetRedditFlairs200Response.cs
 src/Zernio/Model/GetRedditFlairs200ResponseFlairsInner.cs
 src/Zernio/Model/GetRedditSubreddits200Response.cs
@@ -5548,6 +5578,7 @@ src/Zernio/Model/ListPhoneNumbers200ResponseSandbox.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseSandboxTemplate.cs
 src/Zernio/Model/ListPinterestBoardsForSelection200Response.cs
 src/Zernio/Model/ListPinterestBoardsForSelection200ResponseBoardsInner.cs
+src/Zernio/Model/ListProducts200Response.cs
 src/Zernio/Model/ListQueueSlots200Response.cs
 src/Zernio/Model/ListQueueSlots200ResponseOneOf.cs
 src/Zernio/Model/ListSequenceEnrollments200Response.cs
@@ -5683,6 +5714,12 @@ src/Zernio/Model/PreflightSmsRegistration200Response.cs
 src/Zernio/Model/PreflightSmsRegistration200ResponseAdvisoriesInner.cs
 src/Zernio/Model/PreflightSmsRegistration200ResponseComposed.cs
 src/Zernio/Model/PreflightSmsRegistrationRequest.cs
+src/Zernio/Model/Product.cs
+src/Zernio/Model/ProductImage.cs
+src/Zernio/Model/ProductOptionsInner.cs
+src/Zernio/Model/ProductSeo.cs
+src/Zernio/Model/ProductVariant.cs
+src/Zernio/Model/ProductVariantSelectedOptionsInner.cs
 src/Zernio/Model/Profile.cs
 src/Zernio/Model/ProfileCreateResponse.cs
 src/Zernio/Model/ProfileDeleteResponse.cs
@@ -6163,6 +6200,11 @@ src/Zernio/Model/UpdatePostMetadata200Response.cs
 src/Zernio/Model/UpdatePostMetadataRequest.cs
 src/Zernio/Model/UpdatePostRequest.cs
 src/Zernio/Model/UpdatePostRequestPlatformsInner.cs
+src/Zernio/Model/UpdateProductRequest.cs
+src/Zernio/Model/UpdateProductRequestSeo.cs
+src/Zernio/Model/UpdateProductRequestVariantsInner.cs
+src/Zernio/Model/UpdateProductRequestVariantsInnerCompareAtPrice.cs
+src/Zernio/Model/UpdateProductRequestVariantsInnerPrice.cs
 src/Zernio/Model/UpdateProfileRequest.cs
 src/Zernio/Model/UpdateQueueSlotRequest.cs
 src/Zernio/Model/UpdateRedditSubredditsRequest.cs
