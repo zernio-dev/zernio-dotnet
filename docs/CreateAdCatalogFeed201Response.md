@@ -1,13 +1,10 @@
-# Zernio.Model.ListAdCatalogs200ResponseCatalogsInner
+# Zernio.Model.CreateAdCatalogFeed201Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | [optional] 
-**Name** | **string** |  | [optional] 
-**Vertical** | **string** | Catalog vertical (e.g. commerce, vehicles, hotels) | [optional] 
-**ProductCount** | **int** |  | [optional] 
+**Feed** | [**MetaProductFeed**](MetaProductFeed.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

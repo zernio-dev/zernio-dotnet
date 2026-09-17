@@ -114,6 +114,10 @@ docs/AttachCampaignAssets201Response.md
 docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
 docs/AttachNumberToSipTrunkRequest.md
+docs/BatchAdCatalogProducts202Response.md
+docs/BatchAdCatalogProductsRequest.md
+docs/BatchAdCatalogProductsRequestRequestsInner.md
+docs/BatchAdCatalogProductsRequestRequestsInnerProduct.md
 docs/BatchGetGoogleBusinessReviews200Response.md
 docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md
 docs/BatchGetGoogleBusinessReviewsRequest.md
@@ -281,6 +285,18 @@ docs/CreateAdAudienceRequest.md
 docs/CreateAdCampaign200Response.md
 docs/CreateAdCampaign201Response.md
 docs/CreateAdCampaignRequest.md
+docs/CreateAdCatalog201Response.md
+docs/CreateAdCatalogFeed201Response.md
+docs/CreateAdCatalogFeedRequest.md
+docs/CreateAdCatalogFeedRequestSchedule.md
+docs/CreateAdCatalogFeedUpload202Response.md
+docs/CreateAdCatalogFeedUploadRequest.md
+docs/CreateAdCatalogProduct201Response.md
+docs/CreateAdCatalogProductRequest.md
+docs/CreateAdCatalogProductRequestProduct.md
+docs/CreateAdCatalogProductSet201Response.md
+docs/CreateAdCatalogProductSetRequest.md
+docs/CreateAdCatalogRequest.md
 docs/CreateAdCreative201Response.md
 docs/CreateAdCreativeRequest.md
 docs/CreateAdCreativeRequestCarouselCardsInner.md
@@ -488,6 +504,9 @@ docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
+docs/DeleteAdCatalog200Response.md
+docs/DeleteAdCatalogProduct200Response.md
+docs/DeleteAdCatalogProductSet200Response.md
 docs/DeleteAdCreative200Response.md
 docs/DeleteAdNegativeKeywordList200Response.md
 docs/DeleteAdSet200Response.md
@@ -620,6 +639,9 @@ docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAnalytics202Response.md
 docs/GetAdAudience200Response.md
 docs/GetAdCampaignDetails200Response.md
+docs/GetAdCatalogBatch200Response.md
+docs/GetAdCatalogBatch200ResponseBatch.md
+docs/GetAdCatalogBatch200ResponseBatchErrorsInner.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
@@ -914,6 +936,7 @@ docs/GetWhatsAppCallPermissions200ResponsePermission.md
 docs/GetWhatsAppCallRecording200Response.md
 docs/GetWhatsAppCalling200Response.md
 docs/GetWhatsAppCallingConfig200Response.md
+docs/GetWhatsAppCommerceSettings200Response.md
 docs/GetWhatsAppDataset200Response.md
 docs/GetWhatsAppDisplayName200Response.md
 docs/GetWhatsAppDisplayName200ResponseDisplayName.md
@@ -1033,6 +1056,7 @@ docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
 docs/LikePost200Response.md
 docs/LikePostRequest.md
+docs/LinkWhatsAppCatalogRequest.md
 docs/LinkedInAdsPlatformData.md
 docs/LinkedInAdsPlatformDataCarousel.md
 docs/LinkedInAdsPlatformDataCarouselCardsInner.md
@@ -1080,10 +1104,12 @@ docs/ListAdAccounts200ResponseAccountsInner.md
 docs/ListAdAudiences200Response.md
 docs/ListAdAudiences200ResponseAudiencesInner.md
 docs/ListAdCampaigns200Response.md
+docs/ListAdCatalogFeedUploads200Response.md
+docs/ListAdCatalogFeeds200Response.md
 docs/ListAdCatalogProductSets200Response.md
 docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
+docs/ListAdCatalogProducts200Response.md
 docs/ListAdCatalogs200Response.md
-docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAdCreatives200Response.md
 docs/ListAdGroupAssets200Response.md
 docs/ListAdGroupAssets200ResponseCalloutsInner.md
@@ -1274,6 +1300,7 @@ docs/ListWhatsAppAccountEvents200ResponseEventsInner.md
 docs/ListWhatsAppCalls200Response.md
 docs/ListWhatsAppCalls200ResponseCallsInner.md
 docs/ListWhatsAppCalls200ResponseCallsInnerBilling.md
+docs/ListWhatsAppCatalogs200Response.md
 docs/ListWhatsAppConversions200Response.md
 docs/ListWhatsAppConversions200ResponseEventsInner.md
 docs/ListWhatsAppFlowResponses200Response.md
@@ -1313,6 +1340,9 @@ docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
 docs/MetaAdsPlatformData.md
+docs/MetaCatalogProduct.md
+docs/MetaCatalogProductInput.md
+docs/MetaFeedUpload.md
 docs/MetaInstagramIdentityRef.md
 docs/MetaLeadForm.md
 docs/MetaLeadFormContextCard.md
@@ -1322,6 +1352,10 @@ docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/MetaLeadFormQuestionsInner.md
 docs/MetaLeadFormThankYouPage.md
+docs/MetaProductCatalog.md
+docs/MetaProductFeed.md
+docs/MetaProductFeedSchedule.md
+docs/MetaProductSet.md
 docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
@@ -1376,6 +1410,7 @@ docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
 docs/PreflightSmsRegistration200ResponseComposed.md
 docs/PreflightSmsRegistrationRequest.md
 docs/Product.md
+docs/ProductCatalogsApi.md
 docs/ProductImage.md
 docs/ProductOptionsInner.md
 docs/ProductSeo.md
@@ -1719,6 +1754,7 @@ docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
 docs/UnlikePost200Response.md
+docs/UnlinkWhatsAppCatalog200Response.md
 docs/UnpinDiscordMessage200Response.md
 docs/UnpublishPost200Response.md
 docs/UnpublishPostRequest.md
@@ -1748,6 +1784,8 @@ docs/UpdateAdCampaignRequestBudget.md
 docs/UpdateAdCampaignRequestPlatformSpecificData.md
 docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
+docs/UpdateAdCatalogProductRequest.md
+docs/UpdateAdCatalogProductSetRequest.md
 docs/UpdateAdCreative200Response.md
 docs/UpdateAdCreativeRequest.md
 docs/UpdateAdKeyword200Response.md
@@ -1895,6 +1933,7 @@ docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
 docs/UpdateWhatsAppBusinessProfileRequest.md
 docs/UpdateWhatsAppCallingLegacyRequest.md
+docs/UpdateWhatsAppCommerceSettingsRequest.md
 docs/UpdateWhatsAppDisplayName200Response.md
 docs/UpdateWhatsAppDisplayName200ResponseDisplayName.md
 docs/UpdateWhatsAppDisplayNameRequest.md
@@ -2099,6 +2138,7 @@ docs/WhatsAppCallingApi.md
 docs/WhatsAppCarouselCardComponent.md
 docs/WhatsAppCarouselComponent.md
 docs/WhatsAppCarouselComponentCardsInner.md
+docs/WhatsAppCommerceSettings.md
 docs/WhatsAppFlowsApi.md
 docs/WhatsAppFooterComponent.md
 docs/WhatsAppHeaderComponent.md
@@ -2209,6 +2249,7 @@ src/Zernio.Test/Api/MessagesApiTests.cs
 src/Zernio.Test/Api/MessagingAdsApiTests.cs
 src/Zernio.Test/Api/PhoneNumbersApiTests.cs
 src/Zernio.Test/Api/PostsApiTests.cs
+src/Zernio.Test/Api/ProductCatalogsApiTests.cs
 src/Zernio.Test/Api/ProductsApiTests.cs
 src/Zernio.Test/Api/ProfilesApiTests.cs
 src/Zernio.Test/Api/QueueApiTests.cs
@@ -2334,6 +2375,10 @@ src/Zernio.Test/Model/AttachCampaignAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunkRequestTests.cs
+src/Zernio.Test/Model/BatchAdCatalogProducts202ResponseTests.cs
+src/Zernio.Test/Model/BatchAdCatalogProductsRequestRequestsInnerProductTests.cs
+src/Zernio.Test/Model/BatchAdCatalogProductsRequestRequestsInnerTests.cs
+src/Zernio.Test/Model/BatchAdCatalogProductsRequestTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInnerTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviewsRequestTests.cs
@@ -2491,6 +2536,18 @@ src/Zernio.Test/Model/CreateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/CreateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCampaign201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCampaignRequestTests.cs
+src/Zernio.Test/Model/CreateAdCatalog201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdCatalogFeed201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdCatalogFeedRequestScheduleTests.cs
+src/Zernio.Test/Model/CreateAdCatalogFeedRequestTests.cs
+src/Zernio.Test/Model/CreateAdCatalogFeedUpload202ResponseTests.cs
+src/Zernio.Test/Model/CreateAdCatalogFeedUploadRequestTests.cs
+src/Zernio.Test/Model/CreateAdCatalogProduct201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdCatalogProductRequestProductTests.cs
+src/Zernio.Test/Model/CreateAdCatalogProductRequestTests.cs
+src/Zernio.Test/Model/CreateAdCatalogProductSet201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdCatalogProductSetRequestTests.cs
+src/Zernio.Test/Model/CreateAdCatalogRequestTests.cs
 src/Zernio.Test/Model/CreateAdCreative201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCreativeRequestCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/CreateAdCreativeRequestTests.cs
@@ -2697,6 +2754,9 @@ src/Zernio.Test/Model/DeactivateSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaignRequestTests.cs
+src/Zernio.Test/Model/DeleteAdCatalog200ResponseTests.cs
+src/Zernio.Test/Model/DeleteAdCatalogProduct200ResponseTests.cs
+src/Zernio.Test/Model/DeleteAdCatalogProductSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdNegativeKeywordList200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdSet200ResponseTests.cs
@@ -2820,6 +2880,9 @@ src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAnalytics202ResponseTests.cs
 src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/GetAdCampaignDetails200ResponseTests.cs
+src/Zernio.Test/Model/GetAdCatalogBatch200ResponseBatchErrorsInnerTests.cs
+src/Zernio.Test/Model/GetAdCatalogBatch200ResponseBatchTests.cs
+src/Zernio.Test/Model/GetAdCatalogBatch200ResponseTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
@@ -3114,6 +3177,7 @@ src/Zernio.Test/Model/GetWhatsAppCallPermissions200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppCallRecording200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppCalling200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppCallingConfig200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppCommerceSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppDataset200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppDisplayName200ResponseDisplayNameTests.cs
 src/Zernio.Test/Model/GetWhatsAppDisplayName200ResponseTests.cs
@@ -3229,6 +3293,7 @@ src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/LikeInboxCommentRequestTests.cs
 src/Zernio.Test/Model/LikePost200ResponseTests.cs
 src/Zernio.Test/Model/LikePostRequestTests.cs
+src/Zernio.Test/Model/LinkWhatsAppCatalogRequestTests.cs
 src/Zernio.Test/Model/LinkedInAdsPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/LinkedInAdsPlatformDataCarouselTests.cs
 src/Zernio.Test/Model/LinkedInAdsPlatformDataConversationMessagesInnerButtonsInnerTests.cs
@@ -3275,9 +3340,11 @@ src/Zernio.Test/Model/ListAdAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseAudiencesInnerTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCampaigns200ResponseTests.cs
+src/Zernio.Test/Model/ListAdCatalogFeedUploads200ResponseTests.cs
+src/Zernio.Test/Model/ListAdCatalogFeeds200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseProductSetsInnerTests.cs
 src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseTests.cs
-src/Zernio.Test/Model/ListAdCatalogs200ResponseCatalogsInnerTests.cs
+src/Zernio.Test/Model/ListAdCatalogProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseCalloutsInnerTests.cs
@@ -3469,6 +3536,7 @@ src/Zernio.Test/Model/ListWhatsAppAccountEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppCalls200ResponseCallsInnerBillingTests.cs
 src/Zernio.Test/Model/ListWhatsAppCalls200ResponseCallsInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppCalls200ResponseTests.cs
+src/Zernio.Test/Model/ListWhatsAppCatalogs200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppConversions200ResponseEventsInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppConversions200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlowResponses200ResponseResponsesInnerTests.cs
@@ -3503,6 +3571,9 @@ src/Zernio.Test/Model/MediaContentTypeTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
+src/Zernio.Test/Model/MetaCatalogProductInputTests.cs
+src/Zernio.Test/Model/MetaCatalogProductTests.cs
+src/Zernio.Test/Model/MetaFeedUploadTests.cs
 src/Zernio.Test/Model/MetaInstagramIdentityRefTests.cs
 src/Zernio.Test/Model/MetaLeadFormContextCardTests.cs
 src/Zernio.Test/Model/MetaLeadFormLegalContentPrivacyPolicyTests.cs
@@ -3512,6 +3583,10 @@ src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MetaLeadFormQuestionsInnerTests.cs
 src/Zernio.Test/Model/MetaLeadFormTests.cs
 src/Zernio.Test/Model/MetaLeadFormThankYouPageTests.cs
+src/Zernio.Test/Model/MetaProductCatalogTests.cs
+src/Zernio.Test/Model/MetaProductFeedScheduleTests.cs
+src/Zernio.Test/Model/MetaProductFeedTests.cs
+src/Zernio.Test/Model/MetaProductSetTests.cs
 src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
@@ -3895,6 +3970,7 @@ src/Zernio.Test/Model/UndoRetweet200ResponseTests.cs
 src/Zernio.Test/Model/UnfollowUser200ResponseTests.cs
 src/Zernio.Test/Model/UnlikeInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/UnlikePost200ResponseTests.cs
+src/Zernio.Test/Model/UnlinkWhatsAppCatalog200ResponseTests.cs
 src/Zernio.Test/Model/UnpinDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/UnpublishPost200ResponseTests.cs
 src/Zernio.Test/Model/UnpublishPostRequestTests.cs
@@ -3924,6 +4000,8 @@ src/Zernio.Test/Model/UpdateAdCampaignRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatusRequestTests.cs
+src/Zernio.Test/Model/UpdateAdCatalogProductRequestTests.cs
+src/Zernio.Test/Model/UpdateAdCatalogProductSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCreativeRequestTests.cs
 src/Zernio.Test/Model/UpdateAdKeyword200ResponseTests.cs
@@ -4071,6 +4149,7 @@ src/Zernio.Test/Model/UpdateWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppBusinessProfileRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppCallingLegacyRequestTests.cs
+src/Zernio.Test/Model/UpdateWhatsAppCommerceSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppDisplayName200ResponseDisplayNameTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppDisplayName200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppDisplayNameRequestTests.cs
@@ -4266,6 +4345,7 @@ src/Zernio.Test/Model/WhatsAppButtonsComponentTests.cs
 src/Zernio.Test/Model/WhatsAppCarouselCardComponentTests.cs
 src/Zernio.Test/Model/WhatsAppCarouselComponentCardsInnerTests.cs
 src/Zernio.Test/Model/WhatsAppCarouselComponentTests.cs
+src/Zernio.Test/Model/WhatsAppCommerceSettingsTests.cs
 src/Zernio.Test/Model/WhatsAppFooterComponentTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentTests.cs
@@ -4371,6 +4451,7 @@ src/Zernio/Api/MessagesApi.cs
 src/Zernio/Api/MessagingAdsApi.cs
 src/Zernio/Api/PhoneNumbersApi.cs
 src/Zernio/Api/PostsApi.cs
+src/Zernio/Api/ProductCatalogsApi.cs
 src/Zernio/Api/ProductsApi.cs
 src/Zernio/Api/ProfilesApi.cs
 src/Zernio/Api/QueueApi.cs
@@ -4514,6 +4595,10 @@ src/Zernio/Model/AttachCampaignAssets201Response.cs
 src/Zernio/Model/AttachCampaignAssetsRequest.cs
 src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
 src/Zernio/Model/AttachNumberToSipTrunkRequest.cs
+src/Zernio/Model/BatchAdCatalogProducts202Response.cs
+src/Zernio/Model/BatchAdCatalogProductsRequest.cs
+src/Zernio/Model/BatchAdCatalogProductsRequestRequestsInner.cs
+src/Zernio/Model/BatchAdCatalogProductsRequestRequestsInnerProduct.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200Response.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviewsRequest.cs
@@ -4671,6 +4756,18 @@ src/Zernio/Model/CreateAdAudienceRequest.cs
 src/Zernio/Model/CreateAdCampaign200Response.cs
 src/Zernio/Model/CreateAdCampaign201Response.cs
 src/Zernio/Model/CreateAdCampaignRequest.cs
+src/Zernio/Model/CreateAdCatalog201Response.cs
+src/Zernio/Model/CreateAdCatalogFeed201Response.cs
+src/Zernio/Model/CreateAdCatalogFeedRequest.cs
+src/Zernio/Model/CreateAdCatalogFeedRequestSchedule.cs
+src/Zernio/Model/CreateAdCatalogFeedUpload202Response.cs
+src/Zernio/Model/CreateAdCatalogFeedUploadRequest.cs
+src/Zernio/Model/CreateAdCatalogProduct201Response.cs
+src/Zernio/Model/CreateAdCatalogProductRequest.cs
+src/Zernio/Model/CreateAdCatalogProductRequestProduct.cs
+src/Zernio/Model/CreateAdCatalogProductSet201Response.cs
+src/Zernio/Model/CreateAdCatalogProductSetRequest.cs
+src/Zernio/Model/CreateAdCatalogRequest.cs
 src/Zernio/Model/CreateAdCreative201Response.cs
 src/Zernio/Model/CreateAdCreativeRequest.cs
 src/Zernio/Model/CreateAdCreativeRequestCarouselCardsInner.cs
@@ -4877,6 +4974,9 @@ src/Zernio/Model/DeactivateSmsRegistration200Response.cs
 src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
 src/Zernio/Model/DeleteAdCampaignRequest.cs
+src/Zernio/Model/DeleteAdCatalog200Response.cs
+src/Zernio/Model/DeleteAdCatalogProduct200Response.cs
+src/Zernio/Model/DeleteAdCatalogProductSet200Response.cs
 src/Zernio/Model/DeleteAdCreative200Response.cs
 src/Zernio/Model/DeleteAdNegativeKeywordList200Response.cs
 src/Zernio/Model/DeleteAdSet200Response.cs
@@ -5000,6 +5100,9 @@ src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
 src/Zernio/Model/GetAdAnalytics202Response.cs
 src/Zernio/Model/GetAdAudience200Response.cs
 src/Zernio/Model/GetAdCampaignDetails200Response.cs
+src/Zernio/Model/GetAdCatalogBatch200Response.cs
+src/Zernio/Model/GetAdCatalogBatch200ResponseBatch.cs
+src/Zernio/Model/GetAdCatalogBatch200ResponseBatchErrorsInner.cs
 src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
 src/Zernio/Model/GetAdComments200ResponsePagination.cs
@@ -5294,6 +5397,7 @@ src/Zernio/Model/GetWhatsAppCallPermissions200ResponsePermission.cs
 src/Zernio/Model/GetWhatsAppCallRecording200Response.cs
 src/Zernio/Model/GetWhatsAppCalling200Response.cs
 src/Zernio/Model/GetWhatsAppCallingConfig200Response.cs
+src/Zernio/Model/GetWhatsAppCommerceSettings200Response.cs
 src/Zernio/Model/GetWhatsAppDataset200Response.cs
 src/Zernio/Model/GetWhatsAppDisplayName200Response.cs
 src/Zernio/Model/GetWhatsAppDisplayName200ResponseDisplayName.cs
@@ -5409,6 +5513,7 @@ src/Zernio/Model/LikeInboxComment200Response.cs
 src/Zernio/Model/LikeInboxCommentRequest.cs
 src/Zernio/Model/LikePost200Response.cs
 src/Zernio/Model/LikePostRequest.cs
+src/Zernio/Model/LinkWhatsAppCatalogRequest.cs
 src/Zernio/Model/LinkedInAdsPlatformData.cs
 src/Zernio/Model/LinkedInAdsPlatformDataCarousel.cs
 src/Zernio/Model/LinkedInAdsPlatformDataCarouselCardsInner.cs
@@ -5455,10 +5560,12 @@ src/Zernio/Model/ListAdAccounts200ResponseAccountsInner.cs
 src/Zernio/Model/ListAdAudiences200Response.cs
 src/Zernio/Model/ListAdAudiences200ResponseAudiencesInner.cs
 src/Zernio/Model/ListAdCampaigns200Response.cs
+src/Zernio/Model/ListAdCatalogFeedUploads200Response.cs
+src/Zernio/Model/ListAdCatalogFeeds200Response.cs
 src/Zernio/Model/ListAdCatalogProductSets200Response.cs
 src/Zernio/Model/ListAdCatalogProductSets200ResponseProductSetsInner.cs
+src/Zernio/Model/ListAdCatalogProducts200Response.cs
 src/Zernio/Model/ListAdCatalogs200Response.cs
-src/Zernio/Model/ListAdCatalogs200ResponseCatalogsInner.cs
 src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdGroupAssets200Response.cs
 src/Zernio/Model/ListAdGroupAssets200ResponseCalloutsInner.cs
@@ -5649,6 +5756,7 @@ src/Zernio/Model/ListWhatsAppAccountEvents200ResponseEventsInner.cs
 src/Zernio/Model/ListWhatsAppCalls200Response.cs
 src/Zernio/Model/ListWhatsAppCalls200ResponseCallsInner.cs
 src/Zernio/Model/ListWhatsAppCalls200ResponseCallsInnerBilling.cs
+src/Zernio/Model/ListWhatsAppCatalogs200Response.cs
 src/Zernio/Model/ListWhatsAppConversions200Response.cs
 src/Zernio/Model/ListWhatsAppConversions200ResponseEventsInner.cs
 src/Zernio/Model/ListWhatsAppFlowResponses200Response.cs
@@ -5683,6 +5791,9 @@ src/Zernio/Model/MediaContentType.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
+src/Zernio/Model/MetaCatalogProduct.cs
+src/Zernio/Model/MetaCatalogProductInput.cs
+src/Zernio/Model/MetaFeedUpload.cs
 src/Zernio/Model/MetaInstagramIdentityRef.cs
 src/Zernio/Model/MetaLeadForm.cs
 src/Zernio/Model/MetaLeadFormContextCard.cs
@@ -5692,6 +5803,10 @@ src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
 src/Zernio/Model/MetaLeadFormQuestionsInner.cs
 src/Zernio/Model/MetaLeadFormThankYouPage.cs
+src/Zernio/Model/MetaProductCatalog.cs
+src/Zernio/Model/MetaProductFeed.cs
+src/Zernio/Model/MetaProductFeedSchedule.cs
+src/Zernio/Model/MetaProductSet.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
@@ -6075,6 +6190,7 @@ src/Zernio/Model/UndoRetweet200Response.cs
 src/Zernio/Model/UnfollowUser200Response.cs
 src/Zernio/Model/UnlikeInboxComment200Response.cs
 src/Zernio/Model/UnlikePost200Response.cs
+src/Zernio/Model/UnlinkWhatsAppCatalog200Response.cs
 src/Zernio/Model/UnpinDiscordMessage200Response.cs
 src/Zernio/Model/UnpublishPost200Response.cs
 src/Zernio/Model/UnpublishPostRequest.cs
@@ -6104,6 +6220,8 @@ src/Zernio/Model/UpdateAdCampaignRequestBudget.cs
 src/Zernio/Model/UpdateAdCampaignRequestPlatformSpecificData.cs
 src/Zernio/Model/UpdateAdCampaignStatus200Response.cs
 src/Zernio/Model/UpdateAdCampaignStatusRequest.cs
+src/Zernio/Model/UpdateAdCatalogProductRequest.cs
+src/Zernio/Model/UpdateAdCatalogProductSetRequest.cs
 src/Zernio/Model/UpdateAdCreative200Response.cs
 src/Zernio/Model/UpdateAdCreativeRequest.cs
 src/Zernio/Model/UpdateAdKeyword200Response.cs
@@ -6251,6 +6369,7 @@ src/Zernio/Model/UpdateWebhookSettings200Response.cs
 src/Zernio/Model/UpdateWebhookSettingsRequest.cs
 src/Zernio/Model/UpdateWhatsAppBusinessProfileRequest.cs
 src/Zernio/Model/UpdateWhatsAppCallingLegacyRequest.cs
+src/Zernio/Model/UpdateWhatsAppCommerceSettingsRequest.cs
 src/Zernio/Model/UpdateWhatsAppDisplayName200Response.cs
 src/Zernio/Model/UpdateWhatsAppDisplayName200ResponseDisplayName.cs
 src/Zernio/Model/UpdateWhatsAppDisplayNameRequest.cs
@@ -6446,6 +6565,7 @@ src/Zernio/Model/WhatsAppButtonsComponent.cs
 src/Zernio/Model/WhatsAppCarouselCardComponent.cs
 src/Zernio/Model/WhatsAppCarouselComponent.cs
 src/Zernio/Model/WhatsAppCarouselComponentCardsInner.cs
+src/Zernio/Model/WhatsAppCommerceSettings.cs
 src/Zernio/Model/WhatsAppFooterComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponentExample.cs

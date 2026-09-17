@@ -18,6 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppBlockStatus**](WhatsAppApi.md#getwhatsappblockstatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
 | [**GetWhatsAppBlockedUsers**](WhatsAppApi.md#getwhatsappblockedusers) | **GET** /v1/whatsapp/block-users | List blocked users |
 | [**GetWhatsAppBusinessProfile**](WhatsAppApi.md#getwhatsappbusinessprofile) | **GET** /v1/whatsapp/business-profile | Get business profile |
+| [**GetWhatsAppCommerceSettings**](WhatsAppApi.md#getwhatsappcommercesettings) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings |
 | [**GetWhatsAppDataset**](WhatsAppApi.md#getwhatsappdataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset |
 | [**GetWhatsAppDisplayName**](WhatsAppApi.md#getwhatsappdisplayname) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status |
 | [**GetWhatsAppGroupChat**](WhatsAppApi.md#getwhatsappgroupchat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info |
@@ -27,7 +28,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppTemplates**](WhatsAppApi.md#getwhatsapptemplates) | **GET** /v1/whatsapp/templates | List templates |
 | [**GetWhatsappBusinessUsername**](WhatsAppApi.md#getwhatsappbusinessusername) | **GET** /v1/whatsapp/business-profile/username | Get business username |
 | [**GetWhatsappBusinessUsernameSuggestions**](WhatsAppApi.md#getwhatsappbusinessusernamesuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
+| [**LinkWhatsAppCatalog**](WhatsAppApi.md#linkwhatsappcatalog) | **POST** /v1/whatsapp/catalogs | Link a catalog to a WhatsApp number |
 | [**ListWhatsAppAccountEvents**](WhatsAppApi.md#listwhatsappaccountevents) | **GET** /v1/whatsapp/account-events | List account notifications |
+| [**ListWhatsAppCatalogs**](WhatsAppApi.md#listwhatsappcatalogs) | **GET** /v1/whatsapp/catalogs | List the catalogs linked to a WhatsApp number |
 | [**ListWhatsAppConversions**](WhatsAppApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**ListWhatsAppGroupChats**](WhatsAppApi.md#listwhatsappgroupchats) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**ListWhatsAppGroupJoinRequests**](WhatsAppApi.md#listwhatsappgroupjoinrequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
@@ -38,7 +41,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**SendWhatsAppConversion**](WhatsAppApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**SetWhatsappBusinessUsername**](WhatsAppApi.md#setwhatsappbusinessusername) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**UnblockWhatsAppUsers**](WhatsAppApi.md#unblockwhatsappusers) | **DELETE** /v1/whatsapp/block-users | Unblock users |
+| [**UnlinkWhatsAppCatalog**](WhatsAppApi.md#unlinkwhatsappcatalog) | **DELETE** /v1/whatsapp/catalogs | Unlink a catalog from a WhatsApp number |
 | [**UpdateWhatsAppBusinessProfile**](WhatsAppApi.md#updatewhatsappbusinessprofile) | **POST** /v1/whatsapp/business-profile | Update business profile |
+| [**UpdateWhatsAppCommerceSettings**](WhatsAppApi.md#updatewhatsappcommercesettings) | **PUT** /v1/whatsapp/commerce-settings | Update a number&#39;s commerce settings |
 | [**UpdateWhatsAppDisplayName**](WhatsAppApi.md#updatewhatsappdisplayname) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change |
 | [**UpdateWhatsAppGroupChat**](WhatsAppApi.md#updatewhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings |
 | [**UpdateWhatsAppTemplate**](WhatsAppApi.md#updatewhatsapptemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template |
@@ -1480,6 +1485,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getwhatsappcommercesettings"></a>
+# **GetWhatsAppCommerceSettings**
+> GetWhatsAppCommerceSettings200Response GetWhatsAppCommerceSettings (string accountId, string? catalogAccountId = null)
+
+Get a number's commerce settings
+
+Whether the linked catalog is shown on the business profile (`isCatalogVisible`) and whether customers can build a cart (`isCartEnabled`).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppCommerceSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp account ID
+            var catalogAccountId = "catalogAccountId_example";  // string? | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own (optional) 
+
+            try
+            {
+                // Get a number's commerce settings
+                GetWhatsAppCommerceSettings200Response result = apiInstance.GetWhatsAppCommerceSettings(accountId, catalogAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.GetWhatsAppCommerceSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppCommerceSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a number's commerce settings
+    ApiResponse<GetWhatsAppCommerceSettings200Response> response = apiInstance.GetWhatsAppCommerceSettingsWithHttpInfo(accountId, catalogAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.GetWhatsAppCommerceSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp account ID |  |
+| **catalogAccountId** | **string?** | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional]  |
+
+### Return type
+
+[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSettings200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Commerce settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getwhatsappdataset"></a>
 # **GetWhatsAppDataset**
 > GetWhatsAppDataset200Response GetWhatsAppDataset (string accountId)
@@ -2406,6 +2515,108 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="linkwhatsappcatalog"></a>
+# **LinkWhatsAppCatalog**
+> ListWhatsAppCatalogs200Response LinkWhatsAppCatalog (LinkWhatsAppCatalogRequest linkWhatsAppCatalogRequest)
+
+Link a catalog to a WhatsApp number
+
+Connects a Meta Commerce catalog (owned by the same business portfolio as the WhatsApp Business Account) to the number's WABA. The WhatsApp connection's own token cannot do this, so pass `catalogAccountId` naming a facebook, instagram or metaads account whose Meta login carries catalog_management.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class LinkWhatsAppCatalogExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var linkWhatsAppCatalogRequest = new LinkWhatsAppCatalogRequest(); // LinkWhatsAppCatalogRequest | 
+
+            try
+            {
+                // Link a catalog to a WhatsApp number
+                ListWhatsAppCatalogs200Response result = apiInstance.LinkWhatsAppCatalog(linkWhatsAppCatalogRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.LinkWhatsAppCatalog: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the LinkWhatsAppCatalogWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Link a catalog to a WhatsApp number
+    ApiResponse<ListWhatsAppCatalogs200Response> response = apiInstance.LinkWhatsAppCatalogWithHttpInfo(linkWhatsAppCatalogRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.LinkWhatsAppCatalogWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **linkWhatsAppCatalogRequest** | [**LinkWhatsAppCatalogRequest**](LinkWhatsAppCatalogRequest.md) |  |  |
+
+### Return type
+
+[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Linked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listwhatsappaccountevents"></a>
 # **ListWhatsAppAccountEvents**
 > ListWhatsAppAccountEvents200Response ListWhatsAppAccountEvents (string accountId, int? limit = null)
@@ -2506,6 +2717,110 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listwhatsappcatalogs"></a>
+# **ListWhatsAppCatalogs**
+> ListWhatsAppCatalogs200Response ListWhatsAppCatalogs (string accountId, string? catalogAccountId = null)
+
+List the catalogs linked to a WhatsApp number
+
+The Meta Commerce catalogs connected to the number's WhatsApp Business Account. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListWhatsAppCatalogsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp account ID
+            var catalogAccountId = "catalogAccountId_example";  // string? | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own (optional) 
+
+            try
+            {
+                // List the catalogs linked to a WhatsApp number
+                ListWhatsAppCatalogs200Response result = apiInstance.ListWhatsAppCatalogs(accountId, catalogAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.ListWhatsAppCatalogs: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListWhatsAppCatalogsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the catalogs linked to a WhatsApp number
+    ApiResponse<ListWhatsAppCatalogs200Response> response = apiInstance.ListWhatsAppCatalogsWithHttpInfo(accountId, catalogAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.ListWhatsAppCatalogsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp account ID |  |
+| **catalogAccountId** | **string?** | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional]  |
+
+### Return type
+
+[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Linked catalogs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3539,6 +3854,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="unlinkwhatsappcatalog"></a>
+# **UnlinkWhatsAppCatalog**
+> UnlinkWhatsAppCatalog200Response UnlinkWhatsAppCatalog (string accountId, string catalogId, string? catalogAccountId = null)
+
+Unlink a catalog from a WhatsApp number
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UnlinkWhatsAppCatalogExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp account ID
+            var catalogId = "catalogId_example";  // string | Meta catalog ID
+            var catalogAccountId = "catalogAccountId_example";  // string? | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own (optional) 
+
+            try
+            {
+                // Unlink a catalog from a WhatsApp number
+                UnlinkWhatsAppCatalog200Response result = apiInstance.UnlinkWhatsAppCatalog(accountId, catalogId, catalogAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.UnlinkWhatsAppCatalog: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UnlinkWhatsAppCatalogWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Unlink a catalog from a WhatsApp number
+    ApiResponse<UnlinkWhatsAppCatalog200Response> response = apiInstance.UnlinkWhatsAppCatalogWithHttpInfo(accountId, catalogId, catalogAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.UnlinkWhatsAppCatalogWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp account ID |  |
+| **catalogId** | **string** | Meta catalog ID |  |
+| **catalogAccountId** | **string?** | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional]  |
+
+### Return type
+
+[**UnlinkWhatsAppCatalog200Response**](UnlinkWhatsAppCatalog200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unlinked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updatewhatsappbusinessprofile"></a>
 # **UpdateWhatsAppBusinessProfile**
 > UnpublishPost200Response UpdateWhatsAppBusinessProfile (UpdateWhatsAppBusinessProfileRequest updateWhatsAppBusinessProfileRequest)
@@ -3637,6 +4056,106 @@ catch (ApiException e)
 | **400** | Validation error (field too long, too many websites, etc.) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatewhatsappcommercesettings"></a>
+# **UpdateWhatsAppCommerceSettings**
+> GetWhatsAppCommerceSettings200Response UpdateWhatsAppCommerceSettings (UpdateWhatsAppCommerceSettingsRequest updateWhatsAppCommerceSettingsRequest)
+
+Update a number's commerce settings
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateWhatsAppCommerceSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var updateWhatsAppCommerceSettingsRequest = new UpdateWhatsAppCommerceSettingsRequest(); // UpdateWhatsAppCommerceSettingsRequest | 
+
+            try
+            {
+                // Update a number's commerce settings
+                GetWhatsAppCommerceSettings200Response result = apiInstance.UpdateWhatsAppCommerceSettings(updateWhatsAppCommerceSettingsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.UpdateWhatsAppCommerceSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateWhatsAppCommerceSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a number's commerce settings
+    ApiResponse<GetWhatsAppCommerceSettings200Response> response = apiInstance.UpdateWhatsAppCommerceSettingsWithHttpInfo(updateWhatsAppCommerceSettingsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.UpdateWhatsAppCommerceSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **updateWhatsAppCommerceSettingsRequest** | [**UpdateWhatsAppCommerceSettingsRequest**](UpdateWhatsAppCommerceSettingsRequest.md) |  |  |
+
+### Return type
+
+[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSettings200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
