@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.9.3
+  version: 1.10.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -77813,6 +77813,8 @@ components:
         previewUrl: previewUrl
         originalType: originalType
         refreshUrl: refreshUrl
+        payload:
+          key: ""
         id: id
         type: image
         url: url
@@ -77827,6 +77829,7 @@ components:
           - file
           - sticker
           - share
+          - template
           type: string
         originalType:
           description: "Instagram and Facebook only, and present only when it differs\
@@ -77852,6 +77855,10 @@ components:
         previewUrl:
           nullable: true
           type: string
+        payload:
+          additionalProperties: {}
+          description: "Template content (title, subtitle, image, buttons) when type\
+            \ is template"
     getInboxConversationMessages_200_response_messages_inner_deliveryError:
       description: Populated when deliveryStatus === "failed".
       example:
@@ -77900,6 +77907,8 @@ components:
           previewUrl: previewUrl
           originalType: originalType
           refreshUrl: refreshUrl
+          payload:
+            key: ""
           id: id
           type: image
           url: url
@@ -77907,6 +77916,8 @@ components:
           previewUrl: previewUrl
           originalType: originalType
           refreshUrl: refreshUrl
+          payload:
+            key: ""
           id: id
           type: image
           url: url
@@ -78131,6 +78142,8 @@ components:
             previewUrl: previewUrl
             originalType: originalType
             refreshUrl: refreshUrl
+            payload:
+              key: ""
             id: id
             type: image
             url: url
@@ -78138,6 +78151,8 @@ components:
             previewUrl: previewUrl
             originalType: originalType
             refreshUrl: refreshUrl
+            payload:
+              key: ""
             id: id
             type: image
             url: url
@@ -78203,6 +78218,8 @@ components:
             previewUrl: previewUrl
             originalType: originalType
             refreshUrl: refreshUrl
+            payload:
+              key: ""
             id: id
             type: image
             url: url
@@ -78210,6 +78227,8 @@ components:
             previewUrl: previewUrl
             originalType: originalType
             refreshUrl: refreshUrl
+            payload:
+              key: ""
             id: id
             type: image
             url: url

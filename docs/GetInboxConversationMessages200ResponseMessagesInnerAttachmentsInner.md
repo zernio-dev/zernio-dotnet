@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **RefreshUrl** | **string** | Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely. | [optional] 
 **Filename** | **string** |  | [optional] 
 **PreviewUrl** | **string** |  | [optional] 
+**Payload** | **Dictionary&lt;string, Object&gt;** | Template content (title, subtitle, image, buttons) when type is template | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
