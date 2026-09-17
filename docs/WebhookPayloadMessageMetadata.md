@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadMessageMetadata
-Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, or a WhatsApp inbound that Meta Business Agent is answering)
+Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, a WhatsApp inbound that Meta Business Agent is answering, or a TikTok DM that is not plain text)
 
 ## Properties
 
@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **Referral** | [**WebhookPayloadMessageMetadataReferral**](WebhookPayloadMessageMetadataReferral.md) |  | [optional] 
 **Unsupported** | [**WebhookPayloadMessageMetadataUnsupported**](WebhookPayloadMessageMetadataUnsupported.md) |  | [optional] 
 **NoRenderableContent** | **bool** | Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, only the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;.  | [optional] 
+**TiktokMessageType** | **string** | TikTok only. The message type as TikTok reports it, forwarded verbatim (for example image, video, sticker, share_post, emoji, reaction, template). Present on every TikTok DM that is not plain text; those arrive with text empty and, for image and video, an attachment. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
