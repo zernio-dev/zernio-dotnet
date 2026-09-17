@@ -1064,6 +1064,8 @@ docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md
 docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
+docs/LinkedInPlatformDataAudience.md
+docs/LinkedInPlatformDataAudienceInterfaceLocalesInner.md
 docs/LinkedInPlatformDataPoll.md
 docs/ListAccountCallouts200Response.md
 docs/ListAccountCallouts200ResponseCalloutsInner.md
@@ -3256,6 +3258,8 @@ src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1Tests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOfTests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerTests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataTests.cs
+src/Zernio.Test/Model/LinkedInPlatformDataAudienceInterfaceLocalesInnerTests.cs
+src/Zernio.Test/Model/LinkedInPlatformDataAudienceTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataPollTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataTests.cs
 src/Zernio.Test/Model/ListAccountCallouts200ResponseCalloutsInnerTests.cs
@@ -5435,6 +5439,8 @@ src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.cs
 src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.cs
 src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.cs
 src/Zernio/Model/LinkedInPlatformData.cs
+src/Zernio/Model/LinkedInPlatformDataAudience.cs
+src/Zernio/Model/LinkedInPlatformDataAudienceInterfaceLocalesInner.cs
 src/Zernio/Model/LinkedInPlatformDataPoll.cs
 src/Zernio/Model/ListAccountCallouts200Response.cs
 src/Zernio/Model/ListAccountCallouts200ResponseCalloutsInner.cs
