@@ -140,6 +140,7 @@ docs/BookmarkPostRequest.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestBudget.md
 docs/BoostPostRequestPlatformSpecificData.md
+docs/BoostPostRequestPromoCodesInner.md
 docs/BoostPostRequestPromotedObject.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestSparkPostsInner.md
@@ -2355,6 +2356,7 @@ src/Zernio.Test/Model/BookmarkPost200ResponseTests.cs
 src/Zernio.Test/Model/BookmarkPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
 src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
+src/Zernio.Test/Model/BoostPostRequestPromoCodesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
 src/Zernio.Test/Model/BoostPostRequestSparkPostsInnerTests.cs
@@ -4533,6 +4535,7 @@ src/Zernio/Model/BookmarkPostRequest.cs
 src/Zernio/Model/BoostPostRequest.cs
 src/Zernio/Model/BoostPostRequestBudget.cs
 src/Zernio/Model/BoostPostRequestPlatformSpecificData.cs
+src/Zernio/Model/BoostPostRequestPromoCodesInner.cs
 src/Zernio/Model/BoostPostRequestPromotedObject.cs
 src/Zernio/Model/BoostPostRequestSchedule.cs
 src/Zernio/Model/BoostPostRequestSparkPostsInner.cs
