@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Analytics** | [**PostAnalytics**](PostAnalytics.md) |  | [optional] 
 **SyncStatus** | **string** | Sync state of analytics for this platform | [optional] 
 **PlatformPostUrl** | **string** |  | [optional] 
-**ErrorMessage** | **string** | Error details when status is failed | [optional] 
+**ErrorMessage** | **string** | Error details when status is failed, or why analytics are unavailable for a published entry (e.g. Google Business Profile, a TikTok upload that never received a video id) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
