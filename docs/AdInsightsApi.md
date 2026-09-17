@@ -1042,7 +1042,7 @@ namespace Example
             var level = "ad";  // string? | Row granularity (optional) 
             var fields = "fields_example";  // string? | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set. (optional) 
             var breakdowns = "breakdowns_example";  // string? | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional) 
-            var actionBreakdowns = "actionBreakdowns_example";  // string? | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional) 
+            var actionBreakdowns = "actionBreakdowns_example";  // string? | Comma-separated Graph action breakdowns; segments the actions[] arrays in each row. Pass `none` to clear Meta's default action_type breakdown, required to combine some non-action breakdowns such as instagram_ads_follow_type (otherwise Meta returns a (#100) invalid-combination error). (optional) 
             var actionAttributionWindows = "actionAttributionWindows_example";  // string? | Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional) 
             var actionReportTime = "actionReportTime_example";  // string? | When actions are counted: impression, conversion or mixed. (optional) 
             var useUnifiedAttributionSetting = true;  // bool? | Use the ad sets' own attribution settings for action counting. (optional) 
@@ -1103,7 +1103,7 @@ catch (ApiException e)
 | **level** | **string?** | Row granularity | [optional]  |
 | **fields** | **string?** | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional]  |
 | **breakdowns** | **string?** | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional]  |
-| **actionBreakdowns** | **string?** | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. | [optional]  |
+| **actionBreakdowns** | **string?** | Comma-separated Graph action breakdowns; segments the actions[] arrays in each row. Pass &#x60;none&#x60; to clear Meta&#39;s default action_type breakdown, required to combine some non-action breakdowns such as instagram_ads_follow_type (otherwise Meta returns a (#100) invalid-combination error). | [optional]  |
 | **actionAttributionWindows** | **string?** | Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional]  |
 | **actionReportTime** | **string?** | When actions are counted: impression, conversion or mixed. | [optional]  |
 | **useUnifiedAttributionSetting** | **bool?** | Use the ad sets&#39; own attribution settings for action counting. | [optional]  |
