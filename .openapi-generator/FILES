@@ -142,6 +142,7 @@ docs/BoostPostRequestBudget.md
 docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestPromotedObject.md
 docs/BoostPostRequestSchedule.md
+docs/BoostPostRequestSparkPostsInner.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
 docs/BoostPostRequestTargetingCustomLocationsInner.md
@@ -2356,6 +2357,7 @@ src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
 src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/BoostPostRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
+src/Zernio.Test/Model/BoostPostRequestSparkPostsInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCitiesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingTests.cs
@@ -4533,6 +4535,7 @@ src/Zernio/Model/BoostPostRequestBudget.cs
 src/Zernio/Model/BoostPostRequestPlatformSpecificData.cs
 src/Zernio/Model/BoostPostRequestPromotedObject.cs
 src/Zernio/Model/BoostPostRequestSchedule.cs
+src/Zernio/Model/BoostPostRequestSparkPostsInner.cs
 src/Zernio/Model/BoostPostRequestTargeting.cs
 src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
 src/Zernio/Model/BoostPostRequestTargetingCustomLocationsInner.cs
