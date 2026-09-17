@@ -1,5 +1,5 @@
 # Zernio.Model.CreateBlogArticleRequestImage
-Featured image. The platform downloads it, so the URL must be publicly reachable.
+Featured image from a public URL. WordPress downloads it into the media library; JPEG, PNG, GIF and WebP are accepted up to 10 MB.
 
 ## Properties
 
