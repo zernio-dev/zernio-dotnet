@@ -14,6 +14,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdCreatives**](AdCreativesApi.md#listadcreatives) | **GET** /v1/ads/creatives | Creative library |
 | [**ListAdImages**](AdCreativesApi.md#listadimages) | **GET** /v1/ads/images | Ad image library |
 | [**ListAdVideos**](AdCreativesApi.md#listadvideos) | **GET** /v1/ads/videos | Ad video library |
+| [**ListAdsTikTokIdentities**](AdCreativesApi.md#listadstiktokidentities) | **GET** /v1/ads/tiktok-identities | List TikTok ad identities |
 | [**ListPartnershipAdContent**](AdCreativesApi.md#listpartnershipadcontent) | **GET** /v1/ads/partnership-content | List partnership ad content |
 | [**ListPartnershipAdPermissions**](AdCreativesApi.md#listpartnershipadpermissions) | **GET** /v1/ads/partnership-permissions | List partnership permissions |
 | [**SetPartnershipAdPermission**](AdCreativesApi.md#setpartnershipadpermission) | **POST** /v1/ads/partnership-permissions | Set partnership permission |
@@ -1087,6 +1088,110 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadstiktokidentities"></a>
+# **ListAdsTikTokIdentities**
+> ListAdsTikTokIdentities200Response ListAdsTikTokIdentities (string accountId, string adAccountId)
+
+List TikTok ad identities
+
+The identities an ad on this TikTok advertiser may run as (the profile shown on the ad): the advertiser's own TikTok accounts (TT_USER), Business Center authorized accounts (BC_AUTH_TT) and custom brand identities (CUSTOMIZED_USER). Pass the chosen `identityId` on POST /v1/ads/create or POST /v1/ads/boost. Spark-post identities (AUTH_CODE) are not listed; a Spark code creates its own.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdsTikTokIdentitiesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCreativesApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | A tiktok or tiktokads account ID
+            var adAccountId = "adAccountId_example";  // string | TikTok advertiser ID
+
+            try
+            {
+                // List TikTok ad identities
+                ListAdsTikTokIdentities200Response result = apiInstance.ListAdsTikTokIdentities(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCreativesApi.ListAdsTikTokIdentities: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdsTikTokIdentitiesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List TikTok ad identities
+    ApiResponse<ListAdsTikTokIdentities200Response> response = apiInstance.ListAdsTikTokIdentitiesWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCreativesApi.ListAdsTikTokIdentitiesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | A tiktok or tiktokads account ID |  |
+| **adAccountId** | **string** | TikTok advertiser ID |  |
+
+### Return type
+
+[**ListAdsTikTokIdentities200Response**](ListAdsTikTokIdentities200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Identities |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
