@@ -5,9 +5,9 @@ The conversation object included in conversation lifecycle webhook payloads (con
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Internal conversation ID | 
+**Id** | **string** | The platform&#39;s conversation id, equal to &#x60;conversation.platformConversationId&#x60; on inbox webhooks (whose &#x60;conversation.id&#x60; is Zernio&#39;s internal id). Both are accepted by the conversation endpoints. | 
 **Platform** | **string** |  | 
-**PlatformConversationId** | **string** |  | 
+**PlatformConversationId** | **string** | Same value as &#x60;id&#x60;. | 
 **ParticipantId** | **string** | Contact&#39;s platform identifier (IGSID, PSID, wa_id, etc.) | [optional] 
 **ParticipantName** | **string** |  | 
 **ParticipantUsername** | **string** | Contact&#39;s handle when the platform exposes one | [optional] 
