@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Valid** | **bool** |  | [optional] 
 **UserId** | **string** |  | [optional] 
+**Name** | **string** | Display name of the credential&#39;s owner. | [optional] 
+**Email** | **string** | Email of the credential&#39;s owner. | [optional] 
 **AuthType** | **string** |  | [optional] 
 **Scope** | **string** | Granted OAuth scopes, space-separated. Null for API keys. | [optional] 
 
