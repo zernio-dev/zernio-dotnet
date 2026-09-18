@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
+**IntegrationLane** | **string** | TikTok only. The TikTok integration the account is connected through: business (TikTok for Business, Accounts API) or developer (the original integration). Absent on other platforms. | [optional] 
 **Username** | **string** |  | [optional] 
 **DisplayName** | **string** |  | [optional] 
 **Status** | **string** | Overall health status | [optional] 
