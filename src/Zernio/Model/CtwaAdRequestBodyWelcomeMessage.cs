@@ -42,8 +42,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CtwaAdRequestBodyWelcomeMessage" /> class.
         /// </summary>
         /// <param name="text">Greeting shown when the chat opens. Replaces Meta&#39;s default (\&quot;Hi! Can we help you?\&quot;). (required).</param>
-        /// <param name="prefillText">Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product). (required).</param>
-        public CtwaAdRequestBodyWelcomeMessage(string text = default, string prefillText = default)
+        /// <param name="prefillText">Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product). Exactly one of prefillText or quickReplies..</param>
+        /// <param name="quickReplies">Tappable chips under the greeting instead of a prefilled message. Exactly one of prefillText or quickReplies. Put your own campaign or ad key in each payload: the tap arrives on the messages webhook with that payload even where Meta delivers no ad referral (Pages owned by an EU business under the Europe/Japan Messenger restrictions). .</param>
+        public CtwaAdRequestBodyWelcomeMessage(string text = default, string prefillText = default, List<CtwaAdRequestBodyWelcomeMessageQuickRepliesInner> quickReplies = default)
         {
             // to ensure "text" is required (not null)
             if (text == null)
@@ -51,12 +52,8 @@ namespace Zernio.Model
                 throw new ArgumentNullException("text is a required property for CtwaAdRequestBodyWelcomeMessage and cannot be null");
             }
             this.Text = text;
-            // to ensure "prefillText" is required (not null)
-            if (prefillText == null)
-            {
-                throw new ArgumentNullException("prefillText is a required property for CtwaAdRequestBodyWelcomeMessage and cannot be null");
-            }
             this.PrefillText = prefillText;
+            this.QuickReplies = quickReplies;
         }
 
         /// <summary>
@@ -67,11 +64,18 @@ namespace Zernio.Model
         public string Text { get; set; }
 
         /// <summary>
-        /// Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product).
+        /// Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product). Exactly one of prefillText or quickReplies.
         /// </summary>
-        /// <value>Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product).</value>
-        [DataMember(Name = "prefillText", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product). Exactly one of prefillText or quickReplies.</value>
+        [DataMember(Name = "prefillText", EmitDefaultValue = false)]
         public string PrefillText { get; set; }
+
+        /// <summary>
+        /// Tappable chips under the greeting instead of a prefilled message. Exactly one of prefillText or quickReplies. Put your own campaign or ad key in each payload: the tap arrives on the messages webhook with that payload even where Meta delivers no ad referral (Pages owned by an EU business under the Europe/Japan Messenger restrictions). 
+        /// </summary>
+        /// <value>Tappable chips under the greeting instead of a prefilled message. Exactly one of prefillText or quickReplies. Put your own campaign or ad key in each payload: the tap arrives on the messages webhook with that payload even where Meta delivers no ad referral (Pages owned by an EU business under the Europe/Japan Messenger restrictions). </value>
+        [DataMember(Name = "quickReplies", EmitDefaultValue = false)]
+        public List<CtwaAdRequestBodyWelcomeMessageQuickRepliesInner> QuickReplies { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,6 +87,7 @@ namespace Zernio.Model
             sb.Append("class CtwaAdRequestBodyWelcomeMessage {\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  PrefillText: ").Append(PrefillText).Append("\n");
+            sb.Append("  QuickReplies: ").Append(QuickReplies).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

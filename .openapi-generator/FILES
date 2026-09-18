@@ -494,6 +494,7 @@ docs/CtwaAdRequestBodyPlacements.md
 docs/CtwaAdRequestBodyRegionsInner.md
 docs/CtwaAdRequestBodyVideo.md
 docs/CtwaAdRequestBodyWelcomeMessage.md
+docs/CtwaAdRequestBodyWelcomeMessageQuickRepliesInner.md
 docs/CtwaAdRequestBodyZipsInner.md
 docs/CtwaMultiResponse.md
 docs/CtwaSingleResponse.md
@@ -2746,6 +2747,7 @@ src/Zernio.Test/Model/CtwaAdRequestBodyPlacementsTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyRegionsInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyVideoTests.cs
+src/Zernio.Test/Model/CtwaAdRequestBodyWelcomeMessageQuickRepliesInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyWelcomeMessageTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyZipsInnerTests.cs
 src/Zernio.Test/Model/CtwaMultiResponseTests.cs
@@ -4969,6 +4971,7 @@ src/Zernio/Model/CtwaAdRequestBodyPlacements.cs
 src/Zernio/Model/CtwaAdRequestBodyRegionsInner.cs
 src/Zernio/Model/CtwaAdRequestBodyVideo.cs
 src/Zernio/Model/CtwaAdRequestBodyWelcomeMessage.cs
+src/Zernio/Model/CtwaAdRequestBodyWelcomeMessageQuickRepliesInner.cs
 src/Zernio/Model/CtwaAdRequestBodyZipsInner.cs
 src/Zernio/Model/CtwaMultiResponse.cs
 src/Zernio/Model/CtwaSingleResponse.cs
