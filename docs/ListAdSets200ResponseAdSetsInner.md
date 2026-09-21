@@ -14,7 +14,9 @@ Name | Type | Description | Notes
 **AccountId** | **string** |  | [optional] 
 **ProfileId** | **string** |  | [optional] 
 **Currency** | **string** |  | [optional] 
-**Budget** | **Object** |  | [optional] 
+**Budget** | [**ListAdSets200ResponseAdSetsInnerBudget**](ListAdSets200ResponseAdSetsInnerBudget.md) |  | [optional] 
+**Schedule** | [**ListAdSets200ResponseAdSetsInnerSchedule**](ListAdSets200ResponseAdSetsInnerSchedule.md) |  | [optional] 
+**Targeting** | [**ListAdSets200ResponseAdSetsInnerTargeting**](ListAdSets200ResponseAdSetsInnerTargeting.md) |  | [optional] 
 **IsExternal** | **bool?** |  | [optional] 
 **PlatformCreatedAt** | **DateTime?** |  | [optional] 
 

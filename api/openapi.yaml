@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.25.1
+  version: 1.26.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -57426,6 +57426,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -57485,6 +57488,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -57521,6 +57525,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -57580,6 +57587,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -57650,9 +57658,9 @@ components:
           profileId: profileId
           daily:
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -57668,30 +57676,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -57702,22 +57710,22 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -57733,30 +57741,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -57767,14 +57775,14 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
@@ -57785,11 +57793,11 @@ components:
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -57814,6 +57822,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -57873,6 +57884,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -57909,6 +57921,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -57968,6 +57983,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -57986,14 +58002,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -58009,30 +58028,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -58043,22 +58062,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -58074,30 +58093,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -58108,14 +58127,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -58190,15 +58209,18 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -58223,6 +58245,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -58282,6 +58307,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -58318,6 +58344,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -58377,6 +58406,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -58395,14 +58425,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -58418,30 +58451,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -58452,22 +58485,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -58483,30 +58516,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -58517,14 +58550,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -58599,6 +58632,9 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           metrics:
             conversions: 2.027123023002322
@@ -58700,9 +58736,9 @@ components:
           profileId: profileId
           daily:
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -58718,30 +58754,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -58752,22 +58788,22 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -58783,30 +58819,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -58817,14 +58853,14 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
@@ -58835,11 +58871,11 @@ components:
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -58864,6 +58900,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -58923,6 +58962,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -58959,6 +58999,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -59018,6 +59061,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -59036,14 +59080,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -59059,30 +59106,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -59093,22 +59140,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -59124,30 +59171,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -59158,14 +59205,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -59240,15 +59287,18 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -59273,6 +59323,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -59332,6 +59385,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -59368,6 +59422,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -59427,6 +59484,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -59445,14 +59503,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -59468,30 +59529,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -59502,22 +59563,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -59533,30 +59594,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -59567,14 +59628,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -59649,6 +59710,9 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           metrics:
             conversions: 2.027123023002322
@@ -60347,9 +60411,12 @@ components:
             \ per-day reach, which overcounts people reached on multiple days or by\
             \ multiple child ads). Because it is de-duplicated, reach is NOT additive\
             \ on these platforms: neither daily values nor child nodes sum to the\
-            \ range total. Google, LinkedIn, X, Pinterest and OpenAI report 0 (reach\
-            \ not synced). Frequency (impressions / reach) is only meaningful for\
-            \ Meta and TikTok."
+            \ range total. LinkedIn: the campaign's `approximateMemberReach`, de-duplicated\
+            \ by LinkedIn per day and then summed over the range here, so it overcounts\
+            \ members reached on more than one day; LinkedIn withholds it below its\
+            \ audience privacy threshold, where it reads 0. Google, X, Pinterest and\
+            \ OpenAI report 0 (reach not synced). Frequency (impressions / reach)\
+            \ is only meaningful for Meta and TikTok."
           type: integer
         clicks:
           type: integer
@@ -60394,9 +60461,12 @@ components:
             \ for paid likes, comment, share). Follow is how FOLLOWERS-goal campaigns\
             \ report their result. X: conversion types (purchase, sign_up, site_visit,\
             \ download, custom). LinkedIn: conversion types (post_click, post_view,\
-            \ lead_gen). Google returns {} (its per-action names aren't synced per\
-            \ ad). Empty object when no actions are reported. NOTE: keys differ by\
-            \ platform, so branch on the ad's platform when interpreting them."
+            \ lead_gen) plus `video_view`, which carries LinkedIn's `videoViews` under\
+            \ the same key every other platform uses, so it feeds `engagementBreakdown.videoViews`\
+            \ too; it is an engagement, NOT a conversion, and is excluded from `conversions`.\
+            \ Google returns {} (its per-action names aren't synced per ad). Empty\
+            \ object when no actions are reported. NOTE: keys differ by platform,\
+            \ so branch on the ad's platform when interpreting them."
           example:
             link_click: 160
             post_engagement: 300
@@ -60644,8 +60714,10 @@ components:
           description: New Page likes attributed to the ad (`like`).
           type: integer
         videoViews:
-          description: 3-second video views (`video_view`). For completion-based counts
-            use `videoThruplayWatchedActions`.
+          description: "Video views, from the `video_view` action. Meta counts a 3-second\
+            \ view; LinkedIn's own `videoViews` threshold (2 continuous seconds, or\
+            \ 25% of the video) lands under the same key, so compare across platforms\
+            \ with care. For completion-based counts use `videoThruplayWatchedActions`."
           type: integer
         linkClicks:
           description: "Attributed link clicks (`link_click`). This is the attribution-window\
@@ -60673,9 +60745,9 @@ components:
         play-weighted average of the daily values.
       example:
         date: 2000-01-23
-        conversions: 5.025004791520295
-        videoAvgTimeWatchedActions: 7.058770351582356
-        engagement: 4
+        conversions: 8.762042012749001
+        videoAvgTimeWatchedActions: 8.969578798196912
+        engagement: 6
         funnel:
           searches: 5
           contentViews: 6
@@ -60691,30 +60763,30 @@ components:
           landingPageViews: 6
           checkoutsInitiated: 3
         reach: 1
-        videoP75WatchedActions: 3
+        videoP75WatchedActions: 6
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         actionValues:
           offsite_conversion.fb_pixel_purchase: 2456.78
           offsite_conversion.fb_pixel_add_to_cart: 980.5
-        videoP25WatchedActions: 6
-        spend: 7.386281948385884
-        cpc: 7.457744773683766
-        roas: 8.762042012749001
-        uniqueClicks: 1
-        outboundClicksCtr: 6.438423552598547
-        ctr: 6.84685269835264
-        purchaseValue: 6.683562403749608
-        cpm: 1.1730742509559433
-        inlineLinkClickCtr: 6.965117697638846
-        outboundClicks: 9
-        videoP50WatchedActions: 3
-        videoP95WatchedActions: 7
-        impressions: 1
-        videoP100WatchedActions: 0
+        videoP25WatchedActions: 0
+        spend: 6.84685269835264
+        cpc: 9.965781217890562
+        roas: 6.965117697638846
+        uniqueClicks: 5
+        outboundClicksCtr: 2.8841621266687802
+        ctr: 5.025004791520295
+        purchaseValue: 3.5571952270680973
+        cpm: 9.369310271410669
+        inlineLinkClickCtr: 6.878052220127876
+        outboundClicks: 1
+        videoP50WatchedActions: 7
+        videoP95WatchedActions: 0
+        impressions: 7
+        videoP100WatchedActions: 4
         costPerAction:
           link_click: 0.1052
           offsite_conversion.fb_pixel_purchase: 4.0114
-        videoPlayActions: 6
+        videoPlayActions: 3
         engagementBreakdown:
           shares: 5
           pageEngagement: 3
@@ -60725,14 +60797,14 @@ components:
           reactions: 3
           postEngagement: 7
           videoViews: 0
-        inlineLinkClicks: 3
-        allConversions: 9.965781217890562
-        videoThruplayWatchedActions: 5
-        video30SecWatchedActions: 6
-        clicks: 1
-        uniqueCtr: 2.8841621266687802
-        costPerThruplay: 6.519180951018382
-        costPerConversion: 9.369310271410669
+        inlineLinkClicks: 6
+        allConversions: 9.018348186070783
+        videoThruplayWatchedActions: 7
+        video30SecWatchedActions: 3
+        clicks: 4
+        uniqueCtr: 6.704019297950036
+        costPerThruplay: 7.740351818741173
+        costPerConversion: 6.438423552598547
         actions:
           link_click: 160
           post_engagement: 300
@@ -61881,6 +61953,9 @@ components:
         platformAdSetId: platformAdSetId
         budget:
           amount: 0.8008281904610115
+          pacing: pacing
+          daily: 6.027456183070403
+          lifetime: 1.4658129805029452
           type: daily
         platformAdAccountName: Zernio - previously Late
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -61940,6 +62015,7 @@ components:
           - text: text
             pinnedField: HEADLINE_1
           isServing: true
+          adFormat: adFormat
           mediaUrls:
           - mediaUrls
           - mediaUrls
@@ -62061,8 +62137,17 @@ components:
         adSetName:
           type: string
         platformObjective:
-          description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
-            \ OUTCOME_TRAFFIC). Only present for Meta ads."
+          description: |
+            The platform's own campaign objective, verbatim, alongside the normalized `goal` it maps to.
+            The mapping is many-to-one, so `goal` alone cannot be mapped back to it.
+
+            - Meta: campaign `objective` (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).
+            - LinkedIn: campaign `objectiveType` (e.g. WEBSITE_VISIT, LEAD_GENERATION, BRAND_AWARENESS,
+              VIDEO_VIEW, ENGAGEMENT, JOB_APPLICANT, WEBSITE_CONVERSION). The list is open, so treat an
+              unrecognized value as valid rather than an error.
+            - TikTok and Pinterest: their raw objective_type.
+
+            Null on platforms that report none, and on LinkedIn ads not yet re-synced.
           example: OUTCOME_SALES
           nullable: true
           type: string
@@ -62199,11 +62284,11 @@ components:
         bidStrategy: ""
         adSetName: adSetName
         adCount: 7
-        bidAmount: 2.027123023002322
+        bidAmount: 1.0246457001441578
         servingStatuses:
         - RUNNABLE
         optimizationGoal: optimizationGoal
-        roasAverageFloor: 4.145608029883936
+        roasAverageFloor: 1.4894159098541704
         promotedObject:
           page_id: page_id
           custom_event_type: custom_event_type
@@ -62228,6 +62313,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -62287,6 +62375,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -62323,6 +62412,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -62382,6 +62474,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -62400,14 +62493,17 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         adSetBudget:
-          amount: 3.616076749251911
+          amount: 4.145608029883936
+          pacing: pacing
+          daily: 7.386281948385884
+          lifetime: 1.2315135367772556
           type: daily
         costType: costType
         daily:
         - date: 2000-01-23
-          conversions: 5.025004791520295
-          videoAvgTimeWatchedActions: 7.058770351582356
-          engagement: 4
+          conversions: 8.762042012749001
+          videoAvgTimeWatchedActions: 8.969578798196912
+          engagement: 6
           funnel:
             searches: 5
             contentViews: 6
@@ -62423,30 +62519,30 @@ components:
             landingPageViews: 6
             checkoutsInitiated: 3
           reach: 1
-          videoP75WatchedActions: 3
+          videoP75WatchedActions: 6
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 6
-          spend: 7.386281948385884
-          cpc: 7.457744773683766
-          roas: 8.762042012749001
-          uniqueClicks: 1
-          outboundClicksCtr: 6.438423552598547
-          ctr: 6.84685269835264
-          purchaseValue: 6.683562403749608
-          cpm: 1.1730742509559433
-          inlineLinkClickCtr: 6.965117697638846
-          outboundClicks: 9
-          videoP50WatchedActions: 3
-          videoP95WatchedActions: 7
-          impressions: 1
-          videoP100WatchedActions: 0
+          videoP25WatchedActions: 0
+          spend: 6.84685269835264
+          cpc: 9.965781217890562
+          roas: 6.965117697638846
+          uniqueClicks: 5
+          outboundClicksCtr: 2.8841621266687802
+          ctr: 5.025004791520295
+          purchaseValue: 3.5571952270680973
+          cpm: 9.369310271410669
+          inlineLinkClickCtr: 6.878052220127876
+          outboundClicks: 1
+          videoP50WatchedActions: 7
+          videoP95WatchedActions: 0
+          impressions: 7
+          videoP100WatchedActions: 4
           costPerAction:
             link_click: 0.1052
             offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 6
+          videoPlayActions: 3
           engagementBreakdown:
             shares: 5
             pageEngagement: 3
@@ -62457,22 +62553,22 @@ components:
             reactions: 3
             postEngagement: 7
             videoViews: 0
-          inlineLinkClicks: 3
-          allConversions: 9.965781217890562
-          videoThruplayWatchedActions: 5
-          video30SecWatchedActions: 6
-          clicks: 1
-          uniqueCtr: 2.8841621266687802
-          costPerThruplay: 6.519180951018382
-          costPerConversion: 9.369310271410669
+          inlineLinkClicks: 6
+          allConversions: 9.018348186070783
+          videoThruplayWatchedActions: 7
+          video30SecWatchedActions: 3
+          clicks: 4
+          uniqueCtr: 6.704019297950036
+          costPerThruplay: 7.740351818741173
+          costPerConversion: 6.438423552598547
           actions:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         - date: 2000-01-23
-          conversions: 5.025004791520295
-          videoAvgTimeWatchedActions: 7.058770351582356
-          engagement: 4
+          conversions: 8.762042012749001
+          videoAvgTimeWatchedActions: 8.969578798196912
+          engagement: 6
           funnel:
             searches: 5
             contentViews: 6
@@ -62488,30 +62584,30 @@ components:
             landingPageViews: 6
             checkoutsInitiated: 3
           reach: 1
-          videoP75WatchedActions: 3
+          videoP75WatchedActions: 6
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 6
-          spend: 7.386281948385884
-          cpc: 7.457744773683766
-          roas: 8.762042012749001
-          uniqueClicks: 1
-          outboundClicksCtr: 6.438423552598547
-          ctr: 6.84685269835264
-          purchaseValue: 6.683562403749608
-          cpm: 1.1730742509559433
-          inlineLinkClickCtr: 6.965117697638846
-          outboundClicks: 9
-          videoP50WatchedActions: 3
-          videoP95WatchedActions: 7
-          impressions: 1
-          videoP100WatchedActions: 0
+          videoP25WatchedActions: 0
+          spend: 6.84685269835264
+          cpc: 9.965781217890562
+          roas: 6.965117697638846
+          uniqueClicks: 5
+          outboundClicksCtr: 2.8841621266687802
+          ctr: 5.025004791520295
+          purchaseValue: 3.5571952270680973
+          cpm: 9.369310271410669
+          inlineLinkClickCtr: 6.878052220127876
+          outboundClicks: 1
+          videoP50WatchedActions: 7
+          videoP95WatchedActions: 0
+          impressions: 7
+          videoP100WatchedActions: 4
           costPerAction:
             link_click: 0.1052
             offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 6
+          videoPlayActions: 3
           engagementBreakdown:
             shares: 5
             pageEngagement: 3
@@ -62522,14 +62618,14 @@ components:
             reactions: 3
             postEngagement: 7
             videoViews: 0
-          inlineLinkClicks: 3
-          allConversions: 9.965781217890562
-          videoThruplayWatchedActions: 5
-          video30SecWatchedActions: 6
-          clicks: 1
-          uniqueCtr: 2.8841621266687802
-          costPerThruplay: 6.519180951018382
-          costPerConversion: 9.369310271410669
+          inlineLinkClicks: 6
+          allConversions: 9.018348186070783
+          videoThruplayWatchedActions: 7
+          video30SecWatchedActions: 3
+          clicks: 4
+          uniqueCtr: 6.704019297950036
+          costPerThruplay: 7.740351818741173
+          costPerConversion: 6.438423552598547
           actions:
             link_click: 160
             post_engagement: 300
@@ -62604,6 +62700,9 @@ components:
         status: ""
         budget:
           amount: 9.301444243932576
+          pacing: pacing
+          daily: 3.616076749251911
+          lifetime: 2.027123023002322
           type: daily
       properties:
         platformAdSetId:
@@ -62727,9 +62826,9 @@ components:
         profileId: profileId
         daily:
         - date: 2000-01-23
-          conversions: 5.025004791520295
-          videoAvgTimeWatchedActions: 7.058770351582356
-          engagement: 4
+          conversions: 8.762042012749001
+          videoAvgTimeWatchedActions: 8.969578798196912
+          engagement: 6
           funnel:
             searches: 5
             contentViews: 6
@@ -62745,30 +62844,30 @@ components:
             landingPageViews: 6
             checkoutsInitiated: 3
           reach: 1
-          videoP75WatchedActions: 3
+          videoP75WatchedActions: 6
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 6
-          spend: 7.386281948385884
-          cpc: 7.457744773683766
-          roas: 8.762042012749001
-          uniqueClicks: 1
-          outboundClicksCtr: 6.438423552598547
-          ctr: 6.84685269835264
-          purchaseValue: 6.683562403749608
-          cpm: 1.1730742509559433
-          inlineLinkClickCtr: 6.965117697638846
-          outboundClicks: 9
-          videoP50WatchedActions: 3
-          videoP95WatchedActions: 7
-          impressions: 1
-          videoP100WatchedActions: 0
+          videoP25WatchedActions: 0
+          spend: 6.84685269835264
+          cpc: 9.965781217890562
+          roas: 6.965117697638846
+          uniqueClicks: 5
+          outboundClicksCtr: 2.8841621266687802
+          ctr: 5.025004791520295
+          purchaseValue: 3.5571952270680973
+          cpm: 9.369310271410669
+          inlineLinkClickCtr: 6.878052220127876
+          outboundClicks: 1
+          videoP50WatchedActions: 7
+          videoP95WatchedActions: 0
+          impressions: 7
+          videoP100WatchedActions: 4
           costPerAction:
             link_click: 0.1052
             offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 6
+          videoPlayActions: 3
           engagementBreakdown:
             shares: 5
             pageEngagement: 3
@@ -62779,22 +62878,22 @@ components:
             reactions: 3
             postEngagement: 7
             videoViews: 0
-          inlineLinkClicks: 3
-          allConversions: 9.965781217890562
-          videoThruplayWatchedActions: 5
-          video30SecWatchedActions: 6
-          clicks: 1
-          uniqueCtr: 2.8841621266687802
-          costPerThruplay: 6.519180951018382
-          costPerConversion: 9.369310271410669
+          inlineLinkClicks: 6
+          allConversions: 9.018348186070783
+          videoThruplayWatchedActions: 7
+          video30SecWatchedActions: 3
+          clicks: 4
+          uniqueCtr: 6.704019297950036
+          costPerThruplay: 7.740351818741173
+          costPerConversion: 6.438423552598547
           actions:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         - date: 2000-01-23
-          conversions: 5.025004791520295
-          videoAvgTimeWatchedActions: 7.058770351582356
-          engagement: 4
+          conversions: 8.762042012749001
+          videoAvgTimeWatchedActions: 8.969578798196912
+          engagement: 6
           funnel:
             searches: 5
             contentViews: 6
@@ -62810,30 +62909,30 @@ components:
             landingPageViews: 6
             checkoutsInitiated: 3
           reach: 1
-          videoP75WatchedActions: 3
+          videoP75WatchedActions: 6
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
-          videoP25WatchedActions: 6
-          spend: 7.386281948385884
-          cpc: 7.457744773683766
-          roas: 8.762042012749001
-          uniqueClicks: 1
-          outboundClicksCtr: 6.438423552598547
-          ctr: 6.84685269835264
-          purchaseValue: 6.683562403749608
-          cpm: 1.1730742509559433
-          inlineLinkClickCtr: 6.965117697638846
-          outboundClicks: 9
-          videoP50WatchedActions: 3
-          videoP95WatchedActions: 7
-          impressions: 1
-          videoP100WatchedActions: 0
+          videoP25WatchedActions: 0
+          spend: 6.84685269835264
+          cpc: 9.965781217890562
+          roas: 6.965117697638846
+          uniqueClicks: 5
+          outboundClicksCtr: 2.8841621266687802
+          ctr: 5.025004791520295
+          purchaseValue: 3.5571952270680973
+          cpm: 9.369310271410669
+          inlineLinkClickCtr: 6.878052220127876
+          outboundClicks: 1
+          videoP50WatchedActions: 7
+          videoP95WatchedActions: 0
+          impressions: 7
+          videoP100WatchedActions: 4
           costPerAction:
             link_click: 0.1052
             offsite_conversion.fb_pixel_purchase: 4.0114
-          videoPlayActions: 6
+          videoPlayActions: 3
           engagementBreakdown:
             shares: 5
             pageEngagement: 3
@@ -62844,14 +62943,14 @@ components:
             reactions: 3
             postEngagement: 7
             videoViews: 0
-          inlineLinkClicks: 3
-          allConversions: 9.965781217890562
-          videoThruplayWatchedActions: 5
-          video30SecWatchedActions: 6
-          clicks: 1
-          uniqueCtr: 2.8841621266687802
-          costPerThruplay: 6.519180951018382
-          costPerConversion: 9.369310271410669
+          inlineLinkClicks: 6
+          allConversions: 9.018348186070783
+          videoThruplayWatchedActions: 7
+          video30SecWatchedActions: 3
+          clicks: 4
+          uniqueCtr: 6.704019297950036
+          costPerThruplay: 7.740351818741173
+          costPerConversion: 6.438423552598547
           actions:
             link_click: 160
             post_engagement: 300
@@ -62862,11 +62961,11 @@ components:
         - bidStrategy: ""
           adSetName: adSetName
           adCount: 7
-          bidAmount: 2.027123023002322
+          bidAmount: 1.0246457001441578
           servingStatuses:
           - RUNNABLE
           optimizationGoal: optimizationGoal
-          roasAverageFloor: 4.145608029883936
+          roasAverageFloor: 1.4894159098541704
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
@@ -62891,6 +62990,9 @@ components:
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
+              pacing: pacing
+              daily: 6.027456183070403
+              lifetime: 1.4658129805029452
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -62950,6 +63052,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              adFormat: adFormat
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -62986,6 +63089,9 @@ components:
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
+              pacing: pacing
+              daily: 6.027456183070403
+              lifetime: 1.4658129805029452
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -63045,6 +63151,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              adFormat: adFormat
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -63063,14 +63170,17 @@ components:
             platformAdAccountId: platformAdAccountId
             status: ""
           adSetBudget:
-            amount: 3.616076749251911
+            amount: 4.145608029883936
+            pacing: pacing
+            daily: 7.386281948385884
+            lifetime: 1.2315135367772556
             type: daily
           costType: costType
           daily:
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -63086,30 +63196,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -63120,22 +63230,22 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -63151,30 +63261,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -63185,14 +63295,14 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
@@ -63267,15 +63377,18 @@ components:
           status: ""
           budget:
             amount: 9.301444243932576
+            pacing: pacing
+            daily: 3.616076749251911
+            lifetime: 2.027123023002322
             type: daily
         - bidStrategy: ""
           adSetName: adSetName
           adCount: 7
-          bidAmount: 2.027123023002322
+          bidAmount: 1.0246457001441578
           servingStatuses:
           - RUNNABLE
           optimizationGoal: optimizationGoal
-          roasAverageFloor: 4.145608029883936
+          roasAverageFloor: 1.4894159098541704
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
@@ -63300,6 +63413,9 @@ components:
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
+              pacing: pacing
+              daily: 6.027456183070403
+              lifetime: 1.4658129805029452
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -63359,6 +63475,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              adFormat: adFormat
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -63395,6 +63512,9 @@ components:
             platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
+              pacing: pacing
+              daily: 6.027456183070403
+              lifetime: 1.4658129805029452
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -63454,6 +63574,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              adFormat: adFormat
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -63472,14 +63593,17 @@ components:
             platformAdAccountId: platformAdAccountId
             status: ""
           adSetBudget:
-            amount: 3.616076749251911
+            amount: 4.145608029883936
+            pacing: pacing
+            daily: 7.386281948385884
+            lifetime: 1.2315135367772556
             type: daily
           costType: costType
           daily:
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -63495,30 +63619,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -63529,22 +63653,22 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -63560,30 +63684,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -63594,14 +63718,14 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
@@ -63676,6 +63800,9 @@ components:
           status: ""
           budget:
             amount: 9.301444243932576
+            pacing: pacing
+            daily: 3.616076749251911
+            lifetime: 2.027123023002322
             type: daily
         metrics:
           conversions: 2.027123023002322
@@ -95234,6 +95361,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -95293,6 +95423,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -95329,6 +95460,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -95388,6 +95522,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -97529,6 +97664,80 @@ components:
           items:
             $ref: "#/components/schemas/updateCampaignTargeting_200_response_languages_inner"
           type: array
+    listAdSets_200_response_adSets_inner_budget:
+      example:
+        amount: 0.8008281904610115
+        pacing: pacing
+        daily: 6.027456183070403
+        lifetime: 1.4658129805029452
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+        daily:
+          description: "LinkedIn only. The campaign's `dailyBudget`. LinkedIn allows\
+            \ a daily AND a lifetime budget on the same campaign, which `amount`/`type`\
+            \ cannot express (daily wins there); read `daily` and `lifetime` to see\
+            \ both."
+          type: number
+        lifetime:
+          description: "LinkedIn only. The campaign's `totalBudget`, readable even\
+            \ when a daily budget is also set."
+          type: number
+        pacing:
+          description: "LinkedIn only. The campaign's `pacingStrategy`: how fast LinkedIn\
+            \ may spend the budget. Typically LINEAR or ACCELERATED; the list is open."
+          type: string
+    listAdSets_200_response_adSets_inner_schedule:
+      description: "The ad set's own flight dates, as synced from the platform. On\
+        \ LinkedIn this is the campaign's `runSchedule`. Null when the platform reports\
+        \ none."
+      example:
+        endDate: 2000-01-23T04:56:07.000+00:00
+        startDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          description: Absent when the ad set runs until it is stopped.
+          format: date-time
+          type: string
+    listAdSets_200_response_adSets_inner_targeting:
+      description: |
+        The audience this ad set delivers to, as the platform reports it. LinkedIn only
+        today; null for every other platform and for LinkedIn ad sets not yet re-synced.
+
+        `include` and `exclude` are the campaign's `targetingCriteria` verbatim, so they
+        can be read, edited and sent back without reconstructing them from our normalized
+        targeting spec. Exclusions were previously not readable at all.
+      example:
+        include: "{}"
+        offsiteDeliveryEnabled: true
+        exclude: "{}"
+        audienceExpansionEnabled: true
+      properties:
+        include:
+          description: "LinkedIn `targetingCriteria.include`, verbatim (an `and` of\
+            \ `or` facet clauses)."
+          type: object
+        exclude:
+          description: "LinkedIn `targetingCriteria.exclude`, verbatim. Absent when\
+            \ the campaign excludes nothing."
+          type: object
+        audienceExpansionEnabled:
+          description: "LinkedIn audience expansion: whether LinkedIn may also serve\
+            \ to members similar to the criteria."
+          type: boolean
+        offsiteDeliveryEnabled:
+          description: "Whether the campaign may deliver on the LinkedIn Audience\
+            \ Network, off LinkedIn itself."
+          type: boolean
     listAdSets_200_response_adSets_inner:
       example:
         adSetName: adSetName
@@ -97536,14 +97745,27 @@ components:
         platformCampaignId: platformCampaignId
         platform: platform
         accountId: accountId
+        schedule:
+          endDate: 2000-01-23T04:56:07.000+00:00
+          startDate: 2000-01-23T04:56:07.000+00:00
         platformAdSetStatus: platformAdSetStatus
+        targeting:
+          include: "{}"
+          offsiteDeliveryEnabled: true
+          exclude: "{}"
+          audienceExpansionEnabled: true
         profileId: profileId
         platformAdSetId: platformAdSetId
         platformCreatedAt: 2000-01-23T04:56:07.000+00:00
         currency: currency
         platformAdAccountId: platformAdAccountId
         status: status
-        budget: "{}"
+        budget:
+          amount: 0.8008281904610115
+          pacing: pacing
+          daily: 6.027456183070403
+          lifetime: 1.4658129805029452
+          type: daily
       properties:
         platformAdSetId:
           type: string
@@ -97572,8 +97794,11 @@ components:
           nullable: true
           type: string
         budget:
-          nullable: true
-          type: object
+          $ref: "#/components/schemas/listAdSets_200_response_adSets_inner_budget"
+        schedule:
+          $ref: "#/components/schemas/listAdSets_200_response_adSets_inner_schedule"
+        targeting:
+          $ref: "#/components/schemas/listAdSets_200_response_adSets_inner_targeting"
         isExternal:
           nullable: true
           type: boolean
@@ -97589,27 +97814,53 @@ components:
           platformCampaignId: platformCampaignId
           platform: platform
           accountId: accountId
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
           platformAdSetStatus: platformAdSetStatus
+          targeting:
+            include: "{}"
+            offsiteDeliveryEnabled: true
+            exclude: "{}"
+            audienceExpansionEnabled: true
           profileId: profileId
           platformAdSetId: platformAdSetId
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           platformAdAccountId: platformAdAccountId
           status: status
-          budget: "{}"
+          budget:
+            amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
+            type: daily
         - adSetName: adSetName
           isExternal: true
           platformCampaignId: platformCampaignId
           platform: platform
           accountId: accountId
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
           platformAdSetStatus: platformAdSetStatus
+          targeting:
+            include: "{}"
+            offsiteDeliveryEnabled: true
+            exclude: "{}"
+            audienceExpansionEnabled: true
           profileId: profileId
           platformAdSetId: platformAdSetId
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           platformAdAccountId: platformAdAccountId
           status: status
-          budget: "{}"
+          budget:
+            amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
+            type: daily
       properties:
         adSets:
           items:
@@ -98077,9 +98328,9 @@ components:
           profileId: profileId
           daily:
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -98095,30 +98346,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -98129,22 +98380,22 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -98160,30 +98411,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -98194,14 +98445,14 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
@@ -98212,11 +98463,11 @@ components:
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -98241,6 +98492,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -98300,6 +98554,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -98336,6 +98591,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -98395,6 +98653,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -98413,14 +98672,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -98436,30 +98698,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -98470,22 +98732,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -98501,30 +98763,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -98535,14 +98797,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -98617,15 +98879,18 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -98650,6 +98915,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -98709,6 +98977,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -98745,6 +99014,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -98804,6 +99076,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -98822,14 +99095,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -98845,30 +99121,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -98879,22 +99155,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -98910,30 +99186,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -98944,14 +99220,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -99026,6 +99302,9 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           metrics:
             conversions: 2.027123023002322
@@ -99127,9 +99406,9 @@ components:
           profileId: profileId
           daily:
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -99145,30 +99424,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -99179,22 +99458,22 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - date: 2000-01-23
-            conversions: 5.025004791520295
-            videoAvgTimeWatchedActions: 7.058770351582356
-            engagement: 4
+            conversions: 8.762042012749001
+            videoAvgTimeWatchedActions: 8.969578798196912
+            engagement: 6
             funnel:
               searches: 5
               contentViews: 6
@@ -99210,30 +99489,30 @@ components:
               landingPageViews: 6
               checkoutsInitiated: 3
             reach: 1
-            videoP75WatchedActions: 3
+            videoP75WatchedActions: 6
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
-            videoP25WatchedActions: 6
-            spend: 7.386281948385884
-            cpc: 7.457744773683766
-            roas: 8.762042012749001
-            uniqueClicks: 1
-            outboundClicksCtr: 6.438423552598547
-            ctr: 6.84685269835264
-            purchaseValue: 6.683562403749608
-            cpm: 1.1730742509559433
-            inlineLinkClickCtr: 6.965117697638846
-            outboundClicks: 9
-            videoP50WatchedActions: 3
-            videoP95WatchedActions: 7
-            impressions: 1
-            videoP100WatchedActions: 0
+            videoP25WatchedActions: 0
+            spend: 6.84685269835264
+            cpc: 9.965781217890562
+            roas: 6.965117697638846
+            uniqueClicks: 5
+            outboundClicksCtr: 2.8841621266687802
+            ctr: 5.025004791520295
+            purchaseValue: 3.5571952270680973
+            cpm: 9.369310271410669
+            inlineLinkClickCtr: 6.878052220127876
+            outboundClicks: 1
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 0
+            impressions: 7
+            videoP100WatchedActions: 4
             costPerAction:
               link_click: 0.1052
               offsite_conversion.fb_pixel_purchase: 4.0114
-            videoPlayActions: 6
+            videoPlayActions: 3
             engagementBreakdown:
               shares: 5
               pageEngagement: 3
@@ -99244,14 +99523,14 @@ components:
               reactions: 3
               postEngagement: 7
               videoViews: 0
-            inlineLinkClicks: 3
-            allConversions: 9.965781217890562
-            videoThruplayWatchedActions: 5
-            video30SecWatchedActions: 6
-            clicks: 1
-            uniqueCtr: 2.8841621266687802
-            costPerThruplay: 6.519180951018382
-            costPerConversion: 9.369310271410669
+            inlineLinkClicks: 6
+            allConversions: 9.018348186070783
+            videoThruplayWatchedActions: 7
+            video30SecWatchedActions: 3
+            clicks: 4
+            uniqueCtr: 6.704019297950036
+            costPerThruplay: 7.740351818741173
+            costPerConversion: 6.438423552598547
             actions:
               link_click: 160
               post_engagement: 300
@@ -99262,11 +99541,11 @@ components:
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -99291,6 +99570,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -99350,6 +99632,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -99386,6 +99669,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -99445,6 +99731,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -99463,14 +99750,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -99486,30 +99776,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -99520,22 +99810,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -99551,30 +99841,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -99585,14 +99875,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -99667,15 +99957,18 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           - bidStrategy: ""
             adSetName: adSetName
             adCount: 7
-            bidAmount: 2.027123023002322
+            bidAmount: 1.0246457001441578
             servingStatuses:
             - RUNNABLE
             optimizationGoal: optimizationGoal
-            roasAverageFloor: 4.145608029883936
+            roasAverageFloor: 1.4894159098541704
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -99700,6 +99993,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -99759,6 +100055,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -99795,6 +100092,9 @@ components:
               platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
+                pacing: pacing
+                daily: 6.027456183070403
+                lifetime: 1.4658129805029452
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -99854,6 +100154,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                adFormat: adFormat
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -99872,14 +100173,17 @@ components:
               platformAdAccountId: platformAdAccountId
               status: ""
             adSetBudget:
-              amount: 3.616076749251911
+              amount: 4.145608029883936
+              pacing: pacing
+              daily: 7.386281948385884
+              lifetime: 1.2315135367772556
               type: daily
             costType: costType
             daily:
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -99895,30 +100199,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -99929,22 +100233,22 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
             - date: 2000-01-23
-              conversions: 5.025004791520295
-              videoAvgTimeWatchedActions: 7.058770351582356
-              engagement: 4
+              conversions: 8.762042012749001
+              videoAvgTimeWatchedActions: 8.969578798196912
+              engagement: 6
               funnel:
                 searches: 5
                 contentViews: 6
@@ -99960,30 +100264,30 @@ components:
                 landingPageViews: 6
                 checkoutsInitiated: 3
               reach: 1
-              videoP75WatchedActions: 3
+              videoP75WatchedActions: 6
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
-              videoP25WatchedActions: 6
-              spend: 7.386281948385884
-              cpc: 7.457744773683766
-              roas: 8.762042012749001
-              uniqueClicks: 1
-              outboundClicksCtr: 6.438423552598547
-              ctr: 6.84685269835264
-              purchaseValue: 6.683562403749608
-              cpm: 1.1730742509559433
-              inlineLinkClickCtr: 6.965117697638846
-              outboundClicks: 9
-              videoP50WatchedActions: 3
-              videoP95WatchedActions: 7
-              impressions: 1
-              videoP100WatchedActions: 0
+              videoP25WatchedActions: 0
+              spend: 6.84685269835264
+              cpc: 9.965781217890562
+              roas: 6.965117697638846
+              uniqueClicks: 5
+              outboundClicksCtr: 2.8841621266687802
+              ctr: 5.025004791520295
+              purchaseValue: 3.5571952270680973
+              cpm: 9.369310271410669
+              inlineLinkClickCtr: 6.878052220127876
+              outboundClicks: 1
+              videoP50WatchedActions: 7
+              videoP95WatchedActions: 0
+              impressions: 7
+              videoP100WatchedActions: 4
               costPerAction:
                 link_click: 0.1052
                 offsite_conversion.fb_pixel_purchase: 4.0114
-              videoPlayActions: 6
+              videoPlayActions: 3
               engagementBreakdown:
                 shares: 5
                 pageEngagement: 3
@@ -99994,14 +100298,14 @@ components:
                 reactions: 3
                 postEngagement: 7
                 videoViews: 0
-              inlineLinkClicks: 3
-              allConversions: 9.965781217890562
-              videoThruplayWatchedActions: 5
-              video30SecWatchedActions: 6
-              clicks: 1
-              uniqueCtr: 2.8841621266687802
-              costPerThruplay: 6.519180951018382
-              costPerConversion: 9.369310271410669
+              inlineLinkClicks: 6
+              allConversions: 9.018348186070783
+              videoThruplayWatchedActions: 7
+              video30SecWatchedActions: 3
+              clicks: 4
+              uniqueCtr: 6.704019297950036
+              costPerThruplay: 7.740351818741173
+              costPerConversion: 6.438423552598547
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -100076,6 +100380,9 @@ components:
             status: ""
             budget:
               amount: 9.301444243932576
+              pacing: pacing
+              daily: 3.616076749251911
+              lifetime: 2.027123023002322
               type: daily
           metrics:
             conversions: 2.027123023002322
@@ -100220,6 +100527,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -100279,6 +100589,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -100634,6 +100945,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -100693,6 +101007,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -107257,6 +107572,9 @@ components:
           platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -107316,6 +107634,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            adFormat: adFormat
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -108299,6 +108618,7 @@ components:
         daily: 1
         available: true
         estimateReady: true
+        active: 5
         currency: currency
       properties:
         available:
@@ -108318,6 +108638,13 @@ components:
         daily:
           description: "Optional estimated daily reach/results at the given budget,\
             \ when the platform returns it."
+          nullable: true
+          type: integer
+        active:
+          description: "LinkedIn only. LinkedIn's `audienceCounts.active`, verbatim:\
+            \ the active subset of the same audience `lower`/`upper` carry as its\
+            \ `total`. Absent when LinkedIn does not report it; `0` is a real answer,\
+            \ not a missing one."
           nullable: true
           type: integer
         currency:
@@ -119226,6 +119553,22 @@ components:
           additionalProperties:
             items:
               type: object
+          description: |
+            Requested demographic breakdowns, keyed by dimension. Fetched live from the
+            platform per request and never stored, so these rows can carry fields the
+            stored `summary` and `daily` series do not.
+
+            LinkedIn rows carry `value` (the pivot URN), `name` (resolved label where
+            LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement
+            figures, plus two reach fields:
+
+            - `reach`: the segment's `approximateMemberReach`.
+            - `audiencePenetration`: LinkedIn's own ratio of members reached to the size of
+              the targeted audience, passed through verbatim.
+
+            LinkedIn withholds both below its audience privacy threshold, in which case the
+            keys are ABSENT rather than 0. `audiencePenetration` is available here only: it
+            is not part of the stored metrics series.
     AdAnalyticsResponse_ad:
       example:
         name: name
@@ -119461,6 +119804,22 @@ components:
           additionalProperties:
             items:
               type: object
+          description: |
+            Requested demographic breakdowns, keyed by dimension. Fetched live from the
+            platform per request and never stored, so these rows can carry fields the
+            stored `summary` and `daily` series do not.
+
+            LinkedIn rows carry `value` (the pivot URN), `name` (resolved label where
+            LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement
+            figures, plus two reach fields:
+
+            - `reach`: the segment's `approximateMemberReach`.
+            - `audiencePenetration`: LinkedIn's own ratio of members reached to the size of
+              the targeted audience, passed through verbatim.
+
+            LinkedIn withholds both below its audience privacy threshold, in which case the
+            keys are ABSENT rather than 0. `audiencePenetration` is available here only: it
+            is not part of the stored metrics series.
     CampaignBidding_bidSpec:
       description: "Null when the campaign is on a strategy PUT does not model (Manual\
         \ CPC, Target Impression Share, ...); show biddingStrategyType instead in\
@@ -119737,6 +120096,9 @@ components:
     Ad_budget:
       example:
         amount: 0.8008281904610115
+        pacing: pacing
+        daily: 6.027456183070403
+        lifetime: 1.4658129805029452
         type: daily
       properties:
         amount:
@@ -119745,6 +120107,20 @@ components:
           enum:
           - daily
           - lifetime
+          type: string
+        daily:
+          description: "LinkedIn only. The parent campaign's `dailyBudget`. LinkedIn\
+            \ allows a daily AND a lifetime budget on the same campaign, which `amount`/`type`\
+            \ cannot express (daily wins there); read `daily` and `lifetime` to see\
+            \ both."
+          type: number
+        lifetime:
+          description: "LinkedIn only. The parent campaign's `totalBudget`, readable\
+            \ even when a daily budget is also set."
+          type: number
+        pacing:
+          description: "LinkedIn only. The campaign's `pacingStrategy`: how fast LinkedIn\
+            \ may spend the budget. Typically LINEAR or ACCELERATED; the list is open."
           type: string
     Ad_promotedObject:
       description: Meta promoted object containing conversion event details. Structure
@@ -119824,6 +120200,7 @@ components:
         - text: text
           pinnedField: HEADLINE_1
         isServing: true
+        adFormat: adFormat
         mediaUrls:
         - mediaUrls
         - mediaUrls
@@ -119937,6 +120314,17 @@ components:
             \ describes the parent campaign."
           nullable: true
           type: boolean
+        adFormat:
+          description: "LinkedIn only. The LinkedIn ad format, in LinkedIn's own vocabulary:\
+            \ STANDARD_UPDATE, SINGLE_VIDEO, CAROUSEL, NATIVE_DOCUMENT, EVENT, TEXT_AD,\
+            \ SPOTLIGHT, FOLLOW_COMPANY, JOBS, SPONSORED_INMAILS and others. On an\
+            \ ad Zernio created this is the format it was created as; on an ad synced\
+            \ from Campaign Manager it is the parent campaign's raw `format`, which\
+            \ is what LinkedIn actually enforces on its creatives. The list is open,\
+            \ so treat an unrecognized value as valid. Absent on LinkedIn ads not\
+            \ yet re-synced, and on every other platform."
+          nullable: true
+          type: string
         servingHoldReasons:
           description: |
             LinkedIn only. Why this specific creative is not being served. Empty when it is serving.
@@ -119991,6 +120379,9 @@ components:
         budget. Use `adSetBudget` / parent `campaignBudget` + `budgetLevel` to disambiguate.
       example:
         amount: 9.301444243932576
+        pacing: pacing
+        daily: 3.616076749251911
+        lifetime: 2.027123023002322
         type: daily
       properties:
         amount:
@@ -120000,11 +120391,28 @@ components:
           - daily
           - lifetime
           type: string
+        daily:
+          description: "LinkedIn only. The campaign's `dailyBudget`. LinkedIn allows\
+            \ a daily AND a lifetime budget on the same campaign, which `amount`/`type`\
+            \ cannot express (daily wins there); read `daily` and `lifetime` to see\
+            \ both."
+          type: number
+        lifetime:
+          description: "LinkedIn only. The campaign's `totalBudget`, readable even\
+            \ when a daily budget is also set."
+          type: number
+        pacing:
+          description: "LinkedIn only. The campaign's `pacingStrategy`: how fast LinkedIn\
+            \ may spend the budget. Typically LINEAR or ACCELERATED; the list is open."
+          type: string
     AdTreeAdSet_adSetBudget:
       description: Ad-set-level budget (ABO). Null for CBO campaigns where the budget
         is set on the campaign.
       example:
-        amount: 3.616076749251911
+        amount: 4.145608029883936
+        pacing: pacing
+        daily: 7.386281948385884
+        lifetime: 1.2315135367772556
         type: daily
       properties:
         amount:
@@ -120013,6 +120421,15 @@ components:
           enum:
           - daily
           - lifetime
+          type: string
+        daily:
+          description: LinkedIn only. See `budget.daily`.
+          type: number
+        lifetime:
+          description: LinkedIn only. See `budget.lifetime`.
+          type: number
+        pacing:
+          description: LinkedIn only. See `budget.pacing`.
           type: string
     AdTreeAdSet_promotedObject:
       description: Meta promoted object for this ad set (conversion event details)

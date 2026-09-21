@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Summary** | [**AdMetrics**](AdMetrics.md) |  | [optional] 
 **Daily** | [**List&lt;CampaignAnalyticsResponseAnalyticsDailyInner&gt;**](CampaignAnalyticsResponseAnalyticsDailyInner.md) |  | [optional] 
-**Breakdowns** | **Dictionary&lt;string, List&lt;Object&gt;&gt;** |  | [optional] 
+**Breakdowns** | **Dictionary&lt;string, List&lt;Object&gt;&gt;** | Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **decimal** |  | [optional] 
 **Type** | **string** |  | [optional] 
+**Daily** | **decimal** | LinkedIn only. See &#x60;budget.daily&#x60;. | [optional] 
+**Lifetime** | **decimal** | LinkedIn only. See &#x60;budget.lifetime&#x60;. | [optional] 
+**Pacing** | **string** | LinkedIn only. See &#x60;budget.pacing&#x60;. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
