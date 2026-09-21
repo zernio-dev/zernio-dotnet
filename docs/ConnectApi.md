@@ -3709,8 +3709,8 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | List of Facebook Pages available for connection |  -  |
 | **400** | Invalid or expired selectionToken, no granted Pages, or missing classic profileId and tempToken. |  -  |
-| **403** | The caller is not the initiating user or no longer has profile access. |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The caller is not the initiating user or no longer has profile access. |  -  |
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -1441,8 +1441,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
+| **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |
 | **502** | Recording provider lookup failed |  -  |

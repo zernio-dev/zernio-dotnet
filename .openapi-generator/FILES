@@ -73,6 +73,8 @@ docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
 docs/AddDiscordMemberRole200Response.md
+docs/AddImessageGroupParticipant200Response.md
+docs/AddImessageGroupParticipantRequest.md
 docs/AddMessageReaction200Response.md
 docs/AddMessageReactionRequest.md
 docs/AddTrackingTagSharedAccount201Response.md
@@ -361,6 +363,11 @@ docs/CreateGoogleBusinessPlaceAction200Response.md
 docs/CreateGoogleBusinessPlaceActionRequest.md
 docs/CreateHighDemandPeriod201Response.md
 docs/CreateHighDemandPeriodRequest.md
+docs/CreateImessageGroup202Response.md
+docs/CreateImessageGroupRequest.md
+docs/CreateImessageOptInLink200Response.md
+docs/CreateImessageOptInLink200ResponseLink.md
+docs/CreateImessageOptInLinkRequest.md
 docs/CreateInboxConversation201Response.md
 docs/CreateInboxConversation201ResponseData.md
 docs/CreateInboxConversation400Response.md
@@ -775,6 +782,10 @@ docs/GetGoogleBusinessVerifications200Response.md
 docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md
+docs/GetImessageGroup200Response.md
+docs/GetImessageGroup200ResponseGroup.md
+docs/GetImessageSender200Response.md
+docs/GetImessageSender200ResponseHealth.md
 docs/GetInboxConversation200Response.md
 docs/GetInboxConversation200ResponseData.md
 docs/GetInboxConversation200ResponseDataMetadata.md
@@ -1015,6 +1026,11 @@ docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
+docs/IMessageApi.md
+docs/ImessageAudienceContact.md
+docs/ImessageAudienceContactOptIn.md
+docs/ImessageSender.md
+docs/ImessageSenderLifecycle.md
 docs/InboxAnalyticsApi.md
 docs/InboxMessageEditAttachment.md
 docs/InboxMessageEditHistoryEntry.md
@@ -1202,6 +1218,11 @@ docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md
 docs/ListGoogleBusinessPlaceActions200Response.md
 docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md
 docs/ListHighDemandPeriods200Response.md
+docs/ListImessageAudience200Response.md
+docs/ListImessageAvailableNumbers200Response.md
+docs/ListImessageAvailableNumbers200ResponseNumbersInner.md
+docs/ListImessageSenderOrders200Response.md
+docs/ListImessageSenders200Response.md
 docs/ListInboxComments200Response.md
 docs/ListInboxComments200ResponseDataInner.md
 docs/ListInboxComments200ResponseMeta.md
@@ -1386,6 +1407,9 @@ docs/OnWhatsAppNumberReleasedRequest.md
 docs/OnWhatsAppNumberSuspendedRequest.md
 docs/OnWhatsAppNumberVerificationRequiredRequest.md
 docs/OnboardBusinessAgent201Response.md
+docs/OrderImessageSender202Response.md
+docs/OrderImessageSenderRequest.md
+docs/OrderImessageSenderRequestContact.md
 docs/Pagination.md
 docs/PauseWorkflow200Response.md
 docs/Pending.md
@@ -1461,6 +1485,8 @@ docs/RedditPlatformData.md
 docs/RedditPost.md
 docs/RedditSearchApi.md
 docs/RedeliverWebhookEventRequest.md
+docs/RegisterImessageSender200Response.md
+docs/RegisterImessageSenderRequest.md
 docs/RegisterWhatsAppNumber200Response.md
 docs/RegisterWhatsAppNumberRequest.md
 docs/RejectWhatsAppGroupJoinRequestsRequest.md
@@ -1509,6 +1535,7 @@ docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/RequestWhatsAppVerificationCode200Response.md
 docs/RequestWhatsAppVerificationCodeRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
+docs/ReserveImessageAvailableNumber200Response.md
 docs/ReserveRfPrediction201Response.md
 docs/ReserveRfPredictionRequest.md
 docs/RespondToPhoneNumberReviewer200Response.md
@@ -1682,6 +1709,8 @@ docs/SetContactFieldValueRequest.md
 docs/SetConversationThreadControl200Response.md
 docs/SetConversationThreadControl200ResponseControl.md
 docs/SetConversationThreadControlRequest.md
+docs/SetImessageSubscription200Response.md
+docs/SetImessageSubscriptionRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
@@ -1908,6 +1937,10 @@ docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md
+docs/UpdateImessageGroup200Response.md
+docs/UpdateImessageGroupRequest.md
+docs/UpdateImessageSenderRequest.md
+docs/UpdateImessageSenderRequestContact.md
 docs/UpdateInboxConversation200Response.md
 docs/UpdateInboxConversation200ResponseData.md
 docs/UpdateInboxConversationRequest.md
@@ -2243,6 +2276,7 @@ src/Zernio.Test/Api/GMBPlaceActionsApiTests.cs
 src/Zernio.Test/Api/GMBReviewsApiTests.cs
 src/Zernio.Test/Api/GMBServicesApiTests.cs
 src/Zernio.Test/Api/GMBVerificationsApiTests.cs
+src/Zernio.Test/Api/IMessageApiTests.cs
 src/Zernio.Test/Api/InboxAnalyticsApiTests.cs
 src/Zernio.Test/Api/InstagramApiTests.cs
 src/Zernio.Test/Api/InvitesApiTests.cs
@@ -2341,6 +2375,8 @@ src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
 src/Zernio.Test/Model/AddDiscordMemberRole200ResponseTests.cs
+src/Zernio.Test/Model/AddImessageGroupParticipant200ResponseTests.cs
+src/Zernio.Test/Model/AddImessageGroupParticipantRequestTests.cs
 src/Zernio.Test/Model/AddMessageReaction200ResponseTests.cs
 src/Zernio.Test/Model/AddMessageReactionRequestTests.cs
 src/Zernio.Test/Model/AddTrackingTagSharedAccount201ResponseTests.cs
@@ -2618,6 +2654,11 @@ src/Zernio.Test/Model/CreateGoogleBusinessPlaceAction200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessPlaceActionRequestTests.cs
 src/Zernio.Test/Model/CreateHighDemandPeriod201ResponseTests.cs
 src/Zernio.Test/Model/CreateHighDemandPeriodRequestTests.cs
+src/Zernio.Test/Model/CreateImessageGroup202ResponseTests.cs
+src/Zernio.Test/Model/CreateImessageGroupRequestTests.cs
+src/Zernio.Test/Model/CreateImessageOptInLink200ResponseLinkTests.cs
+src/Zernio.Test/Model/CreateImessageOptInLink200ResponseTests.cs
+src/Zernio.Test/Model/CreateImessageOptInLinkRequestTests.cs
 src/Zernio.Test/Model/CreateInboxConversation201ResponseDataTests.cs
 src/Zernio.Test/Model/CreateInboxConversation201ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation400ResponseAnyOfTests.cs
@@ -3022,6 +3063,10 @@ src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVerificationsInnerTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerifyTests.cs
+src/Zernio.Test/Model/GetImessageGroup200ResponseGroupTests.cs
+src/Zernio.Test/Model/GetImessageGroup200ResponseTests.cs
+src/Zernio.Test/Model/GetImessageSender200ResponseHealthTests.cs
+src/Zernio.Test/Model/GetImessageSender200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseDataMetadataTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseTests.cs
@@ -3262,6 +3307,10 @@ src/Zernio.Test/Model/HideAdComment200ResponseTests.cs
 src/Zernio.Test/Model/HideAdCommentRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
+src/Zernio.Test/Model/ImessageAudienceContactOptInTests.cs
+src/Zernio.Test/Model/ImessageAudienceContactTests.cs
+src/Zernio.Test/Model/ImessageSenderLifecycleTests.cs
+src/Zernio.Test/Model/ImessageSenderTests.cs
 src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
 src/Zernio.Test/Model/InboxMessageEditHistoryEntryTests.cs
 src/Zernio.Test/Model/InboxWebhookAccountTests.cs
@@ -3444,6 +3493,11 @@ src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponseTests.cs
 src/Zernio.Test/Model/ListHighDemandPeriods200ResponseTests.cs
+src/Zernio.Test/Model/ListImessageAudience200ResponseTests.cs
+src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseNumbersInnerTests.cs
+src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseTests.cs
+src/Zernio.Test/Model/ListImessageSenderOrders200ResponseTests.cs
+src/Zernio.Test/Model/ListImessageSenders200ResponseTests.cs
 src/Zernio.Test/Model/ListInboxComments200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInboxComments200ResponseMetaFailedAccountsInnerTests.cs
 src/Zernio.Test/Model/ListInboxComments200ResponseMetaTests.cs
@@ -3623,6 +3677,9 @@ src/Zernio.Test/Model/OnWhatsAppNumberReleasedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberSuspendedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberVerificationRequiredRequestTests.cs
 src/Zernio.Test/Model/OnboardBusinessAgent201ResponseTests.cs
+src/Zernio.Test/Model/OrderImessageSender202ResponseTests.cs
+src/Zernio.Test/Model/OrderImessageSenderRequestContactTests.cs
+src/Zernio.Test/Model/OrderImessageSenderRequestTests.cs
 src/Zernio.Test/Model/PaginationTests.cs
 src/Zernio.Test/Model/PauseWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/PendingTests.cs
@@ -3690,6 +3747,8 @@ src/Zernio.Test/Model/RecyclingStateTests.cs
 src/Zernio.Test/Model/RedditPlatformDataTests.cs
 src/Zernio.Test/Model/RedditPostTests.cs
 src/Zernio.Test/Model/RedeliverWebhookEventRequestTests.cs
+src/Zernio.Test/Model/RegisterImessageSender200ResponseTests.cs
+src/Zernio.Test/Model/RegisterImessageSenderRequestTests.cs
 src/Zernio.Test/Model/RegisterWhatsAppNumber200ResponseTests.cs
 src/Zernio.Test/Model/RegisterWhatsAppNumberRequestTests.cs
 src/Zernio.Test/Model/RejectWhatsAppGroupJoinRequestsRequestTests.cs
@@ -3738,6 +3797,7 @@ src/Zernio.Test/Model/RequestSmsSenderIdLimitIncreaseRequestTests.cs
 src/Zernio.Test/Model/RequestWhatsAppVerificationCode200ResponseTests.cs
 src/Zernio.Test/Model/RequestWhatsAppVerificationCodeRequestTests.cs
 src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
+src/Zernio.Test/Model/ReserveImessageAvailableNumber200ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPrediction201ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPredictionRequestTests.cs
 src/Zernio.Test/Model/RespondToPhoneNumberReviewer200ResponseTests.cs
@@ -3908,6 +3968,8 @@ src/Zernio.Test/Model/SetContactFieldValueRequestTests.cs
 src/Zernio.Test/Model/SetConversationThreadControl200ResponseControlTests.cs
 src/Zernio.Test/Model/SetConversationThreadControl200ResponseTests.cs
 src/Zernio.Test/Model/SetConversationThreadControlRequestTests.cs
+src/Zernio.Test/Model/SetImessageSubscription200ResponseTests.cs
+src/Zernio.Test/Model/SetImessageSubscriptionRequestTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestIceBreakersInnerTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
@@ -4130,6 +4192,10 @@ src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPriceT
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItemTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestTests.cs
+src/Zernio.Test/Model/UpdateImessageGroup200ResponseTests.cs
+src/Zernio.Test/Model/UpdateImessageGroupRequestTests.cs
+src/Zernio.Test/Model/UpdateImessageSenderRequestContactTests.cs
+src/Zernio.Test/Model/UpdateImessageSenderRequestTests.cs
 src/Zernio.Test/Model/UpdateInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/UpdateInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateInboxConversationRequestTests.cs
@@ -4451,6 +4517,7 @@ src/Zernio/Api/GMBPlaceActionsApi.cs
 src/Zernio/Api/GMBReviewsApi.cs
 src/Zernio/Api/GMBServicesApi.cs
 src/Zernio/Api/GMBVerificationsApi.cs
+src/Zernio/Api/IMessageApi.cs
 src/Zernio/Api/InboxAnalyticsApi.cs
 src/Zernio/Api/InstagramApi.cs
 src/Zernio/Api/InvitesApi.cs
@@ -4567,6 +4634,8 @@ src/Zernio/Model/AddConversionAssociations200Response.cs
 src/Zernio/Model/AddConversionAssociations200ResponseFailedInner.cs
 src/Zernio/Model/AddConversionAssociationsRequest.cs
 src/Zernio/Model/AddDiscordMemberRole200Response.cs
+src/Zernio/Model/AddImessageGroupParticipant200Response.cs
+src/Zernio/Model/AddImessageGroupParticipantRequest.cs
 src/Zernio/Model/AddMessageReaction200Response.cs
 src/Zernio/Model/AddMessageReactionRequest.cs
 src/Zernio/Model/AddTrackingTagSharedAccount201Response.cs
@@ -4844,6 +4913,11 @@ src/Zernio/Model/CreateGoogleBusinessPlaceAction200Response.cs
 src/Zernio/Model/CreateGoogleBusinessPlaceActionRequest.cs
 src/Zernio/Model/CreateHighDemandPeriod201Response.cs
 src/Zernio/Model/CreateHighDemandPeriodRequest.cs
+src/Zernio/Model/CreateImessageGroup202Response.cs
+src/Zernio/Model/CreateImessageGroupRequest.cs
+src/Zernio/Model/CreateImessageOptInLink200Response.cs
+src/Zernio/Model/CreateImessageOptInLink200ResponseLink.cs
+src/Zernio/Model/CreateImessageOptInLinkRequest.cs
 src/Zernio/Model/CreateInboxConversation201Response.cs
 src/Zernio/Model/CreateInboxConversation201ResponseData.cs
 src/Zernio/Model/CreateInboxConversation400Response.cs
@@ -5248,6 +5322,10 @@ src/Zernio/Model/GetGoogleBusinessVerifications200Response.cs
 src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVerificationsInner.cs
 src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.cs
 src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.cs
+src/Zernio/Model/GetImessageGroup200Response.cs
+src/Zernio/Model/GetImessageGroup200ResponseGroup.cs
+src/Zernio/Model/GetImessageSender200Response.cs
+src/Zernio/Model/GetImessageSender200ResponseHealth.cs
 src/Zernio/Model/GetInboxConversation200Response.cs
 src/Zernio/Model/GetInboxConversation200ResponseData.cs
 src/Zernio/Model/GetInboxConversation200ResponseDataMetadata.cs
@@ -5488,6 +5566,10 @@ src/Zernio/Model/HideAdComment200Response.cs
 src/Zernio/Model/HideAdCommentRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
+src/Zernio/Model/ImessageAudienceContact.cs
+src/Zernio/Model/ImessageAudienceContactOptIn.cs
+src/Zernio/Model/ImessageSender.cs
+src/Zernio/Model/ImessageSenderLifecycle.cs
 src/Zernio/Model/InboxMessageEditAttachment.cs
 src/Zernio/Model/InboxMessageEditHistoryEntry.cs
 src/Zernio/Model/InboxWebhookAccount.cs
@@ -5670,6 +5752,11 @@ src/Zernio/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssoci
 src/Zernio/Model/ListGoogleBusinessPlaceActions200Response.cs
 src/Zernio/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.cs
 src/Zernio/Model/ListHighDemandPeriods200Response.cs
+src/Zernio/Model/ListImessageAudience200Response.cs
+src/Zernio/Model/ListImessageAvailableNumbers200Response.cs
+src/Zernio/Model/ListImessageAvailableNumbers200ResponseNumbersInner.cs
+src/Zernio/Model/ListImessageSenderOrders200Response.cs
+src/Zernio/Model/ListImessageSenders200Response.cs
 src/Zernio/Model/ListInboxComments200Response.cs
 src/Zernio/Model/ListInboxComments200ResponseDataInner.cs
 src/Zernio/Model/ListInboxComments200ResponseMeta.cs
@@ -5849,6 +5936,9 @@ src/Zernio/Model/OnWhatsAppNumberReleasedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberSuspendedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberVerificationRequiredRequest.cs
 src/Zernio/Model/OnboardBusinessAgent201Response.cs
+src/Zernio/Model/OrderImessageSender202Response.cs
+src/Zernio/Model/OrderImessageSenderRequest.cs
+src/Zernio/Model/OrderImessageSenderRequestContact.cs
 src/Zernio/Model/Pagination.cs
 src/Zernio/Model/PauseWorkflow200Response.cs
 src/Zernio/Model/Pending.cs
@@ -5916,6 +6006,8 @@ src/Zernio/Model/RecyclingState.cs
 src/Zernio/Model/RedditPlatformData.cs
 src/Zernio/Model/RedditPost.cs
 src/Zernio/Model/RedeliverWebhookEventRequest.cs
+src/Zernio/Model/RegisterImessageSender200Response.cs
+src/Zernio/Model/RegisterImessageSenderRequest.cs
 src/Zernio/Model/RegisterWhatsAppNumber200Response.cs
 src/Zernio/Model/RegisterWhatsAppNumberRequest.cs
 src/Zernio/Model/RejectWhatsAppGroupJoinRequestsRequest.cs
@@ -5964,6 +6056,7 @@ src/Zernio/Model/RequestSmsSenderIdLimitIncreaseRequest.cs
 src/Zernio/Model/RequestWhatsAppVerificationCode200Response.cs
 src/Zernio/Model/RequestWhatsAppVerificationCodeRequest.cs
 src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
+src/Zernio/Model/ReserveImessageAvailableNumber200Response.cs
 src/Zernio/Model/ReserveRfPrediction201Response.cs
 src/Zernio/Model/ReserveRfPredictionRequest.cs
 src/Zernio/Model/RespondToPhoneNumberReviewer200Response.cs
@@ -6134,6 +6227,8 @@ src/Zernio/Model/SetContactFieldValueRequest.cs
 src/Zernio/Model/SetConversationThreadControl200Response.cs
 src/Zernio/Model/SetConversationThreadControl200ResponseControl.cs
 src/Zernio/Model/SetConversationThreadControlRequest.cs
+src/Zernio/Model/SetImessageSubscription200Response.cs
+src/Zernio/Model/SetImessageSubscriptionRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
@@ -6356,6 +6451,10 @@ src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormSer
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.cs
+src/Zernio/Model/UpdateImessageGroup200Response.cs
+src/Zernio/Model/UpdateImessageGroupRequest.cs
+src/Zernio/Model/UpdateImessageSenderRequest.cs
+src/Zernio/Model/UpdateImessageSenderRequestContact.cs
 src/Zernio/Model/UpdateInboxConversation200Response.cs
 src/Zernio/Model/UpdateInboxConversation200ResponseData.cs
 src/Zernio/Model/UpdateInboxConversationRequest.cs

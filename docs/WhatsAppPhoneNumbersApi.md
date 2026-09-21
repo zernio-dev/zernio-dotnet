@@ -1026,14 +1026,14 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).  |  -  |
+| **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another).  |  -  |
-| **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
-| **202** | Country requires end-user KYC before the number can be ordered. |  -  |
-| **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
+| **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1448,8 +1448,8 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **409** | Either reuse was requested but no prior approved verification exists for this country, or the requested areaCode has no deliverable inventory right now (code: area_code_unavailable; pick another area and resubmit). |  -  |
 | **401** | Unauthorized |  -  |
+| **409** | Either reuse was requested but no prior approved verification exists for this country, or the requested areaCode has no deliverable inventory right now (code: area_code_unavailable; pick another area and resubmit). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

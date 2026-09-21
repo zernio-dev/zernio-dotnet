@@ -1,5 +1,5 @@
 # Zernio.Model.SendInboxMessageRequestLocation
-WhatsApp-only. Send a location pin.
+WhatsApp and iMessage. Send a location pin (on iMessage it renders as a native map bubble).
 
 ## Properties
 

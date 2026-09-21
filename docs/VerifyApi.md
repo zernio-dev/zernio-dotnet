@@ -205,8 +205,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Verification created and the code sent. |  -  |
 | **200** | Active verification found: a fresh code was resent (&#x60;resend: true&#x60;). |  -  |
+| **201** | Verification created and the code sent. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Verifications require usage-based billing. |  -  |

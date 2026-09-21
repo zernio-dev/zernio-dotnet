@@ -132,8 +132,8 @@ catch (ApiException e)
 | **200** | Role assigned (or already present, idempotent). |  -  |
 | **400** | Validation error (malformed snowflake) or @everyone manipulation attempt. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request: bot lacks MANAGE_ROLES, or target role is at or above the bot&#39;s highest role. |  -  |
+| **404** | Discord account not found or not in this guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -239,8 +239,8 @@ catch (ApiException e)
 | **201** | Role created. |  -  |
 | **400** | Invalid accountId, guildId, or role body. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the new role would sit at or above the bot&#39;s highest role). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -450,8 +450,8 @@ catch (ApiException e)
 | **200** | Thread created. |  -  |
 | **400** | Invalid accountId, channelId, messageId, name, or autoArchiveDuration. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks Create Public Threads). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -557,8 +557,8 @@ catch (ApiException e)
 | **200** | Message crossposted. |  -  |
 | **400** | Invalid ids, or the channel is not an announcement channel. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks the required permission). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -664,8 +664,8 @@ catch (ApiException e)
 | **200** | Role deleted. |  -  |
 | **400** | Invalid accountId, guildId, or roleId format. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -771,8 +771,8 @@ catch (ApiException e)
 | **200** | Message deleted. |  -  |
 | **400** | Invalid accountId, channelId, or messageId format. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Messages). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -985,8 +985,8 @@ catch (ApiException e)
 | **200** | Role updated. |  -  |
 | **400** | Invalid ids, or no fields supplied to edit. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1607,8 +1607,8 @@ catch (ApiException e)
 | **200** | List of guild roles. |  -  |
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the request (bot lacks View Channels permission in the guild). |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2032,8 +2032,8 @@ catch (ApiException e)
 | **200** | Role removed (or was already absent, idempotent). |  -  |
 | **400** | Validation error. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request (permission or hierarchy issue). |  -  |
+| **404** | Discord account not found or not in this guild. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2242,8 +2242,8 @@ catch (ApiException e)
 | **200** | DM sent successfully. |  -  |
 | **400** | Validation error (missing required fields, content &gt; 2000 chars, malformed snowflake, or all of content/embeds/attachments missing). |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found or not accessible to this user. |  -  |
 | **403** | Discord refused the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **404** | Discord account not found or not accessible to this user. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

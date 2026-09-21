@@ -27,7 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add reaction
 
-Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta's 24h messaging window - Slack: The emoji must have a Slack name (e.g. `:thumbsup:`); unnamed characters return 400 - All others: Returns 400 (not supported) 
+Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta's 24h messaging window - Slack: The emoji must have a Slack name (e.g. `:thumbsup:`); unnamed characters return 400 - 'iMessage: The six Apple tapbacks (❤️ 👍 👎 😂 ‼️ ❓) render natively; any other emoji is sent as a custom emoji tapback (iOS 18+ recipients)' - All others: Returns 400 (not supported) 
 
 ### Example
 ```csharp
@@ -239,7 +239,7 @@ catch (ApiException e)
 
 Delete message
 
-Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot's own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender's view only - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
+Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot's own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender's view only - 'iMessage: Unsend (the bubble disappears for the recipient) within 2 minutes of sending (Apple''s limit; 409 `unsend_window_expired` after that). Own outbound messages only.' - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
 
 ### Example
 ```csharp
@@ -345,7 +345,7 @@ catch (ApiException e)
 
 Edit message
 
-Edit the text and/or reply markup of a previously sent Telegram message. Only supported for Telegram. Returns 400 for other platforms. 
+Edit a previously sent message. Platform support: - Telegram: text and/or reply markup, any time - 'iMessage: text only, within 15 minutes of sending (Apple''s limit; 409 `edit_window_expired` after that). Group messages included. The stored message keeps its edit history.' - All others: returns 400 
 
 ### Example
 ```csharp
@@ -372,7 +372,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
             var conversationId = "conversationId_example";  // string | The conversation ID
-            var messageId = "messageId_example";  // string | The Telegram message ID to edit
+            var messageId = "messageId_example";  // string | The platform message ID to edit (iMessage also accepts the Zernio message id)
             var editInboxMessageRequest = new EditInboxMessageRequest(); // EditInboxMessageRequest | 
 
             try
@@ -417,7 +417,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **conversationId** | **string** | The conversation ID |  |
-| **messageId** | **string** | The Telegram message ID to edit |  |
+| **messageId** | **string** | The platform message ID to edit (iMessage also accepts the Zernio message id) |  |
 | **editInboxMessageRequest** | [**EditInboxMessageRequest**](EditInboxMessageRequest.md) |  |  |
 
 ### Return type
@@ -653,8 +653,8 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
-| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -887,7 +887,7 @@ catch (ApiException e)
 
 Mark a conversation as read
 
-Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer's phone owns read state and we never override it).  This is the explicit, human-driven counterpart to `GET .../messages`, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer's phone owns read state and we never override it).  For iMessage, this also marks the conversation read with the contact (1:1 conversations only). Best-effort.  This is the explicit, human-driven counterpart to `GET .../messages`, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
 
 ### Example
 ```csharp
@@ -990,7 +990,7 @@ catch (ApiException e)
 
 Remove reaction
 
-Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta's `unreact` action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
+Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta's `unreact` action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - 'iMessage: Retracts your existing tapback or emoji reaction on the message (400 when you have none)' - All others: Returns 400 (not supported) 
 
 ### Example
 ```csharp
@@ -1303,14 +1303,14 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Message sent |  -  |
 | **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send). Meta rejections (e.g. sending outside the messaging window) arrive with code platform_api_error, type platform_error, and platform + platformError set. |  -  |
-| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Meta rejected the WhatsApp template-definition lookup. No message was sent. |  -  |
-| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
 | **502** | The exact approved WhatsApp template definition is unavailable, or the platform returned an upstream failure. No WhatsApp template message is sent when definition lookup fails. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1321,7 +1321,7 @@ catch (ApiException e)
 
 Send typing indicator
 
-Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \"Page is typing...\" for 20 seconds - Instagram: Shows \"typing...\" to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \"Bot is typing...\" for 5 seconds - WhatsApp: Shows \"typing...\" for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn't support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; `success` reports whether a typing indicator was actually sent to the platform (`false` on unsupported platforms or when the platform call failed). 
+Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \"Page is typing...\" for 20 seconds - Instagram: Shows \"typing...\" to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \"Bot is typing...\" for 5 seconds - WhatsApp: Shows \"typing...\" for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - iMessage: Shows a typing bubble for ~15 seconds (1:1 conversations only; requires a recent two-way exchange) - All others: Returns 200 but no-op (platform doesn't support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; `success` reports whether a typing indicator was actually sent to the platform (`false` on unsupported platforms or when the platform call failed). 
 
 ### Example
 ```csharp

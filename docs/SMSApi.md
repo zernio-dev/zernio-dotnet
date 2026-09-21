@@ -1942,8 +1942,8 @@ catch (ApiException e)
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
+| **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
