@@ -1118,6 +1118,7 @@ docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
 docs/ListAdAccounts200Response.md
 docs/ListAdAccounts200ResponseAccountsInner.md
+docs/ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.md
 docs/ListAdAudiences200Response.md
 docs/ListAdAudiences200ResponseAudiencesInner.md
 docs/ListAdCampaigns200Response.md
@@ -3394,6 +3395,7 @@ src/Zernio.Test/Model/ListAccountSitelinks200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListAccountSitelinks200ResponseTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseTests.cs
+src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerFundingSourceDetailsTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseAudiencesInnerTests.cs
@@ -5658,6 +5660,7 @@ src/Zernio/Model/ListAccountStructuredSnippets200Response.cs
 src/Zernio/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.cs
 src/Zernio/Model/ListAdAccounts200Response.cs
 src/Zernio/Model/ListAdAccounts200ResponseAccountsInner.cs
+src/Zernio/Model/ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.cs
 src/Zernio/Model/ListAdAudiences200Response.cs
 src/Zernio/Model/ListAdAudiences200ResponseAudiencesInner.cs
 src/Zernio/Model/ListAdCampaigns200Response.cs
