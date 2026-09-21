@@ -121,7 +121,6 @@ catch (ApiException e)
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -223,7 +222,6 @@ catch (ApiException e)
 | **200** | Sender canceled |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Sender not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -325,7 +323,6 @@ catch (ApiException e)
 | **202** | Group creation accepted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Account not found |  -  |
 | **409** | The sender cannot start conversations (code: recipient_must_message_first) |  -  |
 
@@ -430,7 +427,6 @@ catch (ApiException e)
 | **200** | Opt-in link created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Sender not found |  -  |
 | **409** | The sender is not active yet |  -  |
 
@@ -535,7 +531,6 @@ catch (ApiException e)
 | **200** | Group details |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -637,7 +632,6 @@ catch (ApiException e)
 | **200** | Sender lifecycle |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Sender not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -747,7 +741,6 @@ catch (ApiException e)
 | **200** | Audience page |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -848,7 +841,6 @@ catch (ApiException e)
 | **200** | Available numbers |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **502** | The provider could not list numbers; ordering without availableNumberId still works |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -950,7 +942,6 @@ catch (ApiException e)
 | **200** | Sender lifecycle docs, newest first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1045,7 +1036,6 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Registered iMessage senders |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1147,7 +1137,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
-| **403** | Sender limit reached (code: imessage_sender_limit), or iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
+| **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | This profile already has a live iMessage sender (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 | **422** | Workspace is not on usage-based billing (code: usage_billing_required) |  -  |
@@ -1253,7 +1243,6 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Sender already registered to another profile (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 
@@ -1360,7 +1349,6 @@ catch (ApiException e)
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1462,7 +1450,6 @@ catch (ApiException e)
 | **200** | Number reserved |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **409** | The number could not be reserved (already taken) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1564,7 +1551,6 @@ catch (ApiException e)
 | **200** | Updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1668,7 +1654,6 @@ catch (ApiException e)
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1772,7 +1757,6 @@ catch (ApiException e)
 | **200** | Sender updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Sender not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
