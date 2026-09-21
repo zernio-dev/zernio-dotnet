@@ -1149,7 +1149,7 @@ catch (ApiException e)
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit), or iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Profile not found or access denied |  -  |
-| **409** | This profile already has a live iMessage sender (code: imessage_sender_conflict) |  -  |
+| **409** | This profile already has a live iMessage sender (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 | **422** | Workspace is not on usage-based billing (code: usage_billing_required) |  -  |
 | **502** | The provider rejected the order; nothing was charged |  -  |
 
@@ -1252,10 +1252,10 @@ catch (ApiException e)
 | **200** | Sender registered |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Payment method or plan upgrade required to connect another account |  -  |
+| **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Profile not found or access denied |  -  |
-| **409** | Sender already registered to another profile (code: imessage_sender_conflict) |  -  |
+| **409** | Sender already registered to another profile (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
