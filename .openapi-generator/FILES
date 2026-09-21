@@ -1149,6 +1149,9 @@ docs/ListAdsInstagramAccounts200Response.md
 docs/ListAdsInstagramAccounts200ResponseAccountsInner.md
 docs/ListAdsInstagramAccounts200ResponsePagesInner.md
 docs/ListAdsInstagramAccounts200ResponseResolved.md
+docs/ListAdsInstagramPosts200Response.md
+docs/ListAdsInstagramPosts200ResponsePaging.md
+docs/ListAdsInstagramPosts200ResponsePostsInner.md
 docs/ListAdsTikTokIdentities200Response.md
 docs/ListAdsTikTokIdentities200ResponseIdentitiesInner.md
 docs/ListAdvertisableApplications200Response.md
@@ -3424,6 +3427,9 @@ src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseResolvedTests.cs
 src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseTests.cs
+src/Zernio.Test/Model/ListAdsInstagramPosts200ResponsePagingTests.cs
+src/Zernio.Test/Model/ListAdsInstagramPosts200ResponsePostsInnerTests.cs
+src/Zernio.Test/Model/ListAdsInstagramPosts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdsTikTokIdentities200ResponseIdentitiesInnerTests.cs
 src/Zernio.Test/Model/ListAdsTikTokIdentities200ResponseTests.cs
 src/Zernio.Test/Model/ListAdvertisableApplications200ResponseApplicationsInnerTests.cs
@@ -5683,6 +5689,9 @@ src/Zernio/Model/ListAdsInstagramAccounts200Response.cs
 src/Zernio/Model/ListAdsInstagramAccounts200ResponseAccountsInner.cs
 src/Zernio/Model/ListAdsInstagramAccounts200ResponsePagesInner.cs
 src/Zernio/Model/ListAdsInstagramAccounts200ResponseResolved.cs
+src/Zernio/Model/ListAdsInstagramPosts200Response.cs
+src/Zernio/Model/ListAdsInstagramPosts200ResponsePaging.cs
+src/Zernio/Model/ListAdsInstagramPosts200ResponsePostsInner.cs
 src/Zernio/Model/ListAdsTikTokIdentities200Response.cs
 src/Zernio/Model/ListAdsTikTokIdentities200ResponseIdentitiesInner.cs
 src/Zernio/Model/ListAdvertisableApplications200Response.cs

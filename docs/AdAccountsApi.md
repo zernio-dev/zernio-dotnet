@@ -33,6 +33,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdStudies**](AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies |
 | [**ListAdsBusinessCenters**](AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**ListAdsInstagramAccounts**](AdAccountsApi.md#listadsinstagramaccounts) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities |
+| [**ListAdsInstagramPosts**](AdAccountsApi.md#listadsinstagramposts) | **GET** /v1/ads/instagram-posts | List Instagram posts to boost |
 | [**ListAdvertisableApplications**](AdAccountsApi.md#listadvertisableapplications) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
 | [**ListCustomConversions**](AdAccountsApi.md#listcustomconversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
 | [**ListHighDemandPeriods**](AdAccountsApi.md#listhighdemandperiods) | **GET** /v1/ads/high-demand-periods | List high-demand periods |
@@ -3160,6 +3161,119 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadsinstagramposts"></a>
+# **ListAdsInstagramPosts**
+> ListAdsInstagramPosts200Response ListAdsInstagramPosts (string accountId, string? adAccountId = null, string? igUserId = null, int? limit = null, string? after = null)
+
+List Instagram posts to boost
+
+Lists the media of the Instagram account this Meta connection can reach, so an existing Instagram post can be boosted without connecting the Instagram account separately. Each `posts[].id` is the existing-post id to send as `platformPostId` when creating the ad; Meta turns it into `source_instagram_media_id` on the creative. Identity resolution reuses the same resolver as `/v1/ads/instagram-accounts`. `igUserId` is always checked against the identities the connection can reach and is never trusted as sent. When no identity is reachable the endpoint fails instead of returning an empty list, and the two causes stay apart: `403 reconnect_required` means the connection predates Instagram access (Meta then omits `instagram_business_account` from the Page read rather than erroring, so it looks identical to having no data) and the account must be reconnected granting Instagram access, while `422 instagram_business_account_unresolved` means the Page genuinely has no Instagram professional account linked.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdsInstagramPostsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio Meta Ads, Facebook or Instagram SocialAccount ID.
+            var adAccountId = "adAccountId_example";  // string? | Meta ad account ID including the act_ prefix. Narrows identity resolution to the Instagram accounts reachable from this ad account. (optional) 
+            var igUserId = "igUserId_example";  // string? | Instagram identity to list. Must be one this connection can reach, otherwise the request is rejected with a 400. (optional) 
+            var limit = 25;  // int? | Number of posts to return per page. (optional)  (default to 25)
+            var after = "after_example";  // string? | Opaque Meta cursor from a previous response's paging.after. (optional) 
+
+            try
+            {
+                // List Instagram posts to boost
+                ListAdsInstagramPosts200Response result = apiInstance.ListAdsInstagramPosts(accountId, adAccountId, igUserId, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ListAdsInstagramPosts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdsInstagramPostsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Instagram posts to boost
+    ApiResponse<ListAdsInstagramPosts200Response> response = apiInstance.ListAdsInstagramPostsWithHttpInfo(accountId, adAccountId, igUserId, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ListAdsInstagramPostsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio Meta Ads, Facebook or Instagram SocialAccount ID. |  |
+| **adAccountId** | **string?** | Meta ad account ID including the act_ prefix. Narrows identity resolution to the Instagram accounts reachable from this ad account. | [optional]  |
+| **igUserId** | **string?** | Instagram identity to list. Must be one this connection can reach, otherwise the request is rejected with a 400. | [optional]  |
+| **limit** | **int?** | Number of posts to return per page. | [optional] [default to 25] |
+| **after** | **string?** | Opaque Meta cursor from a previous response&#39;s paging.after. | [optional]  |
+
+### Return type
+
+[**ListAdsInstagramPosts200Response**](ListAdsInstagramPosts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Instagram posts available to boost. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The connection predates Instagram access (code reconnect_required) and must be reconnected, or the Meta asset is not accessible. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The Facebook Page has no linked Instagram professional account (code instagram_business_account_unresolved), or the connection has no Page selected and no adAccountId was passed (code linked_account_required). |  -  |
+| **501** | Only supported on Meta Ads, Facebook and Instagram accounts. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
