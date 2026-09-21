@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.28.0
+  version: 1.29.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1010,6 +1010,7 @@ paths:
                         websiteClicks: 0
                         impressionSources: {}
                         audienceTypes: {}
+                        audienceCountries: {}
                     nextCursor: v1.WyIyMDI2LTA5LTAxIDE3OjEyOjA0IiwiNjVmMWMwYTllMmI1YWYwMDEyYWIzNGNkIl0
                     hasMore: true
               schema:
@@ -1313,19 +1314,23 @@ paths:
         defaults to last 30 days. Requires the Analytics add-on and the user.info.stats
         scope on the account (412 if missing).
 
-        Scope intentionally narrow. TikTok's public API exposes only the four counter
-        metrics below. The deep metrics that live in TikTok Studio are NOT available on any
-        public TikTok API, even for Business accounts:
-          - profile_views
+        Scope intentionally narrow: this ACCOUNT-level endpoint exposes only the four
+        counter metrics below. These account-level figures are not on any public TikTok
+        API, for any account type:
           - account-level impressions / reach
           - follower inflow / outflow breakdown
-          - video watch time, average watch time, full-watched rate
-          - impression_sources (FYP / Following / Hashtag / Search / Personal profile)
+          - account-level watch time and audience demographics
 
-        TikTok's Research API doesn't expose those fields either, and is restricted to
-        non-commercial academic use per TikTok's eligibility policy. There is no public
-        API workaround. Post-level metrics (views, likes, comments, shares per video) are
-        available via /v1/analytics?postId=... from TikTok's /v2/video/query/.
+        TikTok's Research API doesn't expose them either, and is restricted to
+        non-commercial academic use per TikTok's eligibility policy.
+
+        PER-VIDEO is a different story on the Business lane. An account connected through
+        the TikTok for Business app reports profile views, website clicks, follows,
+        full-watched rate, watch time, impression sources, viewer types and viewer
+        countries per video on GET /v1/analytics?postId=..., roughly 24-48h after
+        publishing and only for posts active in the last 7 days. Accounts on the original
+        TikTok integration get the basic counters there (views, likes, comments, shares)
+        and zeros for the rest; they must reconnect through the Business app.
       operationId: getTikTokAccountInsights
       parameters:
       - description: The Zernio SocialAccount ID for the TikTok account.
@@ -3079,6 +3084,7 @@ paths:
                       websiteClicks: 0
                       impressionSources: {}
                       audienceTypes: {}
+                      audienceCountries: {}
                     - date: 2025-01-16
                       platform: instagram
                       platformPostId: "17902345678901234"
@@ -3096,6 +3102,7 @@ paths:
                       websiteClicks: 0
                       impressionSources: {}
                       audienceTypes: {}
+                      audienceCountries: {}
                 multi_platform:
                   summary: One row per platform and day; the TikTok row comes from
                     an account connected through the TikTok for Business app
@@ -3119,6 +3126,7 @@ paths:
                       websiteClicks: 0
                       impressionSources: {}
                       audienceTypes: {}
+                      audienceCountries: {}
                     - date: 2025-01-16
                       platform: tiktok
                       platformPostId: "7685731010461371662"
@@ -3147,6 +3155,12 @@ paths:
                         nonFollower: 0.9
                         newViewer: 0.99
                         returnViewer: 0.01
+                      audienceCountries:
+                        US: 0.62
+                        GB: 0.11
+                        CA: 0.07
+                        DE: 0.05
+                        other: 0.15
               schema:
                 $ref: "#/components/schemas/getPostTimeline_200_response"
           description: Daily analytics timeline
@@ -56092,6 +56106,12 @@ components:
         reelsSkipRate: 48.8
         reach: 0
         igReelsVideoViewTotalTime: 0
+        audienceCountries:
+          US: 0.62
+          GB: 0.11
+          CA: 0.07
+          DE: 0.05
+          other: 0.15
         follows: 0
         websiteClicks: 0
         impressionSources:
@@ -56225,6 +56245,23 @@ components:
             nonFollower: 0.9
             newViewer: 0.99
             returnViewer: 0.01
+        audienceCountries:
+          additionalProperties:
+            type: number
+          description: "TikTok accounts connected through the TikTok for Business\
+            \ app only: share of views by viewer country as fractions 0 to 1, keyed\
+            \ by upper-case ISO-3166 alpha-2 code (T+24-48h, only for posts active\
+            \ in the last 7 days). At most 20 country keys plus `other`: the catch-all\
+            \ bucket TikTok sends, any country below 0.001 and anything past the twentieth\
+            \ all sum into `other`, so the values still add up to 1. Empty object\
+            \ when TikTok reports nothing, and for other platforms. Views-weighted\
+            \ across accounts like impressionSources."
+          example:
+            US: 0.62
+            GB: 0.11
+            CA: 0.07
+            DE: 0.05
+            other: 0.15
         reposts:
           description: "Instagram accounts connected with Facebook Login only: reposts\
             \ of the media by other users, minus deleted reposts, on feed posts, reels\
@@ -56355,6 +56392,12 @@ components:
           reelsSkipRate: 48.8
           reach: 0
           igReelsVideoViewTotalTime: 0
+          audienceCountries:
+            US: 0.62
+            GB: 0.11
+            CA: 0.07
+            DE: 0.05
+            other: 0.15
           follows: 0
           websiteClicks: 0
           impressionSources:
@@ -56526,6 +56569,8 @@ components:
           reelsSkipRate: 1.0246457001441578
           reach: 6
           igReelsVideoViewTotalTime: 7
+          audienceCountries:
+            key: 5.025004791520295
           follows: 2
           websiteClicks: 7
           impressionSources:
@@ -56605,6 +56650,8 @@ components:
             reelsSkipRate: 1.0246457001441578
             reach: 6
             igReelsVideoViewTotalTime: 7
+            audienceCountries:
+              key: 5.025004791520295
             follows: 2
             websiteClicks: 7
             impressionSources:
@@ -56635,6 +56682,8 @@ components:
             reelsSkipRate: 1.0246457001441578
             reach: 6
             igReelsVideoViewTotalTime: 7
+            audienceCountries:
+              key: 5.025004791520295
             follows: 2
             websiteClicks: 7
             impressionSources:
@@ -67460,6 +67509,8 @@ components:
         date: 2000-01-23
         comments: 5
         reach: 6
+        audienceCountries:
+          key: 1.4894159098541704
         follows: 3
         websiteClicks: 7
         impressionSources:
@@ -67538,12 +67589,20 @@ components:
             type: number
           description: "TikTok business lane: follower / nonFollower and newViewer\
             \ / returnViewer shares on this date, fractions 0 to 1; empty object elsewhere"
+        audienceCountries:
+          additionalProperties:
+            type: number
+          description: "TikTok business lane: viewer-country shares on this date keyed\
+            \ by ISO-3166 alpha-2, fractions 0 to 1, top 20 with the tail in `other`;\
+            \ empty object elsewhere"
     getPostTimeline_200_response:
       example:
         timeline:
         - date: 2000-01-23
           comments: 5
           reach: 6
+          audienceCountries:
+            key: 1.4894159098541704
           follows: 3
           websiteClicks: 7
           impressionSources:
@@ -67563,6 +67622,8 @@ components:
         - date: 2000-01-23
           comments: 5
           reach: 6
+          audienceCountries:
+            key: 1.4894159098541704
           follows: 3
           websiteClicks: 7
           impressionSources:
@@ -120349,6 +120410,8 @@ components:
         reelsSkipRate: 1.0246457001441578
         reach: 6
         igReelsVideoViewTotalTime: 7
+        audienceCountries:
+          key: 5.025004791520295
         follows: 2
         websiteClicks: 7
         impressionSources:
@@ -120421,7 +120484,14 @@ components:
             type: number
           description: "TikTok business lane: follower / nonFollower and newViewer\
             \ / returnViewer shares, fractions 0 to 1. Empty object elsewhere."
+        audienceCountries:
+          additionalProperties:
+            type: number
+          description: "TikTok business lane: viewer-country shares keyed by ISO-3166\
+            \ alpha-2, fractions 0 to 1, top 20 with the tail in `other`. Empty object\
+            \ elsewhere."
       required:
+      - audienceCountries
       - audienceTypes
       - clicks
       - comments
