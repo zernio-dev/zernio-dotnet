@@ -548,7 +548,7 @@ catch (ApiException e)
 
 <a id="getadssearchterms"></a>
 # **GetAdsSearchTerms**
-> GetAdsSearchTerms200Response GetAdsSearchTerms (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? campaignId = null, string? adGroupId = null, string? pageToken = null)
+> GetAdsSearchTerms200Response GetAdsSearchTerms (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? campaignId = null, string? adSetId = null, string? adGroupId = null, string? pageToken = null)
 
 Google Ads search terms report
 
@@ -583,13 +583,14 @@ namespace Example
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to 30 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to today. (optional) 
             var campaignId = "campaignId_example";  // string? | Numeric Google campaign id filter. (optional) 
-            var adGroupId = "adGroupId_example";  // string? | Numeric Google ad group id filter. (optional) 
+            var adSetId = "adSetId_example";  // string? | Platform ad set ID (Google ad group). Same value as adSetId on listAdKeywords and /ad-sets/{adSetId}/assets. (optional) 
+            var adGroupId = "adGroupId_example";  // string? | Alias of adSetId, kept for existing callers. (optional) 
             var pageToken = "pageToken_example";  // string? | Cursor from paging.nextPageToken of the previous page. (optional) 
 
             try
             {
                 // Google Ads search terms report
-                GetAdsSearchTerms200Response result = apiInstance.GetAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+                GetAdsSearchTerms200Response result = apiInstance.GetAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -610,7 +611,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Google Ads search terms report
-    ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.GetAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+    ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.GetAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -632,7 +633,8 @@ catch (ApiException e)
 | **fromDate** | **DateOnly?** | Defaults to 30 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | Defaults to today. | [optional]  |
 | **campaignId** | **string?** | Numeric Google campaign id filter. | [optional]  |
-| **adGroupId** | **string?** | Numeric Google ad group id filter. | [optional]  |
+| **adSetId** | **string?** | Platform ad set ID (Google ad group). Same value as adSetId on listAdKeywords and /ad-sets/{adSetId}/assets. | [optional]  |
+| **adGroupId** | **string?** | Alias of adSetId, kept for existing callers. | [optional]  |
 | **pageToken** | **string?** | Cursor from paging.nextPageToken of the previous page. | [optional]  |
 
 ### Return type
