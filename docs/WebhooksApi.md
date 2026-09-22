@@ -115,7 +115,7 @@ catch (ApiException e)
 
 <a id="deletewebhooksettings"></a>
 # **DeleteWebhookSettings**
-> UpdateYoutubeDefaultPlaylist200Response DeleteWebhookSettings (string id)
+> UpdateYoutubeDefaultPlaylist200Response DeleteWebhookSettings (string? webhookId = null, string? id = null)
 
 Delete webhook
 
@@ -145,12 +145,13 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WebhooksApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | Webhook ID to delete
+            var webhookId = "webhookId_example";  // string? | Webhook ID to delete, the same name the other /v1/webhooks operations use (logs, redeliver, test). Required unless the deprecated `id` is sent instead. (optional) 
+            var id = "id_example";  // string? | Alias of webhookId, kept for existing callers (optional) 
 
             try
             {
                 // Delete webhook
-                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteWebhookSettings(id);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteWebhookSettings(webhookId, id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -171,7 +172,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete webhook
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteWebhookSettingsWithHttpInfo(id);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteWebhookSettingsWithHttpInfo(webhookId, id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -188,7 +189,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **string** | Webhook ID to delete |  |
+| **webhookId** | **string?** | Webhook ID to delete, the same name the other /v1/webhooks operations use (logs, redeliver, test). Required unless the deprecated &#x60;id&#x60; is sent instead. | [optional]  |
+| **id** | **string?** | Alias of webhookId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -208,7 +210,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Webhook deleted successfully |  -  |
-| **400** | Webhook ID missing or not a valid ID |  -  |
+| **400** | webhookId missing or not a valid ID, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 
@@ -633,7 +635,7 @@ catch (ApiException e)
 
 Update webhook
 
-Update an existing webhook configuration. All fields except `_id` are optional; only provided fields will be updated.  When provided, `name` must be 1-50 characters, `url` must be a valid URL, and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.  Webhooks are auto-disabled only once the endpoint has had no successful delivery for 3 days AND has either reached 20 consecutive terminal failures (each one an event that exhausted the full retry ladder) or been failing continuously for 3 days. The owner is emailed; re-enable it with `isActive: true`.  A restricted (zrk_) API key can only set `events` to events whose resource group the key holds; an event outside the key's groups is rejected with 403. It also cannot widen an existing subscription past its own groups.  `disabledResourceGroups` replaces the subscription's own denylist, which applies to delivery regardless of which key or session created it. Send an empty array to clear it. A restricted key's own disabled groups are unioned into the stored value on every update, so repointing a legacy unrestricted subscription with a restricted key also narrows it.  Timing: the new denylist applies to every event emitted after the update. Events already queued for delivery when the update landed were filtered against the previous denylist and can still arrive at your endpoint for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking the subscription. Retries beyond that window, dead-letter replays, test fires, and redeliveries are all checked against the current denylist. 
+Update an existing webhook configuration. All fields except `webhookId` are optional; only provided fields will be updated. `webhookId` is the same name the other /v1/webhooks operations use (logs, redeliver, test); the deprecated `_id` is still accepted in its place.  When provided, `name` must be 1-50 characters, `url` must be a valid URL, and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.  Webhooks are auto-disabled only once the endpoint has had no successful delivery for 3 days AND has either reached 20 consecutive terminal failures (each one an event that exhausted the full retry ladder) or been failing continuously for 3 days. The owner is emailed; re-enable it with `isActive: true`.  A restricted (zrk_) API key can only set `events` to events whose resource group the key holds; an event outside the key's groups is rejected with 403. It also cannot widen an existing subscription past its own groups.  `disabledResourceGroups` replaces the subscription's own denylist, which applies to delivery regardless of which key or session created it. Send an empty array to clear it. A restricted key's own disabled groups are unioned into the stored value on every update, so repointing a legacy unrestricted subscription with a restricted key also narrows it.  Timing: the new denylist applies to every event emitted after the update. Events already queued for delivery when the update landed were filtered against the previous denylist and can still arrive at your endpoint for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking the subscription. Retries beyond that window, dead-letter replays, test fires, and redeliveries are all checked against the current denylist. 
 
 ### Example
 ```csharp
