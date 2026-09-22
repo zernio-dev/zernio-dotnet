@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.49.0
+  version: 1.50.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -107055,12 +107055,18 @@ components:
       - amount
       - type
     boostPost_request_schedule:
+      deprecated: true
+      description: "Alias of the top-level `startDate` / `endDate`, kept for existing\
+        \ callers. Sending both forms with differing values is a 400."
       properties:
         startDate:
+          deprecated: true
+          description: "Alias of startDate, kept for existing callers"
           format: date-time
           type: string
         endDate:
-          description: Required for lifetime budgets
+          deprecated: true
+          description: "Alias of endDate, kept for existing callers"
           format: date-time
           type: string
     boostPost_request_targeting_cities_inner:
@@ -107433,6 +107439,17 @@ components:
           example: USD
           maxLength: 3
           minLength: 3
+          type: string
+        startDate:
+          description: "Ad-set start time (ISO 8601, e.g. \"2026-06-10T09:00:00Z\"\
+            ), mapped to the ad set's `start_time`. When omitted the ad starts delivering\
+            \ immediately. Same field as on POST /v1/ads/create."
+          format: date-time
+          type: string
+        endDate:
+          description: "Ad-set end time (ISO 8601), mapped to the ad set's `end_time`.\
+            \ Required for lifetime budgets. Same field as on POST /v1/ads/create."
+          format: date-time
           type: string
         schedule:
           $ref: "#/components/schemas/boostPost_request_schedule"
@@ -109212,8 +109229,7 @@ components:
           description: |
             Meta only. Ad-set start time (ISO 8601, e.g. "2026-06-10T09:00:00Z"), mapped to the
             ad set's `start_time`. When omitted the ad starts delivering immediately. For lifetime
-            budgets Meta also requires `endDate`. (Same `schedule.startDate` semantics already
-            available on `POST /v1/ads/boost`.)
+            budgets Meta also requires `endDate`. Same field as on `POST /v1/ads/boost`.
           format: date-time
           type: string
         pageId:
