@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.52.0
+  version: 1.52.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -76346,11 +76346,7 @@ components:
             \ `redirectUrl`, the URL the user should land on, with the outcome mapped\
             \ exactly like the redirect flow (success params, or `error` and `platform`\
             \ with the same values). Must be an absolute http(s) URL or a custom app\
-            \ scheme."
-          type: string
-        redirectUrl:
-          deprecated: true
-          description: "Alias of redirect_url, kept for existing callers"
+            \ scheme. The legacy spelling `redirectUrl` remains accepted as an alias."
           type: string
         echoConnectToken:
           description: "Hosted signup page only. Append the connect token to the success\

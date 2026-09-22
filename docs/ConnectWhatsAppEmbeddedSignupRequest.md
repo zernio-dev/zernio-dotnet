@@ -10,8 +10,7 @@ Name | Type | Description | Notes
 **PhoneNumberId** | **string** |  | [optional] 
 **IsCoexistence** | **bool** | Number is also live in the WhatsApp Business app | [optional] 
 **ExpectedPhoneNumber** | **string** | Rejects the connect when Meta returns a different number | [optional] 
-**RedirectUrl2** | **string** | Hosted signup page only. When present, the response also carries &#x60;redirectUrl&#x60;, the URL the user should land on, with the outcome mapped exactly like the redirect flow (success params, or &#x60;error&#x60; and &#x60;platform&#x60; with the same values). Must be an absolute http(s) URL or a custom app scheme. | [optional] 
-**RedirectUrl** | **string** | Alias of redirect_url, kept for existing callers | [optional] 
+**RedirectUrl** | **string** | Hosted signup page only. When present, the response also carries &#x60;redirectUrl&#x60;, the URL the user should land on, with the outcome mapped exactly like the redirect flow (success params, or &#x60;error&#x60; and &#x60;platform&#x60; with the same values). Must be an absolute http(s) URL or a custom app scheme. The legacy spelling &#x60;redirectUrl&#x60; remains accepted as an alias. | [optional] 
 **EchoConnectToken** | **bool** | Hosted signup page only. Append the connect token to the success redirect, as the redirect flow does for API-key callers. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
