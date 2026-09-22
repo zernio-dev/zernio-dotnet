@@ -2250,7 +2250,7 @@ catch (ApiException e)
 
 <a id="searchavailablephonenumbers"></a>
 # **SearchAvailablePhoneNumbers**
-> SearchAvailablePhoneNumbers200Response SearchAvailablePhoneNumbers (string? country = null, string? type = null, string? prefix = null, string? locality = null, string? contains = null, bool? sms = null, int? limit = null)
+> SearchAvailablePhoneNumbers200Response SearchAvailablePhoneNumbers (string? country = null, string? numberType = null, string? areaCode = null, string? type = null, string? prefix = null, string? locality = null, string? contains = null, bool? sms = null, int? limit = null)
 
 Search available numbers
 
@@ -2281,8 +2281,10 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
             var country = "\"US\"";  // string? |  (optional)  (default to "US")
-            var type = "type_example";  // string? | Number type; defaults to the country's WhatsApp-safe type (optional) 
-            var prefix = "prefix_example";  // string? | Area code (optional) 
+            var numberType = "local";  // string? | Number type; defaults to the country's WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional) 
+            var areaCode = "areaCode_example";  // string? | Area code or national dialing code the number must start with, e.g. 415 or 91 (optional) 
+            var type = "type_example";  // string? | Alias of numberType, kept for existing callers (optional) 
+            var prefix = "prefix_example";  // string? | Alias of areaCode, kept for existing callers (optional) 
             var locality = "locality_example";  // string? | City (optional) 
             var contains = "contains_example";  // string? | Pattern to match within the number (optional) 
             var sms = true;  // bool? | true narrows the pool to SMS-capable numbers. Each result still carries its full `features` list for per-number capability badging. (optional) 
@@ -2291,7 +2293,7 @@ namespace Example
             try
             {
                 // Search available numbers
-                SearchAvailablePhoneNumbers200Response result = apiInstance.SearchAvailablePhoneNumbers(country, type, prefix, locality, contains, sms, limit);
+                SearchAvailablePhoneNumbers200Response result = apiInstance.SearchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2312,7 +2314,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Search available numbers
-    ApiResponse<SearchAvailablePhoneNumbers200Response> response = apiInstance.SearchAvailablePhoneNumbersWithHttpInfo(country, type, prefix, locality, contains, sms, limit);
+    ApiResponse<SearchAvailablePhoneNumbers200Response> response = apiInstance.SearchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2330,8 +2332,10 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **country** | **string?** |  | [optional] [default to &quot;US&quot;] |
-| **type** | **string?** | Number type; defaults to the country&#39;s WhatsApp-safe type | [optional]  |
-| **prefix** | **string?** | Area code | [optional]  |
+| **numberType** | **string?** | Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) | [optional]  |
+| **areaCode** | **string?** | Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional]  |
+| **type** | **string?** | Alias of numberType, kept for existing callers | [optional]  |
+| **prefix** | **string?** | Alias of areaCode, kept for existing callers | [optional]  |
 | **locality** | **string?** | City | [optional]  |
 | **contains** | **string?** | Pattern to match within the number | [optional]  |
 | **sms** | **bool?** | true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. | [optional]  |
@@ -2355,7 +2359,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Available numbers. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

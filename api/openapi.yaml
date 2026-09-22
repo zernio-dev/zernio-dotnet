@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.40.0
+  version: 1.41.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24661,7 +24661,31 @@ paths:
           default: US
           type: string
         style: form
-      - description: Number type; defaults to the country's WhatsApp-safe type
+      - description: "Number type; defaults to the country's WhatsApp-safe type (the\
+          \ same name as on purchase, availability and kyc)"
+        explode: true
+        in: query
+        name: numberType
+        required: false
+        schema:
+          enum:
+          - local
+          - mobile
+          - national
+          - toll_free
+          type: string
+        style: form
+      - description: "Area code or national dialing code the number must start with,\
+          \ e.g. 415 or 91"
+        explode: true
+        in: query
+        name: areaCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of numberType, kept for existing callers"
         explode: true
         in: query
         name: type
@@ -24669,7 +24693,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Area code
+      - deprecated: true
+        description: "Alias of areaCode, kept for existing callers"
         explode: true
         in: query
         name: prefix
@@ -24719,7 +24744,9 @@ paths:
                 $ref: "#/components/schemas/searchAvailablePhoneNumbers_200_response"
           description: Available numbers.
         "400":
-          description: Country not available
+          description: "Country not offerable, numberType outside the four offered,\
+            \ or a query parameter this endpoint does not know (the message lists\
+            \ the accepted ones; nothing is silently ignored)."
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -24984,7 +25011,31 @@ paths:
           default: US
           type: string
         style: form
-      - description: Number type; defaults to the country's WhatsApp-safe type
+      - description: "Number type; defaults to the country's WhatsApp-safe type (the\
+          \ same name as on purchase, availability and kyc)"
+        explode: true
+        in: query
+        name: numberType
+        required: false
+        schema:
+          enum:
+          - local
+          - mobile
+          - national
+          - toll_free
+          type: string
+        style: form
+      - description: "Area code or national dialing code the number must start with,\
+          \ e.g. 415 or 91"
+        explode: true
+        in: query
+        name: areaCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of numberType, kept for existing callers"
         explode: true
         in: query
         name: type
@@ -24992,7 +25043,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Area code
+      - deprecated: true
+        description: "Alias of areaCode, kept for existing callers"
         explode: true
         in: query
         name: prefix
@@ -25033,7 +25085,9 @@ paths:
                 $ref: "#/components/schemas/searchAvailableWhatsAppNumbers_200_response"
           description: Available numbers.
         "400":
-          description: Country not available
+          description: "Country not offerable, numberType outside the four offered,\
+            \ or a query parameter this endpoint does not know (the message lists\
+            \ the accepted ones; nothing is silently ignored)."
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
