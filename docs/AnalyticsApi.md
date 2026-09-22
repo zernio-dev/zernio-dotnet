@@ -594,7 +594,7 @@ catch (ApiException e)
 
 <a id="getfacebookpageinsights"></a>
 # **GetFacebookPageInsights**
-> InstagramAccountInsightsResponse GetFacebookPageInsights (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
+> InstagramAccountInsightsResponse GetFacebookPageInsights (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
 Get Facebook Page insights
 
@@ -626,14 +626,16 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the connected Facebook Page.
             var metrics = "metrics_example";  // string? | Comma-separated list of metrics. Defaults to \"page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\".  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \"micro_amount\" plus an ISO 4217 \"currency\". monetization_approximate_earnings returns a bare number per day, so its unit is always \"unspecified\" and its \"currency\" is always null. The two are on different scales and are not comparable to each other. Both keep their daily \"values\" on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \"total\" is their sum. Meta does not document whether a bucket carries that day's earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \"total\" against the Page's own Meta export before relying on it; the daily \"values\" are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \"metrics\": Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \"unavailableMetrics\" covers the narrower case where Meta returned no bucket for the metric at all (\"no_data\") or rejected the request outright, and the metric is then omitted from \"metrics\" rather than reported as 0.  (optional) 
-            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? | \"total_value\" (default) returns aggregated totals only. \"time_series\" returns daily values in the \"values\" array.  (optional)  (default to total_value)
 
             try
             {
                 // Get Facebook Page insights
-                InstagramAccountInsightsResponse result = apiInstance.GetFacebookPageInsights(accountId, metrics, since, until, metricType);
+                InstagramAccountInsightsResponse result = apiInstance.GetFacebookPageInsights(accountId, metrics, fromDate, toDate, since, until, metricType);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -654,7 +656,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Facebook Page insights
-    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetFacebookPageInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
+    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetFacebookPageInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -673,8 +675,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the connected Facebook Page. |  |
 | **metrics** | **string?** | Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  | [optional]  |
-| **since** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **until** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** | \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  | [optional] [default to total_value] |
 
 ### Return type
@@ -1022,7 +1026,7 @@ catch (ApiException e)
 
 <a id="getgooglebusinessperformance"></a>
 # **GetGoogleBusinessPerformance**
-> GetGoogleBusinessPerformance200Response GetGoogleBusinessPerformance (string accountId, string? metrics = null, DateOnly? startDate = null, DateOnly? endDate = null)
+> GetGoogleBusinessPerformance200Response GetGoogleBusinessPerformance (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? startDate = null, DateOnly? endDate = null)
 
 Get Google Business Profile performance metrics
 
@@ -1054,13 +1058,15 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the Google Business Profile account.
             var metrics = "metrics_example";  // string? | Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional) 
-            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
 
             try
             {
                 // Get Google Business Profile performance metrics
-                GetGoogleBusinessPerformance200Response result = apiInstance.GetGoogleBusinessPerformance(accountId, metrics, startDate, endDate);
+                GetGoogleBusinessPerformance200Response result = apiInstance.GetGoogleBusinessPerformance(accountId, metrics, fromDate, toDate, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1081,7 +1087,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Google Business Profile performance metrics
-    ApiResponse<GetGoogleBusinessPerformance200Response> response = apiInstance.GetGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate);
+    ApiResponse<GetGoogleBusinessPerformance200Response> response = apiInstance.GetGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, fromDate, toDate, startDate, endDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1100,8 +1106,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the Google Business Profile account. |  |
 | **metrics** | **string?** | Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  | [optional]  |
-| **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **startDate** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **endDate** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -1240,7 +1248,7 @@ catch (ApiException e)
 
 <a id="getinstagramaccountinsights"></a>
 # **GetInstagramAccountInsights**
-> InstagramAccountInsightsResponse GetInstagramAccountInsights (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null, string? breakdown = null)
+> InstagramAccountInsightsResponse GetInstagramAccountInsights (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null, string? breakdown = null)
 
 Get Instagram insights
 
@@ -1272,15 +1280,17 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the Instagram account
             var metrics = "metrics_example";  // string? | Comma-separated list of metrics. Defaults to \"reach,views,accounts_engaged,total_interactions\". Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \"reach\" supports metricType=time_series. All other metrics (including follows_and_unfollows) are total_value only. This is an Instagram Graph API limitation, not a Zernio limitation - the IG API does not return time-series data for these metrics. For a daily running follower count, use /v1/analytics/instagram/follower-history instead.  (optional) 
-            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric.  (optional)  (default to total_value)
             var breakdown = "breakdown_example";  // string? | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  (optional) 
 
             try
             {
                 // Get Instagram insights
-                InstagramAccountInsightsResponse result = apiInstance.GetInstagramAccountInsights(accountId, metrics, since, until, metricType, breakdown);
+                InstagramAccountInsightsResponse result = apiInstance.GetInstagramAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1301,7 +1311,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Instagram insights
-    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown);
+    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetInstagramAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1320,8 +1330,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the Instagram account |  |
 | **metrics** | **string?** | Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics (including follows_and_unfollows) are total_value only. This is an Instagram Graph API limitation, not a Zernio limitation - the IG API does not return time-series data for these metrics. For a daily running follower count, use /v1/analytics/instagram/follower-history instead.  | [optional]  |
-| **since** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **until** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** | \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] |
 | **breakdown** | **string?** | Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional]  |
 
@@ -1462,7 +1474,7 @@ catch (ApiException e)
 
 <a id="getinstagramfollowerhistory"></a>
 # **GetInstagramFollowerHistory**
-> InstagramAccountInsightsResponse GetInstagramFollowerHistory (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
+> InstagramAccountInsightsResponse GetInstagramFollowerHistory (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
 Get Instagram follower history
 
@@ -1494,14 +1506,16 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the Instagram account.
             var metrics = "metrics_example";  // string? | Comma-separated list. Defaults to \"follower_count,followers_gained,followers_lost\".   - follower_count   : per-day raw follower count   - followers_gained : sum of positive daily deltas   - followers_lost   : sum of absolute negative daily deltas  (optional) 
-            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? | \"total_value\" returns aggregated totals (latest for follower_count, sum for gained/lost). \"time_series\" returns per-day values in the \"values\" array.  (optional)  (default to total_value)
 
             try
             {
                 // Get Instagram follower history
-                InstagramAccountInsightsResponse result = apiInstance.GetInstagramFollowerHistory(accountId, metrics, since, until, metricType);
+                InstagramAccountInsightsResponse result = apiInstance.GetInstagramFollowerHistory(accountId, metrics, fromDate, toDate, since, until, metricType);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1522,7 +1536,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Instagram follower history
-    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetInstagramFollowerHistoryWithHttpInfo(accountId, metrics, since, until, metricType);
+    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetInstagramFollowerHistoryWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1541,8 +1555,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the Instagram account. |  |
 | **metrics** | **string?** | Comma-separated list. Defaults to \&quot;follower_count,followers_gained,followers_lost\&quot;.   - follower_count   : per-day raw follower count   - followers_gained : sum of positive daily deltas   - followers_lost   : sum of absolute negative daily deltas  | [optional]  |
-| **since** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **until** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** | \&quot;total_value\&quot; returns aggregated totals (latest for follower_count, sum for gained/lost). \&quot;time_series\&quot; returns per-day values in the \&quot;values\&quot; array.  | [optional] [default to total_value] |
 
 ### Return type
@@ -1572,7 +1588,7 @@ catch (ApiException e)
 
 <a id="getlinkedinaggregateanalytics"></a>
 # **GetLinkedInAggregateAnalytics**
-> GetLinkedInAggregateAnalytics200Response GetLinkedInAggregateAnalytics (string accountId, string? aggregation = null, DateOnly? startDate = null, DateOnly? endDate = null, string? metrics = null)
+> GetLinkedInAggregateAnalytics200Response GetLinkedInAggregateAnalytics (string accountId, string? aggregation = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? startDate = null, DateOnly? endDate = null, string? metrics = null)
 
 Get LinkedIn aggregate stats
 
@@ -1604,14 +1620,16 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The ID of the LinkedIn personal account
             var aggregation = "TOTAL";  // string? | TOTAL (default, lifetime totals) or DAILY (time series). MEMBERS_REACHED not available with DAILY. (optional)  (default to TOTAL)
-            var startDate = 2024-01-01;  // DateOnly? | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. (optional) 
-            var endDate = 2024-01-31;  // DateOnly? | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. (optional) 
+            var fromDate = 2024-01-01;  // DateOnly? | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. (optional) 
+            var toDate = 2024-01-31;  // DateOnly? | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metrics = IMPRESSION,REACTION,COMMENT,POST_SAVE,POST_SEND;  // string? | Comma-separated metrics: IMPRESSION, MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND. Omit for all. (optional) 
 
             try
             {
                 // Get LinkedIn aggregate stats
-                GetLinkedInAggregateAnalytics200Response result = apiInstance.GetLinkedInAggregateAnalytics(accountId, aggregation, startDate, endDate, metrics);
+                GetLinkedInAggregateAnalytics200Response result = apiInstance.GetLinkedInAggregateAnalytics(accountId, aggregation, fromDate, toDate, startDate, endDate, metrics);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1632,7 +1650,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get LinkedIn aggregate stats
-    ApiResponse<GetLinkedInAggregateAnalytics200Response> response = apiInstance.GetLinkedInAggregateAnalyticsWithHttpInfo(accountId, aggregation, startDate, endDate, metrics);
+    ApiResponse<GetLinkedInAggregateAnalytics200Response> response = apiInstance.GetLinkedInAggregateAnalyticsWithHttpInfo(accountId, aggregation, fromDate, toDate, startDate, endDate, metrics);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1651,8 +1669,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The ID of the LinkedIn personal account |  |
 | **aggregation** | **string?** | TOTAL (default, lifetime totals) or DAILY (time series). MEMBERS_REACHED not available with DAILY. | [optional] [default to TOTAL] |
-| **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. | [optional]  |
+| **startDate** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **endDate** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metrics** | **string?** | Comma-separated metrics: IMPRESSION, MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND. Omit for all. | [optional]  |
 
 ### Return type
@@ -1683,7 +1703,7 @@ catch (ApiException e)
 
 <a id="getlinkedinorgaggregateanalytics"></a>
 # **GetLinkedInOrgAggregateAnalytics**
-> InstagramAccountInsightsResponse GetLinkedInOrgAggregateAnalytics (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
+> InstagramAccountInsightsResponse GetLinkedInOrgAggregateAnalytics (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
 Get LinkedIn org analytics
 
@@ -1715,14 +1735,16 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the LinkedIn organization account.
             var metrics = "metrics_example";  // string? | Comma-separated list. Defaults to \"impressions,clicks,engagement_rate,organic_followers_gained,followers_gained,followers_lost\".  Share statistics (support both total_value and time_series):   - impressions   - unique_impressions   - clicks   - likes   - comments   - shares   - engagement_rate       (0..1, LinkedIn-computed)  Follower-gain statistics (support total_value and time_series):   - organic_followers_gained   (per-day organic gains for time_series; sum of organic gains over the range for total_value)   - paid_followers_gained      (per-day paid gains for time_series; sum of paid gains over the range for total_value)  Page-view statistics (total_value ONLY - LinkedIn platform limit):   - page_views_total   - page_views_overview   - page_views_careers   - page_views_jobs   - page_views_life  Zernio-synthesized from daily follower snapshots:   - followers_gained   - followers_lost  (optional) 
-            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? |  (optional)  (default to total_value)
 
             try
             {
                 // Get LinkedIn org analytics
-                InstagramAccountInsightsResponse result = apiInstance.GetLinkedInOrgAggregateAnalytics(accountId, metrics, since, until, metricType);
+                InstagramAccountInsightsResponse result = apiInstance.GetLinkedInOrgAggregateAnalytics(accountId, metrics, fromDate, toDate, since, until, metricType);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1743,7 +1765,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get LinkedIn org analytics
-    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, since, until, metricType);
+    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1762,8 +1784,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the LinkedIn organization account. |  |
 | **metrics** | **string?** | Comma-separated list. Defaults to \&quot;impressions,clicks,engagement_rate,organic_followers_gained,followers_gained,followers_lost\&quot;.  Share statistics (support both total_value and time_series):   - impressions   - unique_impressions   - clicks   - likes   - comments   - shares   - engagement_rate       (0..1, LinkedIn-computed)  Follower-gain statistics (support total_value and time_series):   - organic_followers_gained   (per-day organic gains for time_series; sum of organic gains over the range for total_value)   - paid_followers_gained      (per-day paid gains for time_series; sum of paid gains over the range for total_value)  Page-view statistics (total_value ONLY - LinkedIn platform limit):   - page_views_total   - page_views_overview   - page_views_careers   - page_views_jobs   - page_views_life  Zernio-synthesized from daily follower snapshots:   - followers_gained   - followers_lost  | [optional]  |
-| **since** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **until** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** |  | [optional] [default to total_value] |
 
 ### Return type
@@ -2224,7 +2248,7 @@ catch (ApiException e)
 
 <a id="gettiktokaccountinsights"></a>
 # **GetTikTokAccountInsights**
-> InstagramAccountInsightsResponse GetTikTokAccountInsights (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
+> InstagramAccountInsightsResponse GetTikTokAccountInsights (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
 Get TikTok account-level insights
 
@@ -2256,14 +2280,16 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the TikTok account.
             var metrics = "metrics_example";  // string? | Comma-separated list. Defaults to \"follower_count,likes_count,video_count,followers_gained,followers_lost\".  Live from /v2/user/info/ (requires user.info.stats scope):   - follower_count  (cumulative; time series joined from AccountStats)   - following_count (cumulative; time series joined from AccountStats.metadata)   - likes_count     (cumulative; time series joined from AccountStats.metadata)   - video_count     (cumulative; time series joined from AccountStats.metadata)  Zernio-synthesized:   - followers_gained  (sum of positive daily follower deltas)   - followers_lost    (sum of absolute negative daily deltas)  (optional) 
-            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. (optional) 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? | \"total_value\" returns the latest cumulative counter value. \"time_series\" returns daily values joined from AccountStats snapshots.  (optional)  (default to total_value)
 
             try
             {
                 // Get TikTok account-level insights
-                InstagramAccountInsightsResponse result = apiInstance.GetTikTokAccountInsights(accountId, metrics, since, until, metricType);
+                InstagramAccountInsightsResponse result = apiInstance.GetTikTokAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2284,7 +2310,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get TikTok account-level insights
-    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetTikTokAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
+    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetTikTokAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2303,8 +2329,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the TikTok account. |  |
 | **metrics** | **string?** | Comma-separated list. Defaults to \&quot;follower_count,likes_count,video_count,followers_gained,followers_lost\&quot;.  Live from /v2/user/info/ (requires user.info.stats scope):   - follower_count  (cumulative; time series joined from AccountStats)   - following_count (cumulative; time series joined from AccountStats.metadata)   - likes_count     (cumulative; time series joined from AccountStats.metadata)   - video_count     (cumulative; time series joined from AccountStats.metadata)  Zernio-synthesized:   - followers_gained  (sum of positive daily follower deltas)   - followers_lost    (sum of absolute negative daily deltas)  | [optional]  |
-| **since** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **until** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. | [optional]  |
+| **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** | \&quot;total_value\&quot; returns the latest cumulative counter value. \&quot;time_series\&quot; returns daily values joined from AccountStats snapshots.  | [optional] [default to total_value] |
 
 ### Return type
@@ -2335,7 +2363,7 @@ catch (ApiException e)
 
 <a id="getyoutubechannelinsights"></a>
 # **GetYouTubeChannelInsights**
-> InstagramAccountInsightsResponse GetYouTubeChannelInsights (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
+> InstagramAccountInsightsResponse GetYouTubeChannelInsights (string accountId, string? metrics = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
 Get YouTube channel insights
 
@@ -2367,14 +2395,16 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the YouTube account.
             var metrics = "metrics_example";  // string? | Comma-separated list. Defaults to \"views,estimatedMinutesWatched,subscribersGained,subscribersLost\".  Live YouTube Analytics v2 metrics:   - views   - estimatedMinutesWatched   - averageViewDuration          (ratio - weighted mean computed across days)   - subscribersGained   - subscribersLost  Zernio-synthesized from daily follower snapshots (cross-platform parity):   - followers_gained   - followers_lost  (optional) 
-            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response's dateRange.until field reflects your requested value.  (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response's dateRange.until field reflects your requested value.  (optional) 
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? | \"total_value\" (default) returns aggregated totals. \"time_series\" returns per-day values in the \"values\" array.  (optional)  (default to total_value)
 
             try
             {
                 // Get YouTube channel insights
-                InstagramAccountInsightsResponse result = apiInstance.GetYouTubeChannelInsights(accountId, metrics, since, until, metricType);
+                InstagramAccountInsightsResponse result = apiInstance.GetYouTubeChannelInsights(accountId, metrics, fromDate, toDate, since, until, metricType);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2395,7 +2425,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get YouTube channel insights
-    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetYouTubeChannelInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
+    ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetYouTubeChannelInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2414,8 +2444,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the YouTube account. |  |
 | **metrics** | **string?** | Comma-separated list. Defaults to \&quot;views,estimatedMinutesWatched,subscribersGained,subscribersLost\&quot;.  Live YouTube Analytics v2 metrics:   - views   - estimatedMinutesWatched   - averageViewDuration          (ratio - weighted mean computed across days)   - subscribersGained   - subscribersLost  Zernio-synthesized from daily follower snapshots (cross-platform parity):   - followers_gained   - followers_lost  | [optional]  |
-| **since** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **until** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response&#39;s dateRange.until field reflects your requested value.  | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response&#39;s dateRange.until field reflects your requested value.  | [optional]  |
+| **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** | \&quot;total_value\&quot; (default) returns aggregated totals. \&quot;time_series\&quot; returns per-day values in the \&quot;values\&quot; array.  | [optional] [default to total_value] |
 
 ### Return type
@@ -2448,7 +2480,7 @@ catch (ApiException e)
 
 <a id="getyoutubedailyviews"></a>
 # **GetYouTubeDailyViews**
-> YouTubeDailyViewsResponse GetYouTubeDailyViews (string videoId, string accountId, DateOnly? startDate = null, DateOnly? endDate = null)
+> YouTubeDailyViewsResponse GetYouTubeDailyViews (string videoId, string accountId, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? startDate = null, DateOnly? endDate = null)
 
 Get YouTube daily views
 
@@ -2480,13 +2512,15 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var videoId = "videoId_example";  // string | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
             var accountId = "accountId_example";  // string | The Zernio account ID for the YouTube account
-            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
 
             try
             {
                 // Get YouTube daily views
-                YouTubeDailyViewsResponse result = apiInstance.GetYouTubeDailyViews(videoId, accountId, startDate, endDate);
+                YouTubeDailyViewsResponse result = apiInstance.GetYouTubeDailyViews(videoId, accountId, fromDate, toDate, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2507,7 +2541,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get YouTube daily views
-    ApiResponse<YouTubeDailyViewsResponse> response = apiInstance.GetYouTubeDailyViewsWithHttpInfo(videoId, accountId, startDate, endDate);
+    ApiResponse<YouTubeDailyViewsResponse> response = apiInstance.GetYouTubeDailyViewsWithHttpInfo(videoId, accountId, fromDate, toDate, startDate, endDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2526,8 +2560,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **videoId** | **string** | The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) |  |
 | **accountId** | **string** | The Zernio account ID for the YouTube account |  |
-| **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional]  |
+| **startDate** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **endDate** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -2558,7 +2594,7 @@ catch (ApiException e)
 
 <a id="getyoutubedemographics"></a>
 # **GetYouTubeDemographics**
-> YouTubeDemographicsResponse GetYouTubeDemographics (string accountId, string? videoId = null, string? breakdown = null, DateOnly? startDate = null, DateOnly? endDate = null)
+> YouTubeDemographicsResponse GetYouTubeDemographics (string accountId, string? videoId = null, string? breakdown = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? startDate = null, DateOnly? endDate = null)
 
 Get YouTube demographics
 
@@ -2591,13 +2627,15 @@ namespace Example
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the YouTube account
             var videoId = "videoId_example";  // string? | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional) 
             var breakdown = "breakdown_example";  // string? | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional) 
-            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided.  (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided.  (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
 
             try
             {
                 // Get YouTube demographics
-                YouTubeDemographicsResponse result = apiInstance.GetYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate);
+                YouTubeDemographicsResponse result = apiInstance.GetYouTubeDemographics(accountId, videoId, breakdown, fromDate, toDate, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2618,7 +2656,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get YouTube demographics
-    ApiResponse<YouTubeDemographicsResponse> response = apiInstance.GetYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate);
+    ApiResponse<YouTubeDemographicsResponse> response = apiInstance.GetYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, fromDate, toDate, startDate, endDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2638,8 +2676,10 @@ catch (ApiException e)
 | **accountId** | **string** | The Zernio SocialAccount ID for the YouTube account |  |
 | **videoId** | **string?** | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional]  |
 | **breakdown** | **string?** | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional]  |
-| **startDate** | **DateOnly?** | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional]  |
+| **fromDate** | **DateOnly?** | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional]  |
+| **startDate** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **endDate** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -2672,7 +2712,7 @@ catch (ApiException e)
 
 <a id="getyoutubevideoretention"></a>
 # **GetYouTubeVideoRetention**
-> YouTubeVideoRetentionResponse GetYouTubeVideoRetention (string videoId, string accountId, DateOnly? startDate = null, DateOnly? endDate = null)
+> YouTubeVideoRetentionResponse GetYouTubeVideoRetention (string videoId, string accountId, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? startDate = null, DateOnly? endDate = null)
 
 Get YouTube video retention curve
 
@@ -2704,13 +2744,15 @@ namespace Example
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var videoId = "videoId_example";  // string | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
             var accountId = "accountId_example";  // string | The Zernio account ID for the YouTube account
-            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve). (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve). (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
 
             try
             {
                 // Get YouTube video retention curve
-                YouTubeVideoRetentionResponse result = apiInstance.GetYouTubeVideoRetention(videoId, accountId, startDate, endDate);
+                YouTubeVideoRetentionResponse result = apiInstance.GetYouTubeVideoRetention(videoId, accountId, fromDate, toDate, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2731,7 +2773,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get YouTube video retention curve
-    ApiResponse<YouTubeVideoRetentionResponse> response = apiInstance.GetYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate);
+    ApiResponse<YouTubeVideoRetentionResponse> response = apiInstance.GetYouTubeVideoRetentionWithHttpInfo(videoId, accountId, fromDate, toDate, startDate, endDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2750,8 +2792,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **videoId** | **string** | The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) |  |
 | **accountId** | **string** | The Zernio account ID for the YouTube account |  |
-| **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional]  |
+| **fromDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional]  |
+| **toDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional]  |
+| **startDate** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **endDate** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 
 ### Return type
 

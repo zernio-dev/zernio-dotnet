@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.50.0
+  version: 1.51.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1107,7 +1107,7 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: since
+        name: fromDate
         required: false
         schema:
           format: date
@@ -1118,6 +1118,26 @@ paths:
           so the fetch is internally clamped to 3 days ago; any requested range extending
           beyond that returns zero values for the tail days. The response's dateRange.until
           field reflects your requested value.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: until
@@ -1243,13 +1263,33 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: since
+        name: fromDate
         required: false
         schema:
           format: date
           type: string
         style: form
       - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: until
@@ -1362,13 +1402,33 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: since
+        name: fromDate
         required: false
         schema:
           format: date
           type: string
         style: form
       - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: until
@@ -1442,7 +1502,7 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: startDate
+        name: fromDate
         required: false
         schema:
           format: date
@@ -1450,10 +1510,30 @@ paths:
         style: form
       - description: |
           End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day
-          (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored
+          (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored
           up to today: days inside the delay window are provisional and may still be revised
           by YouTube (see provisionalSince in the response), and days YouTube has not
           processed yet are omitted from dailyViews.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: endDate
@@ -1597,7 +1677,7 @@ paths:
           (lifetime curve).
         explode: true
         in: query
-        name: startDate
+        name: fromDate
         required: false
         schema:
           format: date
@@ -1605,9 +1685,29 @@ paths:
         style: form
       - description: |
           End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day
-          (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored
+          (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored
           up to today: days inside the delay window are provisional and may still be revised
           by YouTube (see provisionalSince in the response).
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: endDate
@@ -1781,13 +1881,33 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: since
+        name: fromDate
         required: false
         schema:
           format: date
           type: string
         style: form
       - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: until
@@ -2084,13 +2204,33 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: since
+        name: fromDate
         required: false
         schema:
           format: date
           type: string
         style: form
       - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: until
@@ -2263,13 +2403,33 @@ paths:
       - description: Start date (YYYY-MM-DD). Defaults to 30 days ago.
         explode: true
         in: query
-        name: since
+        name: fromDate
         required: false
         schema:
           format: date
           type: string
         style: form
       - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: until
@@ -2493,7 +2653,7 @@ paths:
           publish date (lifetime) when videoId is provided.
         explode: true
         in: query
-        name: startDate
+        name: fromDate
         required: false
         schema:
           format: date
@@ -2501,9 +2661,29 @@ paths:
         style: form
       - description: |
           End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day
-          (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored
+          (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored
           up to today: days inside the delay window are provisional and may still be revised
           by YouTube (see provisionalSince in the response).
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: endDate
@@ -3228,13 +3408,33 @@ paths:
           back.
         explode: true
         in: query
-        name: startDate
+        name: fromDate
         required: false
         schema:
           format: date
           type: string
         style: form
       - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: endDate
@@ -12903,7 +13103,7 @@ paths:
         example: 2024-01-01
         explode: true
         in: query
-        name: startDate
+        name: fromDate
         required: false
         schema:
           format: date
@@ -12911,6 +13111,26 @@ paths:
         style: form
       - description: "End date (YYYY-MM-DD, exclusive). Defaults to today if omitted."
         example: 2024-01-31
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: endDate
@@ -13043,36 +13263,14 @@ paths:
                       accounts. Organization accounts can use per-post analytics via
                       /v1/analytics.
                     code: organization_not_supported
-                invalid_aggregation:
-                  summary: Invalid aggregation type
+                invalid_parameter:
+                  summary: "Invalid aggregation, metrics or date window (standard\
+                    \ error envelope)"
                   value:
-                    error: "Invalid aggregation type. Must be one of: TOTAL, DAILY"
-                    code: invalid_aggregation
-                    validOptions:
-                    - TOTAL
-                    - DAILY
-                invalid_date:
-                  summary: Invalid date format
-                  value:
-                    error: Invalid date format. Use YYYY-MM-DD format.
-                    code: invalid_date_format
-                    example:
-                      startDate: 2024-01-01
-                      endDate: 2024-01-31
-                invalid_metrics:
-                  summary: Invalid metrics requested
-                  value:
-                    error: "Invalid metrics: INVALID_METRIC. Valid options: IMPRESSION,\
-                      \ MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND"
-                    code: invalid_metrics
-                    validOptions:
-                    - IMPRESSION
-                    - MEMBERS_REACHED
-                    - REACTION
-                    - COMMENT
-                    - RESHARE
-                    - POST_SAVE
-                    - POST_SEND
+                    error: fromDate must be on or before toDate
+                    code: invalid_field_value
+                    param: fromDate
+                    type: invalid_request_error
               schema:
                 $ref: "#/components/schemas/getLinkedInAggregateAnalytics_400_response"
           description: Invalid request
@@ -76515,19 +76713,19 @@ components:
     getLinkedInAggregateAnalytics_400_response:
       example:
         code: code
-        validOptions:
-        - validOptions
-        - validOptions
+        param: param
         error: error
+        type: type
       properties:
         error:
           type: string
         code:
           type: string
-        validOptions:
-          items:
-            type: string
-          type: array
+        param:
+          description: The query parameter at fault on a validation failure
+          type: string
+        type:
+          type: string
     getLinkedInAggregateAnalytics_402_response:
       example:
         code: code
