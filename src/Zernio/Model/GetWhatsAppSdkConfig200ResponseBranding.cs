@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum Es for value: es
             /// </summary>
             [EnumMember(Value = "es")]
-            Es = 2
+            Es = 2,
+
+            /// <summary>
+            /// Enum PtBR for value: pt-BR
+            /// </summary>
+            [EnumMember(Value = "pt-BR")]
+            PtBR = 3
         }
 
 

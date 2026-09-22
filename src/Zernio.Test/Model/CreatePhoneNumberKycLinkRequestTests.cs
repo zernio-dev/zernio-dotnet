@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Language'
+        /// </summary>
+        [Fact]
+        public void LanguageTest()
+        {
+            // TODO unit test for the property 'Language'
+        }
+
+        /// <summary>
         /// Test the property 'Branding'
         /// </summary>
         [Fact]

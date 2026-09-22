@@ -34,6 +34,39 @@ namespace Zernio.Model
     public partial class CreatePhoneNumberKycLinkRequest : IValidatableObject
     {
         /// <summary>
+        /// Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page.
+        /// </summary>
+        /// <value>Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LanguageEnum
+        {
+            /// <summary>
+            /// Enum En for value: en
+            /// </summary>
+            [EnumMember(Value = "en")]
+            En = 1,
+
+            /// <summary>
+            /// Enum Es for value: es
+            /// </summary>
+            [EnumMember(Value = "es")]
+            Es = 2,
+
+            /// <summary>
+            /// Enum PtBR for value: pt-BR
+            /// </summary>
+            [EnumMember(Value = "pt-BR")]
+            PtBR = 3
+        }
+
+
+        /// <summary>
+        /// Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page.
+        /// </summary>
+        /// <value>Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page.</value>
+        [DataMember(Name = "language", EmitDefaultValue = false)]
+        public LanguageEnum? Language { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreatePhoneNumberKycLinkRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -44,9 +77,10 @@ namespace Zernio.Model
         /// <param name="profileId">profileId (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2 country code (must be a regulated/KYC country). (required).</param>
         /// <param name="areaCode">Area code (NDC) the eventual number must be in. Hard constraint carried by the link; the end customer filling the form makes no area choice. Options come from GET /v1/phone-numbers/availability (areaOptions)..</param>
+        /// <param name="language">Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page..</param>
         /// <param name="branding">branding.</param>
         /// <param name="redirectUrl">Where to send the end customer&#39;s browser after a successful submit. On completion Zernio appends &#x60;kyc&#x3D;submitted&#x60; and &#x60;country&#x3D;&lt;ISO-2&gt;&#x60; as query params. When omitted, the hosted page shows a built-in confirmation screen instead. .</param>
-        public CreatePhoneNumberKycLinkRequest(string profileId = default, string country = default, string areaCode = default, CreatePhoneNumberKycLinkRequestBranding branding = default, string redirectUrl = default)
+        public CreatePhoneNumberKycLinkRequest(string profileId = default, string country = default, string areaCode = default, LanguageEnum? language = default, CreatePhoneNumberKycLinkRequestBranding branding = default, string redirectUrl = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -61,6 +95,7 @@ namespace Zernio.Model
             }
             this.Country = country;
             this.AreaCode = areaCode;
+            this.Language = language;
             this.Branding = branding;
             this.RedirectUrl = redirectUrl;
         }
@@ -109,6 +144,7 @@ namespace Zernio.Model
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
+            sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Branding: ").Append(Branding).Append("\n");
             sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("}\n");

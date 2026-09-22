@@ -8421,6 +8421,7 @@ paths:
           enum:
           - en
           - es
+          - pt-BR
           type: string
         style: form
       responses:
@@ -75848,6 +75849,7 @@ components:
           enum:
           - en
           - es
+          - pt-BR
           - null
           nullable: true
           type: string
@@ -89715,6 +89717,17 @@ components:
             carried by the link; the end customer filling the form makes no area choice.
             Options come from GET /v1/phone-numbers/availability (areaOptions).
           pattern: "^\\d{1,4}$"
+          type: string
+        language:
+          description: "Language of the hosted page: its copy, the carrier requirement\
+            \ texts (translated once per country and cached), the pre-submit review\
+            \ notes and the status emails to the end customer. Omitted: the browser\
+            \ language of the end customer, falling back to English. The end customer\
+            \ can also switch with `?lang=` on the page."
+          enum:
+          - en
+          - es
+          - pt-BR
           type: string
         branding:
           $ref: "#/components/schemas/createPhoneNumberKycLink_request_branding"
