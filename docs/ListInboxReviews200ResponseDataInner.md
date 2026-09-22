@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **LocationName** | **string** | Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms. | [optional] 
 **Reviewer** | [**ListInboxReviews200ResponseDataInnerReviewer**](ListInboxReviews200ResponseDataInnerReviewer.md) |  | [optional] 
 **Rating** | **int** |  | [optional] 
+**RecommendationType** | **string** | Facebook recommendation: positive means recommends, negative means does not recommend. Null or absent when unavailable; absent for other platforms. Independent of the numeric rating. | [optional] 
 **Text** | **string** |  | [optional] 
 **Created** | **DateTime** |  | [optional] 
 **HasReply** | **bool** |  | [optional] 
