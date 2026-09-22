@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.47.0
+  version: 1.48.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -11974,7 +11974,7 @@ paths:
               identifier: yourhandle.bsky.social
               appPassword: xxxx-xxxx-xxxx-xxxx
               state: 6507a1b2c3d4e5f6a7b8c9d0-6507a1b2c3d4e5f6a7b8c9d1
-              redirectUri: https://yourapp.com/connected
+              redirect_url: https://yourapp.com/connected
             schema:
               $ref: "#/components/schemas/connectBlueskyCredentials_request"
         required: true
@@ -12020,6 +12020,7 @@ paths:
             example:
               apiKey: sk-ads-xxxxxxxxxxxxxxxxxxxx
               profileId: 6507a1b2c3d4e5f6a7b8c9d0
+              redirect_url: https://yourapp.com/connected
             schema:
               $ref: "#/components/schemas/connectOpenAIAdsCredentials_request"
         required: true
@@ -75675,8 +75676,15 @@ components:
             \ from GET /v1/users and profileId from GET /v1/profiles."
           example: 6507a1b2c3d4e5f6a7b8c9d0-6507a1b2c3d4e5f6a7b8c9d1
           type: string
+        redirect_url:
+          description: "Optional URL to redirect to after successful connection. Used\
+            \ when the state carries no redirect (a state minted by GET /v1/connect/bluesky\
+            \ with redirect_url already carries one, and that one wins)."
+          format: uri
+          type: string
         redirectUri:
-          description: Optional URL to redirect to after successful connection
+          deprecated: true
+          description: "Alias of redirect_url, kept for existing callers"
           format: uri
           type: string
       required:
@@ -75718,8 +75726,14 @@ components:
         state:
           description: Optional state passthrough for the connect flow.
           type: string
+        redirect_url:
+          description: "Optional URL to redirect to after successful connection, echoed\
+            \ back as redirectUrl."
+          format: uri
+          type: string
         redirectUri:
-          description: Optional URL to redirect to after successful connection
+          deprecated: true
+          description: "Alias of redirect_url, kept for existing callers"
           format: uri
           type: string
       required:
@@ -75975,12 +75989,16 @@ components:
         expectedPhoneNumber:
           description: Rejects the connect when Meta returns a different number
           type: string
-        redirectUrl:
+        redirect_url:
           description: "Hosted signup page only. When present, the response also carries\
             \ `redirectUrl`, the URL the user should land on, with the outcome mapped\
             \ exactly like the redirect flow (success params, or `error` and `platform`\
             \ with the same values). Must be an absolute http(s) URL or a custom app\
             \ scheme."
+          type: string
+        redirectUrl:
+          deprecated: true
+          description: "Alias of redirect_url, kept for existing callers"
           type: string
         echoConnectToken:
           description: "Hosted signup page only. Append the connect token to the success\
@@ -76029,8 +76047,8 @@ components:
         account:
           $ref: "#/components/schemas/connectWhatsAppEmbeddedSignup_200_response_account"
         redirectUrl:
-          description: Present only when `redirectUrl` was sent; also present on error
-            responses.
+          description: Present only when `redirect_url` was sent; also present on
+            error responses.
           type: string
     getWhatsAppSdkConfig_200_response_branding:
       description: "Skin chosen when the hosted signup session was issued (`brandName`,\
