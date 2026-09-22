@@ -103,6 +103,7 @@ docs/AnalyticsOverviewDataStaleness.md
 docs/AnalyticsSinglePostResponse.md
 docs/AnalyticsSinglePostResponseMediaItemsInner.md
 docs/ApiKey.md
+docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
 docs/AppealSmsRegistration200Response.md
 docs/AppealSmsRegistrationRequest.md
@@ -2407,6 +2408,7 @@ src/Zernio.Test/Model/AnalyticsOverviewDataStalenessTests.cs
 src/Zernio.Test/Model/AnalyticsOverviewTests.cs
 src/Zernio.Test/Model/AnalyticsSinglePostResponseMediaItemsInnerTests.cs
 src/Zernio.Test/Model/AnalyticsSinglePostResponseTests.cs
+src/Zernio.Test/Model/ApiKeyCreatedByTests.cs
 src/Zernio.Test/Model/ApiKeyProfileIdsInnerTests.cs
 src/Zernio.Test/Model/ApiKeyTests.cs
 src/Zernio.Test/Model/AppealSmsRegistration200ResponseTests.cs
@@ -4671,6 +4673,7 @@ src/Zernio/Model/AnalyticsOverviewDataStaleness.cs
 src/Zernio/Model/AnalyticsSinglePostResponse.cs
 src/Zernio/Model/AnalyticsSinglePostResponseMediaItemsInner.cs
 src/Zernio/Model/ApiKey.cs
+src/Zernio/Model/ApiKeyCreatedBy.cs
 src/Zernio/Model/ApiKeyProfileIdsInner.cs
 src/Zernio/Model/AppealSmsRegistration200Response.cs
 src/Zernio/Model/AppealSmsRegistrationRequest.cs

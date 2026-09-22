@@ -116,7 +116,7 @@ catch (ApiException e)
 
 Delete key
 
-Permanently revokes and deletes an API key.
+Permanently revokes and deletes an API key. The team owner can revoke any team member's key; a non-owner member can only revoke their own.
 
 ### Example
 ```csharp
@@ -217,7 +217,7 @@ catch (ApiException e)
 
 List keys
 
-Returns all API keys for the authenticated user. Keys are returned with a preview only, not the full key value.
+Returns API keys with a preview only, not the full key value. For a regular team member this is their own keys; for the team owner this is every team member's keys, each carrying a `createdBy` field.
 
 ### Example
 ```csharp
