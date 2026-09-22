@@ -563,9 +563,10 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <returns>GetCampaignBidding200Response</returns>
-        GetCampaignBidding200Response GetCampaignBidding(string campaignId, string accountId, string platform, string? customerId = default);
+        GetCampaignBidding200Response GetCampaignBidding(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default);
 
         /// <summary>
         /// Read a campaign&#39;s current bidding
@@ -577,9 +578,10 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <returns>ApiResponse of GetCampaignBidding200Response</returns>
-        ApiResponse<GetCampaignBidding200Response> GetCampaignBiddingWithHttpInfo(string campaignId, string accountId, string platform, string? customerId = default);
+        ApiResponse<GetCampaignBidding200Response> GetCampaignBiddingWithHttpInfo(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default);
         /// <summary>
         /// Read a Google campaign&#39;s device, location, and language targeting
         /// </summary>
@@ -659,9 +661,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAdGroupAssets200Response</returns>
-        ListAdGroupAssets200Response ListAdGroupAssets(string adSetId, string accountId, string? customerId = default);
+        ListAdGroupAssets200Response ListAdGroupAssets(string adSetId, string accountId, string? adAccountId = default, string? customerId = default);
 
         /// <summary>
         /// List ad-group assets
@@ -672,9 +675,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAdGroupAssets200Response</returns>
-        ApiResponse<ListAdGroupAssets200Response> ListAdGroupAssetsWithHttpInfo(string adSetId, string accountId, string? customerId = default);
+        ApiResponse<ListAdGroupAssets200Response> ListAdGroupAssetsWithHttpInfo(string adSetId, string accountId, string? adAccountId = default, string? customerId = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -800,11 +804,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <returns>ListBidStrategies200Response</returns>
-        ListBidStrategies200Response ListBidStrategies(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ListBidStrategies200Response ListBidStrategies(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List portfolio bid strategies
@@ -814,11 +819,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <returns>ApiResponse of ListBidStrategies200Response</returns>
-        ApiResponse<ListBidStrategies200Response> ListBidStrategiesWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<ListBidStrategies200Response> ListBidStrategiesWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// List campaign assets
         /// </summary>
@@ -828,9 +834,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListCampaignAssets200Response</returns>
-        ListCampaignAssets200Response ListCampaignAssets(string campaignId, string accountId, string? customerId = default);
+        ListCampaignAssets200Response ListCampaignAssets(string campaignId, string accountId, string? adAccountId = default, string? customerId = default);
 
         /// <summary>
         /// List campaign assets
@@ -841,9 +848,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListCampaignAssets200Response</returns>
-        ApiResponse<ListCampaignAssets200Response> ListCampaignAssetsWithHttpInfo(string campaignId, string accountId, string? customerId = default);
+        ApiResponse<ListCampaignAssets200Response> ListCampaignAssetsWithHttpInfo(string campaignId, string accountId, string? adAccountId = default, string? customerId = default);
         /// <summary>
         /// List campaign negative lists
         /// </summary>
@@ -1886,10 +1894,11 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetCampaignBidding200Response</returns>
-        System.Threading.Tasks.Task<GetCampaignBidding200Response> GetCampaignBiddingAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetCampaignBidding200Response> GetCampaignBiddingAsync(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Read a campaign&#39;s current bidding
@@ -1901,10 +1910,11 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetCampaignBidding200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetCampaignBidding200Response>> GetCampaignBiddingWithHttpInfoAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetCampaignBidding200Response>> GetCampaignBiddingWithHttpInfoAsync(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Read a Google campaign&#39;s device, location, and language targeting
         /// </summary>
@@ -1988,10 +1998,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdGroupAssets200Response</returns>
-        System.Threading.Tasks.Task<ListAdGroupAssets200Response> ListAdGroupAssetsAsync(string adSetId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdGroupAssets200Response> ListAdGroupAssetsAsync(string adSetId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List ad-group assets
@@ -2002,10 +2013,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdGroupAssets200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdGroupAssets200Response>> ListAdGroupAssetsWithHttpInfoAsync(string adSetId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdGroupAssets200Response>> ListAdGroupAssetsWithHttpInfoAsync(string adSetId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Search keywords
         /// </summary>
@@ -2137,12 +2149,13 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListBidStrategies200Response</returns>
-        System.Threading.Tasks.Task<ListBidStrategies200Response> ListBidStrategiesAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListBidStrategies200Response> ListBidStrategiesAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List portfolio bid strategies
@@ -2152,12 +2165,13 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListBidStrategies200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListBidStrategies200Response>> ListBidStrategiesWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListBidStrategies200Response>> ListBidStrategiesWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List campaign assets
         /// </summary>
@@ -2167,10 +2181,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListCampaignAssets200Response</returns>
-        System.Threading.Tasks.Task<ListCampaignAssets200Response> ListCampaignAssetsAsync(string campaignId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListCampaignAssets200Response> ListCampaignAssetsAsync(string campaignId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaign assets
@@ -2181,10 +2196,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListCampaignAssets200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListCampaignAssets200Response>> ListCampaignAssetsWithHttpInfoAsync(string campaignId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListCampaignAssets200Response>> ListCampaignAssetsWithHttpInfoAsync(string campaignId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List campaign negative lists
         /// </summary>
@@ -6104,11 +6120,12 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <returns>GetCampaignBidding200Response</returns>
-        public GetCampaignBidding200Response GetCampaignBidding(string campaignId, string accountId, string platform, string? customerId = default)
+        public GetCampaignBidding200Response GetCampaignBidding(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default)
         {
-            Zernio.Client.ApiResponse<GetCampaignBidding200Response> localVarResponse = GetCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId);
+            Zernio.Client.ApiResponse<GetCampaignBidding200Response> localVarResponse = GetCampaignBiddingWithHttpInfo(campaignId, accountId, platform, adAccountId, customerId);
             return localVarResponse.Data;
         }
 
@@ -6119,9 +6136,10 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <returns>ApiResponse of GetCampaignBidding200Response</returns>
-        public Zernio.Client.ApiResponse<GetCampaignBidding200Response> GetCampaignBiddingWithHttpInfo(string campaignId, string accountId, string platform, string? customerId = default)
+        public Zernio.Client.ApiResponse<GetCampaignBidding200Response> GetCampaignBiddingWithHttpInfo(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -6154,6 +6172,10 @@ namespace Zernio.Api
             localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -6185,12 +6207,13 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetCampaignBidding200Response</returns>
-        public async System.Threading.Tasks.Task<GetCampaignBidding200Response> GetCampaignBiddingAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetCampaignBidding200Response> GetCampaignBiddingAsync(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetCampaignBidding200Response> localVarResponse = await GetCampaignBiddingWithHttpInfoAsync(campaignId, accountId, platform, customerId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetCampaignBidding200Response> localVarResponse = await GetCampaignBiddingWithHttpInfoAsync(campaignId, accountId, platform, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -6201,10 +6224,11 @@ namespace Zernio.Api
         /// <param name="campaignId">Numeric Google platform campaign id.</param>
         /// <param name="accountId">Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.</param>
         /// <param name="platform">Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetCampaignBidding200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetCampaignBidding200Response>> GetCampaignBiddingWithHttpInfoAsync(string campaignId, string accountId, string platform, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetCampaignBidding200Response>> GetCampaignBiddingWithHttpInfoAsync(string campaignId, string accountId, string platform, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -6239,6 +6263,10 @@ namespace Zernio.Api
             localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -6690,11 +6718,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAdGroupAssets200Response</returns>
-        public ListAdGroupAssets200Response ListAdGroupAssets(string adSetId, string accountId, string? customerId = default)
+        public ListAdGroupAssets200Response ListAdGroupAssets(string adSetId, string accountId, string? adAccountId = default, string? customerId = default)
         {
-            Zernio.Client.ApiResponse<ListAdGroupAssets200Response> localVarResponse = ListAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId);
+            Zernio.Client.ApiResponse<ListAdGroupAssets200Response> localVarResponse = ListAdGroupAssetsWithHttpInfo(adSetId, accountId, adAccountId, customerId);
             return localVarResponse.Data;
         }
 
@@ -6704,9 +6733,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAdGroupAssets200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdGroupAssets200Response> ListAdGroupAssetsWithHttpInfo(string adSetId, string accountId, string? customerId = default)
+        public Zernio.Client.ApiResponse<ListAdGroupAssets200Response> ListAdGroupAssetsWithHttpInfo(string adSetId, string accountId, string? adAccountId = default, string? customerId = default)
         {
             // verify the required parameter 'adSetId' is set
             if (adSetId == null)
@@ -6734,6 +6764,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -6764,12 +6798,13 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdGroupAssets200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdGroupAssets200Response> ListAdGroupAssetsAsync(string adSetId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdGroupAssets200Response> ListAdGroupAssetsAsync(string adSetId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdGroupAssets200Response> localVarResponse = await ListAdGroupAssetsWithHttpInfoAsync(adSetId, accountId, customerId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdGroupAssets200Response> localVarResponse = await ListAdGroupAssetsWithHttpInfoAsync(adSetId, accountId, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -6779,10 +6814,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adSetId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdGroupAssets200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdGroupAssets200Response>> ListAdGroupAssetsWithHttpInfoAsync(string adSetId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdGroupAssets200Response>> ListAdGroupAssetsWithHttpInfoAsync(string adSetId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adSetId' is set
             if (adSetId == null)
@@ -6812,6 +6848,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -7541,13 +7581,14 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <returns>ListBidStrategies200Response</returns>
-        public ListBidStrategies200Response ListBidStrategies(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public ListBidStrategies200Response ListBidStrategies(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<ListBidStrategies200Response> localVarResponse = ListBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate);
+            Zernio.Client.ApiResponse<ListBidStrategies200Response> localVarResponse = ListBidStrategiesWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -7556,11 +7597,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <returns>ApiResponse of ListBidStrategies200Response</returns>
-        public Zernio.Client.ApiResponse<ListBidStrategies200Response> ListBidStrategiesWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Zernio.Client.ApiResponse<ListBidStrategies200Response> ListBidStrategiesWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7583,6 +7625,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -7620,14 +7666,15 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListBidStrategies200Response</returns>
-        public async System.Threading.Tasks.Task<ListBidStrategies200Response> ListBidStrategiesAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListBidStrategies200Response> ListBidStrategiesAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListBidStrategies200Response> localVarResponse = await ListBidStrategiesWithHttpInfoAsync(accountId, customerId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListBidStrategies200Response> localVarResponse = await ListBidStrategiesWithHttpInfoAsync(accountId, adAccountId, customerId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -7636,12 +7683,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListBidStrategies200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListBidStrategies200Response>> ListBidStrategiesWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListBidStrategies200Response>> ListBidStrategiesWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7666,6 +7714,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -7705,11 +7757,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListCampaignAssets200Response</returns>
-        public ListCampaignAssets200Response ListCampaignAssets(string campaignId, string accountId, string? customerId = default)
+        public ListCampaignAssets200Response ListCampaignAssets(string campaignId, string accountId, string? adAccountId = default, string? customerId = default)
         {
-            Zernio.Client.ApiResponse<ListCampaignAssets200Response> localVarResponse = ListCampaignAssetsWithHttpInfo(campaignId, accountId, customerId);
+            Zernio.Client.ApiResponse<ListCampaignAssets200Response> localVarResponse = ListCampaignAssetsWithHttpInfo(campaignId, accountId, adAccountId, customerId);
             return localVarResponse.Data;
         }
 
@@ -7719,9 +7772,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListCampaignAssets200Response</returns>
-        public Zernio.Client.ApiResponse<ListCampaignAssets200Response> ListCampaignAssetsWithHttpInfo(string campaignId, string accountId, string? customerId = default)
+        public Zernio.Client.ApiResponse<ListCampaignAssets200Response> ListCampaignAssetsWithHttpInfo(string campaignId, string accountId, string? adAccountId = default, string? customerId = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -7749,6 +7803,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -7779,12 +7837,13 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListCampaignAssets200Response</returns>
-        public async System.Threading.Tasks.Task<ListCampaignAssets200Response> ListCampaignAssetsAsync(string campaignId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListCampaignAssets200Response> ListCampaignAssetsAsync(string campaignId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListCampaignAssets200Response> localVarResponse = await ListCampaignAssetsWithHttpInfoAsync(campaignId, accountId, customerId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListCampaignAssets200Response> localVarResponse = await ListCampaignAssetsWithHttpInfoAsync(campaignId, accountId, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -7794,10 +7853,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="campaignId">Numeric Google platform id.</param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListCampaignAssets200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListCampaignAssets200Response>> ListCampaignAssetsWithHttpInfoAsync(string campaignId, string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListCampaignAssets200Response>> ListCampaignAssetsWithHttpInfoAsync(string campaignId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'campaignId' is set
             if (campaignId == null)
@@ -7827,6 +7887,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));

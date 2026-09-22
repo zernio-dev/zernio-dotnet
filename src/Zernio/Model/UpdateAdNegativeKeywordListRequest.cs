@@ -108,10 +108,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateAdNegativeKeywordListRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio SocialAccount id. (required).</param>
-        /// <param name="customerId">Connected Google Ads customer id, without dashes. Required when the connection has multiple customers..</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
         /// <param name="platform">Optional courtesy field. The resolved account or campaign determines support; other platforms return 501..</param>
         /// <param name="name">Nonempty list name, trimmed before use. (required).</param>
-        public UpdateAdNegativeKeywordListRequest(string accountId = default, string customerId = default, PlatformEnum? platform = default, string name = default)
+        public UpdateAdNegativeKeywordListRequest(string accountId = default, string adAccountId = default, string customerId = default, PlatformEnum? platform = default, string name = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -125,6 +126,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for UpdateAdNegativeKeywordListRequest and cannot be null");
             }
             this.Name = name;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
             this.Platform = platform;
             this.AdditionalProperties = new Dictionary<string, object>();
@@ -138,10 +140,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Connected Google Ads customer id, without dashes. Required when the connection has multiple customers.
+        /// Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         /// </summary>
-        /// <value>Connected Google Ads customer id, without dashes. Required when the connection has multiple customers.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -166,6 +176,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdNegativeKeywordListRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -196,6 +207,15 @@ namespace Zernio.Model
                 if (!regexAccountId.Match(this.AccountId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
+                }
+            }
+
+            if (this.AdAccountId != null) {
+                // AdAccountId (string) pattern
+                Regex regexAdAccountId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexAdAccountId.Match(this.AdAccountId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdAccountId, must match a pattern of " + regexAdAccountId, new [] { "AdAccountId" });
                 }
             }
 

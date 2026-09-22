@@ -6,7 +6,8 @@ Provide at least one of sitelinks, callouts or structuredSnippets. Sitelink desc
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **string** | Zernio Google Ads connection id. | 
-**CustomerId** | **string** | Google customer id without dashes. Required when the connection has multiple customers. | [optional] 
+**AdAccountId** | **string** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] 
+**CustomerId** | **string** | Alias of adAccountId, kept for existing callers | [optional] 
 **Sitelinks** | [**List&lt;GoogleSitelink&gt;**](GoogleSitelink.md) |  | [optional] 
 **Callouts** | **List&lt;string&gt;** |  | [optional] 
 **StructuredSnippets** | [**List&lt;GoogleStructuredSnippet&gt;**](GoogleStructuredSnippet.md) |  | [optional] 

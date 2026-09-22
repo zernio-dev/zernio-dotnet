@@ -175,9 +175,10 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string listId = null;
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //string? platform = null;
-            //var response = instance.DeleteAdNegativeKeywordList(listId, accountId, customerId, platform);
+            //var response = instance.DeleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
             //Assert.IsType<DeleteAdNegativeKeywordList200Response>(response);
         }
 
@@ -233,9 +234,10 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string listId = null;
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //string? platform = null;
-            //var response = instance.GetAdNegativeKeywordList(listId, accountId, customerId, platform);
+            //var response = instance.GetAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
             //Assert.IsType<GetAdNegativeKeywordList200Response>(response);
         }
 
@@ -334,8 +336,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
-            //var response = instance.ListAccountCallouts(accountId, customerId);
+            //var response = instance.ListAccountCallouts(accountId, adAccountId, customerId);
             //Assert.IsType<ListAccountCallouts200Response>(response);
         }
 
@@ -347,8 +350,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
-            //var response = instance.ListAccountSitelinks(accountId, customerId);
+            //var response = instance.ListAccountSitelinks(accountId, adAccountId, customerId);
             //Assert.IsType<ListAccountSitelinks200Response>(response);
         }
 
@@ -360,8 +364,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
-            //var response = instance.ListAccountStructuredSnippets(accountId, customerId);
+            //var response = instance.ListAccountStructuredSnippets(accountId, adAccountId, customerId);
             //Assert.IsType<ListAccountStructuredSnippets200Response>(response);
         }
 
@@ -402,9 +407,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //string? platform = null;
-            //var response = instance.ListAdNegativeKeywordLists(accountId, customerId, platform);
+            //var response = instance.ListAdNegativeKeywordLists(accountId, adAccountId, customerId, platform);
             //Assert.IsType<ListAdNegativeKeywordLists200Response>(response);
         }
 
@@ -529,9 +535,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? advertiserId = null;
             //string? code = null;
-            //var response = instance.ListTikTokAdPixels(accountId, advertiserId, code);
+            //var response = instance.ListTikTokAdPixels(accountId, adAccountId, advertiserId, code);
             //Assert.IsType<ListTikTokAdPixels200Response>(response);
         }
 

@@ -226,27 +226,29 @@ namespace Zernio.Api
         /// List conversion actions
         /// </summary>
         /// <remarks>
-        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <returns>ListConversionActions200Response</returns>
-        ListConversionActions200Response ListConversionActions(string accountId, string? customerId = default, string? type = default);
+        ListConversionActions200Response ListConversionActions(string accountId, string? adAccountId = default, string? customerId = default, string? type = default);
 
         /// <summary>
         /// List conversion actions
         /// </summary>
         /// <remarks>
-        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <returns>ApiResponse of ListConversionActions200Response</returns>
-        ApiResponse<ListConversionActions200Response> ListConversionActionsWithHttpInfo(string accountId, string? customerId = default, string? type = default);
+        ApiResponse<ListConversionActions200Response> ListConversionActionsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, string? type = default);
         /// <summary>
         /// List associated campaigns
         /// </summary>
@@ -589,29 +591,31 @@ namespace Zernio.Api
         /// List conversion actions
         /// </summary>
         /// <remarks>
-        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListConversionActions200Response</returns>
-        System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? adAccountId = default, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List conversion actions
         /// </summary>
         /// <remarks>
-        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListConversionActions200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListConversionActions200Response>> ListConversionActionsWithHttpInfoAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListConversionActions200Response>> ListConversionActionsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List associated campaigns
         /// </summary>
@@ -2153,28 +2157,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <returns>ListConversionActions200Response</returns>
-        public ListConversionActions200Response ListConversionActions(string accountId, string? customerId = default, string? type = default)
+        public ListConversionActions200Response ListConversionActions(string accountId, string? adAccountId = default, string? customerId = default, string? type = default)
         {
-            Zernio.Client.ApiResponse<ListConversionActions200Response> localVarResponse = ListConversionActionsWithHttpInfo(accountId, customerId, type);
+            Zernio.Client.ApiResponse<ListConversionActions200Response> localVarResponse = ListConversionActionsWithHttpInfo(accountId, adAccountId, customerId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <returns>ApiResponse of ListConversionActions200Response</returns>
-        public Zernio.Client.ApiResponse<ListConversionActions200Response> ListConversionActionsWithHttpInfo(string accountId, string? customerId = default, string? type = default)
+        public Zernio.Client.ApiResponse<ListConversionActions200Response> ListConversionActionsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, string? type = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2197,6 +2203,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -2226,30 +2236,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListConversionActions200Response</returns>
-        public async System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListConversionActions200Response> ListConversionActionsAsync(string accountId, string? adAccountId = default, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListConversionActions200Response> localVarResponse = await ListConversionActionsWithHttpInfoAsync(accountId, customerId, type, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListConversionActions200Response> localVarResponse = await ListConversionActionsWithHttpInfoAsync(accountId, adAccountId, customerId, type, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+        /// List conversion actions Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a googleads account).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="type">Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListConversionActions200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListConversionActions200Response>> ListConversionActionsWithHttpInfoAsync(string accountId, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListConversionActions200Response>> ListConversionActionsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2274,6 +2286,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));

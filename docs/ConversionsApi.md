@@ -879,11 +879,11 @@ catch (ApiException e)
 
 <a id="listconversionactions"></a>
 # **ListConversionActions**
-> ListConversionActions200Response ListConversionActions (string accountId, string? customerId = null, string? type = null)
+> ListConversionActions200Response ListConversionActions (string accountId, string? adAccountId = null, string? customerId = null, string? type = null)
 
 List conversion actions
 
-Lists Google Ads conversion actions on the resolved customer, all types by default. Each action's `tagSnippets` (global site tag + event snippet) is included when Google has them for that action's type, e.g. `WEBPAGE`. Google-only; other platforms return `501`. Requires the Ads add-on.  `customerId` is optional: when omitted, it is resolved from the connection's accessible Google Ads customers, and the call fails with `400` when more than one is accessible (pass `customerId` to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on `type`). The response carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+Lists Google Ads conversion actions on the resolved customer, all types by default. Each action's `tagSnippets` (global site tag + event snippet) is included when Google has them for that action's type, e.g. `WEBPAGE`. Google-only; other platforms return `501`. Requires the Ads add-on.  `adAccountId` (alias `customerId`) is optional: when omitted, it is resolved from the connection's accessible Google Ads customers, and the call fails with `400` when more than one is accessible (pass `adAccountId` to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on `type`). The response carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
 
 ### Example
 ```csharp
@@ -910,13 +910,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | SocialAccount _id (must be a googleads account).
-            var customerId = "customerId_example";  // string? | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var type = "type_example";  // string? | Filter by Google's ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). (optional) 
 
             try
             {
                 // List conversion actions
-                ListConversionActions200Response result = apiInstance.ListConversionActions(accountId, customerId, type);
+                ListConversionActions200Response result = apiInstance.ListConversionActions(accountId, adAccountId, customerId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -937,7 +938,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List conversion actions
-    ApiResponse<ListConversionActions200Response> response = apiInstance.ListConversionActionsWithHttpInfo(accountId, customerId, type);
+    ApiResponse<ListConversionActions200Response> response = apiInstance.ListConversionActionsWithHttpInfo(accountId, adAccountId, customerId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -955,7 +956,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | SocialAccount _id (must be a googleads account). |  |
-| **customerId** | **string?** | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **type** | **string?** | Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). | [optional]  |
 
 ### Return type

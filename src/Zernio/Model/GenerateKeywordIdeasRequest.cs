@@ -67,7 +67,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GenerateKeywordIdeasRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio googleads SocialAccount id. (required).</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts..</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only)..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
         /// <param name="seedKeywords">Seed terms. Provide these, seedUrl, or both..</param>
         /// <param name="seedUrl">Landing page to mine for ideas. Provide this, seedKeywords, or both..</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes. Omitted &#x3D; worldwide..</param>
@@ -76,7 +77,7 @@ namespace Zernio.Model
         /// <param name="includeAdultKeywords">includeAdultKeywords.</param>
         /// <param name="pageSize">pageSize.</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page..</param>
-        public GenerateKeywordIdeasRequest(string accountId = default, string customerId = default, List<string> seedKeywords = default, string seedUrl = default, List<string> countries = default, string languageConstantId = @"1000", NetworkEnum? network = NetworkEnum.GOOGLESEARCH, bool includeAdultKeywords = default, int pageSize = default, string pageToken = default)
+        public GenerateKeywordIdeasRequest(string accountId = default, string adAccountId = default, string customerId = default, List<string> seedKeywords = default, string seedUrl = default, List<string> countries = default, string languageConstantId = @"1000", NetworkEnum? network = NetworkEnum.GOOGLESEARCH, bool includeAdultKeywords = default, int pageSize = default, string pageToken = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -84,6 +85,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("accountId is a required property for GenerateKeywordIdeasRequest and cannot be null");
             }
             this.AccountId = accountId;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
             this.SeedKeywords = seedKeywords;
             this.SeedUrl = seedUrl;
@@ -104,10 +106,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts.
+        /// Platform ad account ID (Google customer ID, digits only).
         /// </summary>
-        /// <value>Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only).</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -166,6 +176,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GenerateKeywordIdeasRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  SeedKeywords: ").Append(SeedKeywords).Append("\n");
             sb.Append("  SeedUrl: ").Append(SeedUrl).Append("\n");

@@ -134,8 +134,9 @@ namespace Zernio.Model
         /// <param name="campaignId">Google platform campaign ID (numeric) the ad group is created under. (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="status">status (default to StatusEnum.PAUSED).</param>
-        /// <param name="customerId">Numeric Google Ads customer id. Only required when the connection has more than one..</param>
-        public CreateAdSetRequest(string accountId = default, PlatformEnum platform = default, string campaignId = default, string name = default, StatusEnum? status = StatusEnum.PAUSED, string customerId = default)
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Only required when the connection has more than one..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
+        public CreateAdSetRequest(string accountId = default, PlatformEnum platform = default, string campaignId = default, string name = default, StatusEnum? status = StatusEnum.PAUSED, string adAccountId = default, string customerId = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -157,6 +158,7 @@ namespace Zernio.Model
             }
             this.Name = name;
             this.Status = status;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
         }
 
@@ -181,10 +183,18 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id. Only required when the connection has more than one.
+        /// Platform ad account ID (Google customer ID, digits only). Only required when the connection has more than one.
         /// </summary>
-        /// <value>Numeric Google Ads customer id. Only required when the connection has more than one.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only). Only required when the connection has more than one.</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -200,6 +210,7 @@ namespace Zernio.Model
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

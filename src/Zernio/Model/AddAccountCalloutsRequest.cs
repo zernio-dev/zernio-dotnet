@@ -42,9 +42,10 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="AddAccountCalloutsRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio Google Ads connection id. (required).</param>
-        /// <param name="customerId">Google customer id without dashes. Required when the connection has multiple customers..</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
         /// <param name="callouts">callouts (required).</param>
-        public AddAccountCalloutsRequest(string accountId = default, string customerId = default, List<string> callouts = default)
+        public AddAccountCalloutsRequest(string accountId = default, string adAccountId = default, string customerId = default, List<string> callouts = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -58,6 +59,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("callouts is a required property for AddAccountCalloutsRequest and cannot be null");
             }
             this.Callouts = callouts;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
         }
 
@@ -69,10 +71,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Google customer id without dashes. Required when the connection has multiple customers.
+        /// Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         /// </summary>
-        /// <value>Google customer id without dashes. Required when the connection has multiple customers.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -90,6 +100,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AddAccountCalloutsRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Callouts: ").Append(Callouts).Append("\n");
             sb.Append("}\n");
@@ -118,6 +129,15 @@ namespace Zernio.Model
                 if (!regexAccountId.Match(this.AccountId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
+                }
+            }
+
+            if (this.AdAccountId != null) {
+                // AdAccountId (string) pattern
+                Regex regexAdAccountId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexAdAccountId.Match(this.AdAccountId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdAccountId, must match a pattern of " + regexAdAccountId, new [] { "AdAccountId" });
                 }
             }
 

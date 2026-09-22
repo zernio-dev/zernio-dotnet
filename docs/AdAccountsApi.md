@@ -1002,7 +1002,7 @@ catch (ApiException e)
 
 <a id="deleteadnegativekeywordlist"></a>
 # **DeleteAdNegativeKeywordList**
-> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? customerId = null, string? platform = null)
+> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? adAccountId = null, string? customerId = null, string? platform = null)
 
 Delete a negative keyword list
 
@@ -1034,13 +1034,14 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var listId = "listId_example";  // string | 
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
             var platform = "facebook";  // string? |  (optional) 
 
             try
             {
                 // Delete a negative keyword list
-                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, customerId, platform);
+                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1061,7 +1062,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a negative keyword list
-    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1080,6 +1081,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **listId** | **string** |  |  |
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 
@@ -1437,7 +1439,7 @@ catch (ApiException e)
 
 <a id="getadnegativekeywordlist"></a>
 # **GetAdNegativeKeywordList**
-> GetAdNegativeKeywordList200Response GetAdNegativeKeywordList (string listId, string accountId, string? customerId = null, string? platform = null)
+> GetAdNegativeKeywordList200Response GetAdNegativeKeywordList (string listId, string accountId, string? adAccountId = null, string? customerId = null, string? platform = null)
 
 Get a negative keyword list
 
@@ -1469,13 +1471,14 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var listId = "listId_example";  // string | 
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
             var platform = "facebook";  // string? |  (optional) 
 
             try
             {
                 // Get a negative keyword list
-                GetAdNegativeKeywordList200Response result = apiInstance.GetAdNegativeKeywordList(listId, accountId, customerId, platform);
+                GetAdNegativeKeywordList200Response result = apiInstance.GetAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1496,7 +1499,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a negative keyword list
-    ApiResponse<GetAdNegativeKeywordList200Response> response = apiInstance.GetAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+    ApiResponse<GetAdNegativeKeywordList200Response> response = apiInstance.GetAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1515,6 +1518,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **listId** | **string** |  |  |
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 
@@ -2198,7 +2202,7 @@ catch (ApiException e)
 
 <a id="listaccountcallouts"></a>
 # **ListAccountCallouts**
-> ListAccountCallouts200Response ListAccountCallouts (string accountId, string? customerId = null)
+> ListAccountCallouts200Response ListAccountCallouts (string accountId, string? adAccountId = null, string? customerId = null)
 
 List account callouts
 
@@ -2229,12 +2233,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
 
             try
             {
                 // List account callouts
-                ListAccountCallouts200Response result = apiInstance.ListAccountCallouts(accountId, customerId);
+                ListAccountCallouts200Response result = apiInstance.ListAccountCallouts(accountId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2255,7 +2260,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List account callouts
-    ApiResponse<ListAccountCallouts200Response> response = apiInstance.ListAccountCalloutsWithHttpInfo(accountId, customerId);
+    ApiResponse<ListAccountCallouts200Response> response = apiInstance.ListAccountCalloutsWithHttpInfo(accountId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2273,6 +2278,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 
 ### Return type
@@ -2305,7 +2311,7 @@ catch (ApiException e)
 
 <a id="listaccountsitelinks"></a>
 # **ListAccountSitelinks**
-> ListAccountSitelinks200Response ListAccountSitelinks (string accountId, string? customerId = null)
+> ListAccountSitelinks200Response ListAccountSitelinks (string accountId, string? adAccountId = null, string? customerId = null)
 
 List account sitelinks
 
@@ -2336,12 +2342,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
 
             try
             {
                 // List account sitelinks
-                ListAccountSitelinks200Response result = apiInstance.ListAccountSitelinks(accountId, customerId);
+                ListAccountSitelinks200Response result = apiInstance.ListAccountSitelinks(accountId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2362,7 +2369,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List account sitelinks
-    ApiResponse<ListAccountSitelinks200Response> response = apiInstance.ListAccountSitelinksWithHttpInfo(accountId, customerId);
+    ApiResponse<ListAccountSitelinks200Response> response = apiInstance.ListAccountSitelinksWithHttpInfo(accountId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2380,6 +2387,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 
 ### Return type
@@ -2412,7 +2420,7 @@ catch (ApiException e)
 
 <a id="listaccountstructuredsnippets"></a>
 # **ListAccountStructuredSnippets**
-> ListAccountStructuredSnippets200Response ListAccountStructuredSnippets (string accountId, string? customerId = null)
+> ListAccountStructuredSnippets200Response ListAccountStructuredSnippets (string accountId, string? adAccountId = null, string? customerId = null)
 
 List account snippets
 
@@ -2443,12 +2451,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
 
             try
             {
                 // List account snippets
-                ListAccountStructuredSnippets200Response result = apiInstance.ListAccountStructuredSnippets(accountId, customerId);
+                ListAccountStructuredSnippets200Response result = apiInstance.ListAccountStructuredSnippets(accountId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2469,7 +2478,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List account snippets
-    ApiResponse<ListAccountStructuredSnippets200Response> response = apiInstance.ListAccountStructuredSnippetsWithHttpInfo(accountId, customerId);
+    ApiResponse<ListAccountStructuredSnippets200Response> response = apiInstance.ListAccountStructuredSnippetsWithHttpInfo(accountId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2487,6 +2496,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 
 ### Return type
@@ -2736,7 +2746,7 @@ catch (ApiException e)
 
 <a id="listadnegativekeywordlists"></a>
 # **ListAdNegativeKeywordLists**
-> ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists (string accountId, string? customerId = null, string? platform = null)
+> ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists (string accountId, string? adAccountId = null, string? customerId = null, string? platform = null)
 
 List negative keyword lists
 
@@ -2767,13 +2777,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
             var platform = "facebook";  // string? |  (optional) 
 
             try
             {
                 // List negative keyword lists
-                ListAdNegativeKeywordLists200Response result = apiInstance.ListAdNegativeKeywordLists(accountId, customerId, platform);
+                ListAdNegativeKeywordLists200Response result = apiInstance.ListAdNegativeKeywordLists(accountId, adAccountId, customerId, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2794,7 +2805,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List negative keyword lists
-    ApiResponse<ListAdNegativeKeywordLists200Response> response = apiInstance.ListAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform);
+    ApiResponse<ListAdNegativeKeywordLists200Response> response = apiInstance.ListAdNegativeKeywordListsWithHttpInfo(accountId, adAccountId, customerId, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2812,6 +2823,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 
@@ -3708,7 +3720,7 @@ catch (ApiException e)
 
 <a id="listtiktokadpixels"></a>
 # **ListTikTokAdPixels**
-> ListTikTokAdPixels200Response ListTikTokAdPixels (string accountId, string? advertiserId = null, string? code = null)
+> ListTikTokAdPixels200Response ListTikTokAdPixels (string accountId, string? adAccountId = null, string? advertiserId = null, string? code = null)
 
 List TikTok ad pixels
 
@@ -3739,13 +3751,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Zernio SocialAccount ID.
-            var advertiserId = "advertiserId_example";  // string? | Advertiser belonging to this connection. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional) 
+            var advertiserId = "advertiserId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var code = "code_example";  // string? | Filter by a Pixel Code. (optional) 
 
             try
             {
                 // List TikTok ad pixels
-                ListTikTokAdPixels200Response result = apiInstance.ListTikTokAdPixels(accountId, advertiserId, code);
+                ListTikTokAdPixels200Response result = apiInstance.ListTikTokAdPixels(accountId, adAccountId, advertiserId, code);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3766,7 +3779,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List TikTok ad pixels
-    ApiResponse<ListTikTokAdPixels200Response> response = apiInstance.ListTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code);
+    ApiResponse<ListTikTokAdPixels200Response> response = apiInstance.ListTikTokAdPixelsWithHttpInfo(accountId, adAccountId, advertiserId, code);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3784,7 +3797,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Zernio SocialAccount ID. |  |
-| **advertiserId** | **string?** | Advertiser belonging to this connection. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. | [optional]  |
+| **advertiserId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **code** | **string?** | Filter by a Pixel Code. | [optional]  |
 
 ### Return type

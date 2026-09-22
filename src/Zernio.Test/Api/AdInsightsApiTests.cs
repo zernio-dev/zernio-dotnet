@@ -128,6 +128,7 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
@@ -135,7 +136,7 @@ namespace Zernio.Test.Api
             //string? adSetId = null;
             //string? adGroupId = null;
             //string? pageToken = null;
-            //var response = instance.GetAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
+            //var response = instance.GetAdsSearchTerms(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
             //Assert.IsType<GetAdsSearchTerms200Response>(response);
         }
 
@@ -164,9 +165,10 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string leadId = null;
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //string? pageToken = null;
-            //var response = instance.ListLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
+            //var response = instance.ListLocalServicesLeadConversations(leadId, accountId, adAccountId, customerId, pageToken);
             //Assert.IsType<ListLocalServicesLeadConversations200Response>(response);
         }
 
@@ -178,6 +180,7 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
@@ -185,7 +188,7 @@ namespace Zernio.Test.Api
             //string? leadStatus = null;
             //bool? chargedOnly = null;
             //string? pageToken = null;
-            //var response = instance.ListLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            //var response = instance.ListLocalServicesLeads(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
             //Assert.IsType<ListLocalServicesLeads200Response>(response);
         }
 
@@ -199,6 +202,7 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //string? objectId = null;
             //string? query = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //string? pageToken = null;
             //string? level = null;
@@ -215,7 +219,7 @@ namespace Zernio.Test.Api
             //string? timeIncrement = null;
             //int? limit = null;
             //string? after = null;
-            //var response = instance.QueryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            //var response = instance.QueryAdInsights(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             //Assert.IsType<QueryAdInsights200Response>(response);
         }
     }

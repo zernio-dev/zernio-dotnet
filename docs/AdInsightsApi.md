@@ -548,7 +548,7 @@ catch (ApiException e)
 
 <a id="getadssearchterms"></a>
 # **GetAdsSearchTerms**
-> GetAdsSearchTerms200Response GetAdsSearchTerms (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? campaignId = null, string? adSetId = null, string? adGroupId = null, string? pageToken = null)
+> GetAdsSearchTerms200Response GetAdsSearchTerms (string accountId, string? adAccountId = null, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? campaignId = null, string? adSetId = null, string? adGroupId = null, string? pageToken = null)
 
 Google Ads search terms report
 
@@ -579,7 +579,8 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Google ads SocialAccount id.
-            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to 30 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to today. (optional) 
             var campaignId = "campaignId_example";  // string? | Numeric Google campaign id filter. (optional) 
@@ -590,7 +591,7 @@ namespace Example
             try
             {
                 // Google Ads search terms report
-                GetAdsSearchTerms200Response result = apiInstance.GetAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
+                GetAdsSearchTerms200Response result = apiInstance.GetAdsSearchTerms(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -611,7 +612,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Google Ads search terms report
-    ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.GetAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
+    ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.GetAdsSearchTermsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -629,7 +630,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Google ads SocialAccount id. |  |
-| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **fromDate** | **DateOnly?** | Defaults to 30 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | Defaults to today. | [optional]  |
 | **campaignId** | **string?** | Numeric Google campaign id filter. | [optional]  |
@@ -778,7 +780,7 @@ catch (ApiException e)
 
 <a id="listlocalservicesleadconversations"></a>
 # **ListLocalServicesLeadConversations**
-> ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations (string leadId, string accountId, string? customerId = null, string? pageToken = null)
+> ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations (string leadId, string accountId, string? adAccountId = null, string? customerId = null, string? pageToken = null)
 
 List lead conversations
 
@@ -810,13 +812,14 @@ namespace Example
             var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
             var leadId = "leadId_example";  // string | Numeric lead id from /v1/ads/local-services/leads.
             var accountId = "accountId_example";  // string | Google ads SocialAccount id.
-            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var pageToken = "pageToken_example";  // string? | Cursor from paging.nextPageToken of the previous page. (optional) 
 
             try
             {
                 // List lead conversations
-                ListLocalServicesLeadConversations200Response result = apiInstance.ListLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
+                ListLocalServicesLeadConversations200Response result = apiInstance.ListLocalServicesLeadConversations(leadId, accountId, adAccountId, customerId, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -837,7 +840,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List lead conversations
-    ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
+    ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, adAccountId, customerId, pageToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -856,7 +859,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **leadId** | **string** | Numeric lead id from /v1/ads/local-services/leads. |  |
 | **accountId** | **string** | Google ads SocialAccount id. |  |
-| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **pageToken** | **string?** | Cursor from paging.nextPageToken of the previous page. | [optional]  |
 
 ### Return type
@@ -888,7 +892,7 @@ catch (ApiException e)
 
 <a id="listlocalservicesleads"></a>
 # **ListLocalServicesLeads**
-> ListLocalServicesLeads200Response ListLocalServicesLeads (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? leadType = null, string? leadStatus = null, bool? chargedOnly = null, string? pageToken = null)
+> ListLocalServicesLeads200Response ListLocalServicesLeads (string accountId, string? adAccountId = null, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? leadType = null, string? leadStatus = null, bool? chargedOnly = null, string? pageToken = null)
 
 Google Local Services Ads leads
 
@@ -919,7 +923,8 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Google ads SocialAccount id.
-            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Leads created at/after this day. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Leads created at/before this day. (optional) 
             var leadType = "PHONE_CALL";  // string? |  (optional) 
@@ -930,7 +935,7 @@ namespace Example
             try
             {
                 // Google Local Services Ads leads
-                ListLocalServicesLeads200Response result = apiInstance.ListLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+                ListLocalServicesLeads200Response result = apiInstance.ListLocalServicesLeads(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -951,7 +956,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Google Local Services Ads leads
-    ApiResponse<ListLocalServicesLeads200Response> response = apiInstance.ListLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+    ApiResponse<ListLocalServicesLeads200Response> response = apiInstance.ListLocalServicesLeadsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -969,7 +974,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Google ads SocialAccount id. |  |
-| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **fromDate** | **DateOnly?** | Leads created at/after this day. | [optional]  |
 | **toDate** | **DateOnly?** | Leads created at/before this day. | [optional]  |
 | **leadType** | **string?** |  | [optional]  |
@@ -1006,11 +1012,11 @@ catch (ApiException e)
 
 <a id="queryadinsights"></a>
 # **QueryAdInsights**
-> QueryAdInsights200Response QueryAdInsights (string accountId, string? objectId = null, string? query = null, string? customerId = null, string? pageToken = null, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
+> QueryAdInsights200Response QueryAdInsights (string accountId, string? objectId = null, string? query = null, string? adAccountId = null, string? customerId = null, string? pageToken = null, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
 
 Flexible live insights query
 
-Live, flexible insights query. The account's platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the node; `level` sets row granularity. Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via `query` (campaign/keyword/search-term/geo/demographic/asset/shopping resources, `change_event`, any `segments.*`) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow `paging.nextPageToken` with `pageToken`. `customerId` is only needed when the connection has several Google Ads accounts. Semantic validation is Google's: an invalid query returns a 400 carrying Google's message (note: selecting `segments.date` requires a finite date filter). 
+Live, flexible insights query. The account's platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the node; `level` sets row granularity. Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via `query` (campaign/keyword/search-term/geo/demographic/asset/shopping resources, `change_event`, any `segments.*`) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow `paging.nextPageToken` with `pageToken`. `adAccountId` (alias `customerId`) is only needed when the connection has several Google Ads accounts. Semantic validation is Google's: an invalid query returns a 400 carrying Google's message (note: selecting `segments.date` requires a finite date filter). 
 
 ### Example
 ```csharp
@@ -1039,7 +1045,8 @@ namespace Example
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
             var objectId = "objectId_example";  // string? | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id). (optional) 
             var query = "query_example";  // string? | Google only (required there): the GAQL SELECT statement to run. (optional) 
-            var customerId = "customerId_example";  // string? | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var pageToken = "pageToken_example";  // string? | Google only: cursor from paging.nextPageToken of the previous page. (optional) 
             var level = "ad";  // string? | Row granularity (optional) 
             var fields = "fields_example";  // string? | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set. (optional) 
@@ -1059,7 +1066,7 @@ namespace Example
             try
             {
                 // Flexible live insights query
-                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1080,7 +1087,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Flexible live insights query
-    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1100,7 +1107,8 @@ catch (ApiException e)
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. |  |
 | **objectId** | **string?** | Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional]  |
 | **query** | **string?** | Google only (required there): the GAQL SELECT statement to run. | [optional]  |
-| **customerId** | **string?** | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional]  |
+| **adAccountId** | **string?** | Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **pageToken** | **string?** | Google only: cursor from paging.nextPageToken of the previous page. | [optional]  |
 | **level** | **string?** | Row granularity | [optional]  |
 | **fields** | **string?** | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional]  |

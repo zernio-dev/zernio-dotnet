@@ -153,7 +153,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -161,7 +162,7 @@ namespace Zernio.Api
         /// <param name="adGroupId">Alias of adSetId, kept for existing callers. (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>GetAdsSearchTerms200Response</returns>
-        GetAdsSearchTerms200Response GetAdsSearchTerms(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default);
+        GetAdsSearchTerms200Response GetAdsSearchTerms(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default);
 
         /// <summary>
         /// Google Ads search terms report
@@ -171,7 +172,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -179,7 +181,7 @@ namespace Zernio.Api
         /// <param name="adGroupId">Alias of adSetId, kept for existing callers. (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ApiResponse of GetAdsSearchTerms200Response</returns>
-        ApiResponse<GetAdsSearchTerms200Response> GetAdsSearchTermsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default);
+        ApiResponse<GetAdsSearchTerms200Response> GetAdsSearchTermsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default);
         /// <summary>
         /// Get campaign analytics
         /// </summary>
@@ -218,10 +220,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ListLocalServicesLeadConversations200Response</returns>
-        ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? customerId = default, string? pageToken = default);
+        ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default);
 
         /// <summary>
         /// List lead conversations
@@ -232,10 +235,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListLocalServicesLeadConversations200Response</returns>
-        ApiResponse<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsWithHttpInfo(string leadId, string accountId, string? customerId = default, string? pageToken = default);
+        ApiResponse<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsWithHttpInfo(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default);
         /// <summary>
         /// Google Local Services Ads leads
         /// </summary>
@@ -244,7 +248,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -252,7 +257,7 @@ namespace Zernio.Api
         /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ListLocalServicesLeads200Response</returns>
-        ListLocalServicesLeads200Response ListLocalServicesLeads(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default);
+        ListLocalServicesLeads200Response ListLocalServicesLeads(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default);
 
         /// <summary>
         /// Google Local Services Ads leads
@@ -262,7 +267,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -270,18 +276,19 @@ namespace Zernio.Api
         /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListLocalServicesLeads200Response</returns>
-        ApiResponse<ListLocalServicesLeads200Response> ListLocalServicesLeadsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default);
+        ApiResponse<ListLocalServicesLeads200Response> ListLocalServicesLeadsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default);
         /// <summary>
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -298,19 +305,20 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>QueryAdInsights200Response</returns>
-        QueryAdInsights200Response QueryAdInsights(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        QueryAdInsights200Response QueryAdInsights(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
 
         /// <summary>
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -327,7 +335,7 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of QueryAdInsights200Response</returns>
-        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
         #endregion Synchronous Operations
     }
 
@@ -472,7 +480,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -481,7 +490,7 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdsSearchTerms200Response</returns>
-        System.Threading.Tasks.Task<GetAdsSearchTerms200Response> GetAdsSearchTermsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdsSearchTerms200Response> GetAdsSearchTermsAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Google Ads search terms report
@@ -491,7 +500,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -500,7 +510,7 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdsSearchTerms200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdsSearchTerms200Response>> GetAdsSearchTermsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdsSearchTerms200Response>> GetAdsSearchTermsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get campaign analytics
         /// </summary>
@@ -541,11 +551,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLocalServicesLeadConversations200Response</returns>
-        System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List lead conversations
@@ -556,11 +567,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLocalServicesLeadConversations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListLocalServicesLeadConversations200Response>> ListLocalServicesLeadConversationsWithHttpInfoAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListLocalServicesLeadConversations200Response>> ListLocalServicesLeadConversationsWithHttpInfoAsync(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Google Local Services Ads leads
         /// </summary>
@@ -569,7 +581,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -578,7 +591,7 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLocalServicesLeads200Response</returns>
-        System.Threading.Tasks.Task<ListLocalServicesLeads200Response> ListLocalServicesLeadsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListLocalServicesLeads200Response> ListLocalServicesLeadsAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Google Local Services Ads leads
@@ -588,7 +601,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -597,18 +611,19 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLocalServicesLeads200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListLocalServicesLeads200Response>> ListLocalServicesLeadsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListLocalServicesLeads200Response>> ListLocalServicesLeadsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -626,19 +641,20 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueryAdInsights200Response</returns>
-        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -656,7 +672,7 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1590,7 +1606,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -1598,9 +1615,9 @@ namespace Zernio.Api
         /// <param name="adGroupId">Alias of adSetId, kept for existing callers. (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>GetAdsSearchTerms200Response</returns>
-        public GetAdsSearchTerms200Response GetAdsSearchTerms(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default)
+        public GetAdsSearchTerms200Response GetAdsSearchTerms(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> localVarResponse = GetAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
+            Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> localVarResponse = GetAdsSearchTermsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
             return localVarResponse.Data;
         }
 
@@ -1609,7 +1626,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -1617,7 +1635,7 @@ namespace Zernio.Api
         /// <param name="adGroupId">Alias of adSetId, kept for existing callers. (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ApiResponse of GetAdsSearchTerms200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> GetAdsSearchTermsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default)
+        public Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> GetAdsSearchTermsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1640,6 +1658,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -1693,7 +1715,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -1702,9 +1725,9 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdsSearchTerms200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdsSearchTerms200Response> GetAdsSearchTermsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdsSearchTerms200Response> GetAdsSearchTermsAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> localVarResponse = await GetAdsSearchTermsWithHttpInfoAsync(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdsSearchTerms200Response> localVarResponse = await GetAdsSearchTermsWithHttpInfoAsync(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1713,7 +1736,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Defaults to 30 days ago. (optional)</param>
         /// <param name="toDate">Defaults to today. (optional)</param>
         /// <param name="campaignId">Numeric Google campaign id filter. (optional)</param>
@@ -1722,7 +1746,7 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdsSearchTerms200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsSearchTerms200Response>> GetAdsSearchTermsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsSearchTerms200Response>> GetAdsSearchTermsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? campaignId = default, string? adSetId = default, string? adGroupId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1747,6 +1771,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -1977,12 +2005,13 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ListLocalServicesLeadConversations200Response</returns>
-        public ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? customerId = default, string? pageToken = default)
+        public ListLocalServicesLeadConversations200Response ListLocalServicesLeadConversations(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default)
         {
-            Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
+            Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = ListLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, adAccountId, customerId, pageToken);
             return localVarResponse.Data;
         }
 
@@ -1992,10 +2021,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListLocalServicesLeadConversations200Response</returns>
-        public Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsWithHttpInfo(string leadId, string accountId, string? customerId = default, string? pageToken = default)
+        public Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsWithHttpInfo(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default)
         {
             // verify the required parameter 'leadId' is set
             if (leadId == null)
@@ -2023,6 +2053,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("leadId", Zernio.Client.ClientUtils.ParameterToString(leadId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -2057,13 +2091,14 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLocalServicesLeadConversations200Response</returns>
-        public async System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListLocalServicesLeadConversations200Response> ListLocalServicesLeadConversationsAsync(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = await ListLocalServicesLeadConversationsWithHttpInfoAsync(leadId, accountId, customerId, pageToken, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response> localVarResponse = await ListLocalServicesLeadConversationsWithHttpInfoAsync(leadId, accountId, adAccountId, customerId, pageToken, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2073,11 +2108,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="leadId">Numeric lead id from /v1/ads/local-services/leads.</param>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLocalServicesLeadConversations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response>> ListLocalServicesLeadConversationsWithHttpInfoAsync(string leadId, string accountId, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLocalServicesLeadConversations200Response>> ListLocalServicesLeadConversationsWithHttpInfoAsync(string leadId, string accountId, string? adAccountId = default, string? customerId = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'leadId' is set
             if (leadId == null)
@@ -2107,6 +2143,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("leadId", Zernio.Client.ClientUtils.ParameterToString(leadId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -2141,7 +2181,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -2149,9 +2190,9 @@ namespace Zernio.Api
         /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ListLocalServicesLeads200Response</returns>
-        public ListLocalServicesLeads200Response ListLocalServicesLeads(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default)
+        public ListLocalServicesLeads200Response ListLocalServicesLeads(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default)
         {
-            Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> localVarResponse = ListLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> localVarResponse = ListLocalServicesLeadsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
             return localVarResponse.Data;
         }
 
@@ -2160,7 +2201,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -2168,7 +2210,7 @@ namespace Zernio.Api
         /// <param name="chargedOnly">true &#x3D; only leads Google charged for. (optional)</param>
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListLocalServicesLeads200Response</returns>
-        public Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> ListLocalServicesLeadsWithHttpInfo(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default)
+        public Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> ListLocalServicesLeadsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2191,6 +2233,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -2244,7 +2290,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -2253,9 +2300,9 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLocalServicesLeads200Response</returns>
-        public async System.Threading.Tasks.Task<ListLocalServicesLeads200Response> ListLocalServicesLeadsAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListLocalServicesLeads200Response> ListLocalServicesLeadsAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> localVarResponse = await ListLocalServicesLeadsWithHttpInfoAsync(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListLocalServicesLeads200Response> localVarResponse = await ListLocalServicesLeadsWithHttpInfoAsync(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2264,7 +2311,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Google ads SocialAccount id.</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="fromDate">Leads created at/after this day. (optional)</param>
         /// <param name="toDate">Leads created at/before this day. (optional)</param>
         /// <param name="leadType"> (optional)</param>
@@ -2273,7 +2321,7 @@ namespace Zernio.Api
         /// <param name="pageToken">Cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLocalServicesLeads200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLocalServicesLeads200Response>> ListLocalServicesLeadsWithHttpInfoAsync(string accountId, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLocalServicesLeads200Response>> ListLocalServicesLeadsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? leadType = default, string? leadStatus = default, bool? chargedOnly = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2298,6 +2346,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -2348,13 +2400,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -2371,20 +2424,21 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>QueryAdInsights200Response</returns>
-        public QueryAdInsights200Response QueryAdInsights(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        public QueryAdInsights200Response QueryAdInsights(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
         {
-            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -2401,7 +2455,7 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of QueryAdInsights200Response</returns>
-        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2431,6 +2485,10 @@ namespace Zernio.Api
             if (query != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
             }
             if (customerId != null)
             {
@@ -2517,13 +2575,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -2541,20 +2600,21 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueryAdInsights200Response</returns>
-        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
         /// <param name="objectId">Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). (optional)</param>
         /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
-        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="adAccountId">Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
@@ -2572,7 +2632,7 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string? objectId = default, string? query = default, string? adAccountId = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2604,6 +2664,10 @@ namespace Zernio.Api
             if (query != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
             }
             if (customerId != null)
             {

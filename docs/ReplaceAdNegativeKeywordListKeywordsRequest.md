@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **string** | Zernio SocialAccount id. | 
-**CustomerId** | **string** | Connected Google Ads customer id, without dashes. Required when the connection has multiple customers. | [optional] 
+**AdAccountId** | **string** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] 
+**CustomerId** | **string** | Alias of adAccountId, kept for existing callers | [optional] 
 **Platform** | **string** | Optional courtesy field. The resolved account or campaign determines support; other platforms return 501. | [optional] 
 **Keywords** | [**List&lt;KeywordEntry&gt;**](KeywordEntry.md) | Full desired keyword set. Bare strings use broad match. Send [] to clear the list. | 
 

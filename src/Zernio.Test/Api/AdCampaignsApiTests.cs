@@ -358,8 +358,9 @@ namespace Zernio.Test.Api
             //string campaignId = null;
             //string accountId = null;
             //string platform = null;
+            //string? adAccountId = null;
             //string? customerId = null;
-            //var response = instance.GetCampaignBidding(campaignId, accountId, platform, customerId);
+            //var response = instance.GetCampaignBidding(campaignId, accountId, platform, adAccountId, customerId);
             //Assert.IsType<GetCampaignBidding200Response>(response);
         }
 
@@ -410,8 +411,9 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string adSetId = null;
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
-            //var response = instance.ListAdGroupAssets(adSetId, accountId, customerId);
+            //var response = instance.ListAdGroupAssets(adSetId, accountId, adAccountId, customerId);
             //Assert.IsType<ListAdGroupAssets200Response>(response);
         }
 
@@ -486,10 +488,11 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
-            //var response = instance.ListBidStrategies(accountId, customerId, fromDate, toDate);
+            //var response = instance.ListBidStrategies(accountId, adAccountId, customerId, fromDate, toDate);
             //Assert.IsType<ListBidStrategies200Response>(response);
         }
 
@@ -502,8 +505,9 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string campaignId = null;
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
-            //var response = instance.ListCampaignAssets(campaignId, accountId, customerId);
+            //var response = instance.ListCampaignAssets(campaignId, accountId, adAccountId, customerId);
             //Assert.IsType<ListCampaignAssets200Response>(response);
         }
 

@@ -2306,7 +2306,7 @@ catch (ApiException e)
 
 <a id="getcampaignbidding"></a>
 # **GetCampaignBidding**
-> GetCampaignBidding200Response GetCampaignBidding (string campaignId, string accountId, string platform, string? customerId = null)
+> GetCampaignBidding200Response GetCampaignBidding (string campaignId, string accountId, string platform, string? adAccountId = null, string? customerId = null)
 
 Read a campaign's current bidding
 
@@ -2339,12 +2339,13 @@ namespace Example
             var campaignId = "campaignId_example";  // string | Numeric Google platform campaign id.
             var accountId = "accountId_example";  // string | Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.
             var platform = "google";  // string | Required: campaign IDs are not globally unique. Only \"google\" is supported today.
-            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Read a campaign's current bidding
-                GetCampaignBidding200Response result = apiInstance.GetCampaignBidding(campaignId, accountId, platform, customerId);
+                GetCampaignBidding200Response result = apiInstance.GetCampaignBidding(campaignId, accountId, platform, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2365,7 +2366,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Read a campaign's current bidding
-    ApiResponse<GetCampaignBidding200Response> response = apiInstance.GetCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId);
+    ApiResponse<GetCampaignBidding200Response> response = apiInstance.GetCampaignBiddingWithHttpInfo(campaignId, accountId, platform, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2385,7 +2386,8 @@ catch (ApiException e)
 | **campaignId** | **string** | Numeric Google platform campaign id. |  |
 | **accountId** | **string** | Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. |  |
 | **platform** | **string** | Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. |  |
-| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -2405,7 +2407,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign bidding |  -  |
-| **400** | Invalid input (accountId, customerId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
+| **400** | Invalid input (accountId, adAccountId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
@@ -2650,7 +2652,7 @@ catch (ApiException e)
 
 <a id="listadgroupassets"></a>
 # **ListAdGroupAssets**
-> ListAdGroupAssets200Response ListAdGroupAssets (string adSetId, string accountId, string? customerId = null)
+> ListAdGroupAssets200Response ListAdGroupAssets (string adSetId, string accountId, string? adAccountId = null, string? customerId = null)
 
 List ad-group assets
 
@@ -2682,12 +2684,13 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Numeric Google platform id.
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
 
             try
             {
                 // List ad-group assets
-                ListAdGroupAssets200Response result = apiInstance.ListAdGroupAssets(adSetId, accountId, customerId);
+                ListAdGroupAssets200Response result = apiInstance.ListAdGroupAssets(adSetId, accountId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2708,7 +2711,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ad-group assets
-    ApiResponse<ListAdGroupAssets200Response> response = apiInstance.ListAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId);
+    ApiResponse<ListAdGroupAssets200Response> response = apiInstance.ListAdGroupAssetsWithHttpInfo(adSetId, accountId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2727,6 +2730,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adSetId** | **string** | Numeric Google platform id. |  |
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 
 ### Return type
@@ -3117,7 +3121,7 @@ catch (ApiException e)
 
 <a id="listbidstrategies"></a>
 # **ListBidStrategies**
-> ListBidStrategies200Response ListBidStrategies (string accountId, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
+> ListBidStrategies200Response ListBidStrategies (string accountId, string? adAccountId = null, string? customerId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
 
 List portfolio bid strategies
 
@@ -3148,14 +3152,15 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Google ads SocialAccount id.
-            var customerId = "customerId_example";  // string? | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to 30 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Defaults to today. (optional) 
 
             try
             {
                 // List portfolio bid strategies
-                ListBidStrategies200Response result = apiInstance.ListBidStrategies(accountId, customerId, fromDate, toDate);
+                ListBidStrategies200Response result = apiInstance.ListBidStrategies(accountId, adAccountId, customerId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3176,7 +3181,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List portfolio bid strategies
-    ApiResponse<ListBidStrategies200Response> response = apiInstance.ListBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate);
+    ApiResponse<ListBidStrategies200Response> response = apiInstance.ListBidStrategiesWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3194,7 +3199,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Google ads SocialAccount id. |  |
-| **customerId** | **string?** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **fromDate** | **DateOnly?** | Defaults to 30 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | Defaults to today. | [optional]  |
 
@@ -3227,7 +3233,7 @@ catch (ApiException e)
 
 <a id="listcampaignassets"></a>
 # **ListCampaignAssets**
-> ListCampaignAssets200Response ListCampaignAssets (string campaignId, string accountId, string? customerId = null)
+> ListCampaignAssets200Response ListCampaignAssets (string campaignId, string accountId, string? adAccountId = null, string? customerId = null)
 
 List campaign assets
 
@@ -3259,12 +3265,13 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Numeric Google platform id.
             var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
 
             try
             {
                 // List campaign assets
-                ListCampaignAssets200Response result = apiInstance.ListCampaignAssets(campaignId, accountId, customerId);
+                ListCampaignAssets200Response result = apiInstance.ListCampaignAssets(campaignId, accountId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3285,7 +3292,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List campaign assets
-    ApiResponse<ListCampaignAssets200Response> response = apiInstance.ListCampaignAssetsWithHttpInfo(campaignId, accountId, customerId);
+    ApiResponse<ListCampaignAssets200Response> response = apiInstance.ListCampaignAssetsWithHttpInfo(campaignId, accountId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3304,6 +3311,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Numeric Google platform id. |  |
 | **accountId** | **string** |  |  |
+| **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 
 ### Return type

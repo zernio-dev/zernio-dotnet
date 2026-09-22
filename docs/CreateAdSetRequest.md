@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **CampaignId** | **string** | Google platform campaign ID (numeric) the ad group is created under. | 
 **Name** | **string** |  | 
 **Status** | **string** |  | [optional] [default to StatusEnum.PAUSED]
-**CustomerId** | **string** | Numeric Google Ads customer id. Only required when the connection has more than one. | [optional] 
+**AdAccountId** | **string** | Platform ad account ID (Google customer ID, digits only). Only required when the connection has more than one. | [optional] 
+**CustomerId** | **string** | Alias of adAccountId, kept for existing callers | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

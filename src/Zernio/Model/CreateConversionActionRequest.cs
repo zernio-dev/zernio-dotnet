@@ -63,12 +63,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateConversionActionRequest" /> class.
         /// </summary>
         /// <param name="accountId">SocialAccount ID. Must be a &#x60;googleads&#x60; account. (required).</param>
-        /// <param name="customerId">Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer..</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
         /// <param name="name">name (required).</param>
         /// <param name="type">Only WEBPAGE is supported for creation today. (required).</param>
         /// <param name="defaultValue">Default conversion value used when an event doesn&#39;t carry its own value..</param>
         /// <param name="alwaysUseDefaultValue">When true, always use defaultValue and ignore any value sent with the event. Defaults to true when defaultValue is set..</param>
-        public CreateConversionActionRequest(string accountId = default, string customerId = default, string name = default, TypeEnum type = default, decimal defaultValue = default, bool alwaysUseDefaultValue = default)
+        public CreateConversionActionRequest(string accountId = default, string adAccountId = default, string customerId = default, string name = default, TypeEnum type = default, decimal defaultValue = default, bool alwaysUseDefaultValue = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -83,6 +84,7 @@ namespace Zernio.Model
             }
             this.Name = name;
             this.Type = type;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
             this.DefaultValue = defaultValue;
             this.AlwaysUseDefaultValue = alwaysUseDefaultValue;
@@ -96,10 +98,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer.
+        /// Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer.
         /// </summary>
-        /// <value>Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer.</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -131,6 +141,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateConversionActionRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");

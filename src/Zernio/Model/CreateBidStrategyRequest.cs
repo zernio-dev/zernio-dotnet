@@ -79,12 +79,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateBidStrategyRequest" /> class.
         /// </summary>
         /// <param name="accountId">Google ads SocialAccount id. (required).</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer..</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
         /// <param name="name">name (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="targetCpa">Required when type is TARGET_CPA, in the account&#39;s currency units..</param>
         /// <param name="targetRoas">Required when type is TARGET_ROAS; a multiplier (2.0 &#x3D; 2.0x)..</param>
-        public CreateBidStrategyRequest(string accountId = default, string customerId = default, string name = default, TypeEnum type = default, decimal targetCpa = default, decimal targetRoas = default)
+        public CreateBidStrategyRequest(string accountId = default, string adAccountId = default, string customerId = default, string name = default, TypeEnum type = default, decimal targetCpa = default, decimal targetRoas = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -99,6 +100,7 @@ namespace Zernio.Model
             }
             this.Name = name;
             this.Type = type;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
             this.TargetCpa = targetCpa;
             this.TargetRoas = targetRoas;
@@ -112,10 +114,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer.
+        /// Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer.
         /// </summary>
-        /// <value>Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer.</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -147,6 +157,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateBidStrategyRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");

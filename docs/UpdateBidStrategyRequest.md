@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **string** | Google ads SocialAccount id. | 
-**CustomerId** | **string** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] 
+**AdAccountId** | **string** | Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] 
+**CustomerId** | **string** | Alias of adAccountId, kept for existing callers | [optional] 
 **Name** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
 **TargetCpa** | **decimal** |  | [optional] 

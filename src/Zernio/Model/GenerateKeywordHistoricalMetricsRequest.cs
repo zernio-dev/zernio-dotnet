@@ -67,14 +67,15 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GenerateKeywordHistoricalMetricsRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio googleads SocialAccount id. (required).</param>
-        /// <param name="customerId">Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts..</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID, digits only)..</param>
+        /// <param name="customerId">Alias of adAccountId, kept for existing callers.</param>
         /// <param name="keywords">keywords (required).</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes. Omitted &#x3D; worldwide..</param>
         /// <param name="languageConstantId">Google languageConstant id (1000 &#x3D; English). (default to &quot;1000&quot;).</param>
         /// <param name="network">network (default to NetworkEnum.GOOGLESEARCH).</param>
         /// <param name="includeAdultKeywords">includeAdultKeywords.</param>
         /// <param name="includeAverageCpc">Adds averageCpcMicros to each row&#39;s keywordMetrics..</param>
-        public GenerateKeywordHistoricalMetricsRequest(string accountId = default, string customerId = default, List<string> keywords = default, List<string> countries = default, string languageConstantId = @"1000", NetworkEnum? network = NetworkEnum.GOOGLESEARCH, bool includeAdultKeywords = default, bool includeAverageCpc = default)
+        public GenerateKeywordHistoricalMetricsRequest(string accountId = default, string adAccountId = default, string customerId = default, List<string> keywords = default, List<string> countries = default, string languageConstantId = @"1000", NetworkEnum? network = NetworkEnum.GOOGLESEARCH, bool includeAdultKeywords = default, bool includeAverageCpc = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -88,6 +89,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("keywords is a required property for GenerateKeywordHistoricalMetricsRequest and cannot be null");
             }
             this.Keywords = keywords;
+            this.AdAccountId = adAccountId;
             this.CustomerId = customerId;
             this.Countries = countries;
             // use default value if no "languageConstantId" provided
@@ -105,10 +107,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts.
+        /// Platform ad account ID (Google customer ID, digits only).
         /// </summary>
-        /// <value>Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts.</value>
+        /// <value>Platform ad account ID (Google customer ID, digits only).</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
+
+        /// <summary>
+        /// Alias of adAccountId, kept for existing callers
+        /// </summary>
+        /// <value>Alias of adAccountId, kept for existing callers</value>
         [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [Obsolete]
         public string CustomerId { get; set; }
 
         /// <summary>
@@ -153,6 +163,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GenerateKeywordHistoricalMetricsRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");

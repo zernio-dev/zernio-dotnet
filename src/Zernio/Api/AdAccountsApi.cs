@@ -234,10 +234,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>DeleteAdNegativeKeywordList200Response</returns>
-        DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default);
+        DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default);
 
         /// <summary>
         /// Delete a negative keyword list
@@ -248,10 +249,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of DeleteAdNegativeKeywordList200Response</returns>
-        ApiResponse<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default);
+        ApiResponse<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default);
         /// <summary>
         /// Delete a value rule set
         /// </summary>
@@ -338,10 +340,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>GetAdNegativeKeywordList200Response</returns>
-        GetAdNegativeKeywordList200Response GetAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default);
+        GetAdNegativeKeywordList200Response GetAdNegativeKeywordList(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default);
 
         /// <summary>
         /// Get a negative keyword list
@@ -352,10 +355,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of GetAdNegativeKeywordList200Response</returns>
-        ApiResponse<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default);
+        ApiResponse<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default);
         /// <summary>
         /// Ad account change / audit log
         /// </summary>
@@ -520,9 +524,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAccountCallouts200Response</returns>
-        ListAccountCallouts200Response ListAccountCallouts(string accountId, string? customerId = default);
+        ListAccountCallouts200Response ListAccountCallouts(string accountId, string? adAccountId = default, string? customerId = default);
 
         /// <summary>
         /// List account callouts
@@ -532,9 +537,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAccountCallouts200Response</returns>
-        ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? customerId = default);
+        ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default);
         /// <summary>
         /// List account sitelinks
         /// </summary>
@@ -543,9 +549,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAccountSitelinks200Response</returns>
-        ListAccountSitelinks200Response ListAccountSitelinks(string accountId, string? customerId = default);
+        ListAccountSitelinks200Response ListAccountSitelinks(string accountId, string? adAccountId = default, string? customerId = default);
 
         /// <summary>
         /// List account sitelinks
@@ -555,9 +562,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAccountSitelinks200Response</returns>
-        ApiResponse<ListAccountSitelinks200Response> ListAccountSitelinksWithHttpInfo(string accountId, string? customerId = default);
+        ApiResponse<ListAccountSitelinks200Response> ListAccountSitelinksWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default);
         /// <summary>
         /// List account snippets
         /// </summary>
@@ -566,9 +574,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAccountStructuredSnippets200Response</returns>
-        ListAccountStructuredSnippets200Response ListAccountStructuredSnippets(string accountId, string? customerId = default);
+        ListAccountStructuredSnippets200Response ListAccountStructuredSnippets(string accountId, string? adAccountId = default, string? customerId = default);
 
         /// <summary>
         /// List account snippets
@@ -578,9 +587,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAccountStructuredSnippets200Response</returns>
-        ApiResponse<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsWithHttpInfo(string accountId, string? customerId = default);
+        ApiResponse<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -641,10 +651,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ListAdNegativeKeywordLists200Response</returns>
-        ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists(string accountId, string? customerId = default, string? platform = default);
+        ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default);
 
         /// <summary>
         /// List negative keyword lists
@@ -654,10 +665,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of ListAdNegativeKeywordLists200Response</returns>
-        ApiResponse<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsWithHttpInfo(string accountId, string? customerId = default, string? platform = default);
+        ApiResponse<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default);
         /// <summary>
         /// A/B tests and lift studies
         /// </summary>
@@ -868,10 +880,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <returns>ListTikTokAdPixels200Response</returns>
-        ListTikTokAdPixels200Response ListTikTokAdPixels(string accountId, string? advertiserId = default, string? code = default);
+        ListTikTokAdPixels200Response ListTikTokAdPixels(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default);
 
         /// <summary>
         /// List TikTok ad pixels
@@ -881,10 +894,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <returns>ApiResponse of ListTikTokAdPixels200Response</returns>
-        ApiResponse<ListTikTokAdPixels200Response> ListTikTokAdPixelsWithHttpInfo(string accountId, string? advertiserId = default, string? code = default);
+        ApiResponse<ListTikTokAdPixels200Response> ListTikTokAdPixelsWithHttpInfo(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default);
         /// <summary>
         /// List value rule sets
         /// </summary>
@@ -1390,11 +1404,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteAdNegativeKeywordList200Response</returns>
-        System.Threading.Tasks.Task<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a negative keyword list
@@ -1405,11 +1420,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteAdNegativeKeywordList200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteAdNegativeKeywordList200Response>> DeleteAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<DeleteAdNegativeKeywordList200Response>> DeleteAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a value rule set
         /// </summary>
@@ -1502,11 +1518,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdNegativeKeywordList200Response</returns>
-        System.Threading.Tasks.Task<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a negative keyword list
@@ -1517,11 +1534,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdNegativeKeywordList200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdNegativeKeywordList200Response>> GetAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdNegativeKeywordList200Response>> GetAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Ad account change / audit log
         /// </summary>
@@ -1698,10 +1716,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountCallouts200Response</returns>
-        System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List account callouts
@@ -1711,10 +1730,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountCallouts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List account sitelinks
         /// </summary>
@@ -1723,10 +1743,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountSitelinks200Response</returns>
-        System.Threading.Tasks.Task<ListAccountSitelinks200Response> ListAccountSitelinksAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAccountSitelinks200Response> ListAccountSitelinksAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List account sitelinks
@@ -1736,10 +1757,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountSitelinks200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAccountSitelinks200Response>> ListAccountSitelinksWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAccountSitelinks200Response>> ListAccountSitelinksWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List account snippets
         /// </summary>
@@ -1748,10 +1770,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountStructuredSnippets200Response</returns>
-        System.Threading.Tasks.Task<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List account snippets
@@ -1761,10 +1784,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountStructuredSnippets200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAccountStructuredSnippets200Response>> ListAccountStructuredSnippetsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAccountStructuredSnippets200Response>> ListAccountStructuredSnippetsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -1829,11 +1853,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdNegativeKeywordLists200Response</returns>
-        System.Threading.Tasks.Task<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsAsync(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List negative keyword lists
@@ -1843,11 +1868,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdNegativeKeywordLists200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdNegativeKeywordLists200Response>> ListAdNegativeKeywordListsWithHttpInfoAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdNegativeKeywordLists200Response>> ListAdNegativeKeywordListsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// A/B tests and lift studies
         /// </summary>
@@ -2074,11 +2100,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListTikTokAdPixels200Response</returns>
-        System.Threading.Tasks.Task<ListTikTokAdPixels200Response> ListTikTokAdPixelsAsync(string accountId, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListTikTokAdPixels200Response> ListTikTokAdPixelsAsync(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List TikTok ad pixels
@@ -2088,11 +2115,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListTikTokAdPixels200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListTikTokAdPixels200Response>> ListTikTokAdPixelsWithHttpInfoAsync(string accountId, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListTikTokAdPixels200Response>> ListTikTokAdPixelsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List value rule sets
         /// </summary>
@@ -3819,12 +3847,13 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>DeleteAdNegativeKeywordList200Response</returns>
-        public DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default)
+        public DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default)
         {
-            Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+            Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
             return localVarResponse.Data;
         }
 
@@ -3834,10 +3863,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of DeleteAdNegativeKeywordList200Response</returns>
-        public Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default)
+        public Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default)
         {
             // verify the required parameter 'listId' is set
             if (listId == null)
@@ -3865,6 +3895,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -3899,13 +3933,14 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteAdNegativeKeywordList200Response</returns>
-        public async System.Threading.Tasks.Task<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<DeleteAdNegativeKeywordList200Response> DeleteAdNegativeKeywordListAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = await DeleteAdNegativeKeywordListWithHttpInfoAsync(listId, accountId, customerId, platform, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response> localVarResponse = await DeleteAdNegativeKeywordListWithHttpInfoAsync(listId, accountId, adAccountId, customerId, platform, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3915,11 +3950,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteAdNegativeKeywordList200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response>> DeleteAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteAdNegativeKeywordList200Response>> DeleteAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'listId' is set
             if (listId == null)
@@ -3949,6 +3985,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -4453,12 +4493,13 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>GetAdNegativeKeywordList200Response</returns>
-        public GetAdNegativeKeywordList200Response GetAdNegativeKeywordList(string listId, string accountId, string? customerId = default, string? platform = default)
+        public GetAdNegativeKeywordList200Response GetAdNegativeKeywordList(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default)
         {
-            Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = GetAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+            Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = GetAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
             return localVarResponse.Data;
         }
 
@@ -4468,10 +4509,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of GetAdNegativeKeywordList200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? customerId = default, string? platform = default)
+        public Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListWithHttpInfo(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default)
         {
             // verify the required parameter 'listId' is set
             if (listId == null)
@@ -4499,6 +4541,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -4533,13 +4579,14 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdNegativeKeywordList200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdNegativeKeywordList200Response> GetAdNegativeKeywordListAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = await GetAdNegativeKeywordListWithHttpInfoAsync(listId, accountId, customerId, platform, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response> localVarResponse = await GetAdNegativeKeywordListWithHttpInfoAsync(listId, accountId, adAccountId, customerId, platform, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4549,11 +4596,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="listId"></param>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdNegativeKeywordList200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response>> GetAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdNegativeKeywordList200Response>> GetAdNegativeKeywordListWithHttpInfoAsync(string listId, string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'listId' is set
             if (listId == null)
@@ -4583,6 +4631,10 @@ namespace Zernio.Api
 
             localVarRequestOptions.PathParameters.Add("listId", Zernio.Client.ClientUtils.ParameterToString(listId)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -5577,11 +5629,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAccountCallouts200Response</returns>
-        public ListAccountCallouts200Response ListAccountCallouts(string accountId, string? customerId = default)
+        public ListAccountCallouts200Response ListAccountCallouts(string accountId, string? adAccountId = default, string? customerId = default)
         {
-            Zernio.Client.ApiResponse<ListAccountCallouts200Response> localVarResponse = ListAccountCalloutsWithHttpInfo(accountId, customerId);
+            Zernio.Client.ApiResponse<ListAccountCallouts200Response> localVarResponse = ListAccountCalloutsWithHttpInfo(accountId, adAccountId, customerId);
             return localVarResponse.Data;
         }
 
@@ -5590,9 +5643,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAccountCallouts200Response</returns>
-        public Zernio.Client.ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? customerId = default)
+        public Zernio.Client.ApiResponse<ListAccountCallouts200Response> ListAccountCalloutsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5615,6 +5669,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -5644,12 +5702,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountCallouts200Response</returns>
-        public async System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAccountCallouts200Response> ListAccountCalloutsAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAccountCallouts200Response> localVarResponse = await ListAccountCalloutsWithHttpInfoAsync(accountId, customerId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAccountCallouts200Response> localVarResponse = await ListAccountCalloutsWithHttpInfoAsync(accountId, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -5658,10 +5717,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountCallouts200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountCallouts200Response>> ListAccountCalloutsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5686,6 +5746,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -5716,11 +5780,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAccountSitelinks200Response</returns>
-        public ListAccountSitelinks200Response ListAccountSitelinks(string accountId, string? customerId = default)
+        public ListAccountSitelinks200Response ListAccountSitelinks(string accountId, string? adAccountId = default, string? customerId = default)
         {
-            Zernio.Client.ApiResponse<ListAccountSitelinks200Response> localVarResponse = ListAccountSitelinksWithHttpInfo(accountId, customerId);
+            Zernio.Client.ApiResponse<ListAccountSitelinks200Response> localVarResponse = ListAccountSitelinksWithHttpInfo(accountId, adAccountId, customerId);
             return localVarResponse.Data;
         }
 
@@ -5729,9 +5794,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAccountSitelinks200Response</returns>
-        public Zernio.Client.ApiResponse<ListAccountSitelinks200Response> ListAccountSitelinksWithHttpInfo(string accountId, string? customerId = default)
+        public Zernio.Client.ApiResponse<ListAccountSitelinks200Response> ListAccountSitelinksWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5754,6 +5820,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -5783,12 +5853,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountSitelinks200Response</returns>
-        public async System.Threading.Tasks.Task<ListAccountSitelinks200Response> ListAccountSitelinksAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAccountSitelinks200Response> ListAccountSitelinksAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAccountSitelinks200Response> localVarResponse = await ListAccountSitelinksWithHttpInfoAsync(accountId, customerId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAccountSitelinks200Response> localVarResponse = await ListAccountSitelinksWithHttpInfoAsync(accountId, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -5797,10 +5868,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountSitelinks200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountSitelinks200Response>> ListAccountSitelinksWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountSitelinks200Response>> ListAccountSitelinksWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5825,6 +5897,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -5855,11 +5931,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ListAccountStructuredSnippets200Response</returns>
-        public ListAccountStructuredSnippets200Response ListAccountStructuredSnippets(string accountId, string? customerId = default)
+        public ListAccountStructuredSnippets200Response ListAccountStructuredSnippets(string accountId, string? adAccountId = default, string? customerId = default)
         {
-            Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = ListAccountStructuredSnippetsWithHttpInfo(accountId, customerId);
+            Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = ListAccountStructuredSnippetsWithHttpInfo(accountId, adAccountId, customerId);
             return localVarResponse.Data;
         }
 
@@ -5868,9 +5945,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <returns>ApiResponse of ListAccountStructuredSnippets200Response</returns>
-        public Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsWithHttpInfo(string accountId, string? customerId = default)
+        public Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5893,6 +5971,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -5922,12 +6004,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccountStructuredSnippets200Response</returns>
-        public async System.Threading.Tasks.Task<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAccountStructuredSnippets200Response> ListAccountStructuredSnippetsAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = await ListAccountStructuredSnippetsWithHttpInfoAsync(accountId, customerId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = await ListAccountStructuredSnippetsWithHttpInfoAsync(accountId, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -5936,10 +6019,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccountStructuredSnippets200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response>> ListAccountStructuredSnippetsWithHttpInfoAsync(string accountId, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccountStructuredSnippets200Response>> ListAccountStructuredSnippetsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5964,6 +6048,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -6310,12 +6398,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ListAdNegativeKeywordLists200Response</returns>
-        public ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists(string accountId, string? customerId = default, string? platform = default)
+        public ListAdNegativeKeywordLists200Response ListAdNegativeKeywordLists(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default)
         {
-            Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = ListAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform);
+            Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = ListAdNegativeKeywordListsWithHttpInfo(accountId, adAccountId, customerId, platform);
             return localVarResponse.Data;
         }
 
@@ -6324,10 +6413,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <returns>ApiResponse of ListAdNegativeKeywordLists200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsWithHttpInfo(string accountId, string? customerId = default, string? platform = default)
+        public Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -6350,6 +6440,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -6383,13 +6477,14 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdNegativeKeywordLists200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdNegativeKeywordLists200Response> ListAdNegativeKeywordListsAsync(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = await ListAdNegativeKeywordListsWithHttpInfoAsync(accountId, customerId, platform, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response> localVarResponse = await ListAdNegativeKeywordListsWithHttpInfoAsync(accountId, adAccountId, customerId, platform, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -6398,11 +6493,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="customerId"> (optional)</param>
+        /// <param name="adAccountId"> (optional)</param>
+        /// <param name="customerId"> (optional) (deprecated)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdNegativeKeywordLists200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response>> ListAdNegativeKeywordListsWithHttpInfoAsync(string accountId, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdNegativeKeywordLists200Response>> ListAdNegativeKeywordListsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -6427,6 +6523,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (customerId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
@@ -7689,12 +7789,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <returns>ListTikTokAdPixels200Response</returns>
-        public ListTikTokAdPixels200Response ListTikTokAdPixels(string accountId, string? advertiserId = default, string? code = default)
+        public ListTikTokAdPixels200Response ListTikTokAdPixels(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default)
         {
-            Zernio.Client.ApiResponse<ListTikTokAdPixels200Response> localVarResponse = ListTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code);
+            Zernio.Client.ApiResponse<ListTikTokAdPixels200Response> localVarResponse = ListTikTokAdPixelsWithHttpInfo(accountId, adAccountId, advertiserId, code);
             return localVarResponse.Data;
         }
 
@@ -7703,10 +7804,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <returns>ApiResponse of ListTikTokAdPixels200Response</returns>
-        public Zernio.Client.ApiResponse<ListTikTokAdPixels200Response> ListTikTokAdPixelsWithHttpInfo(string accountId, string? advertiserId = default, string? code = default)
+        public Zernio.Client.ApiResponse<ListTikTokAdPixels200Response> ListTikTokAdPixelsWithHttpInfo(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7729,6 +7831,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (advertiserId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "advertiserId", advertiserId));
@@ -7762,13 +7868,14 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListTikTokAdPixels200Response</returns>
-        public async System.Threading.Tasks.Task<ListTikTokAdPixels200Response> ListTikTokAdPixelsAsync(string accountId, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListTikTokAdPixels200Response> ListTikTokAdPixelsAsync(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListTikTokAdPixels200Response> localVarResponse = await ListTikTokAdPixelsWithHttpInfoAsync(accountId, advertiserId, code, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListTikTokAdPixels200Response> localVarResponse = await ListTikTokAdPixelsWithHttpInfoAsync(accountId, adAccountId, advertiserId, code, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -7777,11 +7884,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Zernio SocialAccount ID.</param>
-        /// <param name="advertiserId">Advertiser belonging to this connection. (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. (optional)</param>
+        /// <param name="advertiserId">Alias of adAccountId, kept for existing callers (optional) (deprecated)</param>
         /// <param name="code">Filter by a Pixel Code. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListTikTokAdPixels200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListTikTokAdPixels200Response>> ListTikTokAdPixelsWithHttpInfoAsync(string accountId, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListTikTokAdPixels200Response>> ListTikTokAdPixelsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? advertiserId = default, string? code = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7806,6 +7914,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (advertiserId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "advertiserId", advertiserId));

@@ -170,9 +170,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //string? customerId = null;
             //string? type = null;
-            //var response = instance.ListConversionActions(accountId, customerId, type);
+            //var response = instance.ListConversionActions(accountId, adAccountId, customerId, type);
             //Assert.IsType<ListConversionActions200Response>(response);
         }
 
