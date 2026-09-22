@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.51.0
+  version: 1.52.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -43209,6 +43209,7 @@ paths:
       description: |-
         Creates a click-to-message ad; `destination` selects where the tapped ad opens a
         conversation: WhatsApp, the Page's Messenger inbox or the linked Instagram account's Direct inbox.
+        `destinations` puts two or three of them on one ad set and lets Meta pick the app per viewer.
         The ad set is created with the matching destination_type and
         CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT.
         Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa
@@ -113257,14 +113258,32 @@ components:
       - $ref: "#/components/schemas/CtwaAdRequestBody"
       - properties:
           destination:
-            description: Where the conversation opens when the ad is tapped.
+            description: "Where the conversation opens when the ad is tapped. Set\
+              \ this OR `destinations`, not both."
             enum:
             - whatsapp
             - messenger
             - instagram_direct
             type: string
-        required:
-        - destination
+          destinations:
+            description: "Two or three messaging apps on ONE ad set, like Ads Manager's\
+              \ \"all messaging apps\": the ad set gets Meta's combined destination_type\
+              \ (e.g. MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP) and the creative\
+              \ one CTA per app, so Meta opens the app each viewer is likeliest to\
+              \ answer from. WhatsApp in the list still needs the Page paired with\
+              \ a WhatsApp Business number. With `adSetId`, the existing ad set must\
+              \ already use that combined destination_type. Set this OR `destination`,\
+              \ not both."
+            items:
+              enum:
+              - whatsapp
+              - messenger
+              - instagram_direct
+              type: string
+            maxItems: 3
+            minItems: 2
+            type: array
+            uniqueItems: true
     createMessagingAd_201_response:
       discriminator:
         mapping:
