@@ -219,7 +219,7 @@ catch (ApiException e)
 
 <a id="gettweet"></a>
 # **GetTweet**
-> GetTweet200Response GetTweet (string accountId, string id)
+> GetTweet200Response GetTweet (string accountId, string tweetId, string? id = null)
 
 Look up a tweet
 
@@ -250,12 +250,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TwitterEngagementApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The account ID whose X token is used for the lookup
-            var id = "id_example";  // string | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+            var tweetId = "tweetId_example";  // string | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...). The same name the other /v1/twitter operations use (retweet, bookmark).
+            var id = "id_example";  // string? | Alias of tweetId, kept for existing callers (optional) 
 
             try
             {
                 // Look up a tweet
-                GetTweet200Response result = apiInstance.GetTweet(accountId, id);
+                GetTweet200Response result = apiInstance.GetTweet(accountId, tweetId, id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -276,7 +277,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Look up a tweet
-    ApiResponse<GetTweet200Response> response = apiInstance.GetTweetWithHttpInfo(accountId, id);
+    ApiResponse<GetTweet200Response> response = apiInstance.GetTweetWithHttpInfo(accountId, tweetId, id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -294,7 +295,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | The account ID whose X token is used for the lookup |  |
-| **id** | **string** | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) |  |
+| **tweetId** | **string** | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...). The same name the other /v1/twitter operations use (retweet, bookmark). |  |
+| **id** | **string?** | Alias of tweetId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -314,7 +316,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The resolved tweet |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Missing or malformed tweetId or accountId, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored) |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
