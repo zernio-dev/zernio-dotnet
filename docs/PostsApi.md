@@ -539,11 +539,11 @@ catch (ApiException e)
 
 <a id="listposts"></a>
 # **ListPosts**
-> PostsListResponse ListPosts (int? page = null, int? limit = null, string? source = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null, string? accountId = null)
+> PostsListResponse ListPosts (int? page = null, int? limit = null, int? offset = null, string? source = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null, string? accountId = null)
 
 List posts
 
-Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
+Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform. A query parameter that is not listed here returns 400 naming it and the accepted parameters, so a misspelled filter never silently returns the unfiltered list.
 
 ### Example
 ```csharp
@@ -571,13 +571,16 @@ namespace Example
             var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
             var page = 1;  // int? | Page number (1-based) (optional)  (default to 1)
             var limit = 10;  // int? | Page size. Values above the maximum return 400 rather than being clamped. (optional)  (default to 10)
+            var offset = 56;  // int? | Row offset. Takes precedence over page when both are sent; the response pagination.page is derived from it. (optional) 
             var source = "zernio";  // string? | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account). (optional)  (default to zernio)
             var status = "draft";  // string? |  (optional) 
             var platform = twitter;  // string? |  (optional) 
             var profileId = "profileId_example";  // string? | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send `all` or an empty value, to list posts across every profile. (optional) 
             var createdBy = "createdBy_example";  // string? | Filter posts to those created by a specific team user (24-char hex ObjectId). (optional) 
-            var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional) 
-            var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. The same name the other date-window filters use (ads, analytics). (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. The same name the other date-window filters use (ads, analytics). (optional) 
+            var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
+            var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var includeHidden = false;  // bool? |  (optional)  (default to false)
             var search = "search_example";  // string? | Search posts by text content. (optional) 
             var sortBy = "scheduled-desc";  // string? | Sort order for results. (optional)  (default to scheduled-desc)
@@ -586,7 +589,7 @@ namespace Example
             try
             {
                 // List posts
-                PostsListResponse result = apiInstance.ListPosts(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+                PostsListResponse result = apiInstance.ListPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -607,7 +610,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List posts
-    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -626,13 +629,16 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **page** | **int?** | Page number (1-based) | [optional] [default to 1] |
 | **limit** | **int?** | Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 10] |
+| **offset** | **int?** | Row offset. Takes precedence over page when both are sent; the response pagination.page is derived from it. | [optional]  |
 | **source** | **string?** | Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] |
 | **status** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 | **profileId** | **string?** | Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional]  |
 | **createdBy** | **string?** | Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional]  |
-| **dateFrom** | **DateOnly?** | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional]  |
-| **dateTo** | **DateOnly?** | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. | [optional]  |
+| **fromDate** | **DateOnly?** | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. The same name the other date-window filters use (ads, analytics). | [optional]  |
+| **toDate** | **DateOnly?** | Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty value means no date filter; any other malformed value returns 400. The same name the other date-window filters use (ads, analytics). | [optional]  |
+| **dateFrom** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
+| **dateTo** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **includeHidden** | **bool?** |  | [optional] [default to false] |
 | **search** | **string?** | Search posts by text content. | [optional]  |
 | **sortBy** | **string?** | Sort order for results. | [optional] [default to scheduled-desc] |
