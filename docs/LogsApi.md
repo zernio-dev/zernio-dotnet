@@ -8,7 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="listlogs"></a>
 # **ListLogs**
-> ListLogs200Response ListLogs (string? type = null, string? status = null, string? platform = null, string? action = null, string? search = null, int? days = null, int? limit = null, int? skip = null, string? accountId = null, string? varEvent = null, string? requestId = null, DateTime? from = null, DateTime? to = null, int? statusCode = null, string? apiKeyId = null, bool? includeReadReceipts = null)
+> ListLogs200Response ListLogs (string? type = null, string? status = null, string? platform = null, string? action = null, string? search = null, int? days = null, int? limit = null, int? skip = null, string? accountId = null, string? accountId2 = null, string? varEvent = null, string? requestId = null, string? requestId2 = null, DateTime? from = null, DateTime? to = null, int? statusCode = null, int? statusCode2 = null, string? apiKeyId = null, string? apiKeyId2 = null, bool? includeReadReceipts = null, bool? includeReadReceipts2 = null)
 
 List activity logs
 
@@ -47,18 +47,23 @@ namespace Example
             var limit = 50;  // int? | Maximum number of logs to return (max 100) (optional)  (default to 50)
             var skip = 0;  // int? | Number of logs to skip (for pagination) (optional)  (default to 0)
             var accountId = "accountId_example";  // string? | Filter by connected account ID (optional) 
+            var accountId2 = "accountId_example";  // string? | Alias of accountId, kept for existing callers (optional) 
             var varEvent = "varEvent_example";  // string? | Filter webhook logs by event (e.g. post.published, message.received) (optional) 
             var requestId = "requestId_example";  // string? | Correlation ID. Returns every log spawned by a single API request (optional) 
+            var requestId2 = "requestId_example";  // string? | Alias of requestId, kept for existing callers (optional) 
             var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Precise start instant (ISO 8601); narrows within the day range (optional) 
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Precise end instant (ISO 8601) (optional) 
             var statusCode = 56;  // int? | Filter by exact HTTP status code (api_request logs) (optional) 
+            var statusCode2 = 56;  // int? | Alias of statusCode, kept for existing callers (optional) 
             var apiKeyId = "apiKeyId_example";  // string? | Filter by the API key that made the request (api_request logs) (optional) 
+            var apiKeyId2 = "apiKeyId_example";  // string? | Alias of apiKeyId, kept for existing callers (optional) 
             var includeReadReceipts = false;  // bool? | Include message.read / message.delivered events (hidden by default for messaging logs) (optional)  (default to false)
+            var includeReadReceipts2 = false;  // bool? | Alias of includeReadReceipts, kept for existing callers (optional)  (default to false)
 
             try
             {
                 // List activity logs
-                ListLogs200Response result = apiInstance.ListLogs(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
+                ListLogs200Response result = apiInstance.ListLogs(type, status, platform, action, search, days, limit, skip, accountId, accountId2, varEvent, requestId, requestId2, from, to, statusCode, statusCode2, apiKeyId, apiKeyId2, includeReadReceipts, includeReadReceipts2);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -79,7 +84,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List activity logs
-    ApiResponse<ListLogs200Response> response = apiInstance.ListLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
+    ApiResponse<ListLogs200Response> response = apiInstance.ListLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, accountId2, varEvent, requestId, requestId2, from, to, statusCode, statusCode2, apiKeyId, apiKeyId2, includeReadReceipts, includeReadReceipts2);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -105,13 +110,18 @@ catch (ApiException e)
 | **limit** | **int?** | Maximum number of logs to return (max 100) | [optional] [default to 50] |
 | **skip** | **int?** | Number of logs to skip (for pagination) | [optional] [default to 0] |
 | **accountId** | **string?** | Filter by connected account ID | [optional]  |
+| **accountId2** | **string?** | Alias of accountId, kept for existing callers | [optional]  |
 | **varEvent** | **string?** | Filter webhook logs by event (e.g. post.published, message.received) | [optional]  |
 | **requestId** | **string?** | Correlation ID. Returns every log spawned by a single API request | [optional]  |
+| **requestId2** | **string?** | Alias of requestId, kept for existing callers | [optional]  |
 | **from** | **DateTime?** | Precise start instant (ISO 8601); narrows within the day range | [optional]  |
 | **to** | **DateTime?** | Precise end instant (ISO 8601) | [optional]  |
 | **statusCode** | **int?** | Filter by exact HTTP status code (api_request logs) | [optional]  |
+| **statusCode2** | **int?** | Alias of statusCode, kept for existing callers | [optional]  |
 | **apiKeyId** | **string?** | Filter by the API key that made the request (api_request logs) | [optional]  |
+| **apiKeyId2** | **string?** | Alias of apiKeyId, kept for existing callers | [optional]  |
 | **includeReadReceipts** | **bool?** | Include message.read / message.delivered events (hidden by default for messaging logs) | [optional] [default to false] |
+| **includeReadReceipts2** | **bool?** | Alias of includeReadReceipts, kept for existing callers | [optional] [default to false] |
 
 ### Return type
 
@@ -131,6 +141,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Logs retrieved successfully |  -  |
+| **400** | Invalid filter value. Unknown parameters are ignored on this list; the histogram, facets and export routes reject them. |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
