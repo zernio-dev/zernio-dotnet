@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.48.0
+  version: 1.49.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -107040,7 +107040,8 @@ components:
             type: string
           type: array
     boostPost_request_budget:
-      description: Required unless adSetId is set.
+      deprecated: true
+      description: "Alias of budgetAmount + budgetType, kept for existing callers"
       properties:
         amount:
           description: "Minimum varies: TikTok=$20, Pinterest=$5, others=$1"
@@ -107384,6 +107385,17 @@ components:
           - TT_USER
           - CUSTOMIZED_USER
           - BC_AUTH_TT
+          type: string
+        budgetAmount:
+          description: "Budget in whole currency units, the same flat field as POST\
+            \ /v1/ads/create. Required unless adSetId is set. Minimum varies: TikTok=$20,\
+            \ Pinterest=$5, others=$1"
+          type: number
+        budgetType:
+          description: Goes together with budgetAmount. lifetime requires schedule.endDate.
+          enum:
+          - daily
+          - lifetime
           type: string
         budget:
           $ref: "#/components/schemas/boostPost_request_budget"
