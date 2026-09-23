@@ -528,6 +528,7 @@ docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
+docs/DeleteTestLead200Response.md
 docs/DeleteValueRuleSet200Response.md
 docs/DeleteWhatsAppTemplate200Response.md
 docs/DeleteWhatsAppTemplateById200Response.md
@@ -2823,6 +2824,7 @@ src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
+src/Zernio.Test/Model/DeleteTestLead200ResponseTests.cs
 src/Zernio.Test/Model/DeleteValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsAppTemplate200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsAppTemplateById200ResponseTests.cs
@@ -5087,6 +5089,7 @@ src/Zernio/Model/DeleteInboxComment200Response.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
+src/Zernio/Model/DeleteTestLead200Response.cs
 src/Zernio/Model/DeleteValueRuleSet200Response.cs
 src/Zernio/Model/DeleteWhatsAppTemplate200Response.cs
 src/Zernio/Model/DeleteWhatsAppTemplateById200Response.cs

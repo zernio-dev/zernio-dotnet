@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ArchiveLeadForm**](LeadGenApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**CreateLeadForm**](LeadGenApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**CreateTestLead**](LeadGenApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
+| [**DeleteTestLead**](LeadGenApi.md#deletetestlead) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead |
 | [**GetLeadForm**](LeadGenApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**ListFormLeads**](LeadGenApi.md#listformleads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form |
 | [**ListLeadForms**](LeadGenApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms |
@@ -316,6 +317,111 @@ catch (ApiException e)
 | **200** | Test lead created. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletetestlead"></a>
+# **DeleteTestLead**
+> DeleteTestLead200Response DeleteTestLead (string formId, string accountId, string? leadId = null)
+
+Delete a test lead
+
+Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta's Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteTestLeadExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
+            var formId = "formId_example";  // string | 
+            var accountId = "accountId_example";  // string | The facebook or metaads account whose Page owns the form.
+            var leadId = "leadId_example";  // string? | The test lead id returned by createTestLead (or shown in the Testing Tool). Omitted = the test lead currently on the form. (optional) 
+
+            try
+            {
+                // Delete a test lead
+                DeleteTestLead200Response result = apiInstance.DeleteTestLead(formId, accountId, leadId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling LeadGenApi.DeleteTestLead: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteTestLeadWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a test lead
+    ApiResponse<DeleteTestLead200Response> response = apiInstance.DeleteTestLeadWithHttpInfo(formId, accountId, leadId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LeadGenApi.DeleteTestLeadWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **formId** | **string** |  |  |
+| **accountId** | **string** | The facebook or metaads account whose Page owns the form. |  |
+| **leadId** | **string?** | The test lead id returned by createTestLead (or shown in the Testing Tool). Omitted &#x3D; the test lead currently on the form. | [optional]  |
+
+### Return type
+
+[**DeleteTestLead200Response**](DeleteTestLead200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Test lead deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The form has no test lead. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
