@@ -39,12 +39,14 @@ namespace Zernio.Model
         /// <param name="freeTierAccountLimit">How many accounts the free tier allows. Only set when reason&#x3D;free_tier_exceeded..</param>
         /// <param name="currentAccountCount">How many accounts the team currently has connected. Set when reason&#x3D;free_tier_exceeded or reason&#x3D;enterprise_required..</param>
         /// <param name="hasPaymentMethod">Whether the team currently has a card on file in Stripe. Set when reason&#x3D;free_tier_exceeded or reason&#x3D;twitter_passthrough..</param>
+        /// <param name="verificationAmountCents">One-time card verification charge in USD cents, credited to usage. Only set when reason&#x3D;card_verification_required..</param>
         /// <param name="effectiveAccountLimit">The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. .</param>
-        public InlineObject4Details(int freeTierAccountLimit = default, int currentAccountCount = default, bool hasPaymentMethod = default, int effectiveAccountLimit = default)
+        public InlineObject4Details(int freeTierAccountLimit = default, int currentAccountCount = default, bool hasPaymentMethod = default, int verificationAmountCents = default, int effectiveAccountLimit = default)
         {
             this.FreeTierAccountLimit = freeTierAccountLimit;
             this.CurrentAccountCount = currentAccountCount;
             this.HasPaymentMethod = hasPaymentMethod;
+            this.VerificationAmountCents = verificationAmountCents;
             this.EffectiveAccountLimit = effectiveAccountLimit;
         }
 
@@ -76,6 +78,16 @@ namespace Zernio.Model
         public bool HasPaymentMethod { get; set; }
 
         /// <summary>
+        /// One-time card verification charge in USD cents, credited to usage. Only set when reason&#x3D;card_verification_required.
+        /// </summary>
+        /// <value>One-time card verification charge in USD cents, credited to usage. Only set when reason&#x3D;card_verification_required.</value>
+        /*
+        <example>1000</example>
+        */
+        [DataMember(Name = "verification_amount_cents", EmitDefaultValue = false)]
+        public int VerificationAmountCents { get; set; }
+
+        /// <summary>
         /// The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. 
         /// </summary>
         /// <value>The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. </value>
@@ -96,6 +108,7 @@ namespace Zernio.Model
             sb.Append("  FreeTierAccountLimit: ").Append(FreeTierAccountLimit).Append("\n");
             sb.Append("  CurrentAccountCount: ").Append(CurrentAccountCount).Append("\n");
             sb.Append("  HasPaymentMethod: ").Append(HasPaymentMethod).Append("\n");
+            sb.Append("  VerificationAmountCents: ").Append(VerificationAmountCents).Append("\n");
             sb.Append("  EffectiveAccountLimit: ").Append(EffectiveAccountLimit).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

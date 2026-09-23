@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'VerificationAmountCents'
+        /// </summary>
+        [Fact]
+        public void VerificationAmountCentsTest()
+        {
+            // TODO unit test for the property 'VerificationAmountCents'
+        }
+
+        /// <summary>
         /// Test the property 'EffectiveAccountLimit'
         /// </summary>
         [Fact]

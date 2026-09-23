@@ -77,7 +77,13 @@ namespace Zernio.Model
             /// Enum EnterpriseRequired for value: enterprise_required
             /// </summary>
             [EnumMember(Value = "enterprise_required")]
-            EnterpriseRequired = 3
+            EnterpriseRequired = 3,
+
+            /// <summary>
+            /// Enum CardVerificationRequired for value: card_verification_required
+            /// </summary>
+            [EnumMember(Value = "card_verification_required")]
+            CardVerificationRequired = 4
         }
 
 
