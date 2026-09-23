@@ -1746,7 +1746,7 @@ namespace Example
             var accountId = "accountId_example";  // string | A facebook, instagram, metaads or whatsapp account ID
             var catalogAccountId = "catalogAccountId_example";  // string? | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token is used instead of the account's own (needed for WhatsApp connections, whose token cannot manage catalogs). (optional) 
             var adAccountId = "adAccountId_example";  // string? | Meta ad account ID (act_...) whose owner business to list (optional) 
-            var businessId = "businessId_example";  // string? | Meta business portfolio ID to list (optional) 
+            var businessId = "businessId_example";  // string? | Meta business portfolio ID to list. When it is omitted and the Meta login can see several portfolios, the 400 carries `details.businesses` (id + name) so a client can offer the choice. (optional) 
 
             try
             {
@@ -1792,7 +1792,7 @@ catch (ApiException e)
 | **accountId** | **string** | A facebook, instagram, metaads or whatsapp account ID |  |
 | **catalogAccountId** | **string?** | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token is used instead of the account&#39;s own (needed for WhatsApp connections, whose token cannot manage catalogs). | [optional]  |
 | **adAccountId** | **string?** | Meta ad account ID (act_...) whose owner business to list | [optional]  |
-| **businessId** | **string?** | Meta business portfolio ID to list | [optional]  |
+| **businessId** | **string?** | Meta business portfolio ID to list. When it is omitted and the Meta login can see several portfolios, the 400 carries &#x60;details.businesses&#x60; (id + name) so a client can offer the choice. | [optional]  |
 
 ### Return type
 
