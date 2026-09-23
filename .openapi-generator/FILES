@@ -376,6 +376,7 @@ docs/CreateInboxConversation400Response.md
 docs/CreateInboxConversation400ResponseAnyOf.md
 docs/CreateInboxConversation404Response.md
 docs/CreateInboxConversation404ResponseAnyOf.md
+docs/CreateInboxConversation409Response.md
 docs/CreateInboxConversation422Response.md
 docs/CreateInboxConversation422ResponseAnyOf.md
 docs/CreateInboxConversation429Response.md
@@ -2673,6 +2674,7 @@ src/Zernio.Test/Model/CreateInboxConversation400ResponseAnyOfTests.cs
 src/Zernio.Test/Model/CreateInboxConversation400ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation404ResponseAnyOfTests.cs
 src/Zernio.Test/Model/CreateInboxConversation404ResponseTests.cs
+src/Zernio.Test/Model/CreateInboxConversation409ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation422ResponseAnyOfTests.cs
 src/Zernio.Test/Model/CreateInboxConversation422ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation429ResponseAnyOfTests.cs
@@ -4938,6 +4940,7 @@ src/Zernio/Model/CreateInboxConversation400Response.cs
 src/Zernio/Model/CreateInboxConversation400ResponseAnyOf.cs
 src/Zernio/Model/CreateInboxConversation404Response.cs
 src/Zernio/Model/CreateInboxConversation404ResponseAnyOf.cs
+src/Zernio/Model/CreateInboxConversation409Response.cs
 src/Zernio/Model/CreateInboxConversation422Response.cs
 src/Zernio/Model/CreateInboxConversation422ResponseAnyOf.cs
 src/Zernio/Model/CreateInboxConversation429Response.cs
