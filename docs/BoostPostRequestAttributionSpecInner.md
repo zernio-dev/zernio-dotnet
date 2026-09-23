@@ -1,4 +1,4 @@
-# Zernio.Model.CreateStandaloneAdRequestAttributionSpecInner
+# Zernio.Model.BoostPostRequestAttributionSpecInner
 
 ## Properties
 
