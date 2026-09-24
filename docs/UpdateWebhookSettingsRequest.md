@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **IsActive** | **bool** | Enable or disable webhook delivery | [optional] 
 **CustomHeaders** | **Dictionary&lt;string, string&gt;** | Custom headers to include in webhook requests | [optional] 
 **DisabledResourceGroups** | **List&lt;UpdateWebhookSettingsRequest.DisabledResourceGroupsEnum&gt;** | Replaces the subscription&#39;s denylist. Send an empty array to clear it and receive every event in &#x60;events&#x60; again. Omitting the field leaves the current denylist untouched. Applies to events emitted after the update; already-queued events can still deliver for up to five minutes after they were enqueued. When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned back in either way, so a restricted key can neither clear nor widen a subscription past its own groups. | [optional] 
+**ProfileIds** | **List&lt;string&gt;** | Replaces the subscription&#39;s profile allowlist. Send an empty array to receive every profile again. Omitting the field leaves the current list untouched. Every id must be a profile in your team, otherwise the request fails with 404 &#x60;profile_not_found&#x60; and nothing changes. Applies to events emitted after the update. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

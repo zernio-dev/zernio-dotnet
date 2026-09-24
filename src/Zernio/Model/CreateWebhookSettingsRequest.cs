@@ -434,7 +434,8 @@ namespace Zernio.Model
         /// <param name="isActive">Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted. (default to true).</param>
         /// <param name="customHeaders">Custom headers to include in webhook requests.</param>
         /// <param name="disabledResourceGroups">Resource groups this subscription does not receive (opt-out denylist). Omit or send an empty array to receive every event in &#x60;events&#x60;. Listing a group here drops its events before delivery and on every replay path. Set at creation it applies to everything this subscription ever receives; changed later via PUT it applies to events emitted after the change, with a five-minute tail for events already queued (see that operation). When the caller is a restricted (zrk_) key, that key&#39;s own disabled groups are unioned into whatever you send here, so a restricted key can never create a subscription wider than itself..</param>
-        public CreateWebhookSettingsRequest(string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = true, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
+        /// <param name="profileIds">Profiles this subscription receives events for. Omit or send an empty array to receive every profile. Every id must be a profile in your team, otherwise the request fails with 404 &#x60;profile_not_found&#x60; and nothing is created. Typical use is routing the profile that holds test accounts to a staging endpoint..</param>
+        public CreateWebhookSettingsRequest(string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = true, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default, List<string> profileIds = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -458,6 +459,7 @@ namespace Zernio.Model
             this.IsActive = isActive;
             this.CustomHeaders = customHeaders;
             this.DisabledResourceGroups = disabledResourceGroups;
+            this.ProfileIds = profileIds;
         }
 
         /// <summary>
@@ -510,6 +512,13 @@ namespace Zernio.Model
         public List<CreateWebhookSettingsRequest.DisabledResourceGroupsEnum> DisabledResourceGroups { get; set; }
 
         /// <summary>
+        /// Profiles this subscription receives events for. Omit or send an empty array to receive every profile. Every id must be a profile in your team, otherwise the request fails with 404 &#x60;profile_not_found&#x60; and nothing is created. Typical use is routing the profile that holds test accounts to a staging endpoint.
+        /// </summary>
+        /// <value>Profiles this subscription receives events for. Omit or send an empty array to receive every profile. Every id must be a profile in your team, otherwise the request fails with 404 &#x60;profile_not_found&#x60; and nothing is created. Typical use is routing the profile that holds test accounts to a staging endpoint.</value>
+        [DataMember(Name = "profileIds", EmitDefaultValue = false)]
+        public List<string> ProfileIds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -524,6 +533,7 @@ namespace Zernio.Model
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  CustomHeaders: ").Append(CustomHeaders).Append("\n");
             sb.Append("  DisabledResourceGroups: ").Append(DisabledResourceGroups).Append("\n");
+            sb.Append("  ProfileIds: ").Append(ProfileIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

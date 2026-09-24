@@ -135,5 +135,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'DisabledResourceGroups'
         }
+
+        /// <summary>
+        /// Test the property 'ProfileIds'
+        /// </summary>
+        [Fact]
+        public void ProfileIdsTest()
+        {
+            // TODO unit test for the property 'ProfileIds'
+        }
     }
 }

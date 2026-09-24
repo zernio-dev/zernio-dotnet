@@ -432,7 +432,8 @@ namespace Zernio.Model
         /// <param name="failureCount">Consecutive terminal delivery failures (resets to 0 on any successful delivery). Auto-disable only triggers when the endpoint has had no successful delivery within a 3-day window AND either reaches 20 consecutive terminal failures or has been failing continuously for 3 days; any success within that window keeps the endpoint enabled regardless of the count..</param>
         /// <param name="customHeaders">Custom headers included in webhook requests.</param>
         /// <param name="disabledResourceGroups">Resource groups this subscription does not receive (opt-out denylist, same vocabulary and same semantics as the field on API keys). Absent or empty means the subscription receives every event listed in &#x60;events&#x60;, which is how every subscription created before this field existed behaves. An event whose group is listed here is dropped before delivery even when it is still present in &#x60;events&#x60;, and the same check runs on every replay path (test fire, redelivery, dead-letter requeue). Editing the denylist applies to every event emitted afterwards; events already queued when the edit landed can still be delivered for up to five minutes after they were enqueued..</param>
-        public Webhook(string id = default, string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, DateTime lastFiredAt = default, int failureCount = default, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default)
+        /// <param name="profileIds">Profiles this subscription receives events for (allowlist). Absent or empty means every profile, which is how every subscription created before this field existed behaves. A scoped subscription is only sent events attributable to a listed profile; events with no profile behind them (&#x60;verification.*&#x60;, &#x60;phone_number.*&#x60;) are not delivered to it. Applied when the event is emitted: a redelivery replays a delivery already made to this endpoint, and a test fire ignores the list..</param>
+        public Webhook(string id = default, string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, DateTime lastFiredAt = default, int failureCount = default, Dictionary<string, string> customHeaders = default, List<DisabledResourceGroupsEnum> disabledResourceGroups = default, List<string> profileIds = default)
         {
             this.Id = id;
             this.Name = name;
@@ -444,6 +445,7 @@ namespace Zernio.Model
             this.FailureCount = failureCount;
             this.CustomHeaders = customHeaders;
             this.DisabledResourceGroups = disabledResourceGroups;
+            this.ProfileIds = profileIds;
         }
 
         /// <summary>
@@ -517,6 +519,13 @@ namespace Zernio.Model
         public List<Webhook.DisabledResourceGroupsEnum> DisabledResourceGroups { get; set; }
 
         /// <summary>
+        /// Profiles this subscription receives events for (allowlist). Absent or empty means every profile, which is how every subscription created before this field existed behaves. A scoped subscription is only sent events attributable to a listed profile; events with no profile behind them (&#x60;verification.*&#x60;, &#x60;phone_number.*&#x60;) are not delivered to it. Applied when the event is emitted: a redelivery replays a delivery already made to this endpoint, and a test fire ignores the list.
+        /// </summary>
+        /// <value>Profiles this subscription receives events for (allowlist). Absent or empty means every profile, which is how every subscription created before this field existed behaves. A scoped subscription is only sent events attributable to a listed profile; events with no profile behind them (&#x60;verification.*&#x60;, &#x60;phone_number.*&#x60;) are not delivered to it. Applied when the event is emitted: a redelivery replays a delivery already made to this endpoint, and a test fire ignores the list.</value>
+        [DataMember(Name = "profileIds", EmitDefaultValue = false)]
+        public List<string> ProfileIds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -534,6 +543,7 @@ namespace Zernio.Model
             sb.Append("  FailureCount: ").Append(FailureCount).Append("\n");
             sb.Append("  CustomHeaders: ").Append(CustomHeaders).Append("\n");
             sb.Append("  DisabledResourceGroups: ").Append(DisabledResourceGroups).Append("\n");
+            sb.Append("  ProfileIds: ").Append(ProfileIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
