@@ -444,6 +444,7 @@ docs/CreateStandaloneAdRequestBehaviorsInner.md
 docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCarouselCardsInner.md
 docs/CreateStandaloneAdRequestCitiesInner.md
+docs/CreateStandaloneAdRequestCitiesInnerOneOf.md
 docs/CreateStandaloneAdRequestCreativesInner.md
 docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
@@ -455,10 +456,12 @@ docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestRegionsInner.md
+docs/CreateStandaloneAdRequestRegionsInnerOneOf.md
 docs/CreateStandaloneAdRequestSitelinksInner.md
 docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
+docs/CreateStandaloneAdRequestZipsInner.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
 docs/CreateTestLeadRequest.md
@@ -1023,6 +1026,7 @@ docs/GoogleBusinessPlatformDataOffer.md
 docs/GoogleBusinessReview.md
 docs/GoogleBusinessReviewReviewReply.md
 docs/GoogleBusinessReviewReviewer.md
+docs/GoogleLocationTargetingType.md
 docs/GooglePmaxAssetGroup.md
 docs/GooglePmaxAssetGroupAssetsInner.md
 docs/GooglePmaxAssetGroupInput.md
@@ -1777,6 +1781,7 @@ docs/SyncExternalPosts200ResponseSynced.md
 docs/SyncExternalPostsRequest.md
 docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
+docs/TargetingSpecCitiesInnerOneOf.md
 docs/TargetingSpecCustomLocationsInner.md
 docs/TargetingSpecExcludedLocations.md
 docs/TargetingSpecExcludedLocationsCitiesInner.md
@@ -1855,6 +1860,7 @@ docs/UpdateAdRequestTargetingInterestsInner.md
 docs/UpdateAdRequestTargetingKeywordsInner.md
 docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md
 docs/UpdateAdRequestTargetingLocations.md
+docs/UpdateAdRequestTargetingLocationsOneOf.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
@@ -1899,6 +1905,7 @@ docs/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf.md
 docs/UpdateCampaignTargetingRequestTargetingLocations.md
 docs/UpdateCampaignTargetingRequestTargetingLocationsOneOf.md
 docs/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.md
+docs/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf.md
 docs/UpdateCommentAutomation200Response.md
 docs/UpdateCommentAutomation200ResponseAutomation.md
 docs/UpdateCommentAutomationRequest.md
@@ -2751,6 +2758,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestAdditionalHeadlinesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBehaviorsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBrandIdentityTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCarouselCardsInnerTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerVideoTests.cs
@@ -2762,12 +2770,14 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestSitelinksInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestZipsInnerTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
@@ -3322,6 +3332,7 @@ src/Zernio.Test/Model/GoogleBusinessPlatformDataTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewReplyTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewerTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewTests.cs
+src/Zernio.Test/Model/GoogleLocationTargetingTypeTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupAssetsInnerTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupInputImagesTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupInputTests.cs
@@ -4051,6 +4062,7 @@ src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
 src/Zernio.Test/Model/SyncExternalPosts200ResponseSyncedTests.cs
 src/Zernio.Test/Model/SyncExternalPosts200ResponseTests.cs
 src/Zernio.Test/Model/SyncExternalPostsRequestTests.cs
+src/Zernio.Test/Model/TargetingSpecCitiesInnerOneOfTests.cs
 src/Zernio.Test/Model/TargetingSpecCitiesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecExcludedLocationsCitiesInnerTests.cs
@@ -4125,6 +4137,7 @@ src/Zernio.Test/Model/UpdateAdRequestTargetingDevicesInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingInterestsInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingKeywordsInnerOneOfTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingKeywordsInnerTests.cs
+src/Zernio.Test/Model/UpdateAdRequestTargetingLocationsOneOfTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingLocationsTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTests.cs
@@ -4167,6 +4180,7 @@ src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOfTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerTests.cs
+src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOfTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargetingRequestTargetingLocationsTests.cs
@@ -5030,6 +5044,7 @@ src/Zernio/Model/CreateStandaloneAdRequestBehaviorsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestBrandIdentity.cs
 src/Zernio/Model/CreateStandaloneAdRequestCarouselCardsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestCitiesInnerOneOf.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInnerVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestCustomLocationsInner.cs
@@ -5041,10 +5056,12 @@ src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestRegionsInnerOneOf.cs
 src/Zernio/Model/CreateStandaloneAdRequestSitelinksInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestStructuredSnippetsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
+src/Zernio/Model/CreateStandaloneAdRequestZipsInner.cs
 src/Zernio/Model/CreateTestLead200Response.cs
 src/Zernio/Model/CreateTestLead200ResponseTestLead.cs
 src/Zernio/Model/CreateTestLeadRequest.cs
@@ -5599,6 +5616,7 @@ src/Zernio/Model/GoogleBusinessPlatformDataOffer.cs
 src/Zernio/Model/GoogleBusinessReview.cs
 src/Zernio/Model/GoogleBusinessReviewReviewReply.cs
 src/Zernio/Model/GoogleBusinessReviewReviewer.cs
+src/Zernio/Model/GoogleLocationTargetingType.cs
 src/Zernio/Model/GooglePmaxAssetGroup.cs
 src/Zernio/Model/GooglePmaxAssetGroupAssetsInner.cs
 src/Zernio/Model/GooglePmaxAssetGroupInput.cs
@@ -6330,6 +6348,7 @@ src/Zernio/Model/SyncExternalPosts200ResponseSynced.cs
 src/Zernio/Model/SyncExternalPostsRequest.cs
 src/Zernio/Model/TargetingSpec.cs
 src/Zernio/Model/TargetingSpecCitiesInner.cs
+src/Zernio/Model/TargetingSpecCitiesInnerOneOf.cs
 src/Zernio/Model/TargetingSpecCustomLocationsInner.cs
 src/Zernio/Model/TargetingSpecExcludedLocations.cs
 src/Zernio/Model/TargetingSpecExcludedLocationsCitiesInner.cs
@@ -6405,6 +6424,7 @@ src/Zernio/Model/UpdateAdRequestTargetingInterestsInner.cs
 src/Zernio/Model/UpdateAdRequestTargetingKeywordsInner.cs
 src/Zernio/Model/UpdateAdRequestTargetingKeywordsInnerOneOf.cs
 src/Zernio/Model/UpdateAdRequestTargetingLocations.cs
+src/Zernio/Model/UpdateAdRequestTargetingLocationsOneOf.cs
 src/Zernio/Model/UpdateAdSet200Response.cs
 src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs
@@ -6449,6 +6469,7 @@ src/Zernio/Model/UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf.cs
 src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocations.cs
 src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOf.cs
 src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.cs
+src/Zernio/Model/UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf.cs
 src/Zernio/Model/UpdateCommentAutomation200Response.cs
 src/Zernio/Model/UpdateCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/UpdateCommentAutomationRequest.cs

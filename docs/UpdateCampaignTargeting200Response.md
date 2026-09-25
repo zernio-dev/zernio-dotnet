@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignId** | **string** |  | [optional] 
 **Updated** | **List&lt;UpdateCampaignTargeting200Response.UpdatedEnum&gt;** | Which targeting fields were applied. | [optional] 
+**LocationTargetingType** | **string** | The value read back from Google after the edit. | [optional] 
 **Devices** | [**List&lt;UpdateCampaignTargeting200ResponseDevicesInner&gt;**](UpdateCampaignTargeting200ResponseDevicesInner.md) |  | [optional] 
 **Locations** | [**List&lt;UpdateCampaignTargeting200ResponseLocationsInner&gt;**](UpdateCampaignTargeting200ResponseLocationsInner.md) |  | [optional] 
 **Languages** | [**List&lt;UpdateCampaignTargeting200ResponseLanguagesInner&gt;**](UpdateCampaignTargeting200ResponseLanguagesInner.md) |  | [optional] 

@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Countries** | **List&lt;string&gt;** |  | [optional] 
 **CountryGroups** | **List&lt;TargetingSpecExcludedLocations.CountryGroupsEnum&gt;** | Meta only. Continents and trade blocs to exclude (&#x60;excluded_geo_locations.country_groups&#x60;). | [optional] 
-**Regions** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.md) |  | [optional] 
+**Regions** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf.md) |  | [optional] 
 **Cities** | [**List&lt;TargetingSpecExcludedLocationsCitiesInner&gt;**](TargetingSpecExcludedLocationsCitiesInner.md) | Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities. | [optional] 
-**Zips** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInner.md) |  | [optional] 
+**Zips** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf.md) |  | [optional] 
 **Places** | [**List&lt;TargetingSpecExcludedLocationsPlacesInner&gt;**](TargetingSpecExcludedLocationsPlacesInner.md) | Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search. | [optional] 
 **Neighborhoods** | [**List&lt;TargetingSpecExcludedLocationsPlacesInner&gt;**](TargetingSpecExcludedLocationsPlacesInner.md) | Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search. | [optional] 
 **CustomLocations** | [**List&lt;TargetingSpecCustomLocationsInner&gt;**](TargetingSpecCustomLocationsInner.md) | Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape. | [optional] 

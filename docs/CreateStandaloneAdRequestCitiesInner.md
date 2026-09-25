@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **string** | Meta city ID, from /v1/ads/targeting/search results. | 
+**Key** | **string** | City id from /v1/ads/targeting/search results (Meta city key, Google geo target constant id, TikTok location id). | 
 **Radius** | **decimal** | Optional radius around the city. Must be set together with distance_unit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng). | [optional] 
 **DistanceUnit** | **string** | Unit for radius. Required if radius is set. | [optional] 
 
