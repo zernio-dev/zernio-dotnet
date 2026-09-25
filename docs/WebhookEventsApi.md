@@ -42,6 +42,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnReferralReceived**](WebhookEventsApi.md#onreferralreceived) | **POST** /referral.received | Referral received event |
 | [**OnReviewNew**](WebhookEventsApi.md#onreviewnew) | **POST** /review.new | Review new event |
 | [**OnReviewUpdated**](WebhookEventsApi.md#onreviewupdated) | **POST** /review.updated | Review updated event |
+| [**OnSmsRegistrationActionRequired**](WebhookEventsApi.md#onsmsregistrationactionrequired) | **POST** /sms.registration.action_required | SMS registration action required event |
 | [**OnVerificationApproved**](WebhookEventsApi.md#onverificationapproved) | **POST** /verification.approved | Verification approved event |
 | [**OnVerificationFailed**](WebhookEventsApi.md#onverificationfailed) | **POST** /verification.failed | Verification failed event |
 | [**OnWebhookTest**](WebhookEventsApi.md#onwebhooktest) | **POST** /webhook.test | Webhook test event |
@@ -3608,6 +3609,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadReviewUpdated** | [**WebhookPayloadReviewUpdated**](WebhookPayloadReviewUpdated.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onsmsregistrationactionrequired"></a>
+# **OnSmsRegistrationActionRequired**
+> void OnSmsRegistrationActionRequired (OnSmsRegistrationActionRequiredRequest onSmsRegistrationActionRequiredRequest)
+
+SMS registration action required event
+
+Fired when an SMS registration starts waiting on its owner. `reason` says why: `changes_requested` (our review asked for changes; `message` is the reviewer's note, answer with POST /v1/sms/registrations/{id}/respond), `otp_required` (a sole-proprietor brand needs the code texted to its mobile, submit it with POST /v1/sms/registrations/{id}/verify-otp), `carrier_info_required` (the toll-free carrier asked for more information; the request expires after 7 days) or `rejected` (the carriers rejected it; `message` is the reason). Fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnSmsRegistrationActionRequiredExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var onSmsRegistrationActionRequiredRequest = new OnSmsRegistrationActionRequiredRequest(); // OnSmsRegistrationActionRequiredRequest | 
+
+            try
+            {
+                // SMS registration action required event
+                apiInstance.OnSmsRegistrationActionRequired(onSmsRegistrationActionRequiredRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnSmsRegistrationActionRequired: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnSmsRegistrationActionRequiredWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // SMS registration action required event
+    apiInstance.OnSmsRegistrationActionRequiredWithHttpInfo(onSmsRegistrationActionRequiredRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnSmsRegistrationActionRequiredWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **onSmsRegistrationActionRequiredRequest** | [**OnSmsRegistrationActionRequiredRequest**](OnSmsRegistrationActionRequiredRequest.md) |  |  |
 
 ### Return type
 

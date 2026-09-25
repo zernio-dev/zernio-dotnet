@@ -1439,7 +1439,7 @@ catch (ApiException e)
 
 Reply to a change request
 
-Replies to a reviewer change request on a registration in `changes_requested` state: a note, hosted document URLs (from `POST /v1/sms/opt-in-proof`), or both, sent together. The registration returns to `requested` (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via `POST /v1/sms/registrations` with `resubmitRequestId` instead. 
+Replies to a reviewer change request on a registration in `changes_requested` state: a note, hosted document URLs (from `POST /v1/sms/opt-in-proof`), or both, sent together. When the request was written as points (`reviewRequest` on the registration), send one entry in `answers` per point. The registration returns to `requested` (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via `POST /v1/sms/registrations` with `resubmitRequestId` instead. 
 
 ### Example
 ```csharp
@@ -1533,7 +1533,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
-| **409** | Registration is not waiting on changes |  -  |
+| **409** | The registration is not waiting on changes, or &#x60;requestId&#x60; is no longer the open request (reload it). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

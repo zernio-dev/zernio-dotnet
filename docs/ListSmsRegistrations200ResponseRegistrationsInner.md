@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **TfActionRequiredAt** | **DateTime?** | Toll-free only: when the carrier requested changes (\&quot;Waiting For Customer\&quot;). The request must be resubmitted within 7 days of this timestamp or it expires. | [optional] 
 **PhoneNumbers** | **List&lt;string&gt;** |  | [optional] 
 **AwaitingOtp** | **bool** | Sole-prop 10DLC only; the OTP step is still pending. | [optional] 
+**AdminReviewNote** | **string** | The open change request as text (status changes_requested). | [optional] 
+**ReviewRequest** | [**SmsRegistrationReviewRequest**](SmsRegistrationReviewRequest.md) |  | [optional] 
 **TrustScore** | **decimal?** | Carrier-assigned brand trust score; drives throughput. | [optional] 
 **Throughput** | [**ListSmsRegistrations200ResponseRegistrationsInnerThroughput**](ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md) |  | [optional] 
 

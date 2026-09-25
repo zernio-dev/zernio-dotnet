@@ -1409,6 +1409,8 @@ docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
 docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
+docs/OnSmsRegistrationActionRequiredRequest.md
+docs/OnSmsRegistrationActionRequiredRequestRegistration.md
 docs/OnVerificationApprovedRequest.md
 docs/OnVerificationApprovedRequestVerification.md
 docs/OnVerificationFailedRequest.md
@@ -1566,6 +1568,7 @@ docs/RespondToPhoneNumberReviewerRequest.md
 docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md
 docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
+docs/RespondToSmsRegistrationReviewRequestAnswersInner.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/ResyncPageWebhookSubscription200Response.md
@@ -1749,6 +1752,8 @@ docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
 docs/SlackApi.md
 docs/SlackPlatformData.md
+docs/SmsRegistrationReviewRequest.md
+docs/SmsRegistrationReviewRequestPointsInner.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
@@ -3704,6 +3709,8 @@ src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
+src/Zernio.Test/Model/OnSmsRegistrationActionRequiredRequestRegistrationTests.cs
+src/Zernio.Test/Model/OnSmsRegistrationActionRequiredRequestTests.cs
 src/Zernio.Test/Model/OnVerificationApprovedRequestTests.cs
 src/Zernio.Test/Model/OnVerificationApprovedRequestVerificationTests.cs
 src/Zernio.Test/Model/OnVerificationFailedRequestTests.cs
@@ -3852,6 +3859,7 @@ src/Zernio.Test/Model/RespondToPhoneNumberReviewer200ResponseTests.cs
 src/Zernio.Test/Model/RespondToPhoneNumberReviewerRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/RespondToPhoneNumberReviewerRequestTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReview200ResponseTests.cs
+src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestAnswersInnerTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
@@ -4032,6 +4040,8 @@ src/Zernio.Test/Model/ShareSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/ShareSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/SharedAdAccountTests.cs
 src/Zernio.Test/Model/SlackPlatformDataTests.cs
+src/Zernio.Test/Model/SmsRegistrationReviewRequestPointsInnerTests.cs
+src/Zernio.Test/Model/SmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
 src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
@@ -5988,6 +5998,8 @@ src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfile200Response.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfileRequest.cs
+src/Zernio/Model/OnSmsRegistrationActionRequiredRequest.cs
+src/Zernio/Model/OnSmsRegistrationActionRequiredRequestRegistration.cs
 src/Zernio/Model/OnVerificationApprovedRequest.cs
 src/Zernio/Model/OnVerificationApprovedRequestVerification.cs
 src/Zernio/Model/OnVerificationFailedRequest.cs
@@ -6137,6 +6149,7 @@ src/Zernio/Model/RespondToPhoneNumberReviewerRequest.cs
 src/Zernio/Model/RespondToPhoneNumberReviewerRequestDocumentsInner.cs
 src/Zernio/Model/RespondToSmsRegistrationReview200Response.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequest.cs
+src/Zernio/Model/RespondToSmsRegistrationReviewRequestAnswersInner.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/ResyncPageWebhookSubscription200Response.cs
@@ -6316,6 +6329,8 @@ src/Zernio/Model/ShareSmsRegistration200Response.cs
 src/Zernio/Model/ShareSmsRegistrationRequest.cs
 src/Zernio/Model/SharedAdAccount.cs
 src/Zernio/Model/SlackPlatformData.cs
+src/Zernio/Model/SmsRegistrationReviewRequest.cs
+src/Zernio/Model/SmsRegistrationReviewRequestPointsInner.cs
 src/Zernio/Model/SnapchatPlatformData.cs
 src/Zernio/Model/SocialAccount.cs
 src/Zernio/Model/SocialAccountProfileId.cs
