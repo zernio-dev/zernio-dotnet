@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **PlatformPostId** | **string** |  | [optional] 
 **PublishedUrl** | **string** |  | [optional] 
 **Error** | **string** |  | [optional] 
+**PlatformError** | [**PostPlatformError**](PostPlatformError.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

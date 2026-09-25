@@ -1439,6 +1439,7 @@ docs/PostAnalytics.md
 docs/PostCreateResponse.md
 docs/PostDeleteResponse.md
 docs/PostGetResponse.md
+docs/PostPlatformError.md
 docs/PostPublishIncompleteResponse.md
 docs/PostPublishIncompleteResponsePlatformResultsInner.md
 docs/PostRetryResponse.md
@@ -3718,6 +3719,7 @@ src/Zernio.Test/Model/PostAnalyticsTests.cs
 src/Zernio.Test/Model/PostCreateResponseTests.cs
 src/Zernio.Test/Model/PostDeleteResponseTests.cs
 src/Zernio.Test/Model/PostGetResponseTests.cs
+src/Zernio.Test/Model/PostPlatformErrorTests.cs
 src/Zernio.Test/Model/PostPublishIncompleteResponsePlatformResultsInnerTests.cs
 src/Zernio.Test/Model/PostPublishIncompleteResponseTests.cs
 src/Zernio.Test/Model/PostRetryResponseTests.cs
@@ -5989,6 +5991,7 @@ src/Zernio/Model/PostAnalytics.cs
 src/Zernio/Model/PostCreateResponse.cs
 src/Zernio/Model/PostDeleteResponse.cs
 src/Zernio/Model/PostGetResponse.cs
+src/Zernio/Model/PostPlatformError.cs
 src/Zernio/Model/PostPublishIncompleteResponse.cs
 src/Zernio/Model/PostPublishIncompleteResponsePlatformResultsInner.cs
 src/Zernio/Model/PostRetryResponse.cs
