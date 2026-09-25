@@ -1301,7 +1301,6 @@ docs/ListPhoneNumberPortIns200ResponseOrdersInner.md
 docs/ListPhoneNumberStockWatches200Response.md
 docs/ListPhoneNumbers200Response.md
 docs/ListPhoneNumbers200ResponseConnectedInner.md
-docs/ListPhoneNumbers200ResponseNumbersInner.md
 docs/ListPhoneNumbers200ResponseSandbox.md
 docs/ListPhoneNumbers200ResponseSandboxTemplate.md
 docs/ListPinterestBoardsForSelection200Response.md
@@ -1435,6 +1434,10 @@ docs/OnboardBusinessAgent201Response.md
 docs/OrderImessageSender202Response.md
 docs/OrderImessageSenderRequest.md
 docs/OrderImessageSenderRequestContact.md
+docs/OwnedPhoneNumber.md
+docs/OwnedPhoneNumberFeatures.md
+docs/OwnedPhoneNumberProfileId.md
+docs/OwnedPhoneNumberProfileIdOneOf.md
 docs/Pagination.md
 docs/PauseWorkflow200Response.md
 docs/Pending.md
@@ -3608,7 +3611,6 @@ src/Zernio.Test/Model/ListPhoneNumberPortIns200ResponseOrdersInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumberPortIns200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumberStockWatches200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseConnectedInnerTests.cs
-src/Zernio.Test/Model/ListPhoneNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseSandboxTemplateTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseSandboxTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseTests.cs
@@ -3738,6 +3740,10 @@ src/Zernio.Test/Model/OnboardBusinessAgent201ResponseTests.cs
 src/Zernio.Test/Model/OrderImessageSender202ResponseTests.cs
 src/Zernio.Test/Model/OrderImessageSenderRequestContactTests.cs
 src/Zernio.Test/Model/OrderImessageSenderRequestTests.cs
+src/Zernio.Test/Model/OwnedPhoneNumberFeaturesTests.cs
+src/Zernio.Test/Model/OwnedPhoneNumberProfileIdOneOfTests.cs
+src/Zernio.Test/Model/OwnedPhoneNumberProfileIdTests.cs
+src/Zernio.Test/Model/OwnedPhoneNumberTests.cs
 src/Zernio.Test/Model/PaginationTests.cs
 src/Zernio.Test/Model/PauseWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/PendingTests.cs
@@ -5901,7 +5907,6 @@ src/Zernio/Model/ListPhoneNumberPortIns200ResponseOrdersInner.cs
 src/Zernio/Model/ListPhoneNumberStockWatches200Response.cs
 src/Zernio/Model/ListPhoneNumbers200Response.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseConnectedInner.cs
-src/Zernio/Model/ListPhoneNumbers200ResponseNumbersInner.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseSandbox.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseSandboxTemplate.cs
 src/Zernio/Model/ListPinterestBoardsForSelection200Response.cs
@@ -6030,6 +6035,10 @@ src/Zernio/Model/OnboardBusinessAgent201Response.cs
 src/Zernio/Model/OrderImessageSender202Response.cs
 src/Zernio/Model/OrderImessageSenderRequest.cs
 src/Zernio/Model/OrderImessageSenderRequestContact.cs
+src/Zernio/Model/OwnedPhoneNumber.cs
+src/Zernio/Model/OwnedPhoneNumberFeatures.cs
+src/Zernio/Model/OwnedPhoneNumberProfileId.cs
+src/Zernio/Model/OwnedPhoneNumberProfileIdOneOf.cs
 src/Zernio/Model/Pagination.cs
 src/Zernio/Model/PauseWorkflow200Response.cs
 src/Zernio/Model/Pending.cs
