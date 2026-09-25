@@ -131,7 +131,7 @@ catch (ApiException e)
 
 Cancel an iMessage sender
 
-Cancels the sender at the provider and deactivates its messaging account. Billing stops with the current month (no proration or refunds, matching phone numbers). 
+Cancels the sender at the provider and deactivates its messaging account. Billing stops with the current month (no proration or refunds, matching phone numbers). A sender still being set up (status ordering or activating) cannot be canceled; contact support to change the order. 
 
 ### Example
 ```csharp
@@ -223,6 +223,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Sender not found |  -  |
+| **409** | The sender is still being set up and cannot be canceled yet (code: imessage_sender_setting_up) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
