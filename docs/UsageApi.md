@@ -433,6 +433,7 @@ catch (ApiException e)
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -534,6 +535,7 @@ catch (ApiException e)
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
