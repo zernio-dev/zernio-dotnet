@@ -652,6 +652,7 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**GetPhoneNumber**](docs/PhoneNumbersApi.md#getphonenumber) | **GET** /v1/phone-numbers/{id} | Get phone number
 *PhoneNumbersApi* | [**GetPhoneNumberClaim**](docs/PhoneNumbersApi.md#getphonenumberclaim) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim
 *PhoneNumbersApi* | [**GetPhoneNumberKycForm**](docs/PhoneNumbersApi.md#getphonenumberkycform) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
+*PhoneNumbersApi* | [**GetPhoneNumberPortClaim**](docs/PhoneNumbersApi.md#getphonenumberportclaim) | **GET** /v1/phone-numbers/port-in/claims/{claimId} | Resolve a port claim
 *PhoneNumbersApi* | [**GetPhoneNumberPortInOrderRequirements**](docs/PhoneNumbersApi.md#getphonenumberportinorderrequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order's pending requirements
 *PhoneNumbersApi* | [**GetPhoneNumberPortInRequirements**](docs/PhoneNumbersApi.md#getphonenumberportinrequirements) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements
 *PhoneNumbersApi* | [**GetPhoneNumberRemediation**](docs/PhoneNumbersApi.md#getphonenumberremediation) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements
@@ -1781,6 +1782,7 @@ Class | Method | HTTP request | Description
  - [Model.GetPhoneNumberKycForm200ResponseReusableDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableDetailsInner.md)
  - [Model.GetPhoneNumberKycForm200ResponseReusableOptionsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInner.md)
  - [Model.GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner.md)
+ - [Model.GetPhoneNumberPortClaim200Response](docs/GetPhoneNumberPortClaim200Response.md)
  - [Model.GetPhoneNumberPortInOrderRequirements200Response](docs/GetPhoneNumberPortInOrderRequirements200Response.md)
  - [Model.GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner](docs/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.md)
  - [Model.GetPhoneNumberPortInRequirements200Response](docs/GetPhoneNumberPortInRequirements200Response.md)

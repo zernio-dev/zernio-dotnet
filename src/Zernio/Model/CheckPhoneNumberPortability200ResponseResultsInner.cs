@@ -39,19 +39,27 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="portable">portable.</param>
         /// <param name="fastPortable">Qualifies for the carrier&#39;s accelerated FastPort lane..</param>
-        /// <param name="lineType">Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit..</param>
+        /// <param name="messagingCapable">Whether texting can be enabled on the number once ported; null when the carrier does not say..</param>
+        /// <param name="lineType">Line type when known (mobile, landline, voip, toll-free, unknown). US/CA portable numbers only. A US/CA mobile number requires the transfer PIN at submit..</param>
+        /// <param name="carrierName">The number&#39;s current carrier, when the lookup knows it. US/CA portable numbers only..</param>
         /// <param name="countryCode">ISO country of the number. Pass it to GET /v1/phone-numbers/port-in/requirements for international numbers..</param>
-        /// <param name="phoneNumberType">Carrier number-type classification (local, mobile, national, toll_free…), the numberType for the requirements endpoint..</param>
+        /// <param name="phoneNumberType">Carrier number-type classification (local, mobile, national, toll_free...), the numberType for the requirements endpoint..</param>
         /// <param name="notPortableReason">Carrier reason when not portable; null when portable..</param>
-        public CheckPhoneNumberPortability200ResponseResultsInner(string phoneNumber = default, bool portable = default, bool fastPortable = default, string lineType = default, string countryCode = default, string phoneNumberType = default, string notPortableReason = default)
+        /// <param name="claimId">Keyless calls and claimLinks&#x3D;true only, on portable results. Resolve it with GET /v1/phone-numbers/port-in/claims/{claimId}. Expires after 7 days..</param>
+        /// <param name="claimUrl">Keyless calls and claimLinks&#x3D;true only, on portable results. A signup link that lands on the dashboard&#39;s port form with this number filled in..</param>
+        public CheckPhoneNumberPortability200ResponseResultsInner(string phoneNumber = default, bool portable = default, bool fastPortable = default, bool? messagingCapable = default, string lineType = default, string carrierName = default, string countryCode = default, string phoneNumberType = default, string notPortableReason = default, string claimId = default, string claimUrl = default)
         {
             this.PhoneNumber = phoneNumber;
             this.Portable = portable;
             this.FastPortable = fastPortable;
+            this.MessagingCapable = messagingCapable;
             this.LineType = lineType;
+            this.CarrierName = carrierName;
             this.CountryCode = countryCode;
             this.PhoneNumberType = phoneNumberType;
             this.NotPortableReason = notPortableReason;
+            this.ClaimId = claimId;
+            this.ClaimUrl = claimUrl;
         }
 
         /// <summary>
@@ -74,11 +82,25 @@ namespace Zernio.Model
         public bool FastPortable { get; set; }
 
         /// <summary>
-        /// Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit.
+        /// Whether texting can be enabled on the number once ported; null when the carrier does not say.
         /// </summary>
-        /// <value>Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit.</value>
+        /// <value>Whether texting can be enabled on the number once ported; null when the carrier does not say.</value>
+        [DataMember(Name = "messagingCapable", EmitDefaultValue = true)]
+        public bool? MessagingCapable { get; set; }
+
+        /// <summary>
+        /// Line type when known (mobile, landline, voip, toll-free, unknown). US/CA portable numbers only. A US/CA mobile number requires the transfer PIN at submit.
+        /// </summary>
+        /// <value>Line type when known (mobile, landline, voip, toll-free, unknown). US/CA portable numbers only. A US/CA mobile number requires the transfer PIN at submit.</value>
         [DataMember(Name = "lineType", EmitDefaultValue = true)]
         public string LineType { get; set; }
+
+        /// <summary>
+        /// The number&#39;s current carrier, when the lookup knows it. US/CA portable numbers only.
+        /// </summary>
+        /// <value>The number&#39;s current carrier, when the lookup knows it. US/CA portable numbers only.</value>
+        [DataMember(Name = "carrierName", EmitDefaultValue = true)]
+        public string CarrierName { get; set; }
 
         /// <summary>
         /// ISO country of the number. Pass it to GET /v1/phone-numbers/port-in/requirements for international numbers.
@@ -88,9 +110,9 @@ namespace Zernio.Model
         public string CountryCode { get; set; }
 
         /// <summary>
-        /// Carrier number-type classification (local, mobile, national, toll_free…), the numberType for the requirements endpoint.
+        /// Carrier number-type classification (local, mobile, national, toll_free...), the numberType for the requirements endpoint.
         /// </summary>
-        /// <value>Carrier number-type classification (local, mobile, national, toll_free…), the numberType for the requirements endpoint.</value>
+        /// <value>Carrier number-type classification (local, mobile, national, toll_free...), the numberType for the requirements endpoint.</value>
         [DataMember(Name = "phoneNumberType", EmitDefaultValue = true)]
         public string PhoneNumberType { get; set; }
 
@@ -100,6 +122,20 @@ namespace Zernio.Model
         /// <value>Carrier reason when not portable; null when portable.</value>
         [DataMember(Name = "notPortableReason", EmitDefaultValue = true)]
         public string NotPortableReason { get; set; }
+
+        /// <summary>
+        /// Keyless calls and claimLinks&#x3D;true only, on portable results. Resolve it with GET /v1/phone-numbers/port-in/claims/{claimId}. Expires after 7 days.
+        /// </summary>
+        /// <value>Keyless calls and claimLinks&#x3D;true only, on portable results. Resolve it with GET /v1/phone-numbers/port-in/claims/{claimId}. Expires after 7 days.</value>
+        [DataMember(Name = "claimId", EmitDefaultValue = false)]
+        public string ClaimId { get; set; }
+
+        /// <summary>
+        /// Keyless calls and claimLinks&#x3D;true only, on portable results. A signup link that lands on the dashboard&#39;s port form with this number filled in.
+        /// </summary>
+        /// <value>Keyless calls and claimLinks&#x3D;true only, on portable results. A signup link that lands on the dashboard&#39;s port form with this number filled in.</value>
+        [DataMember(Name = "claimUrl", EmitDefaultValue = false)]
+        public string ClaimUrl { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -112,10 +148,14 @@ namespace Zernio.Model
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Portable: ").Append(Portable).Append("\n");
             sb.Append("  FastPortable: ").Append(FastPortable).Append("\n");
+            sb.Append("  MessagingCapable: ").Append(MessagingCapable).Append("\n");
             sb.Append("  LineType: ").Append(LineType).Append("\n");
+            sb.Append("  CarrierName: ").Append(CarrierName).Append("\n");
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  PhoneNumberType: ").Append(PhoneNumberType).Append("\n");
             sb.Append("  NotPortableReason: ").Append(NotPortableReason).Append("\n");
+            sb.Append("  ClaimId: ").Append(ClaimId).Append("\n");
+            sb.Append("  ClaimUrl: ").Append(ClaimUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

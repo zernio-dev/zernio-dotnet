@@ -14,6 +14,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetPhoneNumber**](PhoneNumbersApi.md#getphonenumber) | **GET** /v1/phone-numbers/{id} | Get phone number |
 | [**GetPhoneNumberClaim**](PhoneNumbersApi.md#getphonenumberclaim) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim |
 | [**GetPhoneNumberKycForm**](PhoneNumbersApi.md#getphonenumberkycform) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
+| [**GetPhoneNumberPortClaim**](PhoneNumbersApi.md#getphonenumberportclaim) | **GET** /v1/phone-numbers/port-in/claims/{claimId} | Resolve a port claim |
 | [**GetPhoneNumberPortInOrderRequirements**](PhoneNumbersApi.md#getphonenumberportinorderrequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements |
 | [**GetPhoneNumberPortInRequirements**](PhoneNumbersApi.md#getphonenumberportinrequirements) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements |
 | [**GetPhoneNumberRemediation**](PhoneNumbersApi.md#getphonenumberremediation) | **GET** /v1/phone-numbers/{id}/remediate | Get declined requirements |
@@ -246,7 +247,7 @@ catch (ApiException e)
 
 Check portability
 
-Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a `claimId` and a `claimUrl`: a signup link that opens the dashboard's port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
 
 ### Example
 ```csharp
@@ -335,7 +336,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-number portability. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **429** | Keyless calls only. The per-IP limit or the shared daily budget is spent; &#x60;Retry-After&#x60; says when to try again. Send an API key to skip both. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1042,6 +1045,107 @@ catch (ApiException e)
 | **200** | The KYC form spec. |  -  |
 | **400** | Country not available |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getphonenumberportclaim"></a>
+# **GetPhoneNumberPortClaim**
+> GetPhoneNumberPortClaim200Response GetPhoneNumberPortClaim (string claimId)
+
+Resolve a port claim
+
+Resolves a `claimId` from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port `claimUrl`, to open the port form with that number filled in. It does not start a port. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetPhoneNumberPortClaimExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var claimId = "claimId_example";  // string | 
+
+            try
+            {
+                // Resolve a port claim
+                GetPhoneNumberPortClaim200Response result = apiInstance.GetPhoneNumberPortClaim(claimId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.GetPhoneNumberPortClaim: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetPhoneNumberPortClaimWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Resolve a port claim
+    ApiResponse<GetPhoneNumberPortClaim200Response> response = apiInstance.GetPhoneNumberPortClaimWithHttpInfo(claimId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.GetPhoneNumberPortClaimWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **claimId** | **string** |  |  |
+
+### Return type
+
+[**GetPhoneNumberPortClaim200Response**](GetPhoneNumberPortClaim200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The claimed number. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The claim expired (after 7 days) or is invalid. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

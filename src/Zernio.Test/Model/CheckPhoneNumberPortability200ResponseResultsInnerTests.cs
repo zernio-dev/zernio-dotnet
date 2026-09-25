@@ -83,12 +83,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MessagingCapable'
+        /// </summary>
+        [Fact]
+        public void MessagingCapableTest()
+        {
+            // TODO unit test for the property 'MessagingCapable'
+        }
+
+        /// <summary>
         /// Test the property 'LineType'
         /// </summary>
         [Fact]
         public void LineTypeTest()
         {
             // TODO unit test for the property 'LineType'
+        }
+
+        /// <summary>
+        /// Test the property 'CarrierName'
+        /// </summary>
+        [Fact]
+        public void CarrierNameTest()
+        {
+            // TODO unit test for the property 'CarrierName'
         }
 
         /// <summary>
@@ -116,6 +134,24 @@ namespace Zernio.Test.Model
         public void NotPortableReasonTest()
         {
             // TODO unit test for the property 'NotPortableReason'
+        }
+
+        /// <summary>
+        /// Test the property 'ClaimId'
+        /// </summary>
+        [Fact]
+        public void ClaimIdTest()
+        {
+            // TODO unit test for the property 'ClaimId'
+        }
+
+        /// <summary>
+        /// Test the property 'ClaimUrl'
+        /// </summary>
+        [Fact]
+        public void ClaimUrlTest()
+        {
+            // TODO unit test for the property 'ClaimUrl'
         }
     }
 }

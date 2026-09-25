@@ -78,7 +78,7 @@ namespace Zernio.Api
         /// Check portability
         /// </summary>
         /// <remarks>
-        /// Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -89,7 +89,7 @@ namespace Zernio.Api
         /// Check portability
         /// </summary>
         /// <remarks>
-        /// Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -241,6 +241,27 @@ namespace Zernio.Api
         /// <param name="numberType">Requirements and reuse eligibility are per (country, type). Omitted &#x3D; the country&#39;s default type. Pass the same value on the POST. (optional)</param>
         /// <returns>ApiResponse of GetPhoneNumberKycForm200Response</returns>
         ApiResponse<GetPhoneNumberKycForm200Response> GetPhoneNumberKycFormWithHttpInfo(string country, string? numberType = default);
+        /// <summary>
+        /// Resolve a port claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>GetPhoneNumberPortClaim200Response</returns>
+        GetPhoneNumberPortClaim200Response GetPhoneNumberPortClaim(string claimId);
+
+        /// <summary>
+        /// Resolve a port claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>ApiResponse of GetPhoneNumberPortClaim200Response</returns>
+        ApiResponse<GetPhoneNumberPortClaim200Response> GetPhoneNumberPortClaimWithHttpInfo(string claimId);
         /// <summary>
         /// A port-in order&#39;s pending requirements
         /// </summary>
@@ -726,7 +747,7 @@ namespace Zernio.Api
         /// Check portability
         /// </summary>
         /// <remarks>
-        /// Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -738,7 +759,7 @@ namespace Zernio.Api
         /// Check portability
         /// </summary>
         /// <remarks>
-        /// Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -908,6 +929,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetPhoneNumberKycForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetPhoneNumberKycForm200Response>> GetPhoneNumberKycFormWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Resolve a port claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetPhoneNumberPortClaim200Response</returns>
+        System.Threading.Tasks.Task<GetPhoneNumberPortClaim200Response> GetPhoneNumberPortClaimAsync(string claimId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Resolve a port claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetPhoneNumberPortClaim200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetPhoneNumberPortClaim200Response>> GetPhoneNumberPortClaimWithHttpInfoAsync(string claimId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// A port-in order&#39;s pending requirements
         /// </summary>
@@ -1863,7 +1907,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check portability Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Check portability Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -1875,7 +1919,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check portability Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Check portability Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -1925,7 +1969,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check portability Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Check portability Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -1938,7 +1982,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check portability Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+        /// Check portability Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="checkPhoneNumberPortabilityRequest"></param>
@@ -2892,6 +2936,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetPhoneNumberKycForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Resolve a port claim Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>GetPhoneNumberPortClaim200Response</returns>
+        public GetPhoneNumberPortClaim200Response GetPhoneNumberPortClaim(string claimId)
+        {
+            Zernio.Client.ApiResponse<GetPhoneNumberPortClaim200Response> localVarResponse = GetPhoneNumberPortClaimWithHttpInfo(claimId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Resolve a port claim Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>ApiResponse of GetPhoneNumberPortClaim200Response</returns>
+        public Zernio.Client.ApiResponse<GetPhoneNumberPortClaim200Response> GetPhoneNumberPortClaimWithHttpInfo(string claimId)
+        {
+            // verify the required parameter 'claimId' is set
+            if (claimId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'claimId' when calling PhoneNumbersApi->GetPhoneNumberPortClaim");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("claimId", Zernio.Client.ClientUtils.ParameterToString(claimId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetPhoneNumberPortClaim200Response>("/v1/phone-numbers/port-in/claims/{claimId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetPhoneNumberPortClaim", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Resolve a port claim Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetPhoneNumberPortClaim200Response</returns>
+        public async System.Threading.Tasks.Task<GetPhoneNumberPortClaim200Response> GetPhoneNumberPortClaimAsync(string claimId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetPhoneNumberPortClaim200Response> localVarResponse = await GetPhoneNumberPortClaimWithHttpInfoAsync(claimId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Resolve a port claim Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetPhoneNumberPortClaim200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetPhoneNumberPortClaim200Response>> GetPhoneNumberPortClaimWithHttpInfoAsync(string claimId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'claimId' is set
+            if (claimId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'claimId' when calling PhoneNumbersApi->GetPhoneNumberPortClaim");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("claimId", Zernio.Client.ClientUtils.ParameterToString(claimId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetPhoneNumberPortClaim200Response>("/v1/phone-numbers/port-in/claims/{claimId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetPhoneNumberPortClaim", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

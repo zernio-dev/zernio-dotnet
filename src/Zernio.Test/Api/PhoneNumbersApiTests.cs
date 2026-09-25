@@ -178,6 +178,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetPhoneNumberPortClaim
+        /// </summary>
+        [Fact]
+        public void GetPhoneNumberPortClaimTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string claimId = null;
+            //var response = instance.GetPhoneNumberPortClaim(claimId);
+            //Assert.IsType<GetPhoneNumberPortClaim200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetPhoneNumberPortInOrderRequirements
         /// </summary>
         [Fact]

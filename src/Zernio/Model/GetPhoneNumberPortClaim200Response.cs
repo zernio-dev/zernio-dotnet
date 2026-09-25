@@ -28,45 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CheckPhoneNumberPortabilityRequest
+    /// GetPhoneNumberPortClaim200Response
     /// </summary>
-    [DataContract(Name = "checkPhoneNumberPortability_request")]
-    public partial class CheckPhoneNumberPortabilityRequest : IValidatableObject
+    [DataContract(Name = "getPhoneNumberPortClaim_200_response")]
+    public partial class GetPhoneNumberPortClaim200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CheckPhoneNumberPortabilityRequest" /> class.
+        /// Initializes a new instance of the <see cref="GetPhoneNumberPortClaim200Response" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CheckPhoneNumberPortabilityRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CheckPhoneNumberPortabilityRequest" /> class.
-        /// </summary>
-        /// <param name="phoneNumbers">E.164 numbers to check, e.g. +13035550000. At most one without an API key. (required).</param>
-        /// <param name="claimLinks">true adds &#x60;claimId&#x60; and &#x60;claimUrl&#x60; to portable results even when you send an API key, e.g. to hand a user a signup link that opens the port form with their number..</param>
-        public CheckPhoneNumberPortabilityRequest(List<string> phoneNumbers = default, bool claimLinks = default)
+        /// <param name="phoneNumber">E.164..</param>
+        /// <param name="countryCode">ISO country of the number..</param>
+        public GetPhoneNumberPortClaim200Response(string phoneNumber = default, string countryCode = default)
         {
-            // to ensure "phoneNumbers" is required (not null)
-            if (phoneNumbers == null)
-            {
-                throw new ArgumentNullException("phoneNumbers is a required property for CheckPhoneNumberPortabilityRequest and cannot be null");
-            }
-            this.PhoneNumbers = phoneNumbers;
-            this.ClaimLinks = claimLinks;
+            this.PhoneNumber = phoneNumber;
+            this.CountryCode = countryCode;
         }
 
         /// <summary>
-        /// E.164 numbers to check, e.g. +13035550000. At most one without an API key.
+        /// E.164.
         /// </summary>
-        /// <value>E.164 numbers to check, e.g. +13035550000. At most one without an API key.</value>
-        [DataMember(Name = "phoneNumbers", IsRequired = true, EmitDefaultValue = true)]
-        public List<string> PhoneNumbers { get; set; }
+        /// <value>E.164.</value>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// true adds &#x60;claimId&#x60; and &#x60;claimUrl&#x60; to portable results even when you send an API key, e.g. to hand a user a signup link that opens the port form with their number.
+        /// ISO country of the number.
         /// </summary>
-        /// <value>true adds &#x60;claimId&#x60; and &#x60;claimUrl&#x60; to portable results even when you send an API key, e.g. to hand a user a signup link that opens the port form with their number.</value>
-        [DataMember(Name = "claimLinks", EmitDefaultValue = true)]
-        public bool ClaimLinks { get; set; }
+        /// <value>ISO country of the number.</value>
+        [DataMember(Name = "countryCode", EmitDefaultValue = true)]
+        public string CountryCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -75,9 +65,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CheckPhoneNumberPortabilityRequest {\n");
-            sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
-            sb.Append("  ClaimLinks: ").Append(ClaimLinks).Append("\n");
+            sb.Append("class GetPhoneNumberPortClaim200Response {\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
