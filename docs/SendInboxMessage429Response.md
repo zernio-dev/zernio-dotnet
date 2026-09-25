@@ -1,4 +1,4 @@
-# Zernio.Model.SendInboxMessage502Response
+# Zernio.Model.SendInboxMessage429Response
 
 ## Properties
 

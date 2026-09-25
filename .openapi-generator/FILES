@@ -1654,7 +1654,7 @@ docs/SendInboxMessage200ResponseDataPartialFailurePlatformError.md
 docs/SendInboxMessage200ResponseWarningsInner.md
 docs/SendInboxMessage400Response.md
 docs/SendInboxMessage400ResponsePlatformError.md
-docs/SendInboxMessage502Response.md
+docs/SendInboxMessage429Response.md
 docs/SendInboxMessageRequest.md
 docs/SendInboxMessageRequestButtonsInner.md
 docs/SendInboxMessageRequestContactsInner.md
@@ -3927,7 +3927,7 @@ src/Zernio.Test/Model/SendInboxMessage200ResponseTests.cs
 src/Zernio.Test/Model/SendInboxMessage200ResponseWarningsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessage400ResponsePlatformErrorTests.cs
 src/Zernio.Test/Model/SendInboxMessage400ResponseTests.cs
-src/Zernio.Test/Model/SendInboxMessage502ResponseTests.cs
+src/Zernio.Test/Model/SendInboxMessage429ResponseTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestButtonsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestContactsInnerEmailsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestContactsInnerNameTests.cs
@@ -6199,7 +6199,7 @@ src/Zernio/Model/SendInboxMessage200ResponseDataPartialFailurePlatformError.cs
 src/Zernio/Model/SendInboxMessage200ResponseWarningsInner.cs
 src/Zernio/Model/SendInboxMessage400Response.cs
 src/Zernio/Model/SendInboxMessage400ResponsePlatformError.cs
-src/Zernio/Model/SendInboxMessage502Response.cs
+src/Zernio/Model/SendInboxMessage429Response.cs
 src/Zernio/Model/SendInboxMessageRequest.cs
 src/Zernio/Model/SendInboxMessageRequestButtonsInner.cs
 src/Zernio/Model/SendInboxMessageRequestContactsInner.cs
