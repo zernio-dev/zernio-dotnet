@@ -1411,6 +1411,8 @@ docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
 docs/OnSmsRegistrationActionRequiredRequest.md
 docs/OnSmsRegistrationActionRequiredRequestRegistration.md
+docs/OnSmsRegistrationStatusUpdatedRequest.md
+docs/OnSmsRegistrationStatusUpdatedRequestRegistration.md
 docs/OnVerificationApprovedRequest.md
 docs/OnVerificationApprovedRequestVerification.md
 docs/OnVerificationFailedRequest.md
@@ -3711,6 +3713,8 @@ src/Zernio.Test/Model/MoveWhatsAppNumberToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
 src/Zernio.Test/Model/OnSmsRegistrationActionRequiredRequestRegistrationTests.cs
 src/Zernio.Test/Model/OnSmsRegistrationActionRequiredRequestTests.cs
+src/Zernio.Test/Model/OnSmsRegistrationStatusUpdatedRequestRegistrationTests.cs
+src/Zernio.Test/Model/OnSmsRegistrationStatusUpdatedRequestTests.cs
 src/Zernio.Test/Model/OnVerificationApprovedRequestTests.cs
 src/Zernio.Test/Model/OnVerificationApprovedRequestVerificationTests.cs
 src/Zernio.Test/Model/OnVerificationFailedRequestTests.cs
@@ -6000,6 +6004,8 @@ src/Zernio/Model/MoveWhatsAppNumberToProfile200Response.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfileRequest.cs
 src/Zernio/Model/OnSmsRegistrationActionRequiredRequest.cs
 src/Zernio/Model/OnSmsRegistrationActionRequiredRequestRegistration.cs
+src/Zernio/Model/OnSmsRegistrationStatusUpdatedRequest.cs
+src/Zernio/Model/OnSmsRegistrationStatusUpdatedRequestRegistration.cs
 src/Zernio/Model/OnVerificationApprovedRequest.cs
 src/Zernio/Model/OnVerificationApprovedRequestVerification.cs
 src/Zernio/Model/OnVerificationFailedRequest.cs
