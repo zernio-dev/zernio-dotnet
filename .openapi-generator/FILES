@@ -592,6 +592,8 @@ docs/EnrollContacts200ResponseResultsInner.md
 docs/EnrollContactsRequest.md
 docs/ErrorResponse.md
 docs/ErrorResponseDetails.md
+docs/ErrorResponseDetailsCreatedObjectsInner.md
+docs/ErrorResponseDetailsUnconfirmedWrite.md
 docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
 docs/Expired.md
@@ -2890,7 +2892,9 @@ src/Zernio.Test/Model/EndVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/EnrollContacts200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/EnrollContacts200ResponseTests.cs
 src/Zernio.Test/Model/EnrollContactsRequestTests.cs
+src/Zernio.Test/Model/ErrorResponseDetailsCreatedObjectsInnerTests.cs
 src/Zernio.Test/Model/ErrorResponseDetailsTests.cs
+src/Zernio.Test/Model/ErrorResponseDetailsUnconfirmedWriteTests.cs
 src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
@@ -5162,6 +5166,8 @@ src/Zernio/Model/EnrollContacts200ResponseResultsInner.cs
 src/Zernio/Model/EnrollContactsRequest.cs
 src/Zernio/Model/ErrorResponse.cs
 src/Zernio/Model/ErrorResponseDetails.cs
+src/Zernio/Model/ErrorResponseDetailsCreatedObjectsInner.cs
+src/Zernio/Model/ErrorResponseDetailsUnconfirmedWrite.cs
 src/Zernio/Model/EstimateAdReach200Response.cs
 src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/Expired.cs
