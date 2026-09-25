@@ -90,5 +90,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Numbers'
         }
+
+        /// <summary>
+        /// Test the property 'Masked'
+        /// </summary>
+        [Fact]
+        public void MaskedTest()
+        {
+            // TODO unit test for the property 'Masked'
+        }
+
+        /// <summary>
+        /// Test the property 'Near'
+        /// </summary>
+        [Fact]
+        public void NearTest()
+        {
+            // TODO unit test for the property 'Near'
+        }
+
+        /// <summary>
+        /// Test the property 'ClaimId'
+        /// </summary>
+        [Fact]
+        public void ClaimIdTest()
+        {
+            // TODO unit test for the property 'ClaimId'
+        }
+
+        /// <summary>
+        /// Test the property 'ClaimUrl'
+        /// </summary>
+        [Fact]
+        public void ClaimUrlTest()
+        {
+            // TODO unit test for the property 'ClaimUrl'
+        }
     }
 }

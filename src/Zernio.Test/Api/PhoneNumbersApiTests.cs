@@ -153,6 +153,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetPhoneNumberClaim
+        /// </summary>
+        [Fact]
+        public void GetPhoneNumberClaimTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string claimId = null;
+            //var response = instance.GetPhoneNumberClaim(claimId);
+            //Assert.IsType<GetPhoneNumberClaim200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetPhoneNumberKycForm
         /// </summary>
         [Fact]
@@ -339,7 +351,8 @@ namespace Zernio.Test.Api
             //string? contains = null;
             //bool? sms = null;
             //int? limit = null;
-            //var response = instance.SearchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit);
+            //bool? masked = null;
+            //var response = instance.SearchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked);
             //Assert.IsType<SearchAvailablePhoneNumbers200Response>(response);
         }
 

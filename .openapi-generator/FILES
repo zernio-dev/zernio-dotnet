@@ -873,6 +873,9 @@ docs/GetPendingOAuthData200Response.md
 docs/GetPendingOAuthData200ResponseOrganizationsInner.md
 docs/GetPhoneNumber200Response.md
 docs/GetPhoneNumber200ResponsePhoneNumber.md
+docs/GetPhoneNumberClaim200Response.md
+docs/GetPhoneNumberClaim200ResponseArea.md
+docs/GetPhoneNumberClaim200ResponseCountry.md
 docs/GetPhoneNumberKycForm200Response.md
 docs/GetPhoneNumberKycForm200ResponseFieldsInner.md
 docs/GetPhoneNumberKycForm200ResponseReusable.md
@@ -1474,6 +1477,8 @@ docs/PurchasePhoneNumber200ResponseOneOf1.md
 docs/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.md
 docs/PurchasePhoneNumber200ResponseOneOf2.md
 docs/PurchasePhoneNumber202Response.md
+docs/PurchasePhoneNumber401Response.md
+docs/PurchasePhoneNumber401ResponseDetails.md
 docs/PurchasePhoneNumber409Response.md
 docs/PurchasePhoneNumber503Response.md
 docs/PurchasePhoneNumberRequest.md
@@ -3167,6 +3172,9 @@ src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseTests.cs
 src/Zernio.Test/Model/GetPhoneNumber200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/GetPhoneNumber200ResponseTests.cs
+src/Zernio.Test/Model/GetPhoneNumberClaim200ResponseAreaTests.cs
+src/Zernio.Test/Model/GetPhoneNumberClaim200ResponseCountryTests.cs
+src/Zernio.Test/Model/GetPhoneNumberClaim200ResponseTests.cs
 src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseReusableDetailsInnerTests.cs
 src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInnerTests.cs
@@ -3752,6 +3760,8 @@ src/Zernio.Test/Model/PurchasePhoneNumber200ResponseOneOf2Tests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber200ResponseOneOfTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber202ResponseTests.cs
+src/Zernio.Test/Model/PurchasePhoneNumber401ResponseDetailsTests.cs
+src/Zernio.Test/Model/PurchasePhoneNumber401ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber409ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber503ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumberRequestTests.cs
@@ -5439,6 +5449,9 @@ src/Zernio/Model/GetPendingOAuthData200Response.cs
 src/Zernio/Model/GetPendingOAuthData200ResponseOrganizationsInner.cs
 src/Zernio/Model/GetPhoneNumber200Response.cs
 src/Zernio/Model/GetPhoneNumber200ResponsePhoneNumber.cs
+src/Zernio/Model/GetPhoneNumberClaim200Response.cs
+src/Zernio/Model/GetPhoneNumberClaim200ResponseArea.cs
+src/Zernio/Model/GetPhoneNumberClaim200ResponseCountry.cs
 src/Zernio/Model/GetPhoneNumberKycForm200Response.cs
 src/Zernio/Model/GetPhoneNumberKycForm200ResponseFieldsInner.cs
 src/Zernio/Model/GetPhoneNumberKycForm200ResponseReusable.cs
@@ -6024,6 +6037,8 @@ src/Zernio/Model/PurchasePhoneNumber200ResponseOneOf1.cs
 src/Zernio/Model/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.cs
 src/Zernio/Model/PurchasePhoneNumber200ResponseOneOf2.cs
 src/Zernio/Model/PurchasePhoneNumber202Response.cs
+src/Zernio/Model/PurchasePhoneNumber401Response.cs
+src/Zernio/Model/PurchasePhoneNumber401ResponseDetails.cs
 src/Zernio/Model/PurchasePhoneNumber409Response.cs
 src/Zernio/Model/PurchasePhoneNumber503Response.cs
 src/Zernio/Model/PurchasePhoneNumberRequest.cs

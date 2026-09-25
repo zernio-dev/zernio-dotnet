@@ -90,5 +90,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'BestEffort'
         }
+
+        /// <summary>
+        /// Test the property 'MaskedNumber'
+        /// </summary>
+        [Fact]
+        public void MaskedNumberTest()
+        {
+            // TODO unit test for the property 'MaskedNumber'
+        }
+
+        /// <summary>
+        /// Test the property 'NumberType'
+        /// </summary>
+        [Fact]
+        public void NumberTypeTest()
+        {
+            // TODO unit test for the property 'NumberType'
+        }
+
+        /// <summary>
+        /// Test the property 'ClaimId'
+        /// </summary>
+        [Fact]
+        public void ClaimIdTest()
+        {
+            // TODO unit test for the property 'ClaimId'
+        }
+
+        /// <summary>
+        /// Test the property 'ClaimUrl'
+        /// </summary>
+        [Fact]
+        public void ClaimUrlTest()
+        {
+            // TODO unit test for the property 'ClaimUrl'
+        }
     }
 }

@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ClaimId'
+        /// </summary>
+        [Fact]
+        public void ClaimIdTest()
+        {
+            // TODO unit test for the property 'ClaimId'
+        }
+
+        /// <summary>
         /// Test the property 'PhoneNumber'
         /// </summary>
         [Fact]

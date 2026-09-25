@@ -40,12 +40,20 @@ namespace Zernio.Model
         /// <param name="features">Provider capability list for this number (e.g. voice, sms, mms)..</param>
         /// <param name="locality">Town or rate center the number belongs to, as the carrier names it (e.g. WACO)..</param>
         /// <param name="bestEffort">true when the carrier added this number because too few matched your filters, so it may be outside the requested prefix or locality..</param>
-        public SearchAvailablePhoneNumbers200ResponseNumbersInner(string phoneNumber = default, List<string> features = default, string locality = default, bool bestEffort = default)
+        /// <param name="maskedNumber">Keyless calls only, in place of &#x60;phoneNumber&#x60;: the number with its middle digits masked, e.g. +44 20 •••• 0123..</param>
+        /// <param name="numberType">Keyless calls only. Without a &#x60;numberType&#x60; filter a keyless search mixes every type the country sells, so each result names its own..</param>
+        /// <param name="claimId">Keyless calls only. Opaque, expires after 7 days. Pass it as &#x60;claimId&#x60; on a keyless POST /v1/phone-numbers/purchase..</param>
+        /// <param name="claimUrl">Keyless calls only. Signup link that opens the dashboard&#39;s confirm step for this number. The number is not held: if it is gone by then, the buyer picks another in the same area..</param>
+        public SearchAvailablePhoneNumbers200ResponseNumbersInner(string phoneNumber = default, List<string> features = default, string locality = default, bool bestEffort = default, string maskedNumber = default, string numberType = default, string claimId = default, string claimUrl = default)
         {
             this.PhoneNumber = phoneNumber;
             this.Features = features;
             this.Locality = locality;
             this.BestEffort = bestEffort;
+            this.MaskedNumber = maskedNumber;
+            this.NumberType = numberType;
+            this.ClaimId = claimId;
+            this.ClaimUrl = claimUrl;
         }
 
         /// <summary>
@@ -77,6 +85,34 @@ namespace Zernio.Model
         public bool BestEffort { get; set; }
 
         /// <summary>
+        /// Keyless calls only, in place of &#x60;phoneNumber&#x60;: the number with its middle digits masked, e.g. +44 20 •••• 0123.
+        /// </summary>
+        /// <value>Keyless calls only, in place of &#x60;phoneNumber&#x60;: the number with its middle digits masked, e.g. +44 20 •••• 0123.</value>
+        [DataMember(Name = "maskedNumber", EmitDefaultValue = false)]
+        public string MaskedNumber { get; set; }
+
+        /// <summary>
+        /// Keyless calls only. Without a &#x60;numberType&#x60; filter a keyless search mixes every type the country sells, so each result names its own.
+        /// </summary>
+        /// <value>Keyless calls only. Without a &#x60;numberType&#x60; filter a keyless search mixes every type the country sells, so each result names its own.</value>
+        [DataMember(Name = "numberType", EmitDefaultValue = false)]
+        public string NumberType { get; set; }
+
+        /// <summary>
+        /// Keyless calls only. Opaque, expires after 7 days. Pass it as &#x60;claimId&#x60; on a keyless POST /v1/phone-numbers/purchase.
+        /// </summary>
+        /// <value>Keyless calls only. Opaque, expires after 7 days. Pass it as &#x60;claimId&#x60; on a keyless POST /v1/phone-numbers/purchase.</value>
+        [DataMember(Name = "claimId", EmitDefaultValue = false)]
+        public string ClaimId { get; set; }
+
+        /// <summary>
+        /// Keyless calls only. Signup link that opens the dashboard&#39;s confirm step for this number. The number is not held: if it is gone by then, the buyer picks another in the same area.
+        /// </summary>
+        /// <value>Keyless calls only. Signup link that opens the dashboard&#39;s confirm step for this number. The number is not held: if it is gone by then, the buyer picks another in the same area.</value>
+        [DataMember(Name = "claimUrl", EmitDefaultValue = false)]
+        public string ClaimUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -88,6 +124,10 @@ namespace Zernio.Model
             sb.Append("  Features: ").Append(Features).Append("\n");
             sb.Append("  Locality: ").Append(Locality).Append("\n");
             sb.Append("  BestEffort: ").Append(BestEffort).Append("\n");
+            sb.Append("  MaskedNumber: ").Append(MaskedNumber).Append("\n");
+            sb.Append("  NumberType: ").Append(NumberType).Append("\n");
+            sb.Append("  ClaimId: ").Append(ClaimId).Append("\n");
+            sb.Append("  ClaimUrl: ").Append(ClaimUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

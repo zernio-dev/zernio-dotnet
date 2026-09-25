@@ -53,7 +53,7 @@ namespace Zernio.Api
         /// Check country availability
         /// </summary>
         /// <remarks>
-        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Check country availability
         /// </summary>
         /// <remarks>
-        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -198,6 +198,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetPhoneNumber200Response</returns>
         ApiResponse<GetPhoneNumber200Response> GetPhoneNumberWithHttpInfo(string id);
         /// <summary>
+        /// Resolve a number claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>GetPhoneNumberClaim200Response</returns>
+        GetPhoneNumberClaim200Response GetPhoneNumberClaim(string claimId);
+
+        /// <summary>
+        /// Resolve a number claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>ApiResponse of GetPhoneNumberClaim200Response</returns>
+        ApiResponse<GetPhoneNumberClaim200Response> GetPhoneNumberClaimWithHttpInfo(string claimId);
+        /// <summary>
         /// Get KYC form spec
         /// </summary>
         /// <remarks>
@@ -289,7 +310,7 @@ namespace Zernio.Api
         /// List offerable number countries
         /// </summary>
         /// <remarks>
-        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListPhoneNumberCountries200Response</returns>
@@ -299,7 +320,7 @@ namespace Zernio.Api
         /// List offerable number countries
         /// </summary>
         /// <remarks>
-        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListPhoneNumberCountries200Response</returns>
@@ -498,10 +519,10 @@ namespace Zernio.Api
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -510,17 +531,18 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <returns>SearchAvailablePhoneNumbers200Response</returns>
-        SearchAvailablePhoneNumbers200Response SearchAvailablePhoneNumbers(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default);
+        SearchAvailablePhoneNumbers200Response SearchAvailablePhoneNumbers(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default);
 
         /// <summary>
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -529,8 +551,9 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <returns>ApiResponse of SearchAvailablePhoneNumbers200Response</returns>
-        ApiResponse<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersWithHttpInfo(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default);
+        ApiResponse<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersWithHttpInfo(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default);
         /// <summary>
         /// Submit KYC
         /// </summary>
@@ -676,7 +699,7 @@ namespace Zernio.Api
         /// Check country availability
         /// </summary>
         /// <remarks>
-        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -690,7 +713,7 @@ namespace Zernio.Api
         /// Check country availability
         /// </summary>
         /// <remarks>
-        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -838,6 +861,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetPhoneNumber200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetPhoneNumber200Response>> GetPhoneNumberWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Resolve a number claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetPhoneNumberClaim200Response</returns>
+        System.Threading.Tasks.Task<GetPhoneNumberClaim200Response> GetPhoneNumberClaimAsync(string claimId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Resolve a number claim
+        /// </summary>
+        /// <remarks>
+        /// Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetPhoneNumberClaim200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetPhoneNumberClaim200Response>> GetPhoneNumberClaimWithHttpInfoAsync(string claimId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get KYC form spec
         /// </summary>
         /// <remarks>
@@ -937,7 +983,7 @@ namespace Zernio.Api
         /// List offerable number countries
         /// </summary>
         /// <remarks>
-        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -948,7 +994,7 @@ namespace Zernio.Api
         /// List offerable number countries
         /// </summary>
         /// <remarks>
-        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1169,10 +1215,10 @@ namespace Zernio.Api
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -1181,18 +1227,19 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchAvailablePhoneNumbers200Response</returns>
-        System.Threading.Tasks.Task<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Search available numbers
         /// </summary>
         /// <remarks>
-        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -1201,9 +1248,10 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchAvailablePhoneNumbers200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SearchAvailablePhoneNumbers200Response>> SearchAvailablePhoneNumbersWithHttpInfoAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<SearchAvailablePhoneNumbers200Response>> SearchAvailablePhoneNumbersWithHttpInfoAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Submit KYC
         /// </summary>
@@ -1664,7 +1712,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -1678,7 +1726,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -1737,7 +1785,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -1752,7 +1800,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// Check country availability Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
@@ -2585,6 +2633,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Resolve a number claim Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>GetPhoneNumberClaim200Response</returns>
+        public GetPhoneNumberClaim200Response GetPhoneNumberClaim(string claimId)
+        {
+            Zernio.Client.ApiResponse<GetPhoneNumberClaim200Response> localVarResponse = GetPhoneNumberClaimWithHttpInfo(claimId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Resolve a number claim Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <returns>ApiResponse of GetPhoneNumberClaim200Response</returns>
+        public Zernio.Client.ApiResponse<GetPhoneNumberClaim200Response> GetPhoneNumberClaimWithHttpInfo(string claimId)
+        {
+            // verify the required parameter 'claimId' is set
+            if (claimId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'claimId' when calling PhoneNumbersApi->GetPhoneNumberClaim");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("claimId", Zernio.Client.ClientUtils.ParameterToString(claimId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetPhoneNumberClaim200Response>("/v1/phone-numbers/claims/{claimId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetPhoneNumberClaim", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Resolve a number claim Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetPhoneNumberClaim200Response</returns>
+        public async System.Threading.Tasks.Task<GetPhoneNumberClaim200Response> GetPhoneNumberClaimAsync(string claimId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetPhoneNumberClaim200Response> localVarResponse = await GetPhoneNumberClaimWithHttpInfoAsync(claimId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Resolve a number claim Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="claimId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetPhoneNumberClaim200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetPhoneNumberClaim200Response>> GetPhoneNumberClaimWithHttpInfoAsync(string claimId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'claimId' is set
+            if (claimId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'claimId' when calling PhoneNumbersApi->GetPhoneNumberClaim");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("claimId", Zernio.Client.ClientUtils.ParameterToString(claimId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetPhoneNumberClaim200Response>("/v1/phone-numbers/claims/{claimId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetPhoneNumberClaim", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get KYC form spec For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3117,7 +3292,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListPhoneNumberCountries200Response</returns>
@@ -3128,7 +3303,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListPhoneNumberCountries200Response</returns>
@@ -3151,12 +3326,6 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<ListPhoneNumberCountries200Response>("/v1/phone-numbers/countries", localVarRequestOptions, this.Configuration);
@@ -3171,7 +3340,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3183,7 +3352,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// List offerable number countries The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3209,12 +3378,6 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
 
             // make the HTTP request
 
@@ -4407,10 +4570,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -4419,18 +4582,19 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <returns>SearchAvailablePhoneNumbers200Response</returns>
-        public SearchAvailablePhoneNumbers200Response SearchAvailablePhoneNumbers(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default)
+        public SearchAvailablePhoneNumbers200Response SearchAvailablePhoneNumbers(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default)
         {
-            Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response> localVarResponse = SearchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit);
+            Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response> localVarResponse = SearchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -4439,8 +4603,9 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <returns>ApiResponse of SearchAvailablePhoneNumbers200Response</returns>
-        public Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersWithHttpInfo(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default)
+        public Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersWithHttpInfo(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -4493,6 +4658,10 @@ namespace Zernio.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (masked != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "masked", masked));
             }
 
             // authentication (bearerAuth) required
@@ -4515,10 +4684,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -4527,19 +4696,20 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchAvailablePhoneNumbers200Response</returns>
-        public async System.Threading.Tasks.Task<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<SearchAvailablePhoneNumbers200Response> SearchAvailablePhoneNumbersAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response> localVarResponse = await SearchAvailablePhoneNumbersWithHttpInfoAsync(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response> localVarResponse = await SearchAvailablePhoneNumbersWithHttpInfoAsync(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+        /// Search available numbers Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="country">ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to &quot;US&quot;)</param>
         /// <param name="numberType">Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)</param>
         /// <param name="areaCode">Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)</param>
         /// <param name="type">Alias of numberType, kept for existing callers (optional) (deprecated)</param>
@@ -4548,9 +4718,10 @@ namespace Zernio.Api
         /// <param name="contains">Pattern to match within the number (optional)</param>
         /// <param name="sms">true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)</param>
         /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="masked">true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchAvailablePhoneNumbers200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response>> SearchAvailablePhoneNumbersWithHttpInfoAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchAvailablePhoneNumbers200Response>> SearchAvailablePhoneNumbersWithHttpInfoAsync(string? country = default, string? numberType = default, string? areaCode = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, bool? sms = default, int? limit = default, bool? masked = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -4605,6 +4776,10 @@ namespace Zernio.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (masked != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "masked", masked));
             }
 
             // authentication (bearerAuth) required

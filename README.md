@@ -650,6 +650,7 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**CreatePhoneNumberStockWatch**](docs/PhoneNumbersApi.md#createphonenumberstockwatch) | **POST** /v1/phone-numbers/stock-watches | Watch an out-of-stock country
 *PhoneNumbersApi* | [**DeletePhoneNumberStockWatch**](docs/PhoneNumbersApi.md#deletephonenumberstockwatch) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country
 *PhoneNumbersApi* | [**GetPhoneNumber**](docs/PhoneNumbersApi.md#getphonenumber) | **GET** /v1/phone-numbers/{id} | Get phone number
+*PhoneNumbersApi* | [**GetPhoneNumberClaim**](docs/PhoneNumbersApi.md#getphonenumberclaim) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim
 *PhoneNumbersApi* | [**GetPhoneNumberKycForm**](docs/PhoneNumbersApi.md#getphonenumberkycform) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
 *PhoneNumbersApi* | [**GetPhoneNumberPortInOrderRequirements**](docs/PhoneNumbersApi.md#getphonenumberportinorderrequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order's pending requirements
 *PhoneNumbersApi* | [**GetPhoneNumberPortInRequirements**](docs/PhoneNumbersApi.md#getphonenumberportinrequirements) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements
@@ -1768,6 +1769,9 @@ Class | Method | HTTP request | Description
  - [Model.GetPendingOAuthData200ResponseOrganizationsInner](docs/GetPendingOAuthData200ResponseOrganizationsInner.md)
  - [Model.GetPhoneNumber200Response](docs/GetPhoneNumber200Response.md)
  - [Model.GetPhoneNumber200ResponsePhoneNumber](docs/GetPhoneNumber200ResponsePhoneNumber.md)
+ - [Model.GetPhoneNumberClaim200Response](docs/GetPhoneNumberClaim200Response.md)
+ - [Model.GetPhoneNumberClaim200ResponseArea](docs/GetPhoneNumberClaim200ResponseArea.md)
+ - [Model.GetPhoneNumberClaim200ResponseCountry](docs/GetPhoneNumberClaim200ResponseCountry.md)
  - [Model.GetPhoneNumberKycForm200Response](docs/GetPhoneNumberKycForm200Response.md)
  - [Model.GetPhoneNumberKycForm200ResponseFieldsInner](docs/GetPhoneNumberKycForm200ResponseFieldsInner.md)
  - [Model.GetPhoneNumberKycForm200ResponseReusable](docs/GetPhoneNumberKycForm200ResponseReusable.md)
@@ -2353,6 +2357,8 @@ Class | Method | HTTP request | Description
  - [Model.PurchasePhoneNumber200ResponseOneOf1PhoneNumber](docs/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.md)
  - [Model.PurchasePhoneNumber200ResponseOneOf2](docs/PurchasePhoneNumber200ResponseOneOf2.md)
  - [Model.PurchasePhoneNumber202Response](docs/PurchasePhoneNumber202Response.md)
+ - [Model.PurchasePhoneNumber401Response](docs/PurchasePhoneNumber401Response.md)
+ - [Model.PurchasePhoneNumber401ResponseDetails](docs/PurchasePhoneNumber401ResponseDetails.md)
  - [Model.PurchasePhoneNumber409Response](docs/PurchasePhoneNumber409Response.md)
  - [Model.PurchasePhoneNumber503Response](docs/PurchasePhoneNumber503Response.md)
  - [Model.PurchasePhoneNumberRequest](docs/PurchasePhoneNumberRequest.md)

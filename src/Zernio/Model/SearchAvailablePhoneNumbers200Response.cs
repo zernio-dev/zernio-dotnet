@@ -40,12 +40,20 @@ namespace Zernio.Model
         /// <param name="numberType">numberType.</param>
         /// <param name="requireSms">Echo of the &#x60;sms&#x60; filter applied to this search..</param>
         /// <param name="numbers">numbers.</param>
-        public SearchAvailablePhoneNumbers200Response(string country = default, string numberType = default, bool requireSms = default, List<SearchAvailablePhoneNumbers200ResponseNumbersInner> numbers = default)
+        /// <param name="masked">true on keyless calls..</param>
+        /// <param name="near">With &#x60;country&#x3D;auto&#x60;: the caller&#39;s city the results were narrowed to, or null when there was no stock there..</param>
+        /// <param name="claimId">Keyless calls only: a claim for any number matching this search&#39;s country, type and area..</param>
+        /// <param name="claimUrl">Keyless calls only: signup link for any number matching this search..</param>
+        public SearchAvailablePhoneNumbers200Response(string country = default, string numberType = default, bool requireSms = default, List<SearchAvailablePhoneNumbers200ResponseNumbersInner> numbers = default, bool masked = default, string near = default, string claimId = default, string claimUrl = default)
         {
             this.Country = country;
             this.NumberType = numberType;
             this.RequireSms = requireSms;
             this.Numbers = numbers;
+            this.Masked = masked;
+            this.Near = near;
+            this.ClaimId = claimId;
+            this.ClaimUrl = claimUrl;
         }
 
         /// <summary>
@@ -74,6 +82,34 @@ namespace Zernio.Model
         public List<SearchAvailablePhoneNumbers200ResponseNumbersInner> Numbers { get; set; }
 
         /// <summary>
+        /// true on keyless calls.
+        /// </summary>
+        /// <value>true on keyless calls.</value>
+        [DataMember(Name = "masked", EmitDefaultValue = true)]
+        public bool Masked { get; set; }
+
+        /// <summary>
+        /// With &#x60;country&#x3D;auto&#x60;: the caller&#39;s city the results were narrowed to, or null when there was no stock there.
+        /// </summary>
+        /// <value>With &#x60;country&#x3D;auto&#x60;: the caller&#39;s city the results were narrowed to, or null when there was no stock there.</value>
+        [DataMember(Name = "near", EmitDefaultValue = true)]
+        public string Near { get; set; }
+
+        /// <summary>
+        /// Keyless calls only: a claim for any number matching this search&#39;s country, type and area.
+        /// </summary>
+        /// <value>Keyless calls only: a claim for any number matching this search&#39;s country, type and area.</value>
+        [DataMember(Name = "claimId", EmitDefaultValue = false)]
+        public string ClaimId { get; set; }
+
+        /// <summary>
+        /// Keyless calls only: signup link for any number matching this search.
+        /// </summary>
+        /// <value>Keyless calls only: signup link for any number matching this search.</value>
+        [DataMember(Name = "claimUrl", EmitDefaultValue = false)]
+        public string ClaimUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -85,6 +121,10 @@ namespace Zernio.Model
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("  RequireSms: ").Append(RequireSms).Append("\n");
             sb.Append("  Numbers: ").Append(Numbers).Append("\n");
+            sb.Append("  Masked: ").Append(Masked).Append("\n");
+            sb.Append("  Near: ").Append(Near).Append("\n");
+            sb.Append("  ClaimId: ").Append(ClaimId).Append("\n");
+            sb.Append("  ClaimUrl: ").Append(ClaimUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
