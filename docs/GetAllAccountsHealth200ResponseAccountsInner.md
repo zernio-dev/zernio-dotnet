@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **CanFetchAnalytics** | **bool** |  | [optional] 
 **TokenValid** | **bool** |  | [optional] 
 **TokenExpiresAt** | **DateTime** |  | [optional] 
-**NeedsReconnect** | **bool** |  | [optional] 
+**NeedsReconnect** | **bool** | True when the token is expired or revoked, permissions are missing, the account is inactive, or the platform rejected its stored credentials (the same flag the account listing reports as needsReconnection). | [optional] 
 **Issues** | **List&lt;string&gt;** |  | [optional] 
 **MessagingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md) |  | [optional] 
 
