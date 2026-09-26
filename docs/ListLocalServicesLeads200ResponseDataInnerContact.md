@@ -6,7 +6,7 @@ Null for WIPED_OUT leads (contact erased by Google).
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConsumerName** | **string** |  | [optional] 
-**Email** | **string** |  | [optional] 
+**Email** | **string** | Always null: Google Ads API v25 stopped returning the consumer email on Local Services leads. | [optional] 
 **PhoneNumber** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
