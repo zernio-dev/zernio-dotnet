@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadReactionReactionSender
-Whoever added or removed the reaction. Usually the participant, but on WhatsApp, Slack, Instagram and Facebook Messenger it is the business own platform id when the business reacted from the native app or via the reactions API: compare it with conversation.participantId.
+Whoever added or removed the reaction. Usually the participant, but on WhatsApp, Slack, Instagram, Facebook Messenger and TikTok it is the business own platform id when the business reacted from the native app or via the reactions API: compare it with conversation.participantId.
 
 ## Properties
 
