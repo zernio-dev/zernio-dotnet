@@ -1,5 +1,5 @@
 # Zernio.Model.UpdateAdCampaignRequestBudget
-Meta CBO or Google daily campaign budget, in whole currency units.
+Meta CBO, Google daily, or OpenAI Ads daily or lifetime campaign budget, in whole currency units.
 
 ## Properties
 
