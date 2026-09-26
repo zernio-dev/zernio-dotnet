@@ -1216,6 +1216,7 @@ docs/ListConversionAssociations200Response.md
 docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
+docs/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md
 docs/ListCustomConversions200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
@@ -3525,6 +3526,7 @@ src/Zernio.Test/Model/ListContacts200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionActions200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionAssociations200ResponseAssociationsInnerTests.cs
 src/Zernio.Test/Model/ListConversionAssociations200ResponseTests.cs
+src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInnerTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomConversions200ResponseTests.cs
@@ -5822,6 +5824,7 @@ src/Zernio/Model/ListConversionAssociations200Response.cs
 src/Zernio/Model/ListConversionAssociations200ResponseAssociationsInner.cs
 src/Zernio/Model/ListConversionDestinations200Response.cs
 src/Zernio/Model/ListConversionDestinations200ResponseDestinationsInner.cs
+src/Zernio/Model/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.cs
 src/Zernio/Model/ListCustomConversions200Response.cs
 src/Zernio/Model/ListCustomFields200Response.cs
 src/Zernio/Model/ListCustomFields200ResponseFieldsInner.cs
