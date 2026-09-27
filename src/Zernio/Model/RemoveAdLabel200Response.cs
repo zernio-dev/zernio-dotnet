@@ -28,60 +28,42 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAdLabels200Response
+    /// RemoveAdLabel200Response
     /// </summary>
-    [DataContract(Name = "listAdLabels_200_response")]
-    public partial class ListAdLabels200Response : IValidatableObject
+    [DataContract(Name = "removeAdLabel_200_response")]
+    public partial class RemoveAdLabel200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAdLabels200Response" /> class.
+        /// Initializes a new instance of the <see cref="RemoveAdLabel200Response" /> class.
         /// </summary>
-        /// <param name="adAccountId">Meta act_&lt;n&gt;, or the resolved Google customer id.</param>
-        /// <param name="data">data.</param>
-        /// <param name="paging">paging.</param>
-        /// <param name="cachedAt">Google only. When the served list was fetched from Google..</param>
-        /// <param name="stale">Google only. True when Google quota was exhausted and the last cached list was served..</param>
-        public ListAdLabels200Response(string adAccountId = default, List<ListAdLabels200ResponseDataInner> data = default, ListAdLabels200ResponsePaging paging = default, DateTime? cachedAt = default, bool stale = default)
+        /// <param name="customerId">customerId.</param>
+        /// <param name="labelId">labelId.</param>
+        /// <param name="removed">Always true on success.</param>
+        public RemoveAdLabel200Response(string customerId = default, string labelId = default, bool removed = default)
         {
-            this.AdAccountId = adAccountId;
-            this.Data = data;
-            this.Paging = paging;
-            this.CachedAt = cachedAt;
-            this.Stale = stale;
+            this.CustomerId = customerId;
+            this.LabelId = labelId;
+            this.Removed = removed;
         }
 
         /// <summary>
-        /// Meta act_&lt;n&gt;, or the resolved Google customer id
+        /// Gets or Sets CustomerId
         /// </summary>
-        /// <value>Meta act_&lt;n&gt;, or the resolved Google customer id</value>
-        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
-        public string AdAccountId { get; set; }
+        [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        public string CustomerId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// Gets or Sets LabelId
         /// </summary>
-        [DataMember(Name = "data", EmitDefaultValue = false)]
-        public List<ListAdLabels200ResponseDataInner> Data { get; set; }
+        [DataMember(Name = "labelId", EmitDefaultValue = false)]
+        public string LabelId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Paging
+        /// Always true on success
         /// </summary>
-        [DataMember(Name = "paging", EmitDefaultValue = false)]
-        public ListAdLabels200ResponsePaging Paging { get; set; }
-
-        /// <summary>
-        /// Google only. When the served list was fetched from Google.
-        /// </summary>
-        /// <value>Google only. When the served list was fetched from Google.</value>
-        [DataMember(Name = "cachedAt", EmitDefaultValue = true)]
-        public DateTime? CachedAt { get; set; }
-
-        /// <summary>
-        /// Google only. True when Google quota was exhausted and the last cached list was served.
-        /// </summary>
-        /// <value>Google only. True when Google quota was exhausted and the last cached list was served.</value>
-        [DataMember(Name = "stale", EmitDefaultValue = true)]
-        public bool Stale { get; set; }
+        /// <value>Always true on success</value>
+        [DataMember(Name = "removed", EmitDefaultValue = true)]
+        public bool Removed { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,12 +72,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAdLabels200Response {\n");
-            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Paging: ").Append(Paging).Append("\n");
-            sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");
-            sb.Append("  Stale: ").Append(Stale).Append("\n");
+            sb.Append("class RemoveAdLabel200Response {\n");
+            sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
+            sb.Append("  LabelId: ").Append(LabelId).Append("\n");
+            sb.Append("  Removed: ").Append(Removed).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

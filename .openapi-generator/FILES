@@ -113,6 +113,7 @@ docs/AssignGoogleBusinessLocation200Response.md
 docs/AssignGoogleBusinessLocation200ResponseAccount.md
 docs/AssignGoogleBusinessLocationRequest.md
 docs/AttachAdGroupAssets201Response.md
+docs/AttachAdLabel200Response.md
 docs/AttachCampaignAssets201Response.md
 docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
@@ -308,6 +309,8 @@ docs/CreateAdInsightsReport202Response.md
 docs/CreateAdInsightsReportRequest.md
 docs/CreateAdInsightsReportRequestFilteringInner.md
 docs/CreateAdInsightsReportRequestTimeIncrement.md
+docs/CreateAdLabel201Response.md
+docs/CreateAdLabelRequest.md
 docs/CreateAdNegativeKeywordList201Response.md
 docs/CreateAdNegativeKeywordListRequest.md
 docs/CreateAdSet201Response.md
@@ -541,6 +544,7 @@ docs/DeleteValueRuleSet200Response.md
 docs/DeleteWhatsAppTemplate200Response.md
 docs/DeleteWhatsAppTemplateById200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
+docs/DetachAdLabel200Response.md
 docs/DetachNumberFromSipTrunk200Response.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
@@ -1021,6 +1025,8 @@ docs/GetYoutubeCaptions200ResponseAvailableTracksInner.md
 docs/GetYoutubeCaptions200ResponseCuesInner.md
 docs/GetYoutubePlaylists200Response.md
 docs/GetYoutubePlaylists200ResponsePlaylistsInner.md
+docs/GoogleAdLabel.md
+docs/GoogleAdLabelAssignments.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
@@ -1173,6 +1179,8 @@ docs/ListAdGroupAssets200ResponseStructuredSnippetsInner.md
 docs/ListAdImages200Response.md
 docs/ListAdKeywords200Response.md
 docs/ListAdLabels200Response.md
+docs/ListAdLabels200ResponseDataInner.md
+docs/ListAdLabels200ResponsePaging.md
 docs/ListAdNegativeKeywordLists200Response.md
 docs/ListAdSets200Response.md
 docs/ListAdSets200ResponseAdSetsInner.md
@@ -1553,6 +1561,7 @@ docs/RemoveAccountCallout200Response.md
 docs/RemoveAccountCalloutRequest.md
 docs/RemoveAdGroupAssetsRequest.md
 docs/RemoveAdKeyword200Response.md
+docs/RemoveAdLabel200Response.md
 docs/RemoveBookmark200Response.md
 docs/RemoveCampaignAssets200Response.md
 docs/RemoveCampaignAssetsRequest.md
@@ -1883,6 +1892,8 @@ docs/UpdateAdCreative200Response.md
 docs/UpdateAdCreativeRequest.md
 docs/UpdateAdKeyword200Response.md
 docs/UpdateAdKeywordRequest.md
+docs/UpdateAdLabel200Response.md
+docs/UpdateAdLabelRequest.md
 docs/UpdateAdNegativeKeywordList200Response.md
 docs/UpdateAdNegativeKeywordListRequest.md
 docs/UpdateAdRequest.md
@@ -2476,6 +2487,7 @@ src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
 src/Zernio.Test/Model/AttachAdGroupAssets201ResponseTests.cs
+src/Zernio.Test/Model/AttachAdLabel200ResponseTests.cs
 src/Zernio.Test/Model/AttachCampaignAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
@@ -2661,6 +2673,8 @@ src/Zernio.Test/Model/CreateAdInsightsReport202ResponseTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestFilteringInnerTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestTests.cs
 src/Zernio.Test/Model/CreateAdInsightsReportRequestTimeIncrementTests.cs
+src/Zernio.Test/Model/CreateAdLabel201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdLabelRequestTests.cs
 src/Zernio.Test/Model/CreateAdNegativeKeywordList201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdNegativeKeywordListRequestTests.cs
 src/Zernio.Test/Model/CreateAdSet201ResponseTests.cs
@@ -2893,6 +2907,7 @@ src/Zernio.Test/Model/DeleteValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsAppTemplate200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsAppTemplateById200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
+src/Zernio.Test/Model/DetachAdLabel200ResponseTests.cs
 src/Zernio.Test/Model/DetachNumberFromSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCall200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCallRequestTests.cs
@@ -3364,6 +3379,8 @@ src/Zernio.Test/Model/GetYoutubeCaptions200ResponseCuesInnerTests.cs
 src/Zernio.Test/Model/GetYoutubeCaptions200ResponseTests.cs
 src/Zernio.Test/Model/GetYoutubePlaylists200ResponsePlaylistsInnerTests.cs
 src/Zernio.Test/Model/GetYoutubePlaylists200ResponseTests.cs
+src/Zernio.Test/Model/GoogleAdLabelAssignmentsTests.cs
+src/Zernio.Test/Model/GoogleAdLabelTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetUnlinkTests.cs
 src/Zernio.Test/Model/GoogleAssetUpdateTests.cs
@@ -3509,6 +3526,8 @@ src/Zernio.Test/Model/ListAdGroupAssets200ResponseStructuredSnippetsInnerTests.c
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdImages200ResponseTests.cs
 src/Zernio.Test/Model/ListAdKeywords200ResponseTests.cs
+src/Zernio.Test/Model/ListAdLabels200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/ListAdLabels200ResponsePagingTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListAdNegativeKeywordLists200ResponseTests.cs
 src/Zernio.Test/Model/ListAdSets200ResponseAdSetsInnerBudgetTests.cs
@@ -3877,6 +3896,7 @@ src/Zernio.Test/Model/RemoveAccountCallout200ResponseTests.cs
 src/Zernio.Test/Model/RemoveAccountCalloutRequestTests.cs
 src/Zernio.Test/Model/RemoveAdGroupAssetsRequestTests.cs
 src/Zernio.Test/Model/RemoveAdKeyword200ResponseTests.cs
+src/Zernio.Test/Model/RemoveAdLabel200ResponseTests.cs
 src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
 src/Zernio.Test/Model/RemoveCampaignAssets200ResponseTests.cs
 src/Zernio.Test/Model/RemoveCampaignAssetsRequestTests.cs
@@ -4200,6 +4220,8 @@ src/Zernio.Test/Model/UpdateAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCreativeRequestTests.cs
 src/Zernio.Test/Model/UpdateAdKeyword200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdKeywordRequestTests.cs
+src/Zernio.Test/Model/UpdateAdLabel200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdLabelRequestTests.cs
 src/Zernio.Test/Model/UpdateAdNegativeKeywordList200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdNegativeKeywordListRequestTests.cs
 src/Zernio.Test/Model/UpdateAdRequestBudgetTests.cs
@@ -4797,6 +4819,7 @@ src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
 src/Zernio/Model/AttachAdGroupAssets201Response.cs
+src/Zernio/Model/AttachAdLabel200Response.cs
 src/Zernio/Model/AttachCampaignAssets201Response.cs
 src/Zernio/Model/AttachCampaignAssetsRequest.cs
 src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
@@ -4982,6 +5005,8 @@ src/Zernio/Model/CreateAdInsightsReport202Response.cs
 src/Zernio/Model/CreateAdInsightsReportRequest.cs
 src/Zernio/Model/CreateAdInsightsReportRequestFilteringInner.cs
 src/Zernio/Model/CreateAdInsightsReportRequestTimeIncrement.cs
+src/Zernio/Model/CreateAdLabel201Response.cs
+src/Zernio/Model/CreateAdLabelRequest.cs
 src/Zernio/Model/CreateAdNegativeKeywordList201Response.cs
 src/Zernio/Model/CreateAdNegativeKeywordListRequest.cs
 src/Zernio/Model/CreateAdSet201Response.cs
@@ -5214,6 +5239,7 @@ src/Zernio/Model/DeleteValueRuleSet200Response.cs
 src/Zernio/Model/DeleteWhatsAppTemplate200Response.cs
 src/Zernio/Model/DeleteWhatsAppTemplateById200Response.cs
 src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
+src/Zernio/Model/DetachAdLabel200Response.cs
 src/Zernio/Model/DetachNumberFromSipTrunk200Response.cs
 src/Zernio/Model/DialVoiceWebCall200Response.cs
 src/Zernio/Model/DialVoiceWebCallRequest.cs
@@ -5685,6 +5711,8 @@ src/Zernio/Model/GetYoutubeCaptions200ResponseAvailableTracksInner.cs
 src/Zernio/Model/GetYoutubeCaptions200ResponseCuesInner.cs
 src/Zernio/Model/GetYoutubePlaylists200Response.cs
 src/Zernio/Model/GetYoutubePlaylists200ResponsePlaylistsInner.cs
+src/Zernio/Model/GoogleAdLabel.cs
+src/Zernio/Model/GoogleAdLabelAssignments.cs
 src/Zernio/Model/GoogleAssetGroupAssetLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetUnlink.cs
 src/Zernio/Model/GoogleAssetUpdate.cs
@@ -5831,6 +5859,8 @@ src/Zernio/Model/ListAdGroupAssets200ResponseStructuredSnippetsInner.cs
 src/Zernio/Model/ListAdImages200Response.cs
 src/Zernio/Model/ListAdKeywords200Response.cs
 src/Zernio/Model/ListAdLabels200Response.cs
+src/Zernio/Model/ListAdLabels200ResponseDataInner.cs
+src/Zernio/Model/ListAdLabels200ResponsePaging.cs
 src/Zernio/Model/ListAdNegativeKeywordLists200Response.cs
 src/Zernio/Model/ListAdSets200Response.cs
 src/Zernio/Model/ListAdSets200ResponseAdSetsInner.cs
@@ -6198,6 +6228,7 @@ src/Zernio/Model/RemoveAccountCallout200Response.cs
 src/Zernio/Model/RemoveAccountCalloutRequest.cs
 src/Zernio/Model/RemoveAdGroupAssetsRequest.cs
 src/Zernio/Model/RemoveAdKeyword200Response.cs
+src/Zernio/Model/RemoveAdLabel200Response.cs
 src/Zernio/Model/RemoveBookmark200Response.cs
 src/Zernio/Model/RemoveCampaignAssets200Response.cs
 src/Zernio/Model/RemoveCampaignAssetsRequest.cs
@@ -6521,6 +6552,8 @@ src/Zernio/Model/UpdateAdCreative200Response.cs
 src/Zernio/Model/UpdateAdCreativeRequest.cs
 src/Zernio/Model/UpdateAdKeyword200Response.cs
 src/Zernio/Model/UpdateAdKeywordRequest.cs
+src/Zernio/Model/UpdateAdLabel200Response.cs
+src/Zernio/Model/UpdateAdLabelRequest.cs
 src/Zernio/Model/UpdateAdNegativeKeywordList200Response.cs
 src/Zernio/Model/UpdateAdNegativeKeywordListRequest.cs
 src/Zernio/Model/UpdateAdRequest.cs

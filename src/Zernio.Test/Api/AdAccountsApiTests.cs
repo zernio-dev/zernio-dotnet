@@ -91,6 +91,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AttachAdLabel
+        /// </summary>
+        [Fact]
+        public void AttachAdLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string labelId = null;
+            //GoogleAdLabelAssignments googleAdLabelAssignments = null;
+            //var response = instance.AttachAdLabel(labelId, googleAdLabelAssignments);
+            //Assert.IsType<AttachAdLabel200Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateAdAccount
         /// </summary>
         [Fact]
@@ -100,6 +113,18 @@ namespace Zernio.Test.Api
             //CreateAdAccountRequest createAdAccountRequest = null;
             //var response = instance.CreateAdAccount(createAdAccountRequest);
             //Assert.IsType<CreateAdAccount201Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateAdLabel
+        /// </summary>
+        [Fact]
+        public void CreateAdLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdLabelRequest createAdLabelRequest = null;
+            //var response = instance.CreateAdLabel(createAdLabelRequest);
+            //Assert.IsType<CreateAdLabel201Response>(response);
         }
 
         /// <summary>
@@ -193,6 +218,19 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.DeleteValueRuleSet(valueRuleSetId, accountId);
             //Assert.IsType<DeleteValueRuleSet200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DetachAdLabel
+        /// </summary>
+        [Fact]
+        public void DetachAdLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string labelId = null;
+            //GoogleAdLabelAssignments googleAdLabelAssignments = null;
+            //var response = instance.DetachAdLabel(labelId, googleAdLabelAssignments);
+            //Assert.IsType<DetachAdLabel200Response>(response);
         }
 
         /// <summary>
@@ -392,10 +430,11 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
-            //string adAccountId = null;
+            //string? adAccountId = null;
+            //string? customerId = null;
             //int? limit = null;
             //string? after = null;
-            //var response = instance.ListAdLabels(accountId, adAccountId, limit, after);
+            //var response = instance.ListAdLabels(accountId, adAccountId, customerId, limit, after);
             //Assert.IsType<ListAdLabels200Response>(response);
         }
 
@@ -594,6 +633,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RemoveAdLabel
+        /// </summary>
+        [Fact]
+        public void RemoveAdLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string labelId = null;
+            //string accountId = null;
+            //string? adAccountId = null;
+            //string? customerId = null;
+            //var response = instance.RemoveAdLabel(labelId, accountId, adAccountId, customerId);
+            //Assert.IsType<RemoveAdLabel200Response>(response);
+        }
+
+        /// <summary>
         /// Test ReplaceAdNegativeKeywordListKeywords
         /// </summary>
         [Fact]
@@ -668,6 +722,19 @@ namespace Zernio.Test.Api
             //UpdateAdAccountRequest updateAdAccountRequest = null;
             //var response = instance.UpdateAdAccount(updateAdAccountRequest);
             //Assert.IsType<UpdateAdAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAdLabel
+        /// </summary>
+        [Fact]
+        public void UpdateAdLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string labelId = null;
+            //UpdateAdLabelRequest updateAdLabelRequest = null;
+            //var response = instance.UpdateAdLabel(labelId, updateAdLabelRequest);
+            //Assert.IsType<UpdateAdLabel200Response>(response);
         }
 
         /// <summary>

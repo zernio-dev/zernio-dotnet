@@ -7,7 +7,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**AddAccountCallouts**](AdAccountsApi.md#addaccountcallouts) | **POST** /v1/ads/accounts/callouts | Add account callouts |
 | [**AddAccountSitelinks**](AdAccountsApi.md#addaccountsitelinks) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks |
 | [**AddAccountStructuredSnippets**](AdAccountsApi.md#addaccountstructuredsnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
+| [**AttachAdLabel**](AdAccountsApi.md#attachadlabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
 | [**CreateAdAccount**](AdAccountsApi.md#createadaccount) | **POST** /v1/ads/accounts | Create Meta ad account |
+| [**CreateAdLabel**](AdAccountsApi.md#createadlabel) | **POST** /v1/ads/labels | Create a Google Ads label |
 | [**CreateAdNegativeKeywordList**](AdAccountsApi.md#createadnegativekeywordlist) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
 | [**CreateCustomConversion**](AdAccountsApi.md#createcustomconversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create custom conversion |
 | [**CreateHighDemandPeriod**](AdAccountsApi.md#createhighdemandperiod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase |
@@ -15,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAdComment**](AdAccountsApi.md#deleteadcomment) | **DELETE** /v1/ads/{adId}/comments/{commentId} | Delete an ad comment |
 | [**DeleteAdNegativeKeywordList**](AdAccountsApi.md#deleteadnegativekeywordlist) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**DeleteValueRuleSet**](AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
+| [**DetachAdLabel**](AdAccountsApi.md#detachadlabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**GetAdComments**](AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**GetAdNegativeKeywordList**](AdAccountsApi.md#getadnegativekeywordlist) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list |
@@ -28,7 +31,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAccountSitelinks**](AdAccountsApi.md#listaccountsitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
 | [**ListAccountStructuredSnippets**](AdAccountsApi.md#listaccountstructuredsnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
 | [**ListAdAccounts**](AdAccountsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
-| [**ListAdLabels**](AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels |
+| [**ListAdLabels**](AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | List ad labels |
 | [**ListAdNegativeKeywordLists**](AdAccountsApi.md#listadnegativekeywordlists) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists |
 | [**ListAdStudies**](AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies |
 | [**ListAdsBusinessCenters**](AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
@@ -43,12 +46,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**RemoveAccountCallout**](AdAccountsApi.md#removeaccountcallout) | **DELETE** /v1/ads/accounts/callouts | Remove account callout |
 | [**RemoveAccountSitelink**](AdAccountsApi.md#removeaccountsitelink) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink |
 | [**RemoveAccountStructuredSnippet**](AdAccountsApi.md#removeaccountstructuredsnippet) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
+| [**RemoveAdLabel**](AdAccountsApi.md#removeadlabel) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label |
 | [**ReplaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceadnegativekeywordlistkeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**ReplyToAdComment**](AdAccountsApi.md#replytoadcomment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
 | [**UpdateAccountCallouts**](AdAccountsApi.md#updateaccountcallouts) | **PUT** /v1/ads/accounts/callouts | Update account callouts |
 | [**UpdateAccountSitelinks**](AdAccountsApi.md#updateaccountsitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks |
 | [**UpdateAccountStructuredSnippets**](AdAccountsApi.md#updateaccountstructuredsnippets) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
 | [**UpdateAdAccount**](AdAccountsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**UpdateAdLabel**](AdAccountsApi.md#updateadlabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
 | [**UpdateAdNegativeKeywordList**](AdAccountsApi.md#updateadnegativekeywordlist) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**UpdateValueRuleSet**](AdAccountsApi.md#updatevalueruleset) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
 
@@ -367,6 +372,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="attachadlabel"></a>
+# **AttachAdLabel**
+> AttachAdLabel200Response AttachAdLabel (string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+
+Attach a Google Ads label
+
+Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in `unchanged` instead of failing the call. All ids are Google's own: ads and keywords use the composite id Google puts in their resource names, `{adGroupId}~{adId}` and `{adGroupId}~{criterionId}` (the keyword form is the tail of `resourceName` on `GET /v1/ads/keywords`).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AttachAdLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var labelId = "labelId_example";  // string | Google label id
+            var googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+
+            try
+            {
+                // Attach a Google Ads label
+                AttachAdLabel200Response result = apiInstance.AttachAdLabel(labelId, googleAdLabelAssignments);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.AttachAdLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AttachAdLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Attach a Google Ads label
+    ApiResponse<AttachAdLabel200Response> response = apiInstance.AttachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.AttachAdLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **labelId** | **string** | Google label id |  |
+| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md) |  |  |
+
+### Return type
+
+[**AttachAdLabel200Response**](AttachAdLabel200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label attached |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="createadaccount"></a>
 # **CreateAdAccount**
 > CreateAdAccount201Response CreateAdAccount (CreateAdAccountRequest createAdAccountRequest)
@@ -468,6 +578,109 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **502** | Creation outcome unknown. Check Ads Manager before repeating this non-idempotent request. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createadlabel"></a>
+# **CreateAdLabel**
+> CreateAdLabel201Response CreateAdLabel (CreateAdLabelRequest createAdLabelRequest)
+
+Create a Google Ads label
+
+Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with `POST /v1/ads/labels/{labelId}/assignments`. Label names are unique per customer; a duplicate is a 400.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateAdLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var createAdLabelRequest = new CreateAdLabelRequest(); // CreateAdLabelRequest | 
+
+            try
+            {
+                // Create a Google Ads label
+                CreateAdLabel201Response result = apiInstance.CreateAdLabel(createAdLabelRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.CreateAdLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateAdLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Google Ads label
+    ApiResponse<CreateAdLabel201Response> response = apiInstance.CreateAdLabelWithHttpInfo(createAdLabelRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.CreateAdLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createAdLabelRequest** | [**CreateAdLabelRequest**](CreateAdLabelRequest.md) |  |  |
+
+### Return type
+
+[**CreateAdLabel201Response**](CreateAdLabel201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Label created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1216,6 +1429,111 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="detachadlabel"></a>
+# **DetachAdLabel**
+> DetachAdLabel200Response DetachAdLabel (string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+
+Detach a Google Ads label
+
+Removes the label from the given targets. Idempotent; a target without the label is counted in `unchanged`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DetachAdLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var labelId = "labelId_example";  // string | Google label id
+            var googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+
+            try
+            {
+                // Detach a Google Ads label
+                DetachAdLabel200Response result = apiInstance.DetachAdLabel(labelId, googleAdLabelAssignments);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.DetachAdLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DetachAdLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Detach a Google Ads label
+    ApiResponse<DetachAdLabel200Response> response = apiInstance.DetachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.DetachAdLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **labelId** | **string** | Google label id |  |
+| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md) |  |  |
+
+### Return type
+
+[**DetachAdLabel200Response**](DetachAdLabel200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label detached |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2637,11 +2955,11 @@ catch (ApiException e)
 
 <a id="listadlabels"></a>
 # **ListAdLabels**
-> ListAdLabels200Response ListAdLabels (string accountId, string adAccountId, int? limit = null, string? after = null)
+> ListAdLabels200Response ListAdLabels (string accountId, string? adAccountId = null, string? customerId = null, int? limit = null, string? after = null)
 
-Ad labels
+List ad labels
 
-Lists the ad account's organizational labels (Meta's `/act_X/adlabels`), rows returned verbatim (id, name, created/updated time).
+Lists the organizational labels on an ad account.  - **Meta**: pass `adAccountId=act_<n>`. Rows are Meta's `/act_X/adlabels` returned verbatim   (id, name, created/updated time), paginated with `limit` / `after`. - **Google Ads**: pass the numeric customer id as `adAccountId` (optional when the   connection has a single customer). Returns every non-removed label as a `GoogleAdLabel`   in one page (`paging.after` is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with `stale: true`.
 
 ### Example
 ```csharp
@@ -2667,15 +2985,16 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
-            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
-            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.
+            var adAccountId = "adAccountId_example";  // string? | Meta ad account id (act_<n>), or the Google Ads customer id (digits only). (optional) 
+            var customerId = "customerId_example";  // string? | Google only. Alias of adAccountId, kept for existing callers. (optional) 
+            var limit = 25;  // int? | Meta only. Rows per page. (optional)  (default to 25)
+            var after = "after_example";  // string? | Meta only. Cursor from paging.after of the previous page. (optional) 
 
             try
             {
-                // Ad labels
-                ListAdLabels200Response result = apiInstance.ListAdLabels(accountId, adAccountId, limit, after);
+                // List ad labels
+                ListAdLabels200Response result = apiInstance.ListAdLabels(accountId, adAccountId, customerId, limit, after);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2695,8 +3014,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Ad labels
-    ApiResponse<ListAdLabels200Response> response = apiInstance.ListAdLabelsWithHttpInfo(accountId, adAccountId, limit, after);
+    // List ad labels
+    ApiResponse<ListAdLabels200Response> response = apiInstance.ListAdLabelsWithHttpInfo(accountId, adAccountId, customerId, limit, after);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2713,10 +3032,11 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
-| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
-| **limit** | **int?** | Rows per page | [optional] [default to 25] |
-| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+| **accountId** | **string** | Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token. |  |
+| **adAccountId** | **string?** | Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). | [optional]  |
+| **customerId** | **string?** | Google only. Alias of adAccountId, kept for existing callers. | [optional]  |
+| **limit** | **int?** | Meta only. Rows per page. | [optional] [default to 25] |
+| **after** | **string?** | Meta only. Cursor from paging.after of the previous page. | [optional]  |
 
 ### Return type
 
@@ -2735,12 +3055,12 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Ad labels (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query |  -  |
+| **200** | Ad labels |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta and Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4252,6 +4572,115 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="removeadlabel"></a>
+# **RemoveAdLabel**
+> RemoveAdLabel200Response RemoveAdLabel (string labelId, string accountId, string? adAccountId = null, string? customerId = null)
+
+Remove a Google Ads label
+
+Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RemoveAdLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var labelId = "labelId_example";  // string | Google label id
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (Google Ads)
+            var adAccountId = "adAccountId_example";  // string? | Google customer id. Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId (optional) 
+
+            try
+            {
+                // Remove a Google Ads label
+                RemoveAdLabel200Response result = apiInstance.RemoveAdLabel(labelId, accountId, adAccountId, customerId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.RemoveAdLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveAdLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a Google Ads label
+    ApiResponse<RemoveAdLabel200Response> response = apiInstance.RemoveAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.RemoveAdLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **labelId** | **string** | Google label id |  |
+| **accountId** | **string** | Zernio SocialAccount id (Google Ads) |  |
+| **adAccountId** | **string?** | Google customer id. Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId | [optional]  |
+
+### Return type
+
+[**RemoveAdLabel200Response**](RemoveAdLabel200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="replaceadnegativekeywordlistkeywords"></a>
 # **ReplaceAdNegativeKeywordListKeywords**
 > ReplaceAdNegativeKeywordListKeywords200Response ReplaceAdNegativeKeywordListKeywords (string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest)
@@ -4887,6 +5316,111 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadlabel"></a>
+# **UpdateAdLabel**
+> UpdateAdLabel200Response UpdateAdLabel (string labelId, UpdateAdLabelRequest updateAdLabelRequest)
+
+Update a Google Ads label
+
+Changes the name, color or description of a label. Only the fields sent are written.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var labelId = "labelId_example";  // string | Google label id
+            var updateAdLabelRequest = new UpdateAdLabelRequest(); // UpdateAdLabelRequest | 
+
+            try
+            {
+                // Update a Google Ads label
+                UpdateAdLabel200Response result = apiInstance.UpdateAdLabel(labelId, updateAdLabelRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.UpdateAdLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a Google Ads label
+    ApiResponse<UpdateAdLabel200Response> response = apiInstance.UpdateAdLabelWithHttpInfo(labelId, updateAdLabelRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.UpdateAdLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **labelId** | **string** | Google label id |  |
+| **updateAdLabelRequest** | [**UpdateAdLabelRequest**](UpdateAdLabelRequest.md) |  |  |
+
+### Return type
+
+[**UpdateAdLabel200Response**](UpdateAdLabel200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

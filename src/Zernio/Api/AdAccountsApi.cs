@@ -92,6 +92,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AddAccountStructuredSnippets201Response</returns>
         ApiResponse<AddAccountStructuredSnippets201Response> AddAccountStructuredSnippetsWithHttpInfo(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest);
         /// <summary>
+        /// Attach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>AttachAdLabel200Response</returns>
+        AttachAdLabel200Response AttachAdLabel(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments);
+
+        /// <summary>
+        /// Attach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>ApiResponse of AttachAdLabel200Response</returns>
+        ApiResponse<AttachAdLabel200Response> AttachAdLabelWithHttpInfo(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments);
+        /// <summary>
         /// Create Meta ad account
         /// </summary>
         /// <remarks>
@@ -112,6 +135,27 @@ namespace Zernio.Api
         /// <param name="createAdAccountRequest"></param>
         /// <returns>ApiResponse of CreateAdAccount201Response</returns>
         ApiResponse<CreateAdAccount201Response> CreateAdAccountWithHttpInfo(CreateAdAccountRequest createAdAccountRequest);
+        /// <summary>
+        /// Create a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <returns>CreateAdLabel201Response</returns>
+        CreateAdLabel201Response CreateAdLabel(CreateAdLabelRequest createAdLabelRequest);
+
+        /// <summary>
+        /// Create a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <returns>ApiResponse of CreateAdLabel201Response</returns>
+        ApiResponse<CreateAdLabel201Response> CreateAdLabelWithHttpInfo(CreateAdLabelRequest createAdLabelRequest);
         /// <summary>
         /// Create a negative keyword list
         /// </summary>
@@ -277,6 +321,29 @@ namespace Zernio.Api
         /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
         /// <returns>ApiResponse of DeleteValueRuleSet200Response</returns>
         ApiResponse<DeleteValueRuleSet200Response> DeleteValueRuleSetWithHttpInfo(string valueRuleSetId, string accountId);
+        /// <summary>
+        /// Detach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>DetachAdLabel200Response</returns>
+        DetachAdLabel200Response DetachAdLabel(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments);
+
+        /// <summary>
+        /// Detach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>ApiResponse of DetachAdLabel200Response</returns>
+        ApiResponse<DetachAdLabel200Response> DetachAdLabelWithHttpInfo(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments);
         /// <summary>
         /// Ad account finances
         /// </summary>
@@ -617,32 +684,34 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdAccounts200Response</returns>
         ApiResponse<ListAdAccounts200Response> ListAdAccountsWithHttpInfo(string accountId, string? adAccountId = default, int? limit = default);
         /// <summary>
-        /// Ad labels
+        /// List ad labels
         /// </summary>
         /// <remarks>
-        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdLabels200Response</returns>
-        ListAdLabels200Response ListAdLabels(string accountId, string adAccountId, int? limit = default, string? after = default);
+        ListAdLabels200Response ListAdLabels(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default);
 
         /// <summary>
-        /// Ad labels
+        /// List ad labels
         /// </summary>
         /// <remarks>
-        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdLabels200Response</returns>
-        ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default);
+        ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default);
         /// <summary>
         /// List negative keyword lists
         /// </summary>
@@ -990,6 +1059,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RemoveAccountCallout200Response</returns>
         ApiResponse<RemoveAccountCallout200Response> RemoveAccountStructuredSnippetWithHttpInfo(RemoveAccountCalloutRequest removeAccountCalloutRequest);
         /// <summary>
+        /// Remove a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <returns>RemoveAdLabel200Response</returns>
+        RemoveAdLabel200Response RemoveAdLabel(string labelId, string accountId, string? adAccountId = default, string? customerId = default);
+
+        /// <summary>
+        /// Remove a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <returns>ApiResponse of RemoveAdLabel200Response</returns>
+        ApiResponse<RemoveAdLabel200Response> RemoveAdLabelWithHttpInfo(string labelId, string accountId, string? adAccountId = default, string? customerId = default);
+        /// <summary>
         /// Replace negative list keywords
         /// </summary>
         /// <remarks>
@@ -1126,6 +1222,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
         ApiResponse<UpdateAdAccount200Response> UpdateAdAccountWithHttpInfo(UpdateAdAccountRequest updateAdAccountRequest);
         /// <summary>
+        /// Update a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Changes the name, color or description of a label. Only the fields sent are written.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <returns>UpdateAdLabel200Response</returns>
+        UpdateAdLabel200Response UpdateAdLabel(string labelId, UpdateAdLabelRequest updateAdLabelRequest);
+
+        /// <summary>
+        /// Update a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Changes the name, color or description of a label. Only the fields sent are written.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <returns>ApiResponse of UpdateAdLabel200Response</returns>
+        ApiResponse<UpdateAdLabel200Response> UpdateAdLabelWithHttpInfo(string labelId, UpdateAdLabelRequest updateAdLabelRequest);
+        /// <summary>
         /// Rename a negative keyword list
         /// </summary>
         /// <remarks>
@@ -1250,6 +1369,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AddAccountStructuredSnippets201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddAccountStructuredSnippets201Response>> AddAccountStructuredSnippetsWithHttpInfoAsync(AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Attach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AttachAdLabel200Response</returns>
+        System.Threading.Tasks.Task<AttachAdLabel200Response> AttachAdLabelAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Attach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AttachAdLabel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AttachAdLabel200Response>> AttachAdLabelWithHttpInfoAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Create Meta ad account
         /// </summary>
         /// <remarks>
@@ -1272,6 +1416,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateAdAccount201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateAdAccount201Response>> CreateAdAccountWithHttpInfoAsync(CreateAdAccountRequest createAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdLabel201Response</returns>
+        System.Threading.Tasks.Task<CreateAdLabel201Response> CreateAdLabelAsync(CreateAdLabelRequest createAdLabelRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdLabel201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateAdLabel201Response>> CreateAdLabelWithHttpInfoAsync(CreateAdLabelRequest createAdLabelRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a negative keyword list
         /// </summary>
@@ -1451,6 +1618,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteValueRuleSet200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteValueRuleSet200Response>> DeleteValueRuleSetWithHttpInfoAsync(string valueRuleSetId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Detach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DetachAdLabel200Response</returns>
+        System.Threading.Tasks.Task<DetachAdLabel200Response> DetachAdLabelAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Detach a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DetachAdLabel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DetachAdLabel200Response>> DetachAdLabelWithHttpInfoAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Ad account finances
         /// </summary>
@@ -1817,34 +2009,36 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdAccounts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdAccounts200Response>> ListAdAccountsWithHttpInfoAsync(string accountId, string? adAccountId = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Ad labels
+        /// List ad labels
         /// </summary>
         /// <remarks>
-        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdLabels200Response</returns>
-        System.Threading.Tasks.Task<ListAdLabels200Response> ListAdLabelsAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdLabels200Response> ListAdLabelsAsync(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Ad labels
+        /// List ad labels
         /// </summary>
         /// <remarks>
-        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdLabels200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List negative keyword lists
         /// </summary>
@@ -2220,6 +2414,35 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (RemoveAccountCallout200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveAccountCallout200Response>> RemoveAccountStructuredSnippetWithHttpInfoAsync(RemoveAccountCalloutRequest removeAccountCalloutRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Remove a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAdLabel200Response</returns>
+        System.Threading.Tasks.Task<RemoveAdLabel200Response> RemoveAdLabelAsync(string labelId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAdLabel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveAdLabel200Response>> RemoveAdLabelWithHttpInfoAsync(string labelId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Replace negative list keywords
         /// </summary>
         /// <remarks>
@@ -2367,6 +2590,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdAccount200Response>> UpdateAdAccountWithHttpInfoAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Changes the name, color or description of a label. Only the fields sent are written.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdLabel200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdLabel200Response> UpdateAdLabelAsync(string labelId, UpdateAdLabelRequest updateAdLabelRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update a Google Ads label
+        /// </summary>
+        /// <remarks>
+        /// Changes the name, color or description of a label. Only the fields sent are written.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdLabel200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdLabel200Response>> UpdateAdLabelWithHttpInfoAsync(string labelId, UpdateAdLabelRequest updateAdLabelRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Rename a negative keyword list
         /// </summary>
@@ -3018,6 +3266,149 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Attach a Google Ads label Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>AttachAdLabel200Response</returns>
+        public AttachAdLabel200Response AttachAdLabel(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+        {
+            Zernio.Client.ApiResponse<AttachAdLabel200Response> localVarResponse = AttachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Attach a Google Ads label Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>ApiResponse of AttachAdLabel200Response</returns>
+        public Zernio.Client.ApiResponse<AttachAdLabel200Response> AttachAdLabelWithHttpInfo(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->AttachAdLabel");
+
+            // verify the required parameter 'googleAdLabelAssignments' is set
+            if (googleAdLabelAssignments == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'googleAdLabelAssignments' when calling AdAccountsApi->AttachAdLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.Data = googleAdLabelAssignments;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AttachAdLabel200Response>("/v1/ads/labels/{labelId}/assignments", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AttachAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Attach a Google Ads label Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AttachAdLabel200Response</returns>
+        public async System.Threading.Tasks.Task<AttachAdLabel200Response> AttachAdLabelAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AttachAdLabel200Response> localVarResponse = await AttachAdLabelWithHttpInfoAsync(labelId, googleAdLabelAssignments, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Attach a Google Ads label Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AttachAdLabel200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AttachAdLabel200Response>> AttachAdLabelWithHttpInfoAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->AttachAdLabel");
+
+            // verify the required parameter 'googleAdLabelAssignments' is set
+            if (googleAdLabelAssignments == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'googleAdLabelAssignments' when calling AdAccountsApi->AttachAdLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.Data = googleAdLabelAssignments;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AttachAdLabel200Response>("/v1/ads/labels/{labelId}/assignments", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AttachAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Create Meta ad account Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3140,6 +3531,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateAdAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Google Ads label Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <returns>CreateAdLabel201Response</returns>
+        public CreateAdLabel201Response CreateAdLabel(CreateAdLabelRequest createAdLabelRequest)
+        {
+            Zernio.Client.ApiResponse<CreateAdLabel201Response> localVarResponse = CreateAdLabelWithHttpInfo(createAdLabelRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Google Ads label Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <returns>ApiResponse of CreateAdLabel201Response</returns>
+        public Zernio.Client.ApiResponse<CreateAdLabel201Response> CreateAdLabelWithHttpInfo(CreateAdLabelRequest createAdLabelRequest)
+        {
+            // verify the required parameter 'createAdLabelRequest' is set
+            if (createAdLabelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdLabelRequest' when calling AdAccountsApi->CreateAdLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdLabelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateAdLabel201Response>("/v1/ads/labels", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Google Ads label Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdLabel201Response</returns>
+        public async System.Threading.Tasks.Task<CreateAdLabel201Response> CreateAdLabelAsync(CreateAdLabelRequest createAdLabelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateAdLabel201Response> localVarResponse = await CreateAdLabelWithHttpInfoAsync(createAdLabelRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Google Ads label Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdLabel201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdLabel201Response>> CreateAdLabelWithHttpInfoAsync(CreateAdLabelRequest createAdLabelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createAdLabelRequest' is set
+            if (createAdLabelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdLabelRequest' when calling AdAccountsApi->CreateAdLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdLabelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateAdLabel201Response>("/v1/ads/labels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdLabel", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4153,6 +4673,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteValueRuleSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Detach a Google Ads label Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>DetachAdLabel200Response</returns>
+        public DetachAdLabel200Response DetachAdLabel(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+        {
+            Zernio.Client.ApiResponse<DetachAdLabel200Response> localVarResponse = DetachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Detach a Google Ads label Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <returns>ApiResponse of DetachAdLabel200Response</returns>
+        public Zernio.Client.ApiResponse<DetachAdLabel200Response> DetachAdLabelWithHttpInfo(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->DetachAdLabel");
+
+            // verify the required parameter 'googleAdLabelAssignments' is set
+            if (googleAdLabelAssignments == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'googleAdLabelAssignments' when calling AdAccountsApi->DetachAdLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.Data = googleAdLabelAssignments;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DetachAdLabel200Response>("/v1/ads/labels/{labelId}/assignments", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DetachAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Detach a Google Ads label Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DetachAdLabel200Response</returns>
+        public async System.Threading.Tasks.Task<DetachAdLabel200Response> DetachAdLabelAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DetachAdLabel200Response> localVarResponse = await DetachAdLabelWithHttpInfoAsync(labelId, googleAdLabelAssignments, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Detach a Google Ads label Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="googleAdLabelAssignments"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DetachAdLabel200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DetachAdLabel200Response>> DetachAdLabelWithHttpInfoAsync(string labelId, GoogleAdLabelAssignments googleAdLabelAssignments, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->DetachAdLabel");
+
+            // verify the required parameter 'googleAdLabelAssignments' is set
+            if (googleAdLabelAssignments == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'googleAdLabelAssignments' when calling AdAccountsApi->DetachAdLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.Data = googleAdLabelAssignments;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DetachAdLabel200Response>("/v1/ads/labels/{labelId}/assignments", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DetachAdLabel", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -6229,38 +6892,36 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Ad labels Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// List ad labels Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ListAdLabels200Response</returns>
-        public ListAdLabels200Response ListAdLabels(string accountId, string adAccountId, int? limit = default, string? after = default)
+        public ListAdLabels200Response ListAdLabels(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default)
         {
-            Zernio.Client.ApiResponse<ListAdLabels200Response> localVarResponse = ListAdLabelsWithHttpInfo(accountId, adAccountId, limit, after);
+            Zernio.Client.ApiResponse<ListAdLabels200Response> localVarResponse = ListAdLabelsWithHttpInfo(accountId, adAccountId, customerId, limit, after);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Ad labels Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// List ad labels Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of ListAdLabels200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default)
+        public Zernio.Client.ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdLabels");
-
-            // verify the required parameter 'adAccountId' is set
-            if (adAccountId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListAdLabels");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -6279,7 +6940,14 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -6309,40 +6977,38 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Ad labels Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// List ad labels Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdLabels200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdLabels200Response> ListAdLabelsAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdLabels200Response> ListAdLabelsAsync(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdLabels200Response> localVarResponse = await ListAdLabelsWithHttpInfoAsync(accountId, adAccountId, limit, after, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdLabels200Response> localVarResponse = await ListAdLabelsWithHttpInfoAsync(accountId, adAccountId, customerId, limit, after, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Ad labels Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+        /// List ad labels Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
-        /// <param name="limit">Rows per page (optional, default to 25)</param>
-        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="accountId">Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). (optional)</param>
+        /// <param name="customerId">Google only. Alias of adAccountId, kept for existing callers. (optional) (deprecated)</param>
+        /// <param name="limit">Meta only. Rows per page. (optional, default to 25)</param>
+        /// <param name="after">Meta only. Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdLabels200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string? adAccountId = default, string? customerId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->ListAdLabels");
-
-            // verify the required parameter 'adAccountId' is set
-            if (adAccountId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdAccountsApi->ListAdLabels");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -6363,7 +7029,14 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -8500,6 +9173,171 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Remove a Google Ads label Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <returns>RemoveAdLabel200Response</returns>
+        public RemoveAdLabel200Response RemoveAdLabel(string labelId, string accountId, string? adAccountId = default, string? customerId = default)
+        {
+            Zernio.Client.ApiResponse<RemoveAdLabel200Response> localVarResponse = RemoveAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a Google Ads label Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <returns>ApiResponse of RemoveAdLabel200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveAdLabel200Response> RemoveAdLabelWithHttpInfo(string labelId, string accountId, string? adAccountId = default, string? customerId = default)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->RemoveAdLabel");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->RemoveAdLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveAdLabel200Response>("/v1/ads/labels/{labelId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a Google Ads label Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveAdLabel200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveAdLabel200Response> RemoveAdLabelAsync(string labelId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveAdLabel200Response> localVarResponse = await RemoveAdLabelWithHttpInfoAsync(labelId, accountId, adAccountId, customerId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a Google Ads label Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="accountId">Zernio SocialAccount id (Google Ads)</param>
+        /// <param name="adAccountId">Google customer id. Required when the connection has multiple customers. (optional)</param>
+        /// <param name="customerId">Alias of adAccountId (optional) (deprecated)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveAdLabel200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveAdLabel200Response>> RemoveAdLabelWithHttpInfoAsync(string labelId, string accountId, string? adAccountId = default, string? customerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->RemoveAdLabel");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->RemoveAdLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveAdLabel200Response>("/v1/ads/labels/{labelId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Replace negative list keywords Replaces the full desired keyword set. Existing keywords are diffed by normalized text and match type; creates and removals are applied atomically in one mutation. Unchanged criteria retain their ids. Send an empty keywords array to clear the list. Changes affect every campaign using this list. Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -9333,6 +10171,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAdAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a Google Ads label Changes the name, color or description of a label. Only the fields sent are written.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <returns>UpdateAdLabel200Response</returns>
+        public UpdateAdLabel200Response UpdateAdLabel(string labelId, UpdateAdLabelRequest updateAdLabelRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAdLabel200Response> localVarResponse = UpdateAdLabelWithHttpInfo(labelId, updateAdLabelRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a Google Ads label Changes the name, color or description of a label. Only the fields sent are written.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <returns>ApiResponse of UpdateAdLabel200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdLabel200Response> UpdateAdLabelWithHttpInfo(string labelId, UpdateAdLabelRequest updateAdLabelRequest)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->UpdateAdLabel");
+
+            // verify the required parameter 'updateAdLabelRequest' is set
+            if (updateAdLabelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdLabelRequest' when calling AdAccountsApi->UpdateAdLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.Data = updateAdLabelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<UpdateAdLabel200Response>("/v1/ads/labels/{labelId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a Google Ads label Changes the name, color or description of a label. Only the fields sent are written.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdLabel200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdLabel200Response> UpdateAdLabelAsync(string labelId, UpdateAdLabelRequest updateAdLabelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdLabel200Response> localVarResponse = await UpdateAdLabelWithHttpInfoAsync(labelId, updateAdLabelRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a Google Ads label Changes the name, color or description of a label. Only the fields sent are written.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Google label id</param>
+        /// <param name="updateAdLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdLabel200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdLabel200Response>> UpdateAdLabelWithHttpInfoAsync(string labelId, UpdateAdLabelRequest updateAdLabelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling AdAccountsApi->UpdateAdLabel");
+
+            // verify the required parameter 'updateAdLabelRequest' is set
+            if (updateAdLabelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdLabelRequest' when calling AdAccountsApi->UpdateAdLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.Data = updateAdLabelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateAdLabel200Response>("/v1/ads/labels/{labelId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdLabel", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
