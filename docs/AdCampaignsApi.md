@@ -12,6 +12,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateAdCampaign**](AdCampaignsApi.md#createadcampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign |
 | [**CreateAdSet**](AdCampaignsApi.md#createadset) | **POST** /v1/ads/ad-sets | Create a standalone ad group |
 | [**CreateBidStrategy**](AdCampaignsApi.md#createbidstrategy) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy |
+| [**CreateGoogleAssetGroup**](AdCampaignsApi.md#creategoogleassetgroup) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group |
 | [**CreateStandaloneAd**](AdCampaignsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad |
 | [**DeleteAd**](AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**DeleteAdCampaign**](AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
@@ -19,6 +20,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DuplicateAd**](AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**DuplicateAdCampaign**](AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**DuplicateAdSet**](AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
+| [**EditGoogleAssetGroupAssets**](AdCampaignsApi.md#editgoogleassetgroupassets) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets |
 | [**GetAd**](AdCampaignsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdCampaignDetails**](AdCampaignsApi.md#getadcampaigndetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
 | [**GetAdSetDetails**](AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
@@ -27,6 +29,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetCampaignAdSchedule**](AdCampaignsApi.md#getcampaignadschedule) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign&#39;s ad schedule (dayparting) |
 | [**GetCampaignBidding**](AdCampaignsApi.md#getcampaignbidding) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding |
 | [**GetCampaignTargeting**](AdCampaignsApi.md#getcampaigntargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting |
+| [**GetGoogleAssetGroup**](AdCampaignsApi.md#getgoogleassetgroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group |
 | [**ListAdCampaigns**](AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**ListAdGroupAssets**](AdCampaignsApi.md#listadgroupassets) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets |
 | [**ListAdKeywords**](AdCampaignsApi.md#listadkeywords) | **GET** /v1/ads/keywords | List Search keywords |
@@ -40,8 +43,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**RemoveAdGroupAssets**](AdCampaignsApi.md#removeadgroupassets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**RemoveAdKeyword**](AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
 | [**RemoveCampaignAssets**](AdCampaignsApi.md#removecampaignassets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
+| [**RemoveGoogleAssetGroup**](AdCampaignsApi.md#removegoogleassetgroup) | **DELETE** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Remove a Performance Max asset group |
 | [**ReplaceCampaignNegativeKeywordLists**](AdCampaignsApi.md#replacecampaignnegativekeywordlists) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists |
 | [**ReplaceCampaignNegativeKeywords**](AdCampaignsApi.md#replacecampaignnegativekeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
+| [**ReplaceGoogleListingGroupFilters**](AdCampaignsApi.md#replacegooglelistinggroupfilters) | **PUT** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/listing-group-filters | Replace an asset group&#39;s listing-group tree |
 | [**UpdateAd**](AdCampaignsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad |
 | [**UpdateAdCampaign**](AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**UpdateAdCampaignStatus**](AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
@@ -54,6 +59,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateCampaignAdSchedule**](AdCampaignsApi.md#updatecampaignadschedule) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign&#39;s ad schedule (dayparting) |
 | [**UpdateCampaignAssets**](AdCampaignsApi.md#updatecampaignassets) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
 | [**UpdateCampaignTargeting**](AdCampaignsApi.md#updatecampaigntargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
+| [**UpdateGoogleAssetGroup**](AdCampaignsApi.md#updategoogleassetgroup) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group |
 
 <a id="addadkeywords"></a>
 # **AddAdKeywords**
@@ -897,6 +903,113 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="creategoogleassetgroup"></a>
+# **CreateGoogleAssetGroup**
+> CreateGoogleAssetGroup200Response CreateGoogleAssetGroup (string campaignId, CreateGoogleAssetGroupRequest createGoogleAssetGroupRequest)
+
+Create a Performance Max asset group
+
+Add an asset group to an existing Performance Max campaign. The group, any new assets, their links and an optional listing-group tree are created in one atomic request, so Google checks the asset minimums (for non-retail campaigns) against the whole set. Created PAUSED unless status is ENABLED. validateOnly: true runs Google's validation without creating anything.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateGoogleAssetGroupExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google Ads campaign id.
+            var createGoogleAssetGroupRequest = new CreateGoogleAssetGroupRequest(); // CreateGoogleAssetGroupRequest | 
+
+            try
+            {
+                // Create a Performance Max asset group
+                CreateGoogleAssetGroup200Response result = apiInstance.CreateGoogleAssetGroup(campaignId, createGoogleAssetGroupRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.CreateGoogleAssetGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateGoogleAssetGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Performance Max asset group
+    ApiResponse<CreateGoogleAssetGroup200Response> response = apiInstance.CreateGoogleAssetGroupWithHttpInfo(campaignId, createGoogleAssetGroupRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.CreateGoogleAssetGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google Ads campaign id. |  |
+| **createGoogleAssetGroupRequest** | [**CreateGoogleAssetGroupRequest**](CreateGoogleAssetGroupRequest.md) |  |  |
+
+### Return type
+
+[**CreateGoogleAssetGroup200Response**](CreateGoogleAssetGroup200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | validateOnly request accepted by Google. Nothing was created. |  -  |
+| **201** | Asset group created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="createstandalonead"></a>
 # **CreateStandaloneAd**
 > CreateStandaloneAd200Response CreateStandaloneAd (CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = null)
@@ -1632,6 +1745,114 @@ catch (ApiException e)
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="editgoogleassetgroupassets"></a>
+# **EditGoogleAssetGroupAssets**
+> EditGoogleAssetGroupAssets200Response EditGoogleAssetGroupAssets (string campaignId, string assetGroupId, EditGoogleAssetGroupAssetsRequest editGoogleAssetGroupAssetsRequest)
+
+Link or unlink asset group assets
+
+Link existing assets or new content to the asset group, and unlink assets, in one atomic request. Links are applied before unlinks, so swapping the last asset of a role does not trip Google's per-role minimum. Unlinking removes the link only; the asset stays in the account library. validateOnly: true validates without writing.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class EditGoogleAssetGroupAssetsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google Ads campaign id.
+            var assetGroupId = "assetGroupId_example";  // string | Google asset group id.
+            var editGoogleAssetGroupAssetsRequest = new EditGoogleAssetGroupAssetsRequest(); // EditGoogleAssetGroupAssetsRequest | 
+
+            try
+            {
+                // Link or unlink asset group assets
+                EditGoogleAssetGroupAssets200Response result = apiInstance.EditGoogleAssetGroupAssets(campaignId, assetGroupId, editGoogleAssetGroupAssetsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.EditGoogleAssetGroupAssets: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EditGoogleAssetGroupAssetsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Link or unlink asset group assets
+    ApiResponse<EditGoogleAssetGroupAssets200Response> response = apiInstance.EditGoogleAssetGroupAssetsWithHttpInfo(campaignId, assetGroupId, editGoogleAssetGroupAssetsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.EditGoogleAssetGroupAssetsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google Ads campaign id. |  |
+| **assetGroupId** | **string** | Google asset group id. |  |
+| **editGoogleAssetGroupAssetsRequest** | [**EditGoogleAssetGroupAssetsRequest**](EditGoogleAssetGroupAssetsRequest.md) |  |  |
+
+### Return type
+
+[**EditGoogleAssetGroupAssets200Response**](EditGoogleAssetGroupAssets200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Links applied (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2520,6 +2741,112 @@ catch (ApiException e)
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgoogleassetgroup"></a>
+# **GetGoogleAssetGroup**
+> GetGoogleAssetGroup200Response GetGoogleAssetGroup (string campaignId, string assetGroupId)
+
+Get a Performance Max asset group
+
+One asset group with its linked assets, ad strength, primary status and listing-group tree. Uses a 10-minute cache, served stale when Google quota is exhausted; any write below clears it.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGoogleAssetGroupExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google Ads campaign id.
+            var assetGroupId = "assetGroupId_example";  // string | Google asset group id.
+
+            try
+            {
+                // Get a Performance Max asset group
+                GetGoogleAssetGroup200Response result = apiInstance.GetGoogleAssetGroup(campaignId, assetGroupId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.GetGoogleAssetGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGoogleAssetGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a Performance Max asset group
+    ApiResponse<GetGoogleAssetGroup200Response> response = apiInstance.GetGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.GetGoogleAssetGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google Ads campaign id. |  |
+| **assetGroupId** | **string** | Google asset group id. |  |
+
+### Return type
+
+[**GetGoogleAssetGroup200Response**](GetGoogleAssetGroup200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The asset group. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3975,6 +4302,114 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="removegoogleassetgroup"></a>
+# **RemoveGoogleAssetGroup**
+> RemoveGoogleAssetGroup200Response RemoveGoogleAssetGroup (string campaignId, string assetGroupId, bool? validateOnly = null)
+
+Remove a Performance Max asset group
+
+Removes the asset group on Google (status REMOVED, not reversible). Pass validateOnly=true to validate without removing.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RemoveGoogleAssetGroupExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | 
+            var assetGroupId = "assetGroupId_example";  // string | 
+            var validateOnly = false;  // bool? |  (optional)  (default to false)
+
+            try
+            {
+                // Remove a Performance Max asset group
+                RemoveGoogleAssetGroup200Response result = apiInstance.RemoveGoogleAssetGroup(campaignId, assetGroupId, validateOnly);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.RemoveGoogleAssetGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveGoogleAssetGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a Performance Max asset group
+    ApiResponse<RemoveGoogleAssetGroup200Response> response = apiInstance.RemoveGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, validateOnly);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.RemoveGoogleAssetGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** |  |  |
+| **assetGroupId** | **string** |  |  |
+| **validateOnly** | **bool?** |  | [optional] [default to false] |
+
+### Return type
+
+[**RemoveGoogleAssetGroup200Response**](RemoveGoogleAssetGroup200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="replacecampaignnegativekeywordlists"></a>
 # **ReplaceCampaignNegativeKeywordLists**
 > ReplaceAdNegativeKeywordListKeywords200Response ReplaceCampaignNegativeKeywordLists (string campaignId, ReplaceCampaignNegativeKeywordListsRequest replaceCampaignNegativeKeywordListsRequest)
@@ -4185,6 +4620,114 @@ catch (ApiException e)
 | **404** | Campaign not found |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="replacegooglelistinggroupfilters"></a>
+# **ReplaceGoogleListingGroupFilters**
+> ReplaceGoogleListingGroupFilters200Response ReplaceGoogleListingGroupFilters (string campaignId, string assetGroupId, ReplaceGoogleListingGroupFiltersRequest replaceGoogleListingGroupFiltersRequest)
+
+Replace an asset group's listing-group tree
+
+Replace the product (listing-group) tree of a Performance Max retail asset group. The current tree is removed and the new one created in one atomic request. Read the current tree with GET on the asset group. Requires a campaign linked to Merchant Center; other campaigns return 400 LISTING_SOURCE_NOT_ALLOWED from Google. validateOnly: true validates without writing.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReplaceGoogleListingGroupFiltersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google Ads campaign id.
+            var assetGroupId = "assetGroupId_example";  // string | Google asset group id.
+            var replaceGoogleListingGroupFiltersRequest = new ReplaceGoogleListingGroupFiltersRequest(); // ReplaceGoogleListingGroupFiltersRequest | 
+
+            try
+            {
+                // Replace an asset group's listing-group tree
+                ReplaceGoogleListingGroupFilters200Response result = apiInstance.ReplaceGoogleListingGroupFilters(campaignId, assetGroupId, replaceGoogleListingGroupFiltersRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ReplaceGoogleListingGroupFilters: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReplaceGoogleListingGroupFiltersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Replace an asset group's listing-group tree
+    ApiResponse<ReplaceGoogleListingGroupFilters200Response> response = apiInstance.ReplaceGoogleListingGroupFiltersWithHttpInfo(campaignId, assetGroupId, replaceGoogleListingGroupFiltersRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ReplaceGoogleListingGroupFiltersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google Ads campaign id. |  |
+| **assetGroupId** | **string** | Google asset group id. |  |
+| **replaceGoogleListingGroupFiltersRequest** | [**ReplaceGoogleListingGroupFiltersRequest**](ReplaceGoogleListingGroupFiltersRequest.md) |  |  |
+
+### Return type
+
+[**ReplaceGoogleListingGroupFilters200Response**](ReplaceGoogleListingGroupFilters200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tree replaced (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5454,6 +5997,114 @@ catch (ApiException e)
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updategoogleassetgroup"></a>
+# **UpdateGoogleAssetGroup**
+> UpdateGoogleAssetGroup200Response UpdateGoogleAssetGroup (string campaignId, string assetGroupId, UpdateGoogleAssetGroupRequest updateGoogleAssetGroupRequest)
+
+Update a Performance Max asset group
+
+Change the name, status (ENABLED or PAUSED), final URLs or display paths. Only the fields sent are written; null on path1 or path2 clears it. Change assets with the /assets endpoint and product targeting with /listing-group-filters. validateOnly: true validates without writing.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateGoogleAssetGroupExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google Ads campaign id.
+            var assetGroupId = "assetGroupId_example";  // string | Google asset group id.
+            var updateGoogleAssetGroupRequest = new UpdateGoogleAssetGroupRequest(); // UpdateGoogleAssetGroupRequest | 
+
+            try
+            {
+                // Update a Performance Max asset group
+                UpdateGoogleAssetGroup200Response result = apiInstance.UpdateGoogleAssetGroup(campaignId, assetGroupId, updateGoogleAssetGroupRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.UpdateGoogleAssetGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateGoogleAssetGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a Performance Max asset group
+    ApiResponse<UpdateGoogleAssetGroup200Response> response = apiInstance.UpdateGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, updateGoogleAssetGroupRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.UpdateGoogleAssetGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google Ads campaign id. |  |
+| **assetGroupId** | **string** | Google asset group id. |  |
+| **updateGoogleAssetGroupRequest** | [**UpdateGoogleAssetGroupRequest**](UpdateGoogleAssetGroupRequest.md) |  |  |
+
+### Return type
+
+[**UpdateGoogleAssetGroup200Response**](UpdateGoogleAssetGroup200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
