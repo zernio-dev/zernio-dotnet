@@ -107,9 +107,6 @@ docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
 docs/AppealSmsRegistration200Response.md
 docs/AppealSmsRegistrationRequest.md
-docs/ApplyGoogleRecommendations200Response.md
-docs/ApplyGoogleRecommendationsRequest.md
-docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md
 docs/ApproveWhatsAppGroupJoinRequestsRequest.md
 docs/ArchiveLeadForm200Response.md
 docs/AssignGoogleBusinessLocation200Response.md
@@ -351,6 +348,8 @@ docs/CreateConversionActionRequest.md
 docs/CreateConversionDestination201Response.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateConversionDestinationRequestValue.md
+docs/CreateCustomConversionGoal201Response.md
+docs/CreateCustomConversionGoalRequest.md
 docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
 docs/CreateCustomFieldRequest.md
@@ -569,7 +568,6 @@ docs/DiscordPlatformDataThreadFromMessage.md
 docs/DiscordRole.md
 docs/DiscordScheduledEvent.md
 docs/DiscordScheduledEventEntityMetadata.md
-docs/DismissGoogleRecommendationsRequest.md
 docs/DmButton.md
 docs/DownloadTikTokVideo200Response.md
 docs/DownloadTikTokVideo200ResponseFormatsInner.md
@@ -724,6 +722,7 @@ docs/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.md
 docs/GetCampaignAdSchedule200ResponsePerformanceByHourInner.md
 docs/GetCampaignAnalytics202Response.md
 docs/GetCampaignBidding200Response.md
+docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignTargeting200Response.md
 docs/GetCampaignTargeting200ResponseDevicesInner.md
 docs/GetCampaignTargeting200ResponseLanguagesInner.md
@@ -1040,6 +1039,7 @@ docs/GoogleAdsManagerLink.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
+docs/GoogleBiddableGoalInput.md
 docs/GoogleBusinessPlatformData.md
 docs/GoogleBusinessPlatformDataCallToAction.md
 docs/GoogleBusinessPlatformDataEvent.md
@@ -1052,6 +1052,11 @@ docs/GoogleBusinessPlatformDataOffer.md
 docs/GoogleBusinessReview.md
 docs/GoogleBusinessReviewReviewReply.md
 docs/GoogleBusinessReviewReviewer.md
+docs/GoogleCampaignConversionGoals.md
+docs/GoogleCampaignConversionGoalsGoalsInner.md
+docs/GoogleCustomConversionGoal.md
+docs/GoogleCustomerConversionGoal.md
+docs/GoogleCustomerConversionGoalConversionActionsInner.md
 docs/GoogleListingGroupDimension.md
 docs/GoogleListingGroupDimensionProductBrand.md
 docs/GoogleListingGroupDimensionProductCategory.md
@@ -1070,10 +1075,6 @@ docs/GooglePmaxAssetGroupInput.md
 docs/GooglePmaxAssetGroupInputImages.md
 docs/GooglePmaxAssetGroupUpdate.md
 docs/GooglePmaxAssetGroupUpdateImages.md
-docs/GoogleRecommendation.md
-docs/GoogleRecommendationImpact.md
-docs/GoogleRecommendationMetrics.md
-docs/GoogleRecommendationResult.md
 docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
@@ -1186,6 +1187,7 @@ docs/ListAdCatalogProductSets200Response.md
 docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
 docs/ListAdCatalogProducts200Response.md
 docs/ListAdCatalogs200Response.md
+docs/ListAdConversionGoals200Response.md
 docs/ListAdCreatives200Response.md
 docs/ListAdGroupAssets200Response.md
 docs/ListAdGroupAssets200ResponseCalloutsInner.md
@@ -1260,6 +1262,7 @@ docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
 docs/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md
+docs/ListCustomConversionGoals200Response.md
 docs/ListCustomConversions200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
@@ -1282,7 +1285,6 @@ docs/ListGoogleBusinessMedia200ResponseMediaItemsInner.md
 docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md
 docs/ListGoogleBusinessPlaceActions200Response.md
 docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md
-docs/ListGoogleRecommendations200Response.md
 docs/ListHighDemandPeriods200Response.md
 docs/ListImessageAudience200Response.md
 docs/ListImessageAvailableNumbers200Response.md
@@ -1582,6 +1584,7 @@ docs/RemoveBookmark200Response.md
 docs/RemoveCampaignAssets200Response.md
 docs/RemoveCampaignAssetsRequest.md
 docs/RemoveConversionAssociations200Response.md
+docs/RemoveCustomConversionGoal200Response.md
 docs/RemoveDiscordMemberRole200Response.md
 docs/RemoveGoogleAssetGroup200Response.md
 docs/RemoveMessageReaction200Response.md
@@ -1905,6 +1908,8 @@ docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
 docs/UpdateAdCatalogProductRequest.md
 docs/UpdateAdCatalogProductSetRequest.md
+docs/UpdateAdConversionGoals200Response.md
+docs/UpdateAdConversionGoalsRequest.md
 docs/UpdateAdCreative200Response.md
 docs/UpdateAdCreativeRequest.md
 docs/UpdateAdKeyword200Response.md
@@ -1957,6 +1962,8 @@ docs/UpdateCampaignAdScheduleRequest.md
 docs/UpdateCampaignAdScheduleRequestScheduleInner.md
 docs/UpdateCampaignAssets200Response.md
 docs/UpdateCampaignAssetsRequest.md
+docs/UpdateCampaignConversionGoals200Response.md
+docs/UpdateCampaignConversionGoalsRequest.md
 docs/UpdateCampaignTargeting200Response.md
 docs/UpdateCampaignTargeting200ResponseDevicesInner.md
 docs/UpdateCampaignTargeting200ResponseLanguagesInner.md
@@ -1975,8 +1982,13 @@ docs/UpdateCommentAutomationRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
+docs/UpdateConversionAction200Response.md
+docs/UpdateConversionAction200ResponseAction.md
+docs/UpdateConversionActionRequest.md
 docs/UpdateConversionDestinationRequest.md
 docs/UpdateConversionDestinationRequestValue.md
+docs/UpdateCustomConversionGoal200Response.md
+docs/UpdateCustomConversionGoalRequest.md
 docs/UpdateCustomField200Response.md
 docs/UpdateCustomField200ResponseField.md
 docs/UpdateCustomFieldRequest.md
@@ -2498,9 +2510,6 @@ src/Zernio.Test/Model/ApiKeyProfileIdsInnerTests.cs
 src/Zernio.Test/Model/ApiKeyTests.cs
 src/Zernio.Test/Model/AppealSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/AppealSmsRegistrationRequestTests.cs
-src/Zernio.Test/Model/ApplyGoogleRecommendations200ResponseTests.cs
-src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestRecommendationsInnerTests.cs
-src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/ApproveWhatsAppGroupJoinRequestsRequestTests.cs
 src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
@@ -2732,6 +2741,8 @@ src/Zernio.Test/Model/CreateConversionActionRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestination201ResponseTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestValueTests.cs
+src/Zernio.Test/Model/CreateCustomConversionGoal201ResponseTests.cs
+src/Zernio.Test/Model/CreateCustomConversionGoalRequestTests.cs
 src/Zernio.Test/Model/CreateCustomConversionRequestTests.cs
 src/Zernio.Test/Model/CreateCustomField200ResponseTests.cs
 src/Zernio.Test/Model/CreateCustomFieldRequestTests.cs
@@ -2948,7 +2959,6 @@ src/Zernio.Test/Model/DiscordPlatformDataThreadFromMessageTests.cs
 src/Zernio.Test/Model/DiscordRoleTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventEntityMetadataTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventTests.cs
-src/Zernio.Test/Model/DismissGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/DmButtonTests.cs
 src/Zernio.Test/Model/DownloadTikTokVideo200ResponseFormatsInnerTests.cs
 src/Zernio.Test/Model/DownloadTikTokVideo200ResponseTests.cs
@@ -3095,6 +3105,7 @@ src/Zernio.Test/Model/GetCampaignAdSchedule200ResponsePerformanceTests.cs
 src/Zernio.Test/Model/GetCampaignAdSchedule200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignAnalytics202ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignBidding200ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseDevicesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseLanguagesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseLocationsInnerTests.cs
@@ -3411,6 +3422,7 @@ src/Zernio.Test/Model/GoogleAdsManagerLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetUnlinkTests.cs
 src/Zernio.Test/Model/GoogleAssetUpdateTests.cs
+src/Zernio.Test/Model/GoogleBiddableGoalInputTests.cs
 src/Zernio.Test/Model/GoogleBusinessPlatformDataCallToActionTests.cs
 src/Zernio.Test/Model/GoogleBusinessPlatformDataEventScheduleEndDateTests.cs
 src/Zernio.Test/Model/GoogleBusinessPlatformDataEventScheduleEndTimeTests.cs
@@ -3423,6 +3435,11 @@ src/Zernio.Test/Model/GoogleBusinessPlatformDataTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewReplyTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewReviewerTests.cs
 src/Zernio.Test/Model/GoogleBusinessReviewTests.cs
+src/Zernio.Test/Model/GoogleCampaignConversionGoalsGoalsInnerTests.cs
+src/Zernio.Test/Model/GoogleCampaignConversionGoalsTests.cs
+src/Zernio.Test/Model/GoogleCustomConversionGoalTests.cs
+src/Zernio.Test/Model/GoogleCustomerConversionGoalConversionActionsInnerTests.cs
+src/Zernio.Test/Model/GoogleCustomerConversionGoalTests.cs
 src/Zernio.Test/Model/GoogleListingGroupDimensionProductBrandTests.cs
 src/Zernio.Test/Model/GoogleListingGroupDimensionProductCategoryTests.cs
 src/Zernio.Test/Model/GoogleListingGroupDimensionProductChannelTests.cs
@@ -3441,10 +3458,6 @@ src/Zernio.Test/Model/GooglePmaxAssetGroupInputTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupUpdateImagesTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupUpdateTests.cs
-src/Zernio.Test/Model/GoogleRecommendationImpactTests.cs
-src/Zernio.Test/Model/GoogleRecommendationMetricsTests.cs
-src/Zernio.Test/Model/GoogleRecommendationResultTests.cs
-src/Zernio.Test/Model/GoogleRecommendationTests.cs
 src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
@@ -3551,6 +3564,7 @@ src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseProductSetsInnerTests.c
 src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
+src/Zernio.Test/Model/ListAdConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseCalloutsInnerTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseSitelinksInnerTests.cs
@@ -3625,6 +3639,7 @@ src/Zernio.Test/Model/ListConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInnerTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseTests.cs
+src/Zernio.Test/Model/ListCustomConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomConversions200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseTests.cs
@@ -3647,7 +3662,6 @@ src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponseTests.cs
-src/Zernio.Test/Model/ListGoogleRecommendations200ResponseTests.cs
 src/Zernio.Test/Model/ListHighDemandPeriods200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAudience200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseNumbersInnerTests.cs
@@ -3934,6 +3948,7 @@ src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
 src/Zernio.Test/Model/RemoveCampaignAssets200ResponseTests.cs
 src/Zernio.Test/Model/RemoveCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/RemoveConversionAssociations200ResponseTests.cs
+src/Zernio.Test/Model/RemoveCustomConversionGoal200ResponseTests.cs
 src/Zernio.Test/Model/RemoveDiscordMemberRole200ResponseTests.cs
 src/Zernio.Test/Model/RemoveGoogleAssetGroup200ResponseTests.cs
 src/Zernio.Test/Model/RemoveMessageReaction200ResponseTests.cs
@@ -4250,6 +4265,8 @@ src/Zernio.Test/Model/UpdateAdCampaignStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCatalogProductRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCatalogProductSetRequestTests.cs
+src/Zernio.Test/Model/UpdateAdConversionGoals200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdConversionGoalsRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCreativeRequestTests.cs
 src/Zernio.Test/Model/UpdateAdKeyword200ResponseTests.cs
@@ -4302,6 +4319,8 @@ src/Zernio.Test/Model/UpdateCampaignAdScheduleRequestScheduleInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignAdScheduleRequestTests.cs
 src/Zernio.Test/Model/UpdateCampaignAssets200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCampaignAssetsRequestTests.cs
+src/Zernio.Test/Model/UpdateCampaignConversionGoals200ResponseTests.cs
+src/Zernio.Test/Model/UpdateCampaignConversionGoalsRequestTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseDevicesInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseLanguagesInnerTests.cs
 src/Zernio.Test/Model/UpdateCampaignTargeting200ResponseLocationsInnerTests.cs
@@ -4320,8 +4339,13 @@ src/Zernio.Test/Model/UpdateCommentAutomationRequestTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseTests.cs
 src/Zernio.Test/Model/UpdateContactRequestTests.cs
+src/Zernio.Test/Model/UpdateConversionAction200ResponseActionTests.cs
+src/Zernio.Test/Model/UpdateConversionAction200ResponseTests.cs
+src/Zernio.Test/Model/UpdateConversionActionRequestTests.cs
 src/Zernio.Test/Model/UpdateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/UpdateConversionDestinationRequestValueTests.cs
+src/Zernio.Test/Model/UpdateCustomConversionGoal200ResponseTests.cs
+src/Zernio.Test/Model/UpdateCustomConversionGoalRequestTests.cs
 src/Zernio.Test/Model/UpdateCustomField200ResponseFieldTests.cs
 src/Zernio.Test/Model/UpdateCustomField200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCustomFieldRequestTests.cs
@@ -4847,9 +4871,6 @@ src/Zernio/Model/ApiKeyCreatedBy.cs
 src/Zernio/Model/ApiKeyProfileIdsInner.cs
 src/Zernio/Model/AppealSmsRegistration200Response.cs
 src/Zernio/Model/AppealSmsRegistrationRequest.cs
-src/Zernio/Model/ApplyGoogleRecommendations200Response.cs
-src/Zernio/Model/ApplyGoogleRecommendationsRequest.cs
-src/Zernio/Model/ApplyGoogleRecommendationsRequestRecommendationsInner.cs
 src/Zernio/Model/ApproveWhatsAppGroupJoinRequestsRequest.cs
 src/Zernio/Model/ArchiveLeadForm200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
@@ -5081,6 +5102,8 @@ src/Zernio/Model/CreateConversionActionRequest.cs
 src/Zernio/Model/CreateConversionDestination201Response.cs
 src/Zernio/Model/CreateConversionDestinationRequest.cs
 src/Zernio/Model/CreateConversionDestinationRequestValue.cs
+src/Zernio/Model/CreateCustomConversionGoal201Response.cs
+src/Zernio/Model/CreateCustomConversionGoalRequest.cs
 src/Zernio/Model/CreateCustomConversionRequest.cs
 src/Zernio/Model/CreateCustomField200Response.cs
 src/Zernio/Model/CreateCustomFieldRequest.cs
@@ -5297,7 +5320,6 @@ src/Zernio/Model/DiscordPlatformDataThreadFromMessage.cs
 src/Zernio/Model/DiscordRole.cs
 src/Zernio/Model/DiscordScheduledEvent.cs
 src/Zernio/Model/DiscordScheduledEventEntityMetadata.cs
-src/Zernio/Model/DismissGoogleRecommendationsRequest.cs
 src/Zernio/Model/DmButton.cs
 src/Zernio/Model/DownloadTikTokVideo200Response.cs
 src/Zernio/Model/DownloadTikTokVideo200ResponseFormatsInner.cs
@@ -5444,6 +5466,7 @@ src/Zernio/Model/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.cs
 src/Zernio/Model/GetCampaignAdSchedule200ResponsePerformanceByHourInner.cs
 src/Zernio/Model/GetCampaignAnalytics202Response.cs
 src/Zernio/Model/GetCampaignBidding200Response.cs
+src/Zernio/Model/GetCampaignConversionGoals200Response.cs
 src/Zernio/Model/GetCampaignTargeting200Response.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseDevicesInner.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseLanguagesInner.cs
@@ -5760,6 +5783,7 @@ src/Zernio/Model/GoogleAdsManagerLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetUnlink.cs
 src/Zernio/Model/GoogleAssetUpdate.cs
+src/Zernio/Model/GoogleBiddableGoalInput.cs
 src/Zernio/Model/GoogleBusinessPlatformData.cs
 src/Zernio/Model/GoogleBusinessPlatformDataCallToAction.cs
 src/Zernio/Model/GoogleBusinessPlatformDataEvent.cs
@@ -5772,6 +5796,11 @@ src/Zernio/Model/GoogleBusinessPlatformDataOffer.cs
 src/Zernio/Model/GoogleBusinessReview.cs
 src/Zernio/Model/GoogleBusinessReviewReviewReply.cs
 src/Zernio/Model/GoogleBusinessReviewReviewer.cs
+src/Zernio/Model/GoogleCampaignConversionGoals.cs
+src/Zernio/Model/GoogleCampaignConversionGoalsGoalsInner.cs
+src/Zernio/Model/GoogleCustomConversionGoal.cs
+src/Zernio/Model/GoogleCustomerConversionGoal.cs
+src/Zernio/Model/GoogleCustomerConversionGoalConversionActionsInner.cs
 src/Zernio/Model/GoogleListingGroupDimension.cs
 src/Zernio/Model/GoogleListingGroupDimensionProductBrand.cs
 src/Zernio/Model/GoogleListingGroupDimensionProductCategory.cs
@@ -5790,10 +5819,6 @@ src/Zernio/Model/GooglePmaxAssetGroupInput.cs
 src/Zernio/Model/GooglePmaxAssetGroupInputImages.cs
 src/Zernio/Model/GooglePmaxAssetGroupUpdate.cs
 src/Zernio/Model/GooglePmaxAssetGroupUpdateImages.cs
-src/Zernio/Model/GoogleRecommendation.cs
-src/Zernio/Model/GoogleRecommendationImpact.cs
-src/Zernio/Model/GoogleRecommendationMetrics.cs
-src/Zernio/Model/GoogleRecommendationResult.cs
 src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs
@@ -5900,6 +5925,7 @@ src/Zernio/Model/ListAdCatalogProductSets200Response.cs
 src/Zernio/Model/ListAdCatalogProductSets200ResponseProductSetsInner.cs
 src/Zernio/Model/ListAdCatalogProducts200Response.cs
 src/Zernio/Model/ListAdCatalogs200Response.cs
+src/Zernio/Model/ListAdConversionGoals200Response.cs
 src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdGroupAssets200Response.cs
 src/Zernio/Model/ListAdGroupAssets200ResponseCalloutsInner.cs
@@ -5974,6 +6000,7 @@ src/Zernio/Model/ListConversionAssociations200ResponseAssociationsInner.cs
 src/Zernio/Model/ListConversionDestinations200Response.cs
 src/Zernio/Model/ListConversionDestinations200ResponseDestinationsInner.cs
 src/Zernio/Model/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.cs
+src/Zernio/Model/ListCustomConversionGoals200Response.cs
 src/Zernio/Model/ListCustomConversions200Response.cs
 src/Zernio/Model/ListCustomFields200Response.cs
 src/Zernio/Model/ListCustomFields200ResponseFieldsInner.cs
@@ -5996,7 +6023,6 @@ src/Zernio/Model/ListGoogleBusinessMedia200ResponseMediaItemsInner.cs
 src/Zernio/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.cs
 src/Zernio/Model/ListGoogleBusinessPlaceActions200Response.cs
 src/Zernio/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.cs
-src/Zernio/Model/ListGoogleRecommendations200Response.cs
 src/Zernio/Model/ListHighDemandPeriods200Response.cs
 src/Zernio/Model/ListImessageAudience200Response.cs
 src/Zernio/Model/ListImessageAvailableNumbers200Response.cs
@@ -6283,6 +6309,7 @@ src/Zernio/Model/RemoveBookmark200Response.cs
 src/Zernio/Model/RemoveCampaignAssets200Response.cs
 src/Zernio/Model/RemoveCampaignAssetsRequest.cs
 src/Zernio/Model/RemoveConversionAssociations200Response.cs
+src/Zernio/Model/RemoveCustomConversionGoal200Response.cs
 src/Zernio/Model/RemoveDiscordMemberRole200Response.cs
 src/Zernio/Model/RemoveGoogleAssetGroup200Response.cs
 src/Zernio/Model/RemoveMessageReaction200Response.cs
@@ -6599,6 +6626,8 @@ src/Zernio/Model/UpdateAdCampaignStatus200Response.cs
 src/Zernio/Model/UpdateAdCampaignStatusRequest.cs
 src/Zernio/Model/UpdateAdCatalogProductRequest.cs
 src/Zernio/Model/UpdateAdCatalogProductSetRequest.cs
+src/Zernio/Model/UpdateAdConversionGoals200Response.cs
+src/Zernio/Model/UpdateAdConversionGoalsRequest.cs
 src/Zernio/Model/UpdateAdCreative200Response.cs
 src/Zernio/Model/UpdateAdCreativeRequest.cs
 src/Zernio/Model/UpdateAdKeyword200Response.cs
@@ -6651,6 +6680,8 @@ src/Zernio/Model/UpdateCampaignAdScheduleRequest.cs
 src/Zernio/Model/UpdateCampaignAdScheduleRequestScheduleInner.cs
 src/Zernio/Model/UpdateCampaignAssets200Response.cs
 src/Zernio/Model/UpdateCampaignAssetsRequest.cs
+src/Zernio/Model/UpdateCampaignConversionGoals200Response.cs
+src/Zernio/Model/UpdateCampaignConversionGoalsRequest.cs
 src/Zernio/Model/UpdateCampaignTargeting200Response.cs
 src/Zernio/Model/UpdateCampaignTargeting200ResponseDevicesInner.cs
 src/Zernio/Model/UpdateCampaignTargeting200ResponseLanguagesInner.cs
@@ -6669,8 +6700,13 @@ src/Zernio/Model/UpdateCommentAutomationRequest.cs
 src/Zernio/Model/UpdateContact200Response.cs
 src/Zernio/Model/UpdateContact200ResponseContact.cs
 src/Zernio/Model/UpdateContactRequest.cs
+src/Zernio/Model/UpdateConversionAction200Response.cs
+src/Zernio/Model/UpdateConversionAction200ResponseAction.cs
+src/Zernio/Model/UpdateConversionActionRequest.cs
 src/Zernio/Model/UpdateConversionDestinationRequest.cs
 src/Zernio/Model/UpdateConversionDestinationRequestValue.cs
+src/Zernio/Model/UpdateCustomConversionGoal200Response.cs
+src/Zernio/Model/UpdateCustomConversionGoalRequest.cs
 src/Zernio/Model/UpdateCustomField200Response.cs
 src/Zernio/Model/UpdateCustomField200ResponseField.cs
 src/Zernio/Model/UpdateCustomFieldRequest.cs

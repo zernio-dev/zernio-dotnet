@@ -5,7 +5,6 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddAdKeywords**](AdCampaignsApi.md#addadkeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords |
-| [**ApplyGoogleRecommendations**](AdCampaignsApi.md#applygooglerecommendations) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations |
 | [**AttachAdGroupAssets**](AdCampaignsApi.md#attachadgroupassets) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets |
 | [**AttachCampaignAssets**](AdCampaignsApi.md#attachcampaignassets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets |
 | [**BoostPost**](AdCampaignsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
@@ -18,7 +17,6 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAd**](AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**DeleteAdCampaign**](AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
 | [**DeleteAdSet**](AdCampaignsApi.md#deleteadset) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
-| [**DismissGoogleRecommendations**](AdCampaignsApi.md#dismissgooglerecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations |
 | [**DuplicateAd**](AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**DuplicateAdCampaign**](AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**DuplicateAdSet**](AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
@@ -30,6 +28,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdsTimeline**](AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
 | [**GetCampaignAdSchedule**](AdCampaignsApi.md#getcampaignadschedule) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign&#39;s ad schedule (dayparting) |
 | [**GetCampaignBidding**](AdCampaignsApi.md#getcampaignbidding) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding |
+| [**GetCampaignConversionGoals**](AdCampaignsApi.md#getcampaignconversiongoals) | **GET** /v1/ads/campaigns/{campaignId}/conversion-goals | Get campaign conversion goals |
 | [**GetCampaignTargeting**](AdCampaignsApi.md#getcampaigntargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting |
 | [**GetGoogleAssetGroup**](AdCampaignsApi.md#getgoogleassetgroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group |
 | [**ListAdCampaigns**](AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns |
@@ -42,7 +41,6 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListCampaignNegativeKeywordLists**](AdCampaignsApi.md#listcampaignnegativekeywordlists) | **GET** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | List campaign negative lists |
 | [**ListCampaignNegativeKeywords**](AdCampaignsApi.md#listcampaignnegativekeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
 | [**ListGoogleAssetGroups**](AdCampaignsApi.md#listgoogleassetgroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
-| [**ListGoogleRecommendations**](AdCampaignsApi.md#listgooglerecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations |
 | [**RemoveAdGroupAssets**](AdCampaignsApi.md#removeadgroupassets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**RemoveAdKeyword**](AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
 | [**RemoveCampaignAssets**](AdCampaignsApi.md#removecampaignassets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
@@ -61,6 +59,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateBidStrategy**](AdCampaignsApi.md#updatebidstrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy |
 | [**UpdateCampaignAdSchedule**](AdCampaignsApi.md#updatecampaignadschedule) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign&#39;s ad schedule (dayparting) |
 | [**UpdateCampaignAssets**](AdCampaignsApi.md#updatecampaignassets) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
+| [**UpdateCampaignConversionGoals**](AdCampaignsApi.md#updatecampaignconversiongoals) | **PATCH** /v1/ads/campaigns/{campaignId}/conversion-goals | Update campaign conversion goals |
 | [**UpdateCampaignTargeting**](AdCampaignsApi.md#updatecampaigntargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
 | [**UpdateGoogleAssetGroup**](AdCampaignsApi.md#updategoogleassetgroup) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group |
 
@@ -164,110 +163,6 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="applygooglerecommendations"></a>
-# **ApplyGoogleRecommendations**
-> ApplyGoogleRecommendations200Response ApplyGoogleRecommendations (ApplyGoogleRecommendationsRequest applyGoogleRecommendationsRequest)
-
-Apply Google Ads recommendations
-
-Apply up to 100 recommendations. This changes the account (budgets, bidding, keywords, assets) and is not reversible or idempotent; Google offers no validate-only mode for it. Items run in partial-failure mode, so one stale recommendation does not block the rest. `parameters` is optional and takes exactly one key named for the recommendation type, in Google's ApplyRecommendationOperation shape (for example `campaignBudget: { newBudgetAmountMicros }` or `keyword: { matchType, cpcBidMicros }`); omit it to apply Google's suggested values.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class ApplyGoogleRecommendationsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
-            var applyGoogleRecommendationsRequest = new ApplyGoogleRecommendationsRequest(); // ApplyGoogleRecommendationsRequest | 
-
-            try
-            {
-                // Apply Google Ads recommendations
-                ApplyGoogleRecommendations200Response result = apiInstance.ApplyGoogleRecommendations(applyGoogleRecommendationsRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AdCampaignsApi.ApplyGoogleRecommendations: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ApplyGoogleRecommendationsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Apply Google Ads recommendations
-    ApiResponse<ApplyGoogleRecommendations200Response> response = apiInstance.ApplyGoogleRecommendationsWithHttpInfo(applyGoogleRecommendationsRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AdCampaignsApi.ApplyGoogleRecommendationsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **applyGoogleRecommendationsRequest** | [**ApplyGoogleRecommendationsRequest**](ApplyGoogleRecommendationsRequest.md) |  |  |
-
-### Return type
-
-[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
-| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
-| **501** | accountId is not a Google Ads connection. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1534,110 +1429,6 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="dismissgooglerecommendations"></a>
-# **DismissGoogleRecommendations**
-> ApplyGoogleRecommendations200Response DismissGoogleRecommendations (DismissGoogleRecommendationsRequest dismissGoogleRecommendationsRequest)
-
-Dismiss Google Ads recommendations
-
-Dismiss up to 100 recommendations so Google stops suggesting them. Items run in partial-failure mode.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class DismissGoogleRecommendationsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
-            var dismissGoogleRecommendationsRequest = new DismissGoogleRecommendationsRequest(); // DismissGoogleRecommendationsRequest | 
-
-            try
-            {
-                // Dismiss Google Ads recommendations
-                ApplyGoogleRecommendations200Response result = apiInstance.DismissGoogleRecommendations(dismissGoogleRecommendationsRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AdCampaignsApi.DismissGoogleRecommendations: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DismissGoogleRecommendationsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Dismiss Google Ads recommendations
-    ApiResponse<ApplyGoogleRecommendations200Response> response = apiInstance.DismissGoogleRecommendationsWithHttpInfo(dismissGoogleRecommendationsRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AdCampaignsApi.DismissGoogleRecommendationsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **dismissGoogleRecommendationsRequest** | [**DismissGoogleRecommendationsRequest**](DismissGoogleRecommendationsRequest.md) |  |  |
-
-### Return type
-
-[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
-| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
-| **501** | accountId is not a Google Ads connection. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a id="duplicatead"></a>
 # **DuplicateAd**
 > DuplicateAd200Response DuplicateAd (string adId, string? idempotencyKey = null, DuplicateAdRequest? duplicateAdRequest = null)
@@ -2847,6 +2638,109 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Not a Google Ads account: the connection behind accountId resolves to another platform. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcampaignconversiongoals"></a>
+# **GetCampaignConversionGoals**
+> GetCampaignConversionGoals200Response GetCampaignConversionGoals (string campaignId)
+
+Get campaign conversion goals
+
+A Google campaign's conversion goals (CampaignConversionGoal, `biddable` per category and origin) and its goal config (ConversionGoalCampaignConfig): `goalConfigLevel` CUSTOMER means the campaign follows the account-default goals, CAMPAIGN means it uses its own goals or `customConversionGoalId`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCampaignConversionGoalsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google campaign id
+
+            try
+            {
+                // Get campaign conversion goals
+                GetCampaignConversionGoals200Response result = apiInstance.GetCampaignConversionGoals(campaignId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.GetCampaignConversionGoals: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCampaignConversionGoalsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get campaign conversion goals
+    ApiResponse<GetCampaignConversionGoals200Response> response = apiInstance.GetCampaignConversionGoalsWithHttpInfo(campaignId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.GetCampaignConversionGoalsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google campaign id |  |
+
+### Return type
+
+[**GetCampaignConversionGoals200Response**](GetCampaignConversionGoals200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign conversion goals |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **409** | Campaign matches multiple accessible accounts, or the connection needs reconnecting |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4194,118 +4088,6 @@ catch (ApiException e)
 | **404** | Resource not found |  -  |
 | **429** | Google quota or operation budget exhausted with no cached response. |  -  |
 | **501** | Campaign is not on Google Ads. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="listgooglerecommendations"></a>
-# **ListGoogleRecommendations**
-> ListGoogleRecommendations200Response ListGoogleRecommendations (string accountId, string? adAccountId = null, string? customerId = null, string? campaignId = null, string? types = null)
-
-List Google Ads recommendations
-
-Google's optimization recommendations for one ad account: type, estimated impact (base vs potential metrics, cost in account currency units), the campaign, ad group or budget they target, and the type-specific payload Google returns (`details`, in Google's own shape with micros). Filter by campaignId and types. Cached for 10 minutes and cleared by apply or dismiss; served stale when Google quota is exhausted.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class ListGoogleRecommendationsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
-            var adAccountId = "adAccountId_example";  // string? | Google customer id, digits only. Defaults to the connection's only customer. (optional) 
-            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for consistency with other Google endpoints. (optional) 
-            var campaignId = "campaignId_example";  // string? | Only recommendations targeting this campaign. (optional) 
-            var types = "types_example";  // string? | Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA. (optional) 
-
-            try
-            {
-                // List Google Ads recommendations
-                ListGoogleRecommendations200Response result = apiInstance.ListGoogleRecommendations(accountId, adAccountId, customerId, campaignId, types);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AdCampaignsApi.ListGoogleRecommendations: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ListGoogleRecommendationsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List Google Ads recommendations
-    ApiResponse<ListGoogleRecommendations200Response> response = apiInstance.ListGoogleRecommendationsWithHttpInfo(accountId, adAccountId, customerId, campaignId, types);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AdCampaignsApi.ListGoogleRecommendationsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountId** | **string** | Google ads SocialAccount id. |  |
-| **adAccountId** | **string?** | Google customer id, digits only. Defaults to the connection&#39;s only customer. | [optional]  |
-| **customerId** | **string?** | Alias of adAccountId, kept for consistency with other Google endpoints. | [optional]  |
-| **campaignId** | **string?** | Only recommendations targeting this campaign. | [optional]  |
-| **types** | **string?** | Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA. | [optional]  |
-
-### Return type
-
-[**ListGoogleRecommendations200Response**](ListGoogleRecommendations200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Recommendations. |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
-| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
-| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
-| **501** | accountId is not a Google Ads connection. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6215,6 +5997,111 @@ catch (ApiException e)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Only supported on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatecampaignconversiongoals"></a>
+# **UpdateCampaignConversionGoals**
+> UpdateCampaignConversionGoals200Response UpdateCampaignConversionGoals (string campaignId, UpdateCampaignConversionGoalsRequest updateCampaignConversionGoalsRequest)
+
+Update campaign conversion goals
+
+Sets `biddable` on campaign goals, switches `goalConfigLevel`, and/or points the campaign at a custom conversion goal, in one mutate. `customConversionGoalId: null` clears it; Google refuses that (400) while the campaign stays at CAMPAIGN level with no biddable goals, so send `goalConfigLevel: CUSTOMER` with it to fall back to the account goals. Returns the re-read campaign goals.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateCampaignConversionGoalsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Google campaign id
+            var updateCampaignConversionGoalsRequest = new UpdateCampaignConversionGoalsRequest(); // UpdateCampaignConversionGoalsRequest | 
+
+            try
+            {
+                // Update campaign conversion goals
+                UpdateCampaignConversionGoals200Response result = apiInstance.UpdateCampaignConversionGoals(campaignId, updateCampaignConversionGoalsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.UpdateCampaignConversionGoals: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateCampaignConversionGoalsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update campaign conversion goals
+    ApiResponse<UpdateCampaignConversionGoals200Response> response = apiInstance.UpdateCampaignConversionGoalsWithHttpInfo(campaignId, updateCampaignConversionGoalsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.UpdateCampaignConversionGoalsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Google campaign id |  |
+| **updateCampaignConversionGoalsRequest** | [**UpdateCampaignConversionGoalsRequest**](UpdateCampaignConversionGoalsRequest.md) |  |  |
+
+### Return type
+
+[**UpdateCampaignConversionGoals200Response**](UpdateCampaignConversionGoals200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign goals updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Campaign not found |  -  |
+| **409** | Campaign matches multiple accessible accounts, or the connection needs reconnecting |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
