@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignId** | **string** |  | [optional] 
+**AdGroupId** | **string** | Demand Gen only: the ad group that received the locations and languages. | [optional] 
 **Updated** | **List&lt;UpdateCampaignTargeting200Response.UpdatedEnum&gt;** | Which targeting fields were applied. | [optional] 
 **LocationTargetingType** | **string** | The value read back from Google after the edit. | [optional] 
 **Devices** | [**List&lt;UpdateCampaignTargeting200ResponseDevicesInner&gt;**](UpdateCampaignTargeting200ResponseDevicesInner.md) |  | [optional] 
