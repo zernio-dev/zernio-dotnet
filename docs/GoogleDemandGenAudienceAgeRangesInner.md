@@ -1,4 +1,4 @@
-# Zernio.Model.GoogleDemandGenInputAudienceAgeRangesInner
+# Zernio.Model.GoogleDemandGenAudienceAgeRangesInner
 
 ## Properties
 

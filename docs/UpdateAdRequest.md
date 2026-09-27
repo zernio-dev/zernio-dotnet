@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Descriptions** | [**List&lt;GoogleRsaDescription&gt;**](GoogleRsaDescription.md) | Google Search and Display only. Replaces the complete description list. Search takes 2-4, Display 1-5 and rejects pinnedField. No padding or truncation on update. | [optional] 
 **FinalUrls** | **List&lt;string&gt;** | Google Search and Display only. Replaces final URLs. Omitted lists stay unchanged. For Performance Max use assetGroup.finalUrl. | [optional] 
 **AssetGroup** | [**GooglePmaxAssetGroupUpdate**](GooglePmaxAssetGroupUpdate.md) | Google Performance Max only. Replaces whole asset roles on the ad&#39;s asset group. Returns 422 on any other platform or channel. | [optional] 
+**DemandGen** | [**GoogleDemandGenUpdate**](GoogleDemandGenUpdate.md) | Google Demand Gen only. Returns 422 on any other platform or channel. | [optional] 
 **Status** | **string** |  | [optional] 
 **Budget** | [**UpdateAdRequestBudget**](UpdateAdRequestBudget.md) |  | [optional] 
 **Targeting** | [**UpdateAdRequestTargeting**](UpdateAdRequestTargeting.md) |  | [optional] 

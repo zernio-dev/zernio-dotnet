@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **YoutubeVideoIds** | **List&lt;string&gt;** | Makes the ad a video responsive ad. | [optional] 
 **CarouselCards** | [**List&lt;GoogleDemandGenInputCarouselCardsInner&gt;**](GoogleDemandGenInputCarouselCardsInner.md) | Makes the ad a carousel ad. Each card needs its own image (no two cards may share one); use the same image shape on every card. Card images are uploaded to the account&#39;s asset library before the campaign is created, validateOnly included (Google checks cards against existing images; identical images are reused, not duplicated). | [optional] 
 **Channels** | **List&lt;GoogleDemandGenInput.ChannelsEnum&gt;** | Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them. | [optional] 
-**Audience** | [**GoogleDemandGenInputAudience**](GoogleDemandGenInputAudience.md) |  | [optional] 
+**Audience** | [**GoogleDemandGenAudience**](GoogleDemandGenAudience.md) |  | [optional] 
 **AudienceId** | **string** | Attach an existing Google Audience by numeric id instead of audience. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
