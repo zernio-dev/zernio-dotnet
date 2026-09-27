@@ -665,6 +665,8 @@ docs/GetAd200Response.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHierarchy200Response.md
+docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md
+docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md
 docs/GetAdAccountHierarchy200ResponseRootsInner.md
 docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md
 docs/GetAdAccountHierarchy200ResponseUnavailableInner.md
@@ -3051,6 +3053,8 @@ src/Zernio.Test/Model/GetAccountPosts200ResponseTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
+src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInnerTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseRootsInnerTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseTests.cs
@@ -5417,6 +5421,8 @@ src/Zernio/Model/GetAd200Response.cs
 src/Zernio/Model/GetAdAccountFinance200Response.cs
 src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
 src/Zernio/Model/GetAdAccountHierarchy200Response.cs
+src/Zernio/Model/GetAdAccountHierarchy200ResponseDirectCustomersInner.cs
+src/Zernio/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.cs
 src/Zernio/Model/GetAdAccountHierarchy200ResponseRootsInner.cs
 src/Zernio/Model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.cs
 src/Zernio/Model/GetAdAccountHierarchy200ResponseUnavailableInner.cs
