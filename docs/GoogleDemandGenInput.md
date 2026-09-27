@@ -1,5 +1,5 @@
 # Zernio.Model.GoogleDemandGenInput
-Creative, channel and audience settings for a Google Demand Gen campaign (campaignType demand_gen). Creates one ad group with one ad: a multi-asset image ad, or a video responsive ad when youtubeVideoIds is sent.
+Creative, channel and audience settings for a Google Demand Gen campaign (campaignType demand_gen). Creates one ad group with one ad: a multi-asset image ad, a video responsive ad when youtubeVideoIds is sent, or a carousel ad when carouselCards is sent.
 
 ## Properties
 
@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **AdGroupName** | **string** | Defaults to the ad name. | [optional] 
 **FinalUrl** | **string** |  | 
 **BusinessName** | **string** |  | 
-**Headlines** | **List&lt;string&gt;** | Distinct texts. | 
+**Headlines** | **List&lt;string&gt;** | Distinct texts. A carousel ad takes exactly one. | 
 **LongHeadlines** | **List&lt;string&gt;** | Video ads only, and required there. | [optional] 
-**Descriptions** | **List&lt;string&gt;** |  | 
-**CallToAction** | **string** | Image ads only. Call to action text such as &#39;Learn more&#39;; Google picks one when omitted. | [optional] 
+**Descriptions** | **List&lt;string&gt;** | A carousel ad takes exactly one. | 
+**CallToAction** | **string** | Image and carousel ads only. Call to action text such as &#39;Learn more&#39;; Google picks one when omitted. | [optional] 
 **Images** | [**GoogleDemandGenInputImages**](GoogleDemandGenInputImages.md) |  | 
 **YoutubeVideoIds** | **List&lt;string&gt;** | Makes the ad a video responsive ad. | [optional] 
+**CarouselCards** | [**List&lt;GoogleDemandGenInputCarouselCardsInner&gt;**](GoogleDemandGenInputCarouselCardsInner.md) | Makes the ad a carousel ad. Each card needs its own image (no two cards may share one); use the same image shape on every card. Card images are uploaded to the account&#39;s asset library before the campaign is created, validateOnly included (Google checks cards against existing images; identical images are reused, not duplicated). | [optional] 
 **Channels** | **List&lt;GoogleDemandGenInput.ChannelsEnum&gt;** | Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them. | [optional] 
 **Audience** | [**GoogleDemandGenInputAudience**](GoogleDemandGenInputAudience.md) |  | [optional] 
 **AudienceId** | **string** | Attach an existing Google Audience by numeric id instead of audience. | [optional] 
