@@ -5,7 +5,7 @@ WhatsApp only. Who answers a conversation changed: Meta Business Agent took it o
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Stable webhook event ID | 
+**Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. | 
 **Event** | **string** |  | 
 **Conversation** | [**InboxWebhookConversationDetail**](InboxWebhookConversationDetail.md) |  | 
 **Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 

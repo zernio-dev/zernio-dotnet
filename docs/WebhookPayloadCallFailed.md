@@ -5,7 +5,7 @@ Webhook payload for the `call.failed` event. Fired when a call setup or in-progr
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. | 
 **Event** | **string** |  | 
 **Call** | [**WebhookPayloadCallFailedCall**](WebhookPayloadCallFailedCall.md) |  | 
 **Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 

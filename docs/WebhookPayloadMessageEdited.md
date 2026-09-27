@@ -5,7 +5,7 @@ Webhook payload for message.edited events. Fires when the sender edits a previou
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. | 
 **Event** | **string** |  | 
 **Message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  | 
 **EditHistory** | [**List&lt;InboxMessageEditHistoryEntry&gt;**](InboxMessageEditHistoryEntry.md) | Prior versions of the message, oldest first. | 

@@ -5,7 +5,7 @@ Webhook payload for comment received events (Instagram, Facebook, Threads, YouTu
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Stable webhook event ID | 
+**Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. | 
 **Event** | **string** |  | 
 **Comment** | [**WebhookPayloadCommentComment**](WebhookPayloadCommentComment.md) |  | 
 **Post** | [**WebhookPayloadCommentPost**](WebhookPayloadCommentPost.md) |  | 
