@@ -3798,7 +3798,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
-            var keywordId = "keywordId_example";  // string | Zernio keyword ID (not the Google criterion ID)
+            var keywordId = "keywordId_example";  // string | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
 
             try
             {
@@ -3841,7 +3841,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **keywordId** | **string** | Zernio keyword ID (not the Google criterion ID) |  |
+| **keywordId** | **string** | Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. |  |
 
 ### Return type
 
@@ -4645,7 +4645,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
-            var keywordId = "keywordId_example";  // string | Zernio keyword ID (not the Google criterion ID)
+            var keywordId = "keywordId_example";  // string | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
             var updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
 
             try
@@ -4689,7 +4689,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **keywordId** | **string** | Zernio keyword ID (not the Google criterion ID) |  |
+| **keywordId** | **string** | Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. |  |
 | **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md) |  |  |
 
 ### Return type

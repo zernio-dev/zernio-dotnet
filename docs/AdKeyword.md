@@ -4,7 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | [optional] 
+**Id** | **string** | Zernio keyword ID. Accepted as &#x60;keywordId&#x60; by PATCH/DELETE /v1/ads/keywords/{keywordId}. | [optional] 
+**PlatformCriterionId** | **string** | Google ad_group_criterion.criterion_id. Unique only within its ad group (&#x60;adSetId&#x60;), not across the account. | [optional] 
+**ResourceName** | **string** | Google resource name, customers/{adAccountId}/adGroupCriteria/{adSetId}~{platformCriterionId}. | [optional] 
 **AccountId** | **string** | Account ID owning the sync | [optional] 
 **ProfileId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
