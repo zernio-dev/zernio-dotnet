@@ -666,6 +666,10 @@ docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
+docs/GetAdAccountHierarchy200Response.md
+docs/GetAdAccountHierarchy200ResponseRootsInner.md
+docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md
+docs/GetAdAccountHierarchy200ResponseUnavailableInner.md
 docs/GetAdAnalytics202Response.md
 docs/GetAdAudience200Response.md
 docs/GetAdCampaignDetails200Response.md
@@ -1031,6 +1035,8 @@ docs/GetYoutubePlaylists200Response.md
 docs/GetYoutubePlaylists200ResponsePlaylistsInner.md
 docs/GoogleAdLabel.md
 docs/GoogleAdLabelAssignments.md
+docs/GoogleAdsHierarchyClient.md
+docs/GoogleAdsManagerLink.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
@@ -1117,6 +1123,7 @@ docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
+docs/InviteAdAccountToManagerRequest.md
 docs/InvitesApi.md
 docs/KeywordEntry.md
 docs/LeadGenApi.md
@@ -1887,6 +1894,7 @@ docs/UpdateAccountStructuredSnippetsRequestUpdatesInner.md
 docs/UpdateAd200Response.md
 docs/UpdateAdAccount200Response.md
 docs/UpdateAdAccount200ResponseDsaDefaults.md
+docs/UpdateAdAccountManagerLinkRequest.md
 docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
@@ -3029,6 +3037,10 @@ src/Zernio.Test/Model/GetAccountPosts200ResponseTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
+src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseRootsInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseTests.cs
+src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseUnavailableInnerTests.cs
 src/Zernio.Test/Model/GetAdAnalytics202ResponseTests.cs
 src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/GetAdCampaignDetails200ResponseTests.cs
@@ -3394,6 +3406,8 @@ src/Zernio.Test/Model/GetYoutubePlaylists200ResponsePlaylistsInnerTests.cs
 src/Zernio.Test/Model/GetYoutubePlaylists200ResponseTests.cs
 src/Zernio.Test/Model/GoogleAdLabelAssignmentsTests.cs
 src/Zernio.Test/Model/GoogleAdLabelTests.cs
+src/Zernio.Test/Model/GoogleAdsHierarchyClientTests.cs
+src/Zernio.Test/Model/GoogleAdsManagerLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetUnlinkTests.cs
 src/Zernio.Test/Model/GoogleAssetUpdateTests.cs
@@ -3477,6 +3491,7 @@ src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
+src/Zernio.Test/Model/InviteAdAccountToManagerRequestTests.cs
 src/Zernio.Test/Model/KeywordEntryTests.cs
 src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/LikeInboxCommentRequestTests.cs
@@ -4224,6 +4239,7 @@ src/Zernio.Test/Model/UpdateAccountStructuredSnippetsRequestUpdatesInnerTests.cs
 src/Zernio.Test/Model/UpdateAd200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseDsaDefaultsTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdAccountManagerLinkRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAccountRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaign200ResponseTests.cs
@@ -5370,6 +5386,10 @@ src/Zernio/Model/GetAccountPosts200ResponsePostsInner.cs
 src/Zernio/Model/GetAd200Response.cs
 src/Zernio/Model/GetAdAccountFinance200Response.cs
 src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
+src/Zernio/Model/GetAdAccountHierarchy200Response.cs
+src/Zernio/Model/GetAdAccountHierarchy200ResponseRootsInner.cs
+src/Zernio/Model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.cs
+src/Zernio/Model/GetAdAccountHierarchy200ResponseUnavailableInner.cs
 src/Zernio/Model/GetAdAnalytics202Response.cs
 src/Zernio/Model/GetAdAudience200Response.cs
 src/Zernio/Model/GetAdCampaignDetails200Response.cs
@@ -5735,6 +5755,8 @@ src/Zernio/Model/GetYoutubePlaylists200Response.cs
 src/Zernio/Model/GetYoutubePlaylists200ResponsePlaylistsInner.cs
 src/Zernio/Model/GoogleAdLabel.cs
 src/Zernio/Model/GoogleAdLabelAssignments.cs
+src/Zernio/Model/GoogleAdsHierarchyClient.cs
+src/Zernio/Model/GoogleAdsManagerLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetUnlink.cs
 src/Zernio/Model/GoogleAssetUpdate.cs
@@ -5818,6 +5840,7 @@ src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
+src/Zernio/Model/InviteAdAccountToManagerRequest.cs
 src/Zernio/Model/KeywordEntry.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
 src/Zernio/Model/LikeInboxCommentRequest.cs
@@ -6565,6 +6588,7 @@ src/Zernio/Model/UpdateAccountStructuredSnippetsRequestUpdatesInner.cs
 src/Zernio/Model/UpdateAd200Response.cs
 src/Zernio/Model/UpdateAdAccount200Response.cs
 src/Zernio/Model/UpdateAdAccount200ResponseDsaDefaults.cs
+src/Zernio/Model/UpdateAdAccountManagerLinkRequest.cs
 src/Zernio/Model/UpdateAdAccountRequest.cs
 src/Zernio/Model/UpdateAdAudienceRequest.cs
 src/Zernio/Model/UpdateAdCampaign200Response.cs

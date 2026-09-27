@@ -19,6 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteValueRuleSet**](AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**DetachAdLabel**](AdAccountsApi.md#detachadlabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
+| [**GetAdAccountHierarchy**](AdAccountsApi.md#getadaccounthierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**GetAdComments**](AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**GetAdNegativeKeywordList**](AdAccountsApi.md#getadnegativekeywordlist) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list |
 | [**GetAdsActivityLog**](AdAccountsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log |
@@ -27,6 +28,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetIosFourteenCampaignLimits**](AdAccountsApi.md#getiosfourteencampaignlimits) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits |
 | [**GetValueRuleSet**](AdAccountsApi.md#getvalueruleset) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
 | [**HideAdComment**](AdAccountsApi.md#hideadcomment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
+| [**InviteAdAccountToManager**](AdAccountsApi.md#inviteadaccounttomanager) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager |
 | [**ListAccountCallouts**](AdAccountsApi.md#listaccountcallouts) | **GET** /v1/ads/accounts/callouts | List account callouts |
 | [**ListAccountSitelinks**](AdAccountsApi.md#listaccountsitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
 | [**ListAccountStructuredSnippets**](AdAccountsApi.md#listaccountstructuredsnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
@@ -53,6 +55,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateAccountSitelinks**](AdAccountsApi.md#updateaccountsitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks |
 | [**UpdateAccountStructuredSnippets**](AdAccountsApi.md#updateaccountstructuredsnippets) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
 | [**UpdateAdAccount**](AdAccountsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**UpdateAdAccountManagerLink**](AdAccountsApi.md#updateadaccountmanagerlink) | **PATCH** /v1/ads/accounts/manager-links | Accept, decline, cancel or end a manager link |
 | [**UpdateAdLabel**](AdAccountsApi.md#updateadlabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
 | [**UpdateAdNegativeKeywordList**](AdAccountsApi.md#updateadnegativekeywordlist) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**UpdateValueRuleSet**](AdAccountsApi.md#updatevalueruleset) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
@@ -1642,6 +1645,114 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getadaccounthierarchy"></a>
+# **GetAdAccountHierarchy**
+> GetAdAccountHierarchy200Response GetAdAccountHierarchy (string accountId, string? adAccountId = null, string? customerId = null)
+
+Get manager account hierarchy
+
+Live manager (MCC) and client tree for a Google Ads connection. Starts from every customer the Google user behind the connection can access directly and walks each tree to any depth with `customer_client`, then reads each manager's own client links so every client carries its direct parent, the `managerLinkId` and the link status. Invitations a manager sent that the client has not accepted yet appear as clients with `linkStatus: PENDING` (Google returns no name or currency for them). Refused, canceled and ended links are history and are omitted. `managerLinks` on a root lists the managers linked to that account, including invitations it can still accept with PATCH /v1/ads/accounts/manager-links. A directly accessible account that is also nested in another tree appears only once, inside that tree. Customers Google refuses to read (for example a cancelled account) are listed in `unavailable` with Google's reason instead of failing the call. Up to 50 roots and 50 managers per root are read; `truncated` is true when more exist. Cached for 10 minutes per connection; the response carries `cachedAt` and `stale`. When the connection is scoped to specific ad accounts, client accounts outside that scope are hidden (managers stay visible).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdAccountHierarchyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var adAccountId = "adAccountId_example";  // string? | Only return the tree rooted at this customer id (digits only). It must be an account the Google user accesses directly. Omit to list every tree. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for consistency with the other Google Ads account endpoints. (optional) 
+
+            try
+            {
+                // Get manager account hierarchy
+                GetAdAccountHierarchy200Response result = apiInstance.GetAdAccountHierarchy(accountId, adAccountId, customerId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.GetAdAccountHierarchy: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdAccountHierarchyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get manager account hierarchy
+    ApiResponse<GetAdAccountHierarchy200Response> response = apiInstance.GetAdAccountHierarchyWithHttpInfo(accountId, adAccountId, customerId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.GetAdAccountHierarchyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **adAccountId** | **string?** | Only return the tree rooted at this customer id (digits only). It must be an account the Google user accesses directly. Omit to list every tree. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for consistency with the other Google Ads account endpoints. | [optional]  |
+
+### Return type
+
+[**GetAdAccountHierarchy200Response**](GetAdAccountHierarchy200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Manager and client hierarchy |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getadcomments"></a>
 # **GetAdComments**
 > GetAdComments200Response GetAdComments (string adId, string? placement = null, int? limit = null, DateOnly? since = null, DateOnly? until = null, string? cursor = null)
@@ -2515,6 +2626,111 @@ catch (ApiException e)
 | **422** | TikTok Ads connection is unavailable. |  -  |
 | **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
 | **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="inviteadaccounttomanager"></a>
+# **InviteAdAccountToManager**
+> GoogleAdsManagerLink InviteAdAccountToManager (InviteAdAccountToManagerRequest inviteAdAccountToManagerRequest)
+
+Invite a client account to a manager
+
+Sends a manager-to-client link invitation from `managerCustomerId` to `clientCustomerId` (Google's CustomerClientLinkService). The manager must be one the connection's Google user reaches, directly or under another manager (see GET /v1/ads/accounts/hierarchy); the client can be any Google Ads account. The link stays `PENDING` until someone with access to the client accepts it in Google Ads or through PATCH on this path. Not idempotent: Google refuses a second invitation while one is pending. Send `validateOnly: true` to have Google check the request without sending anything.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class InviteAdAccountToManagerExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var inviteAdAccountToManagerRequest = new InviteAdAccountToManagerRequest(); // InviteAdAccountToManagerRequest | 
+
+            try
+            {
+                // Invite a client account to a manager
+                GoogleAdsManagerLink result = apiInstance.InviteAdAccountToManager(inviteAdAccountToManagerRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.InviteAdAccountToManager: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the InviteAdAccountToManagerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Invite a client account to a manager
+    ApiResponse<GoogleAdsManagerLink> response = apiInstance.InviteAdAccountToManagerWithHttpInfo(inviteAdAccountToManagerRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.InviteAdAccountToManagerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **inviteAdAccountToManagerRequest** | [**InviteAdAccountToManagerRequest**](InviteAdAccountToManagerRequest.md) |  |  |
+
+### Return type
+
+[**GoogleAdsManagerLink**](GoogleAdsManagerLink.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Validated only (validateOnly true), nothing sent |  -  |
+| **201** | Invitation sent |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5316,6 +5532,110 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadaccountmanagerlink"></a>
+# **UpdateAdAccountManagerLink**
+> GoogleAdsManagerLink UpdateAdAccountManagerLink (UpdateAdAccountManagerLinkRequest updateAdAccountManagerLinkRequest)
+
+Accept, decline, cancel or end a manager link
+
+Changes one manager-client link, identified by `managerCustomerId`, `clientCustomerId` and `managerLinkId` (all from GET /v1/ads/accounts/hierarchy). `accept` and `decline` answer a pending invitation as the client (CustomerManagerLinkService), so the connection's Google user needs direct access to the client account; access through a manager is not enough, because the link does not exist yet. `cancel` withdraws a pending invitation and `unlink` ends an active link, both as the manager (CustomerClientLinkService). Send `validateOnly: true` to have Google check the change without applying it.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdAccountManagerLinkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var updateAdAccountManagerLinkRequest = new UpdateAdAccountManagerLinkRequest(); // UpdateAdAccountManagerLinkRequest | 
+
+            try
+            {
+                // Accept, decline, cancel or end a manager link
+                GoogleAdsManagerLink result = apiInstance.UpdateAdAccountManagerLink(updateAdAccountManagerLinkRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.UpdateAdAccountManagerLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdAccountManagerLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Accept, decline, cancel or end a manager link
+    ApiResponse<GoogleAdsManagerLink> response = apiInstance.UpdateAdAccountManagerLinkWithHttpInfo(updateAdAccountManagerLinkRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.UpdateAdAccountManagerLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **updateAdAccountManagerLinkRequest** | [**UpdateAdAccountManagerLinkRequest**](UpdateAdAccountManagerLinkRequest.md) |  |  |
+
+### Return type
+
+[**GoogleAdsManagerLink**](GoogleAdsManagerLink.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Link updated, or validated only when validateOnly is true |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
