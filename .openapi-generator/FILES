@@ -1057,6 +1057,10 @@ docs/GoogleCampaignConversionGoalsGoalsInner.md
 docs/GoogleCustomConversionGoal.md
 docs/GoogleCustomerConversionGoal.md
 docs/GoogleCustomerConversionGoalConversionActionsInner.md
+docs/GoogleDemandGenInput.md
+docs/GoogleDemandGenInputAudience.md
+docs/GoogleDemandGenInputAudienceAgeRangesInner.md
+docs/GoogleDemandGenInputImages.md
 docs/GoogleListingGroupDimension.md
 docs/GoogleListingGroupDimensionProductBrand.md
 docs/GoogleListingGroupDimensionProductCategory.md
@@ -3440,6 +3444,10 @@ src/Zernio.Test/Model/GoogleCampaignConversionGoalsTests.cs
 src/Zernio.Test/Model/GoogleCustomConversionGoalTests.cs
 src/Zernio.Test/Model/GoogleCustomerConversionGoalConversionActionsInnerTests.cs
 src/Zernio.Test/Model/GoogleCustomerConversionGoalTests.cs
+src/Zernio.Test/Model/GoogleDemandGenInputAudienceAgeRangesInnerTests.cs
+src/Zernio.Test/Model/GoogleDemandGenInputAudienceTests.cs
+src/Zernio.Test/Model/GoogleDemandGenInputImagesTests.cs
+src/Zernio.Test/Model/GoogleDemandGenInputTests.cs
 src/Zernio.Test/Model/GoogleListingGroupDimensionProductBrandTests.cs
 src/Zernio.Test/Model/GoogleListingGroupDimensionProductCategoryTests.cs
 src/Zernio.Test/Model/GoogleListingGroupDimensionProductChannelTests.cs
@@ -5801,6 +5809,10 @@ src/Zernio/Model/GoogleCampaignConversionGoalsGoalsInner.cs
 src/Zernio/Model/GoogleCustomConversionGoal.cs
 src/Zernio/Model/GoogleCustomerConversionGoal.cs
 src/Zernio/Model/GoogleCustomerConversionGoalConversionActionsInner.cs
+src/Zernio/Model/GoogleDemandGenInput.cs
+src/Zernio/Model/GoogleDemandGenInputAudience.cs
+src/Zernio/Model/GoogleDemandGenInputAudienceAgeRangesInner.cs
+src/Zernio/Model/GoogleDemandGenInputImages.cs
 src/Zernio/Model/GoogleListingGroupDimension.cs
 src/Zernio/Model/GoogleListingGroupDimensionProductBrand.cs
 src/Zernio/Model/GoogleListingGroupDimensionProductCategory.cs
