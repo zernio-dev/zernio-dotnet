@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddTrackingTagSharedAccount**](TrackingTagsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
+| [**AssignTrackingTagUser**](TrackingTagsApi.md#assigntrackingtaguser) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag |
 | [**CreateTrackingTag**](TrackingTagsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
 | [**CreateTrackingTagEvent**](TrackingTagsApi.md#createtrackingtagevent) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | Create a conversion event |
 | [**DeleteTrackingTagEvent**](TrackingTagsApi.md#deletetrackingtagevent) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Delete a conversion event |
@@ -15,10 +16,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetTrackingTagStoreInstall**](TrackingTagsApi.md#gettrackingtagstoreinstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
 | [**InstallTrackingTagOnStore**](TrackingTagsApi.md#installtrackingtagonstore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site |
 | [**ListTrackingTagEvents**](TrackingTagsApi.md#listtrackingtagevents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events |
+| [**ListTrackingTagPartners**](TrackingTagsApi.md#listtrackingtagpartners) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag |
 | [**ListTrackingTagSharedAccounts**](TrackingTagsApi.md#listtrackingtagsharedaccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
+| [**ListTrackingTagUsers**](TrackingTagsApi.md#listtrackingtagusers) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users |
 | [**ListTrackingTags**](TrackingTagsApi.md#listtrackingtags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**RemoveTrackingTagFromStore**](TrackingTagsApi.md#removetrackingtagfromstore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site |
 | [**RemoveTrackingTagSharedAccount**](TrackingTagsApi.md#removetrackingtagsharedaccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
+| [**RemoveTrackingTagUser**](TrackingTagsApi.md#removetrackingtaguser) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag |
 | [**UpdateAdTrackingTags**](TrackingTagsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**UpdateTrackingTag**](TrackingTagsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
 | [**UpdateTrackingTagEvent**](TrackingTagsApi.md#updatetrackingtagevent) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event |
@@ -129,6 +133,114 @@ catch (ApiException e)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="assigntrackingtaguser"></a>
+# **AssignTrackingTagUser**
+> AssignTrackingTagUser200Response AssignTrackingTagUser (string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest)
+
+Assign a user to a tag
+
+Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: `tasks` are `AA_ANALYZE`, `ADVERTISE`, `ANALYZE`, `EDIT`, `UPLOAD`; `userId` is the business-scoped id from `GET /v1/ads/businesses/users`. A pixel on a personal ad account answers 400. Needs `business_management` like the list. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AssignTrackingTagUserExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+            var assignTrackingTagUserRequest = new AssignTrackingTagUserRequest(); // AssignTrackingTagUserRequest | 
+
+            try
+            {
+                // Assign a user to a tag
+                AssignTrackingTagUser200Response result = apiInstance.AssignTrackingTagUser(accountId, tagId, assignTrackingTagUserRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.AssignTrackingTagUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AssignTrackingTagUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Assign a user to a tag
+    ApiResponse<AssignTrackingTagUser200Response> response = apiInstance.AssignTrackingTagUserWithHttpInfo(accountId, tagId, assignTrackingTagUserRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.AssignTrackingTagUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+| **assignTrackingTagUserRequest** | [**AssignTrackingTagUserRequest**](AssignTrackingTagUserRequest.md) |  |  |
+
+### Return type
+
+[**AssignTrackingTagUser200Response**](AssignTrackingTagUser200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User assigned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag user assignment (code &#x60;platform_not_supported&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1218,6 +1330,112 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listtrackingtagpartners"></a>
+# **ListTrackingTagPartners**
+> ListTrackingTagPartners200Response ListTrackingTagPartners (string accountId, string tagId)
+
+List partner businesses of a tag
+
+Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel's shared agencies. Sharing a pixel with a new partner is not available: `/{pixel}/agencies` answers \"(#3) Application does not have the capability to make this API call\" for our app. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTrackingTagPartnersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+
+            try
+            {
+                // List partner businesses of a tag
+                ListTrackingTagPartners200Response result = apiInstance.ListTrackingTagPartners(accountId, tagId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.ListTrackingTagPartners: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTrackingTagPartnersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List partner businesses of a tag
+    ApiResponse<ListTrackingTagPartners200Response> response = apiInstance.ListTrackingTagPartnersWithHttpInfo(accountId, tagId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.ListTrackingTagPartnersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+
+### Return type
+
+[**ListTrackingTagPartners200Response**](ListTrackingTagPartners200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partners listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no partner sharing (code &#x60;platform_not_supported&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listtrackingtagsharedaccounts"></a>
 # **ListTrackingTagSharedAccounts**
 > ListTrackingTagSharedAccounts200Response ListTrackingTagSharedAccounts (string accountId, string tagId)
@@ -1322,6 +1540,112 @@ catch (ApiException e)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listtrackingtagusers"></a>
+# **ListTrackingTagUsers**
+> ListTrackingTagUsers200Response ListTrackingTagUsers (string accountId, string tagId)
+
+List tag users
+
+People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel's assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the `business_management` permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTrackingTagUsersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+
+            try
+            {
+                // List tag users
+                ListTrackingTagUsers200Response result = apiInstance.ListTrackingTagUsers(accountId, tagId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.ListTrackingTagUsers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTrackingTagUsersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List tag users
+    ApiResponse<ListTrackingTagUsers200Response> response = apiInstance.ListTrackingTagUsersWithHttpInfo(accountId, tagId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.ListTrackingTagUsersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+
+### Return type
+
+[**ListTrackingTagUsers200Response**](ListTrackingTagUsers200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tag users listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag user assignment (code &#x60;platform_not_supported&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1644,6 +1968,114 @@ void (empty response body)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="removetrackingtaguser"></a>
+# **RemoveTrackingTagUser**
+> RemoveTrackingTagUser200Response RemoveTrackingTagUser (string accountId, string tagId, string userId)
+
+Remove a user from a tag
+
+Removes a user's access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel's assigned users, `DELETE /{pixel}/assigned_users` answers \"Unsupported delete request\" (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RemoveTrackingTagUserExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | 
+            var userId = "userId_example";  // string | User id (`TrackingTagUser.id`).
+
+            try
+            {
+                // Remove a user from a tag
+                RemoveTrackingTagUser200Response result = apiInstance.RemoveTrackingTagUser(accountId, tagId, userId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.RemoveTrackingTagUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveTrackingTagUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a user from a tag
+    ApiResponse<RemoveTrackingTagUser200Response> response = apiInstance.RemoveTrackingTagUserWithHttpInfo(accountId, tagId, userId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.RemoveTrackingTagUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** |  |  |
+| **userId** | **string** | User id (&#x60;TrackingTagUser.id&#x60;). |  |
+
+### Return type
+
+[**RemoveTrackingTagUser200Response**](RemoveTrackingTagUser200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot remove tag users through its API (code &#x60;platform_not_supported&#x60;); the message says where to do it. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

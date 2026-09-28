@@ -54,6 +54,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AddTrackingTagSharedAccount201Response</returns>
         ApiResponse<AddTrackingTagSharedAccount201Response> AddTrackingTagSharedAccountWithHttpInfo(string accountId, string tagId, AddTrackingTagSharedAccountRequest addTrackingTagSharedAccountRequest);
         /// <summary>
+        /// Assign a user to a tag
+        /// </summary>
+        /// <remarks>
+        /// Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <returns>AssignTrackingTagUser200Response</returns>
+        AssignTrackingTagUser200Response AssignTrackingTagUser(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest);
+
+        /// <summary>
+        /// Assign a user to a tag
+        /// </summary>
+        /// <remarks>
+        /// Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <returns>ApiResponse of AssignTrackingTagUser200Response</returns>
+        ApiResponse<AssignTrackingTagUser200Response> AssignTrackingTagUserWithHttpInfo(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest);
+        /// <summary>
         /// Create a tracking tag
         /// </summary>
         /// <remarks>
@@ -306,6 +331,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListTrackingTagEvents200Response</returns>
         ApiResponse<ListTrackingTagEvents200Response> ListTrackingTagEventsWithHttpInfo(string accountId, string tagId, string? adAccountId = default);
         /// <summary>
+        /// List partner businesses of a tag
+        /// </summary>
+        /// <remarks>
+        /// Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ListTrackingTagPartners200Response</returns>
+        ListTrackingTagPartners200Response ListTrackingTagPartners(string accountId, string tagId);
+
+        /// <summary>
+        /// List partner businesses of a tag
+        /// </summary>
+        /// <remarks>
+        /// Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ApiResponse of ListTrackingTagPartners200Response</returns>
+        ApiResponse<ListTrackingTagPartners200Response> ListTrackingTagPartnersWithHttpInfo(string accountId, string tagId);
+        /// <summary>
         /// List accounts it is shared with
         /// </summary>
         /// <remarks>
@@ -328,6 +376,29 @@ namespace Zernio.Api
         /// <param name="tagId">Pixel id.</param>
         /// <returns>ApiResponse of ListTrackingTagSharedAccounts200Response</returns>
         ApiResponse<ListTrackingTagSharedAccounts200Response> ListTrackingTagSharedAccountsWithHttpInfo(string accountId, string tagId);
+        /// <summary>
+        /// List tag users
+        /// </summary>
+        /// <remarks>
+        /// People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ListTrackingTagUsers200Response</returns>
+        ListTrackingTagUsers200Response ListTrackingTagUsers(string accountId, string tagId);
+
+        /// <summary>
+        /// List tag users
+        /// </summary>
+        /// <remarks>
+        /// People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ApiResponse of ListTrackingTagUsers200Response</returns>
+        ApiResponse<ListTrackingTagUsers200Response> ListTrackingTagUsersWithHttpInfo(string accountId, string tagId);
         /// <summary>
         /// List tracking tags
         /// </summary>
@@ -403,6 +474,31 @@ namespace Zernio.Api
         /// <param name="adAccountId">Ad account to unshare, e.g. &#x60;act_123456789&#x60;. May also be sent in the JSON body. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RemoveTrackingTagSharedAccountWithHttpInfo(string accountId, string tagId, string? adAccountId = default);
+        /// <summary>
+        /// Remove a user from a tag
+        /// </summary>
+        /// <remarks>
+        /// Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <returns>RemoveTrackingTagUser200Response</returns>
+        RemoveTrackingTagUser200Response RemoveTrackingTagUser(string accountId, string tagId, string userId);
+
+        /// <summary>
+        /// Remove a user from a tag
+        /// </summary>
+        /// <remarks>
+        /// Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <returns>ApiResponse of RemoveTrackingTagUser200Response</returns>
+        ApiResponse<RemoveTrackingTagUser200Response> RemoveTrackingTagUserWithHttpInfo(string accountId, string tagId, string userId);
         /// <summary>
         /// Set ad tracking tags
         /// </summary>
@@ -514,6 +610,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddTrackingTagSharedAccount201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddTrackingTagSharedAccount201Response>> AddTrackingTagSharedAccountWithHttpInfoAsync(string accountId, string tagId, AddTrackingTagSharedAccountRequest addTrackingTagSharedAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Assign a user to a tag
+        /// </summary>
+        /// <remarks>
+        /// Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AssignTrackingTagUser200Response</returns>
+        System.Threading.Tasks.Task<AssignTrackingTagUser200Response> AssignTrackingTagUserAsync(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Assign a user to a tag
+        /// </summary>
+        /// <remarks>
+        /// Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AssignTrackingTagUser200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AssignTrackingTagUser200Response>> AssignTrackingTagUserWithHttpInfoAsync(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a tracking tag
         /// </summary>
@@ -787,6 +910,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListTrackingTagEvents200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListTrackingTagEvents200Response>> ListTrackingTagEventsWithHttpInfoAsync(string accountId, string tagId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List partner businesses of a tag
+        /// </summary>
+        /// <remarks>
+        /// Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListTrackingTagPartners200Response</returns>
+        System.Threading.Tasks.Task<ListTrackingTagPartners200Response> ListTrackingTagPartnersAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List partner businesses of a tag
+        /// </summary>
+        /// <remarks>
+        /// Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListTrackingTagPartners200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListTrackingTagPartners200Response>> ListTrackingTagPartnersWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List accounts it is shared with
         /// </summary>
         /// <remarks>
@@ -811,6 +959,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListTrackingTagSharedAccounts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListTrackingTagSharedAccounts200Response>> ListTrackingTagSharedAccountsWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List tag users
+        /// </summary>
+        /// <remarks>
+        /// People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListTrackingTagUsers200Response</returns>
+        System.Threading.Tasks.Task<ListTrackingTagUsers200Response> ListTrackingTagUsersAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List tag users
+        /// </summary>
+        /// <remarks>
+        /// People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListTrackingTagUsers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListTrackingTagUsers200Response>> ListTrackingTagUsersWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List tracking tags
         /// </summary>
@@ -892,6 +1065,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RemoveTrackingTagSharedAccountWithHttpInfoAsync(string accountId, string tagId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove a user from a tag
+        /// </summary>
+        /// <remarks>
+        /// Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveTrackingTagUser200Response</returns>
+        System.Threading.Tasks.Task<RemoveTrackingTagUser200Response> RemoveTrackingTagUserAsync(string accountId, string tagId, string userId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove a user from a tag
+        /// </summary>
+        /// <remarks>
+        /// Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveTrackingTagUser200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveTrackingTagUser200Response>> RemoveTrackingTagUserWithHttpInfoAsync(string accountId, string tagId, string userId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Set ad tracking tags
         /// </summary>
@@ -1337,6 +1537,163 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("AddTrackingTagSharedAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Assign a user to a tag Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <returns>AssignTrackingTagUser200Response</returns>
+        public AssignTrackingTagUser200Response AssignTrackingTagUser(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest)
+        {
+            Zernio.Client.ApiResponse<AssignTrackingTagUser200Response> localVarResponse = AssignTrackingTagUserWithHttpInfo(accountId, tagId, assignTrackingTagUserRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Assign a user to a tag Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <returns>ApiResponse of AssignTrackingTagUser200Response</returns>
+        public Zernio.Client.ApiResponse<AssignTrackingTagUser200Response> AssignTrackingTagUserWithHttpInfo(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->AssignTrackingTagUser");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->AssignTrackingTagUser");
+
+            // verify the required parameter 'assignTrackingTagUserRequest' is set
+            if (assignTrackingTagUserRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'assignTrackingTagUserRequest' when calling TrackingTagsApi->AssignTrackingTagUser");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+            localVarRequestOptions.Data = assignTrackingTagUserRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AssignTrackingTagUser200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/users", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AssignTrackingTagUser", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Assign a user to a tag Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AssignTrackingTagUser200Response</returns>
+        public async System.Threading.Tasks.Task<AssignTrackingTagUser200Response> AssignTrackingTagUserAsync(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AssignTrackingTagUser200Response> localVarResponse = await AssignTrackingTagUserWithHttpInfoAsync(accountId, tagId, assignTrackingTagUserRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Assign a user to a tag Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="assignTrackingTagUserRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AssignTrackingTagUser200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AssignTrackingTagUser200Response>> AssignTrackingTagUserWithHttpInfoAsync(string accountId, string tagId, AssignTrackingTagUserRequest assignTrackingTagUserRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->AssignTrackingTagUser");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->AssignTrackingTagUser");
+
+            // verify the required parameter 'assignTrackingTagUserRequest' is set
+            if (assignTrackingTagUserRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'assignTrackingTagUserRequest' when calling TrackingTagsApi->AssignTrackingTagUser");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+            localVarRequestOptions.Data = assignTrackingTagUserRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AssignTrackingTagUser200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/users", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AssignTrackingTagUser", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2898,6 +3255,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List partner businesses of a tag Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ListTrackingTagPartners200Response</returns>
+        public ListTrackingTagPartners200Response ListTrackingTagPartners(string accountId, string tagId)
+        {
+            Zernio.Client.ApiResponse<ListTrackingTagPartners200Response> localVarResponse = ListTrackingTagPartnersWithHttpInfo(accountId, tagId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List partner businesses of a tag Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ApiResponse of ListTrackingTagPartners200Response</returns>
+        public Zernio.Client.ApiResponse<ListTrackingTagPartners200Response> ListTrackingTagPartnersWithHttpInfo(string accountId, string tagId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->ListTrackingTagPartners");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->ListTrackingTagPartners");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListTrackingTagPartners200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/partners", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListTrackingTagPartners", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List partner businesses of a tag Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListTrackingTagPartners200Response</returns>
+        public async System.Threading.Tasks.Task<ListTrackingTagPartners200Response> ListTrackingTagPartnersAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListTrackingTagPartners200Response> localVarResponse = await ListTrackingTagPartnersWithHttpInfoAsync(accountId, tagId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List partner businesses of a tag Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListTrackingTagPartners200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListTrackingTagPartners200Response>> ListTrackingTagPartnersWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->ListTrackingTagPartners");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->ListTrackingTagPartners");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListTrackingTagPartners200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/partners", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListTrackingTagPartners", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List accounts it is shared with Meta (&#x60;metaads&#x60;) and LinkedIn (&#x60;linkedinads&#x60;); other platforms return 501.  LinkedIn (&#x60;linkedinads&#x60;): the ad accounts this connection can see that hold access to the Insight Tag; the role (&#x60;FULL&#x60; or &#x60;USE_ONLY&#x60;) is appended to &#x60;name&#x60;. LinkedIn exposes permissions per ad account only, so accounts the connection cannot see are not listed. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3032,6 +3530,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListTrackingTagSharedAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List tag users People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ListTrackingTagUsers200Response</returns>
+        public ListTrackingTagUsers200Response ListTrackingTagUsers(string accountId, string tagId)
+        {
+            Zernio.Client.ApiResponse<ListTrackingTagUsers200Response> localVarResponse = ListTrackingTagUsersWithHttpInfo(accountId, tagId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List tag users People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <returns>ApiResponse of ListTrackingTagUsers200Response</returns>
+        public Zernio.Client.ApiResponse<ListTrackingTagUsers200Response> ListTrackingTagUsersWithHttpInfo(string accountId, string tagId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->ListTrackingTagUsers");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->ListTrackingTagUsers");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListTrackingTagUsers200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/users", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListTrackingTagUsers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List tag users People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListTrackingTagUsers200Response</returns>
+        public async System.Threading.Tasks.Task<ListTrackingTagUsers200Response> ListTrackingTagUsersAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListTrackingTagUsers200Response> localVarResponse = await ListTrackingTagUsersWithHttpInfoAsync(accountId, tagId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List tag users People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Tag id (&#x60;TrackingTag.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListTrackingTagUsers200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListTrackingTagUsers200Response>> ListTrackingTagUsersWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->ListTrackingTagUsers");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->ListTrackingTagUsers");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListTrackingTagUsers200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/users", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListTrackingTagUsers", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -3489,6 +4128,161 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RemoveTrackingTagSharedAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a user from a tag Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <returns>RemoveTrackingTagUser200Response</returns>
+        public RemoveTrackingTagUser200Response RemoveTrackingTagUser(string accountId, string tagId, string userId)
+        {
+            Zernio.Client.ApiResponse<RemoveTrackingTagUser200Response> localVarResponse = RemoveTrackingTagUserWithHttpInfo(accountId, tagId, userId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a user from a tag Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <returns>ApiResponse of RemoveTrackingTagUser200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveTrackingTagUser200Response> RemoveTrackingTagUserWithHttpInfo(string accountId, string tagId, string userId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->RemoveTrackingTagUser");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->RemoveTrackingTagUser");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling TrackingTagsApi->RemoveTrackingTagUser");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveTrackingTagUser200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveTrackingTagUser", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a user from a tag Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveTrackingTagUser200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveTrackingTagUser200Response> RemoveTrackingTagUserAsync(string accountId, string tagId, string userId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveTrackingTagUser200Response> localVarResponse = await RemoveTrackingTagUserWithHttpInfoAsync(accountId, tagId, userId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a user from a tag Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId"></param>
+        /// <param name="userId">User id (&#x60;TrackingTagUser.id&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveTrackingTagUser200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveTrackingTagUser200Response>> RemoveTrackingTagUserWithHttpInfoAsync(string accountId, string tagId, string userId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TrackingTagsApi->RemoveTrackingTagUser");
+
+            // verify the required parameter 'tagId' is set
+            if (tagId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tagId' when calling TrackingTagsApi->RemoveTrackingTagUser");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling TrackingTagsApi->RemoveTrackingTagUser");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("tagId", Zernio.Client.ClientUtils.ParameterToString(tagId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveTrackingTagUser200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveTrackingTagUser", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

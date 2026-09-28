@@ -122,6 +122,8 @@ docs/AssignGoogleBusinessLocationRequest.md
 docs/AssignPageUser201Response.md
 docs/AssignPageUser201ResponseUser.md
 docs/AssignPageUserRequest.md
+docs/AssignTrackingTagUser200Response.md
+docs/AssignTrackingTagUserRequest.md
 docs/AttachAdGroupAssets201Response.md
 docs/AttachAdLabel200Response.md
 docs/AttachBrandedCallingNumbersRequest.md
@@ -1465,7 +1467,9 @@ docs/ListTikTokCommercialMusic200Response.md
 docs/ListTikTokCommercialMusic200ResponseTracksInner.md
 docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md
 docs/ListTrackingTagEvents200Response.md
+docs/ListTrackingTagPartners200Response.md
 docs/ListTrackingTagSharedAccounts200Response.md
+docs/ListTrackingTagUsers200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
@@ -1728,6 +1732,7 @@ docs/RemoveMessageReaction200Response.md
 docs/RemovePageUser200Response.md
 docs/RemoveTrackingTagFromStore200Response.md
 docs/RemoveTrackingTagFromStore200ResponseInstall.md
+docs/RemoveTrackingTagUser200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
@@ -2011,6 +2016,8 @@ docs/TrackingTagDiagnostic.md
 docs/TrackingTagEvent.md
 docs/TrackingTagEventInput.md
 docs/TrackingTagInstallBlockedReason.md
+docs/TrackingTagPartner.md
+docs/TrackingTagUser.md
 docs/TrackingTagsApi.md
 docs/TransferVoiceCall200Response.md
 docs/TransferVoiceCallRequest.md
@@ -2692,6 +2699,8 @@ src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
 src/Zernio.Test/Model/AssignPageUser201ResponseTests.cs
 src/Zernio.Test/Model/AssignPageUser201ResponseUserTests.cs
 src/Zernio.Test/Model/AssignPageUserRequestTests.cs
+src/Zernio.Test/Model/AssignTrackingTagUser200ResponseTests.cs
+src/Zernio.Test/Model/AssignTrackingTagUserRequestTests.cs
 src/Zernio.Test/Model/AttachAdGroupAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachAdLabel200ResponseTests.cs
 src/Zernio.Test/Model/AttachBrandedCallingNumbersRequestSignatureTests.cs
@@ -4007,7 +4016,9 @@ src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTests.cs
 src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTracksInnerClipTests.cs
 src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTracksInnerTests.cs
 src/Zernio.Test/Model/ListTrackingTagEvents200ResponseTests.cs
+src/Zernio.Test/Model/ListTrackingTagPartners200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
+src/Zernio.Test/Model/ListTrackingTagUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseUsersInnerTests.cs
@@ -4256,6 +4267,7 @@ src/Zernio.Test/Model/RemoveMessageReaction200ResponseTests.cs
 src/Zernio.Test/Model/RemovePageUser200ResponseTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseInstallTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseTests.cs
+src/Zernio.Test/Model/RemoveTrackingTagUser200ResponseTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompanies200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTests.cs
@@ -4533,7 +4545,9 @@ src/Zernio.Test/Model/TrackingTagDiagnosticTests.cs
 src/Zernio.Test/Model/TrackingTagEventInputTests.cs
 src/Zernio.Test/Model/TrackingTagEventTests.cs
 src/Zernio.Test/Model/TrackingTagInstallBlockedReasonTests.cs
+src/Zernio.Test/Model/TrackingTagPartnerTests.cs
 src/Zernio.Test/Model/TrackingTagTests.cs
+src/Zernio.Test/Model/TrackingTagUserTests.cs
 src/Zernio.Test/Model/TransferVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/TransferVoiceCallRequestTests.cs
 src/Zernio.Test/Model/TriggerWorkflow200ResponseExecutionTests.cs
@@ -5217,6 +5231,8 @@ src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
 src/Zernio/Model/AssignPageUser201Response.cs
 src/Zernio/Model/AssignPageUser201ResponseUser.cs
 src/Zernio/Model/AssignPageUserRequest.cs
+src/Zernio/Model/AssignTrackingTagUser200Response.cs
+src/Zernio/Model/AssignTrackingTagUserRequest.cs
 src/Zernio/Model/AttachAdGroupAssets201Response.cs
 src/Zernio/Model/AttachAdLabel200Response.cs
 src/Zernio/Model/AttachBrandedCallingNumbersRequest.cs
@@ -6532,7 +6548,9 @@ src/Zernio/Model/ListTikTokCommercialMusic200Response.cs
 src/Zernio/Model/ListTikTokCommercialMusic200ResponseTracksInner.cs
 src/Zernio/Model/ListTikTokCommercialMusic200ResponseTracksInnerClip.cs
 src/Zernio/Model/ListTrackingTagEvents200Response.cs
+src/Zernio/Model/ListTrackingTagPartners200Response.cs
 src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
+src/Zernio/Model/ListTrackingTagUsers200Response.cs
 src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
 src/Zernio/Model/ListUsers200ResponseUsersInner.cs
@@ -6781,6 +6799,7 @@ src/Zernio/Model/RemoveMessageReaction200Response.cs
 src/Zernio/Model/RemovePageUser200Response.cs
 src/Zernio/Model/RemoveTrackingTagFromStore200Response.cs
 src/Zernio/Model/RemoveTrackingTagFromStore200ResponseInstall.cs
+src/Zernio/Model/RemoveTrackingTagUser200Response.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompanies200Response.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequest.cs
@@ -7059,6 +7078,8 @@ src/Zernio/Model/TrackingTagDiagnostic.cs
 src/Zernio/Model/TrackingTagEvent.cs
 src/Zernio/Model/TrackingTagEventInput.cs
 src/Zernio/Model/TrackingTagInstallBlockedReason.cs
+src/Zernio/Model/TrackingTagPartner.cs
+src/Zernio/Model/TrackingTagUser.cs
 src/Zernio/Model/TransferVoiceCall200Response.cs
 src/Zernio/Model/TransferVoiceCallRequest.cs
 src/Zernio/Model/TriggerWorkflow200Response.cs
