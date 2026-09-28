@@ -11,6 +11,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountDisconnected**](WebhookEventsApi.md#onaccountdisconnected) | **POST** /account.disconnected | Account disconnected event |
 | [**OnAdStatusChanged**](WebhookEventsApi.md#onadstatuschanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**OnAnalyticsSynced**](WebhookEventsApi.md#onanalyticssynced) | **POST** /analytics.synced | Analytics synced event |
+| [**OnBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onbrandedcallingidentityactionrequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
+| [**OnBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onbrandedcallingidentitystatusupdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
+| [**OnBrandedCallingNumberStatusUpdated**](WebhookEventsApi.md#onbrandedcallingnumberstatusupdated) | **POST** /branded_calling.number.status_updated | Branded number status updated event |
 | [**OnCallEnded**](WebhookEventsApi.md#oncallended) | **POST** /call.ended | Call ended event |
 | [**OnCallFailed**](WebhookEventsApi.md#oncallfailed) | **POST** /call.failed | Call failed event |
 | [**OnCallPermissionRequest**](WebhookEventsApi.md#oncallpermissionrequest) | **POST** /call.permission_request | Call permission request reply event |
@@ -698,6 +701,288 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAnalyticsSynced** | [**WebhookPayloadAnalyticsSynced**](WebhookPayloadAnalyticsSynced.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onbrandedcallingidentityactionrequired"></a>
+# **OnBrandedCallingIdentityActionRequired**
+> void OnBrandedCallingIdentityActionRequired (OnBrandedCallingIdentityActionRequiredRequest onBrandedCallingIdentityActionRequiredRequest)
+
+Caller identity action required event
+
+Fired when a caller identity waits on you. `reason` says what: `changes_requested` (answer the review with PATCH), `email_code` (the authorizer got a 6-digit code from the carrier; confirm it with the verify-email endpoint), `rejected` (the carrier rejected it; fix and PATCH), `infringement_claim` (a third party disputes the name or logo; reply to our email with evidence) or `expired` (resubmit). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnBrandedCallingIdentityActionRequiredExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var onBrandedCallingIdentityActionRequiredRequest = new OnBrandedCallingIdentityActionRequiredRequest(); // OnBrandedCallingIdentityActionRequiredRequest | 
+
+            try
+            {
+                // Caller identity action required event
+                apiInstance.OnBrandedCallingIdentityActionRequired(onBrandedCallingIdentityActionRequiredRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnBrandedCallingIdentityActionRequired: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnBrandedCallingIdentityActionRequiredWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Caller identity action required event
+    apiInstance.OnBrandedCallingIdentityActionRequiredWithHttpInfo(onBrandedCallingIdentityActionRequiredRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnBrandedCallingIdentityActionRequiredWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **onBrandedCallingIdentityActionRequiredRequest** | [**OnBrandedCallingIdentityActionRequiredRequest**](OnBrandedCallingIdentityActionRequiredRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onbrandedcallingidentitystatusupdated"></a>
+# **OnBrandedCallingIdentityStatusUpdated**
+> void OnBrandedCallingIdentityStatusUpdated (OnBrandedCallingIdentityStatusUpdatedRequest onBrandedCallingIdentityStatusUpdatedRequest)
+
+Caller identity status updated event
+
+Fired on every status change of a Branded Calling caller identity: `requested` (a new submission or resubmit, in our review), `changes_requested` (we need answers, see `branded_calling.identity.action_required`), `rejected` (by our review or by the carrier; `reason` says why), `pending_email_verification` (filed with the carrier; the authorizer enters the emailed code), `in_review` (carrier vetting), `verified` (live for a year: attach numbers), `suspended` (an infringement claim is open), `expired` and `permanently_rejected`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnBrandedCallingIdentityStatusUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var onBrandedCallingIdentityStatusUpdatedRequest = new OnBrandedCallingIdentityStatusUpdatedRequest(); // OnBrandedCallingIdentityStatusUpdatedRequest | 
+
+            try
+            {
+                // Caller identity status updated event
+                apiInstance.OnBrandedCallingIdentityStatusUpdated(onBrandedCallingIdentityStatusUpdatedRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnBrandedCallingIdentityStatusUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnBrandedCallingIdentityStatusUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Caller identity status updated event
+    apiInstance.OnBrandedCallingIdentityStatusUpdatedWithHttpInfo(onBrandedCallingIdentityStatusUpdatedRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnBrandedCallingIdentityStatusUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **onBrandedCallingIdentityStatusUpdatedRequest** | [**OnBrandedCallingIdentityStatusUpdatedRequest**](OnBrandedCallingIdentityStatusUpdatedRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onbrandedcallingnumberstatusupdated"></a>
+# **OnBrandedCallingNumberStatusUpdated**
+> void OnBrandedCallingNumberStatusUpdated (OnBrandedCallingNumberStatusUpdatedRequest onBrandedCallingNumberStatusUpdatedRequest)
+
+Branded number status updated event
+
+Fired when a number attached to a caller identity changes vetting status: `in_review`, `verified` (calls from it now show the identity), `unsuccessful` (refused; detach and re-add to retry), `suspended`, `expired` or `permanently_rejected` (can never be branded again). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnBrandedCallingNumberStatusUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var onBrandedCallingNumberStatusUpdatedRequest = new OnBrandedCallingNumberStatusUpdatedRequest(); // OnBrandedCallingNumberStatusUpdatedRequest | 
+
+            try
+            {
+                // Branded number status updated event
+                apiInstance.OnBrandedCallingNumberStatusUpdated(onBrandedCallingNumberStatusUpdatedRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnBrandedCallingNumberStatusUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnBrandedCallingNumberStatusUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Branded number status updated event
+    apiInstance.OnBrandedCallingNumberStatusUpdatedWithHttpInfo(onBrandedCallingNumberStatusUpdatedRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnBrandedCallingNumberStatusUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **onBrandedCallingNumberStatusUpdatedRequest** | [**OnBrandedCallingNumberStatusUpdatedRequest**](OnBrandedCallingNumberStatusUpdatedRequest.md) |  |  |
 
 ### Return type
 
