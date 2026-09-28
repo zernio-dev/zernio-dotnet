@@ -112,9 +112,14 @@ docs/ApplyGoogleRecommendationsRequest.md
 docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md
 docs/ApproveWhatsAppGroupJoinRequestsRequest.md
 docs/ArchiveLeadForm200Response.md
+docs/AssignAdAccountUser201Response.md
+docs/AssignAdAccountUserRequest.md
 docs/AssignGoogleBusinessLocation200Response.md
 docs/AssignGoogleBusinessLocation200ResponseAccount.md
 docs/AssignGoogleBusinessLocationRequest.md
+docs/AssignPageUser201Response.md
+docs/AssignPageUser201ResponseUser.md
+docs/AssignPageUserRequest.md
 docs/AttachAdGroupAssets201Response.md
 docs/AttachAdLabel200Response.md
 docs/AttachBrandedCallingNumbersRequest.md
@@ -784,6 +789,8 @@ docs/GetDiscordChannels200ResponseChannelsInner.md
 docs/GetDiscordGuildMember200Response.md
 docs/GetDiscordSettings200Response.md
 docs/GetDiscordSettings200ResponseAccount.md
+docs/GetDsaDefaults200Response.md
+docs/GetDsaDefaults200ResponseDsaDefaults.md
 docs/GetDsaRecommendations200Response.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
@@ -1123,6 +1130,9 @@ docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
 docs/GoogleStructuredSnippet.md
+docs/GrantBusinessPartner201Response.md
+docs/GrantBusinessPartner201ResponsePartner.md
+docs/GrantBusinessPartnerRequest.md
 docs/HandleOAuthCallbackRequest.md
 docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
@@ -1224,6 +1234,7 @@ docs/ListAccountSitelinks200Response.md
 docs/ListAccountSitelinks200ResponseSitelinksInner.md
 docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
+docs/ListAdAccountUsers200Response.md
 docs/ListAdAccounts200Response.md
 docs/ListAdAccounts200ResponseAccountsInner.md
 docs/ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.md
@@ -1290,6 +1301,7 @@ docs/ListBusinessAgentSettings200Response.md
 docs/ListBusinessAgentSkills200Response.md
 docs/ListBusinessAgentUiSkills200Response.md
 docs/ListBusinessAgentWebsites200Response.md
+docs/ListBusinessPartners200Response.md
 docs/ListCalls200Response.md
 docs/ListCalls200ResponseCallsInner.md
 docs/ListCampaignAssets200Response.md
@@ -1389,7 +1401,9 @@ docs/ListLocalServicesLeads200ResponseDataInnerContact.md
 docs/ListLogs200Response.md
 docs/ListLogs200ResponseLogsInner.md
 docs/ListLogs200ResponsePagination.md
+docs/ListMetaBusinessUsers200Response.md
 docs/ListMetaBusinesses200Response.md
+docs/ListPageUsers200Response.md
 docs/ListPartnershipAdContent200Response.md
 docs/ListPartnershipAdContent200ResponseMediaInner.md
 docs/ListPartnershipAdPermissions200Response.md
@@ -1488,6 +1502,8 @@ docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
 docs/MetaAdsPlatformData.md
+docs/MetaAssignedUser.md
+docs/MetaBusinessUser.md
 docs/MetaCatalogProduct.md
 docs/MetaCatalogProductInput.md
 docs/MetaFeedUpload.md
@@ -1500,6 +1516,10 @@ docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/MetaLeadFormQuestionsInner.md
 docs/MetaLeadFormThankYouPage.md
+docs/MetaPageOwnership.md
+docs/MetaPageOwnershipBusiness.md
+docs/MetaPageOwnershipInstagramBusinessAccount.md
+docs/MetaPagePartner.md
 docs/MetaPlacementAssets.md
 docs/MetaPlacementAssetsRulesInner.md
 docs/MetaPlacementAssetsRulesInnerPlacements.md
@@ -1645,6 +1665,7 @@ docs/RemediatePhoneNumberRequestDocumentsInner.md
 docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
 docs/RemoveAccountCallout200Response.md
 docs/RemoveAccountCalloutRequest.md
+docs/RemoveAdAccountUser200Response.md
 docs/RemoveAdGroupAssetsRequest.md
 docs/RemoveAdKeyword200Response.md
 docs/RemoveAdLabel200Response.md
@@ -1656,6 +1677,7 @@ docs/RemoveCustomConversionGoal200Response.md
 docs/RemoveDiscordMemberRole200Response.md
 docs/RemoveGoogleAssetGroup200Response.md
 docs/RemoveMessageReaction200Response.md
+docs/RemovePageUser200Response.md
 docs/RemoveTrackingTagFromStore200Response.md
 docs/RemoveTrackingTagFromStore200ResponseInstall.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
@@ -1712,6 +1734,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/RevokeBusinessPartner200Response.md
 docs/RevokeConnectedApp200Response.md
 docs/RfPrediction.md
 docs/RotateSipTrunkCredentials200Response.md
@@ -1973,6 +1996,8 @@ docs/UpdateAccountStructuredSnippetsRequestUpdatesInner.md
 docs/UpdateAd200Response.md
 docs/UpdateAdAccount200Response.md
 docs/UpdateAdAccount200ResponseDsaDefaults.md
+docs/UpdateAdAccount200ResponseSettings.md
+docs/UpdateAdAccount200ResponseSettingsFundingSource.md
 docs/UpdateAdAccountManagerLinkRequest.md
 docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
@@ -2601,9 +2626,14 @@ src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestRecommendationsInnerTests
 src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/ApproveWhatsAppGroupJoinRequestsRequestTests.cs
 src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
+src/Zernio.Test/Model/AssignAdAccountUser201ResponseTests.cs
+src/Zernio.Test/Model/AssignAdAccountUserRequestTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
+src/Zernio.Test/Model/AssignPageUser201ResponseTests.cs
+src/Zernio.Test/Model/AssignPageUser201ResponseUserTests.cs
+src/Zernio.Test/Model/AssignPageUserRequestTests.cs
 src/Zernio.Test/Model/AttachAdGroupAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachAdLabel200ResponseTests.cs
 src/Zernio.Test/Model/AttachBrandedCallingNumbersRequestSignatureTests.cs
@@ -3251,6 +3281,8 @@ src/Zernio.Test/Model/GetDiscordChannels200ResponseTests.cs
 src/Zernio.Test/Model/GetDiscordGuildMember200ResponseTests.cs
 src/Zernio.Test/Model/GetDiscordSettings200ResponseAccountTests.cs
 src/Zernio.Test/Model/GetDiscordSettings200ResponseTests.cs
+src/Zernio.Test/Model/GetDsaDefaults200ResponseDsaDefaultsTests.cs
+src/Zernio.Test/Model/GetDsaDefaults200ResponseTests.cs
 src/Zernio.Test/Model/GetDsaRecommendations200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponseTests.cs
@@ -3590,6 +3622,9 @@ src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
 src/Zernio.Test/Model/GoogleStructuredSnippetTests.cs
+src/Zernio.Test/Model/GrantBusinessPartner201ResponsePartnerTests.cs
+src/Zernio.Test/Model/GrantBusinessPartner201ResponseTests.cs
+src/Zernio.Test/Model/GrantBusinessPartnerRequestTests.cs
 src/Zernio.Test/Model/HandleOAuthCallbackRequestTests.cs
 src/Zernio.Test/Model/HideAdComment200ResponseTests.cs
 src/Zernio.Test/Model/HideAdCommentRequestTests.cs
@@ -3685,6 +3720,7 @@ src/Zernio.Test/Model/ListAccountSitelinks200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListAccountSitelinks200ResponseTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseTests.cs
+src/Zernio.Test/Model/ListAdAccountUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerFundingSourceDetailsTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseTests.cs
@@ -3751,6 +3787,7 @@ src/Zernio.Test/Model/ListBusinessAgentSettings200ResponseTests.cs
 src/Zernio.Test/Model/ListBusinessAgentSkills200ResponseTests.cs
 src/Zernio.Test/Model/ListBusinessAgentUiSkills200ResponseTests.cs
 src/Zernio.Test/Model/ListBusinessAgentWebsites200ResponseTests.cs
+src/Zernio.Test/Model/ListBusinessPartners200ResponseTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseCallsInnerTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignAssets200ResponseCalloutsInnerTests.cs
@@ -3850,7 +3887,9 @@ src/Zernio.Test/Model/ListLocalServicesLeads200ResponseTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/ListLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseTests.cs
+src/Zernio.Test/Model/ListMetaBusinessUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinesses200ResponseTests.cs
+src/Zernio.Test/Model/ListPageUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListPartnershipAdContent200ResponseMediaInnerTests.cs
 src/Zernio.Test/Model/ListPartnershipAdContent200ResponseTests.cs
 src/Zernio.Test/Model/ListPartnershipAdPermissions200ResponsePermissionsInnerTests.cs
@@ -3944,6 +3983,8 @@ src/Zernio.Test/Model/MediaContentTypeTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
+src/Zernio.Test/Model/MetaAssignedUserTests.cs
+src/Zernio.Test/Model/MetaBusinessUserTests.cs
 src/Zernio.Test/Model/MetaCatalogProductInputTests.cs
 src/Zernio.Test/Model/MetaCatalogProductTests.cs
 src/Zernio.Test/Model/MetaFeedUploadTests.cs
@@ -3956,6 +3997,10 @@ src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MetaLeadFormQuestionsInnerTests.cs
 src/Zernio.Test/Model/MetaLeadFormTests.cs
 src/Zernio.Test/Model/MetaLeadFormThankYouPageTests.cs
+src/Zernio.Test/Model/MetaPageOwnershipBusinessTests.cs
+src/Zernio.Test/Model/MetaPageOwnershipInstagramBusinessAccountTests.cs
+src/Zernio.Test/Model/MetaPageOwnershipTests.cs
+src/Zernio.Test/Model/MetaPagePartnerTests.cs
 src/Zernio.Test/Model/MetaPlacementAssetsRulesInnerPlacementsTests.cs
 src/Zernio.Test/Model/MetaPlacementAssetsRulesInnerTests.cs
 src/Zernio.Test/Model/MetaPlacementAssetsTests.cs
@@ -4093,6 +4138,7 @@ src/Zernio.Test/Model/RemediatePhoneNumberRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/RemediatePhoneNumberRequestTests.cs
 src/Zernio.Test/Model/RemoveAccountCallout200ResponseTests.cs
 src/Zernio.Test/Model/RemoveAccountCalloutRequestTests.cs
+src/Zernio.Test/Model/RemoveAdAccountUser200ResponseTests.cs
 src/Zernio.Test/Model/RemoveAdGroupAssetsRequestTests.cs
 src/Zernio.Test/Model/RemoveAdKeyword200ResponseTests.cs
 src/Zernio.Test/Model/RemoveAdLabel200ResponseTests.cs
@@ -4104,6 +4150,7 @@ src/Zernio.Test/Model/RemoveCustomConversionGoal200ResponseTests.cs
 src/Zernio.Test/Model/RemoveDiscordMemberRole200ResponseTests.cs
 src/Zernio.Test/Model/RemoveGoogleAssetGroup200ResponseTests.cs
 src/Zernio.Test/Model/RemoveMessageReaction200ResponseTests.cs
+src/Zernio.Test/Model/RemovePageUser200ResponseTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseInstallTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
@@ -4159,6 +4206,7 @@ src/Zernio.Test/Model/ReviewPhoneNumberKycPacketRequestTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReplyTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReviewerTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewTests.cs
+src/Zernio.Test/Model/RevokeBusinessPartner200ResponseTests.cs
 src/Zernio.Test/Model/RevokeConnectedApp200ResponseTests.cs
 src/Zernio.Test/Model/RfPredictionTests.cs
 src/Zernio.Test/Model/RotateSipTrunkCredentials200ResponseTests.cs
@@ -4413,6 +4461,8 @@ src/Zernio.Test/Model/UpdateAccountStructuredSnippetsRequestTests.cs
 src/Zernio.Test/Model/UpdateAccountStructuredSnippetsRequestUpdatesInnerTests.cs
 src/Zernio.Test/Model/UpdateAd200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseDsaDefaultsTests.cs
+src/Zernio.Test/Model/UpdateAdAccount200ResponseSettingsFundingSourceTests.cs
+src/Zernio.Test/Model/UpdateAdAccount200ResponseSettingsTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdAccountManagerLinkRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAccountRequestTests.cs
@@ -5046,9 +5096,14 @@ src/Zernio/Model/ApplyGoogleRecommendationsRequest.cs
 src/Zernio/Model/ApplyGoogleRecommendationsRequestRecommendationsInner.cs
 src/Zernio/Model/ApproveWhatsAppGroupJoinRequestsRequest.cs
 src/Zernio/Model/ArchiveLeadForm200Response.cs
+src/Zernio/Model/AssignAdAccountUser201Response.cs
+src/Zernio/Model/AssignAdAccountUserRequest.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
+src/Zernio/Model/AssignPageUser201Response.cs
+src/Zernio/Model/AssignPageUser201ResponseUser.cs
+src/Zernio/Model/AssignPageUserRequest.cs
 src/Zernio/Model/AttachAdGroupAssets201Response.cs
 src/Zernio/Model/AttachAdLabel200Response.cs
 src/Zernio/Model/AttachBrandedCallingNumbersRequest.cs
@@ -5696,6 +5751,8 @@ src/Zernio/Model/GetDiscordChannels200ResponseChannelsInner.cs
 src/Zernio/Model/GetDiscordGuildMember200Response.cs
 src/Zernio/Model/GetDiscordSettings200Response.cs
 src/Zernio/Model/GetDiscordSettings200ResponseAccount.cs
+src/Zernio/Model/GetDsaDefaults200Response.cs
+src/Zernio/Model/GetDsaDefaults200ResponseDsaDefaults.cs
 src/Zernio/Model/GetDsaRecommendations200Response.cs
 src/Zernio/Model/GetFacebookPages200Response.cs
 src/Zernio/Model/GetFacebookPages200ResponsePagesInner.cs
@@ -6035,6 +6092,9 @@ src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs
 src/Zernio/Model/GoogleStructuredSnippet.cs
+src/Zernio/Model/GrantBusinessPartner201Response.cs
+src/Zernio/Model/GrantBusinessPartner201ResponsePartner.cs
+src/Zernio/Model/GrantBusinessPartnerRequest.cs
 src/Zernio/Model/HandleOAuthCallbackRequest.cs
 src/Zernio/Model/HideAdComment200Response.cs
 src/Zernio/Model/HideAdCommentRequest.cs
@@ -6130,6 +6190,7 @@ src/Zernio/Model/ListAccountSitelinks200Response.cs
 src/Zernio/Model/ListAccountSitelinks200ResponseSitelinksInner.cs
 src/Zernio/Model/ListAccountStructuredSnippets200Response.cs
 src/Zernio/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.cs
+src/Zernio/Model/ListAdAccountUsers200Response.cs
 src/Zernio/Model/ListAdAccounts200Response.cs
 src/Zernio/Model/ListAdAccounts200ResponseAccountsInner.cs
 src/Zernio/Model/ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.cs
@@ -6196,6 +6257,7 @@ src/Zernio/Model/ListBusinessAgentSettings200Response.cs
 src/Zernio/Model/ListBusinessAgentSkills200Response.cs
 src/Zernio/Model/ListBusinessAgentUiSkills200Response.cs
 src/Zernio/Model/ListBusinessAgentWebsites200Response.cs
+src/Zernio/Model/ListBusinessPartners200Response.cs
 src/Zernio/Model/ListCalls200Response.cs
 src/Zernio/Model/ListCalls200ResponseCallsInner.cs
 src/Zernio/Model/ListCampaignAssets200Response.cs
@@ -6295,7 +6357,9 @@ src/Zernio/Model/ListLocalServicesLeads200ResponseDataInnerContact.cs
 src/Zernio/Model/ListLogs200Response.cs
 src/Zernio/Model/ListLogs200ResponseLogsInner.cs
 src/Zernio/Model/ListLogs200ResponsePagination.cs
+src/Zernio/Model/ListMetaBusinessUsers200Response.cs
 src/Zernio/Model/ListMetaBusinesses200Response.cs
+src/Zernio/Model/ListPageUsers200Response.cs
 src/Zernio/Model/ListPartnershipAdContent200Response.cs
 src/Zernio/Model/ListPartnershipAdContent200ResponseMediaInner.cs
 src/Zernio/Model/ListPartnershipAdPermissions200Response.cs
@@ -6389,6 +6453,8 @@ src/Zernio/Model/MediaContentType.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
+src/Zernio/Model/MetaAssignedUser.cs
+src/Zernio/Model/MetaBusinessUser.cs
 src/Zernio/Model/MetaCatalogProduct.cs
 src/Zernio/Model/MetaCatalogProductInput.cs
 src/Zernio/Model/MetaFeedUpload.cs
@@ -6401,6 +6467,10 @@ src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
 src/Zernio/Model/MetaLeadFormQuestionsInner.cs
 src/Zernio/Model/MetaLeadFormThankYouPage.cs
+src/Zernio/Model/MetaPageOwnership.cs
+src/Zernio/Model/MetaPageOwnershipBusiness.cs
+src/Zernio/Model/MetaPageOwnershipInstagramBusinessAccount.cs
+src/Zernio/Model/MetaPagePartner.cs
 src/Zernio/Model/MetaPlacementAssets.cs
 src/Zernio/Model/MetaPlacementAssetsRulesInner.cs
 src/Zernio/Model/MetaPlacementAssetsRulesInnerPlacements.cs
@@ -6538,6 +6608,7 @@ src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInner.cs
 src/Zernio/Model/RemediatePhoneNumberRequestDocumentsInnerOneOf.cs
 src/Zernio/Model/RemoveAccountCallout200Response.cs
 src/Zernio/Model/RemoveAccountCalloutRequest.cs
+src/Zernio/Model/RemoveAdAccountUser200Response.cs
 src/Zernio/Model/RemoveAdGroupAssetsRequest.cs
 src/Zernio/Model/RemoveAdKeyword200Response.cs
 src/Zernio/Model/RemoveAdLabel200Response.cs
@@ -6549,6 +6620,7 @@ src/Zernio/Model/RemoveCustomConversionGoal200Response.cs
 src/Zernio/Model/RemoveDiscordMemberRole200Response.cs
 src/Zernio/Model/RemoveGoogleAssetGroup200Response.cs
 src/Zernio/Model/RemoveMessageReaction200Response.cs
+src/Zernio/Model/RemovePageUser200Response.cs
 src/Zernio/Model/RemoveTrackingTagFromStore200Response.cs
 src/Zernio/Model/RemoveTrackingTagFromStore200ResponseInstall.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
@@ -6604,6 +6676,7 @@ src/Zernio/Model/ReviewPhoneNumberKycPacketRequest.cs
 src/Zernio/Model/ReviewWebhookReview.cs
 src/Zernio/Model/ReviewWebhookReviewReply.cs
 src/Zernio/Model/ReviewWebhookReviewReviewer.cs
+src/Zernio/Model/RevokeBusinessPartner200Response.cs
 src/Zernio/Model/RevokeConnectedApp200Response.cs
 src/Zernio/Model/RfPrediction.cs
 src/Zernio/Model/RotateSipTrunkCredentials200Response.cs
@@ -6859,6 +6932,8 @@ src/Zernio/Model/UpdateAccountStructuredSnippetsRequestUpdatesInner.cs
 src/Zernio/Model/UpdateAd200Response.cs
 src/Zernio/Model/UpdateAdAccount200Response.cs
 src/Zernio/Model/UpdateAdAccount200ResponseDsaDefaults.cs
+src/Zernio/Model/UpdateAdAccount200ResponseSettings.cs
+src/Zernio/Model/UpdateAdAccount200ResponseSettingsFundingSource.cs
 src/Zernio/Model/UpdateAdAccountManagerLinkRequest.cs
 src/Zernio/Model/UpdateAdAccountRequest.cs
 src/Zernio/Model/UpdateAdAudienceRequest.cs

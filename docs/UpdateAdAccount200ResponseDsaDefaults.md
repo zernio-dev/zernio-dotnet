@@ -1,4 +1,5 @@
 # Zernio.Model.UpdateAdAccount200ResponseDsaDefaults
+Present when defaultDsaBeneficiary was passed.
 
 ## Properties
 
