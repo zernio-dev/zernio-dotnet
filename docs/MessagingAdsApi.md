@@ -224,7 +224,7 @@ catch (ApiException e)
 
 <a id="createmessagingad"></a>
 # **CreateMessagingAd**
-> CreateMessagingAd201Response CreateMessagingAd (CreateMessagingAdRequest createMessagingAdRequest, string? idempotencyKey = null)
+> CreateMessagingAd200Response CreateMessagingAd (CreateMessagingAdRequest createMessagingAdRequest, string? idempotencyKey = null)
 
 Create messaging ad
 
@@ -260,7 +260,7 @@ namespace Example
             try
             {
                 // Create messaging ad
-                CreateMessagingAd201Response result = apiInstance.CreateMessagingAd(createMessagingAdRequest, idempotencyKey);
+                CreateMessagingAd200Response result = apiInstance.CreateMessagingAd(createMessagingAdRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -281,7 +281,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create messaging ad
-    ApiResponse<CreateMessagingAd201Response> response = apiInstance.CreateMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey);
+    ApiResponse<CreateMessagingAd200Response> response = apiInstance.CreateMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -303,7 +303,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
+[**CreateMessagingAd200Response**](CreateMessagingAd200Response.md)
 
 ### Authorization
 
@@ -318,6 +318,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | &#x60;validateOnly: true&#x60; only. Meta accepted every node; nothing was created. |  -  |
 | **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |

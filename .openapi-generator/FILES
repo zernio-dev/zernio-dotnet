@@ -425,6 +425,8 @@ docs/CreateLeadForm200Response.md
 docs/CreateLeadFormRequest.md
 docs/CreateLeadFormRequestPlatformSpecificData.md
 docs/CreateLeadFormRequestQuestionsInner.md
+docs/CreateMessagingAd200Response.md
+docs/CreateMessagingAd200ResponseResultsInner.md
 docs/CreateMessagingAd201Response.md
 docs/CreateMessagingAdRequest.md
 docs/CreatePhoneNumberKycLink200Response.md
@@ -481,9 +483,6 @@ docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
 docs/CreateStandaloneAdRequestDynamicCreative.md
 docs/CreateStandaloneAdRequestImages.md
-docs/CreateStandaloneAdRequestPlacementAssets.md
-docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
-docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestRegionsInner.md
@@ -1493,6 +1492,9 @@ docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
 docs/MetaLeadFormQuestionsInner.md
 docs/MetaLeadFormThankYouPage.md
+docs/MetaPlacementAssets.md
+docs/MetaPlacementAssetsRulesInner.md
+docs/MetaPlacementAssetsRulesInnerPlacements.md
 docs/MetaProductCatalog.md
 docs/MetaProductFeed.md
 docs/MetaProductFeedSchedule.md
@@ -2884,6 +2886,8 @@ src/Zernio.Test/Model/CreateLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestQuestionsInnerTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestTests.cs
+src/Zernio.Test/Model/CreateMessagingAd200ResponseResultsInnerTests.cs
+src/Zernio.Test/Model/CreateMessagingAd200ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAdRequestTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLink200ResponseTests.cs
@@ -2939,9 +2943,6 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestDynamicCreativeTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestImagesTests.cs
-src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacementsTests.cs
-src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerTests.cs
-src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerOneOfTests.cs
@@ -3930,6 +3931,9 @@ src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MetaLeadFormQuestionsInnerTests.cs
 src/Zernio.Test/Model/MetaLeadFormTests.cs
 src/Zernio.Test/Model/MetaLeadFormThankYouPageTests.cs
+src/Zernio.Test/Model/MetaPlacementAssetsRulesInnerPlacementsTests.cs
+src/Zernio.Test/Model/MetaPlacementAssetsRulesInnerTests.cs
+src/Zernio.Test/Model/MetaPlacementAssetsTests.cs
 src/Zernio.Test/Model/MetaProductCatalogTests.cs
 src/Zernio.Test/Model/MetaProductFeedScheduleTests.cs
 src/Zernio.Test/Model/MetaProductFeedTests.cs
@@ -5310,6 +5314,8 @@ src/Zernio/Model/CreateLeadForm200Response.cs
 src/Zernio/Model/CreateLeadFormRequest.cs
 src/Zernio/Model/CreateLeadFormRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateLeadFormRequestQuestionsInner.cs
+src/Zernio/Model/CreateMessagingAd200Response.cs
+src/Zernio/Model/CreateMessagingAd200ResponseResultsInner.cs
 src/Zernio/Model/CreateMessagingAd201Response.cs
 src/Zernio/Model/CreateMessagingAdRequest.cs
 src/Zernio/Model/CreatePhoneNumberKycLink200Response.cs
@@ -5366,9 +5372,6 @@ src/Zernio/Model/CreateStandaloneAdRequestCreativesInnerVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestCustomLocationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestDynamicCreative.cs
 src/Zernio/Model/CreateStandaloneAdRequestImages.cs
-src/Zernio/Model/CreateStandaloneAdRequestPlacementAssets.cs
-src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInner.cs
-src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
@@ -6356,6 +6359,9 @@ src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
 src/Zernio/Model/MetaLeadFormQuestionsInner.cs
 src/Zernio/Model/MetaLeadFormThankYouPage.cs
+src/Zernio/Model/MetaPlacementAssets.cs
+src/Zernio/Model/MetaPlacementAssetsRulesInner.cs
+src/Zernio/Model/MetaPlacementAssetsRulesInnerPlacements.cs
 src/Zernio/Model/MetaProductCatalog.cs
 src/Zernio/Model/MetaProductFeed.cs
 src/Zernio/Model/MetaProductFeedSchedule.cs
