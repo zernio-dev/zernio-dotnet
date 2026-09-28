@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **IsUnavailable** | **bool** | Whether the tag is in a broken/unavailable state (Meta &#x60;is_unavailable&#x60;). | [optional] 
 **Installed** | **bool** | Convenience flag derived from &#x60;lastFiredTime&#x60;: has the tag ever fired. | [optional] 
 **CreationTime** | **int** | Unix seconds the tag was created. | [optional] 
+**AutomaticMatchingFields** | **List&lt;TrackingTag.AutomaticMatchingFieldsEnum&gt;** | Customer data the tag matches automatically, where the platform reports it (Pinterest automatic enhanced match). | [optional] 
 **OwnerBusinessId** | **string** | Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account. Such tags can&#39;t be shared with other ad accounts.  | [optional] 
 **OwnerAdAccountId** | **string** | Ad account id (&#x60;act_...&#x60;) that owns the tag, when reported. | [optional] 
 **AutoTagging** | **bool** | Google Ads: whether gclid auto-tagging is on for the ad account (needed to attribute conversions to clicks). | [optional] 
