@@ -1567,6 +1567,10 @@ docs/PostUpdateResponse.md
 docs/PostUserId.md
 docs/PostsApi.md
 docs/PostsListResponse.md
+docs/PreflightBrandedCallingIdentity200Response.md
+docs/PreflightBrandedCallingIdentity200ResponseFindingsInner.md
+docs/PreflightBrandedCallingIdentityRequest.md
+docs/PreflightBrandedCallingIdentityRequestAuthorizer.md
 docs/PreflightSmsRegistration200Response.md
 docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
 docs/PreflightSmsRegistration200ResponseComposed.md
@@ -4004,6 +4008,10 @@ src/Zernio.Test/Model/PostTests.cs
 src/Zernio.Test/Model/PostUpdateResponseTests.cs
 src/Zernio.Test/Model/PostUserIdTests.cs
 src/Zernio.Test/Model/PostsListResponseTests.cs
+src/Zernio.Test/Model/PreflightBrandedCallingIdentity200ResponseFindingsInnerTests.cs
+src/Zernio.Test/Model/PreflightBrandedCallingIdentity200ResponseTests.cs
+src/Zernio.Test/Model/PreflightBrandedCallingIdentityRequestAuthorizerTests.cs
+src/Zernio.Test/Model/PreflightBrandedCallingIdentityRequestTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseAdvisoriesInnerTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseComposedTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseTests.cs
@@ -6432,6 +6440,10 @@ src/Zernio/Model/PostRetryResponse.cs
 src/Zernio/Model/PostUpdateResponse.cs
 src/Zernio/Model/PostUserId.cs
 src/Zernio/Model/PostsListResponse.cs
+src/Zernio/Model/PreflightBrandedCallingIdentity200Response.cs
+src/Zernio/Model/PreflightBrandedCallingIdentity200ResponseFindingsInner.cs
+src/Zernio/Model/PreflightBrandedCallingIdentityRequest.cs
+src/Zernio/Model/PreflightBrandedCallingIdentityRequestAuthorizer.cs
 src/Zernio/Model/PreflightSmsRegistration200Response.cs
 src/Zernio/Model/PreflightSmsRegistration200ResponseAdvisoriesInner.cs
 src/Zernio/Model/PreflightSmsRegistration200ResponseComposed.cs
