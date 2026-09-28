@@ -622,6 +622,8 @@ docs/FacebookPostEarningsResponseMetricsValue.md
 docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
 docs/FacebookSettings.md
 docs/FacebookSettingsCarouselCardsInner.md
+docs/FeedbackApi.md
+docs/FeedbackReceipt.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
 docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
@@ -1838,6 +1840,8 @@ docs/StartSmsRegistrationRequestCampaign.md
 docs/StartSmsRegistrationRequestTollFree.md
 docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
+docs/SubmitFeedbackRequest.md
+docs/SubmitFeedbackRequestAgent.md
 docs/SubmitPhoneNumberKyc200Response.md
 docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md
 docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md
@@ -2380,6 +2384,7 @@ src/Zernio.Test/Api/ContactsApiTests.cs
 src/Zernio.Test/Api/ConversionsApiTests.cs
 src/Zernio.Test/Api/CustomFieldsApiTests.cs
 src/Zernio.Test/Api/DiscordApiTests.cs
+src/Zernio.Test/Api/FeedbackApiTests.cs
 src/Zernio.Test/Api/GMBAttributesApiTests.cs
 src/Zernio.Test/Api/GMBFoodMenusApiTests.cs
 src/Zernio.Test/Api/GMBLocationDetailsApiTests.cs
@@ -3023,6 +3028,7 @@ src/Zernio.Test/Model/FacebookPostEarningsResponseTests.cs
 src/Zernio.Test/Model/FacebookPostEarningsResponseUnavailableMetricsInnerTests.cs
 src/Zernio.Test/Model/FacebookSettingsCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookSettingsTests.cs
+src/Zernio.Test/Model/FeedbackReceiptTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInnerTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptionsRequestTests.cs
@@ -4208,6 +4214,8 @@ src/Zernio.Test/Model/StartSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestTollFreeTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
+src/Zernio.Test/Model/SubmitFeedbackRequestAgentTests.cs
+src/Zernio.Test/Model/SubmitFeedbackRequestTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponseTests.cs
@@ -4733,6 +4741,7 @@ src/Zernio/Api/ContactsApi.cs
 src/Zernio/Api/ConversionsApi.cs
 src/Zernio/Api/CustomFieldsApi.cs
 src/Zernio/Api/DiscordApi.cs
+src/Zernio/Api/FeedbackApi.cs
 src/Zernio/Api/GMBAttributesApi.cs
 src/Zernio/Api/GMBFoodMenusApi.cs
 src/Zernio/Api/GMBLocationDetailsApi.cs
@@ -5394,6 +5403,7 @@ src/Zernio/Model/FacebookPostEarningsResponseMetricsValue.cs
 src/Zernio/Model/FacebookPostEarningsResponseUnavailableMetricsInner.cs
 src/Zernio/Model/FacebookSettings.cs
 src/Zernio/Model/FacebookSettingsCarouselCardsInner.cs
+src/Zernio/Model/FeedbackReceipt.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200Response.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptionsRequest.cs
@@ -6579,6 +6589,8 @@ src/Zernio/Model/StartSmsRegistrationRequestCampaign.cs
 src/Zernio/Model/StartSmsRegistrationRequestTollFree.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerification200Response.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerificationRequest.cs
+src/Zernio/Model/SubmitFeedbackRequest.cs
+src/Zernio/Model/SubmitFeedbackRequestAgent.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200Response.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200ResponseNumbersInner.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200ResponsePhoneNumber.cs
