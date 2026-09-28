@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **Description** | **string** |  | [optional] 
 **Result** | **string** | The platform verdict (Meta: &#x60;passed&#x60;, &#x60;failed&#x60;, &#x60;warning&#x60;). | 
 **ActionUrl** | **string** | Where to fix it in the platform UI (Meta: Events Manager). | [optional] 
+**AlwaysUseDefaultValue** | **bool** | Record &#x60;defaultValue&#x60; even when the conversion sends its own value. | [optional] 
+**Primary** | **bool** | Primary (counts toward bidding) or secondary (observation only). | [optional] 
+**CountingType** | **string** | &#x60;one&#x60; &#x3D; one conversion per ad interaction, &#x60;every&#x60; &#x3D; each conversion. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
