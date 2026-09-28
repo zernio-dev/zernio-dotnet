@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.131.0
+  version: 1.132.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -49194,6 +49194,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
     post:
       description: |
         Meta: creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels`,
@@ -49280,6 +49281,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
   /v1/accounts/{accountId}/tracking-tags/{tagId}:
     get:
       description: |
@@ -49348,6 +49350,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
     patch:
       description: |
         Partial-update a pixel. Whitelisted fields: `name` (rename),
@@ -49417,6 +49420,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
   /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts:
     delete:
       description: |
@@ -49671,6 +49675,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
       - shopify
       - wordpress
     get:
@@ -49749,6 +49754,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
       - shopify
       - wordpress
     post:
@@ -49855,6 +49861,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
       - shopify
       - wordpress
   /v1/accounts/{accountId}/tracking-tags/{tagId}/stats:
@@ -49967,6 +49974,7 @@ paths:
       x-platforms:
       - meta
       - tiktok
+      - google
   /v1/accounts/{accountId}/blogs:
     get:
       description: |
@@ -73683,14 +73691,16 @@ components:
         siteTagId: siteTagId
         events:
         - name: name
-          siteEvent: siteEvent
+          siteEvent: page_view
           id: id
           type: type
+          siteEventId: siteEventId
           status: status
         - name: name
-          siteEvent: siteEvent
+          siteEvent: page_view
           id: id
           type: type
+          siteEventId: siteEventId
           status: status
         status: active
       properties:
@@ -73715,6 +73725,7 @@ components:
           - metaads
           - openaiads
           - tiktokads
+          - googleads
           type: string
         kind:
           description: "Platform-native flavor of the tag (Meta: `pixel`)."
@@ -123934,14 +123945,16 @@ components:
           siteTagId: siteTagId
           events:
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           status: active
         - installed: true
@@ -123958,14 +123971,16 @@ components:
           siteTagId: siteTagId
           events:
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           status: active
       properties:
@@ -123974,6 +123989,7 @@ components:
           - metaads
           - openaiads
           - tiktokads
+          - googleads
           type: string
         tags:
           items:
@@ -124028,14 +124044,16 @@ components:
           siteTagId: siteTagId
           events:
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           status: active
         platform: metaads
@@ -124045,6 +124063,7 @@ components:
           - metaads
           - openaiads
           - tiktokads
+          - googleads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -124065,14 +124084,16 @@ components:
           siteTagId: siteTagId
           events:
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           - name: name
-            siteEvent: siteEvent
+            siteEvent: page_view
             id: id
             type: type
+            siteEventId: siteEventId
             status: status
           status: active
         platform: metaads
@@ -124081,6 +124102,7 @@ components:
           enum:
           - metaads
           - tiktokads
+          - googleads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -124271,6 +124293,7 @@ components:
           enum:
           - metaads
           - tiktokads
+          - googleads
           type: string
         install:
           $ref: "#/components/schemas/getTrackingTagStoreInstall_200_response_install"
@@ -124383,6 +124406,7 @@ components:
           enum:
           - metaads
           - tiktokads
+          - googleads
           type: string
         install:
           $ref: "#/components/schemas/installTrackingTagOnStore_200_response_install"
@@ -124473,6 +124497,7 @@ components:
           enum:
           - metaads
           - tiktokads
+          - googleads
           type: string
         install:
           $ref: "#/components/schemas/removeTrackingTagFromStore_200_response_install"
@@ -124511,6 +124536,7 @@ components:
           enum:
           - metaads
           - tiktokads
+          - googleads
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
@@ -134737,9 +134763,10 @@ components:
     TrackingTag_events_inner:
       example:
         name: name
-        siteEvent: siteEvent
+        siteEvent: page_view
         id: id
         type: type
+        siteEventId: siteEventId
         status: status
       properties:
         id:
@@ -134750,7 +134777,20 @@ components:
           description: Platform category of the event.
           type: string
         siteEvent:
-          description: The value the site sends to fire this event.
+          description: "The neutral site event this conversion is fired for, when\
+            \ it maps to one."
+          enum:
+          - page_view
+          - view_content
+          - add_to_cart
+          - search
+          - initiate_checkout
+          - add_payment_info
+          - purchase
+          type: string
+        siteEventId:
+          description: "What the site sends to fire this event (Google conversion\
+            \ label, LinkedIn conversion rule id, X `tw-` event id)."
           type: string
         status:
           type: string
