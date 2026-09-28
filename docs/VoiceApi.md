@@ -1242,7 +1242,7 @@ catch (ApiException e)
 
 <a id="getvoicecallestimate"></a>
 # **GetVoiceCallEstimate**
-> GetVoiceCallEstimate200Response GetVoiceCallEstimate (string to, int? minutes = null, bool? recording = null, bool? transcription = null)
+> GetVoiceCallEstimate200Response GetVoiceCallEstimate (string to, string? from = null, int? minutes = null, bool? recording = null, bool? transcription = null)
 
 Estimate call cost
 
@@ -1273,6 +1273,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
             var to = "to_example";  // string | Destination number, E.164 (leading + optional).
+            var from = "from_example";  // string? | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge. (optional) 
             var minutes = 1;  // int? |  (optional)  (default to 1)
             var recording = true;  // bool? |  (optional) 
             var transcription = true;  // bool? |  (optional) 
@@ -1280,7 +1281,7 @@ namespace Example
             try
             {
                 // Estimate call cost
-                GetVoiceCallEstimate200Response result = apiInstance.GetVoiceCallEstimate(to, minutes, recording, transcription);
+                GetVoiceCallEstimate200Response result = apiInstance.GetVoiceCallEstimate(to, from, minutes, recording, transcription);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1301,7 +1302,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Estimate call cost
-    ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.GetVoiceCallEstimateWithHttpInfo(to, minutes, recording, transcription);
+    ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.GetVoiceCallEstimateWithHttpInfo(to, from, minutes, recording, transcription);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1319,6 +1320,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **to** | **string** | Destination number, E.164 (leading + optional). |  |
+| **from** | **string?** | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional]  |
 | **minutes** | **int?** |  | [optional] [default to 1] |
 | **recording** | **bool?** |  | [optional]  |
 | **transcription** | **bool?** |  | [optional]  |
