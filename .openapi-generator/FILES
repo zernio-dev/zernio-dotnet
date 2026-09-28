@@ -117,6 +117,8 @@ docs/AssignGoogleBusinessLocation200ResponseAccount.md
 docs/AssignGoogleBusinessLocationRequest.md
 docs/AttachAdGroupAssets201Response.md
 docs/AttachAdLabel200Response.md
+docs/AttachBrandedCallingNumbersRequest.md
+docs/AttachBrandedCallingNumbersRequestSignature.md
 docs/AttachCampaignAssets201Response.md
 docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
@@ -161,6 +163,19 @@ docs/BoostPostRequestTargetingCitiesInner.md
 docs/BoostPostRequestTargetingCustomLocationsInner.md
 docs/BoostPostRequestTracking.md
 docs/BoostPostRequestTrackingUrlTagsInner.md
+docs/BrandedCallingAddress.md
+docs/BrandedCallingApi.md
+docs/BrandedCallingContact.md
+docs/BrandedCallingEnterprise.md
+docs/BrandedCallingIdentity.md
+docs/BrandedCallingIdentityAuthorizer.md
+docs/BrandedCallingIdentityNumber.md
+docs/BrandedCallingIdentityNumberRejectionReason.md
+docs/BrandedCallingIdentityRejectionReasonsInner.md
+docs/BrandedCallingIdentityReviewRequest.md
+docs/BrandedCallingIdentityReviewRequestPointsInner.md
+docs/BrandedCallingReference.md
+docs/BrandedCallingReferences.md
 docs/BroadcastsApi.md
 docs/BulkCreateContacts200Response.md
 docs/BulkCreateContactsRequest.md
@@ -248,6 +263,7 @@ docs/CompleteWhatsAppPhoneSelection200ResponseAccount.md
 docs/CompleteWhatsAppPhoneSelectionRequest.md
 docs/ConfigureTikTokAdsBrandIdentity200Response.md
 docs/ConfigureTikTokAdsBrandIdentityRequest.md
+docs/ConfirmBrandedCallingAuthorizerEmailRequest.md
 docs/ConnectAds200Response.md
 docs/ConnectAds200ResponseOneOf.md
 docs/ConnectAds200ResponseOneOf1.md
@@ -329,6 +345,9 @@ docs/CreateBlogArticleRequest.md
 docs/CreateBlogArticleRequestImage.md
 docs/CreateBlogArticleRequestSeo.md
 docs/CreateBlogRequest.md
+docs/CreateBrandedCallingEnterpriseRequest.md
+docs/CreateBrandedCallingIdentityRequest.md
+docs/CreateBrandedCallingIdentityRequestAuthorizer.md
 docs/CreateBroadcast200Response.md
 docs/CreateBroadcast200ResponseBroadcast.md
 docs/CreateBroadcastRequest.md
@@ -536,6 +555,7 @@ docs/DeleteAdCreative200Response.md
 docs/DeleteAdNegativeKeywordList200Response.md
 docs/DeleteAdSet200Response.md
 docs/DeleteAdVideo200Response.md
+docs/DeleteBrandedCallingEnterprise200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
@@ -550,6 +570,8 @@ docs/DeleteWhatsAppTemplate200Response.md
 docs/DeleteWhatsAppTemplateById200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DetachAdLabel200Response.md
+docs/DetachBrandedCallingNumbers200Response.md
+docs/DetachBrandedCallingNumbersRequest.md
 docs/DetachNumberFromSipTrunk200Response.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
@@ -1243,6 +1265,10 @@ docs/ListApiKeys200Response.md
 docs/ListBidStrategies200Response.md
 docs/ListBlogArticles200Response.md
 docs/ListBlogs200Response.md
+docs/ListBrandedCallingCallReasons200Response.md
+docs/ListBrandedCallingEnterprises200Response.md
+docs/ListBrandedCallingIdentities200Response.md
+docs/ListBrandedCallingIdentityNumbers200Response.md
 docs/ListBroadcastRecipients200Response.md
 docs/ListBroadcastRecipients200ResponseRecipientsInner.md
 docs/ListBroadcastRecipients200ResponseSummary.md
@@ -1638,6 +1664,7 @@ docs/RequestSmsSenderIdLimitIncrease200Response.md
 docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/RequestWhatsAppVerificationCode200Response.md
 docs/RequestWhatsAppVerificationCodeRequest.md
+docs/ResendBrandedCallingAuthorizerCode200Response.md
 docs/ResendSmsRegistrationOtp200Response.md
 docs/ReserveImessageAvailableNumber200Response.md
 docs/ReserveRfPrediction201Response.md
@@ -1970,6 +1997,8 @@ docs/UpdateBlogArticleRequest.md
 docs/UpdateBlogArticleRequestImage.md
 docs/UpdateBlogRequest.md
 docs/UpdateBlueskySettingsRequest.md
+docs/UpdateBrandedCallingIdentityRequest.md
+docs/UpdateBrandedCallingIdentityRequestReviewAnswersValue.md
 docs/UpdateBroadcast200Response.md
 docs/UpdateBroadcast200ResponseBroadcast.md
 docs/UpdateBroadcastRequest.md
@@ -2388,6 +2417,7 @@ src/Zernio.Test/Api/AdLibraryApiTests.cs
 src/Zernio.Test/Api/AdTargetingApiTests.cs
 src/Zernio.Test/Api/AnalyticsApiTests.cs
 src/Zernio.Test/Api/BlogsApiTests.cs
+src/Zernio.Test/Api/BrandedCallingApiTests.cs
 src/Zernio.Test/Api/BroadcastsApiTests.cs
 src/Zernio.Test/Api/BusinessAgentApiTests.cs
 src/Zernio.Test/Api/CallsApiTests.cs
@@ -2550,6 +2580,8 @@ src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
 src/Zernio.Test/Model/AttachAdGroupAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachAdLabel200ResponseTests.cs
+src/Zernio.Test/Model/AttachBrandedCallingNumbersRequestSignatureTests.cs
+src/Zernio.Test/Model/AttachBrandedCallingNumbersRequestTests.cs
 src/Zernio.Test/Model/AttachCampaignAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
@@ -2593,6 +2625,18 @@ src/Zernio.Test/Model/BoostPostRequestTargetingTests.cs
 src/Zernio.Test/Model/BoostPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestTrackingTests.cs
 src/Zernio.Test/Model/BoostPostRequestTrackingUrlTagsInnerTests.cs
+src/Zernio.Test/Model/BrandedCallingAddressTests.cs
+src/Zernio.Test/Model/BrandedCallingContactTests.cs
+src/Zernio.Test/Model/BrandedCallingEnterpriseTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityAuthorizerTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityNumberRejectionReasonTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityNumberTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityRejectionReasonsInnerTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityReviewRequestPointsInnerTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityReviewRequestTests.cs
+src/Zernio.Test/Model/BrandedCallingIdentityTests.cs
+src/Zernio.Test/Model/BrandedCallingReferenceTests.cs
+src/Zernio.Test/Model/BrandedCallingReferencesTests.cs
 src/Zernio.Test/Model/BulkCreateContacts200ResponseTests.cs
 src/Zernio.Test/Model/BulkCreateContactsRequestContactsInnerTests.cs
 src/Zernio.Test/Model/BulkCreateContactsRequestTests.cs
@@ -2675,6 +2719,7 @@ src/Zernio.Test/Model/CompleteWhatsAppPhoneSelection200ResponseTests.cs
 src/Zernio.Test/Model/CompleteWhatsAppPhoneSelectionRequestTests.cs
 src/Zernio.Test/Model/ConfigureTikTokAdsBrandIdentity200ResponseTests.cs
 src/Zernio.Test/Model/ConfigureTikTokAdsBrandIdentityRequestTests.cs
+src/Zernio.Test/Model/ConfirmBrandedCallingAuthorizerEmailRequestTests.cs
 src/Zernio.Test/Model/ConnectAds200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/ConnectAds200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ConnectAds200ResponseTests.cs
@@ -2752,6 +2797,9 @@ src/Zernio.Test/Model/CreateBlogArticleRequestImageTests.cs
 src/Zernio.Test/Model/CreateBlogArticleRequestSeoTests.cs
 src/Zernio.Test/Model/CreateBlogArticleRequestTests.cs
 src/Zernio.Test/Model/CreateBlogRequestTests.cs
+src/Zernio.Test/Model/CreateBrandedCallingEnterpriseRequestTests.cs
+src/Zernio.Test/Model/CreateBrandedCallingIdentityRequestAuthorizerTests.cs
+src/Zernio.Test/Model/CreateBrandedCallingIdentityRequestTests.cs
 src/Zernio.Test/Model/CreateBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/CreateBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestMessageAttachmentsInnerTests.cs
@@ -2958,6 +3006,7 @@ src/Zernio.Test/Model/DeleteAdCreative200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdNegativeKeywordList200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdSet200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdVideo200ResponseTests.cs
+src/Zernio.Test/Model/DeleteBrandedCallingEnterprise200ResponseTests.cs
 src/Zernio.Test/Model/DeleteDiscordScheduledEvent200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessPlaceAction200ResponseTests.cs
@@ -2972,6 +3021,8 @@ src/Zernio.Test/Model/DeleteWhatsAppTemplate200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsAppTemplateById200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/DetachAdLabel200ResponseTests.cs
+src/Zernio.Test/Model/DetachBrandedCallingNumbers200ResponseTests.cs
+src/Zernio.Test/Model/DetachBrandedCallingNumbersRequestTests.cs
 src/Zernio.Test/Model/DetachNumberFromSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCall200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCallRequestTests.cs
@@ -3649,6 +3700,10 @@ src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
 src/Zernio.Test/Model/ListBidStrategies200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogArticles200ResponseTests.cs
 src/Zernio.Test/Model/ListBlogs200ResponseTests.cs
+src/Zernio.Test/Model/ListBrandedCallingCallReasons200ResponseTests.cs
+src/Zernio.Test/Model/ListBrandedCallingEnterprises200ResponseTests.cs
+src/Zernio.Test/Model/ListBrandedCallingIdentities200ResponseTests.cs
+src/Zernio.Test/Model/ListBrandedCallingIdentityNumbers200ResponseTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseRecipientsInnerTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseTests.cs
@@ -4031,6 +4086,7 @@ src/Zernio.Test/Model/RequestSmsSenderIdLimitIncrease200ResponseTests.cs
 src/Zernio.Test/Model/RequestSmsSenderIdLimitIncreaseRequestTests.cs
 src/Zernio.Test/Model/RequestWhatsAppVerificationCode200ResponseTests.cs
 src/Zernio.Test/Model/RequestWhatsAppVerificationCodeRequestTests.cs
+src/Zernio.Test/Model/ResendBrandedCallingAuthorizerCode200ResponseTests.cs
 src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/ReserveImessageAvailableNumber200ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPrediction201ResponseTests.cs
@@ -4356,6 +4412,8 @@ src/Zernio.Test/Model/UpdateBlogArticleRequestImageTests.cs
 src/Zernio.Test/Model/UpdateBlogArticleRequestTests.cs
 src/Zernio.Test/Model/UpdateBlogRequestTests.cs
 src/Zernio.Test/Model/UpdateBlueskySettingsRequestTests.cs
+src/Zernio.Test/Model/UpdateBrandedCallingIdentityRequestReviewAnswersValueTests.cs
+src/Zernio.Test/Model/UpdateBrandedCallingIdentityRequestTests.cs
 src/Zernio.Test/Model/UpdateBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/UpdateBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestMessageTests.cs
@@ -4760,6 +4818,7 @@ src/Zernio/Api/AdLibraryApi.cs
 src/Zernio/Api/AdTargetingApi.cs
 src/Zernio/Api/AnalyticsApi.cs
 src/Zernio/Api/BlogsApi.cs
+src/Zernio/Api/BrandedCallingApi.cs
 src/Zernio/Api/BroadcastsApi.cs
 src/Zernio/Api/BusinessAgentApi.cs
 src/Zernio/Api/CallsApi.cs
@@ -4940,6 +4999,8 @@ src/Zernio/Model/AssignGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
 src/Zernio/Model/AttachAdGroupAssets201Response.cs
 src/Zernio/Model/AttachAdLabel200Response.cs
+src/Zernio/Model/AttachBrandedCallingNumbersRequest.cs
+src/Zernio/Model/AttachBrandedCallingNumbersRequestSignature.cs
 src/Zernio/Model/AttachCampaignAssets201Response.cs
 src/Zernio/Model/AttachCampaignAssetsRequest.cs
 src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
@@ -4983,6 +5044,18 @@ src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
 src/Zernio/Model/BoostPostRequestTargetingCustomLocationsInner.cs
 src/Zernio/Model/BoostPostRequestTracking.cs
 src/Zernio/Model/BoostPostRequestTrackingUrlTagsInner.cs
+src/Zernio/Model/BrandedCallingAddress.cs
+src/Zernio/Model/BrandedCallingContact.cs
+src/Zernio/Model/BrandedCallingEnterprise.cs
+src/Zernio/Model/BrandedCallingIdentity.cs
+src/Zernio/Model/BrandedCallingIdentityAuthorizer.cs
+src/Zernio/Model/BrandedCallingIdentityNumber.cs
+src/Zernio/Model/BrandedCallingIdentityNumberRejectionReason.cs
+src/Zernio/Model/BrandedCallingIdentityRejectionReasonsInner.cs
+src/Zernio/Model/BrandedCallingIdentityReviewRequest.cs
+src/Zernio/Model/BrandedCallingIdentityReviewRequestPointsInner.cs
+src/Zernio/Model/BrandedCallingReference.cs
+src/Zernio/Model/BrandedCallingReferences.cs
 src/Zernio/Model/BulkCreateContacts200Response.cs
 src/Zernio/Model/BulkCreateContactsRequest.cs
 src/Zernio/Model/BulkCreateContactsRequestContactsInner.cs
@@ -5065,6 +5138,7 @@ src/Zernio/Model/CompleteWhatsAppPhoneSelection200ResponseAccount.cs
 src/Zernio/Model/CompleteWhatsAppPhoneSelectionRequest.cs
 src/Zernio/Model/ConfigureTikTokAdsBrandIdentity200Response.cs
 src/Zernio/Model/ConfigureTikTokAdsBrandIdentityRequest.cs
+src/Zernio/Model/ConfirmBrandedCallingAuthorizerEmailRequest.cs
 src/Zernio/Model/ConnectAds200Response.cs
 src/Zernio/Model/ConnectAds200ResponseOneOf.cs
 src/Zernio/Model/ConnectAds200ResponseOneOf1.cs
@@ -5142,6 +5216,9 @@ src/Zernio/Model/CreateBlogArticleRequest.cs
 src/Zernio/Model/CreateBlogArticleRequestImage.cs
 src/Zernio/Model/CreateBlogArticleRequestSeo.cs
 src/Zernio/Model/CreateBlogRequest.cs
+src/Zernio/Model/CreateBrandedCallingEnterpriseRequest.cs
+src/Zernio/Model/CreateBrandedCallingIdentityRequest.cs
+src/Zernio/Model/CreateBrandedCallingIdentityRequestAuthorizer.cs
 src/Zernio/Model/CreateBroadcast200Response.cs
 src/Zernio/Model/CreateBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/CreateBroadcastRequest.cs
@@ -5348,6 +5425,7 @@ src/Zernio/Model/DeleteAdCreative200Response.cs
 src/Zernio/Model/DeleteAdNegativeKeywordList200Response.cs
 src/Zernio/Model/DeleteAdSet200Response.cs
 src/Zernio/Model/DeleteAdVideo200Response.cs
+src/Zernio/Model/DeleteBrandedCallingEnterprise200Response.cs
 src/Zernio/Model/DeleteDiscordScheduledEvent200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessMedia200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessPlaceAction200Response.cs
@@ -5362,6 +5440,8 @@ src/Zernio/Model/DeleteWhatsAppTemplate200Response.cs
 src/Zernio/Model/DeleteWhatsAppTemplateById200Response.cs
 src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/DetachAdLabel200Response.cs
+src/Zernio/Model/DetachBrandedCallingNumbers200Response.cs
+src/Zernio/Model/DetachBrandedCallingNumbersRequest.cs
 src/Zernio/Model/DetachNumberFromSipTrunk200Response.cs
 src/Zernio/Model/DialVoiceWebCall200Response.cs
 src/Zernio/Model/DialVoiceWebCallRequest.cs
@@ -6039,6 +6119,10 @@ src/Zernio/Model/ListApiKeys200Response.cs
 src/Zernio/Model/ListBidStrategies200Response.cs
 src/Zernio/Model/ListBlogArticles200Response.cs
 src/Zernio/Model/ListBlogs200Response.cs
+src/Zernio/Model/ListBrandedCallingCallReasons200Response.cs
+src/Zernio/Model/ListBrandedCallingEnterprises200Response.cs
+src/Zernio/Model/ListBrandedCallingIdentities200Response.cs
+src/Zernio/Model/ListBrandedCallingIdentityNumbers200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200ResponseRecipientsInner.cs
 src/Zernio/Model/ListBroadcastRecipients200ResponseSummary.cs
@@ -6421,6 +6505,7 @@ src/Zernio/Model/RequestSmsSenderIdLimitIncrease200Response.cs
 src/Zernio/Model/RequestSmsSenderIdLimitIncreaseRequest.cs
 src/Zernio/Model/RequestWhatsAppVerificationCode200Response.cs
 src/Zernio/Model/RequestWhatsAppVerificationCodeRequest.cs
+src/Zernio/Model/ResendBrandedCallingAuthorizerCode200Response.cs
 src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
 src/Zernio/Model/ReserveImessageAvailableNumber200Response.cs
 src/Zernio/Model/ReserveRfPrediction201Response.cs
@@ -6746,6 +6831,8 @@ src/Zernio/Model/UpdateBlogArticleRequest.cs
 src/Zernio/Model/UpdateBlogArticleRequestImage.cs
 src/Zernio/Model/UpdateBlogRequest.cs
 src/Zernio/Model/UpdateBlueskySettingsRequest.cs
+src/Zernio/Model/UpdateBrandedCallingIdentityRequest.cs
+src/Zernio/Model/UpdateBrandedCallingIdentityRequestReviewAnswersValue.cs
 src/Zernio/Model/UpdateBroadcast200Response.cs
 src/Zernio/Model/UpdateBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/UpdateBroadcastRequest.cs
