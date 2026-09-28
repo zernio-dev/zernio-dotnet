@@ -6,11 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StoreAccountId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
-**ShopDomain** | **string** |  | [optional] 
-**Installed** | **bool** | True when this tag is the pixel the store fires. | [optional] 
-**InstalledTagId** | **string** | The Meta pixel the store fires now (may be a different tag), or null. | [optional] 
-**WebPixelId** | **string** | Shopify web pixel id, or null when nothing is installed. | [optional] 
-**ReplacedTagId** | **string** | The pixel this install replaced on the store, if any. | [optional] 
+**Installed** | **bool** | Shopify: this tag is the pixel the store fires. WordPress: the Zernio widget for this tag is in an active widget area with its script intact. | [optional] 
+**ShopDomain** | **string** | Shopify only. | [optional] 
+**InstalledTagId** | **string** | Shopify only: the Meta pixel the store fires now (may be a different tag), or null. | [optional] 
+**WebPixelId** | **string** | Shopify only: web pixel id, or null when nothing is installed. | [optional] 
+**SiteUrl** | **string** | WordPress only. | [optional] 
+**Method** | **string** | WordPress only. | [optional] 
+**WidgetId** | **string** | WordPress only: widget id, e.g. &#x60;custom_html-3&#x60;. | [optional] 
+**SidebarId** | **string** | WordPress only: widget area holding the widget. | [optional] 
+**ReplacedTagId** | **string** | Shopify only: the pixel this install replaced on the store, if any. | [optional] 
+**SidebarName** | **string** | WordPress only: name of the widget area used. | [optional] 
+**Created** | **bool** | WordPress only: false when an existing Zernio widget was updated. | [optional] 
+**HomepageCheck** | **string** | WordPress only: whether the pixel appeared in the homepage HTML. &#x60;not_found&#x60; can be a stale page cache. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

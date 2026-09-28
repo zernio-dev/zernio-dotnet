@@ -1,5 +1,5 @@
 # Zernio.Model.StorePixelInstall
-A tracking tag's install on a connected store (Shopify web pixel).
+A tracking tag's install on a connected store: a Shopify web pixel, or a Custom HTML widget on a WordPress site. Fields marked Shopify or WordPress are present only for that platform.
 
 ## Properties
 
@@ -7,10 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StoreAccountId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
-**ShopDomain** | **string** |  | [optional] 
-**Installed** | **bool** | True when this tag is the pixel the store fires. | [optional] 
-**InstalledTagId** | **string** | The Meta pixel the store fires now (may be a different tag), or null. | [optional] 
-**WebPixelId** | **string** | Shopify web pixel id, or null when nothing is installed. | [optional] 
+**Installed** | **bool** | Shopify: this tag is the pixel the store fires. WordPress: the Zernio widget for this tag is in an active widget area with its script intact. | [optional] 
+**ShopDomain** | **string** | Shopify only. | [optional] 
+**InstalledTagId** | **string** | Shopify only: the Meta pixel the store fires now (may be a different tag), or null. | [optional] 
+**WebPixelId** | **string** | Shopify only: web pixel id, or null when nothing is installed. | [optional] 
+**SiteUrl** | **string** | WordPress only. | [optional] 
+**Method** | **string** | WordPress only. | [optional] 
+**WidgetId** | **string** | WordPress only: widget id, e.g. &#x60;custom_html-3&#x60;. | [optional] 
+**SidebarId** | **string** | WordPress only: widget area holding the widget. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

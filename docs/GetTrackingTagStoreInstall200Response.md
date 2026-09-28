@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Platform** | **string** |  | [optional] 
-**Install** | [**StorePixelInstall**](StorePixelInstall.md) |  | [optional] 
+**Install** | [**GetTrackingTagStoreInstall200ResponseInstall**](GetTrackingTagStoreInstall200ResponseInstall.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

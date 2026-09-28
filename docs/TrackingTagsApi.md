@@ -10,10 +10,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetTrackingTag**](TrackingTagsApi.md#gettrackingtag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**GetTrackingTagStats**](TrackingTagsApi.md#gettrackingtagstats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
 | [**GetTrackingTagStoreInstall**](TrackingTagsApi.md#gettrackingtagstoreinstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
-| [**InstallTrackingTagOnStore**](TrackingTagsApi.md#installtrackingtagonstore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store |
+| [**InstallTrackingTagOnStore**](TrackingTagsApi.md#installtrackingtagonstore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site |
 | [**ListTrackingTagSharedAccounts**](TrackingTagsApi.md#listtrackingtagsharedaccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**ListTrackingTags**](TrackingTagsApi.md#listtrackingtags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
-| [**RemoveTrackingTagFromStore**](TrackingTagsApi.md#removetrackingtagfromstore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store |
+| [**RemoveTrackingTagFromStore**](TrackingTagsApi.md#removetrackingtagfromstore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site |
 | [**RemoveTrackingTagSharedAccount**](TrackingTagsApi.md#removetrackingtagsharedaccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
 | [**UpdateAdTrackingTags**](TrackingTagsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**UpdateTrackingTag**](TrackingTagsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
@@ -562,7 +562,7 @@ catch (ApiException e)
 
 Get store install status
 
-Whether this pixel is the one the Shopify store fires. `installedTagId` names the pixel the store currently fires, which can be a different tag. Meta only (platform `metaads`). 
+Whether this pixel is the one the Shopify store fires. `installedTagId` names the pixel the store currently fires, which can be a different tag. Meta only (platform `metaads`).  WordPress: whether the Zernio widget for this pixel is live (in an active widget area, script intact), plus a read-only `preflight` with the theme's widget areas and, when an install would be blocked, the `reason` POST would return. The preflight reads capabilities only, so `ready: true` is not a guarantee: `DISALLOW_UNFILTERED_HTML` or a multisite admin who is not a Super Admin still strips the script, which POST detects. 
 
 ### Example
 ```csharp
@@ -590,7 +590,7 @@ namespace Example
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
             var tagId = "tagId_example";  // string | Meta pixel id.
-            var storeAccountId = "storeAccountId_example";  // string | The connected Shopify account id.
+            var storeAccountId = "storeAccountId_example";  // string | The connected Shopify or WordPress account id.
 
             try
             {
@@ -635,7 +635,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
 | **tagId** | **string** | Meta pixel id. |  |
-| **storeAccountId** | **string** | The connected Shopify account id. |  |
+| **storeAccountId** | **string** | The connected Shopify or WordPress account id. |  |
 
 ### Return type
 
@@ -668,9 +668,9 @@ catch (ApiException e)
 # **InstallTrackingTagOnStore**
 > InstallTrackingTagOnStore200Response InstallTrackingTagOnStore (string accountId, string tagId, InstallTrackingTagOnStoreRequest installTrackingTagOnStoreRequest)
 
-Install on a Shopify store
+Install on a Shopify store or WordPress site
 
-Puts the Meta pixel on a connected Shopify store's storefront and checkout through Zernio's Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends PageView, ViewContent, AddToCart, Search, InitiateCheckout, AddPaymentInfo and Purchase (with value, currency, content_ids and contents) to the pixel, each with an event id. Purchase uses `shopify_order_{orderId}` as its event id, so a Conversions API Purchase you send for the same order with that `eventId` is deduplicated by Meta.  Idempotent: a store runs one Zernio pixel, so calling it again updates the install and installing a different tag replaces the previous one (reported in `replacedTagId`). Events respect the store's customer privacy settings (marketing consent).  `accountId` is the Meta ads account that owns the pixel (`tagId`); `storeAccountId` is the Shopify account. Stores connected before pixel support must re-approve the Zernio app: the call then answers 409 `reconnect_required` with `details.authUrl` to send the merchant to (the Shopify account id stays the same). Meta only (platform `metaads`); other platforms return 405. 
+Puts the Meta pixel on a connected Shopify store's storefront and checkout through Zernio's Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends PageView, ViewContent, AddToCart, Search, InitiateCheckout, AddPaymentInfo and Purchase (with value, currency, content_ids and contents) to the pixel, each with an event id. Purchase uses `shopify_order_{orderId}` as its event id, so a Conversions API Purchase you send for the same order with that `eventId` is deduplicated by Meta.  Idempotent: a store runs one Zernio pixel, so calling it again updates the install and installing a different tag replaces the previous one (reported in `replacedTagId`). Events respect the store's customer privacy settings (marketing consent).  `accountId` is the Meta ads account that owns the pixel (`tagId`); `storeAccountId` is the Shopify account. Stores connected before pixel support must re-approve the Zernio app: the call then answers 409 `reconnect_required` with `details.authUrl` to send the merchant to (the Shopify account id stays the same). Meta only (platform `metaads`); other platforms return 405.  **WordPress** (`storeAccountId` is a connected WordPress.com or self-hosted site): Zernio adds a Custom HTML widget with the Meta pixel base code (fbevents.js, `init`, `PageView`) to a widget area of the active theme (a footer area when there is one, else the first active area; pass `sidebarId` to choose), then reads the widget back to confirm WordPress kept the `<script>` tag. The widget carries a Zernio marker, so the call is idempotent per pixel: repeating it updates or moves the same widget, and pixel code the site owner pasted by hand is never touched. Several pixels can run side by side (one widget each). When the site cannot run the pixel, nothing is left behind and the call answers 422 `tracking_tag_install_blocked` with `details.reason`: - `insufficient_permissions`: the connected user lacks `edit_theme_options` (needs Administrator). - `scripts_stripped`: WordPress removed the script (the user lacks `unfiltered_html`, e.g. a multisite admin who is not a Super Admin, or `DISALLOW_UNFILTERED_HTML` is set). - `wordpress_com_plan`: a WordPress.com plan that strips scripts (plans without plugins). - `no_widget_areas`: the theme has no widget areas (block themes such as Twenty Twenty-Five). - `widgets_api_unavailable`: no widgets REST API (WordPress older than 5.8, or disabled). The `error` message names the manual alternative (Meta's official WordPress plugin). With `verifyHomepage` (default true) the homepage is fetched afterwards and `homepageCheck` says whether the pixel is visible; `not_found` can be a stale page cache, the widget read-back is authoritative. 
 
 ### Example
 ```csharp
@@ -702,7 +702,7 @@ namespace Example
 
             try
             {
-                // Install on a Shopify store
+                // Install on a Shopify store or WordPress site
                 InstallTrackingTagOnStore200Response result = apiInstance.InstallTrackingTagOnStore(accountId, tagId, installTrackingTagOnStoreRequest);
                 Debug.WriteLine(result);
             }
@@ -723,7 +723,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Install on a Shopify store
+    // Install on a Shopify store or WordPress site
     ApiResponse<InstallTrackingTagOnStore200Response> response = apiInstance.InstallTrackingTagOnStoreWithHttpInfo(accountId, tagId, installTrackingTagOnStoreRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -769,7 +769,8 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support store installs. |  -  |
 | **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
-| **502** | Meta or Shopify was unreachable or returned an unclassified error. Retryable. |  -  |
+| **422** | WordPress only: the site cannot run the pixel and nothing was left on it. Code &#x60;tracking_tag_install_blocked&#x60;; the reason is in &#x60;details.reason&#x60;. |  -  |
+| **502** | Meta, Shopify or the WordPress site was unreachable or returned an unclassified error. On WordPress a write may have completed; call GET before retrying. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -989,11 +990,11 @@ catch (ApiException e)
 
 <a id="removetrackingtagfromstore"></a>
 # **RemoveTrackingTagFromStore**
-> GetTrackingTagStoreInstall200Response RemoveTrackingTagFromStore (string accountId, string tagId, string storeAccountId)
+> RemoveTrackingTagFromStore200Response RemoveTrackingTagFromStore (string accountId, string tagId, string storeAccountId)
 
-Remove from a Shopify store
+Remove from a Shopify store or WordPress site
 
-Removes the pixel from the store. Idempotent: nothing installed returns 200 with `installed: false`. If the store fires a different pixel, nothing is removed and the call answers 409 `invalid_resource_state`. Meta only (platform `metaads`). 
+Removes the pixel from the store. Idempotent: nothing installed returns 200 with `installed: false`. If the store fires a different pixel, nothing is removed and the call answers 409 `invalid_resource_state`. Meta only (platform `metaads`).  WordPress: deletes every widget Zernio created for this pixel and reports how many in `removed` (0 when nothing was installed). Pixel code added by hand is left alone. 
 
 ### Example
 ```csharp
@@ -1021,12 +1022,12 @@ namespace Example
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
             var tagId = "tagId_example";  // string | Meta pixel id.
-            var storeAccountId = "storeAccountId_example";  // string | The connected Shopify account id.
+            var storeAccountId = "storeAccountId_example";  // string | The connected Shopify or WordPress account id.
 
             try
             {
-                // Remove from a Shopify store
-                GetTrackingTagStoreInstall200Response result = apiInstance.RemoveTrackingTagFromStore(accountId, tagId, storeAccountId);
+                // Remove from a Shopify store or WordPress site
+                RemoveTrackingTagFromStore200Response result = apiInstance.RemoveTrackingTagFromStore(accountId, tagId, storeAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1046,8 +1047,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Remove from a Shopify store
-    ApiResponse<GetTrackingTagStoreInstall200Response> response = apiInstance.RemoveTrackingTagFromStoreWithHttpInfo(accountId, tagId, storeAccountId);
+    // Remove from a Shopify store or WordPress site
+    ApiResponse<RemoveTrackingTagFromStore200Response> response = apiInstance.RemoveTrackingTagFromStoreWithHttpInfo(accountId, tagId, storeAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1066,11 +1067,11 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
 | **tagId** | **string** | Meta pixel id. |  |
-| **storeAccountId** | **string** | The connected Shopify account id. |  |
+| **storeAccountId** | **string** | The connected Shopify or WordPress account id. |  |
 
 ### Return type
 
-[**GetTrackingTagStoreInstall200Response**](GetTrackingTagStoreInstall200Response.md)
+[**RemoveTrackingTagFromStore200Response**](RemoveTrackingTagFromStore200Response.md)
 
 ### Authorization
 

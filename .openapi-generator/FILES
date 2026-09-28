@@ -986,6 +986,8 @@ docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
 docs/GetTrackingTagStoreInstall200Response.md
+docs/GetTrackingTagStoreInstall200ResponseInstall.md
+docs/GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight.md
 docs/GetTweet200Response.md
 docs/GetTweet200ResponseTweet.md
 docs/GetUsage200Response.md
@@ -1168,6 +1170,8 @@ docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InstallTrackingTagOnStore200Response.md
 docs/InstallTrackingTagOnStore200ResponseInstall.md
+docs/InstallTrackingTagOnStore422Response.md
+docs/InstallTrackingTagOnStore422ResponseDetails.md
 docs/InstallTrackingTagOnStoreRequest.md
 docs/InviteAdAccountToManagerRequest.md
 docs/InvitesApi.md
@@ -1652,6 +1656,8 @@ docs/RemoveCustomConversionGoal200Response.md
 docs/RemoveDiscordMemberRole200Response.md
 docs/RemoveGoogleAssetGroup200Response.md
 docs/RemoveMessageReaction200Response.md
+docs/RemoveTrackingTagFromStore200Response.md
+docs/RemoveTrackingTagFromStore200ResponseInstall.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
@@ -1927,6 +1933,7 @@ docs/TikTokPlatformData.md
 docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
+docs/TrackingTagInstallBlockedReason.md
 docs/TrackingTagsApi.md
 docs/TransferVoiceCall200Response.md
 docs/TransferVoiceCallRequest.md
@@ -3445,6 +3452,8 @@ src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTag200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseTests.cs
+src/Zernio.Test/Model/GetTrackingTagStoreInstall200ResponseInstallAllOfPreflightTests.cs
+src/Zernio.Test/Model/GetTrackingTagStoreInstall200ResponseInstallTests.cs
 src/Zernio.Test/Model/GetTrackingTagStoreInstall200ResponseTests.cs
 src/Zernio.Test/Model/GetTweet200ResponseTests.cs
 src/Zernio.Test/Model/GetTweet200ResponseTweetTests.cs
@@ -3625,6 +3634,8 @@ src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseInstallTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseTests.cs
+src/Zernio.Test/Model/InstallTrackingTagOnStore422ResponseDetailsTests.cs
+src/Zernio.Test/Model/InstallTrackingTagOnStore422ResponseTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStoreRequestTests.cs
 src/Zernio.Test/Model/InviteAdAccountToManagerRequestTests.cs
 src/Zernio.Test/Model/KeywordEntryTests.cs
@@ -4093,6 +4104,8 @@ src/Zernio.Test/Model/RemoveCustomConversionGoal200ResponseTests.cs
 src/Zernio.Test/Model/RemoveDiscordMemberRole200ResponseTests.cs
 src/Zernio.Test/Model/RemoveGoogleAssetGroup200ResponseTests.cs
 src/Zernio.Test/Model/RemoveMessageReaction200ResponseTests.cs
+src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseInstallTests.cs
+src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompanies200ResponseTests.cs
 src/Zernio.Test/Model/ReplaceAdAudienceCompaniesRequestCompaniesInnerTests.cs
@@ -4362,6 +4375,7 @@ src/Zernio.Test/Model/TikTokDryRunVerdictTests.cs
 src/Zernio.Test/Model/TikTokDryRunVerdictTiktokInnerTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataMusicSoundInfoTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
+src/Zernio.Test/Model/TrackingTagInstallBlockedReasonTests.cs
 src/Zernio.Test/Model/TrackingTagTests.cs
 src/Zernio.Test/Model/TransferVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/TransferVoiceCallRequestTests.cs
@@ -5884,6 +5898,8 @@ src/Zernio/Model/GetTrackingTag200Response.cs
 src/Zernio/Model/GetTrackingTagStats200Response.cs
 src/Zernio/Model/GetTrackingTagStats200ResponseStats.cs
 src/Zernio/Model/GetTrackingTagStoreInstall200Response.cs
+src/Zernio/Model/GetTrackingTagStoreInstall200ResponseInstall.cs
+src/Zernio/Model/GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight.cs
 src/Zernio/Model/GetTweet200Response.cs
 src/Zernio/Model/GetTweet200ResponseTweet.cs
 src/Zernio/Model/GetUsage200Response.cs
@@ -6063,6 +6079,8 @@ src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
 src/Zernio/Model/InstallTrackingTagOnStore200Response.cs
 src/Zernio/Model/InstallTrackingTagOnStore200ResponseInstall.cs
+src/Zernio/Model/InstallTrackingTagOnStore422Response.cs
+src/Zernio/Model/InstallTrackingTagOnStore422ResponseDetails.cs
 src/Zernio/Model/InstallTrackingTagOnStoreRequest.cs
 src/Zernio/Model/InviteAdAccountToManagerRequest.cs
 src/Zernio/Model/KeywordEntry.cs
@@ -6531,6 +6549,8 @@ src/Zernio/Model/RemoveCustomConversionGoal200Response.cs
 src/Zernio/Model/RemoveDiscordMemberRole200Response.cs
 src/Zernio/Model/RemoveGoogleAssetGroup200Response.cs
 src/Zernio/Model/RemoveMessageReaction200Response.cs
+src/Zernio/Model/RemoveTrackingTagFromStore200Response.cs
+src/Zernio/Model/RemoveTrackingTagFromStore200ResponseInstall.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReplaceAdAudienceCompanies200Response.cs
 src/Zernio/Model/ReplaceAdAudienceCompaniesRequest.cs
@@ -6801,6 +6821,7 @@ src/Zernio/Model/TikTokDryRunVerdictTiktokInner.cs
 src/Zernio/Model/TikTokPlatformData.cs
 src/Zernio/Model/TikTokPlatformDataMusicSoundInfo.cs
 src/Zernio/Model/TrackingTag.cs
+src/Zernio/Model/TrackingTagInstallBlockedReason.cs
 src/Zernio/Model/TransferVoiceCall200Response.cs
 src/Zernio/Model/TransferVoiceCallRequest.cs
 src/Zernio/Model/TriggerWorkflow200Response.cs
