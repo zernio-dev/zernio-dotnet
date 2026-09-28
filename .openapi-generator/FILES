@@ -1870,7 +1870,8 @@ docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SetWhatsAppFlowsEncryptionKeyRequest.md
 docs/SetWhatsappBusinessUsername200Response.md
 docs/SetWhatsappBusinessUsernameRequest.md
-docs/ShareSmsRegistration200Response.md
+docs/ShareBrandedCallingIdentityForm200Response.md
+docs/ShareBrandedCallingIdentityFormRequest.md
 docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
 docs/SlackApi.md
@@ -4307,7 +4308,8 @@ src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
 src/Zernio.Test/Model/SetWhatsAppFlowsEncryptionKeyRequestTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsername200ResponseTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsernameRequestTests.cs
-src/Zernio.Test/Model/ShareSmsRegistration200ResponseTests.cs
+src/Zernio.Test/Model/ShareBrandedCallingIdentityForm200ResponseTests.cs
+src/Zernio.Test/Model/ShareBrandedCallingIdentityFormRequestTests.cs
 src/Zernio.Test/Model/ShareSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/SharedAdAccountTests.cs
 src/Zernio.Test/Model/SlackPlatformDataTests.cs
@@ -6744,7 +6746,8 @@ src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
 src/Zernio/Model/SetWhatsAppFlowsEncryptionKeyRequest.cs
 src/Zernio/Model/SetWhatsappBusinessUsername200Response.cs
 src/Zernio/Model/SetWhatsappBusinessUsernameRequest.cs
-src/Zernio/Model/ShareSmsRegistration200Response.cs
+src/Zernio/Model/ShareBrandedCallingIdentityForm200Response.cs
+src/Zernio/Model/ShareBrandedCallingIdentityFormRequest.cs
 src/Zernio/Model/ShareSmsRegistrationRequest.cs
 src/Zernio/Model/SharedAdAccount.cs
 src/Zernio/Model/SlackPlatformData.cs

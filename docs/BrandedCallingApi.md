@@ -19,6 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListBrandedCallingIdentityNumbers**](BrandedCallingApi.md#listbrandedcallingidentitynumbers) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity |
 | [**PreflightBrandedCallingIdentity**](BrandedCallingApi.md#preflightbrandedcallingidentity) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it |
 | [**ResendBrandedCallingAuthorizerCode**](BrandedCallingApi.md#resendbrandedcallingauthorizercode) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code |
+| [**ShareBrandedCallingIdentityForm**](BrandedCallingApi.md#sharebrandedcallingidentityform) | **POST** /v1/branded-calling/share | Create a caller identity share link |
 | [**UpdateBrandedCallingIdentity**](BrandedCallingApi.md#updatebrandedcallingidentity) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity |
 
 <a id="attachbrandedcallingnumbers"></a>
@@ -1524,6 +1525,107 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity is not waiting for a code (code invalid_resource_state). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="sharebrandedcallingidentityform"></a>
+# **ShareBrandedCallingIdentityForm**
+> ShareBrandedCallingIdentityForm200Response ShareBrandedCallingIdentityForm (ShareBrandedCallingIdentityFormRequest? shareBrandedCallingIdentityFormRequest = null)
+
+Create a caller identity share link
+
+Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login: display name, logo, call reasons, the authorizer and the three references. What it submits lands under your team as `requested`, the same review as an API submission, and `branded_calling.identity.status_updated` fires. Scope the link with `identityId` (complete an identity that is `requested` or `changes_requested`), with `enterpriseId` (a new identity for a registered business), or with neither (the business registers itself and its first identity). The person opening the link can forward a fresh one to someone else, which retires theirs. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ShareBrandedCallingIdentityFormExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new BrandedCallingApi(httpClient, config, httpClientHandler);
+            var shareBrandedCallingIdentityFormRequest = new ShareBrandedCallingIdentityFormRequest?(); // ShareBrandedCallingIdentityFormRequest? |  (optional) 
+
+            try
+            {
+                // Create a caller identity share link
+                ShareBrandedCallingIdentityForm200Response result = apiInstance.ShareBrandedCallingIdentityForm(shareBrandedCallingIdentityFormRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling BrandedCallingApi.ShareBrandedCallingIdentityForm: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ShareBrandedCallingIdentityFormWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a caller identity share link
+    ApiResponse<ShareBrandedCallingIdentityForm200Response> response = apiInstance.ShareBrandedCallingIdentityFormWithHttpInfo(shareBrandedCallingIdentityFormRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BrandedCallingApi.ShareBrandedCallingIdentityFormWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shareBrandedCallingIdentityFormRequest** | [**ShareBrandedCallingIdentityFormRequest?**](ShareBrandedCallingIdentityFormRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCallingIdentityForm200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Share link created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Business or identity not found, or the identity is not in review |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1746,7 +1746,7 @@ catch (ApiException e)
 
 <a id="sharesmsregistration"></a>
 # **ShareSmsRegistration**
-> ShareSmsRegistration200Response ShareSmsRegistration (ShareSmsRegistrationRequest shareSmsRegistrationRequest)
+> ShareBrandedCallingIdentityForm200Response ShareSmsRegistration (ShareSmsRegistrationRequest shareSmsRegistrationRequest)
 
 Create a registration share link
 
@@ -1781,7 +1781,7 @@ namespace Example
             try
             {
                 // Create a registration share link
-                ShareSmsRegistration200Response result = apiInstance.ShareSmsRegistration(shareSmsRegistrationRequest);
+                ShareBrandedCallingIdentityForm200Response result = apiInstance.ShareSmsRegistration(shareSmsRegistrationRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1802,7 +1802,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a registration share link
-    ApiResponse<ShareSmsRegistration200Response> response = apiInstance.ShareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest);
+    ApiResponse<ShareBrandedCallingIdentityForm200Response> response = apiInstance.ShareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1823,7 +1823,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**ShareSmsRegistration200Response**](ShareSmsRegistration200Response.md)
+[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCallingIdentityForm200Response.md)
 
 ### Authorization
 
