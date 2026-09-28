@@ -985,6 +985,7 @@ docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
+docs/GetTrackingTagStoreInstall200Response.md
 docs/GetTweet200Response.md
 docs/GetTweet200ResponseTweet.md
 docs/GetUsage200Response.md
@@ -1165,6 +1166,9 @@ docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
+docs/InstallTrackingTagOnStore200Response.md
+docs/InstallTrackingTagOnStore200ResponseInstall.md
+docs/InstallTrackingTagOnStoreRequest.md
 docs/InviteAdAccountToManagerRequest.md
 docs/InvitesApi.md
 docs/KeywordEntry.md
@@ -1889,6 +1893,7 @@ docs/StartSmsRegistrationRequestCampaign.md
 docs/StartSmsRegistrationRequestTollFree.md
 docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
+docs/StorePixelInstall.md
 docs/SubmitFeedbackRequest.md
 docs/SubmitFeedbackRequestAgent.md
 docs/SubmitPhoneNumberKyc200Response.md
@@ -3439,6 +3444,7 @@ src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTag200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseTests.cs
+src/Zernio.Test/Model/GetTrackingTagStoreInstall200ResponseTests.cs
 src/Zernio.Test/Model/GetTweet200ResponseTests.cs
 src/Zernio.Test/Model/GetTweet200ResponseTweetTests.cs
 src/Zernio.Test/Model/GetUsage200ResponseTests.cs
@@ -3616,6 +3622,9 @@ src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
+src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseInstallTests.cs
+src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseTests.cs
+src/Zernio.Test/Model/InstallTrackingTagOnStoreRequestTests.cs
 src/Zernio.Test/Model/InviteAdAccountToManagerRequestTests.cs
 src/Zernio.Test/Model/KeywordEntryTests.cs
 src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
@@ -4320,6 +4329,7 @@ src/Zernio.Test/Model/StartSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestTollFreeTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
+src/Zernio.Test/Model/StorePixelInstallTests.cs
 src/Zernio.Test/Model/SubmitFeedbackRequestAgentTests.cs
 src/Zernio.Test/Model/SubmitFeedbackRequestTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponseNumbersInnerTests.cs
@@ -5871,6 +5881,7 @@ src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.cs
 src/Zernio/Model/GetTrackingTag200Response.cs
 src/Zernio/Model/GetTrackingTagStats200Response.cs
 src/Zernio/Model/GetTrackingTagStats200ResponseStats.cs
+src/Zernio/Model/GetTrackingTagStoreInstall200Response.cs
 src/Zernio/Model/GetTweet200Response.cs
 src/Zernio/Model/GetTweet200ResponseTweet.cs
 src/Zernio/Model/GetUsage200Response.cs
@@ -6048,6 +6059,9 @@ src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
+src/Zernio/Model/InstallTrackingTagOnStore200Response.cs
+src/Zernio/Model/InstallTrackingTagOnStore200ResponseInstall.cs
+src/Zernio/Model/InstallTrackingTagOnStoreRequest.cs
 src/Zernio/Model/InviteAdAccountToManagerRequest.cs
 src/Zernio/Model/KeywordEntry.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
@@ -6752,6 +6766,7 @@ src/Zernio/Model/StartSmsRegistrationRequestCampaign.cs
 src/Zernio/Model/StartSmsRegistrationRequestTollFree.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerification200Response.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerificationRequest.cs
+src/Zernio/Model/StorePixelInstall.cs
 src/Zernio/Model/SubmitFeedbackRequest.cs
 src/Zernio/Model/SubmitFeedbackRequestAgent.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200Response.cs
