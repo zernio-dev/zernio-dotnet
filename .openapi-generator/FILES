@@ -1926,6 +1926,7 @@ docs/StartSmsRegistrationRequestTollFree.md
 docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/StorePixelInstall.md
+docs/StorePixelInstallTagsInner.md
 docs/SubmitFeedbackRequest.md
 docs/SubmitFeedbackRequestAgent.md
 docs/SubmitPhoneNumberKyc200Response.md
@@ -1958,6 +1959,7 @@ docs/TikTokPlatformData.md
 docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
+docs/TrackingTagEventsInner.md
 docs/TrackingTagInstallBlockedReason.md
 docs/TrackingTagsApi.md
 docs/TransferVoiceCall200Response.md
@@ -4396,6 +4398,7 @@ src/Zernio.Test/Model/StartSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestTollFreeTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
+src/Zernio.Test/Model/StorePixelInstallTagsInnerTests.cs
 src/Zernio.Test/Model/StorePixelInstallTests.cs
 src/Zernio.Test/Model/SubmitFeedbackRequestAgentTests.cs
 src/Zernio.Test/Model/SubmitFeedbackRequestTests.cs
@@ -4427,6 +4430,7 @@ src/Zernio.Test/Model/TikTokDryRunVerdictTests.cs
 src/Zernio.Test/Model/TikTokDryRunVerdictTiktokInnerTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataMusicSoundInfoTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
+src/Zernio.Test/Model/TrackingTagEventsInnerTests.cs
 src/Zernio.Test/Model/TrackingTagInstallBlockedReasonTests.cs
 src/Zernio.Test/Model/TrackingTagTests.cs
 src/Zernio.Test/Model/TransferVoiceCall200ResponseTests.cs
@@ -6869,6 +6873,7 @@ src/Zernio/Model/StartSmsRegistrationRequestTollFree.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerification200Response.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerificationRequest.cs
 src/Zernio/Model/StorePixelInstall.cs
+src/Zernio/Model/StorePixelInstallTagsInner.cs
 src/Zernio/Model/SubmitFeedbackRequest.cs
 src/Zernio/Model/SubmitFeedbackRequestAgent.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200Response.cs
@@ -6900,6 +6905,7 @@ src/Zernio/Model/TikTokDryRunVerdictTiktokInner.cs
 src/Zernio/Model/TikTokPlatformData.cs
 src/Zernio/Model/TikTokPlatformDataMusicSoundInfo.cs
 src/Zernio/Model/TrackingTag.cs
+src/Zernio/Model/TrackingTagEventsInner.cs
 src/Zernio/Model/TrackingTagInstallBlockedReason.cs
 src/Zernio/Model/TransferVoiceCall200Response.cs
 src/Zernio/Model/TransferVoiceCallRequest.cs

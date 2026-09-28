@@ -24,7 +24,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Share with an ad account
 
-Shares the pixel with another ad account so campaigns/audiences in that account can use it. Requires that you administer both the pixel's owning Business Manager and the target ad account; a pixel on a personal (non-BM) ad account can't be shared (Meta will reject the call). Meta only (platform `metaads`); other platforms return 405. 
+Shares the pixel with another ad account so campaigns/audiences in that account can use it. Requires that you administer both the pixel's owning Business Manager and the target ad account; a pixel on a personal (non-BM) ad account can't be shared (Meta will reject the call). Meta only (platform `metaads`); other platforms return 501. 
 
 ### Example
 ```csharp
@@ -121,8 +121,8 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support shared accounts. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -133,7 +133,7 @@ catch (ApiException e)
 
 Create a tracking tag
 
-Meta: creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels`, where `name` is the only input). Returns the created tag including its install `code`. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with `ownerBusinessId: null` and can't be shared with other ad accounts.  Creating a Meta pixel does NOT install it. Install the returned `code` snippet on the site, or send events server-side via `POST /v1/ads/conversions`. The check `installed` is derived from `lastFiredTime`.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (`adAccountId` is required by this endpoint but ignored: one API key maps to exactly one ad account, so there's nothing to select). Returns 422 (`FEATURE_NOT_AVAILABLE`) if the ad account isn't enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key plus, with `defaultEventType`, a new conversion event setting). Do not retry blindly on timeout. Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other platforms return 405. 
+Meta: creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels`, where `name` is the only input). Returns the created tag including its install `code`. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with `ownerBusinessId: null` and can't be shared with other ad accounts.  Creating a Meta pixel does NOT install it. Install the returned `code` snippet on the site, or send events server-side via `POST /v1/ads/conversions`. The check `installed` is derived from `lastFiredTime`.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (`adAccountId` is required by this endpoint but ignored: one API key maps to exactly one ad account, so there's nothing to select). Returns 422 (`FEATURE_NOT_AVAILABLE`) if the ad account isn't enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key plus, with `defaultEventType`, a new conversion event setting). Do not retry blindly on timeout. Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other platforms return 501. 
 
 ### Example
 ```csharp
@@ -228,9 +228,9 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support creating tracking tags. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **422** | OpenAI Ads only: the ad account is not enabled for pixel management. Contact your OpenAI partner representative. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Creating a pixel is NOT idempotent, so before retrying confirm with GET /v1/accounts/{accountId}/tracking-tags that no pixel was created. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -338,11 +338,11 @@ catch (ApiException e)
 
 <a id="gettrackingtag"></a>
 # **GetTrackingTag**
-> GetTrackingTag200Response GetTrackingTag (string accountId, string tagId)
+> GetTrackingTag200Response GetTrackingTag (string accountId, string tagId, string? adAccountId = null)
 
 Get a tracking tag
 
-Returns the full tag record including the base-code `code` snippet, `lastFiredTime`, `ownerBusinessId`, `isUnavailable`, etc. Meta only (platform `metaads`); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too. Use `GET /v1/accounts/{accountId}/tracking-tags` (list) instead. 
+Returns the full tag record including the base-code `code` snippet, `lastFiredTime`, `ownerBusinessId`, `isUnavailable`, etc. Meta only (platform `metaads`); other platforms return 501. OpenAI Ads has no get-by-id endpoint, so it answers 501 here too. Use `GET /v1/accounts/{accountId}/tracking-tags` (list) instead. 
 
 ### Example
 ```csharp
@@ -369,12 +369,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var tagId = "tagId_example";  // string | Pixel id.
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+            var adAccountId = "adAccountId_example";  // string? | Scopes the lookup on platforms whose tag ids live inside an ad account. Ignored elsewhere. (optional) 
 
             try
             {
                 // Get a tracking tag
-                GetTrackingTag200Response result = apiInstance.GetTrackingTag(accountId, tagId);
+                GetTrackingTag200Response result = apiInstance.GetTrackingTag(accountId, tagId, adAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -395,7 +396,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a tracking tag
-    ApiResponse<GetTrackingTag200Response> response = apiInstance.GetTrackingTagWithHttpInfo(accountId, tagId);
+    ApiResponse<GetTrackingTag200Response> response = apiInstance.GetTrackingTagWithHttpInfo(accountId, tagId, adAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -413,7 +414,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **tagId** | **string** | Pixel id. |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+| **adAccountId** | **string?** | Scopes the lookup on platforms whose tag ids live inside an ad account. Ignored elsewhere. | [optional]  |
 
 ### Return type
 
@@ -437,19 +439,19 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support fetching a tracking tag. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="gettrackingtagstats"></a>
 # **GetTrackingTagStats**
-> GetTrackingTagStats200Response GetTrackingTagStats (string accountId, string tagId, string? aggregation = null, int? startTime = null, int? endTime = null)
+> GetTrackingTagStats200Response GetTrackingTagStats (string accountId, string tagId, string? adAccountId = null, string? aggregation = null, int? startTime = null, int? endTime = null)
 
 Get aggregated event stats
 
-Returns aggregated event counts for the pixel (`GET /{pixel_id}/stats`). Rows are passed through from Meta as-is; their shape depends on the `aggregation` requested. Meta only (platform `metaads`); other platforms return 405. 
+Returns event counts / health for the tag, where the platform exposes them. Meta: aggregated counts (`GET /{pixel_id}/stats`), rows passed through as-is; their shape depends on the `aggregation` requested. Platforms without a stats API answer 501. 
 
 ### Example
 ```csharp
@@ -476,15 +478,16 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var tagId = "tagId_example";  // string | Pixel id.
-            var aggregation = "event";  // string? | Aggregation dimension. Defaults to `event`. (optional)  (default to event)
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+            var adAccountId = "adAccountId_example";  // string? | Scopes the lookup on platforms whose tag ids live inside an ad account. Ignored elsewhere. (optional) 
+            var aggregation = "event";  // string? | Meta only (400 on other platforms): aggregation dimension. Defaults to `event`. (optional)  (default to event)
             var startTime = 56;  // int? | Unix seconds lower bound. (optional) 
             var endTime = 56;  // int? | Unix seconds upper bound. (optional) 
 
             try
             {
                 // Get aggregated event stats
-                GetTrackingTagStats200Response result = apiInstance.GetTrackingTagStats(accountId, tagId, aggregation, startTime, endTime);
+                GetTrackingTagStats200Response result = apiInstance.GetTrackingTagStats(accountId, tagId, adAccountId, aggregation, startTime, endTime);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -505,7 +508,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get aggregated event stats
-    ApiResponse<GetTrackingTagStats200Response> response = apiInstance.GetTrackingTagStatsWithHttpInfo(accountId, tagId, aggregation, startTime, endTime);
+    ApiResponse<GetTrackingTagStats200Response> response = apiInstance.GetTrackingTagStatsWithHttpInfo(accountId, tagId, adAccountId, aggregation, startTime, endTime);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -523,8 +526,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **tagId** | **string** | Pixel id. |  |
-| **aggregation** | **string?** | Aggregation dimension. Defaults to &#x60;event&#x60;. | [optional] [default to event] |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+| **adAccountId** | **string?** | Scopes the lookup on platforms whose tag ids live inside an ad account. Ignored elsewhere. | [optional]  |
+| **aggregation** | **string?** | Meta only (400 on other platforms): aggregation dimension. Defaults to &#x60;event&#x60;. | [optional] [default to event] |
 | **startTime** | **int?** | Unix seconds lower bound. | [optional]  |
 | **endTime** | **int?** | Unix seconds upper bound. | [optional]  |
 
@@ -550,19 +554,19 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support tracking-tag stats. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="gettrackingtagstoreinstall"></a>
 # **GetTrackingTagStoreInstall**
-> GetTrackingTagStoreInstall200Response GetTrackingTagStoreInstall (string accountId, string tagId, string storeAccountId)
+> GetTrackingTagStoreInstall200Response GetTrackingTagStoreInstall (string accountId, string tagId, string storeAccountId, string? adAccountId = null)
 
 Get store install status
 
-Whether this pixel is the one the Shopify store fires. `installedTagId` names the pixel the store currently fires, which can be a different tag. Meta only (platform `metaads`).  WordPress: whether the Zernio widget for this pixel is live (in an active widget area, script intact), plus a read-only `preflight` with the theme's widget areas and, when an install would be blocked, the `reason` POST would return. The preflight reads capabilities only, so `ready: true` is not a guarantee: `DISALLOW_UNFILTERED_HTML` or a multisite admin who is not a Super Admin still strips the script, which POST detects. 
+Whether this tag is the one the Shopify store fires for its platform. `installedTagId` names the tag of that platform the store currently fires, which can be a different tag, and `tags` lists every Zernio tag on the store (all platforms).  WordPress: whether the Zernio widget for this pixel is live (in an active widget area, script intact), plus a read-only `preflight` with the theme's widget areas and, when an install would be blocked, the `reason` POST would return. The preflight reads capabilities only, so `ready: true` is not a guarantee: `DISALLOW_UNFILTERED_HTML` or a multisite admin who is not a Super Admin still strips the script, which POST detects. `tags` lists every Zernio widget on the site (all platforms, with `active`). 
 
 ### Example
 ```csharp
@@ -589,13 +593,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var tagId = "tagId_example";  // string | Meta pixel id.
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
             var storeAccountId = "storeAccountId_example";  // string | The connected Shopify or WordPress account id.
+            var adAccountId = "adAccountId_example";  // string? | Scopes the tag lookup on platforms whose tag ids live inside an ad account. (optional) 
 
             try
             {
                 // Get store install status
-                GetTrackingTagStoreInstall200Response result = apiInstance.GetTrackingTagStoreInstall(accountId, tagId, storeAccountId);
+                GetTrackingTagStoreInstall200Response result = apiInstance.GetTrackingTagStoreInstall(accountId, tagId, storeAccountId, adAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -616,7 +621,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get store install status
-    ApiResponse<GetTrackingTagStoreInstall200Response> response = apiInstance.GetTrackingTagStoreInstallWithHttpInfo(accountId, tagId, storeAccountId);
+    ApiResponse<GetTrackingTagStoreInstall200Response> response = apiInstance.GetTrackingTagStoreInstallWithHttpInfo(accountId, tagId, storeAccountId, adAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -634,8 +639,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **tagId** | **string** | Meta pixel id. |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
 | **storeAccountId** | **string** | The connected Shopify or WordPress account id. |  |
+| **adAccountId** | **string?** | Scopes the tag lookup on platforms whose tag ids live inside an ad account. | [optional]  |
 
 ### Return type
 
@@ -659,8 +665,8 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support store installs. |  -  |
 | **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -670,7 +676,7 @@ catch (ApiException e)
 
 Install on a Shopify store or WordPress site
 
-Puts the Meta pixel on a connected Shopify store's storefront and checkout through Zernio's Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends PageView, ViewContent, AddToCart, Search, InitiateCheckout, AddPaymentInfo and Purchase (with value, currency, content_ids and contents) to the pixel, each with an event id. Purchase uses `shopify_order_{orderId}` as its event id, so a Conversions API Purchase you send for the same order with that `eventId` is deduplicated by Meta.  Idempotent: a store runs one Zernio pixel, so calling it again updates the install and installing a different tag replaces the previous one (reported in `replacedTagId`). Events respect the store's customer privacy settings (marketing consent).  `accountId` is the Meta ads account that owns the pixel (`tagId`); `storeAccountId` is the Shopify account. Stores connected before pixel support must re-approve the Zernio app: the call then answers 409 `reconnect_required` with `details.authUrl` to send the merchant to (the Shopify account id stays the same). Meta only (platform `metaads`); other platforms return 405.  **WordPress** (`storeAccountId` is a connected WordPress.com or self-hosted site): Zernio adds a Custom HTML widget with the Meta pixel base code (fbevents.js, `init`, `PageView`) to a widget area of the active theme (a footer area when there is one, else the first active area; pass `sidebarId` to choose), then reads the widget back to confirm WordPress kept the `<script>` tag. The widget carries a Zernio marker, so the call is idempotent per pixel: repeating it updates or moves the same widget, and pixel code the site owner pasted by hand is never touched. Several pixels can run side by side (one widget each). When the site cannot run the pixel, nothing is left behind and the call answers 422 `tracking_tag_install_blocked` with `details.reason`: - `insufficient_permissions`: the connected user lacks `edit_theme_options` (needs Administrator). - `scripts_stripped`: WordPress removed the script (the user lacks `unfiltered_html`, e.g. a multisite admin who is not a Super Admin, or `DISALLOW_UNFILTERED_HTML` is set). - `wordpress_com_plan`: a WordPress.com plan that strips scripts (plans without plugins). - `no_widget_areas`: the theme has no widget areas (block themes such as Twenty Twenty-Five). - `widgets_api_unavailable`: no widgets REST API (WordPress older than 5.8, or disabled). The `error` message names the manual alternative (Meta's official WordPress plugin). With `verifyHomepage` (default true) the homepage is fetched afterwards and `homepageCheck` says whether the pixel is visible; `not_found` can be a stale page cache, the widget read-back is authoritative. 
+Puts the Meta pixel on a connected Shopify store's storefront and checkout through Zernio's Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends PageView, ViewContent, AddToCart, Search, InitiateCheckout, AddPaymentInfo and Purchase (with value, currency, content_ids and contents) to the pixel, each with an event id. Purchase uses `shopify_order_{orderId}` as its event id, so a Conversions API Purchase you send for the same order with that `eventId` is deduplicated by Meta.  Idempotent: a store runs one Zernio web pixel holding one tag per platform, so calling it again updates the install, installing a different tag of the same platform replaces the previous one (reported in `replacedTagId`), and other platforms' tags are kept. Events respect the store's customer privacy settings (marketing consent).  `accountId` is the Meta ads account that owns the pixel (`tagId`); `storeAccountId` is the Shopify account. Stores connected before pixel support must re-approve the Zernio app: the call then answers 409 `reconnect_required` with `details.authUrl` to send the merchant to (the Shopify account id stays the same). Meta only (platform `metaads`); other platforms return 501.  **WordPress** (`storeAccountId` is a connected WordPress.com or self-hosted site): Zernio adds a Custom HTML widget with the Meta pixel base code (fbevents.js, `init`, `PageView`) to a widget area of the active theme (a footer area when there is one, else the first active area; pass `sidebarId` to choose), then reads the widget back to confirm WordPress kept the `<script>` tag. The widget carries a Zernio marker, so the call is idempotent per pixel: repeating it updates or moves the same widget, and pixel code the site owner pasted by hand is never touched. Several pixels can run side by side (one widget each). When the site cannot run the pixel, nothing is left behind and the call answers 422 `tracking_tag_install_blocked` with `details.reason`: - `insufficient_permissions`: the connected user lacks `edit_theme_options` (needs Administrator). - `scripts_stripped`: WordPress removed the script (the user lacks `unfiltered_html`, e.g. a multisite admin who is not a Super Admin, or `DISALLOW_UNFILTERED_HTML` is set). - `wordpress_com_plan`: a WordPress.com plan that strips scripts (plans without plugins). - `no_widget_areas`: the theme has no widget areas (block themes such as Twenty Twenty-Five). - `widgets_api_unavailable`: no widgets REST API (WordPress older than 5.8, or disabled). The `error` message names the manual alternative (Meta's official WordPress plugin). With `verifyHomepage` (default true) the homepage is fetched afterwards and `homepageCheck` says whether the pixel is visible; `not_found` can be a stale page cache, the widget read-back is authoritative. 
 
 ### Example
 ```csharp
@@ -697,7 +703,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var tagId = "tagId_example";  // string | Meta pixel id.
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
             var installTrackingTagOnStoreRequest = new InstallTrackingTagOnStoreRequest(); // InstallTrackingTagOnStoreRequest | 
 
             try
@@ -742,7 +748,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **tagId** | **string** | Meta pixel id. |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
 | **installTrackingTagOnStoreRequest** | [**InstallTrackingTagOnStoreRequest**](InstallTrackingTagOnStoreRequest.md) |  |  |
 
 ### Return type
@@ -767,9 +773,9 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support store installs. |  -  |
 | **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
 | **422** | WordPress only: the site cannot run the pixel and nothing was left on it. Code &#x60;tracking_tag_install_blocked&#x60;; the reason is in &#x60;details.reason&#x60;. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta, Shopify or the WordPress site was unreachable or returned an unclassified error. On WordPress a write may have completed; call GET before retrying. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -780,7 +786,7 @@ catch (ApiException e)
 
 List accounts it is shared with
 
-Meta only (platform `metaads`); other platforms return 405.
+Meta only (platform `metaads`); other platforms return 501.
 
 ### Example
 ```csharp
@@ -875,8 +881,8 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support shared accounts. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -887,7 +893,7 @@ catch (ApiException e)
 
 List tracking tags
 
-Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass `?adAccountId=act_...` (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits `code`. Call `getTrackingTag` for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other platforms return 405. The `accountId` must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta `act_...` ids from `GET /v1/ads/accounts`; `adAccountId` is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
+Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass `?adAccountId=act_...` (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits `code`. Call `getTrackingTag` for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other platforms return 501. The `accountId` must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta `act_...` ids from `GET /v1/ads/accounts`; `adAccountId` is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
 
 ### Example
 ```csharp
@@ -982,19 +988,19 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support listing tracking tags. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="removetrackingtagfromstore"></a>
 # **RemoveTrackingTagFromStore**
-> RemoveTrackingTagFromStore200Response RemoveTrackingTagFromStore (string accountId, string tagId, string storeAccountId)
+> RemoveTrackingTagFromStore200Response RemoveTrackingTagFromStore (string accountId, string tagId, string storeAccountId, string? adAccountId = null)
 
 Remove from a Shopify store or WordPress site
 
-Removes the pixel from the store. Idempotent: nothing installed returns 200 with `installed: false`. If the store fires a different pixel, nothing is removed and the call answers 409 `invalid_resource_state`. Meta only (platform `metaads`).  WordPress: deletes every widget Zernio created for this pixel and reports how many in `removed` (0 when nothing was installed). Pixel code added by hand is left alone. 
+Removes the tag from the store. Idempotent: nothing installed returns 200 with `installed: false`. If the store fires a different tag of the same platform, nothing is removed and the call answers 409 `invalid_resource_state`. Shopify: other platforms' tags stay; the web pixel itself is deleted once no tag remains.  WordPress: deletes every widget Zernio created for this pixel and reports how many in `removed` (0 when nothing was installed). Pixel code added by hand is left alone. 
 
 ### Example
 ```csharp
@@ -1021,13 +1027,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var tagId = "tagId_example";  // string | Meta pixel id.
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
             var storeAccountId = "storeAccountId_example";  // string | The connected Shopify or WordPress account id.
+            var adAccountId = "adAccountId_example";  // string? | Scopes the tag lookup on platforms whose tag ids live inside an ad account. (optional) 
 
             try
             {
                 // Remove from a Shopify store or WordPress site
-                RemoveTrackingTagFromStore200Response result = apiInstance.RemoveTrackingTagFromStore(accountId, tagId, storeAccountId);
+                RemoveTrackingTagFromStore200Response result = apiInstance.RemoveTrackingTagFromStore(accountId, tagId, storeAccountId, adAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1048,7 +1055,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove from a Shopify store or WordPress site
-    ApiResponse<RemoveTrackingTagFromStore200Response> response = apiInstance.RemoveTrackingTagFromStoreWithHttpInfo(accountId, tagId, storeAccountId);
+    ApiResponse<RemoveTrackingTagFromStore200Response> response = apiInstance.RemoveTrackingTagFromStoreWithHttpInfo(accountId, tagId, storeAccountId, adAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1066,8 +1073,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **tagId** | **string** | Meta pixel id. |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
 | **storeAccountId** | **string** | The connected Shopify or WordPress account id. |  |
+| **adAccountId** | **string?** | Scopes the tag lookup on platforms whose tag ids live inside an ad account. | [optional]  |
 
 ### Return type
 
@@ -1091,8 +1099,8 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support store installs. |  -  |
 | **409** | The store fires a different pixel (code &#x60;invalid_resource_state&#x60;), or the store must re-approve the Zernio app (code &#x60;reconnect_required&#x60;, see &#x60;details.authUrl&#x60;). |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1102,7 +1110,7 @@ catch (ApiException e)
 
 Stop sharing with an account
 
-`adAccountId` may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. Meta only (platform `metaads`); other platforms return 405. 
+`adAccountId` may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. Meta only (platform `metaads`); other platforms return 501. 
 
 ### Example
 ```csharp
@@ -1195,8 +1203,8 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support shared accounts. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1313,7 +1321,7 @@ catch (ApiException e)
 
 Update a tracking tag
 
-Partial-update a pixel. Whitelisted fields: `name` (rename), `enableAutomaticMatching`, `automaticMatchingFields`, `firstPartyCookieStatus`, `dataUseSetting`. At least one is required. Returns the re-fetched canonical tag. Meta only (platform `metaads`); other platforms return 405.  There is no DELETE: Meta has no API to delete a pixel. To stop using one, unshare it from your ad accounts (`DELETE .../tracking-tags/{tagId}/shared-accounts`) or disable it in Events Manager. 
+Partial-update a pixel. Whitelisted fields: `name` (rename), `enableAutomaticMatching`, `automaticMatchingFields`, `firstPartyCookieStatus`, `dataUseSetting`. At least one is required. Returns the re-fetched canonical tag. Meta only (platform `metaads`); other platforms return 501.  There is no DELETE: Meta has no API to delete a pixel. To stop using one, unshare it from your ad accounts (`DELETE .../tracking-tags/{tagId}/shared-accounts`) or disable it in Events Manager. 
 
 ### Example
 ```csharp
@@ -1410,8 +1418,8 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **405** | Platform does not support updating tracking tags. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

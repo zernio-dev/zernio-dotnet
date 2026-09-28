@@ -5,12 +5,14 @@ A platform measurement tag: the thing you create, install on a website, send eve
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Platform-native tag id. Meta: numeric pixel id, as a string. | 
+**Id** | **string** | Platform-native tag id, the &#x60;{tagId}&#x60; of the per-tag routes. Meta: numeric pixel id, as a string. OpenAI: the pixel resource id. | 
+**SiteTagId** | **string** | The id the on-site code carries. Equals &#x60;id&#x60; on Meta; differs on platforms with separate API and site ids (OpenAI &#x60;pixel_id&#x60;). | [optional] 
+**Events** | [**List&lt;TrackingTagEventsInner&gt;**](TrackingTagEventsInner.md) | Platforms where each conversion is its own object: the tag&#39;s conversion events, with the id a site sends for each. | [optional] 
 **Name** | **string** |  | 
 **Platform** | **string** |  | 
 **Kind** | **string** | Platform-native flavor of the tag (Meta: &#x60;pixel&#x60;). | 
 **Status** | **string** | &#x60;inactive&#x60; when the platform reports the tag as broken/unavailable. | 
-**Code** | **string** | The base-code &#x60;&lt;script&gt;&#x60; snippet to install on the site. Meta only; populated by &#x60;getTrackingTag&#x60;, omitted from the list view.  | [optional] 
+**Code** | **string** | The base-code &#x60;&lt;script&gt;&#x60; snippet to install on the site, including the page-view call. Populated by &#x60;getTrackingTag&#x60;, omitted from the list view.  | [optional] 
 **LastFiredTime** | **int?** | Unix seconds of the last event the tag received, or &#x60;null&#x60; if it never fired. The practical \&quot;is it installed and working\&quot; signal.  | [optional] 
 **IsUnavailable** | **bool** | Whether the tag is in a broken/unavailable state (Meta &#x60;is_unavailable&#x60;). | [optional] 
 **Installed** | **bool** | Convenience flag derived from &#x60;lastFiredTime&#x60;: has the tag ever fired. | [optional] 
