@@ -998,6 +998,7 @@ docs/GetTikTokSmartPlusMaterialReport200Response.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
 docs/GetTrackingTag200Response.md
+docs/GetTrackingTagDiagnostics200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
 docs/GetTrackingTagStoreInstall200Response.md
@@ -2006,6 +2007,7 @@ docs/TikTokPlatformData.md
 docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
+docs/TrackingTagDiagnostic.md
 docs/TrackingTagEvent.md
 docs/TrackingTagEventInput.md
 docs/TrackingTagInstallBlockedReason.md
@@ -3544,6 +3546,7 @@ src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetric
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTag200ResponseTests.cs
+src/Zernio.Test/Model/GetTrackingTagDiagnostics200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagStoreInstall200ResponseInstallAllOfPreflightTests.cs
@@ -4526,6 +4529,7 @@ src/Zernio.Test/Model/TikTokDryRunVerdictTests.cs
 src/Zernio.Test/Model/TikTokDryRunVerdictTiktokInnerTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataMusicSoundInfoTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
+src/Zernio.Test/Model/TrackingTagDiagnosticTests.cs
 src/Zernio.Test/Model/TrackingTagEventInputTests.cs
 src/Zernio.Test/Model/TrackingTagEventTests.cs
 src/Zernio.Test/Model/TrackingTagInstallBlockedReasonTests.cs
@@ -6067,6 +6071,7 @@ src/Zernio/Model/GetTikTokSmartPlusMaterialReport200Response.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.cs
 src/Zernio/Model/GetTrackingTag200Response.cs
+src/Zernio/Model/GetTrackingTagDiagnostics200Response.cs
 src/Zernio/Model/GetTrackingTagStats200Response.cs
 src/Zernio/Model/GetTrackingTagStats200ResponseStats.cs
 src/Zernio/Model/GetTrackingTagStoreInstall200Response.cs
@@ -7050,6 +7055,7 @@ src/Zernio/Model/TikTokDryRunVerdictTiktokInner.cs
 src/Zernio/Model/TikTokPlatformData.cs
 src/Zernio/Model/TikTokPlatformDataMusicSoundInfo.cs
 src/Zernio/Model/TrackingTag.cs
+src/Zernio/Model/TrackingTagDiagnostic.cs
 src/Zernio/Model/TrackingTagEvent.cs
 src/Zernio/Model/TrackingTagEventInput.cs
 src/Zernio/Model/TrackingTagInstallBlockedReason.cs

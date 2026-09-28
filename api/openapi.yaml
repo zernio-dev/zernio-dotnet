@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.137.0
+  version: 1.138.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -50491,6 +50491,11 @@ paths:
         `siteEventId` (the rule id a page fires) is set only on event-specific Insight Tag rules;
         `defaultValue`/`currency` come from the rule value, `clickWindowDays`/`viewWindowDays`
         from its post-click and view-through windows.
+
+        Meta: the pixel's custom conversions. Meta keeps them per AD ACCOUNT (a pixel has no
+        custom conversions edge), so the list reads `adAccountId` (default: the pixel's owner ad
+        account) and keeps the conversions whose pixel is this one. Archived conversions are
+        included with `status: archived`. `urlContains` and `siteEvent` are parsed from Meta's rule.
       operationId: listTrackingTagEvents
       parameters:
       - explode: false
@@ -50580,6 +50585,15 @@ paths:
         in days (LinkedIn validates them: the docs list 1, 7 and 30, and rules with 90 exist).
         Stores name, type, siteEvent, enabled, defaultValue, currency, clickWindowDays,
         viewWindowDays. Not idempotent.
+
+        Meta: creates a custom conversion on `adAccountId` (default: the pixel's owner ad
+        account). Accepts `name`, `type` (Meta `custom_event_type`: `PURCHASE`, `LEAD`,
+        `ADD_TO_CART`, `COMPLETE_REGISTRATION`, `OTHER`...), `siteEvent`, `urlContains` and
+        `defaultValue` (in the ad account currency). The rule matches the standard event of
+        `siteEvent` (or of `type`), plus `urlContains` when given; `urlContains` alone matches
+        page views on that URL. `type: OTHER` needs `siteEvent` or `urlContains`. Idempotent by
+        name: an active conversion with the same name on this pixel is returned instead of a
+        duplicate. Meta caps custom conversions per ad account; the cap answers 400.
       operationId: createTrackingTagEvent
       parameters:
       - explode: false
@@ -50650,6 +50664,9 @@ paths:
         LinkedIn (`linkedinads`): LinkedIn has no delete for conversion rules (not in the
         conversion-tracking API, and `DELETE /rest/conversions/{id}` has no route), so the rule is
         disabled (`enabled: false`) and `state` is `disabled`. Re-enable it with `enabled: true`.
+
+        Meta: `archived`. Meta's delete archives the custom conversion (it stays readable with
+        `status: archived`) and there is no hard delete; deleting an archived one is a no-op.
       operationId: deleteTrackingTagEvent
       parameters:
       - explode: false
@@ -50728,6 +50745,9 @@ paths:
         LinkedIn (`linkedinads`): partial update of the conversion rule; same fields as create.
         Pass `adAccountId` when the rule lives in another ad account than the one that created the
         tag.
+
+        Meta: only `name` and `defaultValue` can change (Meta's custom conversion update takes
+        nothing else); `type`, `siteEvent` and `urlContains` answer 400, create a new event instead.
       operationId: updateTrackingTagEvent
       parameters:
       - explode: false
@@ -50792,6 +50812,61 @@ paths:
       - linkedin
       - x
       - openai
+  /v1/accounts/{accountId}/tracking-tags/{tagId}/diagnostics:
+    get:
+      description: |
+        The platform's health checks for the tag. Platforms without tag diagnostics answer 501.
+
+        Meta: the pixel's checks from Events Manager (`da_checks`), e.g. whether events miss
+        parameters or their content ids do not match the pixel's catalogs.
+      operationId: getTrackingTagDiagnostics
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Tag id (`TrackingTag.id`).
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTrackingTagDiagnostics_200_response"
+          description: Diagnostics fetched
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the platform token lacks the permission\
+            \ (reconnect required)."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: The platform has no tag diagnostics (code `platform_not_supported`).
+        "502":
+          description: "The platform was unreachable or returned an unclassified error\
+            \ (type: platform_error). Retryable."
+      security:
+      - bearerAuth: []
+      summary: Get tag diagnostics
+      tags:
+      - Tracking Tags
+      x-resource-group: ads
+      x-platforms:
+      - meta
   /v1/accounts/{accountId}/tracking-tags/{tagId}/stats:
     get:
       description: |
@@ -73867,6 +73942,7 @@ components:
       example:
         pixelId: pixelId
         customEventType: customEventType
+        defaultConversionValue: 0.8008281904610115
         isArchived: true
         name: name
         rule: "{}"
@@ -73890,11 +73966,17 @@ components:
           type: string
         isArchived:
           type: boolean
+        defaultConversionValue:
+          description: "Value Meta assigns a conversion that carries none, in the\
+            \ ad account's currency."
+          nullable: true
+          type: number
     CustomConversionResult:
       example:
         customConversion:
           pixelId: pixelId
           customEventType: customEventType
+          defaultConversionValue: 0.8008281904610115
           isArchived: true
           name: name
           rule: "{}"
@@ -75115,6 +75197,7 @@ components:
           id: id
           type: type
           clickWindowDays: 6
+          urlContains: urlContains
           siteEventId: siteEventId
           status: status
         - viewWindowDays: 1
@@ -75125,6 +75208,7 @@ components:
           id: id
           type: type
           clickWindowDays: 6
+          urlContains: urlContains
           siteEventId: siteEventId
           status: status
         status: active
@@ -75218,6 +75302,7 @@ components:
         id: id
         type: type
         clickWindowDays: 6
+        urlContains: urlContains
         siteEventId: siteEventId
         status: status
       properties:
@@ -75256,6 +75341,9 @@ components:
           type: integer
         viewWindowDays:
           type: integer
+        urlContains:
+          description: Fires only on pages whose URL contains this text (case-insensitive).
+          type: string
       required:
       - id
       - name
@@ -75272,6 +75360,7 @@ components:
         type: type
         enabled: true
         clickWindowDays: 220
+        urlContains: urlContains
       properties:
         adAccountId:
           description: Scopes the lookup on platforms whose tag ids live inside an
@@ -75312,6 +75401,37 @@ components:
           maximum: 365
           minimum: 0
           type: integer
+        urlContains:
+          description: Fire only on pages whose URL contains this text (case-insensitive).
+          maxLength: 500
+          minLength: 1
+          type: string
+    TrackingTagDiagnostic:
+      description: One health check the platform runs on a tracking tag.
+      example:
+        result: result
+        actionUrl: actionUrl
+        description: description
+        title: title
+        key: key
+      properties:
+        key:
+          description: "Platform check id (Meta: e.g. `pixel_missing_param_in_events`)."
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        result:
+          description: "The platform verdict (Meta: `passed`, `failed`, `warning`)."
+          type: string
+        actionUrl:
+          description: "Where to fix it in the platform UI (Meta: Events Manager)."
+          type: string
+      required:
+      - key
+      - result
+      - title
     SharedAdAccount:
       description: An ad account a tracking tag is shared with (Meta `shared_accounts`
         edge).
@@ -125199,12 +125319,14 @@ components:
         data:
         - pixelId: pixelId
           customEventType: customEventType
+          defaultConversionValue: 0.8008281904610115
           isArchived: true
           name: name
           rule: "{}"
           id: id
         - pixelId: pixelId
           customEventType: customEventType
+          defaultConversionValue: 0.8008281904610115
           isArchived: true
           name: name
           rule: "{}"
@@ -125863,6 +125985,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           - viewWindowDays: 1
@@ -125873,6 +125996,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           status: active
@@ -125897,6 +126021,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           - viewWindowDays: 1
@@ -125907,6 +126032,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           status: active
@@ -125980,6 +126106,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           - viewWindowDays: 1
@@ -125990,6 +126117,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           status: active
@@ -126030,6 +126158,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           - viewWindowDays: 1
@@ -126040,6 +126169,7 @@ components:
             id: id
             type: type
             clickWindowDays: 6
+            urlContains: urlContains
             siteEventId: siteEventId
             status: status
           status: active
@@ -126474,6 +126604,7 @@ components:
           id: id
           type: type
           clickWindowDays: 6
+          urlContains: urlContains
           siteEventId: siteEventId
           status: status
         - viewWindowDays: 1
@@ -126484,6 +126615,7 @@ components:
           id: id
           type: type
           clickWindowDays: 6
+          urlContains: urlContains
           siteEventId: siteEventId
           status: status
       properties:
@@ -126510,6 +126642,7 @@ components:
           id: id
           type: type
           clickWindowDays: 6
+          urlContains: urlContains
           siteEventId: siteEventId
           status: status
         platform: platform
@@ -126534,6 +126667,27 @@ components:
           - archived
           - disabled
           type: string
+    getTrackingTagDiagnostics_200_response:
+      example:
+        checks:
+        - result: result
+          actionUrl: actionUrl
+          description: description
+          title: title
+          key: key
+        - result: result
+          actionUrl: actionUrl
+          description: description
+          title: title
+          key: key
+        platform: platform
+      properties:
+        platform:
+          type: string
+        checks:
+          items:
+            $ref: "#/components/schemas/TrackingTagDiagnostic"
+          type: array
     getTrackingTagStats_200_response_stats:
       example:
         aggregation: aggregation

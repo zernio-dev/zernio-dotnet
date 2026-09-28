@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Currency** | **string** | ISO 4217 code. | [optional] 
 **ClickWindowDays** | **int** |  | [optional] 
 **ViewWindowDays** | **int** |  | [optional] 
+**UrlContains** | **string** | Fire only on pages whose URL contains this text (case-insensitive). | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
