@@ -6,17 +6,21 @@ All URIs are relative to *https://zernio.com/api*
 |--------|--------------|-------------|
 | [**AddTrackingTagSharedAccount**](TrackingTagsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
 | [**CreateTrackingTag**](TrackingTagsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
+| [**CreateTrackingTagEvent**](TrackingTagsApi.md#createtrackingtagevent) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | Create a conversion event |
+| [**DeleteTrackingTagEvent**](TrackingTagsApi.md#deletetrackingtagevent) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Delete a conversion event |
 | [**GetAdTrackingTags**](TrackingTagsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**GetTrackingTag**](TrackingTagsApi.md#gettrackingtag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**GetTrackingTagStats**](TrackingTagsApi.md#gettrackingtagstats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
 | [**GetTrackingTagStoreInstall**](TrackingTagsApi.md#gettrackingtagstoreinstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
 | [**InstallTrackingTagOnStore**](TrackingTagsApi.md#installtrackingtagonstore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site |
+| [**ListTrackingTagEvents**](TrackingTagsApi.md#listtrackingtagevents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events |
 | [**ListTrackingTagSharedAccounts**](TrackingTagsApi.md#listtrackingtagsharedaccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**ListTrackingTags**](TrackingTagsApi.md#listtrackingtags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**RemoveTrackingTagFromStore**](TrackingTagsApi.md#removetrackingtagfromstore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site |
 | [**RemoveTrackingTagSharedAccount**](TrackingTagsApi.md#removetrackingtagsharedaccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
 | [**UpdateAdTrackingTags**](TrackingTagsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**UpdateTrackingTag**](TrackingTagsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
+| [**UpdateTrackingTagEvent**](TrackingTagsApi.md#updatetrackingtagevent) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event |
 
 <a id="addtrackingtagsharedaccount"></a>
 # **AddTrackingTagSharedAccount**
@@ -232,6 +236,224 @@ catch (ApiException e)
 | **422** | OpenAI Ads only: the ad account is not enabled for pixel management. Contact your OpenAI partner representative. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Creating a pixel is NOT idempotent, so before retrying confirm with GET /v1/accounts/{accountId}/tracking-tags that no pixel was created. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createtrackingtagevent"></a>
+# **CreateTrackingTagEvent**
+> CreateTrackingTagEvent201Response CreateTrackingTagEvent (string accountId, string tagId, CreateTrackingTagEventRequest createTrackingTagEventRequest)
+
+Create a conversion event
+
+Creates a conversion event tied to the tag. Pass the platform's own event type in `type` (e.g. Google `PURCHASE`, LinkedIn `ADD_TO_CART`, X `CHECKOUT_INITIATED`) or a neutral `siteEvent` the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateTrackingTagEventExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+            var createTrackingTagEventRequest = new CreateTrackingTagEventRequest(); // CreateTrackingTagEventRequest | 
+
+            try
+            {
+                // Create a conversion event
+                CreateTrackingTagEvent201Response result = apiInstance.CreateTrackingTagEvent(accountId, tagId, createTrackingTagEventRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.CreateTrackingTagEvent: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateTrackingTagEventWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a conversion event
+    ApiResponse<CreateTrackingTagEvent201Response> response = apiInstance.CreateTrackingTagEventWithHttpInfo(accountId, tagId, createTrackingTagEventRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.CreateTrackingTagEventWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+| **createTrackingTagEventRequest** | [**CreateTrackingTagEventRequest**](CreateTrackingTagEventRequest.md) |  |  |
+
+### Return type
+
+[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Conversion event created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot create conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletetrackingtagevent"></a>
+# **DeleteTrackingTagEvent**
+> DeleteTrackingTagEvent200Response DeleteTrackingTagEvent (string accountId, string tagId, string eventId, string? adAccountId = null)
+
+Delete a conversion event
+
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; `state` in the response says which (`deleted`, `archived`, `disabled`). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteTrackingTagEventExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | 
+            var eventId = "eventId_example";  // string | Event id (`TrackingTagEvent.id`).
+            var adAccountId = "adAccountId_example";  // string? | Scopes the lookup on platforms whose tag ids live inside an ad account. (optional) 
+
+            try
+            {
+                // Delete a conversion event
+                DeleteTrackingTagEvent200Response result = apiInstance.DeleteTrackingTagEvent(accountId, tagId, eventId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.DeleteTrackingTagEvent: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteTrackingTagEventWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a conversion event
+    ApiResponse<DeleteTrackingTagEvent200Response> response = apiInstance.DeleteTrackingTagEventWithHttpInfo(accountId, tagId, eventId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.DeleteTrackingTagEventWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** |  |  |
+| **eventId** | **string** | Event id (&#x60;TrackingTagEvent.id&#x60;). |  |
+| **adAccountId** | **string?** | Scopes the lookup on platforms whose tag ids live inside an ad account. | [optional]  |
+
+### Return type
+
+[**DeleteTrackingTagEvent200Response**](DeleteTrackingTagEvent200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion event removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot remove conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -777,6 +999,114 @@ catch (ApiException e)
 | **422** | WordPress only: the site cannot run the pixel and nothing was left on it. Code &#x60;tracking_tag_install_blocked&#x60;; the reason is in &#x60;details.reason&#x60;. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta, Shopify or the WordPress site was unreachable or returned an unclassified error. On WordPress a write may have completed; call GET before retrying. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listtrackingtagevents"></a>
+# **ListTrackingTagEvents**
+> ListTrackingTagEvents200Response ListTrackingTagEvents (string accountId, string tagId, string? adAccountId = null)
+
+List conversion events
+
+The tag's conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTrackingTagEventsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | Tag id (`TrackingTag.id`).
+            var adAccountId = "adAccountId_example";  // string? | Scopes the lookup on platforms whose tag ids live inside an ad account. (optional) 
+
+            try
+            {
+                // List conversion events
+                ListTrackingTagEvents200Response result = apiInstance.ListTrackingTagEvents(accountId, tagId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.ListTrackingTagEvents: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTrackingTagEventsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List conversion events
+    ApiResponse<ListTrackingTagEvents200Response> response = apiInstance.ListTrackingTagEventsWithHttpInfo(accountId, tagId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.ListTrackingTagEventsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** | Tag id (&#x60;TrackingTag.id&#x60;). |  |
+| **adAccountId** | **string?** | Scopes the lookup on platforms whose tag ids live inside an ad account. | [optional]  |
+
+### Return type
+
+[**ListTrackingTagEvents200Response**](ListTrackingTagEvents200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion events listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no conversion-event objects (code &#x60;platform_not_supported&#x60;); the message names the alternative. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1421,6 +1751,116 @@ catch (ApiException e)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatetrackingtagevent"></a>
+# **UpdateTrackingTagEvent**
+> CreateTrackingTagEvent201Response UpdateTrackingTagEvent (string accountId, string tagId, string eventId, TrackingTagEventInput trackingTagEventInput)
+
+Update a conversion event
+
+Partial update; at least one field. A field the platform does not store answers 400.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateTrackingTagEventExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var tagId = "tagId_example";  // string | 
+            var eventId = "eventId_example";  // string | Event id (`TrackingTagEvent.id`).
+            var trackingTagEventInput = new TrackingTagEventInput(); // TrackingTagEventInput | 
+
+            try
+            {
+                // Update a conversion event
+                CreateTrackingTagEvent201Response result = apiInstance.UpdateTrackingTagEvent(accountId, tagId, eventId, trackingTagEventInput);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.UpdateTrackingTagEvent: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateTrackingTagEventWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a conversion event
+    ApiResponse<CreateTrackingTagEvent201Response> response = apiInstance.UpdateTrackingTagEventWithHttpInfo(accountId, tagId, eventId, trackingTagEventInput);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.UpdateTrackingTagEventWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **tagId** | **string** |  |  |
+| **eventId** | **string** | Event id (&#x60;TrackingTagEvent.id&#x60;). |  |
+| **trackingTagEventInput** | [**TrackingTagEventInput**](TrackingTagEventInput.md) |  |  |
+
+### Return type
+
+[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion event updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot update conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
