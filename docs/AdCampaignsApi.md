@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddAdKeywords**](AdCampaignsApi.md#addadkeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords |
+| [**ApplyGoogleRecommendations**](AdCampaignsApi.md#applygooglerecommendations) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations |
 | [**AttachAdGroupAssets**](AdCampaignsApi.md#attachadgroupassets) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets |
 | [**AttachCampaignAssets**](AdCampaignsApi.md#attachcampaignassets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets |
 | [**BoostPost**](AdCampaignsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
@@ -17,6 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAd**](AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**DeleteAdCampaign**](AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
 | [**DeleteAdSet**](AdCampaignsApi.md#deleteadset) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
+| [**DismissGoogleRecommendations**](AdCampaignsApi.md#dismissgooglerecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations |
 | [**DuplicateAd**](AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**DuplicateAdCampaign**](AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**DuplicateAdSet**](AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
@@ -41,6 +43,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListCampaignNegativeKeywordLists**](AdCampaignsApi.md#listcampaignnegativekeywordlists) | **GET** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | List campaign negative lists |
 | [**ListCampaignNegativeKeywords**](AdCampaignsApi.md#listcampaignnegativekeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
 | [**ListGoogleAssetGroups**](AdCampaignsApi.md#listgoogleassetgroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
+| [**ListGoogleRecommendations**](AdCampaignsApi.md#listgooglerecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations |
 | [**RemoveAdGroupAssets**](AdCampaignsApi.md#removeadgroupassets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**RemoveAdKeyword**](AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
 | [**RemoveCampaignAssets**](AdCampaignsApi.md#removecampaignassets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
@@ -163,6 +166,110 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="applygooglerecommendations"></a>
+# **ApplyGoogleRecommendations**
+> ApplyGoogleRecommendations200Response ApplyGoogleRecommendations (ApplyGoogleRecommendationsRequest applyGoogleRecommendationsRequest)
+
+Apply Google Ads recommendations
+
+Apply up to 100 recommendations. This changes the account (budgets, bidding, keywords, assets) and is not reversible or idempotent; Google offers no validate-only mode for it. Items run in partial-failure mode, so one stale recommendation does not block the rest. `parameters` is optional and takes exactly one key named for the recommendation type, in Google's ApplyRecommendationOperation shape (for example `campaignBudget: { newBudgetAmountMicros }` or `keyword: { matchType, cpcBidMicros }`); omit it to apply Google's suggested values.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ApplyGoogleRecommendationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var applyGoogleRecommendationsRequest = new ApplyGoogleRecommendationsRequest(); // ApplyGoogleRecommendationsRequest | 
+
+            try
+            {
+                // Apply Google Ads recommendations
+                ApplyGoogleRecommendations200Response result = apiInstance.ApplyGoogleRecommendations(applyGoogleRecommendationsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ApplyGoogleRecommendations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ApplyGoogleRecommendationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Apply Google Ads recommendations
+    ApiResponse<ApplyGoogleRecommendations200Response> response = apiInstance.ApplyGoogleRecommendationsWithHttpInfo(applyGoogleRecommendationsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ApplyGoogleRecommendationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applyGoogleRecommendationsRequest** | [**ApplyGoogleRecommendationsRequest**](ApplyGoogleRecommendationsRequest.md) |  |  |
+
+### Return type
+
+[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1426,6 +1533,110 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Ad set not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="dismissgooglerecommendations"></a>
+# **DismissGoogleRecommendations**
+> ApplyGoogleRecommendations200Response DismissGoogleRecommendations (DismissGoogleRecommendationsRequest dismissGoogleRecommendationsRequest)
+
+Dismiss Google Ads recommendations
+
+Dismiss up to 100 recommendations so Google stops suggesting them. Items run in partial-failure mode.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DismissGoogleRecommendationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var dismissGoogleRecommendationsRequest = new DismissGoogleRecommendationsRequest(); // DismissGoogleRecommendationsRequest | 
+
+            try
+            {
+                // Dismiss Google Ads recommendations
+                ApplyGoogleRecommendations200Response result = apiInstance.DismissGoogleRecommendations(dismissGoogleRecommendationsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.DismissGoogleRecommendations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DismissGoogleRecommendationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Dismiss Google Ads recommendations
+    ApiResponse<ApplyGoogleRecommendations200Response> response = apiInstance.DismissGoogleRecommendationsWithHttpInfo(dismissGoogleRecommendationsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.DismissGoogleRecommendationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **dismissGoogleRecommendationsRequest** | [**DismissGoogleRecommendationsRequest**](DismissGoogleRecommendationsRequest.md) |  |  |
+
+### Return type
+
+[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4090,6 +4301,118 @@ catch (ApiException e)
 | **404** | Resource not found |  -  |
 | **429** | Google quota or operation budget exhausted with no cached response. |  -  |
 | **501** | Campaign is not on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listgooglerecommendations"></a>
+# **ListGoogleRecommendations**
+> ListGoogleRecommendations200Response ListGoogleRecommendations (string accountId, string? adAccountId = null, string? customerId = null, string? campaignId = null, string? types = null)
+
+List Google Ads recommendations
+
+Google's optimization recommendations for one ad account: type, estimated impact (base vs potential metrics, cost in account currency units), the campaign, ad group or budget they target, and the type-specific payload Google returns (`details`, in Google's own shape with micros). Filter by campaignId and types. Cached for 10 minutes and cleared by apply or dismiss; served stale when Google quota is exhausted.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListGoogleRecommendationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var adAccountId = "adAccountId_example";  // string? | Google customer id, digits only. Defaults to the connection's only customer. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for consistency with other Google endpoints. (optional) 
+            var campaignId = "campaignId_example";  // string? | Only recommendations targeting this campaign. (optional) 
+            var types = "types_example";  // string? | Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA. (optional) 
+
+            try
+            {
+                // List Google Ads recommendations
+                ListGoogleRecommendations200Response result = apiInstance.ListGoogleRecommendations(accountId, adAccountId, customerId, campaignId, types);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ListGoogleRecommendations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListGoogleRecommendationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Google Ads recommendations
+    ApiResponse<ListGoogleRecommendations200Response> response = apiInstance.ListGoogleRecommendationsWithHttpInfo(accountId, adAccountId, customerId, campaignId, types);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ListGoogleRecommendationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **adAccountId** | **string?** | Google customer id, digits only. Defaults to the connection&#39;s only customer. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for consistency with other Google endpoints. | [optional]  |
+| **campaignId** | **string?** | Only recommendations targeting this campaign. | [optional]  |
+| **types** | **string?** | Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA. | [optional]  |
+
+### Return type
+
+[**ListGoogleRecommendations200Response**](ListGoogleRecommendations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recommendations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

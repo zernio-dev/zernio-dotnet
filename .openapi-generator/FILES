@@ -107,6 +107,9 @@ docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
 docs/AppealSmsRegistration200Response.md
 docs/AppealSmsRegistrationRequest.md
+docs/ApplyGoogleRecommendations200Response.md
+docs/ApplyGoogleRecommendationsRequest.md
+docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md
 docs/ApproveWhatsAppGroupJoinRequestsRequest.md
 docs/ArchiveLeadForm200Response.md
 docs/AssignGoogleBusinessLocation200Response.md
@@ -568,6 +571,7 @@ docs/DiscordPlatformDataThreadFromMessage.md
 docs/DiscordRole.md
 docs/DiscordScheduledEvent.md
 docs/DiscordScheduledEventEntityMetadata.md
+docs/DismissGoogleRecommendationsRequest.md
 docs/DmButton.md
 docs/DownloadTikTokVideo200Response.md
 docs/DownloadTikTokVideo200ResponseFormatsInner.md
@@ -1087,6 +1091,10 @@ docs/GooglePmaxAssetGroupInput.md
 docs/GooglePmaxAssetGroupInputImages.md
 docs/GooglePmaxAssetGroupUpdate.md
 docs/GooglePmaxAssetGroupUpdateImages.md
+docs/GoogleRecommendation.md
+docs/GoogleRecommendationImpact.md
+docs/GoogleRecommendationMetrics.md
+docs/GoogleRecommendationResult.md
 docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
@@ -1297,6 +1305,7 @@ docs/ListGoogleBusinessMedia200ResponseMediaItemsInner.md
 docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md
 docs/ListGoogleBusinessPlaceActions200Response.md
 docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md
+docs/ListGoogleRecommendations200Response.md
 docs/ListHighDemandPeriods200Response.md
 docs/ListImessageAudience200Response.md
 docs/ListImessageAvailableNumbers200Response.md
@@ -2531,6 +2540,9 @@ src/Zernio.Test/Model/ApiKeyProfileIdsInnerTests.cs
 src/Zernio.Test/Model/ApiKeyTests.cs
 src/Zernio.Test/Model/AppealSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/AppealSmsRegistrationRequestTests.cs
+src/Zernio.Test/Model/ApplyGoogleRecommendations200ResponseTests.cs
+src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestRecommendationsInnerTests.cs
+src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/ApproveWhatsAppGroupJoinRequestsRequestTests.cs
 src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
@@ -2980,6 +2992,7 @@ src/Zernio.Test/Model/DiscordPlatformDataThreadFromMessageTests.cs
 src/Zernio.Test/Model/DiscordRoleTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventEntityMetadataTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventTests.cs
+src/Zernio.Test/Model/DismissGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/DmButtonTests.cs
 src/Zernio.Test/Model/DownloadTikTokVideo200ResponseFormatsInnerTests.cs
 src/Zernio.Test/Model/DownloadTikTokVideo200ResponseTests.cs
@@ -3490,6 +3503,10 @@ src/Zernio.Test/Model/GooglePmaxAssetGroupInputTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupUpdateImagesTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupUpdateTests.cs
+src/Zernio.Test/Model/GoogleRecommendationImpactTests.cs
+src/Zernio.Test/Model/GoogleRecommendationMetricsTests.cs
+src/Zernio.Test/Model/GoogleRecommendationResultTests.cs
+src/Zernio.Test/Model/GoogleRecommendationTests.cs
 src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
@@ -3694,6 +3711,7 @@ src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessPlaceActions200ResponseTests.cs
+src/Zernio.Test/Model/ListGoogleRecommendations200ResponseTests.cs
 src/Zernio.Test/Model/ListHighDemandPeriods200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAudience200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseNumbersInnerTests.cs
@@ -4912,6 +4930,9 @@ src/Zernio/Model/ApiKeyCreatedBy.cs
 src/Zernio/Model/ApiKeyProfileIdsInner.cs
 src/Zernio/Model/AppealSmsRegistration200Response.cs
 src/Zernio/Model/AppealSmsRegistrationRequest.cs
+src/Zernio/Model/ApplyGoogleRecommendations200Response.cs
+src/Zernio/Model/ApplyGoogleRecommendationsRequest.cs
+src/Zernio/Model/ApplyGoogleRecommendationsRequestRecommendationsInner.cs
 src/Zernio/Model/ApproveWhatsAppGroupJoinRequestsRequest.cs
 src/Zernio/Model/ArchiveLeadForm200Response.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
@@ -5361,6 +5382,7 @@ src/Zernio/Model/DiscordPlatformDataThreadFromMessage.cs
 src/Zernio/Model/DiscordRole.cs
 src/Zernio/Model/DiscordScheduledEvent.cs
 src/Zernio/Model/DiscordScheduledEventEntityMetadata.cs
+src/Zernio/Model/DismissGoogleRecommendationsRequest.cs
 src/Zernio/Model/DmButton.cs
 src/Zernio/Model/DownloadTikTokVideo200Response.cs
 src/Zernio/Model/DownloadTikTokVideo200ResponseFormatsInner.cs
@@ -5871,6 +5893,10 @@ src/Zernio/Model/GooglePmaxAssetGroupInput.cs
 src/Zernio/Model/GooglePmaxAssetGroupInputImages.cs
 src/Zernio/Model/GooglePmaxAssetGroupUpdate.cs
 src/Zernio/Model/GooglePmaxAssetGroupUpdateImages.cs
+src/Zernio/Model/GoogleRecommendation.cs
+src/Zernio/Model/GoogleRecommendationImpact.cs
+src/Zernio/Model/GoogleRecommendationMetrics.cs
+src/Zernio/Model/GoogleRecommendationResult.cs
 src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs
@@ -6075,6 +6101,7 @@ src/Zernio/Model/ListGoogleBusinessMedia200ResponseMediaItemsInner.cs
 src/Zernio/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.cs
 src/Zernio/Model/ListGoogleBusinessPlaceActions200Response.cs
 src/Zernio/Model/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.cs
+src/Zernio/Model/ListGoogleRecommendations200Response.cs
 src/Zernio/Model/ListHighDemandPeriods200Response.cs
 src/Zernio/Model/ListImessageAudience200Response.cs
 src/Zernio/Model/ListImessageAvailableNumbers200Response.cs
