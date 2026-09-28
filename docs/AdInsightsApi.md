@@ -1131,11 +1131,11 @@ catch (ApiException e)
 
 <a id="queryadinsights"></a>
 # **QueryAdInsights**
-> QueryAdInsights200Response QueryAdInsights (string accountId, string? objectId = null, string? query = null, string? adAccountId = null, string? customerId = null, string? pageToken = null, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
+> QueryAdInsights200Response QueryAdInsights (string accountId, string? objectId = null, string? query = null, string? adAccountId = null, string? reportType = null, string? dataLevel = null, string? dimensions = null, string? metrics = null, int? page = null, int? pageSize = null, string? customerId = null, string? pageToken = null, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
 
 Flexible live insights query
 
-Live, flexible insights query. The account's platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the node; `level` sets row granularity. Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via `query` (campaign/keyword/search-term/geo/demographic/asset/shopping resources, `change_event`, any `segments.*`) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow `paging.nextPageToken` with `pageToken`. `adAccountId` (alias `customerId`) is only needed when the connection has several Google Ads accounts. Semantic validation is Google's: an invalid query returns a 400 carrying Google's message (note: selecting `segments.date` requires a finite date filter).  Queries run against Google Ads API **v25**, so write GAQL against the v25 field reference. One exception is translated for backward compatibility: the legacy `campaign.start_date` / `campaign.end_date` (removed by Google in v23) are rewritten to `campaign.start_date_time` / `campaign.end_date_time`, and rows still carry `campaign.startDate` / `campaign.endDate` as `YYYY-MM-DD`. In WHERE, `=`, `<`, `<=`, `>`, `>=`, `BETWEEN` and `IS [NOT] NULL` against a `'YYYY-MM-DD'` literal are translated; any other form returns Google's 400. New code should select the `_date_time` fields directly. 
+Live, flexible insights query. The account's platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the node; `level` sets row granularity. Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via `query` (campaign/keyword/search-term/geo/demographic/asset/shopping resources, `change_event`, any `segments.*`) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow `paging.nextPageToken` with `pageToken`. `adAccountId` (alias `customerId`) is only needed when the connection has several Google Ads accounts. Semantic validation is Google's: an invalid query returns a 400 carrying Google's message (note: selecting `segments.date` requires a finite date filter).  Queries run against Google Ads API **v25**, so write GAQL against the v25 field reference. One exception is translated for backward compatibility: the legacy `campaign.start_date` / `campaign.end_date` (removed by Google in v23) are rewritten to `campaign.start_date_time` / `campaign.end_date_time`, and rows still carry `campaign.startDate` / `campaign.endDate` as `YYYY-MM-DD`. In WHERE, `=`, `<`, `<=`, `>`, `>=`, `BETWEEN` and `IS [NOT] NULL` against a `'YYYY-MM-DD'` literal are translated; any other form returns Google's 400. New code should select the `_date_time` fields directly.  **TikTok (tiktok/tiktokads)**: passthrough of TikTok's synchronous report (`/report/integrated/get/`). Send `adAccountId`, `dataLevel`, `dimensions`, `metrics`, `fromDate`/`toDate` (TikTok caps the span at 365 days) and optionally `filtering` in the same `[{\"field\", \"operator\", \"value\"}]` shape as Meta (operator is TikTok's `filter_type`, e.g. `IN`; array values are JSON-encoded for TikTok). Rows come back verbatim as `{ dimensions, metrics }` with page-number paging.  *De-duplicated reach across a set of campaigns, ad groups or ads*: filter the set and group by `country_code` instead of the entity id. TikTok then counts each person once across the whole set and range, per country. Example, two campaigns for a month: `dataLevel=AUCTION_CAMPAIGN&dimensions=country_code&metrics=reach,impressions,frequency&fromDate=2026-09-01&toDate=2026-09-30&filtering=[{\"field\":\"campaign_ids\",\"operator\":\"IN\",\"value\":[\"1876574798182050\",\"1876575504573650\"]}]`. For a set of ads use `dataLevel=AUCTION_AD` with `ad_ids`. A filter on a finer entity than `dataLevel` (e.g. `ad_ids` at `AUCTION_CAMPAIGN`) returns 400: TikTok would otherwise widen it to every parent entity containing those ids. When the set delivers in several countries, reach is per country; summing the rows counts a person reached in two countries twice. `AUCTION_ADVERTISER` rejects entity filters. 
 
 ### Example
 ```csharp
@@ -1161,10 +1161,16 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta, Google or TikTok contract.
             var objectId = "objectId_example";  // string? | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id). (optional) 
             var query = "query_example";  // string? | Google only (required there): the GAQL SELECT statement to run. (optional) 
-            var adAccountId = "adAccountId_example";  // string? | Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Google: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. TikTok (required there): the advertiser id. (optional) 
+            var reportType = "BASIC";  // string? | TikTok only: report_type. (optional)  (default to BASIC)
+            var dataLevel = "AUCTION_ADVERTISER";  // string? | TikTok only (required there): data_level. (optional) 
+            var dimensions = "dimensions_example";  // string? | TikTok only (required there): 1-4 comma-separated TikTok dimensions (e.g. country_code, campaign_id, stat_time_day). (optional) 
+            var metrics = "metrics_example";  // string? | TikTok only (required there): comma-separated TikTok metrics (e.g. reach,impressions,frequency,spend). (optional) 
+            var page = 1;  // int? | TikTok only: page number. (optional)  (default to 1)
+            var pageSize = 100;  // int? | TikTok only: rows per page. (optional)  (default to 100)
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var pageToken = "pageToken_example";  // string? | Google only: cursor from paging.nextPageToken of the previous page. (optional) 
             var level = "ad";  // string? | Row granularity (optional) 
@@ -1174,9 +1180,9 @@ namespace Example
             var actionAttributionWindows = "actionAttributionWindows_example";  // string? | Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional) 
             var actionReportTime = "actionReportTime_example";  // string? | When actions are counted: impression, conversion or mixed. (optional) 
             var useUnifiedAttributionSetting = true;  // bool? | Use the ad sets' own attribution settings for action counting. (optional) 
-            var filtering = "filtering_example";  // string? | JSON array of Meta filter objects: [{\"field\", \"operator\", \"value\"}]. Applied server-side by Meta. (optional) 
+            var filtering = "filtering_example";  // string? | JSON array of filter objects: [{\"field\", \"operator\", \"value\"}]. Applied server-side by Meta or TikTok (TikTok fields e.g. campaign_ids, adgroup_ids, ad_ids). (optional) 
             var datePreset = "datePreset_example";  // string? | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional) 
-            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of range (YYYY-MM-DD); requires toDate. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of range (YYYY-MM-DD); requires toDate. Required on TikTok. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of range (YYYY-MM-DD); requires fromDate. (optional) 
             var timeIncrement = "timeIncrement_example";  // string? | Days per row (1-90), monthly, or all_days. (optional) 
             var limit = 25;  // int? | Rows per page (optional)  (default to 25)
@@ -1185,7 +1191,7 @@ namespace Example
             try
             {
                 // Flexible live insights query
-                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, query, adAccountId, reportType, dataLevel, dimensions, metrics, page, pageSize, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1206,7 +1212,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Flexible live insights query
-    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, query, adAccountId, reportType, dataLevel, dimensions, metrics, page, pageSize, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1223,10 +1229,16 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. |  |
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta, Google or TikTok contract. |  |
 | **objectId** | **string?** | Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional]  |
 | **query** | **string?** | Google only (required there): the GAQL SELECT statement to run. | [optional]  |
-| **adAccountId** | **string?** | Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. | [optional]  |
+| **adAccountId** | **string?** | Google: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. TikTok (required there): the advertiser id. | [optional]  |
+| **reportType** | **string?** | TikTok only: report_type. | [optional] [default to BASIC] |
+| **dataLevel** | **string?** | TikTok only (required there): data_level. | [optional]  |
+| **dimensions** | **string?** | TikTok only (required there): 1-4 comma-separated TikTok dimensions (e.g. country_code, campaign_id, stat_time_day). | [optional]  |
+| **metrics** | **string?** | TikTok only (required there): comma-separated TikTok metrics (e.g. reach,impressions,frequency,spend). | [optional]  |
+| **page** | **int?** | TikTok only: page number. | [optional] [default to 1] |
+| **pageSize** | **int?** | TikTok only: rows per page. | [optional] [default to 100] |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **pageToken** | **string?** | Google only: cursor from paging.nextPageToken of the previous page. | [optional]  |
 | **level** | **string?** | Row granularity | [optional]  |
@@ -1236,9 +1248,9 @@ catch (ApiException e)
 | **actionAttributionWindows** | **string?** | Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional]  |
 | **actionReportTime** | **string?** | When actions are counted: impression, conversion or mixed. | [optional]  |
 | **useUnifiedAttributionSetting** | **bool?** | Use the ad sets&#39; own attribution settings for action counting. | [optional]  |
-| **filtering** | **string?** | JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. | [optional]  |
+| **filtering** | **string?** | JSON array of filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta or TikTok (TikTok fields e.g. campaign_ids, adgroup_ids, ad_ids). | [optional]  |
 | **datePreset** | **string?** | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. | [optional]  |
-| **fromDate** | **DateOnly?** | Start of range (YYYY-MM-DD); requires toDate. | [optional]  |
+| **fromDate** | **DateOnly?** | Start of range (YYYY-MM-DD); requires toDate. Required on TikTok. | [optional]  |
 | **toDate** | **DateOnly?** | End of range (YYYY-MM-DD); requires fromDate. | [optional]  |
 | **timeIncrement** | **string?** | Days per row (1-90), monthly, or all_days. | [optional]  |
 | **limit** | **int?** | Rows per page | [optional] [default to 25] |
@@ -1264,10 +1276,11 @@ catch (ApiException e)
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | TikTok only: the connection cannot read that advertiser. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
-| **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |
+| **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

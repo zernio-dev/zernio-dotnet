@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ObjectId** | **string** | Meta responses only. | [optional] 
+**AdAccountId** | **string** | TikTok responses only: the advertiser queried. | [optional] 
 **CustomerId** | **string** | Google responses only: the customer the query ran against. | [optional] 
 **FieldMask** | **string** | Google responses only: the selected fields echoed by Google. | [optional] 
 **Data** | **List&lt;Object&gt;** |  | [optional] 
