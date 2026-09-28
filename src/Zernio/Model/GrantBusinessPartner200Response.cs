@@ -28,42 +28,42 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// MetaPagePartner
+    /// GrantBusinessPartner200Response
     /// </summary>
-    [DataContract(Name = "MetaPagePartner")]
-    public partial class MetaPagePartner : IValidatableObject
+    [DataContract(Name = "grantBusinessPartner_200_response")]
+    public partial class GrantBusinessPartner200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MetaPagePartner" /> class.
+        /// Initializes a new instance of the <see cref="GrantBusinessPartner200Response" /> class.
         /// </summary>
-        /// <param name="businessId">businessId.</param>
-        /// <param name="name">name.</param>
-        /// <param name="permittedTasks">Tasks the partner holds, in the bare spelling the grant takes (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_ prefix, which is stripped here; partners granted in Business Settings may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS or REVENUE..</param>
-        public MetaPagePartner(string businessId = default, string name = default, List<string> permittedTasks = default)
+        /// <param name="page">page.</param>
+        /// <param name="partner">partner.</param>
+        /// <param name="alreadyShared">Always true on this response..</param>
+        public GrantBusinessPartner200Response(MetaPageOwnership page = default, GrantBusinessPartner200ResponsePartner partner = default, bool alreadyShared = default)
         {
-            this.BusinessId = businessId;
-            this.Name = name;
-            this.PermittedTasks = permittedTasks;
+            this.Page = page;
+            this.Partner = partner;
+            this.AlreadyShared = alreadyShared;
         }
 
         /// <summary>
-        /// Gets or Sets BusinessId
+        /// Gets or Sets Page
         /// </summary>
-        [DataMember(Name = "businessId", EmitDefaultValue = false)]
-        public string BusinessId { get; set; }
+        [DataMember(Name = "page", EmitDefaultValue = false)]
+        public MetaPageOwnership Page { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets Partner
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
+        [DataMember(Name = "partner", EmitDefaultValue = false)]
+        public GrantBusinessPartner200ResponsePartner Partner { get; set; }
 
         /// <summary>
-        /// Tasks the partner holds, in the bare spelling the grant takes (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_ prefix, which is stripped here; partners granted in Business Settings may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS or REVENUE.
+        /// Always true on this response.
         /// </summary>
-        /// <value>Tasks the partner holds, in the bare spelling the grant takes (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_ prefix, which is stripped here; partners granted in Business Settings may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS or REVENUE.</value>
-        [DataMember(Name = "permittedTasks", EmitDefaultValue = false)]
-        public List<string> PermittedTasks { get; set; }
+        /// <value>Always true on this response.</value>
+        [DataMember(Name = "alreadyShared", EmitDefaultValue = true)]
+        public bool AlreadyShared { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,10 +72,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MetaPagePartner {\n");
-            sb.Append("  BusinessId: ").Append(BusinessId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  PermittedTasks: ").Append(PermittedTasks).Append("\n");
+            sb.Append("class GrantBusinessPartner200Response {\n");
+            sb.Append("  Page: ").Append(Page).Append("\n");
+            sb.Append("  Partner: ").Append(Partner).Append("\n");
+            sb.Append("  AlreadyShared: ").Append(AlreadyShared).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

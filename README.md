@@ -2082,6 +2082,8 @@ Class | Method | HTTP request | Description
  - [Model.GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [Model.GoogleSitelink](docs/GoogleSitelink.md)
  - [Model.GoogleStructuredSnippet](docs/GoogleStructuredSnippet.md)
+ - [Model.GrantBusinessPartner200Response](docs/GrantBusinessPartner200Response.md)
+ - [Model.GrantBusinessPartner200ResponsePartner](docs/GrantBusinessPartner200ResponsePartner.md)
  - [Model.GrantBusinessPartner201Response](docs/GrantBusinessPartner201Response.md)
  - [Model.GrantBusinessPartner201ResponsePartner](docs/GrantBusinessPartner201ResponsePartner.md)
  - [Model.GrantBusinessPartnerRequest](docs/GrantBusinessPartnerRequest.md)

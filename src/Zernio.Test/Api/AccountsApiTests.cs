@@ -181,7 +181,7 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //GrantBusinessPartnerRequest grantBusinessPartnerRequest = null;
             //var response = instance.GrantBusinessPartner(accountId, grantBusinessPartnerRequest);
-            //Assert.IsType<GrantBusinessPartner201Response>(response);
+            //Assert.IsType<GrantBusinessPartner200Response>(response);
         }
 
         /// <summary>

@@ -28,21 +28,19 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// MetaPagePartner
+    /// GrantBusinessPartner200ResponsePartner
     /// </summary>
-    [DataContract(Name = "MetaPagePartner")]
-    public partial class MetaPagePartner : IValidatableObject
+    [DataContract(Name = "grantBusinessPartner_200_response_partner")]
+    public partial class GrantBusinessPartner200ResponsePartner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MetaPagePartner" /> class.
+        /// Initializes a new instance of the <see cref="GrantBusinessPartner200ResponsePartner" /> class.
         /// </summary>
         /// <param name="businessId">businessId.</param>
-        /// <param name="name">name.</param>
-        /// <param name="permittedTasks">Tasks the partner holds, in the bare spelling the grant takes (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_ prefix, which is stripped here; partners granted in Business Settings may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS or REVENUE..</param>
-        public MetaPagePartner(string businessId = default, string name = default, List<string> permittedTasks = default)
+        /// <param name="permittedTasks">Tasks the partner currently holds..</param>
+        public GrantBusinessPartner200ResponsePartner(string businessId = default, List<string> permittedTasks = default)
         {
             this.BusinessId = businessId;
-            this.Name = name;
             this.PermittedTasks = permittedTasks;
         }
 
@@ -53,15 +51,9 @@ namespace Zernio.Model
         public string BusinessId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Tasks the partner currently holds.
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Tasks the partner holds, in the bare spelling the grant takes (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_ prefix, which is stripped here; partners granted in Business Settings may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS or REVENUE.
-        /// </summary>
-        /// <value>Tasks the partner holds, in the bare spelling the grant takes (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_ prefix, which is stripped here; partners granted in Business Settings may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS or REVENUE.</value>
+        /// <value>Tasks the partner currently holds.</value>
         [DataMember(Name = "permittedTasks", EmitDefaultValue = false)]
         public List<string> PermittedTasks { get; set; }
 
@@ -72,9 +64,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MetaPagePartner {\n");
+            sb.Append("class GrantBusinessPartner200ResponsePartner {\n");
             sb.Append("  BusinessId: ").Append(BusinessId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PermittedTasks: ").Append(PermittedTasks).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

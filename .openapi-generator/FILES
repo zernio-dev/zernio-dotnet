@@ -1130,6 +1130,8 @@ docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
 docs/GoogleStructuredSnippet.md
+docs/GrantBusinessPartner200Response.md
+docs/GrantBusinessPartner200ResponsePartner.md
 docs/GrantBusinessPartner201Response.md
 docs/GrantBusinessPartner201ResponsePartner.md
 docs/GrantBusinessPartnerRequest.md
@@ -3622,6 +3624,8 @@ src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
 src/Zernio.Test/Model/GoogleStructuredSnippetTests.cs
+src/Zernio.Test/Model/GrantBusinessPartner200ResponsePartnerTests.cs
+src/Zernio.Test/Model/GrantBusinessPartner200ResponseTests.cs
 src/Zernio.Test/Model/GrantBusinessPartner201ResponsePartnerTests.cs
 src/Zernio.Test/Model/GrantBusinessPartner201ResponseTests.cs
 src/Zernio.Test/Model/GrantBusinessPartnerRequestTests.cs
@@ -6092,6 +6096,8 @@ src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs
 src/Zernio/Model/GoogleStructuredSnippet.cs
+src/Zernio/Model/GrantBusinessPartner200Response.cs
+src/Zernio/Model/GrantBusinessPartner200ResponsePartner.cs
 src/Zernio/Model/GrantBusinessPartner201Response.cs
 src/Zernio/Model/GrantBusinessPartner201ResponsePartner.cs
 src/Zernio/Model/GrantBusinessPartnerRequest.cs

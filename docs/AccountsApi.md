@@ -954,11 +954,11 @@ catch (ApiException e)
 
 <a id="grantbusinesspartner"></a>
 # **GrantBusinessPartner**
-> GrantBusinessPartner201Response GrantBusinessPartner (string accountId, GrantBusinessPartnerRequest grantBusinessPartnerRequest)
+> GrantBusinessPartner200Response GrantBusinessPartner (string accountId, GrantBusinessPartnerRequest grantBusinessPartnerRequest)
 
 Share the Page with a partner business
 
-Grants a partner business portfolio tasks on the Facebook Page behind this account. With `ADVERTISE`, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user's ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers `422` until that is done. Granting to a portfolio that already has access replaces its task set, so the call is safe to repeat.  After the grant, the partner assigns its own people to the Page with `POST /v1/ads/page-users`; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in `page` so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
+Grants a partner business portfolio tasks on the Facebook Page behind this account. With `ADVERTISE`, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user's ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers `422` until that is done. Meta refuses a second grant to a portfolio that already has access instead of replacing its tasks, so that case answers `200` with `alreadyShared: true` and the tasks the partner currently holds. To change a partner's tasks, revoke and grant again.  After the grant, the partner assigns its own people to the Page with `POST /v1/ads/page-users`; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in `page` so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
 
 ### Example
 ```csharp
@@ -990,7 +990,7 @@ namespace Example
             try
             {
                 // Share the Page with a partner business
-                GrantBusinessPartner201Response result = apiInstance.GrantBusinessPartner(accountId, grantBusinessPartnerRequest);
+                GrantBusinessPartner200Response result = apiInstance.GrantBusinessPartner(accountId, grantBusinessPartnerRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1011,7 +1011,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Share the Page with a partner business
-    ApiResponse<GrantBusinessPartner201Response> response = apiInstance.GrantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest);
+    ApiResponse<GrantBusinessPartner200Response> response = apiInstance.GrantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1033,7 +1033,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GrantBusinessPartner201Response**](GrantBusinessPartner201Response.md)
+[**GrantBusinessPartner200Response**](GrantBusinessPartner200Response.md)
 
 ### Authorization
 
@@ -1048,6 +1048,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | The portfolio already had access; nothing changed |  -  |
 | **201** | Page shared |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
