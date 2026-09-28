@@ -1584,7 +1584,7 @@ catch (ApiException e)
 | **200** | Commerce settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2612,7 +2612,7 @@ catch (ApiException e)
 | **201** | Linked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2819,7 +2819,7 @@ catch (ApiException e)
 | **200** | Linked catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3953,7 +3953,7 @@ catch (ApiException e)
 | **200** | Unlinked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4154,7 +4154,7 @@ catch (ApiException e)
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
