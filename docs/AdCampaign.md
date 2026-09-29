@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Status** | **AdStatus** | Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;. | [optional] 
 **ReviewStatus** | **AdReviewStatus** |  | [optional] 
 **PlatformCampaignStatus** | **string** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;; ChatGPT (OpenAI): the campaign&#39;s own switch, active / paused / archived; TikTok: the campaign&#39;s own switch &#x60;operation_status&#x60;, ENABLE / DISABLE). | [optional] 
+**StatusReadAt** | **DateTime?** | Only on GET /v1/ads/campaigns with &#x60;live&#x3D;true&#x60;. When &#x60;platformCampaignStatus&#x60; was read from the platform; null when this campaign could not be read live. | [optional] 
 **CampaignIssuesInfo** | **List&lt;Object&gt;** | Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). | [optional] 
 **AdCount** | **int** |  | [optional] 
 **Budget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  | [optional] 

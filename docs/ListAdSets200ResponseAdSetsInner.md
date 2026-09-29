@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Targeting** | [**ListAdSets200ResponseAdSetsInnerTargeting**](ListAdSets200ResponseAdSetsInnerTargeting.md) |  | [optional] 
 **IsExternal** | **bool?** |  | [optional] 
 **PlatformCreatedAt** | **DateTime?** |  | [optional] 
+**StatusReadAt** | **DateTime?** | Only with &#x60;live&#x3D;true&#x60;. When &#x60;platformAdSetStatus&#x60; was read from the platform; null when this row was not read live. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
