@@ -2488,7 +2488,7 @@ namespace Example
             var areaCode = "areaCode_example";  // string? | Area code or national dialing code the number must start with, e.g. 415 or 91 (optional) 
             var type = "type_example";  // string? | Alias of numberType, kept for existing callers (optional) 
             var prefix = "prefix_example";  // string? | Alias of areaCode, kept for existing callers (optional) 
-            var locality = "locality_example";  // string? | City (optional) 
+            var locality = "locality_example";  // string? | A city name, matched against the numbering plan (accents and common aliases allowed) and searched by that city's area codes; a name no city of the plan matches returns no numbers. `areaCode` takes a city name too. (optional) 
             var contains = "contains_example";  // string? | Pattern to match within the number (optional) 
             var sms = true;  // bool? | true narrows the pool to SMS-capable numbers. Each result still carries its full `features` list for per-number capability badging. (optional) 
             var limit = 20;  // int? |  (optional)  (default to 20)
@@ -2540,7 +2540,7 @@ catch (ApiException e)
 | **areaCode** | **string?** | Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional]  |
 | **type** | **string?** | Alias of numberType, kept for existing callers | [optional]  |
 | **prefix** | **string?** | Alias of areaCode, kept for existing callers | [optional]  |
-| **locality** | **string?** | City | [optional]  |
+| **locality** | **string?** | A city name, matched against the numbering plan (accents and common aliases allowed) and searched by that city&#39;s area codes; a name no city of the plan matches returns no numbers. &#x60;areaCode&#x60; takes a city name too. | [optional]  |
 | **contains** | **string?** | Pattern to match within the number | [optional]  |
 | **sms** | **bool?** | true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 20] |
