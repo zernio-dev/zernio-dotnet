@@ -983,7 +983,7 @@ namespace Zernio.Model
         /// <param name="zips">Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X..</param>
         /// <param name="metros">DMA / metro-area geo targeting (Meta and TikTok). &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro (TikTok metros appear as type &#x60;metro&#x60;, e.g. the New York DMA)..</param>
         /// <param name="customLocations">Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support..</param>
-        /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id..</param>
+        /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400). Each must include id..</param>
         /// <param name="workPositions">Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Each must include id. Rejected on other platforms (use LinkedIn&#39;s &#x60;jobTitles&#x60; there)..</param>
         /// <param name="workEmployers">Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer. Each must include id..</param>
         /// <param name="workIndustries">Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Each must include id. Rejected on other platforms (use LinkedIn&#39;s &#x60;industries&#x60; there)..</param>
@@ -1479,9 +1479,9 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestCustomLocationsInner> CustomLocations { get; set; }
 
         /// <summary>
-        /// Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.
+        /// Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400). Each must include id.
         /// </summary>
-        /// <value>Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.</value>
+        /// <value>Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400). Each must include id.</value>
         [DataMember(Name = "behaviors", EmitDefaultValue = false)]
         public List<CreateStandaloneAdRequestBehaviorsInner> Behaviors { get; set; }
 

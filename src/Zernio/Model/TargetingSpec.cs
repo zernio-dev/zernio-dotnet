@@ -251,7 +251,7 @@ namespace Zernio.Model
         /// <param name="incomeTier">Normalized household-income tier (ZIP/percentile based). Meta and TikTok express all four. Google maps only &#x60;top_10&#x60; (its INCOME_RANGE_90_UP); other tiers on Google, and any income tier on LinkedIn / X / Pinterest, are rejected. On Meta, income/zip targeting requires the relevant &#x60;specialAdCategories&#x60; to be unset (housing/employment/credit ads cannot use it). .</param>
         /// <param name="languages">Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;) for a specific one. Unknown codes are rejected..</param>
         /// <param name="interests">Interest entities from /v1/ads/targeting/search?dimension&#x3D;interest. Each carries the platform&#39;s opaque id..</param>
-        /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok..</param>
+        /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400)..</param>
         /// <param name="workPositions">Meta only. Job title entities from /v1/ads/targeting/search?dimension&#x3D;workPosition. Not interchangeable with the LinkedIn &#x60;jobTitles&#x60; URN fragments..</param>
         /// <param name="workEmployers">Meta only. Employer entities from /v1/ads/targeting/search?dimension&#x3D;workEmployer..</param>
         /// <param name="workIndustries">Meta only. Work-industry entities from /v1/ads/targeting/search?dimension&#x3D;workIndustry. Not interchangeable with the LinkedIn &#x60;industries&#x60; URN fragments..</param>
@@ -389,9 +389,9 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestBehaviorsInner> Interests { get; set; }
 
         /// <summary>
-        /// Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok.
+        /// Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400).
         /// </summary>
-        /// <value>Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok.</value>
+        /// <value>Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400).</value>
         [DataMember(Name = "behaviors", EmitDefaultValue = false)]
         public List<CreateStandaloneAdRequestBehaviorsInner> Behaviors { get; set; }
 

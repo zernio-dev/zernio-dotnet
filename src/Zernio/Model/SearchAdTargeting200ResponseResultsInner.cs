@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">The platform&#39;s opaque id. Use as a geo &#x60;key&#x60; (regions/cities/zips/metros) or an entity &#x60;id&#x60; (interests/behaviors) in TargetingSpec. A &#x60;country&#x60; result is the exception on every platform: its id is the ISO 3166-1 alpha-2 code, which is what &#x60;targeting.countries&#x60; takes. (required).</param>
         /// <param name="name">Human-readable label. (required).</param>
-        /// <param name="type">What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income, industry, jobFunction, seniority, companySize). (required).</param>
+        /// <param name="type">What the result is. Equals the requested dimension (interest, behavior, income, language, workPosition, workEmployer, workIndustry, industry, jobFunction, seniority, companySize), or the location level for geo (country, region, city, zip, metro, ...). (required).</param>
         /// <param name="path">Optional breadcrumb of parent labels (e.g. [&#39;United States&#39;, &#39;California&#39;, &#39;Los Angeles&#39;]). Disambiguates same-named results..</param>
         /// <param name="audienceSize">Optional estimated reachable users for this option, when the platform returns it..</param>
         /// <param name="countryCode">ISO-3166 alpha-2 of the country a sub-country geo result (city, region, zip, metro) belongs to, when the platform reports it (Meta does). Useful to know whether a location falls under the EU DSA disclosure rules before creating the ad..</param>
@@ -87,9 +87,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income, industry, jobFunction, seniority, companySize).
+        /// What the result is. Equals the requested dimension (interest, behavior, income, language, workPosition, workEmployer, workIndustry, industry, jobFunction, seniority, companySize), or the location level for geo (country, region, city, zip, metro, ...).
         /// </summary>
-        /// <value>What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income, industry, jobFunction, seniority, companySize).</value>
+        /// <value>What the result is. Equals the requested dimension (interest, behavior, income, language, workPosition, workEmployer, workIndustry, industry, jobFunction, seniority, companySize), or the location level for geo (country, region, city, zip, metro, ...).</value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
