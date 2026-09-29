@@ -546,7 +546,7 @@ catch (ApiException e)
 
 <a id="createphonenumberstockwatch"></a>
 # **CreatePhoneNumberStockWatch**
-> PhoneNumberStockWatch CreatePhoneNumberStockWatch (CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest)
+> CreatePhoneNumberStockWatch200Response CreatePhoneNumberStockWatch (CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest)
 
 Watch an out-of-stock country
 
@@ -581,7 +581,7 @@ namespace Example
             try
             {
                 // Watch an out-of-stock country
-                PhoneNumberStockWatch result = apiInstance.CreatePhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
+                CreatePhoneNumberStockWatch200Response result = apiInstance.CreatePhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -602,7 +602,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Watch an out-of-stock country
-    ApiResponse<PhoneNumberStockWatch> response = apiInstance.CreatePhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
+    ApiResponse<CreatePhoneNumberStockWatch200Response> response = apiInstance.CreatePhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -623,7 +623,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)
+[**CreatePhoneNumberStockWatch200Response**](CreatePhoneNumberStockWatch200Response.md)
 
 ### Authorization
 

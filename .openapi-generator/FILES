@@ -270,6 +270,10 @@ docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
 docs/CheckPhoneNumberAvailability200Response.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailability.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInner.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.md
 docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
 docs/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md
 docs/CheckPhoneNumberPortability200Response.md
@@ -525,6 +529,8 @@ docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md
 docs/CreatePhoneNumberPortInRequest.md
 docs/CreatePhoneNumberPortInRequestEndUser.md
 docs/CreatePhoneNumberPortInRequestRequirementsInner.md
+docs/CreatePhoneNumberStockWatch200Response.md
+docs/CreatePhoneNumberStockWatch201Response.md
 docs/CreatePhoneNumberStockWatchRequest.md
 docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
@@ -2980,6 +2986,10 @@ src/Zernio.Test/Model/ChangeCommerceProductTagsRequestTests.cs
 src/Zernio.Test/Model/ChannelPickerChannelsInnerTests.cs
 src/Zernio.Test/Model/ChannelPickerTeamTests.cs
 src/Zernio.Test/Model/ChannelPickerTests.cs
+src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInnerTests.cs
+src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInnerTests.cs
+src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInnerTests.cs
+src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseTests.cs
@@ -3229,6 +3239,8 @@ src/Zernio.Test/Model/CreatePhoneNumberPortIn201ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestEndUserTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestRequirementsInnerTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestTests.cs
+src/Zernio.Test/Model/CreatePhoneNumberStockWatch200ResponseTests.cs
+src/Zernio.Test/Model/CreatePhoneNumberStockWatch201ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberStockWatchRequestTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
@@ -5651,6 +5663,10 @@ src/Zernio/Model/ChannelPicker.cs
 src/Zernio/Model/ChannelPickerChannelsInner.cs
 src/Zernio/Model/ChannelPickerTeam.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200Response.cs
+src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaAvailability.cs
+src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.cs
+src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInner.cs
+src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.cs
 src/Zernio/Model/CheckPhoneNumberPortability200Response.cs
@@ -5899,6 +5915,8 @@ src/Zernio/Model/CreatePhoneNumberPortIn201ResponseOrdersInner.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequest.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequestEndUser.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequestRequirementsInner.cs
+src/Zernio/Model/CreatePhoneNumberStockWatch200Response.cs
+src/Zernio/Model/CreatePhoneNumberStockWatch201Response.cs
 src/Zernio/Model/CreatePhoneNumberStockWatchRequest.cs
 src/Zernio/Model/CreatePinterestBoard201Response.cs
 src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
