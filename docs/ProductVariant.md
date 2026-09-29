@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **CompareAtPrice** | **string** | Strike-through price; null when the variant is not on sale. | [optional] 
 **InventoryQuantity** | **int?** | Units on hand across locations; null when inventory is not tracked. | [optional] 
 **AvailableForSale** | **bool** |  | [optional] 
-**SelectedOptions** | [**List&lt;ProductVariantSelectedOptionsInner&gt;**](ProductVariantSelectedOptionsInner.md) |  | [optional] 
+**SelectedOptions** | [**List&lt;CreateCommerceProductVariantsRequestVariantsInnerOptionsInner&gt;**](CreateCommerceProductVariantsRequestVariantsInnerOptionsInner.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
