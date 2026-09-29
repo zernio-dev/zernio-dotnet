@@ -933,6 +933,8 @@ docs/GetLinkedInSupplyForecastRequestCompetingBid.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
+docs/GetMessengerGetStarted200Response.md
+docs/GetMessengerGetStarted200ResponseData.md
 docs/GetMessengerMenu200Response.md
 docs/GetPageWebhookSubscription200Response.md
 docs/GetPendingOAuthData200Response.md
@@ -1945,6 +1947,7 @@ docs/SetImessageSubscription200Response.md
 docs/SetImessageSubscriptionRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
+docs/SetMessengerGetStartedRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
@@ -3488,6 +3491,8 @@ src/Zernio.Test/Model/GetLinkedInSupplyForecastRequestTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
 src/Zernio.Test/Model/GetMessageAttachment200ResponseTests.cs
+src/Zernio.Test/Model/GetMessengerGetStarted200ResponseDataTests.cs
+src/Zernio.Test/Model/GetMessengerGetStarted200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerMenu200ResponseTests.cs
 src/Zernio.Test/Model/GetPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
@@ -4477,6 +4482,7 @@ src/Zernio.Test/Model/SetImessageSubscription200ResponseTests.cs
 src/Zernio.Test/Model/SetImessageSubscriptionRequestTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestIceBreakersInnerTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
+src/Zernio.Test/Model/SetMessengerGetStartedRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermission200ResponseTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
@@ -6020,6 +6026,8 @@ src/Zernio/Model/GetLinkedInSupplyForecastRequestCompetingBid.cs
 src/Zernio/Model/GetMediaPresignedUrl200Response.cs
 src/Zernio/Model/GetMediaPresignedUrlRequest.cs
 src/Zernio/Model/GetMessageAttachment200Response.cs
+src/Zernio/Model/GetMessengerGetStarted200Response.cs
+src/Zernio/Model/GetMessengerGetStarted200ResponseData.cs
 src/Zernio/Model/GetMessengerMenu200Response.cs
 src/Zernio/Model/GetPageWebhookSubscription200Response.cs
 src/Zernio/Model/GetPendingOAuthData200Response.cs
@@ -7009,6 +7017,7 @@ src/Zernio/Model/SetImessageSubscription200Response.cs
 src/Zernio/Model/SetImessageSubscriptionRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
+src/Zernio/Model/SetMessengerGetStartedRequest.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetPartnershipAdPermission200Response.cs
 src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
