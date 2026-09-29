@@ -4987,6 +4987,7 @@ catch (ApiException e)
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
+| **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
