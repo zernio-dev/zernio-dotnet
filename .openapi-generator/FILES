@@ -253,19 +253,19 @@ docs/CampaignBiddingBidSpec.md
 docs/CampaignBiddingPortfolio.md
 docs/CancelBroadcast200Response.md
 docs/CancelPhoneNumberPortIn200Response.md
-docs/ChangeCollectionChannels200Response.md
+docs/ChangeCommerceCollectionChannels200Response.md
 docs/ChangeCommerceCollectionProducts200Response.md
 docs/ChangeCommerceCollectionProductsRequest.md
 docs/ChangeCommerceInventoryRequest.md
 docs/ChangeCommerceInventoryRequestChangesInner.md
+docs/ChangeCommerceProductChannels200Response.md
+docs/ChangeCommerceProductChannelsRequest.md
 docs/ChangeCommerceProductState200Response.md
 docs/ChangeCommerceProductState200ResponseFailedInner.md
 docs/ChangeCommerceProductStateRequest.md
 docs/ChangeCommerceProductTags200Response.md
 docs/ChangeCommerceProductTags200ResponseFailedInner.md
 docs/ChangeCommerceProductTagsRequest.md
-docs/ChangeProductChannels200Response.md
-docs/ChangeProductChannelsRequest.md
 docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
@@ -655,6 +655,7 @@ docs/DeleteCommerceMenu200Response.md
 docs/DeleteCommerceMetaobject200Response.md
 docs/DeleteCommercePage200Response.md
 docs/DeleteCommercePriceListPrices200Response.md
+docs/DeleteCommerceProductMetafields200Response.md
 docs/DeleteCommerceRedirect200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
@@ -663,7 +664,6 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
-docs/DeleteProductMetafields200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
 docs/DeleteTrackingTagEvent200Response.md
@@ -1435,6 +1435,7 @@ docs/ListCommerceMetaobjectDefinitions200Response.md
 docs/ListCommerceMetaobjects200Response.md
 docs/ListCommercePages200Response.md
 docs/ListCommercePriceLists200Response.md
+docs/ListCommerceProductMetafields200Response.md
 docs/ListCommerceProducts200Response.md
 docs/ListCommerceRedirects200Response.md
 docs/ListConnectedApps200Response.md
@@ -1543,7 +1544,6 @@ docs/ListPhoneNumbers200ResponseSandbox.md
 docs/ListPhoneNumbers200ResponseSandboxTemplate.md
 docs/ListPinterestBoardsForSelection200Response.md
 docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md
-docs/ListProductMetafields200Response.md
 docs/ListProducts200Response.md
 docs/ListQueueSlots200Response.md
 docs/ListQueueSlots200ResponseOneOf.md
@@ -2055,6 +2055,7 @@ docs/SetCommerceDiscountActiveRequest.md
 docs/SetCommercePriceListPrices200Response.md
 docs/SetCommercePriceListPricesRequest.md
 docs/SetCommercePriceListPricesRequestPricesInner.md
+docs/SetCommerceProductMetafieldsRequest.md
 docs/SetContactFieldValueRequest.md
 docs/SetConversationThreadControl200Response.md
 docs/SetConversationThreadControl200ResponseControl.md
@@ -2067,7 +2068,6 @@ docs/SetMessengerGetStartedRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
-docs/SetProductMetafieldsRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
@@ -2964,19 +2964,19 @@ src/Zernio.Test/Model/CampaignBiddingPortfolioTests.cs
 src/Zernio.Test/Model/CampaignBiddingTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CancelPhoneNumberPortIn200ResponseTests.cs
-src/Zernio.Test/Model/ChangeCollectionChannels200ResponseTests.cs
+src/Zernio.Test/Model/ChangeCommerceCollectionChannels200ResponseTests.cs
 src/Zernio.Test/Model/ChangeCommerceCollectionProducts200ResponseTests.cs
 src/Zernio.Test/Model/ChangeCommerceCollectionProductsRequestTests.cs
 src/Zernio.Test/Model/ChangeCommerceInventoryRequestChangesInnerTests.cs
 src/Zernio.Test/Model/ChangeCommerceInventoryRequestTests.cs
+src/Zernio.Test/Model/ChangeCommerceProductChannels200ResponseTests.cs
+src/Zernio.Test/Model/ChangeCommerceProductChannelsRequestTests.cs
 src/Zernio.Test/Model/ChangeCommerceProductState200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/ChangeCommerceProductState200ResponseTests.cs
 src/Zernio.Test/Model/ChangeCommerceProductStateRequestTests.cs
 src/Zernio.Test/Model/ChangeCommerceProductTags200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/ChangeCommerceProductTags200ResponseTests.cs
 src/Zernio.Test/Model/ChangeCommerceProductTagsRequestTests.cs
-src/Zernio.Test/Model/ChangeProductChannels200ResponseTests.cs
-src/Zernio.Test/Model/ChangeProductChannelsRequestTests.cs
 src/Zernio.Test/Model/ChannelPickerChannelsInnerTests.cs
 src/Zernio.Test/Model/ChannelPickerTeamTests.cs
 src/Zernio.Test/Model/ChannelPickerTests.cs
@@ -3358,6 +3358,7 @@ src/Zernio.Test/Model/DeleteCommerceMenu200ResponseTests.cs
 src/Zernio.Test/Model/DeleteCommerceMetaobject200ResponseTests.cs
 src/Zernio.Test/Model/DeleteCommercePage200ResponseTests.cs
 src/Zernio.Test/Model/DeleteCommercePriceListPrices200ResponseTests.cs
+src/Zernio.Test/Model/DeleteCommerceProductMetafields200ResponseTests.cs
 src/Zernio.Test/Model/DeleteCommerceRedirect200ResponseTests.cs
 src/Zernio.Test/Model/DeleteDiscordScheduledEvent200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessMedia200ResponseTests.cs
@@ -3366,7 +3367,6 @@ src/Zernio.Test/Model/DeleteGoogleBusinessReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
-src/Zernio.Test/Model/DeleteProductMetafields200ResponseTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTestLead200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTrackingTagEvent200ResponseTests.cs
@@ -4122,6 +4122,7 @@ src/Zernio.Test/Model/ListCommerceMetaobjectDefinitions200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceMetaobjects200ResponseTests.cs
 src/Zernio.Test/Model/ListCommercePages200ResponseTests.cs
 src/Zernio.Test/Model/ListCommercePriceLists200ResponseTests.cs
+src/Zernio.Test/Model/ListCommerceProductMetafields200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceRedirects200ResponseTests.cs
 src/Zernio.Test/Model/ListConnectedApps200ResponseTests.cs
@@ -4230,7 +4231,6 @@ src/Zernio.Test/Model/ListPhoneNumbers200ResponseSandboxTests.cs
 src/Zernio.Test/Model/ListPhoneNumbers200ResponseTests.cs
 src/Zernio.Test/Model/ListPinterestBoardsForSelection200ResponseBoardsInnerTests.cs
 src/Zernio.Test/Model/ListPinterestBoardsForSelection200ResponseTests.cs
-src/Zernio.Test/Model/ListProductMetafields200ResponseTests.cs
 src/Zernio.Test/Model/ListProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListQueueSlots200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ListQueueSlots200ResponseTests.cs
@@ -4725,6 +4725,7 @@ src/Zernio.Test/Model/SetCommerceDiscountActiveRequestTests.cs
 src/Zernio.Test/Model/SetCommercePriceListPrices200ResponseTests.cs
 src/Zernio.Test/Model/SetCommercePriceListPricesRequestPricesInnerTests.cs
 src/Zernio.Test/Model/SetCommercePriceListPricesRequestTests.cs
+src/Zernio.Test/Model/SetCommerceProductMetafieldsRequestTests.cs
 src/Zernio.Test/Model/SetContactFieldValueRequestTests.cs
 src/Zernio.Test/Model/SetConversationThreadControl200ResponseControlTests.cs
 src/Zernio.Test/Model/SetConversationThreadControl200ResponseTests.cs
@@ -4737,7 +4738,6 @@ src/Zernio.Test/Model/SetMessengerGetStartedRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermission200ResponseTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
-src/Zernio.Test/Model/SetProductMetafieldsRequestTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
@@ -5634,19 +5634,19 @@ src/Zernio/Model/CampaignBiddingBidSpec.cs
 src/Zernio/Model/CampaignBiddingPortfolio.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelPhoneNumberPortIn200Response.cs
-src/Zernio/Model/ChangeCollectionChannels200Response.cs
+src/Zernio/Model/ChangeCommerceCollectionChannels200Response.cs
 src/Zernio/Model/ChangeCommerceCollectionProducts200Response.cs
 src/Zernio/Model/ChangeCommerceCollectionProductsRequest.cs
 src/Zernio/Model/ChangeCommerceInventoryRequest.cs
 src/Zernio/Model/ChangeCommerceInventoryRequestChangesInner.cs
+src/Zernio/Model/ChangeCommerceProductChannels200Response.cs
+src/Zernio/Model/ChangeCommerceProductChannelsRequest.cs
 src/Zernio/Model/ChangeCommerceProductState200Response.cs
 src/Zernio/Model/ChangeCommerceProductState200ResponseFailedInner.cs
 src/Zernio/Model/ChangeCommerceProductStateRequest.cs
 src/Zernio/Model/ChangeCommerceProductTags200Response.cs
 src/Zernio/Model/ChangeCommerceProductTags200ResponseFailedInner.cs
 src/Zernio/Model/ChangeCommerceProductTagsRequest.cs
-src/Zernio/Model/ChangeProductChannels200Response.cs
-src/Zernio/Model/ChangeProductChannelsRequest.cs
 src/Zernio/Model/ChannelPicker.cs
 src/Zernio/Model/ChannelPickerChannelsInner.cs
 src/Zernio/Model/ChannelPickerTeam.cs
@@ -6028,6 +6028,7 @@ src/Zernio/Model/DeleteCommerceMenu200Response.cs
 src/Zernio/Model/DeleteCommerceMetaobject200Response.cs
 src/Zernio/Model/DeleteCommercePage200Response.cs
 src/Zernio/Model/DeleteCommercePriceListPrices200Response.cs
+src/Zernio/Model/DeleteCommerceProductMetafields200Response.cs
 src/Zernio/Model/DeleteCommerceRedirect200Response.cs
 src/Zernio/Model/DeleteDiscordScheduledEvent200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessMedia200Response.cs
@@ -6036,7 +6037,6 @@ src/Zernio/Model/DeleteGoogleBusinessReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxComment200Response.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
-src/Zernio/Model/DeleteProductMetafields200Response.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteTestLead200Response.cs
 src/Zernio/Model/DeleteTrackingTagEvent200Response.cs
@@ -6792,6 +6792,7 @@ src/Zernio/Model/ListCommerceMetaobjectDefinitions200Response.cs
 src/Zernio/Model/ListCommerceMetaobjects200Response.cs
 src/Zernio/Model/ListCommercePages200Response.cs
 src/Zernio/Model/ListCommercePriceLists200Response.cs
+src/Zernio/Model/ListCommerceProductMetafields200Response.cs
 src/Zernio/Model/ListCommerceProducts200Response.cs
 src/Zernio/Model/ListCommerceRedirects200Response.cs
 src/Zernio/Model/ListConnectedApps200Response.cs
@@ -6900,7 +6901,6 @@ src/Zernio/Model/ListPhoneNumbers200ResponseSandbox.cs
 src/Zernio/Model/ListPhoneNumbers200ResponseSandboxTemplate.cs
 src/Zernio/Model/ListPinterestBoardsForSelection200Response.cs
 src/Zernio/Model/ListPinterestBoardsForSelection200ResponseBoardsInner.cs
-src/Zernio/Model/ListProductMetafields200Response.cs
 src/Zernio/Model/ListProducts200Response.cs
 src/Zernio/Model/ListQueueSlots200Response.cs
 src/Zernio/Model/ListQueueSlots200ResponseOneOf.cs
@@ -7395,6 +7395,7 @@ src/Zernio/Model/SetCommerceDiscountActiveRequest.cs
 src/Zernio/Model/SetCommercePriceListPrices200Response.cs
 src/Zernio/Model/SetCommercePriceListPricesRequest.cs
 src/Zernio/Model/SetCommercePriceListPricesRequestPricesInner.cs
+src/Zernio/Model/SetCommerceProductMetafieldsRequest.cs
 src/Zernio/Model/SetContactFieldValueRequest.cs
 src/Zernio/Model/SetConversationThreadControl200Response.cs
 src/Zernio/Model/SetConversationThreadControl200ResponseControl.cs
@@ -7407,7 +7408,6 @@ src/Zernio/Model/SetMessengerGetStartedRequest.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetPartnershipAdPermission200Response.cs
 src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
-src/Zernio/Model/SetProductMetafieldsRequest.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs

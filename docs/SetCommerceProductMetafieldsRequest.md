@@ -1,12 +1,11 @@
-# Zernio.Model.ChangeProductChannels200Response
+# Zernio.Model.SetCommerceProductMetafieldsRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProductId** | **string** |  | [optional] 
-**Published** | **List&lt;string&gt;** |  | [optional] 
-**Unpublished** | **List&lt;string&gt;** |  | [optional] 
+**AccountId** | **string** |  | 
+**Metafields** | [**List&lt;CommerceMetafield&gt;**](CommerceMetafield.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

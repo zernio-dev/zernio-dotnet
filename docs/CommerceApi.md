@@ -7,12 +7,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**AddCommerceDiscountCodes**](CommerceApi.md#addcommercediscountcodes) | **POST** /v1/commerce/discounts/{discountId}/codes | Add codes to a discount |
 | [**AddCommerceMarketingEngagement**](CommerceApi.md#addcommercemarketingengagement) | **POST** /v1/commerce/marketing-activities/{remoteId}/engagements | Report daily engagement |
 | [**AddCommerceProductImages**](CommerceApi.md#addcommerceproductimages) | **POST** /v1/commerce/products/{productId}/images | Add images |
-| [**ChangeCollectionChannels**](CommerceApi.md#changecollectionchannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
+| [**ChangeCommerceCollectionChannels**](CommerceApi.md#changecommercecollectionchannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
 | [**ChangeCommerceCollectionProducts**](CommerceApi.md#changecommercecollectionproducts) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection |
 | [**ChangeCommerceInventory**](CommerceApi.md#changecommerceinventory) | **POST** /v1/commerce/products/{productId}/inventory | Set or adjust stock |
+| [**ChangeCommerceProductChannels**](CommerceApi.md#changecommerceproductchannels) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product |
 | [**ChangeCommerceProductState**](CommerceApi.md#changecommerceproductstate) | **POST** /v1/commerce/products/state | Activate, deactivate, archive or delete products |
 | [**ChangeCommerceProductTags**](CommerceApi.md#changecommerceproducttags) | **POST** /v1/commerce/products/tags | Add or remove tags in bulk |
-| [**ChangeProductChannels**](CommerceApi.md#changeproductchannels) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product |
 | [**CreateCommerceCatalogSync**](CommerceApi.md#createcommercecatalogsync) | **POST** /v1/commerce/catalog-syncs | Sync a store into a Meta catalog |
 | [**CreateCommerceCollection**](CommerceApi.md#createcommercecollection) | **POST** /v1/commerce/collections | Create a collection |
 | [**CreateCommerceDiscount**](CommerceApi.md#createcommercediscount) | **POST** /v1/commerce/discounts | Create a discount |
@@ -23,19 +23,19 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateCommerceProductOptions**](CommerceApi.md#createcommerceproductoptions) | **POST** /v1/commerce/products/{productId}/options | Add options |
 | [**CreateCommerceProductVariants**](CommerceApi.md#createcommerceproductvariants) | **POST** /v1/commerce/products/{productId}/variants | Add variants |
 | [**CreateCommerceRedirect**](CommerceApi.md#createcommerceredirect) | **POST** /v1/commerce/redirects | Create a URL redirect |
-| [**DeleteCollectionMetafields**](CommerceApi.md#deletecollectionmetafields) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields |
 | [**DeleteCommerceCatalogSync**](CommerceApi.md#deletecommercecatalogsync) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync |
 | [**DeleteCommerceCollection**](CommerceApi.md#deletecommercecollection) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection |
+| [**DeleteCommerceCollectionMetafields**](CommerceApi.md#deletecommercecollectionmetafields) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields |
 | [**DeleteCommerceDiscount**](CommerceApi.md#deletecommercediscount) | **DELETE** /v1/commerce/discounts/{discountId} | Delete a discount |
 | [**DeleteCommerceMarketingActivity**](CommerceApi.md#deletecommercemarketingactivity) | **DELETE** /v1/commerce/marketing-activities/{remoteId} | Delete a marketing activity |
 | [**DeleteCommerceMenu**](CommerceApi.md#deletecommercemenu) | **DELETE** /v1/commerce/menus/{menuId} | Delete a navigation menu |
 | [**DeleteCommerceMetaobject**](CommerceApi.md#deletecommercemetaobject) | **DELETE** /v1/commerce/metaobjects/{metaobjectId} | Delete a metaobject |
 | [**DeleteCommercePage**](CommerceApi.md#deletecommercepage) | **DELETE** /v1/commerce/pages/{pageId} | Delete a page |
 | [**DeleteCommercePriceListPrices**](CommerceApi.md#deletecommercepricelistprices) | **DELETE** /v1/commerce/price-lists/{priceListId}/prices | Remove fixed prices |
+| [**DeleteCommerceProductMetafields**](CommerceApi.md#deletecommerceproductmetafields) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields |
 | [**DeleteCommerceProductOptions**](CommerceApi.md#deletecommerceproductoptions) | **DELETE** /v1/commerce/products/{productId}/options | Delete options |
 | [**DeleteCommerceProductVariants**](CommerceApi.md#deletecommerceproductvariants) | **DELETE** /v1/commerce/products/{productId}/variants | Delete variants |
 | [**DeleteCommerceRedirect**](CommerceApi.md#deletecommerceredirect) | **DELETE** /v1/commerce/redirects/{redirectId} | Delete a URL redirect |
-| [**DeleteProductMetafields**](CommerceApi.md#deleteproductmetafields) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields |
 | [**DuplicateCommerceProduct**](CommerceApi.md#duplicatecommerceproduct) | **POST** /v1/commerce/products/{productId}/duplicate | Duplicate a product |
 | [**GetCommerceCatalogSync**](CommerceApi.md#getcommercecatalogsync) | **GET** /v1/commerce/catalog-syncs/{syncId} | Get a catalog sync |
 | [**GetCommerceCollection**](CommerceApi.md#getcommercecollection) | **GET** /v1/commerce/collections/{collectionId} | Get a collection |
@@ -45,9 +45,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetCommercePage**](CommerceApi.md#getcommercepage) | **GET** /v1/commerce/pages/{pageId} | Get a page |
 | [**GetCommerceProduct**](CommerceApi.md#getcommerceproduct) | **GET** /v1/commerce/products/{productId} | Get a product |
 | [**GetCommerceStore**](CommerceApi.md#getcommercestore) | **GET** /v1/commerce/store | Get a store |
-| [**ListCollectionMetafields**](CommerceApi.md#listcollectionmetafields) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
 | [**ListCommerceCatalogSyncs**](CommerceApi.md#listcommercecatalogsyncs) | **GET** /v1/commerce/catalog-syncs | List catalog syncs |
 | [**ListCommerceChannels**](CommerceApi.md#listcommercechannels) | **GET** /v1/commerce/channels | List sales channels |
+| [**ListCommerceCollectionMetafields**](CommerceApi.md#listcommercecollectionmetafields) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
 | [**ListCommerceCollections**](CommerceApi.md#listcommercecollections) | **GET** /v1/commerce/collections | List collections |
 | [**ListCommerceDiscounts**](CommerceApi.md#listcommercediscounts) | **GET** /v1/commerce/discounts | List discounts |
 | [**ListCommerceInventory**](CommerceApi.md#listcommerceinventory) | **GET** /v1/commerce/inventory | Get a product&#39;s stock |
@@ -58,17 +58,17 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListCommerceMetaobjects**](CommerceApi.md#listcommercemetaobjects) | **GET** /v1/commerce/metaobjects | List metaobjects of a type |
 | [**ListCommercePages**](CommerceApi.md#listcommercepages) | **GET** /v1/commerce/pages | List pages |
 | [**ListCommercePriceLists**](CommerceApi.md#listcommercepricelists) | **GET** /v1/commerce/price-lists | List price lists |
+| [**ListCommerceProductMetafields**](CommerceApi.md#listcommerceproductmetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
 | [**ListCommerceProducts**](CommerceApi.md#listcommerceproducts) | **GET** /v1/commerce/products | List products |
 | [**ListCommerceRedirects**](CommerceApi.md#listcommerceredirects) | **GET** /v1/commerce/redirects | List URL redirects |
-| [**ListProductMetafields**](CommerceApi.md#listproductmetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
 | [**RemoveCommerceProductImages**](CommerceApi.md#removecommerceproductimages) | **DELETE** /v1/commerce/products/{productId}/images | Remove images |
 | [**ReorderCommerceCollectionProducts**](CommerceApi.md#reordercommercecollectionproducts) | **POST** /v1/commerce/collections/{collectionId}/reorder | Reorder products in a collection |
 | [**ReorderCommerceProductImages**](CommerceApi.md#reordercommerceproductimages) | **POST** /v1/commerce/products/{productId}/images/reorder | Reorder images |
 | [**RunCommerceCatalogSync**](CommerceApi.md#runcommercecatalogsync) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now |
-| [**SetCollectionMetafields**](CommerceApi.md#setcollectionmetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
+| [**SetCommerceCollectionMetafields**](CommerceApi.md#setcommercecollectionmetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
 | [**SetCommerceDiscountActive**](CommerceApi.md#setcommercediscountactive) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount |
 | [**SetCommercePriceListPrices**](CommerceApi.md#setcommercepricelistprices) | **PUT** /v1/commerce/price-lists/{priceListId}/prices | Set fixed prices |
-| [**SetProductMetafields**](CommerceApi.md#setproductmetafields) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields |
+| [**SetCommerceProductMetafields**](CommerceApi.md#setcommerceproductmetafields) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields |
 | [**UpdateCommerceCollection**](CommerceApi.md#updatecommercecollection) | **PATCH** /v1/commerce/collections/{collectionId} | Update a collection |
 | [**UpdateCommerceDiscount**](CommerceApi.md#updatecommercediscount) | **PATCH** /v1/commerce/discounts/{discountId} | Update a discount |
 | [**UpdateCommerceMenu**](CommerceApi.md#updatecommercemenu) | **PUT** /v1/commerce/menus/{menuId} | Replace a navigation menu |
@@ -85,7 +85,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add codes to a discount
 
-Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. 
+Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. Needs discounts.codes, which WooCommerce stores do not have. 
 
 ### Example
 ```csharp
@@ -394,9 +394,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="changecollectionchannels"></a>
-# **ChangeCollectionChannels**
-> ChangeCollectionChannels200Response ChangeCollectionChannels (string collectionId, ChangeProductChannelsRequest changeProductChannelsRequest)
+<a id="changecommercecollectionchannels"></a>
+# **ChangeCommerceCollectionChannels**
+> ChangeCommerceCollectionChannels200Response ChangeCommerceCollectionChannels (string collectionId, ChangeCommerceProductChannelsRequest changeCommerceProductChannelsRequest)
 
 Publish or unpublish a collection
 
@@ -413,7 +413,7 @@ using Zernio.Model;
 
 namespace Example
 {
-    public class ChangeCollectionChannelsExample
+    public class ChangeCommerceCollectionChannelsExample
     {
         public static void Main()
         {
@@ -427,17 +427,17 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
             var collectionId = "collectionId_example";  // string | Platform-native id.
-            var changeProductChannelsRequest = new ChangeProductChannelsRequest(); // ChangeProductChannelsRequest | 
+            var changeCommerceProductChannelsRequest = new ChangeCommerceProductChannelsRequest(); // ChangeCommerceProductChannelsRequest | 
 
             try
             {
                 // Publish or unpublish a collection
-                ChangeCollectionChannels200Response result = apiInstance.ChangeCollectionChannels(collectionId, changeProductChannelsRequest);
+                ChangeCommerceCollectionChannels200Response result = apiInstance.ChangeCommerceCollectionChannels(collectionId, changeCommerceProductChannelsRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CommerceApi.ChangeCollectionChannels: " + e.Message);
+                Debug.Print("Exception when calling CommerceApi.ChangeCommerceCollectionChannels: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -446,21 +446,21 @@ namespace Example
 }
 ```
 
-#### Using the ChangeCollectionChannelsWithHttpInfo variant
+#### Using the ChangeCommerceCollectionChannelsWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Publish or unpublish a collection
-    ApiResponse<ChangeCollectionChannels200Response> response = apiInstance.ChangeCollectionChannelsWithHttpInfo(collectionId, changeProductChannelsRequest);
+    ApiResponse<ChangeCommerceCollectionChannels200Response> response = apiInstance.ChangeCommerceCollectionChannelsWithHttpInfo(collectionId, changeCommerceProductChannelsRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CommerceApi.ChangeCollectionChannelsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CommerceApi.ChangeCommerceCollectionChannelsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -471,11 +471,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **collectionId** | **string** | Platform-native id. |  |
-| **changeProductChannelsRequest** | [**ChangeProductChannelsRequest**](ChangeProductChannelsRequest.md) |  |  |
+| **changeCommerceProductChannelsRequest** | [**ChangeCommerceProductChannelsRequest**](ChangeCommerceProductChannelsRequest.md) |  |  |
 
 ### Return type
 
-[**ChangeCollectionChannels200Response**](ChangeCollectionChannels200Response.md)
+[**ChangeCommerceCollectionChannels200Response**](ChangeCommerceCollectionChannels200Response.md)
 
 ### Authorization
 
@@ -709,6 +709,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="changecommerceproductchannels"></a>
+# **ChangeCommerceProductChannels**
+> ChangeCommerceProductChannels200Response ChangeCommerceProductChannels (string productId, ChangeCommerceProductChannelsRequest changeCommerceProductChannelsRequest)
+
+Publish or unpublish a product
+
+Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ChangeCommerceProductChannelsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var productId = "productId_example";  // string | Platform-native id.
+            var changeCommerceProductChannelsRequest = new ChangeCommerceProductChannelsRequest(); // ChangeCommerceProductChannelsRequest | 
+
+            try
+            {
+                // Publish or unpublish a product
+                ChangeCommerceProductChannels200Response result = apiInstance.ChangeCommerceProductChannels(productId, changeCommerceProductChannelsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.ChangeCommerceProductChannels: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ChangeCommerceProductChannelsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Publish or unpublish a product
+    ApiResponse<ChangeCommerceProductChannels200Response> response = apiInstance.ChangeCommerceProductChannelsWithHttpInfo(productId, changeCommerceProductChannelsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.ChangeCommerceProductChannelsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **productId** | **string** | Platform-native id. |  |
+| **changeCommerceProductChannelsRequest** | [**ChangeCommerceProductChannelsRequest**](ChangeCommerceProductChannelsRequest.md) |  |  |
+
+### Return type
+
+[**ChangeCommerceProductChannels200Response**](ChangeCommerceProductChannels200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Publication changed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="changecommerceproductstate"></a>
 # **ChangeCommerceProductState**
 > ChangeCommerceProductState200Response ChangeCommerceProductState (ChangeCommerceProductStateRequest changeCommerceProductStateRequest)
@@ -906,111 +1011,6 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Tags changed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="changeproductchannels"></a>
-# **ChangeProductChannels**
-> ChangeProductChannels200Response ChangeProductChannels (string productId, ChangeProductChannelsRequest changeProductChannelsRequest)
-
-Publish or unpublish a product
-
-Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels. 
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class ChangeProductChannelsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
-            var productId = "productId_example";  // string | Platform-native id.
-            var changeProductChannelsRequest = new ChangeProductChannelsRequest(); // ChangeProductChannelsRequest | 
-
-            try
-            {
-                // Publish or unpublish a product
-                ChangeProductChannels200Response result = apiInstance.ChangeProductChannels(productId, changeProductChannelsRequest);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CommerceApi.ChangeProductChannels: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ChangeProductChannelsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Publish or unpublish a product
-    ApiResponse<ChangeProductChannels200Response> response = apiInstance.ChangeProductChannelsWithHttpInfo(productId, changeProductChannelsRequest);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CommerceApi.ChangeProductChannelsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **productId** | **string** | Platform-native id. |  |
-| **changeProductChannelsRequest** | [**ChangeProductChannelsRequest**](ChangeProductChannelsRequest.md) |  |  |
-
-### Return type
-
-[**ChangeProductChannels200Response**](ChangeProductChannels200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Publication changed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -1334,6 +1334,8 @@ catch (ApiException e)
 
 Create a navigation menu
 
+Creates a navigation menu from `title`, `handle` and up to 100 `items`, and returns it with status 201. Shopify only. Needs navigation.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -1435,6 +1437,8 @@ catch (ApiException e)
 
 Create a metaobject
 
+Creates a metaobject of `type` with its `fields` (key and string value, up to 100) and an optional `handle`, and returns it with status 201. Shopify only. Needs metaobjects.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -1535,6 +1539,8 @@ catch (ApiException e)
 > CreateCommercePage201Response CreateCommercePage (CreateCommercePageRequest createCommercePageRequest)
 
 Create a page
+
+Creates a content page from `title`, optional `handle`, `bodyHtml` and `isPublished`, and returns it with status 201. Needs pages.write.
 
 ### Example
 ```csharp
@@ -1950,6 +1956,8 @@ catch (ApiException e)
 
 Create a URL redirect
 
+Creates a redirect from `path` (starting with `/`) to `target` (a path or a full URL) and returns it with status 201. Shopify only. Needs navigation.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -2037,111 +2045,6 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Redirect created |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="deletecollectionmetafields"></a>
-# **DeleteCollectionMetafields**
-> DeleteProductMetafields200Response DeleteCollectionMetafields (string collectionId, string accountId, string keys)
-
-Delete collection metafields
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class DeleteCollectionMetafieldsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
-            var collectionId = "collectionId_example";  // string | Platform-native id.
-            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
-            var keys = "keys_example";  // string | Comma-separated namespace.key pairs.
-
-            try
-            {
-                // Delete collection metafields
-                DeleteProductMetafields200Response result = apiInstance.DeleteCollectionMetafields(collectionId, accountId, keys);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CommerceApi.DeleteCollectionMetafields: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteCollectionMetafieldsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete collection metafields
-    ApiResponse<DeleteProductMetafields200Response> response = apiInstance.DeleteCollectionMetafieldsWithHttpInfo(collectionId, accountId, keys);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CommerceApi.DeleteCollectionMetafieldsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **collectionId** | **string** | Platform-native id. |  |
-| **accountId** | **string** | Connected store SocialAccount id. |  |
-| **keys** | **string** | Comma-separated namespace.key pairs. |  |
-
-### Return type
-
-[**DeleteProductMetafields200Response**](DeleteProductMetafields200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -2356,11 +2259,120 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="deletecommercecollectionmetafields"></a>
+# **DeleteCommerceCollectionMetafields**
+> DeleteCommerceProductMetafields200Response DeleteCommerceCollectionMetafields (string collectionId, string accountId, string keys)
+
+Delete collection metafields
+
+Deletes the collection metafields named in `keys` (comma-separated `namespace.key`, up to 25). Needs collections.metafields: WooCommerce answers 400 platform_not_supported.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteCommerceCollectionMetafieldsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var collectionId = "collectionId_example";  // string | Platform-native id.
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+            var keys = "keys_example";  // string | Comma-separated namespace.key pairs.
+
+            try
+            {
+                // Delete collection metafields
+                DeleteCommerceProductMetafields200Response result = apiInstance.DeleteCommerceCollectionMetafields(collectionId, accountId, keys);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.DeleteCommerceCollectionMetafields: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteCommerceCollectionMetafieldsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete collection metafields
+    ApiResponse<DeleteCommerceProductMetafields200Response> response = apiInstance.DeleteCommerceCollectionMetafieldsWithHttpInfo(collectionId, accountId, keys);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.DeleteCommerceCollectionMetafieldsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **collectionId** | **string** | Platform-native id. |  |
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+| **keys** | **string** | Comma-separated namespace.key pairs. |  |
+
+### Return type
+
+[**DeleteCommerceProductMetafields200Response**](DeleteCommerceProductMetafields200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deletecommercediscount"></a>
 # **DeleteCommerceDiscount**
 > DeleteCommerceDiscount200Response DeleteCommerceDiscount (string discountId, string accountId)
 
 Delete a discount
+
+Deletes the discount; its codes stop working at checkout. This cannot be undone. Needs discounts.write.
 
 ### Example
 ```csharp
@@ -2465,6 +2477,8 @@ catch (ApiException e)
 
 Delete a marketing activity
 
+Deletes the marketing activity you created with PUT /v1/commerce/marketing-activities, identified by the `remoteId` you gave it. Shopify only. Needs marketing.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -2567,6 +2581,8 @@ catch (ApiException e)
 > DeleteCommerceMenu200Response DeleteCommerceMenu (string menuId, string accountId)
 
 Delete a navigation menu
+
+Deletes the navigation menu. Shopify only. Needs navigation.write.
 
 ### Example
 ```csharp
@@ -2671,6 +2687,8 @@ catch (ApiException e)
 
 Delete a metaobject
 
+Deletes the metaobject. References to it from metafields stop resolving. Shopify only. Needs metaobjects.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -2773,6 +2791,8 @@ catch (ApiException e)
 > DeleteCommercePage200Response DeleteCommercePage (string pageId, string accountId)
 
 Delete a page
+
+Deletes the page from the store. This cannot be undone. Needs pages.write.
 
 ### Example
 ```csharp
@@ -2978,6 +2998,113 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="deletecommerceproductmetafields"></a>
+# **DeleteCommerceProductMetafields**
+> DeleteCommerceProductMetafields200Response DeleteCommerceProductMetafields (string productId, string accountId, string keys)
+
+Delete product metafields
+
+Deletes the product custom fields named in `keys` (comma-separated `namespace.key`, up to 25) and returns how many were deleted. Needs metafields.write.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteCommerceProductMetafieldsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var productId = "productId_example";  // string | Platform-native id.
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+            var keys = "keys_example";  // string | Comma-separated namespace.key pairs.
+
+            try
+            {
+                // Delete product metafields
+                DeleteCommerceProductMetafields200Response result = apiInstance.DeleteCommerceProductMetafields(productId, accountId, keys);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.DeleteCommerceProductMetafields: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteCommerceProductMetafieldsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete product metafields
+    ApiResponse<DeleteCommerceProductMetafields200Response> response = apiInstance.DeleteCommerceProductMetafieldsWithHttpInfo(productId, accountId, keys);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.DeleteCommerceProductMetafieldsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **productId** | **string** | Platform-native id. |  |
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+| **keys** | **string** | Comma-separated namespace.key pairs. |  |
+
+### Return type
+
+[**DeleteCommerceProductMetafields200Response**](DeleteCommerceProductMetafields200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deletecommerceproductoptions"></a>
 # **DeleteCommerceProductOptions**
 > CreateCommerceProduct201Response DeleteCommerceProductOptions (string productId, string accountId, string names)
@@ -3091,6 +3218,8 @@ catch (ApiException e)
 
 Delete variants
 
+Deletes the variants in `variantIds` (comma-separated, up to 100) and returns the updated product. A product keeps at least one variant, so deleting every variant is refused by the platform. Needs products.variants.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -3196,6 +3325,8 @@ catch (ApiException e)
 
 Delete a URL redirect
 
+Deletes the redirect; the old path answers 404 again. Shopify only. Needs navigation.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -3285,111 +3416,6 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Redirect deleted |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="deleteproductmetafields"></a>
-# **DeleteProductMetafields**
-> DeleteProductMetafields200Response DeleteProductMetafields (string productId, string accountId, string keys)
-
-Delete product metafields
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class DeleteProductMetafieldsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
-            var productId = "productId_example";  // string | Platform-native id.
-            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
-            var keys = "keys_example";  // string | Comma-separated namespace.key pairs.
-
-            try
-            {
-                // Delete product metafields
-                DeleteProductMetafields200Response result = apiInstance.DeleteProductMetafields(productId, accountId, keys);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CommerceApi.DeleteProductMetafields: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteProductMetafieldsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete product metafields
-    ApiResponse<DeleteProductMetafields200Response> response = apiInstance.DeleteProductMetafieldsWithHttpInfo(productId, accountId, keys);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CommerceApi.DeleteProductMetafieldsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **productId** | **string** | Platform-native id. |  |
-| **accountId** | **string** | Connected store SocialAccount id. |  |
-| **keys** | **string** | Comma-separated namespace.key pairs. |  |
-
-### Return type
-
-[**DeleteProductMetafields200Response**](DeleteProductMetafields200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -3509,6 +3535,8 @@ catch (ApiException e)
 
 Get a catalog sync
 
+One catalog sync with the status and counts of its last run (`itemsSent`, `itemsSkipped`, `itemsDeleted`, `lastError`). Poll it after POST /v1/commerce/catalog-syncs/{syncId}/run to follow a run.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -3607,6 +3635,8 @@ catch (ApiException e)
 > CreateCommerceCollection201Response GetCommerceCollection (string collectionId, string accountId)
 
 Get a collection
+
+One collection (a category on WooCommerce) with its image, sort order and product count. List its products with GET /v1/commerce/products?collectionId=. Needs collections.read.
 
 ### Example
 ```csharp
@@ -3711,6 +3741,8 @@ catch (ApiException e)
 
 Get a discount
 
+One discount with its value, targets, minimum, usage and schedule. Needs discounts.read.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -3813,6 +3845,8 @@ catch (ApiException e)
 > CreateCommerceMenu201Response GetCommerceMenu (string menuId, string accountId)
 
 Get a navigation menu
+
+One navigation menu with its nested items. Shopify only. Needs navigation.read.
 
 ### Example
 ```csharp
@@ -3917,6 +3951,8 @@ catch (ApiException e)
 
 Get a metaobject
 
+One metaobject with its fields. Shopify only. Needs metaobjects.read.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -4020,6 +4056,8 @@ catch (ApiException e)
 
 Get a page
 
+One content page with its body. Needs pages.read.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -4122,6 +4160,8 @@ catch (ApiException e)
 > CreateCommerceProduct201Response GetCommerceProduct (string productId, string accountId)
 
 Get a product
+
+One product with all its variants, options and images. Needs products.read. 404 product_not_found when the id does not exist in the store.
 
 ### Example
 ```csharp
@@ -4318,109 +4358,6 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="listcollectionmetafields"></a>
-# **ListCollectionMetafields**
-> ListProductMetafields200Response ListCollectionMetafields (string collectionId, string accountId)
-
-List collection metafields
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class ListCollectionMetafieldsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
-            var collectionId = "collectionId_example";  // string | Platform-native id.
-            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
-
-            try
-            {
-                // List collection metafields
-                ListProductMetafields200Response result = apiInstance.ListCollectionMetafields(collectionId, accountId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CommerceApi.ListCollectionMetafields: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ListCollectionMetafieldsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List collection metafields
-    ApiResponse<ListProductMetafields200Response> response = apiInstance.ListCollectionMetafieldsWithHttpInfo(collectionId, accountId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CommerceApi.ListCollectionMetafieldsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **collectionId** | **string** | Platform-native id. |  |
-| **accountId** | **string** | Connected store SocialAccount id. |  |
-
-### Return type
-
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields listed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4629,6 +4566,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listcommercecollectionmetafields"></a>
+# **ListCommerceCollectionMetafields**
+> ListCommerceProductMetafields200Response ListCommerceCollectionMetafields (string collectionId, string accountId)
+
+List collection metafields
+
+The collection's metafields as namespace, key, type and value. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCommerceCollectionMetafieldsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var collectionId = "collectionId_example";  // string | Platform-native id.
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+
+            try
+            {
+                // List collection metafields
+                ListCommerceProductMetafields200Response result = apiInstance.ListCommerceCollectionMetafields(collectionId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.ListCommerceCollectionMetafields: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCommerceCollectionMetafieldsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List collection metafields
+    ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.ListCommerceCollectionMetafieldsWithHttpInfo(collectionId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.ListCommerceCollectionMetafieldsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **collectionId** | **string** | Platform-native id. |  |
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+
+### Return type
+
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listcommercecollections"></a>
 # **ListCommerceCollections**
 > ListCommerceCollections200Response ListCommerceCollections (string accountId, int? limit = null, string? cursor = null, string? query = null)
@@ -4743,6 +4785,8 @@ catch (ApiException e)
 > ListCommerceDiscounts200Response ListCommerceDiscounts (string accountId, int? limit = null, string? cursor = null, string? query = null)
 
 List discounts
+
+The store's discounts (Shopify code and automatic discounts, WooCommerce coupons), cursor-paginated with `limit`, `cursor` and an optional `query`. Each discount lists its first 10 codes; `codeCount` has the total. Needs discounts.read.
 
 ### Example
 ```csharp
@@ -5162,6 +5206,8 @@ catch (ApiException e)
 
 List navigation menus
 
+The store's navigation menus with their items. Shopify only. Needs navigation.read.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -5366,6 +5412,8 @@ catch (ApiException e)
 
 List metaobjects of a type
 
+The metaobjects of one `type` (a definition handle from GET /v1/commerce/metaobject-definitions), cursor-paginated with `limit` and `cursor`. Shopify only. Needs metaobjects.read.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -5472,6 +5520,8 @@ catch (ApiException e)
 > ListCommercePages200Response ListCommercePages (string accountId, int? limit = null, string? cursor = null, string? query = null)
 
 List pages
+
+The store's content pages (Shopify online store pages, WordPress pages), cursor-paginated with `limit`, `cursor` and an optional `query`. Needs pages.read.
 
 ### Example
 ```csharp
@@ -5677,6 +5727,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listcommerceproductmetafields"></a>
+# **ListCommerceProductMetafields**
+> ListCommerceProductMetafields200Response ListCommerceProductMetafields (string productId, string accountId)
+
+List product metafields
+
+The product's custom fields (metafields on Shopify, public meta on WooCommerce) as namespace, key, type and value. Needs metafields.read.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCommerceProductMetafieldsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var productId = "productId_example";  // string | Platform-native id.
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+
+            try
+            {
+                // List product metafields
+                ListCommerceProductMetafields200Response result = apiInstance.ListCommerceProductMetafields(productId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.ListCommerceProductMetafields: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCommerceProductMetafieldsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List product metafields
+    ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.ListCommerceProductMetafieldsWithHttpInfo(productId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.ListCommerceProductMetafieldsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **productId** | **string** | Platform-native id. |  |
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+
+### Return type
+
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listcommerceproducts"></a>
 # **ListCommerceProducts**
 > ListCommerceProducts200Response ListCommerceProducts (string accountId, int? limit = null, string? cursor = null, CommerceProductStatus? status = null, string? query = null, string? collectionId = null)
@@ -5796,6 +5951,8 @@ catch (ApiException e)
 
 List URL redirects
 
+The store's URL redirects (old path to new target), cursor-paginated with `limit`, `cursor` and an optional `query` on the path. Shopify only. Needs navigation.read.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -5889,109 +6046,6 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Redirects listed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="listproductmetafields"></a>
-# **ListProductMetafields**
-> ListProductMetafields200Response ListProductMetafields (string productId, string accountId)
-
-List product metafields
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class ListProductMetafieldsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
-            var productId = "productId_example";  // string | Platform-native id.
-            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
-
-            try
-            {
-                // List product metafields
-                ListProductMetafields200Response result = apiInstance.ListProductMetafields(productId, accountId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CommerceApi.ListProductMetafields: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ListProductMetafieldsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List product metafields
-    ApiResponse<ListProductMetafields200Response> response = apiInstance.ListProductMetafieldsWithHttpInfo(productId, accountId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CommerceApi.ListProductMetafieldsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **productId** | **string** | Platform-native id. |  |
-| **accountId** | **string** | Connected store SocialAccount id. |  |
-
-### Return type
-
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -6419,13 +6473,13 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="setcollectionmetafields"></a>
-# **SetCollectionMetafields**
-> ListProductMetafields200Response SetCollectionMetafields (string collectionId, SetProductMetafieldsRequest setProductMetafieldsRequest)
+<a id="setcommercecollectionmetafields"></a>
+# **SetCommerceCollectionMetafields**
+> ListCommerceProductMetafields200Response SetCommerceCollectionMetafields (string collectionId, SetCommerceProductMetafieldsRequest setCommerceProductMetafieldsRequest)
 
 Set collection metafields
 
-Creates or updates custom fields by namespace and key. 
+Creates or updates custom fields by namespace and key. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported. 
 
 ### Example
 ```csharp
@@ -6438,7 +6492,7 @@ using Zernio.Model;
 
 namespace Example
 {
-    public class SetCollectionMetafieldsExample
+    public class SetCommerceCollectionMetafieldsExample
     {
         public static void Main()
         {
@@ -6452,17 +6506,17 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
             var collectionId = "collectionId_example";  // string | Platform-native id.
-            var setProductMetafieldsRequest = new SetProductMetafieldsRequest(); // SetProductMetafieldsRequest | 
+            var setCommerceProductMetafieldsRequest = new SetCommerceProductMetafieldsRequest(); // SetCommerceProductMetafieldsRequest | 
 
             try
             {
                 // Set collection metafields
-                ListProductMetafields200Response result = apiInstance.SetCollectionMetafields(collectionId, setProductMetafieldsRequest);
+                ListCommerceProductMetafields200Response result = apiInstance.SetCommerceCollectionMetafields(collectionId, setCommerceProductMetafieldsRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CommerceApi.SetCollectionMetafields: " + e.Message);
+                Debug.Print("Exception when calling CommerceApi.SetCommerceCollectionMetafields: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -6471,21 +6525,21 @@ namespace Example
 }
 ```
 
-#### Using the SetCollectionMetafieldsWithHttpInfo variant
+#### Using the SetCommerceCollectionMetafieldsWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Set collection metafields
-    ApiResponse<ListProductMetafields200Response> response = apiInstance.SetCollectionMetafieldsWithHttpInfo(collectionId, setProductMetafieldsRequest);
+    ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.SetCommerceCollectionMetafieldsWithHttpInfo(collectionId, setCommerceProductMetafieldsRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CommerceApi.SetCollectionMetafieldsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CommerceApi.SetCommerceCollectionMetafieldsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -6496,11 +6550,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **collectionId** | **string** | Platform-native id. |  |
-| **setProductMetafieldsRequest** | [**SetProductMetafieldsRequest**](SetProductMetafieldsRequest.md) |  |  |
+| **setCommerceProductMetafieldsRequest** | [**SetCommerceProductMetafieldsRequest**](SetCommerceProductMetafieldsRequest.md) |  |  |
 
 ### Return type
 
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
 
 ### Authorization
 
@@ -6734,9 +6788,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="setproductmetafields"></a>
-# **SetProductMetafields**
-> ListProductMetafields200Response SetProductMetafields (string productId, SetProductMetafieldsRequest setProductMetafieldsRequest)
+<a id="setcommerceproductmetafields"></a>
+# **SetCommerceProductMetafields**
+> ListCommerceProductMetafields200Response SetCommerceProductMetafields (string productId, SetCommerceProductMetafieldsRequest setCommerceProductMetafieldsRequest)
 
 Set product metafields
 
@@ -6753,7 +6807,7 @@ using Zernio.Model;
 
 namespace Example
 {
-    public class SetProductMetafieldsExample
+    public class SetCommerceProductMetafieldsExample
     {
         public static void Main()
         {
@@ -6767,17 +6821,17 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
             var productId = "productId_example";  // string | Platform-native id.
-            var setProductMetafieldsRequest = new SetProductMetafieldsRequest(); // SetProductMetafieldsRequest | 
+            var setCommerceProductMetafieldsRequest = new SetCommerceProductMetafieldsRequest(); // SetCommerceProductMetafieldsRequest | 
 
             try
             {
                 // Set product metafields
-                ListProductMetafields200Response result = apiInstance.SetProductMetafields(productId, setProductMetafieldsRequest);
+                ListCommerceProductMetafields200Response result = apiInstance.SetCommerceProductMetafields(productId, setCommerceProductMetafieldsRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CommerceApi.SetProductMetafields: " + e.Message);
+                Debug.Print("Exception when calling CommerceApi.SetCommerceProductMetafields: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -6786,21 +6840,21 @@ namespace Example
 }
 ```
 
-#### Using the SetProductMetafieldsWithHttpInfo variant
+#### Using the SetCommerceProductMetafieldsWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Set product metafields
-    ApiResponse<ListProductMetafields200Response> response = apiInstance.SetProductMetafieldsWithHttpInfo(productId, setProductMetafieldsRequest);
+    ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.SetCommerceProductMetafieldsWithHttpInfo(productId, setCommerceProductMetafieldsRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CommerceApi.SetProductMetafieldsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CommerceApi.SetCommerceProductMetafieldsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -6811,11 +6865,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **productId** | **string** | Platform-native id. |  |
-| **setProductMetafieldsRequest** | [**SetProductMetafieldsRequest**](SetProductMetafieldsRequest.md) |  |  |
+| **setCommerceProductMetafieldsRequest** | [**SetCommerceProductMetafieldsRequest**](SetCommerceProductMetafieldsRequest.md) |  |  |
 
 ### Return type
 
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
 
 ### Authorization
 
@@ -7265,6 +7319,8 @@ catch (ApiException e)
 
 Update a page
 
+Updates the fields you pass (`title`, `handle`, `bodyHtml`, `isPublished`) and returns the page. Needs pages.write.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -7575,6 +7631,8 @@ catch (ApiException e)
 > CreateCommerceRedirect201Response UpdateCommerceRedirect (string redirectId, UpdateCommerceRedirectRequest updateCommerceRedirectRequest)
 
 Update a URL redirect
+
+Changes the redirect's `path` and/or `target`. Shopify only. Needs navigation.write.
 
 ### Example
 ```csharp
