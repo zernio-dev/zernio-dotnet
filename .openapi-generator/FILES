@@ -79,6 +79,8 @@ docs/AddConversionAssociationsRequest.md
 docs/AddDiscordMemberRole200Response.md
 docs/AddImessageGroupParticipant200Response.md
 docs/AddImessageGroupParticipantRequest.md
+docs/AddImessageSandboxContact201Response.md
+docs/AddImessageSandboxContactRequest.md
 docs/AddMessageReaction200Response.md
 docs/AddMessageReactionRequest.md
 docs/AddRcsTestDevice201Response.md
@@ -1245,6 +1247,7 @@ docs/HideInboxCommentRequest.md
 docs/IMessageApi.md
 docs/ImessageAudienceContact.md
 docs/ImessageAudienceContactOptIn.md
+docs/ImessageSandboxContact.md
 docs/ImessageSender.md
 docs/ImessageSenderLifecycle.md
 docs/InboxAnalyticsApi.md
@@ -1473,6 +1476,8 @@ docs/ListHighDemandPeriods200Response.md
 docs/ListImessageAudience200Response.md
 docs/ListImessageAvailableNumbers200Response.md
 docs/ListImessageAvailableNumbers200ResponseNumbersInner.md
+docs/ListImessageSandboxContacts200Response.md
+docs/ListImessageSandboxContacts200ResponseSandbox.md
 docs/ListImessageSenderOrders200Response.md
 docs/ListImessageSenders200Response.md
 docs/ListInboxComments200Response.md
@@ -2791,6 +2796,8 @@ src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
 src/Zernio.Test/Model/AddDiscordMemberRole200ResponseTests.cs
 src/Zernio.Test/Model/AddImessageGroupParticipant200ResponseTests.cs
 src/Zernio.Test/Model/AddImessageGroupParticipantRequestTests.cs
+src/Zernio.Test/Model/AddImessageSandboxContact201ResponseTests.cs
+src/Zernio.Test/Model/AddImessageSandboxContactRequestTests.cs
 src/Zernio.Test/Model/AddMessageReaction200ResponseTests.cs
 src/Zernio.Test/Model/AddMessageReactionRequestTests.cs
 src/Zernio.Test/Model/AddRcsTestDevice201ResponseTests.cs
@@ -3932,6 +3939,7 @@ src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
 src/Zernio.Test/Model/ImessageAudienceContactOptInTests.cs
 src/Zernio.Test/Model/ImessageAudienceContactTests.cs
+src/Zernio.Test/Model/ImessageSandboxContactTests.cs
 src/Zernio.Test/Model/ImessageSenderLifecycleTests.cs
 src/Zernio.Test/Model/ImessageSenderTests.cs
 src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
@@ -4155,6 +4163,8 @@ src/Zernio.Test/Model/ListHighDemandPeriods200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAudience200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseTests.cs
+src/Zernio.Test/Model/ListImessageSandboxContacts200ResponseSandboxTests.cs
+src/Zernio.Test/Model/ListImessageSandboxContacts200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageSenderOrders200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageSenders200ResponseTests.cs
 src/Zernio.Test/Model/ListInboxComments200ResponseDataInnerTests.cs
@@ -5456,6 +5466,8 @@ src/Zernio/Model/AddConversionAssociationsRequest.cs
 src/Zernio/Model/AddDiscordMemberRole200Response.cs
 src/Zernio/Model/AddImessageGroupParticipant200Response.cs
 src/Zernio/Model/AddImessageGroupParticipantRequest.cs
+src/Zernio/Model/AddImessageSandboxContact201Response.cs
+src/Zernio/Model/AddImessageSandboxContactRequest.cs
 src/Zernio/Model/AddMessageReaction200Response.cs
 src/Zernio/Model/AddMessageReactionRequest.cs
 src/Zernio/Model/AddRcsTestDevice201Response.cs
@@ -6597,6 +6609,7 @@ src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
 src/Zernio/Model/ImessageAudienceContact.cs
 src/Zernio/Model/ImessageAudienceContactOptIn.cs
+src/Zernio/Model/ImessageSandboxContact.cs
 src/Zernio/Model/ImessageSender.cs
 src/Zernio/Model/ImessageSenderLifecycle.cs
 src/Zernio/Model/InboxMessageEditAttachment.cs
@@ -6820,6 +6833,8 @@ src/Zernio/Model/ListHighDemandPeriods200Response.cs
 src/Zernio/Model/ListImessageAudience200Response.cs
 src/Zernio/Model/ListImessageAvailableNumbers200Response.cs
 src/Zernio/Model/ListImessageAvailableNumbers200ResponseNumbersInner.cs
+src/Zernio/Model/ListImessageSandboxContacts200Response.cs
+src/Zernio/Model/ListImessageSandboxContacts200ResponseSandbox.cs
 src/Zernio/Model/ListImessageSenderOrders200Response.cs
 src/Zernio/Model/ListImessageSenders200Response.cs
 src/Zernio/Model/ListInboxComments200Response.cs

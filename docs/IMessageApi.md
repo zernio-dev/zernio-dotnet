@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddImessageGroupParticipant**](IMessageApi.md#addimessagegroupparticipant) | **POST** /v1/imessage/groups/{conversationId}/participants | Add a participant to an iMessage group |
+| [**AddImessageSandboxContact**](IMessageApi.md#addimessagesandboxcontact) | **POST** /v1/imessage/sandbox/contacts | Add an iMessage sandbox contact |
 | [**CancelImessageSender**](IMessageApi.md#cancelimessagesender) | **DELETE** /v1/imessage/senders/{senderId} | Cancel an iMessage sender |
 | [**CreateImessageGroup**](IMessageApi.md#createimessagegroup) | **POST** /v1/imessage/groups | Start an iMessage group chat |
 | [**CreateImessageOptInLink**](IMessageApi.md#createimessageoptinlink) | **POST** /v1/imessage/senders/{senderId}/opt-in-links | Create a tracked iMessage opt-in link |
@@ -12,11 +13,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetImessageSender**](IMessageApi.md#getimessagesender) | **GET** /v1/imessage/senders/{senderId} | Get iMessage sender status |
 | [**ListImessageAudience**](IMessageApi.md#listimessageaudience) | **GET** /v1/imessage/audience | List iMessage audience |
 | [**ListImessageAvailableNumbers**](IMessageApi.md#listimessageavailablenumbers) | **GET** /v1/imessage/senders/available-numbers | List instantly available iMessage numbers |
+| [**ListImessageSandboxContacts**](IMessageApi.md#listimessagesandboxcontacts) | **GET** /v1/imessage/sandbox/contacts | List iMessage sandbox contacts |
 | [**ListImessageSenderOrders**](IMessageApi.md#listimessagesenderorders) | **GET** /v1/imessage/senders/order | List iMessage sender orders |
 | [**ListImessageSenders**](IMessageApi.md#listimessagesenders) | **GET** /v1/imessage/senders | List iMessage senders |
 | [**OrderImessageSender**](IMessageApi.md#orderimessagesender) | **POST** /v1/imessage/senders/order | Order a new iMessage sender |
 | [**RegisterImessageSender**](IMessageApi.md#registerimessagesender) | **POST** /v1/imessage/senders | Register an iMessage sender |
 | [**RemoveImessageGroupParticipant**](IMessageApi.md#removeimessagegroupparticipant) | **DELETE** /v1/imessage/groups/{conversationId}/participants | Remove a participant from an iMessage group |
+| [**RemoveImessageSandboxContact**](IMessageApi.md#removeimessagesandboxcontact) | **DELETE** /v1/imessage/sandbox/contacts/{contactId} | Remove an iMessage sandbox contact |
 | [**ReserveImessageAvailableNumber**](IMessageApi.md#reserveimessageavailablenumber) | **POST** /v1/imessage/senders/available-numbers/{numberId}/reserve | Reserve an available iMessage number |
 | [**SetImessageSubscription**](IMessageApi.md#setimessagesubscription) | **POST** /v1/imessage/audience/subscription | Subscribe or opt out an iMessage contact |
 | [**UpdateImessageGroup**](IMessageApi.md#updateimessagegroup) | **PATCH** /v1/imessage/groups/{conversationId} | Rename an iMessage group or change its photo |
@@ -122,6 +125,109 @@ catch (ApiException e)
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account or conversation not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="addimessagesandboxcontact"></a>
+# **AddImessageSandboxContact**
+> AddImessageSandboxContact201Response AddImessageSandboxContact (AddImessageSandboxContactRequest addImessageSandboxContactRequest)
+
+Add an iMessage sandbox contact
+
+Adds your own phone (E.164) or Apple ID email. The contact starts as pending; it becomes active when its joinText arrives at the sandbox line from that handle (joinLink opens Messages with it prefilled). Adding a handle that is already on your list returns it unchanged.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AddImessageSandboxContactExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IMessageApi(httpClient, config, httpClientHandler);
+            var addImessageSandboxContactRequest = new AddImessageSandboxContactRequest(); // AddImessageSandboxContactRequest | 
+
+            try
+            {
+                // Add an iMessage sandbox contact
+                AddImessageSandboxContact201Response result = apiInstance.AddImessageSandboxContact(addImessageSandboxContactRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling IMessageApi.AddImessageSandboxContact: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AddImessageSandboxContactWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add an iMessage sandbox contact
+    ApiResponse<AddImessageSandboxContact201Response> response = apiInstance.AddImessageSandboxContactWithHttpInfo(addImessageSandboxContactRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling IMessageApi.AddImessageSandboxContactWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **addImessageSandboxContactRequest** | [**AddImessageSandboxContactRequest**](AddImessageSandboxContactRequest.md) |  |  |
+
+### Return type
+
+[**AddImessageSandboxContact201Response**](AddImessageSandboxContact201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Contact added |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Your plan does not include the inbox |  -  |
+| **404** | The sandbox is not available right now |  -  |
+| **409** | Contact limit reached, or the handle is on someone else&#39;s sandbox list |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -846,6 +952,102 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listimessagesandboxcontacts"></a>
+# **ListImessageSandboxContacts**
+> ListImessageSandboxContacts200Response ListImessageSandboxContacts ()
+
+List iMessage sandbox contacts
+
+The shared sandbox line and your sandbox contacts. The sandbox lets you test iMessage without ordering a sender: add your own phone or Apple ID email, send its join code to the sandbox line from that phone, and your messages reach your inbox and webhooks. Replies are allowed for 24 hours after each message from the contact. Group chats and starting conversations are not supported.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListImessageSandboxContactsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IMessageApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // List iMessage sandbox contacts
+                ListImessageSandboxContacts200Response result = apiInstance.ListImessageSandboxContacts();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling IMessageApi.ListImessageSandboxContacts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListImessageSandboxContactsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List iMessage sandbox contacts
+    ApiResponse<ListImessageSandboxContacts200Response> response = apiInstance.ListImessageSandboxContactsWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling IMessageApi.ListImessageSandboxContactsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ListImessageSandboxContacts200Response**](ListImessageSandboxContacts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sandbox line and contacts |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Your plan does not include the inbox |  -  |
+| **404** | The sandbox is not available right now |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listimessagesenderorders"></a>
 # **ListImessageSenderOrders**
 > ListImessageSenderOrders200Response ListImessageSenderOrders (bool? includeCanceled = null)
@@ -1351,6 +1553,107 @@ catch (ApiException e)
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account or conversation not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="removeimessagesandboxcontact"></a>
+# **RemoveImessageSandboxContact**
+> UpdateYoutubeDefaultPlaylist200Response RemoveImessageSandboxContact (string contactId)
+
+Remove an iMessage sandbox contact
+
+Removes the contact and its sandbox conversation. Messages from that handle to the sandbox line are no longer delivered to you.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RemoveImessageSandboxContactExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IMessageApi(httpClient, config, httpClientHandler);
+            var contactId = "contactId_example";  // string | 
+
+            try
+            {
+                // Remove an iMessage sandbox contact
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.RemoveImessageSandboxContact(contactId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling IMessageApi.RemoveImessageSandboxContact: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveImessageSandboxContactWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove an iMessage sandbox contact
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.RemoveImessageSandboxContactWithHttpInfo(contactId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling IMessageApi.RemoveImessageSandboxContactWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **contactId** | **string** |  |  |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Sandbox contact not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
