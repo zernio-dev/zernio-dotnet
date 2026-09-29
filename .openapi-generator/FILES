@@ -625,6 +625,7 @@ docs/CtwaAdRequestBodyCreativesInner.md
 docs/CtwaAdRequestBodyCreativesInnerVideo.md
 docs/CtwaAdRequestBodyCreativesInnerWelcomeMessage.md
 docs/CtwaAdRequestBodyPlacements.md
+docs/CtwaAdRequestBodyPlacesInner.md
 docs/CtwaAdRequestBodyRegionsInner.md
 docs/CtwaAdRequestBodyVideo.md
 docs/CtwaAdRequestBodyWelcomeMessage.md
@@ -2122,7 +2123,6 @@ docs/TargetingSpecCitiesInnerOneOf.md
 docs/TargetingSpecCustomLocationsInner.md
 docs/TargetingSpecExcludedLocations.md
 docs/TargetingSpecExcludedLocationsCitiesInner.md
-docs/TargetingSpecExcludedLocationsPlacesInner.md
 docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
@@ -3328,6 +3328,7 @@ src/Zernio.Test/Model/CtwaAdRequestBodyCreativesInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCreativesInnerVideoTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCreativesInnerWelcomeMessageTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyPlacementsTests.cs
+src/Zernio.Test/Model/CtwaAdRequestBodyPlacesInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyRegionsInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyVideoTests.cs
@@ -4789,7 +4790,6 @@ src/Zernio.Test/Model/TargetingSpecCitiesInnerOneOfTests.cs
 src/Zernio.Test/Model/TargetingSpecCitiesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecExcludedLocationsCitiesInnerTests.cs
-src/Zernio.Test/Model/TargetingSpecExcludedLocationsPlacesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecExcludedLocationsTests.cs
 src/Zernio.Test/Model/TargetingSpecTests.cs
 src/Zernio.Test/Model/TelegramPlatformDataTests.cs
@@ -5999,6 +5999,7 @@ src/Zernio/Model/CtwaAdRequestBodyCreativesInner.cs
 src/Zernio/Model/CtwaAdRequestBodyCreativesInnerVideo.cs
 src/Zernio/Model/CtwaAdRequestBodyCreativesInnerWelcomeMessage.cs
 src/Zernio/Model/CtwaAdRequestBodyPlacements.cs
+src/Zernio/Model/CtwaAdRequestBodyPlacesInner.cs
 src/Zernio/Model/CtwaAdRequestBodyRegionsInner.cs
 src/Zernio/Model/CtwaAdRequestBodyVideo.cs
 src/Zernio/Model/CtwaAdRequestBodyWelcomeMessage.cs
@@ -7461,7 +7462,6 @@ src/Zernio/Model/TargetingSpecCitiesInnerOneOf.cs
 src/Zernio/Model/TargetingSpecCustomLocationsInner.cs
 src/Zernio/Model/TargetingSpecExcludedLocations.cs
 src/Zernio/Model/TargetingSpecExcludedLocationsCitiesInner.cs
-src/Zernio/Model/TargetingSpecExcludedLocationsPlacesInner.cs
 src/Zernio/Model/TelegramPlatformData.cs
 src/Zernio/Model/TestWebhookRequest.cs
 src/Zernio/Model/ThreadsPlatformData.cs

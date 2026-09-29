@@ -1,4 +1,4 @@
-# Zernio.Model.TargetingSpecExcludedLocationsPlacesInner
+# Zernio.Model.CtwaAdRequestBodyPlacesInner
 
 ## Properties
 

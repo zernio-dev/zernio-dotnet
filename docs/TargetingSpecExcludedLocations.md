@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Regions** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf.md) |  | [optional] 
 **Cities** | [**List&lt;TargetingSpecExcludedLocationsCitiesInner&gt;**](TargetingSpecExcludedLocationsCitiesInner.md) | Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities. | [optional] 
 **Zips** | [**List&lt;UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf&gt;**](UpdateCampaignTargetingRequestTargetingLocationsOneOfRegionsInnerOneOf.md) |  | [optional] 
-**Places** | [**List&lt;TargetingSpecExcludedLocationsPlacesInner&gt;**](TargetingSpecExcludedLocationsPlacesInner.md) | Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search. | [optional] 
-**Neighborhoods** | [**List&lt;TargetingSpecExcludedLocationsPlacesInner&gt;**](TargetingSpecExcludedLocationsPlacesInner.md) | Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search. | [optional] 
+**Places** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search. | [optional] 
+**Neighborhoods** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search. | [optional] 
 **CustomLocations** | [**List&lt;TargetingSpecCustomLocationsInner&gt;**](TargetingSpecCustomLocationsInner.md) | Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
