@@ -270,6 +270,7 @@ namespace Zernio.Test.Api
             //string platform = null;
             //string profileId = null;
             //string? redirectUrl = null;
+            //string? scopes = null;
             //bool? headless = null;
             //string? loginMethod = null;
             //string? onboarding = null;
@@ -277,7 +278,7 @@ namespace Zernio.Test.Api
             //string? brandName = null;
             //string? primaryColor = null;
             //string? language = null;
-            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, headless, loginMethod, onboarding, signup, brandName, primaryColor, language);
+            //var response = instance.GetConnectUrl(platform, profileId, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, language);
             //Assert.IsType<GetConnectUrl200Response>(response);
         }
 
@@ -579,7 +580,8 @@ namespace Zernio.Test.Api
             //string? pendingDataToken = null;
             //string? accountId = null;
             //string? redirectUrl = null;
-            //var response = instance.ListSlackChannels(profileId, pendingDataToken, accountId, redirectUrl);
+            //string? scopes = null;
+            //var response = instance.ListSlackChannels(profileId, pendingDataToken, accountId, redirectUrl, scopes);
             //Assert.IsType<ListSlackChannels200Response>(response);
         }
 
