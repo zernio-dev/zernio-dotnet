@@ -992,7 +992,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Stats fetched |  -  |
-| **400** | Invalid query parameter. |  -  |
+| **400** | Invalid query parameter, or (Meta) the startTime/endTime window is too large for Meta to answer: narrow it, e.g. into 7-day ranges. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
