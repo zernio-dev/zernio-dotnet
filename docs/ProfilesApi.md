@@ -430,7 +430,7 @@ catch (ApiException e)
 
 Update profile
 
-Updates a profile's name, description, color, or default status.
+Updates a profile's name, description, color, default timezone, or default status.
 
 ### Example
 ```csharp
@@ -521,7 +521,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request, including a body that carries none of name, description, color or isDefault (code: missing_required_field). |  -  |
+| **400** | Invalid request, including an unknown timezone or a body that carries none of name, description, color, timezone or isDefault (code: missing_required_field). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
