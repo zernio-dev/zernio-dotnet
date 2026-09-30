@@ -2143,7 +2143,7 @@ void (empty response body)
 
 Message delivered event
 
-Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. On WhatsApp, `pricing` and `billingConversation` carry Meta's billing context for the message (also on `message.sent`, `message.read` and `message.failed`). 
 
 ### Example
 ```csharp

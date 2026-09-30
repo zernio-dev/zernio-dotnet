@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. | 
 **Event** | **string** |  | 
 **Message** | [**WebhookPayloadMessageSentMessage**](WebhookPayloadMessageSentMessage.md) |  | 
+**Pricing** | [**WhatsAppMessagePricing**](WhatsAppMessagePricing.md) |  | [optional] 
+**BillingConversation** | [**WhatsAppBillingConversation**](WhatsAppBillingConversation.md) |  | [optional] 
 **Conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  | 
 **Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 
 **Metadata** | [**WebhookPayloadMessageSentMetadata**](WebhookPayloadMessageSentMetadata.md) |  | [optional] 

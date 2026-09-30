@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **Message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  | 
 **StatusAt** | **DateTime** | When the platform reported this status. | 
 **Error** | [**WebhookPayloadMessageDeliveryStatusError**](WebhookPayloadMessageDeliveryStatusError.md) |  | [optional] 
+**Pricing** | [**WhatsAppMessagePricing**](WhatsAppMessagePricing.md) |  | [optional] 
+**BillingConversation** | [**WhatsAppBillingConversation**](WhatsAppBillingConversation.md) |  | [optional] 
 **Conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  | 
 **Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 
 **Timestamp** | **DateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. | 

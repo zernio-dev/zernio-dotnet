@@ -2588,6 +2588,7 @@ docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
+docs/WhatsAppBillingConversation.md
 docs/WhatsAppBodyComponent.md
 docs/WhatsAppBodyComponentExample.md
 docs/WhatsAppButtonsComponent.md
@@ -2602,6 +2603,7 @@ docs/WhatsAppHeaderComponent.md
 docs/WhatsAppHeaderComponentExample.md
 docs/WhatsAppLimitedTimeOfferComponent.md
 docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md
+docs/WhatsAppMessagePricing.md
 docs/WhatsAppNamedParamExample.md
 docs/WhatsAppPhoneNumbersApi.md
 docs/WhatsAppSandboxApi.md
@@ -5253,6 +5255,7 @@ src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplateTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTests.cs
 src/Zernio.Test/Model/WebhookTests.cs
+src/Zernio.Test/Model/WhatsAppBillingConversationTests.cs
 src/Zernio.Test/Model/WhatsAppBodyComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppBodyComponentTests.cs
 src/Zernio.Test/Model/WhatsAppButtonsComponentTests.cs
@@ -5265,6 +5268,7 @@ src/Zernio.Test/Model/WhatsAppHeaderComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentTests.cs
 src/Zernio.Test/Model/WhatsAppLimitedTimeOfferComponentLimitedTimeOfferTests.cs
 src/Zernio.Test/Model/WhatsAppLimitedTimeOfferComponentTests.cs
+src/Zernio.Test/Model/WhatsAppMessagePricingTests.cs
 src/Zernio.Test/Model/WhatsAppNamedParamExampleTests.cs
 src/Zernio.Test/Model/WhatsAppSandboxSessionTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateButtonTests.cs
@@ -7930,6 +7934,7 @@ src/Zernio/Model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdated.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.cs
+src/Zernio/Model/WhatsAppBillingConversation.cs
 src/Zernio/Model/WhatsAppBodyComponent.cs
 src/Zernio/Model/WhatsAppBodyComponentExample.cs
 src/Zernio/Model/WhatsAppButtonsComponent.cs
@@ -7942,6 +7947,7 @@ src/Zernio/Model/WhatsAppHeaderComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponentExample.cs
 src/Zernio/Model/WhatsAppLimitedTimeOfferComponent.cs
 src/Zernio/Model/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.cs
+src/Zernio/Model/WhatsAppMessagePricing.cs
 src/Zernio/Model/WhatsAppNamedParamExample.cs
 src/Zernio/Model/WhatsAppSandboxSession.cs
 src/Zernio/Model/WhatsAppTemplateButton.cs
