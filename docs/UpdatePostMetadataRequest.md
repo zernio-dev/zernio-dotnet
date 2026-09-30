@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Platform** | **string** | The platform to update metadata on | 
 **VideoId** | **string** | YouTube video ID (required for direct mode, ignored for post-based mode) | [optional] 
-**AccountId** | **string** | Zernio account ID (required for direct mode, ignored for post-based mode) | [optional] 
+**AccountId** | **string** | Zernio account ID. Required for direct mode. In post-based mode, picks which account&#39;s copy to update when the post was published to several accounts on this platform (required in that case). | [optional] 
 **Title** | **string** | New video title (max 100 characters for YouTube) | [optional] 
 **Description** | **string** | New video description | [optional] 
 **Tags** | **List&lt;string&gt;** | Array of keyword tags (max 500 characters combined for YouTube) | [optional] 
