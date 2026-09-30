@@ -2581,6 +2581,8 @@ docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadTest.md
 docs/WebhookPayloadWhatsAppAccountNameStatusUpdated.md
 docs/WebhookPayloadWhatsAppAccountNameStatusUpdatedName.md
+docs/WebhookPayloadWhatsAppContactIdentityChanged.md
+docs/WebhookPayloadWhatsAppContactIdentityChangedAccount.md
 docs/WebhookPayloadWhatsAppTemplateCategoryUpdated.md
 docs/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md
@@ -2597,6 +2599,7 @@ docs/WhatsAppCarouselCardComponent.md
 docs/WhatsAppCarouselComponent.md
 docs/WhatsAppCarouselComponentCardsInner.md
 docs/WhatsAppCommerceSettings.md
+docs/WhatsAppContactIdentity.md
 docs/WhatsAppFlowsApi.md
 docs/WhatsAppFooterComponent.md
 docs/WhatsAppHeaderComponent.md
@@ -5249,6 +5252,8 @@ src/Zernio.Test/Model/WebhookPayloadReviewUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadTestTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppAccountNameStatusUpdatedNameTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppAccountNameStatusUpdatedTests.cs
+src/Zernio.Test/Model/WebhookPayloadWhatsAppContactIdentityChangedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadWhatsAppContactIdentityChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplateTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccountTests.cs
@@ -5263,6 +5268,7 @@ src/Zernio.Test/Model/WhatsAppCarouselCardComponentTests.cs
 src/Zernio.Test/Model/WhatsAppCarouselComponentCardsInnerTests.cs
 src/Zernio.Test/Model/WhatsAppCarouselComponentTests.cs
 src/Zernio.Test/Model/WhatsAppCommerceSettingsTests.cs
+src/Zernio.Test/Model/WhatsAppContactIdentityTests.cs
 src/Zernio.Test/Model/WhatsAppFooterComponentTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentTests.cs
@@ -7929,6 +7935,8 @@ src/Zernio/Model/WebhookPayloadReviewUpdated.cs
 src/Zernio/Model/WebhookPayloadTest.cs
 src/Zernio/Model/WebhookPayloadWhatsAppAccountNameStatusUpdated.cs
 src/Zernio/Model/WebhookPayloadWhatsAppAccountNameStatusUpdatedName.cs
+src/Zernio/Model/WebhookPayloadWhatsAppContactIdentityChanged.cs
+src/Zernio/Model/WebhookPayloadWhatsAppContactIdentityChangedAccount.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateCategoryUpdated.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdated.cs
@@ -7942,6 +7950,7 @@ src/Zernio/Model/WhatsAppCarouselCardComponent.cs
 src/Zernio/Model/WhatsAppCarouselComponent.cs
 src/Zernio/Model/WhatsAppCarouselComponentCardsInner.cs
 src/Zernio/Model/WhatsAppCommerceSettings.cs
+src/Zernio/Model/WhatsAppContactIdentity.cs
 src/Zernio/Model/WhatsAppFooterComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponentExample.cs
