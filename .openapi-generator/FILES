@@ -1643,6 +1643,7 @@ docs/MetaAssignedUser.md
 docs/MetaBusinessUser.md
 docs/MetaCatalogProduct.md
 docs/MetaCatalogProductInput.md
+docs/MetaCustomerLifecycle.md
 docs/MetaFeedUpload.md
 docs/MetaInstagramIdentityRef.md
 docs/MetaLeadForm.md
@@ -4331,6 +4332,7 @@ src/Zernio.Test/Model/MetaAssignedUserTests.cs
 src/Zernio.Test/Model/MetaBusinessUserTests.cs
 src/Zernio.Test/Model/MetaCatalogProductInputTests.cs
 src/Zernio.Test/Model/MetaCatalogProductTests.cs
+src/Zernio.Test/Model/MetaCustomerLifecycleTests.cs
 src/Zernio.Test/Model/MetaFeedUploadTests.cs
 src/Zernio.Test/Model/MetaInstagramIdentityRefTests.cs
 src/Zernio.Test/Model/MetaLeadFormContextCardTests.cs
@@ -7007,6 +7009,7 @@ src/Zernio/Model/MetaAssignedUser.cs
 src/Zernio/Model/MetaBusinessUser.cs
 src/Zernio/Model/MetaCatalogProduct.cs
 src/Zernio/Model/MetaCatalogProductInput.cs
+src/Zernio/Model/MetaCustomerLifecycle.cs
 src/Zernio/Model/MetaFeedUpload.cs
 src/Zernio/Model/MetaInstagramIdentityRef.cs
 src/Zernio/Model/MetaLeadForm.cs
