@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **ImageUrl** | **string** |  | [optional] 
 **VideoUrl** | **string** |  | [optional] 
 **ThumbnailUrl** | **string** |  | [optional] 
+**WelcomeMessage** | [**WebhookPayloadMessageMetadataReferralWelcomeMessage**](WebhookPayloadMessageMetadataReferralWelcomeMessage.md) |  | [optional] 
 **AdId** | **string** | Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation.  | [optional] 
 **Ref** | **string** | The &#x60;ref&#x60; parameter passed through from the Meta ad creative or from an ig.me / m.me link. Instagram / Facebook Messenger only.  | [optional] 
 **Source** | **string** | Meta-supplied source identifier (&#x60;ADS&#x60; for ad clicks; &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or &#x60;IGME-SOURCE-LINK&#x60; for ref links). Instagram / Facebook Messenger only.  | [optional] 

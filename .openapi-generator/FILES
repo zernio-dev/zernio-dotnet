@@ -1267,6 +1267,7 @@ docs/InboxWebhookConversation.md
 docs/InboxWebhookConversationDetail.md
 docs/InboxWebhookMessage.md
 docs/InboxWebhookMessageAttachmentsInner.md
+docs/InboxWebhookMessageAttachmentsInnerPayload.md
 docs/InboxWebhookMessageSender.md
 docs/InboxWebhookMessageSenderInstagramProfile.md
 docs/InitiateTelegramConnect200Response.md
@@ -2550,6 +2551,7 @@ docs/WebhookPayloadMessageMetadataOrderProductItemsInner.md
 docs/WebhookPayloadMessageMetadataQuotedMessage.md
 docs/WebhookPayloadMessageMetadataReferral.md
 docs/WebhookPayloadMessageMetadataReferralAdsContextData.md
+docs/WebhookPayloadMessageMetadataReferralWelcomeMessage.md
 docs/WebhookPayloadMessageMetadataReferredProduct.md
 docs/WebhookPayloadMessageMetadataStoryReply.md
 docs/WebhookPayloadMessageMetadataUnsupported.md
@@ -3977,6 +3979,7 @@ src/Zernio.Test/Model/InboxMessageEditHistoryEntryTests.cs
 src/Zernio.Test/Model/InboxWebhookAccountTests.cs
 src/Zernio.Test/Model/InboxWebhookConversationDetailTests.cs
 src/Zernio.Test/Model/InboxWebhookConversationTests.cs
+src/Zernio.Test/Model/InboxWebhookMessageAttachmentsInnerPayloadTests.cs
 src/Zernio.Test/Model/InboxWebhookMessageAttachmentsInnerTests.cs
 src/Zernio.Test/Model/InboxWebhookMessageSenderInstagramProfileTests.cs
 src/Zernio.Test/Model/InboxWebhookMessageSenderTests.cs
@@ -5228,6 +5231,7 @@ src/Zernio.Test/Model/WebhookPayloadMessageMetadataOrderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataQuotedMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferralAdsContextDataTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferralTests.cs
+src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferralWelcomeMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataReferredProductTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataStoryReplyTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMetadataTests.cs
@@ -6670,6 +6674,7 @@ src/Zernio/Model/InboxWebhookConversation.cs
 src/Zernio/Model/InboxWebhookConversationDetail.cs
 src/Zernio/Model/InboxWebhookMessage.cs
 src/Zernio/Model/InboxWebhookMessageAttachmentsInner.cs
+src/Zernio/Model/InboxWebhookMessageAttachmentsInnerPayload.cs
 src/Zernio/Model/InboxWebhookMessageSender.cs
 src/Zernio/Model/InboxWebhookMessageSenderInstagramProfile.cs
 src/Zernio/Model/InitiateTelegramConnect200Response.cs
@@ -7922,6 +7927,7 @@ src/Zernio/Model/WebhookPayloadMessageMetadataOrderProductItemsInner.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataQuotedMessage.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataReferral.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataReferralAdsContextData.cs
+src/Zernio/Model/WebhookPayloadMessageMetadataReferralWelcomeMessage.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataReferredProduct.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataStoryReply.cs
 src/Zernio/Model/WebhookPayloadMessageMetadataUnsupported.cs
