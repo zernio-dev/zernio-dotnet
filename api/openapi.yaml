@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.163.2
+  version: 1.164.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58935,15 +58935,17 @@ components:
       description: A managed OTP verification. The code itself is never returned or
         stored (hash only).
       example:
+        deliveryErrorCode: 5
+        channel: sms
+        lastSentAt: 2000-01-23T04:56:07.000+00:00
+        sendCount: 1
+        expiresAt: 2000-01-23T04:56:07.000+00:00
         maxAttempts: 6
         createdAt: 2000-01-23T04:56:07.000+00:00
         resend: true
-        channel: sms
-        lastSentAt: 2000-01-23T04:56:07.000+00:00
         id: id
         to: to
-        sendCount: 1
-        expiresAt: 2000-01-23T04:56:07.000+00:00
+        deliveryStatus: delivered
         status: pending
         attempts: 0
       properties:
@@ -58980,6 +58982,26 @@ components:
           format: date-time
           nullable: true
           type: string
+        deliveryStatus:
+          description: "WhatsApp only, returned by GET /v1/verify/verifications/{verificationId}\
+            \ (null on create and check responses): what Meta reported for the latest\
+            \ send, null until it reports. A code that never reached the recipient\
+            \ (for example a number not on WhatsApp) reads failed, with the Meta error\
+            \ in deliveryErrorCode. failed does not settle the verification: Meta\
+            \ can report failed and later deliver the same message. Reported for at\
+            \ least an hour after the send, well past any code's expiry."
+          enum:
+          - delivered
+          - read
+          - failed
+          - null
+          nullable: true
+          type: string
+        deliveryErrorCode:
+          description: "Meta error code when deliveryStatus is failed (e.g. 131026,\
+            \ message undeliverable)."
+          nullable: true
+          type: integer
         createdAt:
           format: date-time
           type: string
@@ -62677,6 +62699,7 @@ components:
         blockedCallers:
         - blockedCallers
         - blockedCallers
+        metaPoolAddRejectedAt: 2000-01-23T04:56:07.000+00:00
         sipAuthUsername: sipAuthUsername
         callIconCountries:
         - callIconCountries
@@ -62845,6 +62868,14 @@ components:
           format: date-time
           type: string
         metaVerificationExpiresAt:
+          format: date-time
+          type: string
+        metaPoolAddRejectedAt:
+          description: "Set when WhatsApp reported the number as registered to another\
+            \ WhatsApp account while connecting it. The number keeps working for Calls\
+            \ and SMS; remove it from the other account and connect again, or replace\
+            \ it with POST /v1/whatsapp/phone-numbers/{id}/replace. Absent once WhatsApp\
+            \ accepts the number."
           format: date-time
           type: string
         socialAccountId:
@@ -104497,6 +104528,7 @@ components:
           blockedCallers:
           - blockedCallers
           - blockedCallers
+          metaPoolAddRejectedAt: 2000-01-23T04:56:07.000+00:00
           sipAuthUsername: sipAuthUsername
           callIconCountries:
           - callIconCountries
@@ -104584,6 +104616,7 @@ components:
           blockedCallers:
           - blockedCallers
           - blockedCallers
+          metaPoolAddRejectedAt: 2000-01-23T04:56:07.000+00:00
           sipAuthUsername: sipAuthUsername
           callIconCountries:
           - callIconCountries
@@ -136159,16 +136192,18 @@ components:
           valid:
             type: boolean
       example:
+        deliveryErrorCode: 5
+        channel: sms
+        lastSentAt: 2000-01-23T04:56:07.000+00:00
+        sendCount: 1
+        expiresAt: 2000-01-23T04:56:07.000+00:00
         valid: true
         maxAttempts: 6
         createdAt: 2000-01-23T04:56:07.000+00:00
         resend: true
-        channel: sms
-        lastSentAt: 2000-01-23T04:56:07.000+00:00
         id: id
         to: to
-        sendCount: 1
-        expiresAt: 2000-01-23T04:56:07.000+00:00
+        deliveryStatus: delivered
         status: pending
         attempts: 0
     listTikTokAdPixels_200_response_pixels_inner_eventDetails_inner:
