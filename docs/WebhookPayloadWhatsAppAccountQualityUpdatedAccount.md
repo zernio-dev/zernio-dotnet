@@ -1,4 +1,4 @@
-# Zernio.Model.WebhookPayloadWhatsAppContactIdentityChangedAccount
+# Zernio.Model.WebhookPayloadWhatsAppAccountQualityUpdatedAccount
 
 ## Properties
 

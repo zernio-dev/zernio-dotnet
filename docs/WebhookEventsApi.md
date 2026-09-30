@@ -56,7 +56,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnVerificationApproved**](WebhookEventsApi.md#onverificationapproved) | **POST** /verification.approved | Verification approved event |
 | [**OnVerificationFailed**](WebhookEventsApi.md#onverificationfailed) | **POST** /verification.failed | Verification failed event |
 | [**OnWebhookTest**](WebhookEventsApi.md#onwebhooktest) | **POST** /webhook.test | Webhook test event |
+| [**OnWhatsAppAccountAlertReceived**](WebhookEventsApi.md#onwhatsappaccountalertreceived) | **POST** /whatsapp.account.alert_received | WhatsApp account alert received |
 | [**OnWhatsAppAccountNameStatusUpdated**](WebhookEventsApi.md#onwhatsappaccountnamestatusupdated) | **POST** /whatsapp.account.name_status_updated | WhatsApp display-name review outcome event |
+| [**OnWhatsAppAccountQualityUpdated**](WebhookEventsApi.md#onwhatsappaccountqualityupdated) | **POST** /whatsapp.account.quality_updated | WhatsApp quality rating or messaging limit changed |
+| [**OnWhatsAppAccountStatusUpdated**](WebhookEventsApi.md#onwhatsappaccountstatusupdated) | **POST** /whatsapp.account.status_updated | WhatsApp Business Account restricted or reinstated |
 | [**OnWhatsAppAutomaticEvent**](WebhookEventsApi.md#onwhatsappautomaticevent) | **POST** /whatsapp.automatic_event | WhatsApp automatic event detected |
 | [**OnWhatsAppContactIdentityChanged**](WebhookEventsApi.md#onwhatsappcontactidentitychanged) | **POST** /whatsapp.contact.identity_changed | WhatsApp contact identity changed event |
 | [**OnWhatsAppNumberActionRequired**](WebhookEventsApi.md#onwhatsappnumberactionrequired) | **POST** /whatsapp.number.action_required | WhatsApp number action required event |
@@ -4958,6 +4961,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onwhatsappaccountalertreceived"></a>
+# **OnWhatsAppAccountAlertReceived**
+> void OnWhatsAppAccountAlertReceived (WebhookPayloadWhatsAppAccountAlertReceived webhookPayloadWhatsAppAccountAlertReceived)
+
+WhatsApp account alert received
+
+Fired for each Meta `account_alerts` notification on a connected WhatsApp Business Account. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWhatsAppAccountAlertReceivedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWhatsAppAccountAlertReceived = new WebhookPayloadWhatsAppAccountAlertReceived(); // WebhookPayloadWhatsAppAccountAlertReceived | 
+
+            try
+            {
+                // WhatsApp account alert received
+                apiInstance.OnWhatsAppAccountAlertReceived(webhookPayloadWhatsAppAccountAlertReceived);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppAccountAlertReceived: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWhatsAppAccountAlertReceivedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // WhatsApp account alert received
+    apiInstance.OnWhatsAppAccountAlertReceivedWithHttpInfo(webhookPayloadWhatsAppAccountAlertReceived);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppAccountAlertReceivedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWhatsAppAccountAlertReceived** | [**WebhookPayloadWhatsAppAccountAlertReceived**](WebhookPayloadWhatsAppAccountAlertReceived.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onwhatsappaccountnamestatusupdated"></a>
 # **OnWhatsAppAccountNameStatusUpdated**
 > void OnWhatsAppAccountNameStatusUpdated (WebhookPayloadWhatsAppAccountNameStatusUpdated webhookPayloadWhatsAppAccountNameStatusUpdated)
@@ -5030,6 +5127,194 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadWhatsAppAccountNameStatusUpdated** | [**WebhookPayloadWhatsAppAccountNameStatusUpdated**](WebhookPayloadWhatsAppAccountNameStatusUpdated.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onwhatsappaccountqualityupdated"></a>
+# **OnWhatsAppAccountQualityUpdated**
+> void OnWhatsAppAccountQualityUpdated (WebhookPayloadWhatsAppAccountQualityUpdated webhookPayloadWhatsAppAccountQualityUpdated)
+
+WhatsApp quality rating or messaging limit changed
+
+Fired when a connected WhatsApp number's quality rating or messaging limit tier changes. Delivery is at-least-once; dedupe on the event `id`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWhatsAppAccountQualityUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWhatsAppAccountQualityUpdated = new WebhookPayloadWhatsAppAccountQualityUpdated(); // WebhookPayloadWhatsAppAccountQualityUpdated | 
+
+            try
+            {
+                // WhatsApp quality rating or messaging limit changed
+                apiInstance.OnWhatsAppAccountQualityUpdated(webhookPayloadWhatsAppAccountQualityUpdated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppAccountQualityUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWhatsAppAccountQualityUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // WhatsApp quality rating or messaging limit changed
+    apiInstance.OnWhatsAppAccountQualityUpdatedWithHttpInfo(webhookPayloadWhatsAppAccountQualityUpdated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppAccountQualityUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWhatsAppAccountQualityUpdated** | [**WebhookPayloadWhatsAppAccountQualityUpdated**](WebhookPayloadWhatsAppAccountQualityUpdated.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onwhatsappaccountstatusupdated"></a>
+# **OnWhatsAppAccountStatusUpdated**
+> void OnWhatsAppAccountStatusUpdated (WebhookPayloadWhatsAppAccountStatusUpdated webhookPayloadWhatsAppAccountStatusUpdated)
+
+WhatsApp Business Account restricted or reinstated
+
+Fired when Meta restricts, disables, deletes or reinstates the WhatsApp Business Account, once per connected number on it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWhatsAppAccountStatusUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWhatsAppAccountStatusUpdated = new WebhookPayloadWhatsAppAccountStatusUpdated(); // WebhookPayloadWhatsAppAccountStatusUpdated | 
+
+            try
+            {
+                // WhatsApp Business Account restricted or reinstated
+                apiInstance.OnWhatsAppAccountStatusUpdated(webhookPayloadWhatsAppAccountStatusUpdated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppAccountStatusUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWhatsAppAccountStatusUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // WhatsApp Business Account restricted or reinstated
+    apiInstance.OnWhatsAppAccountStatusUpdatedWithHttpInfo(webhookPayloadWhatsAppAccountStatusUpdated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppAccountStatusUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWhatsAppAccountStatusUpdated** | [**WebhookPayloadWhatsAppAccountStatusUpdated**](WebhookPayloadWhatsAppAccountStatusUpdated.md) |  |  |
 
 ### Return type
 
