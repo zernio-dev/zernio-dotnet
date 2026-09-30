@@ -1156,6 +1156,8 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
+docs/GetWhatsAppPricingAnalytics200Response.md
+docs/GetWhatsAppPricingAnalytics200ResponseDataPointsInner.md
 docs/GetWhatsAppSdkConfig200Response.md
 docs/GetWhatsAppSdkConfig200ResponseBranding.md
 docs/GetWhatsAppTemplate200Response.md
@@ -3868,6 +3870,8 @@ src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponseWabaTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberRemediation200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppPricingAnalytics200ResponseDataPointsInnerTests.cs
+src/Zernio.Test/Model/GetWhatsAppPricingAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppSdkConfig200ResponseBrandingTests.cs
 src/Zernio.Test/Model/GetWhatsAppSdkConfig200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTemplateTests.cs
@@ -6557,6 +6561,8 @@ src/Zernio/Model/GetWhatsAppNumberInfo200ResponseWaba.cs
 src/Zernio/Model/GetWhatsAppNumberKycForm200Response.cs
 src/Zernio/Model/GetWhatsAppNumberKycForm200ResponseFieldsInner.cs
 src/Zernio/Model/GetWhatsAppNumberRemediation200Response.cs
+src/Zernio/Model/GetWhatsAppPricingAnalytics200Response.cs
+src/Zernio/Model/GetWhatsAppPricingAnalytics200ResponseDataPointsInner.cs
 src/Zernio/Model/GetWhatsAppSdkConfig200Response.cs
 src/Zernio/Model/GetWhatsAppSdkConfig200ResponseBranding.cs
 src/Zernio/Model/GetWhatsAppTemplate200Response.cs

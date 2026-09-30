@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppNumberRemediation**](WhatsAppPhoneNumbersApi.md#getwhatsappnumberremediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get declined requirements |
 | [**GetWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**GetWhatsAppPhoneNumbers**](WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
+| [**GetWhatsAppPricingAnalytics**](WhatsAppPhoneNumbersApi.md#getwhatsapppricinganalytics) | **GET** /v1/whatsapp/pricing-analytics | Get pricing analytics |
 | [**ListWhatsAppNumberCountries**](WhatsAppPhoneNumbersApi.md#listwhatsappnumbercountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries |
 | [**MoveWhatsAppNumberToProfile**](WhatsAppPhoneNumbersApi.md#movewhatsappnumbertoprofile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile |
 | [**PurchaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number |
@@ -729,6 +730,123 @@ catch (ApiException e)
 | **200** | Phone numbers retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwhatsapppricinganalytics"></a>
+# **GetWhatsAppPricingAnalytics**
+> GetWhatsAppPricingAnalytics200Response GetWhatsAppPricingAnalytics (string accountId, DateTime start, DateTime end, string granularity, string? dimensions = null, string? metricTypes = null, string? pricingTypes = null, string? pricingCategories = null, string? countryCodes = null)
+
+Get pricing analytics
+
+Message volume and approximate cost for one connected WhatsApp number, read live from Meta's `pricing_analytics` on the WhatsApp Business Account and scoped to that account's phone number. Meta's figures are approximate and can lag; Meta bills from its own invoice. Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges) and answers out-of-range requests with an error. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppPricingAnalyticsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp account ID
+            var start = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Range start, ISO 8601 date or date-time.
+            var end = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Range end, ISO 8601 date or date-time. Must be after start.
+            var granularity = "HALF_HOUR";  // string | 
+            var dimensions = PRICING_CATEGORY,COUNTRY;  // string? | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. (optional) 
+            var metricTypes = COST,VOLUME;  // string? | Comma-separated: COST, VOLUME. Defaults to both. (optional) 
+            var pricingTypes = REGULAR;  // string? | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. (optional) 
+            var pricingCategories = MARKETING,UTILITY;  // string? | Comma-separated filter of Meta pricing categories, for example MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL, SERVICE, REFERRAL_CONVERSION. (optional) 
+            var countryCodes = ES,MX;  // string? | Comma-separated ISO 3166-1 alpha-2 country codes to filter on. (optional) 
+
+            try
+            {
+                // Get pricing analytics
+                GetWhatsAppPricingAnalytics200Response result = apiInstance.GetWhatsAppPricingAnalytics(accountId, start, end, granularity, dimensions, metricTypes, pricingTypes, pricingCategories, countryCodes);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.GetWhatsAppPricingAnalytics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppPricingAnalyticsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get pricing analytics
+    ApiResponse<GetWhatsAppPricingAnalytics200Response> response = apiInstance.GetWhatsAppPricingAnalyticsWithHttpInfo(accountId, start, end, granularity, dimensions, metricTypes, pricingTypes, pricingCategories, countryCodes);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.GetWhatsAppPricingAnalyticsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp account ID |  |
+| **start** | **DateTime** | Range start, ISO 8601 date or date-time. |  |
+| **end** | **DateTime** | Range end, ISO 8601 date or date-time. Must be after start. |  |
+| **granularity** | **string** |  |  |
+| **dimensions** | **string?** | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional]  |
+| **metricTypes** | **string?** | Comma-separated: COST, VOLUME. Defaults to both. | [optional]  |
+| **pricingTypes** | **string?** | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional]  |
+| **pricingCategories** | **string?** | Comma-separated filter of Meta pricing categories, for example MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL, SERVICE, REFERRAL_CONVERSION. | [optional]  |
+| **countryCodes** | **string?** | Comma-separated ISO 3166-1 alpha-2 country codes to filter on. | [optional]  |
+
+### Return type
+
+[**GetWhatsAppPricingAnalytics200Response**](GetWhatsAppPricingAnalytics200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pricing data points for the range |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
