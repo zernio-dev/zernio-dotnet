@@ -219,7 +219,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -323,7 +323,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1279,7 +1279,7 @@ catch (ApiException e)
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

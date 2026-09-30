@@ -1,5 +1,5 @@
 # Zernio.Model.AdKeywordMetrics
-Trailing 30-day window. Null on rows synced before the metrics columns existed (re-synced on the keyword's next weekly sweep).
+Trailing 30-day window. Null on rows synced before the metrics columns existed (re-synced on the keyword's next daily sweep).
 
 ## Properties
 
