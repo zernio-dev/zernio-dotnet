@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.175.0
+  version: 1.176.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -64463,6 +64463,7 @@ components:
             code: 2
             details: details
             title: title
+            type: type
           isStoryMention: true
           referredProduct:
             catalog_id: catalog_id
@@ -141575,6 +141576,7 @@ components:
         code: 2
         details: details
         title: title
+        type: type
       properties:
         code:
           description: Meta's numeric error code (e.g. 131051).
@@ -141584,6 +141586,11 @@ components:
           type: string
         details:
           description: Meta's human-readable error detail string.
+          type: string
+        type:
+          description: "Meta's name for the content WhatsApp could not deliver, e.g.\
+            \ view_once, poll_creation, group_invite, edit. Absent when Meta sends\
+            \ none."
           type: string
     WebhookPayloadMessage_metadata:
       description: "Platform-specific message context (present when the message is\
@@ -141603,6 +141610,7 @@ components:
           code: 2
           details: details
           title: title
+          type: type
         isStoryMention: true
         referredProduct:
           catalog_id: catalog_id
@@ -141796,7 +141804,7 @@ components:
             carries nothing an integrator can render (a `template`
             attachment with no text and no parseable content, or Meta's
             own `is_unsupported` flag). Sibling of `unsupported` above
-            (WhatsApp only, carries Meta's error code/title/details): this
+            (WhatsApp only, carries Meta's error code/title/details and unsupported type): this
             field has no error envelope, only the boolean. Absence means
             "not flagged", never "checked and renderable".
           type: boolean
