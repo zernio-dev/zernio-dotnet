@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 **Interests** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  | [optional] 
 **AudienceId** | **string** | Custom audience ID to target. | [optional] 
 **Placements** | [**CtwaAdRequestBodyPlacements**](CtwaAdRequestBodyPlacements.md) |  | [optional] 
-**Gender** | **string** | Restrict the audience by gender (Meta &#x60;genders&#x60;). Stored on the ad and read back in &#x60;targeting.gender&#x60;. | [optional] [default to GenderEnum.All]
+**Gender** | **string** | Restrict the audience by gender (Meta &#x60;genders&#x60;). Omit or send all for everyone; all is ignored in adSetId attach mode. Stored on the ad and read back in &#x60;targeting.gender&#x60;. | [optional] 
 **Languages** | **List&lt;string&gt;** | Audience languages (Meta &#x60;locales&#x60;). A bare ISO 639-1 code targets all regional variants (\&quot;en\&quot; &#x3D; all English), a region-qualified code a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;); unknown codes are rejected. | [optional] 
 **Places** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta place keys (from GET /v1/ads/targeting/search). | [optional] 
 **Neighborhoods** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta neighborhood keys (from GET /v1/ads/targeting/search). | [optional] 
