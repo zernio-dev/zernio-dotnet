@@ -5402,6 +5402,7 @@ catch (ApiException e)
 | **400** | Page not in available pages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5505,6 +5506,7 @@ catch (ApiException e)
 | **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5608,6 +5610,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
