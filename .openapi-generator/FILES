@@ -1974,8 +1974,10 @@ docs/SelectInstagramAccountRequest.md
 docs/SelectLinkedInOrganization200Response.md
 docs/SelectLinkedInOrganization200ResponseAccount.md
 docs/SelectLinkedInOrganization200ResponseBulkRefresh.md
+docs/SelectLinkedInOrganization200ResponseFailedInner.md
 docs/SelectLinkedInOrganizationRequest.md
 docs/SelectLinkedInOrganizationRequestSelectedOrganization.md
+docs/SelectLinkedInOrganizationRequestSelectionsInner.md
 docs/SelectPinterestBoard200Response.md
 docs/SelectPinterestBoard200ResponseAccount.md
 docs/SelectPinterestBoardRequest.md
@@ -4676,8 +4678,10 @@ src/Zernio.Test/Model/SelectInstagramAccount200ResponseTests.cs
 src/Zernio.Test/Model/SelectInstagramAccountRequestTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseBulkRefreshTests.cs
+src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganizationRequestSelectedOrganizationTests.cs
+src/Zernio.Test/Model/SelectLinkedInOrganizationRequestSelectionsInnerTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganizationRequestTests.cs
 src/Zernio.Test/Model/SelectPinterestBoard200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectPinterestBoard200ResponseTests.cs
@@ -7379,8 +7383,10 @@ src/Zernio/Model/SelectInstagramAccountRequest.cs
 src/Zernio/Model/SelectLinkedInOrganization200Response.cs
 src/Zernio/Model/SelectLinkedInOrganization200ResponseAccount.cs
 src/Zernio/Model/SelectLinkedInOrganization200ResponseBulkRefresh.cs
+src/Zernio/Model/SelectLinkedInOrganization200ResponseFailedInner.cs
 src/Zernio/Model/SelectLinkedInOrganizationRequest.cs
 src/Zernio/Model/SelectLinkedInOrganizationRequestSelectedOrganization.cs
+src/Zernio/Model/SelectLinkedInOrganizationRequestSelectionsInner.cs
 src/Zernio/Model/SelectPinterestBoard200Response.cs
 src/Zernio/Model/SelectPinterestBoard200ResponseAccount.cs
 src/Zernio/Model/SelectPinterestBoardRequest.cs
