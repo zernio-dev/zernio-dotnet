@@ -1959,6 +1959,7 @@ docs/SearchTweets200ResponseTweetsInner.md
 docs/SearchTweets200ResponseTweetsInnerAuthor.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
+docs/SelectFacebookPage200ResponseFailedInner.md
 docs/SelectFacebookPageRequest.md
 docs/SelectFacebookPageRequestOneOf.md
 docs/SelectFacebookPageRequestOneOf1.md
@@ -4660,6 +4661,7 @@ src/Zernio.Test/Model/SearchTweets200ResponseTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponseTweetsInnerAuthorTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponseTweetsInnerTests.cs
 src/Zernio.Test/Model/SelectFacebookPage200ResponseAccountTests.cs
+src/Zernio.Test/Model/SelectFacebookPage200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/SelectFacebookPage200ResponseTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestOneOf1Tests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestOneOfNotTests.cs
@@ -7362,6 +7364,7 @@ src/Zernio/Model/SearchTweets200ResponseTweetsInner.cs
 src/Zernio/Model/SearchTweets200ResponseTweetsInnerAuthor.cs
 src/Zernio/Model/SelectFacebookPage200Response.cs
 src/Zernio/Model/SelectFacebookPage200ResponseAccount.cs
+src/Zernio/Model/SelectFacebookPage200ResponseFailedInner.cs
 src/Zernio/Model/SelectFacebookPageRequest.cs
 src/Zernio/Model/SelectFacebookPageRequestOneOf.cs
 src/Zernio/Model/SelectFacebookPageRequestOneOf1.cs
