@@ -115,6 +115,11 @@ docs/AnalyticsOverview.md
 docs/AnalyticsOverviewDataStaleness.md
 docs/AnalyticsSinglePostResponse.md
 docs/AnalyticsSinglePostResponseMediaItemsInner.md
+docs/ApiChangelogEntry.md
+docs/ApiChangelogEntryChanges.md
+docs/ApiChangelogEntryChangesEndpoints.md
+docs/ApiChangelogEntryChangesSchemas.md
+docs/ApiChangelogOperationRef.md
 docs/ApiKey.md
 docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
@@ -271,6 +276,7 @@ docs/ChangeCommerceProductStateRequest.md
 docs/ChangeCommerceProductTags200Response.md
 docs/ChangeCommerceProductTags200ResponseFailedInner.md
 docs/ChangeCommerceProductTagsRequest.md
+docs/ChangelogApi.md
 docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
@@ -1435,6 +1441,7 @@ docs/ListCampaignAssets200ResponseSitelinksInner.md
 docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md
 docs/ListCampaignNegativeKeywords200Response.md
 docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
+docs/ListChangelog200Response.md
 docs/ListCommentAutomationLogs200Response.md
 docs/ListCommentAutomationLogs200ResponseMisses.md
 docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
@@ -2519,6 +2526,7 @@ docs/WebhookPayloadAdStatusChangedStatus.md
 docs/WebhookPayloadAnalyticsSynced.md
 docs/WebhookPayloadAnalyticsSyncedAccount.md
 docs/WebhookPayloadAnalyticsSyncedSync.md
+docs/WebhookPayloadApiChangelogPublished.md
 docs/WebhookPayloadCallEnded.md
 docs/WebhookPayloadCallEndedCall.md
 docs/WebhookPayloadCallEndedCallBilling.md
@@ -2706,6 +2714,7 @@ src/Zernio.Test/Api/BrandedCallingApiTests.cs
 src/Zernio.Test/Api/BroadcastsApiTests.cs
 src/Zernio.Test/Api/BusinessAgentApiTests.cs
 src/Zernio.Test/Api/CallsApiTests.cs
+src/Zernio.Test/Api/ChangelogApiTests.cs
 src/Zernio.Test/Api/CommentAutomationsApiTests.cs
 src/Zernio.Test/Api/CommentsApiTests.cs
 src/Zernio.Test/Api/CommerceApiTests.cs
@@ -2865,6 +2874,11 @@ src/Zernio.Test/Model/AnalyticsOverviewDataStalenessTests.cs
 src/Zernio.Test/Model/AnalyticsOverviewTests.cs
 src/Zernio.Test/Model/AnalyticsSinglePostResponseMediaItemsInnerTests.cs
 src/Zernio.Test/Model/AnalyticsSinglePostResponseTests.cs
+src/Zernio.Test/Model/ApiChangelogEntryChangesEndpointsTests.cs
+src/Zernio.Test/Model/ApiChangelogEntryChangesSchemasTests.cs
+src/Zernio.Test/Model/ApiChangelogEntryChangesTests.cs
+src/Zernio.Test/Model/ApiChangelogEntryTests.cs
+src/Zernio.Test/Model/ApiChangelogOperationRefTests.cs
 src/Zernio.Test/Model/ApiKeyCreatedByTests.cs
 src/Zernio.Test/Model/ApiKeyProfileIdsInnerTests.cs
 src/Zernio.Test/Model/ApiKeyTests.cs
@@ -4156,6 +4170,7 @@ src/Zernio.Test/Model/ListCampaignAssets200ResponseStructuredSnippetsInnerTests.
 src/Zernio.Test/Model/ListCampaignAssets200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignNegativeKeywords200ResponseKeywordsInnerTests.cs
 src/Zernio.Test/Model/ListCampaignNegativeKeywords200ResponseTests.cs
+src/Zernio.Test/Model/ListChangelog200ResponseTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesSamplesInnerTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseTests.cs
@@ -5212,6 +5227,7 @@ src/Zernio.Test/Model/WebhookPayloadAdStatusChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedSyncTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedTests.cs
+src/Zernio.Test/Model/WebhookPayloadApiChangelogPublishedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallEndedCallBillingTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallEndedCallTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallEndedTests.cs
@@ -5392,6 +5408,7 @@ src/Zernio/Api/BrandedCallingApi.cs
 src/Zernio/Api/BroadcastsApi.cs
 src/Zernio/Api/BusinessAgentApi.cs
 src/Zernio/Api/CallsApi.cs
+src/Zernio/Api/ChangelogApi.cs
 src/Zernio/Api/CommentAutomationsApi.cs
 src/Zernio/Api/CommentsApi.cs
 src/Zernio/Api/CommerceApi.cs
@@ -5569,6 +5586,11 @@ src/Zernio/Model/AnalyticsOverview.cs
 src/Zernio/Model/AnalyticsOverviewDataStaleness.cs
 src/Zernio/Model/AnalyticsSinglePostResponse.cs
 src/Zernio/Model/AnalyticsSinglePostResponseMediaItemsInner.cs
+src/Zernio/Model/ApiChangelogEntry.cs
+src/Zernio/Model/ApiChangelogEntryChanges.cs
+src/Zernio/Model/ApiChangelogEntryChangesEndpoints.cs
+src/Zernio/Model/ApiChangelogEntryChangesSchemas.cs
+src/Zernio/Model/ApiChangelogOperationRef.cs
 src/Zernio/Model/ApiKey.cs
 src/Zernio/Model/ApiKeyCreatedBy.cs
 src/Zernio/Model/ApiKeyProfileIdsInner.cs
@@ -6860,6 +6882,7 @@ src/Zernio/Model/ListCampaignAssets200ResponseSitelinksInner.cs
 src/Zernio/Model/ListCampaignAssets200ResponseStructuredSnippetsInner.cs
 src/Zernio/Model/ListCampaignNegativeKeywords200Response.cs
 src/Zernio/Model/ListCampaignNegativeKeywords200ResponseKeywordsInner.cs
+src/Zernio/Model/ListChangelog200Response.cs
 src/Zernio/Model/ListCommentAutomationLogs200Response.cs
 src/Zernio/Model/ListCommentAutomationLogs200ResponseMisses.cs
 src/Zernio/Model/ListCommentAutomationLogs200ResponseMissesSamplesInner.cs
@@ -7917,6 +7940,7 @@ src/Zernio/Model/WebhookPayloadAdStatusChangedStatus.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSynced.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSyncedAccount.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSyncedSync.cs
+src/Zernio/Model/WebhookPayloadApiChangelogPublished.cs
 src/Zernio/Model/WebhookPayloadCallEnded.cs
 src/Zernio/Model/WebhookPayloadCallEndedCall.cs
 src/Zernio/Model/WebhookPayloadCallEndedCallBilling.cs

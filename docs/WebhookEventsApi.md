@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountDisconnected**](WebhookEventsApi.md#onaccountdisconnected) | **POST** /account.disconnected | Account disconnected event |
 | [**OnAdStatusChanged**](WebhookEventsApi.md#onadstatuschanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**OnAnalyticsSynced**](WebhookEventsApi.md#onanalyticssynced) | **POST** /analytics.synced | Analytics synced event |
+| [**OnApiChangelogPublished**](WebhookEventsApi.md#onapichangelogpublished) | **POST** /api.changelog.published | API changelog entry published event |
 | [**OnBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onbrandedcallingidentityactionrequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**OnBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onbrandedcallingidentitystatusupdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
 | [**OnBrandedCallingNumberStatusUpdated**](WebhookEventsApi.md#onbrandedcallingnumberstatusupdated) | **POST** /branded_calling.number.status_updated | Branded number status updated event |
@@ -710,6 +711,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAnalyticsSynced** | [**WebhookPayloadAnalyticsSynced**](WebhookPayloadAnalyticsSynced.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onapichangelogpublished"></a>
+# **OnApiChangelogPublished**
+> void OnApiChangelogPublished (WebhookPayloadApiChangelogPublished webhookPayloadApiChangelogPublished)
+
+API changelog entry published event
+
+Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live. The event belongs to no profile or account: every active subscription that opted in receives it, scoped subscriptions (`profileIds` / `accountIds`) do not. `entry.changes` is the deterministic diff of the spec (operations and schemas added, removed and modified); `entry.message` is the written announcement. Act on `changes` and `type`, read `message` for the why. Entries are listed by `GET /v1/changelog`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnApiChangelogPublishedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadApiChangelogPublished = new WebhookPayloadApiChangelogPublished(); // WebhookPayloadApiChangelogPublished | 
+
+            try
+            {
+                // API changelog entry published event
+                apiInstance.OnApiChangelogPublished(webhookPayloadApiChangelogPublished);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnApiChangelogPublished: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnApiChangelogPublishedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // API changelog entry published event
+    apiInstance.OnApiChangelogPublishedWithHttpInfo(webhookPayloadApiChangelogPublished);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnApiChangelogPublishedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadApiChangelogPublished** | [**WebhookPayloadApiChangelogPublished**](WebhookPayloadApiChangelogPublished.md) |  |  |
 
 ### Return type
 
