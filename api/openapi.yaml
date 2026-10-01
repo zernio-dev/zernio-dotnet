@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.194.1
+  version: 1.195.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7517,6 +7517,27 @@ paths:
         required: false
         schema:
           maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Comma-separated profile IDs (up to 50) to preview, together\
+          \ with perProfile. The response then also carries `profileTotals`."
+        explode: true
+        in: query
+        name: profileIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Return a preview of each profile in profileIds: the newest account\
+          \ of every platform it has, topped up to at least N. Requires profileIds;\
+          \ cannot be combined with page and limit."
+        explode: true
+        in: query
+        name: perProfile
+        required: false
+        schema:
+          maximum: 24
           minimum: 1
           type: integer
         style: form
@@ -68895,6 +68916,7 @@ components:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         isDefault: true
+        accountCount: 0
         color: color
         timezone: timezone
         name: name
@@ -68924,6 +68946,11 @@ components:
           description: Only present when includeOverLimit=true. Indicates if this
             profile exceeds the plan limit.
           type: boolean
+        accountCount:
+          description: "In the profile list. Connected accounts on the profile, including\
+            \ ones that need reconnecting; phone and SMS number internals and posting\
+            \ accounts hidden by an ads connect are not counted."
+          type: integer
         createdAt:
           format: date-time
           type: string
@@ -71430,10 +71457,11 @@ components:
           $ref: "#/components/schemas/Post"
     ProfilesListResponse:
       example:
-        total: 0
+        total: 6
         profiles:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
+          accountCount: 0
           color: color
           timezone: timezone
           name: name
@@ -71443,6 +71471,7 @@ components:
           isOverLimit: true
         - createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
+          accountCount: 0
           color: color
           timezone: timezone
           name: name
@@ -71450,8 +71479,8 @@ components:
           _id: _id
           userId: userId
           isOverLimit: true
-        limit: 1
-        skip: 6
+        limit: 5
+        skip: 1
       properties:
         profiles:
           items:
@@ -71472,6 +71501,7 @@ components:
         profile:
           createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
+          accountCount: 0
           color: color
           timezone: timezone
           name: name
@@ -71490,6 +71520,7 @@ components:
         profile:
           createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
+          accountCount: 0
           color: color
           timezone: timezone
           name: name
@@ -71505,6 +71536,7 @@ components:
         profile:
           createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
+          accountCount: 0
           color: color
           timezone: timezone
           name: name
@@ -71527,6 +71559,8 @@ components:
     AccountsListResponse:
       example:
         hasAnalyticsAccess: true
+        profileTotals:
+          key: 6
         pagination: ""
         accounts:
         - profileUrl: profileUrl
@@ -71569,6 +71603,11 @@ components:
           allOf:
           - $ref: "#/components/schemas/Pagination"
           description: Only present when page/limit params are provided
+        profileTotals:
+          additionalProperties:
+            type: integer
+          description: Only with profileIds and perProfile. Accounts matching the
+            filters per profile ID; a profile with none is absent.
       required:
       - accounts
       - hasAnalyticsAccess

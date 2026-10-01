@@ -1061,7 +1061,7 @@ catch (ApiException e)
 
 <a id="listaccounts"></a>
 # **ListAccounts**
-> AccountsListResponse ListAccounts (string? profileId = null, string? platform = null, string? status = null, bool? includeOverLimit = null, int? page = null, int? limit = null)
+> AccountsListResponse ListAccounts (string? profileId = null, string? platform = null, string? status = null, bool? includeOverLimit = null, int? page = null, int? limit = null, string? profileIds = null, int? perProfile = null)
 
 List accounts
 
@@ -1097,11 +1097,13 @@ namespace Example
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
             var page = 56;  // int? | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional) 
             var limit = 56;  // int? | Page size. Must be provided together with page; sending only one of the two returns 400.  (optional) 
+            var profileIds = "profileIds_example";  // string? | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`. (optional) 
+            var perProfile = 56;  // int? | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit. (optional) 
 
             try
             {
                 // List accounts
-                AccountsListResponse result = apiInstance.ListAccounts(profileId, platform, status, includeOverLimit, page, limit);
+                AccountsListResponse result = apiInstance.ListAccounts(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1122,7 +1124,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List accounts
-    ApiResponse<AccountsListResponse> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
+    ApiResponse<AccountsListResponse> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1145,6 +1147,8 @@ catch (ApiException e)
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **int?** | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional]  |
 | **limit** | **int?** | Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional]  |
+| **profileIds** | **string?** | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional]  |
+| **perProfile** | **int?** | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit. | [optional]  |
 
 ### Return type
 
