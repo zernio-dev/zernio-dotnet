@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetAnalytics**](AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics |
+| [**GetAnalyticsDashboard**](AnalyticsApi.md#getanalyticsdashboard) | **GET** /v1/analytics/dashboard | Get an analytics dashboard |
 | [**GetAnalyticsDelta**](AnalyticsApi.md#getanalyticsdelta) | **GET** /v1/analytics/delta | Analytics changed since a cursor |
 | [**GetBestTimeToPost**](AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post |
 | [**GetContentDecay**](AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay |
@@ -153,6 +154,121 @@ catch (ApiException e)
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
 | **500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getanalyticsdashboard"></a>
+# **GetAnalyticsDashboard**
+> GetAnalyticsDashboard200Response GetAnalyticsDashboard (DateOnly fromDate, DateOnly toDate, string? profileId = null, string? platform = null, string? compare = null, int? topPosts = null, int? recentPosts = null)
+
+Get an analytics dashboard
+
+Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so `totals` is always the sum of `daily`. `topPosts` and `recentPosts` list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAnalyticsDashboardExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var fromDate = 2026-09-01;  // DateOnly | First day of the window (YYYY-MM-DD, inclusive).
+            var toDate = 2026-09-30;  // DateOnly | Last day of the window (YYYY-MM-DD, inclusive). May equal fromDate. The window covers at most 366 days.
+            var profileId = "\"all\"";  // string? | Profile ID, or \"all\" for every profile you can access. (optional)  (default to "all")
+            var platform = "\"all\"";  // string? | Platform to cover (e.g. \"instagram\"), or \"all\". (optional)  (default to "all")
+            var compare = "previous_period";  // string? | Set to \"previous_period\" to also return previousTotals and previousFollowers for the window of the same length that ends the day before fromDate. (optional) 
+            var topPosts = 5;  // int? | How many top posts to return, ranked by engagement (likes, comments, shares and saves, the same sum as daily engagement). (optional)  (default to 5)
+            var recentPosts = 10;  // int? | How many of the most recently published posts to return. (optional)  (default to 10)
+
+            try
+            {
+                // Get an analytics dashboard
+                GetAnalyticsDashboard200Response result = apiInstance.GetAnalyticsDashboard(fromDate, toDate, profileId, platform, compare, topPosts, recentPosts);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetAnalyticsDashboard: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAnalyticsDashboardWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get an analytics dashboard
+    ApiResponse<GetAnalyticsDashboard200Response> response = apiInstance.GetAnalyticsDashboardWithHttpInfo(fromDate, toDate, profileId, platform, compare, topPosts, recentPosts);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetAnalyticsDashboardWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **fromDate** | **DateOnly** | First day of the window (YYYY-MM-DD, inclusive). |  |
+| **toDate** | **DateOnly** | Last day of the window (YYYY-MM-DD, inclusive). May equal fromDate. The window covers at most 366 days. |  |
+| **profileId** | **string?** | Profile ID, or \&quot;all\&quot; for every profile you can access. | [optional] [default to &quot;all&quot;] |
+| **platform** | **string?** | Platform to cover (e.g. \&quot;instagram\&quot;), or \&quot;all\&quot;. | [optional] [default to &quot;all&quot;] |
+| **compare** | **string?** | Set to \&quot;previous_period\&quot; to also return previousTotals and previousFollowers for the window of the same length that ends the day before fromDate. | [optional]  |
+| **topPosts** | **int?** | How many top posts to return, ranked by engagement (likes, comments, shares and saves, the same sum as daily engagement). | [optional] [default to 5] |
+| **recentPosts** | **int?** | How many of the most recently published posts to return. | [optional] [default to 10] |
+
+### Return type
+
+[**GetAnalyticsDashboard200Response**](GetAnalyticsDashboard200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dashboard for the window |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The profile is not accessible, or is beyond your plan&#39;s profile limit (PROFILE_OVER_LIMIT). |  -  |
+| **404** | Profile not found or not accessible with this API key. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

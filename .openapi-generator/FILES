@@ -100,6 +100,11 @@ docs/AdsListResponse.md
 docs/AdsTimelineResponse.md
 docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
+docs/AnalyticsDashboardFollowers.md
+docs/AnalyticsDashboardFollowersByAccountInner.md
+docs/AnalyticsDashboardPost.md
+docs/AnalyticsDashboardPostMetrics.md
+docs/AnalyticsDashboardTotals.md
 docs/AnalyticsDeltaEntry.md
 docs/AnalyticsDeltaEntryMetrics.md
 docs/AnalyticsDeltaResponse.md
@@ -841,6 +846,9 @@ docs/GetAllAccountsHealth200ResponseSummary.md
 docs/GetAnalytics200Response.md
 docs/GetAnalytics400Response.md
 docs/GetAnalytics402Response.md
+docs/GetAnalyticsDashboard200Response.md
+docs/GetAnalyticsDashboard200ResponseDailyInner.md
+docs/GetAnalyticsDashboard200ResponseDateRange.md
 docs/GetBestTimeToPost200Response.md
 docs/GetBestTimeToPost200ResponseSlotsInner.md
 docs/GetBestTimeToPost403Response.md
@@ -2839,6 +2847,11 @@ src/Zernio.Test/Model/AdjustConversionsRequestTests.cs
 src/Zernio.Test/Model/AdsListResponseTests.cs
 src/Zernio.Test/Model/AdsTimelineResponseRowsInnerTests.cs
 src/Zernio.Test/Model/AdsTimelineResponseTests.cs
+src/Zernio.Test/Model/AnalyticsDashboardFollowersByAccountInnerTests.cs
+src/Zernio.Test/Model/AnalyticsDashboardFollowersTests.cs
+src/Zernio.Test/Model/AnalyticsDashboardPostMetricsTests.cs
+src/Zernio.Test/Model/AnalyticsDashboardPostTests.cs
+src/Zernio.Test/Model/AnalyticsDashboardTotalsTests.cs
 src/Zernio.Test/Model/AnalyticsDeltaEntryMetricsTests.cs
 src/Zernio.Test/Model/AnalyticsDeltaEntryTests.cs
 src/Zernio.Test/Model/AnalyticsDeltaResponseTests.cs
@@ -3557,6 +3570,9 @@ src/Zernio.Test/Model/GetAllAccountsHealth200ResponseTests.cs
 src/Zernio.Test/Model/GetAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetAnalytics400ResponseTests.cs
 src/Zernio.Test/Model/GetAnalytics402ResponseTests.cs
+src/Zernio.Test/Model/GetAnalyticsDashboard200ResponseDailyInnerTests.cs
+src/Zernio.Test/Model/GetAnalyticsDashboard200ResponseDateRangeTests.cs
+src/Zernio.Test/Model/GetAnalyticsDashboard200ResponseTests.cs
 src/Zernio.Test/Model/GetBestTimeToPost200ResponseSlotsInnerTests.cs
 src/Zernio.Test/Model/GetBestTimeToPost200ResponseTests.cs
 src/Zernio.Test/Model/GetBestTimeToPost403ResponseTests.cs
@@ -5532,6 +5548,11 @@ src/Zernio/Model/AdjustConversionsRequestAdjustmentsInnerUser.cs
 src/Zernio/Model/AdsListResponse.cs
 src/Zernio/Model/AdsTimelineResponse.cs
 src/Zernio/Model/AdsTimelineResponseRowsInner.cs
+src/Zernio/Model/AnalyticsDashboardFollowers.cs
+src/Zernio/Model/AnalyticsDashboardFollowersByAccountInner.cs
+src/Zernio/Model/AnalyticsDashboardPost.cs
+src/Zernio/Model/AnalyticsDashboardPostMetrics.cs
+src/Zernio/Model/AnalyticsDashboardTotals.cs
 src/Zernio/Model/AnalyticsDeltaEntry.cs
 src/Zernio/Model/AnalyticsDeltaEntryMetrics.cs
 src/Zernio/Model/AnalyticsDeltaResponse.cs
@@ -6250,6 +6271,9 @@ src/Zernio/Model/GetAllAccountsHealth200ResponseSummary.cs
 src/Zernio/Model/GetAnalytics200Response.cs
 src/Zernio/Model/GetAnalytics400Response.cs
 src/Zernio/Model/GetAnalytics402Response.cs
+src/Zernio/Model/GetAnalyticsDashboard200Response.cs
+src/Zernio/Model/GetAnalyticsDashboard200ResponseDailyInner.cs
+src/Zernio/Model/GetAnalyticsDashboard200ResponseDateRange.cs
 src/Zernio/Model/GetBestTimeToPost200Response.cs
 src/Zernio/Model/GetBestTimeToPost200ResponseSlotsInner.cs
 src/Zernio/Model/GetBestTimeToPost403Response.cs
