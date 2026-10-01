@@ -129,7 +129,7 @@ catch (ApiException e)
 
 Request an RCS agent
 
-Requests a new agent for a profile, with a new company (`brand`) or an existing one (`brandId`, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. One open agent per profile. Requires usage-based billing and a card on file. Send an `Idempotency-Key` header to make retries safe. 
+Requests a new agent for a profile, with a new company (`brand`) or an existing one (`brandId`, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. A profile can hold several agents. Requires usage-based billing and a card on file. Send an `Idempotency-Key` header to make retries safe. 
 
 ### Example
 ```csharp
@@ -225,7 +225,7 @@ catch (ApiException e)
 | **402** | No payment method on file (payment_method_required). Add a card and retry. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Profile or brand not found |  -  |
-| **409** | The profile already has an open agent, the brand was rejected, or the Idempotency-Key is still in flight |  -  |
+| **409** | The brand was rejected, or the Idempotency-Key is still in flight |  -  |
 | **422** | Usage-based billing is not enabled for the workspace (USAGE_BILLING_REQUIRED), or the Idempotency-Key was reused with a different body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -950,7 +950,7 @@ This endpoint does not need any parameter.
 
 Move a number to another profile
 
-Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform `phone`, plus `sms` when SMS is enabled) and, once WhatsApp is connected, the `whatsapp` account. They all carry a profileId and this endpoint moves them together.  Use this instead of `PATCH /v1/accounts/{accountId}`: that one moves the account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a Zernio-provisioned number from any profile but its own is rejected with a `409` (`WHATSAPP_NUMBER_PINNED_TO_PROFILE`). This endpoint is how you re-home the number first, so it can then be connected from the new profile.  `id` is the number record id from `GET /v1/phone-numbers`, not an account id.  A profile holds at most one account per platform, so the destination must be free of every platform this number occupies. 
+Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform `phone`, plus `sms` when SMS is enabled) and, once WhatsApp is connected, the `whatsapp` account. They all carry a profileId and this endpoint moves them together.  Use this instead of `PATCH /v1/accounts/{accountId}`: that one moves the account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a Zernio-provisioned number from any profile but its own is rejected with a `409` (`WHATSAPP_NUMBER_PINNED_TO_PROFILE`). This endpoint is how you re-home the number first, so it can then be connected from the new profile.  `id` is the number record id from `GET /v1/phone-numbers`, not an account id.  The destination profile may already hold other numbers. 
 
 ### Example
 ```csharp
@@ -1045,7 +1045,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | No access to the source or destination profile, or the Inbox add-on is not active. |  -  |
 | **404** | Number not found, or the destination profile does not exist. |  -  |
-| **409** | The destination profile already holds an account on one of the platforms this number occupies. |  -  |
+| **409** | The number cannot move, for example because the same number is already connected on the destination profile. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
