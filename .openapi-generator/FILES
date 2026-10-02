@@ -1975,7 +1975,9 @@ docs/SelectFacebookPageRequestOneOfNot.md
 docs/SelectFacebookPageRequestOneOfUserProfile.md
 docs/SelectGoogleBusinessLocation200Response.md
 docs/SelectGoogleBusinessLocation200ResponseAccount.md
+docs/SelectGoogleBusinessLocation200ResponseFailedInner.md
 docs/SelectGoogleBusinessLocationRequest.md
+docs/SelectGoogleBusinessLocationRequestLocationsInner.md
 docs/SelectInstagramAccount200Response.md
 docs/SelectInstagramAccount200ResponseAccount.md
 docs/SelectInstagramAccountRequest.md
@@ -4688,7 +4690,9 @@ src/Zernio.Test/Model/SelectFacebookPageRequestOneOfTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestOneOfUserProfileTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseAccountTests.cs
+src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseTests.cs
+src/Zernio.Test/Model/SelectGoogleBusinessLocationRequestLocationsInnerTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocationRequestTests.cs
 src/Zernio.Test/Model/SelectInstagramAccount200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectInstagramAccount200ResponseTests.cs
@@ -7402,7 +7406,9 @@ src/Zernio/Model/SelectFacebookPageRequestOneOfNot.cs
 src/Zernio/Model/SelectFacebookPageRequestOneOfUserProfile.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200Response.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200ResponseAccount.cs
+src/Zernio/Model/SelectGoogleBusinessLocation200ResponseFailedInner.cs
 src/Zernio/Model/SelectGoogleBusinessLocationRequest.cs
+src/Zernio/Model/SelectGoogleBusinessLocationRequestLocationsInner.cs
 src/Zernio/Model/SelectInstagramAccount200Response.cs
 src/Zernio/Model/SelectInstagramAccount200ResponseAccount.cs
 src/Zernio/Model/SelectInstagramAccountRequest.cs
