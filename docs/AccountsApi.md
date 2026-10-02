@@ -1061,7 +1061,7 @@ catch (ApiException e)
 
 <a id="listaccounts"></a>
 # **ListAccounts**
-> AccountsListResponse ListAccounts (string? profileId = null, string? platform = null, string? status = null, bool? includeOverLimit = null, int? page = null, int? limit = null, string? profileIds = null, int? perProfile = null)
+> AccountsListResponse ListAccounts (string? profileId = null, string? platform = null, string? status = null, string? search = null, string? category = null, string? sort = null, string? order = null, bool? includeOverLimit = null, int? page = null, int? limit = null, string? profileIds = null, int? perProfile = null)
 
 List accounts
 
@@ -1094,6 +1094,10 @@ namespace Example
             var profileId = "profileId_example";  // string? | Filter accounts by profile ID. Must be a valid ObjectId. (optional) 
             var platform = "platform_example";  // string? | Filter accounts by platform (e.g. \"instagram\", \"twitter\"). (optional) 
             var status = "connected";  // string? | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional) 
+            var search = "search_example";  // string? | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. (optional) 
+            var category = "social";  // string? | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, social = every other platform. (optional) 
+            var sort = "account";  // string? | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. (optional) 
+            var order = "asc";  // string? | Direction for `sort`. (optional)  (default to asc)
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
             var page = 56;  // int? | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional) 
             var limit = 56;  // int? | Page size. Must be provided together with page; sending only one of the two returns 400.  (optional) 
@@ -1103,7 +1107,7 @@ namespace Example
             try
             {
                 // List accounts
-                AccountsListResponse result = apiInstance.ListAccounts(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
+                AccountsListResponse result = apiInstance.ListAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1124,7 +1128,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List accounts
-    ApiResponse<AccountsListResponse> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
+    ApiResponse<AccountsListResponse> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1144,6 +1148,10 @@ catch (ApiException e)
 | **profileId** | **string?** | Filter accounts by profile ID. Must be a valid ObjectId. | [optional]  |
 | **platform** | **string?** | Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional]  |
 | **status** | **string?** | Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional]  |
+| **search** | **string?** | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. | [optional]  |
+| **category** | **string?** | Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, social &#x3D; every other platform. | [optional]  |
+| **sort** | **string?** | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional]  |
+| **order** | **string?** | Direction for &#x60;sort&#x60;. | [optional] [default to asc] |
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **int?** | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional]  |
 | **limit** | **int?** | Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional]  |
