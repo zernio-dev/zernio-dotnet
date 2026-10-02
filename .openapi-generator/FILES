@@ -836,6 +836,10 @@ docs/GetAdMedia200ResponseMediaInner.md
 docs/GetAdNegativeKeywordList200Response.md
 docs/GetAdNegativeKeywordList200ResponseList.md
 docs/GetAdPreviews200Response.md
+docs/GetAdReview200Response.md
+docs/GetAdReview200ResponseReview.md
+docs/GetAdReview200ResponseReviewRejectionsInner.md
+docs/GetAdReview200ResponseReviewRejectionsInnerContent.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree202Response.md
@@ -3574,6 +3578,10 @@ src/Zernio.Test/Model/GetAdMedia200ResponseTests.cs
 src/Zernio.Test/Model/GetAdNegativeKeywordList200ResponseListTests.cs
 src/Zernio.Test/Model/GetAdNegativeKeywordList200ResponseTests.cs
 src/Zernio.Test/Model/GetAdPreviews200ResponseTests.cs
+src/Zernio.Test/Model/GetAdReview200ResponseReviewRejectionsInnerContentTests.cs
+src/Zernio.Test/Model/GetAdReview200ResponseReviewRejectionsInnerTests.cs
+src/Zernio.Test/Model/GetAdReview200ResponseReviewTests.cs
+src/Zernio.Test/Model/GetAdReview200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree202ResponseTests.cs
@@ -6289,6 +6297,10 @@ src/Zernio/Model/GetAdMedia200ResponseMediaInner.cs
 src/Zernio/Model/GetAdNegativeKeywordList200Response.cs
 src/Zernio/Model/GetAdNegativeKeywordList200ResponseList.cs
 src/Zernio/Model/GetAdPreviews200Response.cs
+src/Zernio/Model/GetAdReview200Response.cs
+src/Zernio/Model/GetAdReview200ResponseReview.cs
+src/Zernio/Model/GetAdReview200ResponseReviewRejectionsInner.cs
+src/Zernio/Model/GetAdReview200ResponseReviewRejectionsInnerContent.cs
 src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree202Response.cs
