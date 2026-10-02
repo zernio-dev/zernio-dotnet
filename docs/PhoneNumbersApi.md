@@ -26,6 +26,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ReleasePhoneNumber**](PhoneNumbersApi.md#releasephonenumber) | **DELETE** /v1/phone-numbers/{id} | Release phone number |
 | [**RemediatePhoneNumber**](PhoneNumbersApi.md#remediatephonenumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
 | [**ReplyToPhoneNumberReviewer**](PhoneNumbersApi.md#replytophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
+| [**RequestPhoneNumberWhatsAppCode**](PhoneNumbersApi.md#requestphonenumberwhatsappcode) | **POST** /v1/phone-numbers/{id}/whatsapp/request-code | Request the WhatsApp verification code for a number |
 | [**RespondToPhoneNumberReviewer**](PhoneNumbersApi.md#respondtophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections) |
 | [**ReviewPhoneNumberKycPacket**](PhoneNumbersApi.md#reviewphonenumberkycpacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**SearchAvailablePhoneNumbers**](PhoneNumbersApi.md#searchavailablephonenumbers) | **GET** /v1/phone-numbers/available | Search available numbers |
@@ -2244,6 +2245,112 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 | **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="requestphonenumberwhatsappcode"></a>
+# **RequestPhoneNumberWhatsAppCode**
+> RequestPhoneNumberWhatsAppCode200Response RequestPhoneNumberWhatsAppCode (string id, RequestPhoneNumberWhatsAppCodeRequest? requestPhoneNumberWhatsAppCodeRequest = null)
+
+Request the WhatsApp verification code for a number
+
+Starts (or restarts) WhatsApp verification of a Zernio-hosted number: adds it to Meta's pre-verified pool when needed and asks Meta to send the verification code, which Zernio captures on the number itself. Used to connect WhatsApp on a number bought for calls or SMS. `/v1/whatsapp/phone-numbers/{id}/request-code` is a deprecated alias with the same contract.  When Meta refuses the number for WhatsApp (Meta error 136021): a number that is already live (`active` or `suspended`) is left untouched and keeps working for calls and SMS, and the call answers 409 `number_not_whatsapp_eligible`; buy a new number with WhatsApp enabled instead. A number that was never live (still verifying) is replaced at no extra cost with a WhatsApp-eligible number on the same record, answered as 200 with `replaced: true`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RequestPhoneNumberWhatsAppCodeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Phone number record ID (from GET /v1/phone-numbers).
+            var requestPhoneNumberWhatsAppCodeRequest = new RequestPhoneNumberWhatsAppCodeRequest?(); // RequestPhoneNumberWhatsAppCodeRequest? |  (optional) 
+
+            try
+            {
+                // Request the WhatsApp verification code for a number
+                RequestPhoneNumberWhatsAppCode200Response result = apiInstance.RequestPhoneNumberWhatsAppCode(id, requestPhoneNumberWhatsAppCodeRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.RequestPhoneNumberWhatsAppCode: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RequestPhoneNumberWhatsAppCodeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Request the WhatsApp verification code for a number
+    ApiResponse<RequestPhoneNumberWhatsAppCode200Response> response = apiInstance.RequestPhoneNumberWhatsAppCodeWithHttpInfo(id, requestPhoneNumberWhatsAppCodeRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.RequestPhoneNumberWhatsAppCodeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Phone number record ID (from GET /v1/phone-numbers). |  |
+| **requestPhoneNumberWhatsAppCodeRequest** | [**RequestPhoneNumberWhatsAppCodeRequest?**](RequestPhoneNumberWhatsAppCodeRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**RequestPhoneNumberWhatsAppCode200Response**](RequestPhoneNumberWhatsAppCode200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code requested, or the number was already verified, or a never-live number was replaced. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The number cannot be verified for WhatsApp right now. &#x60;code&#x60; says why: - &#x60;number_not_whatsapp_eligible&#x60;: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp. - &#x60;whatsapp_number_in_use&#x60;: Meta reports the number is registered to another WhatsApp account. - &#x60;META_INVALID_NUMBER&#x60;: Meta refused a never-live number and no replacement could be sourced. - &#x60;PENDING_REGULATORY&#x60;: the number is still in carrier regulatory review.  |  -  |
+| **429** | Meta paused verification for this number. &#x60;retryAt&#x60; says when it lifts. |  -  |
+| **503** | The number is not ready for verification yet, retry shortly. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1898,6 +1898,8 @@ docs/ReplyToMentionRequest.md
 docs/ReplyToPhoneNumberReviewer200Response.md
 docs/ReplyToPhoneNumberReviewerRequest.md
 docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md
+docs/RequestPhoneNumberWhatsAppCode200Response.md
+docs/RequestPhoneNumberWhatsAppCodeRequest.md
 docs/RequestSmsSenderIdLimitIncrease200Response.md
 docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/RequestWhatsAppVerificationCode200Response.md
@@ -4613,6 +4615,8 @@ src/Zernio.Test/Model/ReplyToMentionRequestTests.cs
 src/Zernio.Test/Model/ReplyToPhoneNumberReviewer200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToPhoneNumberReviewerRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/ReplyToPhoneNumberReviewerRequestTests.cs
+src/Zernio.Test/Model/RequestPhoneNumberWhatsAppCode200ResponseTests.cs
+src/Zernio.Test/Model/RequestPhoneNumberWhatsAppCodeRequestTests.cs
 src/Zernio.Test/Model/RequestSmsSenderIdLimitIncrease200ResponseTests.cs
 src/Zernio.Test/Model/RequestSmsSenderIdLimitIncreaseRequestTests.cs
 src/Zernio.Test/Model/RequestWhatsAppVerificationCode200ResponseTests.cs
@@ -7325,6 +7329,8 @@ src/Zernio/Model/ReplyToMentionRequest.cs
 src/Zernio/Model/ReplyToPhoneNumberReviewer200Response.cs
 src/Zernio/Model/ReplyToPhoneNumberReviewerRequest.cs
 src/Zernio/Model/ReplyToPhoneNumberReviewerRequestAttachmentsInner.cs
+src/Zernio/Model/RequestPhoneNumberWhatsAppCode200Response.cs
+src/Zernio/Model/RequestPhoneNumberWhatsAppCodeRequest.cs
 src/Zernio/Model/RequestSmsSenderIdLimitIncrease200Response.cs
 src/Zernio/Model/RequestSmsSenderIdLimitIncreaseRequest.cs
 src/Zernio/Model/RequestWhatsAppVerificationCode200Response.cs
