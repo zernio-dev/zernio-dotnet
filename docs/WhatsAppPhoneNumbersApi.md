@@ -768,7 +768,7 @@ namespace Example
             var accountId = "accountId_example";  // string | WhatsApp account ID
             var start = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Range start, ISO 8601 date or date-time.
             var end = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | Range end, ISO 8601 date or date-time. Must be after start.
-            var granularity = "HALF_HOUR";  // string | 
+            var granularity = "HALF_HOUR";  // string | Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with `param: granularity` and Meta's reason in `error`. Use DAILY for short or month-to-date ranges. 
             var dimensions = PRICING_CATEGORY,COUNTRY;  // string? | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. (optional) 
             var metricTypes = COST,VOLUME;  // string? | Comma-separated: COST, VOLUME. Defaults to both. (optional) 
             var pricingTypes = REGULAR;  // string? | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. (optional) 
@@ -819,7 +819,7 @@ catch (ApiException e)
 | **accountId** | **string** | WhatsApp account ID |  |
 | **start** | **DateTime** | Range start, ISO 8601 date or date-time. |  |
 | **end** | **DateTime** | Range end, ISO 8601 date or date-time. Must be after start. |  |
-| **granularity** | **string** |  |  |
+| **granularity** | **string** | Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;. Use DAILY for short or month-to-date ranges.  |  |
 | **dimensions** | **string?** | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional]  |
 | **metricTypes** | **string?** | Comma-separated: COST, VOLUME. Defaults to both. | [optional]  |
 | **pricingTypes** | **string?** | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional]  |
@@ -844,7 +844,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid query, or Meta refused it. When Meta refuses, &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner), &#x60;code&#x60; is &#x60;invalid_field_value&#x60;, &#x60;platformError&#x60; holds Meta&#39;s raw error, and &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY. Retrying the same query fails the same way.  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
